@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  nginx:
+    build:
+      context:
+        ./docker/nginx
+    volumes:
+      - ./public:/app/public
+    ports:
+      - ${NGINX_PORT}:80
+    networks:
+      - default
+
+  php:
+    build:
+      context:
+        ./docker/php
+    volumes:
+      - .:/app
+    networks:
+      - default
+    links:
+      - mysql
+
+  mysql:
+    build:
+      context:
+        ./docker/mysql
+    volumes:
+      - ./docker/mysql/db:/var/lib/mysql
+    ports:
+      - ${MYSQL_PORT}:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    networks:
+      - default
