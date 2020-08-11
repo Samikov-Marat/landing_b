@@ -20,10 +20,13 @@
             @include('admin.menu')
         </div>
         <div class="col-10">
+            @yield('buttons')
             @yield('content')
         </div>
     </div>
 </div>
+
+@include('admin.delete_confirm')
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -36,5 +39,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
         integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
         crossorigin="anonymous"></script>
+<script src="/admin/admin.js"></script>
 </body>
 </html>

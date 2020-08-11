@@ -13,14 +13,30 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Auth::routes();
+
 Route::redirect('/', '/admin');
 
-Route::redirect('/admin', '/admin');
-
-Auth::routes();
+Route::get(
+    '/admin',
+    function () {
+        return response()->redirectToRoute('admin.sites.index');
+    }
+)
+    ->name('admin.index');
 
 Route::prefix('admin')->middleware('auth')->group(
     function () {
-        Route::get('/', 'admin\IndexController@index')->name('admin.index');
+//        Route::get('/', 'admin\IndexController@index')->name('admin.index');
+        Route::get('sites', 'admin\SiteController@index')
+            ->name('admin.sites.index');
+        Route::get('sites/add', 'admin\SiteController@edit')
+            ->name('admin.sites.add');
+        Route::get('sites/edit/{id}', 'admin\SiteController@edit')
+            ->name('admin.sites.edit');
+        Route::post('sites/save', 'admin\SiteController@save')
+            ->name('admin.sites.save');
+        Route::post('sites/delete', 'admin\SiteController@delete')
+            ->name('admin.sites.delete');
     }
 );
