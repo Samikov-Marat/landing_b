@@ -15,4 +15,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', '/admin');
 
-Route::get('admin', 'admin\IndexController@index');
+Route::redirect('/admin', '/admin');
+
+Auth::routes();
+
+Route::prefix('admin')->middleware('auth')->group(
+    function () {
+        Route::get('/', 'admin\IndexController@index')->name('admin.index');
+    }
+);
