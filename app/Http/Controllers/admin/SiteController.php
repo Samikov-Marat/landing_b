@@ -10,16 +10,17 @@ class SiteController extends Controller
 {
     const PER_PAGE = 10;
 
-    function index()
+    public function index()
     {
         $sites = Site::select('id', 'name', 'domain')
+            ->with('languages')
             ->paginate(static::PER_PAGE);
 
         return view('admin.sites.index')
             ->with('sites', $sites);
     }
 
-    function edit($id = null)
+    public function edit($id = null)
     {
         if (isset($id)) {
             $site = Site::select('id', 'name', 'domain')->find($id);
@@ -31,24 +32,24 @@ class SiteController extends Controller
             ->with('site', $site);
     }
 
-    function save(Request $request)
+    public function save(Request $request)
     {
         if ($request->has('id')) {
-            $site = Site::find($request->get('id'));
+            $site = Site::find($request->input('id'));
         } else {
             $site = new Site();
         }
 
-        $site->domain = $request->get('domain');
-        $site->name = $request->get('name');
+        $site->domain = $request->input('domain');
+        $site->name = $request->input('name');
 
         $site->save();
 
         return response()->redirectToRoute('admin.sites.index');
     }
 
-    function delete(Request $request){
-        $site = Site::find($request->get('id'));
+    public function delete(Request $request){
+        $site = Site::find($request->input('id'));
         $site->delete();
         return response()->redirectToRoute('admin.sites.index');
     }

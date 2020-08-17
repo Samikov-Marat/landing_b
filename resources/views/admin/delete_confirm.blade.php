@@ -1,7 +1,7 @@
 <div class="modal js-delete-confirm-modal" tabindex="-1">
     <div class="modal-dialog">
         <form method="post" class="modal-content js-delete-confirm-form">
-            {{ csrf_field() }}
+            @csrf
             <input type="hidden" class="js-delete-confirm-id" name="id">
             <div class="modal-header">
                 <h5 class="modal-title">Подтвердите удаление</h5>

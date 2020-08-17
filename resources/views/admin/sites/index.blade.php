@@ -37,8 +37,9 @@
                         {{ $site->name }}
                     </td>
                     <td class="text-nowrap">
-                        <a href="{!! route('admin.sites.edit', ['id' => $site->id]) !!}" class="btn btn-success btn-sm">Редактировать</a>
+                        <a href="{!! route('admin.sites.edit', ['id' => $site->id]) !!}" class="btn btn-primary btn-sm">Редактировать</a>
                         <button type="button" data-text="Удалить {{ $site->domain }}?" data-action="{!! route('admin.sites.delete') !!}" data-id="{{ $site->id }}" class="btn btn-danger btn-sm js-delete-confirm">Удалить</button>
+                        <a href="{!! route('admin.languages.index', ['site_id' => $site->id]) !!}" class="btn btn-primary btn-sm">Языки</a>
                     </td>
                 </tr>
             @endforeach

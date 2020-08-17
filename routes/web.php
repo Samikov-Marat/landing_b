@@ -15,8 +15,8 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::redirect('/', '/admin');
-
+//Route::redirect('/', '/admin');
+//
 Route::get(
     '/admin',
     function () {
@@ -38,5 +38,19 @@ Route::prefix('admin')->middleware('auth')->group(
             ->name('admin.sites.save');
         Route::post('sites/delete', 'admin\SiteController@delete')
             ->name('admin.sites.delete');
+
+        Route::get('languages', 'admin\LanguageController@index')
+            ->name('admin.languages.index');
+        Route::get('languages/add', 'admin\LanguageController@edit')
+            ->name('admin.languages.add');
+        Route::get('languages/edit/{id}', 'admin\LanguageController@edit')
+            ->name('admin.languages.edit');
+        Route::post('languages/save', 'admin\LanguageController@save')
+            ->name('admin.languages.save');
+        Route::post('languages/delete', 'admin\LanguageController@delete')
+            ->name('admin.languages.delete');
+        Route::post('languages/move', 'admin\LanguageController@move')
+            ->name('admin.languages.move');
+
     }
 );
