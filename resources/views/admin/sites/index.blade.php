@@ -22,6 +22,9 @@
                     Название
                 </th>
                 <th>
+                    Страницы
+                </th>
+                <th>
 
                 </th>
             </tr>
@@ -35,6 +38,11 @@
                     </td>
                     <td>
                         {{ $site->name }}
+                    </td>
+                    <td>
+                        <a href="{!! route('admin.sites.edit_page_list', ['id' => $site->id]) !!}">
+                            {{ count($site->pages) }} страниц
+                        </a>
                     </td>
                     <td class="text-nowrap">
                         <a href="{!! route('admin.sites.edit', ['id' => $site->id]) !!}" class="btn btn-primary btn-sm">Редактировать</a>

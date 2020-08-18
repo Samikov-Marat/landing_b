@@ -24,14 +24,15 @@
         <div class="form-group">
             <label for="id_shortname">Обозначение</label>
             <input type="text" class="form-control" name="shortname" id="id_shortname"
-                   value="{{ isset($language) ? $language->shortname : '' }}" placeholder="Обозначение">
+                   value="{{ isset($language) ? $language->shortname : '' }}"
+                   placeholder="Обозначение" autocomplete="off">
             <small id="id_shortname_help" class="form-text text-muted">Обычно 2 буквы. Например, <q>RU</q></small>
         </div>
         <div class="form-group">
             <label for="id_name">Название</label>
             <input type="text" class="form-control" name="name" id="id_name"
                    value="{{ isset($language) ? $language->name : '' }}"
-                   placeholder="название">
+                   placeholder="название" autocomplete="off">
             <small id="id_name_help" class="form-text text-muted">Полное название языка. Например, <q>Английский язык</q></small>
         </div>
         <button type="submit" class="btn btn-primary">Сохранить</button>

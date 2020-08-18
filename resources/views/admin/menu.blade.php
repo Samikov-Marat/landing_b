@@ -1,6 +1,7 @@
 @php
     $menu = [
             ['route' => 'admin.sites.index', 'text' => 'Сайты', 'active' => false],
+            ['route' => 'admin.pages.index', 'text' => 'Страницы', 'active' => false],
         ];
 @endphp
 <nav class="nav flex-column">

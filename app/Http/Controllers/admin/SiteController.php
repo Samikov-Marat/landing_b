@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Page;
 use App\Site;
 use Illuminate\Http\Request;
 
@@ -13,7 +14,10 @@ class SiteController extends Controller
     public function index()
     {
         $sites = Site::select('id', 'name', 'domain')
+            ->orderBy('name')
+            ->orderBy('id')
             ->with('languages')
+            ->with('pages')
             ->paginate(static::PER_PAGE);
 
         return view('admin.sites.index')
@@ -48,9 +52,33 @@ class SiteController extends Controller
         return response()->redirectToRoute('admin.sites.index');
     }
 
-    public function delete(Request $request){
+    public function delete(Request $request)
+    {
         $site = Site::find($request->input('id'));
         $site->delete();
+        return response()->redirectToRoute('admin.sites.index');
+    }
+
+
+    public function editPageList(Request $request)
+    {
+        $site = Site::select('id', 'name', 'domain')
+            ->with('pages')
+            ->find($request->input('id'));
+        $pages = Page::select('id', 'url', 'name')
+            ->get();
+
+        return view('admin.sites.page_list')
+            ->with('site', $site)
+            ->with('pages', $pages);
+    }
+
+    public function savePageList(Request $request)
+    {
+        Site::select('id')
+            ->find($request->input('id'))
+            ->pages()
+            ->sync($request->input('page_id') ?? []);
         return response()->redirectToRoute('admin.sites.index');
     }
 }

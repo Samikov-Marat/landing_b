@@ -14,7 +14,14 @@ class LanguageController extends Controller
     public function index(Request $request)
     {
         $site = Site::select('id', 'name', 'domain')
-            ->with('languages:id,site_id,shortname,name,sort')
+            ->with(
+                [
+                    'languages' => function ($query) {
+                        $query->select('id', 'site_id', 'shortname', 'name', 'sort')
+                            ->orderBy('sort');
+                    },
+                ]
+            )
             ->find($request->input('site_id'));
         return view('admin.languages.index')
             ->with('site', $site);
@@ -78,13 +85,16 @@ class LanguageController extends Controller
         $direction = $request->input('direction');
         if ('up' == $direction) {
             $sign = '<';
+            $orderByDirection = 'desc';
         }
         if ('down' == $direction) {
             $sign = '>';
+            $orderByDirection = 'asc';
         }
         $otherLanguage = Language::select('id', 'sort')
             ->where('site_id', $language->site_id)
             ->where('sort', $sign, $language->sort)
+            ->orderBy('sort', $orderByDirection)
             ->first();
 
         $sort = $language->sort;
