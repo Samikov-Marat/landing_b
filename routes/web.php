@@ -70,5 +70,20 @@ Route::prefix('admin')->middleware('auth')->group(
         Route::post('pages/move', 'admin\PageController@move')
             ->name('admin.pages.move');
 
+
+        Route::get('text-type', 'admin\TextTypeController@index')
+            ->name('admin.text_types.index');
+        Route::get('text-type/add', 'admin\TextTypeController@edit')
+            ->name('admin.text_types.add');
+        Route::get('text-type/edit/{id}', 'admin\TextTypeController@edit')
+            ->name('admin.text_types.edit');
+        Route::post('text-type/save', 'admin\TextTypeController@save')
+            ->name('admin.text_types.save');
+        Route::post('text-type/delete', 'admin\TextTypeController@delete')
+            ->name('admin.text_types.delete');
+        Route::post('text-type/move', 'admin\TextTypeController@move')
+            ->name('admin.text_types.move');
+
+
     }
 );

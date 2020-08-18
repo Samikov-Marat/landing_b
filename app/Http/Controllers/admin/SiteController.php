@@ -9,8 +9,6 @@ use Illuminate\Http\Request;
 
 class SiteController extends Controller
 {
-    const PER_PAGE = 10;
-
     public function index()
     {
         $sites = Site::select('id', 'name', 'domain')
@@ -18,7 +16,7 @@ class SiteController extends Controller
             ->orderBy('id')
             ->with('languages')
             ->with('pages')
-            ->paginate(static::PER_PAGE);
+            ->get();
 
         return view('admin.sites.index')
             ->with('sites', $sites);

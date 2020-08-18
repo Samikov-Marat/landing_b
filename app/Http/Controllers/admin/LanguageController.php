@@ -32,13 +32,13 @@ class LanguageController extends Controller
         if (isset($id)) {
             $language = Language::select('id', 'shortname', 'name', 'site_id')
                 ->find($id);
-            $site = Site::select('id', 'name', 'domain')
-                ->find($language->site_id);
+            $siteId = $language->site_id;
         } else {
             $language = null;
-            $site = Site::select('id', 'name', 'domain')
-                ->find($request->input('site_id'));
+            $siteId = $request->input('site_id');
         }
+        $site = Site::select('id', 'name', 'domain')
+            ->find($siteId);
 
 
         return view('admin.languages.form')

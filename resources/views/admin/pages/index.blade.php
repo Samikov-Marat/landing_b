@@ -25,6 +25,12 @@
                     Шаблон
                 </th>
                 <th>
+                    Тексты
+                </th>
+                <th>
+                    Сортировка
+                </th>
+                <th>
 
                 </th>
             </tr>
@@ -42,22 +48,34 @@
                     <td>
                         {{ $page->template }}
                     </td>
+
+                    <td>
+                        <a href="{!! route('admin.text_types.index', ['page_id' => $page->id]) !!}">Тексты</a>
+                    </td>
+
+                    <td>
+                        <form method="post" action="{!! route('admin.pages.move') !!}">
+                            @csrf
+                            <input type="hidden" name="id" value="{{ $page->id }}">
+                            @if (!$loop->first)
+                                <button type="submit" name="direction" value="up" class="btn btn-primary btn-sm">
+                                    Выше
+                                </button>
+                            @endif
+                            @if (!$loop->last)
+                                <button type="submit" name="direction" value="down" class="btn btn-primary btn-sm">
+                                    Ниже
+                                </button>
+                            @endif
+                        </form>
+                    </td>
+
                     <td class="text-nowrap">
                         <a href="{!! route('admin.pages.edit', ['id' => $page->id]) !!}" class="btn btn-primary btn-sm">Редактировать</a>
                         <button type="button" data-text="Удалить {{ $page->url }}?"
                                 data-action="{!! route('admin.pages.delete') !!}" data-id="{{ $page->id }}"
                                 class="btn btn-danger btn-sm js-delete-confirm">Удалить
                         </button>
-                        <form method="post" action="{!! route('admin.pages.move') !!}">
-                            @csrf
-                            <input type="hidden" name="id" value="{{ $page->id }}">
-                            @if (!$loop->first)
-                                <input type="submit" name="direction" value="up" class="btn btn-primary btn-sm">
-                            @endif
-                            @if (!$loop->last)
-                                <input type="submit" name="direction" value="down" class="btn btn-primary btn-sm">
-                            @endif
-                        </form>
                     </td>
                 </tr>
             @endforeach

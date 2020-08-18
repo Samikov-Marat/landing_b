@@ -25,6 +25,9 @@
                     Страницы
                 </th>
                 <th>
+                    Языки
+                </th>
+                <th>
 
                 </th>
             </tr>
@@ -41,13 +44,17 @@
                     </td>
                     <td>
                         <a href="{!! route('admin.sites.edit_page_list', ['id' => $site->id]) !!}">
-                            {{ count($site->pages) }} страниц
+                            {{ $site->pages->count() }} шт.
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{!! route('admin.languages.index', ['site_id' => $site->id]) !!}">
+                            {{ $site->languages->count() }} шт.
                         </a>
                     </td>
                     <td class="text-nowrap">
                         <a href="{!! route('admin.sites.edit', ['id' => $site->id]) !!}" class="btn btn-primary btn-sm">Редактировать</a>
                         <button type="button" data-text="Удалить {{ $site->domain }}?" data-action="{!! route('admin.sites.delete') !!}" data-id="{{ $site->id }}" class="btn btn-danger btn-sm js-delete-confirm">Удалить</button>
-                        <a href="{!! route('admin.languages.index', ['site_id' => $site->id]) !!}" class="btn btn-primary btn-sm">Языки</a>
                     </td>
                 </tr>
             @endforeach
