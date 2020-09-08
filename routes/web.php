@@ -15,18 +15,22 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-//Route::redirect('/', '/admin');
-//
-Route::get(
-    '/admin',
-    function () {
-        return response()->redirectToRoute('admin.sites.index');
-    }
-)
-    ->name('admin.index');
+Route::get('/{page?}', 'site\PageController@showPage')
+    ->where('page', '.*')
+    ->name('site.show_page');
+
 
 Route::prefix('admin')->middleware('auth')->group(
     function () {
+        Route::get(
+            '/',
+            function () {
+                return response()->redirectToRoute('admin.sites.index');
+            }
+        )
+            ->name('admin.index');
+
+
 //        Route::get('/', 'admin\IndexController@index')->name('admin.index');
         Route::get('sites', 'admin\SiteController@index')
             ->name('admin.sites.index');
@@ -84,6 +88,11 @@ Route::prefix('admin')->middleware('auth')->group(
         Route::post('text-type/move', 'admin\TextTypeController@move')
             ->name('admin.text_types.move');
 
-
+        Route::get('texts', 'admin\TextController@index')
+            ->name('admin.texts.index');
+        Route::get('texts/edit', 'admin\TextController@edit')
+            ->name('admin.texts.edit');
+        Route::post('texts/save', 'admin\TextController@save')
+            ->name('admin.texts.save');
     }
 );

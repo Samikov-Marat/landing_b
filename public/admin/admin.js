@@ -12,3 +12,4 @@ $(function () {
         $modal.modal('show');
     });
 });
+

@@ -33,7 +33,7 @@
             <input type="text" class="form-control" name="name" id="id_name"
                    value="{{ isset($textType) ? $textType->name : '' }}"
                    placeholder="название" autocomplete="off">
-            <small id="id_name_help" class="form-text text-muted">Полное название языка. Например, <q>Английский язык</q></small>
+            <small id="id_name_help" class="form-text text-muted">Полное название текста. Например, <q>Заголовок блока доставки</q></small>
         </div>
 
         <div class="form-group">

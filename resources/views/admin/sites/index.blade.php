@@ -28,6 +28,9 @@
                     Языки
                 </th>
                 <th>
+                    Тексты
+                </th>
+                <th>
 
                 </th>
             </tr>
@@ -52,9 +55,17 @@
                             {{ $site->languages->count() }} шт.
                         </a>
                     </td>
+                    <td>
+                        <a href="{!! route('admin.texts.index', ['site_id' => $site->id]) !!}">
+                            Тексты
+                        </a>
+                    </td>
                     <td class="text-nowrap">
                         <a href="{!! route('admin.sites.edit', ['id' => $site->id]) !!}" class="btn btn-primary btn-sm">Редактировать</a>
-                        <button type="button" data-text="Удалить {{ $site->domain }}?" data-action="{!! route('admin.sites.delete') !!}" data-id="{{ $site->id }}" class="btn btn-danger btn-sm js-delete-confirm">Удалить</button>
+                        <button type="button" data-text="Удалить {{ $site->domain }}?"
+                                data-action="{!! route('admin.sites.delete') !!}" data-id="{{ $site->id }}"
+                                class="btn btn-danger btn-sm js-delete-confirm">Удалить
+                        </button>
                     </td>
                 </tr>
             @endforeach
