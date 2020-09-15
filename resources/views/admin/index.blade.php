@@ -2,5 +2,5 @@
 
 @section('content')
 
-zsdvfasdvdv
+Главная страница админки.
 @endsection

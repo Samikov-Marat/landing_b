@@ -14,12 +14,23 @@
 <body>
 
 <div class="container">
-
     <div class="row">
-        <div class="col-2 bg-light"  style="min-height: 100vh">
+        <div class="col">
             @include('admin.menu')
+
         </div>
-        <div class="col-10">
+        <div class="col-auto">
+            @auth
+                <form method="post" action="{!! route('logout') !!}">
+                    @csrf
+                    <button type="submit" class="btn btn-secondary">Выход</button>
+                </form>
+            @endauth
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col">
             @yield('buttons')
             @yield('content')
         </div>
@@ -37,7 +48,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
         integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
         crossorigin="anonymous"></script>
-<script src="/admin/admin.js"></script>
-<script src="/admin/texts.js"></script>
+<script src="/admin_files/admin.js"></script>
+<script src="/admin_files/texts.js"></script>
 </body>
 </html>

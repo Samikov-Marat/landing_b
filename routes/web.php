@@ -15,23 +15,11 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/{page?}', 'site\PageController@showPage')
-    ->where('page', '.*')
-    ->name('site.show_page');
-
 
 Route::prefix('admin')->middleware('auth')->group(
     function () {
-        Route::get(
-            '/',
-            function () {
-                return response()->redirectToRoute('admin.sites.index');
-            }
-        )
+        Route::get('/', 'admin\IndexController@index')
             ->name('admin.index');
-
-
-//        Route::get('/', 'admin\IndexController@index')->name('admin.index');
         Route::get('sites', 'admin\SiteController@index')
             ->name('admin.sites.index');
         Route::get('sites/add', 'admin\SiteController@edit')
@@ -96,3 +84,11 @@ Route::prefix('admin')->middleware('auth')->group(
             ->name('admin.texts.save');
     }
 );
+
+Route::get('/', 'site\PageController@selectDefaultLanguage')
+    ->name('site.select_default_language');
+
+Route::get('/{languageUrl}/{pageUrl?}', 'site\PageController@showPage')
+    ->where('pageUrl', '.*')
+    ->name('site.show_page');
+
