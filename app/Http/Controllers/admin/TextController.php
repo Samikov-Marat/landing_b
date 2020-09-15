@@ -25,7 +25,7 @@ class TextController extends Controller
             ->with(
                 [
                     'pages.textTypes' => function ($query) {
-                        $query->select('id', 'page_id', 'name', 'url')
+                        $query->select('id', 'page_id', 'shortname', 'name')
                             ->orderBy('sort');
                     }
                 ]
@@ -107,15 +107,14 @@ class TextController extends Controller
         $textsByLanguage = $textType->texts->keyBy('language_id');
 
         $values = $request->input('values');
-        foreach ($values as $languageId => $value){
-            if(!$avaiableLanguages->has($languageId)){
+        foreach ($values as $languageId => $value) {
+            if (!$avaiableLanguages->has($languageId)) {
                 throw new \Exception('На этом сайте нет такого языка');
             }
 
-            if($textsByLanguage->has($languageId)){
+            if ($textsByLanguage->has($languageId)) {
                 $text = $textsByLanguage->get($languageId);
-            }
-            else{
+            } else {
                 $text = new Text();
                 $text->text_type_id = $textType->id;
                 $text->language_id = $languageId;
