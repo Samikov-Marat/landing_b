@@ -1,9 +1,5 @@
 @extends('admin.layout')
 @section('buttons')
-    <div class="float-right">
-        <a href="{!! route('admin.sites.add') !!}" class="btn btn-primary">+ Создать</a>
-    </div>
-    <div class="clearfix"></div>
 @endsection
 
 
