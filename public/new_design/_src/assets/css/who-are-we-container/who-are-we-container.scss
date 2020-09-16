@@ -1,0 +1,203 @@
+@import "../vars";
+
+.who-are-we-container {
+  background: url("/img/who-are-we.svg") no-repeat top center, #18B047;
+  text-align: center;
+  padding: 84px 0 100px;
+  color: #fff;
+  &__heading2 {
+    margin-bottom: 34px;
+    font-weight: 300;
+    font-size: 60px;
+  }
+
+  &__text {
+    font-weight: normal;
+    font-size: 20px;
+    margin-bottom: 52px;
+  }
+
+  &__circle-content {
+    display: flex;
+  }
+
+  &__circle-block {
+    margin-right: 82px;
+    width: 238px;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  &__circle {
+    width: 238px;
+    height: 238px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+    border-radius: 50%;
+    background-color: #fff;
+    margin-bottom: 32px;
+    background-position: center center;
+    background-repeat: no-repeat;
+  }
+
+  &__circle-cdek {
+    background-image: url("/img/cdek.svg");
+    position: relative;
+
+    &::before {
+      content: url("/img/cup.svg");
+      position: absolute;
+      bottom: -7px;
+      left: 0;
+    }
+  }
+
+  &__circle-car {
+    background-image: url("/img/car.svg");
+  }
+
+  &__circle-location {
+    background-image: url("/img/location.png");
+    background-size: 131px 118px;
+  }
+
+  &__circle-package {
+    background-image: url("/img/package.png");
+    background-size: 93px 142px;
+  }
+
+  &__circle-number {
+    font-size: 45px;
+    margin-bottom: 14px;
+  }
+
+  &__circle-text {
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 22px;
+  }
+}
+
+@media (max-width: 480px) {
+  .who-are-we-container {
+    background: url("/img/who-are-we-left.svg") no-repeat top 151px left,
+    url("/img/who-are-we-right.svg") no-repeat top 151px right, #18B047;
+    padding: 37px $padding320 84px;
+    box-sizing: border-box;
+    &__heading2 {
+      margin-bottom: 12px;
+      font-size: 35px;
+    }
+
+    &__text {
+      font-size: 15px;
+      line-height: 20px;
+      margin-bottom: 40px;
+    }
+
+    &__circle-block {
+      margin: 0 auto;
+      &:first-child {
+        margin-right: auto;
+      }
+    }
+
+    &__circle {
+      margin-bottom: 27px;
+    }
+
+    &__circle-cdek {
+      background-image: url("/img/cdek.svg");
+      position: relative;
+
+      &::before {
+        content: url("/img/cup.svg");
+        position: absolute;
+        bottom: -7px;
+        left: 0;
+      }
+    }
+
+    &__circle-number {
+      font-size: 35px;
+      margin-bottom: 14px;
+    }
+
+    &__circle-text {
+      font-size: 15px;
+      line-height: 20px;
+    }
+  }
+}
+
+@media(min-width: 481px) and (max-width: 1199px) {
+  .who-are-we-container {
+    background: url("/img/who-are-we-left-768.svg") no-repeat top 150px left,
+    url("/img/who-are-we-right-768.svg") no-repeat top 150px right, #18B047;
+    padding: 37px $padding768 89px;
+    box-sizing: border-box;
+    &__heading2 {
+      margin-bottom: 12px;
+      font-size: 35px;
+    }
+
+    &__text {
+      font-size: 15px;
+      line-height: 20px;
+      margin-bottom: 30px;
+    }
+
+    &__circle-content {
+      justify-content: center;
+    }
+
+    &__circle-block {
+      margin: 0 auto;
+      &:first-child {
+        margin-right: auto;
+      }
+    }
+
+    &__circle {
+      margin-bottom: 27px;
+    }
+
+    &__circle-cdek {
+      background-image: url("/img/cdek.svg");
+      position: relative;
+
+      &::before {
+        content: url("/img/cup.svg");
+        position: absolute;
+        bottom: -7px;
+        left: 0;
+      }
+    }
+
+    &__circle-number {
+      font-size: 35px;
+      margin-bottom: 14px;
+    }
+
+    &__circle-text {
+      font-size: 15px;
+      line-height: 20px;
+    }
+  }
+}
+
+@media only screen and (-o-min-device-pixel-ratio: 5/4),
+only screen and (-webkit-min-device-pixel-ratio: 1.25),
+only screen and (min--moz-device-pixel-ratio: 1.25),
+only screen and (min-device-pixel-ratio: 1.25),
+only screen and (min-resolution: 1.25dppx) {
+  .who-are-we-container {
+    &__circle-location {
+      background-image: url("/img/location2x.png");
+    }
+
+    &__circle-package {
+      background-image: url("/img/package2x.png");
+    }
+  }
+}

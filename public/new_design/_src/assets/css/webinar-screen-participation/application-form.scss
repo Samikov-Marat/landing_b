@@ -1,0 +1,257 @@
+@import "../vars";
+
+.application-form {
+  width: 600px;
+  background: #FFF;
+  box-shadow: 20px 35px 80px rgba(0, 0, 0, 0.15);
+  border-radius: 10px 10px 0 0;
+  padding: 57px 86px 50px 87px;
+  position: relative;
+  box-sizing: border-box;
+
+  &__title {
+    font-size: 36px;
+    text-align: center;
+    margin-bottom: 42px;
+  }
+
+  &__button {
+    border-radius: 4px;
+    background: $greenColor;
+    width: 100%;
+    font-weight: normal;
+    font-size: 18px;
+    height: 58px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    border: none;
+    margin-bottom: 24px;
+    font-family: $fontStack;
+    cursor: pointer;
+  }
+
+  &__text {
+    font-size: 14px;
+    line-height: 18px;
+    color: $textColor2;
+    text-align: center;
+    margin-bottom: 16px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__description {
+    margin-bottom: 45px;
+  }
+
+  &__fields-row {
+    display: flex;
+  }
+
+  &__field {
+    margin-bottom: 35px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__field-small {
+    width: 197px;
+    margin-right: 31px;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  &__result-wrapper {
+    height: 615px;
+  }
+}
+
+.form-result {
+  $block: &;
+  display: block;
+  margin: 0 auto;
+  position: relative;
+  top: 50%;
+  transform: translatey(-50%);
+  text-align: center;
+  &__img {
+    height: 82px;
+    width: 100%;
+    margin-bottom: 21px;
+    background: url("/img/form-result-success.svg") no-repeat top center;
+  }
+
+  &_result_error {
+    #{$block}__img {
+      background-image: url("/img/form-result-error.svg");
+    }
+  }
+
+  &__title {
+    font-size: 36px;
+    margin-bottom: 20px;
+  }
+
+  &__text {
+    font-size: 16px;
+    line-height: 22px;
+  }
+}
+
+
+
+@media (max-width: 480px) {
+  .application-form {
+    width: 100%;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    padding: 28px 20px 30px;
+
+    &__title {
+      font-size: 24px;
+      margin-bottom: 30px;
+    }
+
+    &__button {
+      font-size: 16px;
+      height: 48px;
+      margin-bottom: 20px;
+    }
+
+    &__text {
+      font-size: 13px;
+      line-height: 16px;
+      margin-bottom: 15px;
+    }
+
+    &__description {
+      margin-bottom: 30px;
+    }
+
+    &__fields-row {
+      flex-direction: column;
+    }
+
+    &__field {
+      margin-bottom: 31px;
+    }
+
+    &__field-small {
+      width: 100%;
+      margin-right: 0;
+      margin-bottom: 31px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    &__result-wrapper {
+      height: 269px;
+    }
+  }
+
+  .form-result {
+    &__img {
+      height: 64px;
+      margin-bottom: 16px;
+      background-size: 66px 64px;
+    }
+
+    &__title {
+      font-size: 25px;
+      margin-bottom: 15px;
+    }
+
+    &__text {
+      font-size: 14px;
+      line-height: 19px;
+      br {
+        display: none;
+      }
+    }
+  }
+}
+
+@media(min-width: 481px) and (max-width: 1199px) {
+  .application-form {
+    width: 369*100%/708;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.15);
+    padding: 28px 38px 30px;
+
+    &__title {
+      font-size: 24px;
+      margin-bottom: 30px;
+    }
+
+    &__button {
+      font-size: 16px;
+      height: 48px;
+      margin-bottom: 20px;
+    }
+
+    &__text {
+      font-size: 13px;
+      line-height: 16px;
+      margin-bottom: 15px;
+    }
+
+    &__description {
+      margin-bottom: 30px;
+    }
+
+    &__fields-row {
+      flex-direction: column;
+    }
+
+    &__field {
+      margin-bottom: 31px;
+    }
+
+    &__field-small {
+      width: 100%;
+      margin-right: 0;
+      margin-bottom: 31px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    &__result-wrapper {
+      height: 599px;
+    }
+  }
+
+  .form-result {
+    &__img {
+      height: 64px;
+      margin-bottom: 16px;
+      background-size: 66px 64px;
+    }
+
+    &__title {
+      font-size: 25px;
+      margin-bottom: 15px;
+    }
+
+    &__text {
+      font-size: 14px;
+      line-height: 19px;
+      br {
+        display: none;
+      }
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  .application-form {
+    &__button:hover {
+      background: #01C65C;
+    }
+  }
+}

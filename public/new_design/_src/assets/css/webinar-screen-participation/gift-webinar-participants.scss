@@ -1,0 +1,87 @@
+@import "../vars";
+
+.gift-webinar-participants {
+  width: 800px;
+  border: 2px solid $greenColor;
+  box-sizing: border-box;
+  border-radius: 25px;
+  position: relative;
+  padding: 50px 129px 55px 249px;
+  background: url("/img/gift.svg") no-repeat top 36px left 126px;
+  font-weight: normal;
+
+  &__square {
+    width: 308px;
+    height: 42px;
+    position: absolute;
+    background: #fff;
+    font-size: 20px;
+    color: $greenColor;
+    top: -22px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__text {
+    font-size: 17px;
+    margin-bottom: 12px;
+  }
+
+  &__title {
+    font-size: 23px;
+    line-height: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .gift-webinar-participants {
+    width: 100%;
+    border-radius: 15px;
+    padding: 26px 20px 28px 88px;
+    background-position: top 27px left 18px;
+    background-size: 54px 61px;
+
+    &__square {
+      width: 238px;
+      font-size: 16px;
+    }
+
+    &__text {
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    &__title {
+      font-size: 16px;
+      line-height: 21px;
+    }
+  }
+}
+
+@media(min-width: 481px) and (max-width: 1199px) {
+  .gift-webinar-participants {
+    width: 501px;
+    border-radius: 15px;
+    padding: 26px 20px 28px 139px;
+    background-position: top 25px left 68px;
+    background-size: 54px 61px;
+
+    &__square {
+      width: 238px;
+      font-size: 16px;
+    }
+
+    &__text {
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    &__title {
+      font-size: 16px;
+      line-height: 21px;
+    }
+  }
+}

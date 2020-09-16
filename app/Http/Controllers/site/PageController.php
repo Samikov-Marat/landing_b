@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\site;
 
 use App\Http\Controllers\Controller;
+use App\Page;
 use App\Site;
+use App\Text;
+use App\TextType;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -94,13 +97,15 @@ class PageController extends Controller
             ]
         );
 
-        $dictionary = $page->textTypes->pluck('texts', 'shortname');
-
-        dd($dictionary);
+        $dictionary = $page->textTypes->mapWithKeys(function ($item) {
+            return [$item->shortname => $item->texts->first()->value ?? null];
+        });
 
         return view('site.' . $page->template)
             ->with('site', $site)
             ->with('language', $language)
-            ->with('page', $page);
+            ->with('page', $page)
+            ->with('dictionary', $dictionary)
+            ->with('pageUrl', $pageUrl);
     }
 }

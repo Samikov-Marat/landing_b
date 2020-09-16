@@ -1,0 +1,143 @@
+@import "../vars";
+
+.webinar-zoom-container {
+  width: 842px;
+  background: url("/img/zoom.svg") top left -3px no-repeat, #FFF;
+  border-radius: 10px;
+  padding: 60px 50px 64px 192px;
+  box-sizing: border-box;
+  display: flex;
+  box-shadow: 20px 35px 80px rgba(0, 0, 0, 0.15);
+
+  &::before {
+    content: '';
+    display: block;
+    width: 33px;
+    height: 33px;
+    background: #FFF;
+    border-radius: 4px;
+    transform: rotate(-45deg);
+    position: absolute;
+    top: -13px;
+    left: 50%;
+    margin-left: -17px;
+  }
+
+  &__button {
+    background: $greenColor;
+    border-radius: 4px;
+    display: block;
+    padding: 18px 40px;
+    color: #fff;
+    font-size: 18px;
+    cursor: pointer;
+    font-weight: normal;
+  }
+
+  &__text-block {
+    margin-right: 75px;
+  }
+
+  &__system-text {
+    font-weight: normal;
+    font-size: 23px;
+    margin-bottom: 8px;
+  }
+
+  &__date {
+    font-weight: normal;
+    font-size: 17px;
+  }
+}
+
+@media (max-width: 480px) {
+  .webinar-zoom-container {
+    width: 100%;
+    background: url("/img/zoom-mobile.svg") top 10px left no-repeat, #FFF;
+    padding: 25px 20px 20px;
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.15);
+    flex-direction: column;
+
+    &::before {
+      top: -6px;
+    }
+
+    &__button {
+      text-align: center;
+      padding: 14px 41px 15px;
+      color: #fff;
+      font-weight: normal;
+      font-size: 15px;
+    }
+
+    &__text-block {
+      margin-right: 0;
+      padding-left: 86px;
+      margin-bottom: 24px;
+      max-width: 207px;
+    }
+
+    &__system-text {
+      font-size: 17px;
+      margin-bottom: 9px;
+    }
+
+    &__date {
+      font-size: 14px;
+      line-height: 20px;
+      font-weight: 300;
+    }
+  }
+}
+
+@media(min-width: 481px) and (max-width: 1199px) {
+  .webinar-zoom-container {
+    width: 558px;
+    background: url("/img/zoom-mobile.svg") top 10px left 4px no-repeat, #FFF;
+    padding: 25px 24px 30px;
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.15);
+    align-items: center;
+
+    &::before {
+      top: -6px;
+    }
+
+    &__button {
+      text-align: center;
+      padding: 14px 0 15px;
+      color: #fff;
+      font-weight: normal;
+      font-size: 15px;
+      height: 100%;
+      width: 160px;
+      box-sizing: border-box;
+    }
+
+    &__text-block {
+      margin-right: 55px;
+      padding-left: 87px;
+      width: 207px;
+      position: relative;
+      z-index: 3;
+    }
+
+    &__system-text {
+      font-size: 17px;
+      margin-bottom: 9px;
+    }
+
+    &__date {
+      font-size: 14px;
+      line-height: 20px;
+      font-weight: 300;
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  .webinar-zoom-container {
+    &__button:hover {
+      background: #01C65C;
+    }
+  }
+}

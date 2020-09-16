@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Schema\Builder;
 
@@ -25,5 +26,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Builder::defaultStringLength(191);
+
+
+        Blade::directive('d', function ($expression) {
+            return "<?php echo nl2br(e(\$dictionary[$expression])); ?>";
+        });
     }
 }

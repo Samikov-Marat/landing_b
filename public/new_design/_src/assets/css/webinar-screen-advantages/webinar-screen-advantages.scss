@@ -1,0 +1,26 @@
+@import "../vars";
+
+@import "webinar-benefits-container";
+@import "interesting-market-container";
+
+.webinar-screen-advantages {
+  background: url("/img/webinar-screen-advantages.svg") no-repeat top -210px center;
+  padding-top: 210px;
+  padding-bottom: 67px;
+}
+
+@media (max-width: 480px) {
+  .webinar-screen-advantages {
+    background: #fff;
+    padding: 65px $padding320 36px;
+    box-sizing: border-box;
+  }
+}
+
+@media(min-width: 481px) and (max-width: 1199px) {
+  .webinar-screen-advantages {
+    background: #fff;
+    padding: 122px $padding768 62px;
+    box-sizing: border-box;
+  }
+}

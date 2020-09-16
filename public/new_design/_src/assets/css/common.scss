@@ -1,0 +1,87 @@
+@import "vars";
+
+body {
+  font-weight: 300;
+  color: $textColor;
+  font-family: $fontStack;
+}
+
+a {
+  text-decoration: none;
+}
+
+.content-width {
+  width: $mainContentWidth;
+  margin: 0 auto;
+}
+
+.logo-uk {
+  background: url("/img/uk-cdek-logo.svg") no-repeat;
+  width: 115px;
+  min-height: 47px;
+}
+
+.green-color {
+  color: $greenColor;
+}
+
+.background-dots {
+  width: 103px;
+  height: 103px;
+
+  &_color_green {
+    background: url("/img/green-dotted.svg") no-repeat;
+  }
+
+  &_color_black {
+    background: url("/img/black-dotted.svg") no-repeat;
+  }
+}
+
+.white-space {
+  white-space: nowrap;
+}
+
+@media (max-width: 480px) {
+  .content-width {
+    width: 100%;
+  }
+
+  .logo-uk {
+    width: 81px;
+    min-height: 34px;
+    flex-shrink: 0;
+    background: url("/img/uk-cdek-logo-mobile.svg") no-repeat;
+  }
+
+  .background-dots {
+    display: none;
+  }
+}
+
+@media(min-width: 481px) and (max-width: 1199px) {
+  body {
+    min-width: 768px;
+  }
+
+  .content-width {
+    width: 100%;
+  }
+
+  .logo-uk {
+    width: 81px;
+    min-height: 34px;
+    flex-shrink: 0;
+    background: url("/img/uk-cdek-logo-mobile.svg") no-repeat;
+  }
+
+  .background-dots {
+    display: none;
+  }
+}
+
+@media(min-width: 1200px) and (max-width: 1755px) {
+  .background-dots {
+    display: none;
+  }
+}

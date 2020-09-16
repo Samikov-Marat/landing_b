@@ -1,0 +1,47 @@
+{% extends 'base-no-webpack.html.twig' %}
+{% block body %}
+    <div class="body-wrapper js-body_wrapper {#modal_open#}">
+        <div class="fullscreen-modal-background js-fade_background {#opened#}"></div>
+        <header class="header-shadow">
+            {% include 'header/_header.html.twig' %}
+        </header>
+        {% block page %}{% endblock %}
+        <footer class="footer-container">
+            <div class="content-width">
+                <div class="footer-container__content">
+                    <div class="footer-container__left">
+                        <a class="footer-container__footer-logo footer-logo" href=""></a>
+                        <div class="footer-container__link-block-social">
+                            <a class="footer-container__link footer-container__link-mr-social" href="">
+                                Facebook
+                            </a>
+                            <a class="footer-container__link footer-container__link-mr-social" href="">
+                                Instagram
+                            </a>
+                        </div>
+                        <div class="footer-container__link-block-policy">
+                            <a class="footer-container__link footer-container__link-mr-policy" href="">
+                                Курьерская компания СДЭК,© 2000-2020
+                            </a>
+                            <a class="footer-container__link footer-container__link-mr-policy" href="">
+                                Политика конфиденциальности
+                            </a>
+                        </div>
+                    </div>
+                    <div class="footer-container__right">
+                        <div class="footer-container__right-img"></div>
+                        <div class="footer-container__right-text-block">
+                            <div class="footer-container__contacts">
+                                <div class="footer-container__phone-block">
+                                    <a class="footer-container__phone" href="tel:+441473711668">+ 44 147 371 16 68</a>
+                                    <div class="footer-container__name">Ипсуич</div>
+                                </div>
+                            </div>
+                            <a class="footer-container__email footer-email" href="mailto:mf@cdek.ru">mf@cdek.ru</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+{% endblock %}

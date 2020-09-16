@@ -1,0 +1,149 @@
+@import "../vars";
+
+.company-turnover-container {
+  background: url("/img/company-turnover.svg") no-repeat top center, #18B047;
+  text-align: center;
+  padding: 75px 0;
+  color: #fff;
+  &__text-content {
+    position: relative;
+    width: 542px;
+    margin: 0 auto;
+  }
+
+  &__heading2 {
+    margin-bottom: 15px;
+    font-weight: 300;
+    font-size: 60px;
+    line-height: 70px;
+  }
+
+  &__line {
+    background: #FFCB07;
+    border-radius: 5px;
+    width: 50px;
+    height: 4px;
+    margin: 0 auto 30px;
+  }
+
+  &__text {
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 23px;
+  }
+
+  &__white-circle {
+    width: 168px;
+    height: 168px;
+    border-radius: 50%;
+    background: url("/img/morgan.png") no-repeat center center, #fff;
+    background-size: 90px 68px;
+    position: absolute;
+    bottom: -120px;
+    right: -168px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+  }
+}
+
+@media (max-width: 480px) {
+  .company-turnover-container {
+    background: url("/img/company-turnover-mobile-left.svg") no-repeat top left,
+    url("/img/company-turnover-mobile-right.svg") no-repeat top right, #18B047;
+    text-align: center;
+    padding: 45px $padding320 104px;
+    box-sizing: border-box;
+
+    &__text-content {
+      width: 100%;
+    }
+
+    &__heading2 {
+      margin-bottom: 20px;
+      font-size: 40px;
+      line-height: 40px;
+    }
+
+    &__line {
+      width: 50px;
+      height: 3px;
+      margin-bottom: 21px;
+    }
+
+    &__text {
+      font-size: 15px;
+      line-height: 20px;
+    }
+
+    &__white-circle {
+      width: 130px;
+      height: 130px;
+      background-size: 70px 53px;
+      bottom: -155px;
+      right: unset;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+}
+
+@media (max-width: 355px) {
+  .company-turnover-container {
+    &__heading2 {
+      font-size: 35px;
+      line-height: 35px;
+    }
+  }
+}
+
+@media(min-width: 481px) and (max-width: 1199px) {
+  .company-turnover-container {
+    background: url("/img/company-turnover-768-left.svg") no-repeat top left,
+    url("/img/company-turnover-768-right.svg") no-repeat top right, #18B047;
+    text-align: center;
+    padding: 45px $padding768 104px;
+    box-sizing: border-box;
+
+    &__text-content {
+      width: 334*100%/708;
+    }
+
+    &__heading2 {
+      margin-bottom: 20px;
+      font-size: 40px;
+      line-height: 40px;
+    }
+
+    &__line {
+      width: 50px;
+      height: 3px;
+      margin-bottom: 21px;
+    }
+
+    &__text {
+      font-size: 15px;
+      line-height: 20px;
+    }
+
+    &__white-circle {
+      width: 130px;
+      height: 130px;
+      background-size: 70px 53px;
+      bottom: -155px;
+      right: unset;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+}
+
+@media only screen and (-o-min-device-pixel-ratio: 5/4),
+  only screen and (-webkit-min-device-pixel-ratio: 1.25),
+  only screen and (min--moz-device-pixel-ratio: 1.25),
+  only screen and (min-device-pixel-ratio: 1.25),
+  only screen and (min-resolution: 1.25dppx) {
+  .company-turnover-container {
+    &__white-circle {
+      background-image: url("/img/morgan2x.png");
+    }
+  }
+}

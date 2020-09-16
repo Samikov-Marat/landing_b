@@ -1,0 +1,142 @@
+@import "../vars";
+
+.webinar-benefits-container {
+  position: relative;
+  &__heading2 {
+    margin-bottom: 22px;
+    text-align: center;
+  }
+
+  &__text {
+    font-size: 20px;
+    margin-bottom: 49px;
+    text-align: center;
+  }
+
+  &__background-dots-left {
+    position: absolute;
+    left: -252px;
+    top: 66px;
+  }
+
+  &__background-dots-right {
+    position: absolute;
+    right: -225px;
+    top: 193px;
+  }
+
+  &__advantages-content {
+    display: flex;
+  }
+
+  &__advantages-block {
+    display: flex;
+    align-items: center;
+    margin-right: 50px;
+    flex-shrink: 0;
+    width: 350px;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  &__advantages-block-img {
+    margin-right: 27px;
+    background: url("/img/advantages-img.svg") no-repeat;
+    width: 103px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+    color: #fff;
+    flex-shrink: 0;
+  }
+
+  &__advantages-block-text {
+    font-size: 16px;
+    line-height: 22px;
+  }
+}
+
+@media (max-width: 480px) {
+  .webinar-benefits-container {
+    &__heading2 {
+      margin-bottom: 20px;
+    }
+
+    &__text {
+      margin-bottom: 21px;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 21px;
+      color: $greenColor;
+    }
+
+    &__advantages-content {
+      flex-direction: column;
+    }
+
+    &__advantages-block {
+      margin-right: 0;
+      width: 100%;
+      margin-bottom: 25px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    &__advantages-block-img {
+      margin-right: 18px;
+      width: 62px;
+      height: 60px;
+      background-size: 62px 60px;
+      font-size: 35px;
+    }
+
+    &__advantages-block-text {
+      font-size: 14px;
+      line-height: 19px;
+      br {
+        display: none;
+      }
+    }
+  }
+}
+
+@media(min-width: 481px) and (max-width: 1199px) {
+  .webinar-benefits-container {
+    &__heading2 {
+      margin-bottom: 15px;
+    }
+
+    &__text {
+      margin-bottom: 32px;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 21px;
+      color: $greenColor;
+    }
+
+    &__advantages-block {
+      margin-right: 31px;
+      width: 215*100%/708;
+    }
+
+    &__advantages-block-img {
+      margin-right: 18px;
+      width: 62px;
+      height: 60px;
+      background-size: 62px 60px;
+      font-size: 35px;
+    }
+
+    &__advantages-block-text {
+      font-size: 13px;
+      line-height: 17px;
+      br {
+        display: none;
+      }
+    }
+  }
+}

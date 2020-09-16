@@ -1,0 +1,289 @@
+@import "vars";
+
+.footer-container {
+  background: #232323;
+  padding-top: 53px;
+  padding-bottom: 50px;
+  position: relative;
+  z-index: 2;
+
+  &__content {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__left {
+    font-size: 15px;
+    color: #fff;
+    padding-top: 7px;
+  }
+
+  &__footer-logo {
+    margin-bottom: 58px;
+  }
+
+  &__link-block-social {
+    display: flex;
+    margin-bottom: 18px;
+    font-weight: bold;
+  }
+
+  &__link-block-policy {
+    display: flex;
+  }
+
+  &__link {
+    color: inherit;
+    display: block;
+  }
+
+  &__link-mr-social {
+    margin-right: 20px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  &__link-mr-policy {
+    margin-right: 30px;
+    font-weight: 400;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  &__right {
+    display: flex;
+  }
+
+  &__right-img {
+    background: url("/img/iata.svg") no-repeat top 7px left;
+    margin-right: 42px;
+    width: 100px;
+    height: 72px;
+  }
+
+  &__right-text-block {
+    text-align: right;
+  }
+
+  &__contacts {
+    margin-bottom: 55px;
+  }
+
+  &__phone-block {
+    margin-bottom: 14px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__phone {
+    font-weight: normal;
+    font-size: 20px;
+    color: #fff;
+  }
+
+  &__name {
+    font-weight: normal;
+    font-size: 14px;
+    color: #BBB;
+  }
+
+  &__email {
+    float: right;
+  }
+}
+
+.footer-logo {
+  background: url("/img/footer-logo.svg") no-repeat;
+  width: 124px;
+  height: 51px;
+  display: block;
+}
+
+.footer-email {
+  width: 117px;
+  display: block;
+  font-size: 16px;
+  color: #fff;
+  background: url("/img/email.svg") no-repeat;
+  box-sizing: border-box;
+  padding-left: 30px;
+}
+
+
+@media (max-width: 480px) {
+  .footer-container {
+    padding: 37px $padding320 40px;
+    box-sizing: border-box;
+
+    &__left {
+      margin-right: 0;
+      font-size: 13px;
+      width: 100%;
+      padding-top: 0;
+    }
+
+    &__footer-logo {
+      margin-bottom: 152px;
+    }
+
+    &__link-block-social {
+      margin-bottom: 17px;
+      font-size: 14px;
+      justify-content: center;
+    }
+
+    &__link-block-policy {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    &__link-mr-social {
+      margin-right: 20px;
+    }
+
+    &__link-mr-policy {
+      margin-right: 0;
+      margin-bottom: 11px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    &__right-text-block {
+      position: absolute;
+      right: $padding320;
+      top: 35px;
+    }
+
+    &__right-img {
+      margin-right: 0;
+      width: 68px;
+      height: 44px;
+      background-size: 68px 44px;
+      position: absolute;
+      left: $padding320;
+      top: 80px;
+      background-position: top right;
+    }
+
+    &__contacts {
+      margin-bottom: 27px;
+    }
+
+    &__phone-block {
+      margin-bottom: 17px;
+    }
+
+    &__phone {
+      font-size: 18px;
+    }
+
+    &__name {
+      font-size: 13px;
+    }
+  }
+
+  .footer-email {
+    padding-left: 8px;
+    font-size: 14px;
+    width: 100px;
+    background-size: 16px 15px;
+  }
+
+  .footer-logo {
+    background: url("/img/footer-mobile-logo.svg") no-repeat;
+    width: 81px;
+    height: 23px;
+  }
+}
+
+@media(min-width: 481px) and (max-width: 1199px) {
+  .footer-container {
+    padding: 35px $padding768 40px;
+    box-sizing: border-box;
+
+    &__left {
+      margin-right: auto;
+      font-size: 13px;
+      padding-top: 2px;
+    }
+
+    &__footer-logo {
+      margin-bottom: 57px;
+    }
+
+    &__link-block-social {
+      margin-bottom: 17px;
+      font-size: 14px;
+    }
+
+    &__link-block-policy {
+      flex-direction: column;
+    }
+
+    &__link-mr-social {
+      margin-right: 20px;
+    }
+
+    &__link-mr-policy {
+      margin-right: 0;
+      margin-bottom: 11px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    &__right-img {
+      margin-right: 27px;
+      width: 68px;
+      height: 46px;
+      background-size: 68px 44px;
+      background-position: top 2px right;
+    }
+
+    &__contacts {
+      margin-bottom: 25px;
+    }
+
+    &__phone-block {
+      margin-bottom: 18px;
+    }
+
+    &__phone {
+      font-size: 18px;
+    }
+
+    &__name {
+      font-size: 13px;
+    }
+  }
+
+  .footer-email {
+    padding-left: 8px;
+    font-size: 14px;
+    width: 100px;
+    background-size: 16px 15px;
+  }
+
+  .footer-logo {
+    background-size: 81px 34px;
+    width: 81px;
+    height: 34px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .footer-container {
+    &__link:hover {
+      color: $greenColor;
+    }
+  }
+
+  .footer-email:hover {
+    color: $greenColor;
+  }
+}

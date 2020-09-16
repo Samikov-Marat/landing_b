@@ -1,0 +1,46 @@
+@import "vars";
+
+.fullscreen-modal-background {
+  position: fixed;
+  top:0;
+  left:0;
+  width: 100%;
+  height: 100%;
+
+  pointer-events: none;
+
+  background: #000;
+  opacity: 0;
+  z-index: 10;
+  transition-property: opacity;
+  transition-duration: $modalTransitionDuration;
+
+  &.opened {
+    pointer-events: all;
+    opacity: 0.4;
+  }
+}
+
+.transition_slide-right {
+  transform: translateX(100%);
+  transition: transform $modalTransitionDuration ease-in-out;
+
+  &.opened {
+    transform: translateX(0);
+    pointer-events: all;
+  }
+}
+
+.transition_slide-left {
+  transform: translateX(-100%);
+  transition: transform $modalTransitionDuration ease-in-out;
+
+  &.opened {
+    transform: translateX(0);
+    pointer-events: all;
+  }
+}
+
+.grecaptcha-badge {
+  visibility: hidden;
+}

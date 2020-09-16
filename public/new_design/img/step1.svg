@@ -1,0 +1,24 @@
+<svg width="90" height="79" viewBox="0 0 90 79" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M63 4H0V74C0 76.7614 2.23858 79 5 79H58C60.7614 79 63 76.7614 63 74V4Z" fill="#F5F5F6"/>
+<path d="M27.2432 57.3522H38.9497" stroke="#333333" stroke-miterlimit="10"/>
+<path d="M40.9009 57.3522H50.6563" stroke="#333333" stroke-miterlimit="10"/>
+<path d="M35.0475 61.2759H27.2432" stroke="#333333" stroke-miterlimit="10"/>
+<path d="M50.6566 61.2759H36.999" stroke="#333333" stroke-miterlimit="10"/>
+<path d="M27.2432 38.4856H38.9497" stroke="#333333" stroke-miterlimit="10"/>
+<path d="M40.9009 38.4856H50.6563" stroke="#333333" stroke-miterlimit="10"/>
+<path d="M35.0475 42.4094H27.2432" stroke="#333333" stroke-miterlimit="10"/>
+<path d="M50.6566 42.4094H36.999" stroke="#333333" stroke-miterlimit="10"/>
+<path d="M21.3893 55.3903H13.585V63.2378H21.3893V55.3903Z" stroke="#333333" stroke-miterlimit="10"/>
+<path d="M27.2432 19.6189H38.9497" stroke="#333333" stroke-miterlimit="10"/>
+<path d="M40.9009 19.6189H50.6563" stroke="#333333" stroke-miterlimit="10"/>
+<path d="M35.0475 23.5427H27.2432" stroke="#333333" stroke-miterlimit="10"/>
+<path d="M50.6566 23.5427H36.999" stroke="#333333" stroke-miterlimit="10"/>
+<path d="M21.3893 17.657H13.585V25.5046H21.3893V17.657Z" stroke="#333333" stroke-miterlimit="10"/>
+<path d="M21.975 37.5046L16.1217 43.3903L13 40.4474" stroke="#1AB248" stroke-width="1.5" stroke-miterlimit="10"/>
+<path d="M59.2664 0H4.13487C1.85124 0 0 1.85124 0 4.13487H63.4013C63.4013 1.85124 61.5501 0 59.2664 0Z" fill="#1AB248"/>
+<path d="M57.8094 48.6549L55.8584 52.5787L54.4926 55.7177C54.2975 56.1101 54.4926 56.5024 55.0779 56.5024L58.3948 55.9139L62.6871 55.1291L62.8823 54.9329V44.9273L57.8094 48.6549Z" fill="#F5F5F6"/>
+<path d="M55.4684 48.8511L54.4928 51.9901C54.2977 52.5787 54.6879 52.7748 55.0781 52.5787L58.1999 51.5977" fill="#4D6077"/>
+<path d="M84.4814 16.9131L56.8892 44.6581L62.4076 50.2071L89.9998 22.4621L84.4814 16.9131Z" fill="#1AB248"/>
+<path d="M56.834 44.5349L55.4683 48.8511L58.1998 51.5977L62.4922 50.2244L56.834 44.5349Z" fill="#D4D4D4"/>
+<path d="M87.2211 19.6877L59.6289 47.4327L62.3881 50.2072L89.9804 22.4622L87.2211 19.6877Z" fill="#1AB248"/>
+</svg>

@@ -1,0 +1,30 @@
+@import "../vars";
+
+.application-participation-container {
+  background: url("/img/application-participation.png") no-repeat bottom left 679px;
+  position: relative;
+
+  &__background-dots {
+    position: absolute;
+    top: 165px;
+    left: -245px;
+  }
+}
+
+@media (max-width: 480px) {
+  .application-participation-container {
+    background: #FFF;
+    padding: 0 $padding320;
+    box-sizing: border-box;
+  }
+}
+
+@media(min-width: 481px) and (max-width: 1199px) {
+  .application-participation-container {
+    background: #FFF;
+    padding: 0 $padding768;
+    box-sizing: border-box;
+    background: url("/img/application-participation-768.png") no-repeat bottom right $padding768;
+    background-size: 319px 550px;
+  }
+}

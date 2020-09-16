@@ -1,0 +1,266 @@
+@import "../vars";
+
+.our-clients-container {
+  padding: 120px 0;
+  background: url("/img/our-clients.svg") no-repeat center bottom -102px;
+
+  &__heading2 {
+    text-align: center;
+    margin-bottom: 55px;
+  }
+}
+
+.our-clients-blocks {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  &__block {
+    height: 62px;
+    margin-bottom: 39px;
+    width: 169px;
+    margin-right: 72px;
+    &:nth-child(5n) {
+      margin-right: 0;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &:nth-last-child(-n+4) {
+      margin-bottom: 0;
+    }
+  }
+
+  @for $num from 1 through 19 {
+    &__our-img-i#{$num} {
+      @if $num == 4 or $num == 6 or $num == 7 or $num == 15 {
+        background: url("/img/our-img-i#{$num}.svg") no-repeat center center;
+      } @else {
+        background: url("/img/our-img-i#{$num}.png") no-repeat center center;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .our-clients-container {
+    padding: 37px $padding320 50px;
+    box-sizing: border-box;
+    background: #fff;
+
+    &__heading2 {
+      margin-bottom: 34px;
+    }
+  }
+
+  .our-clients-blocks {
+    &__block {
+      height: 37px;
+      margin-bottom: 19px;
+      width: 33%;
+      margin-right: 0;
+      flex-grow: 1;
+
+      &:nth-last-child(-n+4) {
+        margin-bottom: 19px;
+      }
+
+      &:nth-last-child(-n+3) {
+        margin-bottom: 0;
+      }
+    }
+
+    &__our-img-i1 {
+      background-size: 67px 19px;
+    }
+
+    &__our-img-i2 {
+      background-size: 68px 28px;
+    }
+
+    &__our-img-i3 {
+      background-size: 86px 20px;
+    }
+
+    &__our-img-i4 {
+      background-size: 76px 16px;
+    }
+
+    &__our-img-i5 {
+      background-size: 84px 12px;
+    }
+
+    &__our-img-i6 {
+      display: none;
+    }
+
+    &__our-img-i7 {
+      background-size: 88px 16px;
+    }
+
+    &__our-img-i8 {
+      background-size: 80px 14px;
+    }
+
+    &__our-img-i9 {
+      background-size: 91px 15px;
+    }
+
+    &__our-img-i10 {
+      background-size: 77px 36px;
+    }
+
+    &__our-img-i11 {
+      background-size: 87px 27px;
+    }
+
+    &__our-img-i12 {
+      background-size: 89px 12px;
+    }
+
+    &__our-img-i13 {
+      background-size: 46px 31px;
+    }
+
+    &__our-img-i14 {
+      background-size: 80px 20px;
+    }
+
+    &__our-img-i15 {
+      background-size: 88px 9px;
+    }
+
+    &__our-img-i16 {
+      background-size: 60px 28px;
+    }
+
+    &__our-img-i17 {
+      background-size: 55px 36px;
+    }
+
+    &__our-img-i18 {
+      background-size: 66px 28px;
+    }
+
+    &__our-img-i19 {
+      background-size: 76px 20px;
+    }
+  }
+}
+
+@media (min-width: 320px) and (max-width: 345px) {
+  .our-clients-blocks {
+    &__block {
+      width: 40%;
+    }
+  }
+}
+
+@media(min-width: 481px) and (max-width: 1199px) {
+  .our-clients-container {
+    padding: 39px $padding768;
+    box-sizing: border-box;
+    background: #fff;
+
+    &__heading2 {
+      margin-bottom: 25px;
+    }
+  }
+
+  .our-clients-blocks {
+    &__block {
+      height: 37px;
+      margin-bottom: 21px;
+      width: 16%;
+      margin-right: 0;
+      flex-grow: 1;
+      flex-shrink: 0;
+
+      &:nth-last-child(-n+4) {
+        margin-bottom: 21px;
+      }
+
+      &:nth-last-child(-n+6) {
+        margin-bottom: 0;
+      }
+    }
+
+    &__our-img-i1 {
+      background-size: 67px 19px;
+    }
+
+    &__our-img-i2 {
+      background-size: 68px 28px;
+    }
+
+    &__our-img-i3 {
+      background-size: 86px 20px;
+    }
+
+    &__our-img-i4 {
+      background-size: 76px 16px;
+    }
+
+    &__our-img-i5 {
+      background-size: 84px 12px;
+    }
+
+    &__our-img-i6 {
+      background-size: 86px 16px;
+    }
+
+    &__our-img-i7 {
+      background-size: 88px 16px;
+    }
+
+    &__our-img-i8 {
+      background-size: 80px 14px;
+    }
+
+    &__our-img-i9 {
+      background-size: 91px 15px;
+    }
+
+    &__our-img-i10 {
+      background-size: 77px 36px;
+    }
+
+    &__our-img-i11 {
+      background-size: 87px 27px;
+    }
+
+    &__our-img-i12 {
+      background-size: 89px 12px;
+    }
+
+    &__our-img-i13 {
+      background-size: 46px 31px;
+    }
+
+    &__our-img-i14 {
+      background-size: 80px 20px;
+    }
+
+    &__our-img-i15 {
+      background-size: 88px 9px;
+    }
+
+    &__our-img-i16 {
+      background-size: 60px 28px;
+    }
+
+    &__our-img-i17 {
+      background-size: 55px 36px;
+    }
+
+    &__our-img-i18 {
+      background-size: 66px 28px;
+    }
+
+    &__our-img-i19 {
+      display: none;
+    }
+  }
+}

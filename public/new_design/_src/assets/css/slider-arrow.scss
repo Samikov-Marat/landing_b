@@ -1,0 +1,72 @@
+@import "vars";
+
+.owl-nav {
+  .owl-prev {
+    background: url("/img/slider-arrow.svg") no-repeat !important;
+    left: 0;
+    position: absolute;
+    width: 21px;
+    height: 16px;
+    bottom: -44px;
+  }
+
+  .owl-next {
+    background: url("/img/slider-arrow.svg") no-repeat !important;
+    transform: rotate(180deg);
+    right: 0;
+    position: absolute;
+    width: 21px;
+    height: 16px;
+    bottom: -44px;
+  }
+
+  span {
+    display: none;
+  }
+
+  button {
+    outline: none;
+    &::-moz-focus-inner {
+      border: 0;
+    }
+  }
+}
+
+.owl-dots {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  bottom: -39px;
+  left: 50%;
+  transform: translateX(-50%);
+  .owl-dot {
+    background: #62D184 !important;
+    margin-right: 20px;
+    flex-shrink: 0;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    position: relative;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &.active {
+      background: #fff !important;
+
+      &::before {
+        content: '';
+        display: block;
+        position: absolute;
+        width: 14px;
+        height: 14px;
+        border: 1px solid #FFF;
+        box-sizing: border-box;
+        top: -4px;
+        left: -4px;
+        border-radius: 50%;
+      }
+    }
+  }
+}
