@@ -3,5 +3,6 @@
     "Password": "Пароль",
     "Login": "Войти",
     "Remember Me": "Долговременный вход",
-    "Forgot Your Password?": "Восстановление пароля"
+    "Forgot Your Password?": "Восстановление пароля",
+    "Page Expired": "Просрочка"
 }
