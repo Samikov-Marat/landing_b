@@ -38,3 +38,13 @@ services:
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     networks:
       - default
+
+  nodejs:
+    build:
+      context:
+        ./docker/nodejs
+    volumes:
+      - .:/app
+    tty: true
+
+
