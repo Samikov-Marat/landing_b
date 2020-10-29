@@ -22,7 +22,9 @@ services:
       - default
     links:
       - mysql
-
+    environment:
+      - COMPOSER_MEMORY_LIMIT=-1
+ca
   mysql:
     build:
       context:
