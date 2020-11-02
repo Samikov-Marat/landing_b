@@ -36,6 +36,7 @@ class AppServiceProvider extends ServiceProvider
             $menu = [
                 ['route' => 'admin.sites.index', 'text' => 'Сайты', 'icon' => 'far fa-folder',],
                 ['route' => 'admin.pages.index', 'text' => 'Страницы', 'icon' => 'far fa-file',],
+                ['route' => 'admin.permissions.index', 'text' => 'Разрешения', 'icon' => 'fa fa-map-signs',],
             ];
             foreach ($menu as $item){
                 $event->menu->add($item);

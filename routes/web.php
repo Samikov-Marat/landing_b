@@ -82,6 +82,18 @@ Route::prefix('admin')->middleware('auth')->group(
             ->name('admin.texts.edit');
         Route::post('texts/save', 'admin\TextController@save')
             ->name('admin.texts.save');
+
+        Route::get('permissions', 'admin\PermissionController@index')
+            ->name('admin.permissions.index');
+        Route::get('permissions/add', 'admin\PermissionController@edit')
+            ->name('admin.permissions.add');
+        Route::get('permissions/edit/{id}', 'admin\PermissionController@edit')
+            ->name('admin.permissions.edit');
+        Route::post('permissions/save', 'admin\PermissionController@save')
+            ->name('admin.permissions.save');
+        Route::post('permissions/delete', 'admin\PermissionController@delete')
+            ->name('admin.permissions.delete');
+
     }
 );
 
