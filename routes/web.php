@@ -94,6 +94,20 @@ Route::prefix('admin')->middleware('auth')->group(
         Route::post('permissions/delete', 'admin\PermissionController@delete')
             ->name('admin.permissions.delete');
 
+        Route::get('roles', 'admin\RoleController@index')
+            ->name('admin.roles.index');
+        Route::get('roles/add', 'admin\RoleController@edit')
+            ->name('admin.roles.add');
+        Route::get('roles/edit/{id}', 'admin\RoleController@edit')
+            ->name('admin.roles.edit');
+        Route::post('roles/save', 'admin\RoleController@save')
+            ->name('admin.roles.save');
+        Route::post('roles/delete', 'admin\RoleController@delete')
+            ->name('admin.roles.delete');
+        Route::post('roles/move', 'admin\RoleController@move')
+            ->name('admin.roles.move');
+
+
     }
 );
 
