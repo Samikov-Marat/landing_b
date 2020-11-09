@@ -106,6 +106,11 @@ Route::prefix('admin')->middleware('auth')->group(
             ->name('admin.roles.delete');
         Route::post('roles/move', 'admin\RoleController@move')
             ->name('admin.roles.move');
+        Route::get('roles/edit-permission-list', 'admin\RoleController@editPermissionList')
+            ->name('admin.roles.edit_permission_list');
+        Route::post('roles/save-permission-list', 'admin\RoleController@savePermissionList')
+            ->name('admin.roles.save_permission_list');
+
 
 
     }

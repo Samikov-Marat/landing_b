@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Permission;
 use App\Role;
 use Illuminate\Http\Request;
 
@@ -48,7 +49,8 @@ class RoleController extends Controller
         return response()->redirectToRoute('admin.roles.index');
     }
 
-    public function delete(Request $request){
+    public function delete(Request $request)
+    {
         $role = Role::find($request->input('id'));
         $role->delete();
         return response()->redirectToRoute('admin.roles.index');
@@ -82,5 +84,28 @@ class RoleController extends Controller
         return response()->redirectToRoute('admin.roles.index');
     }
 
+
+    public function editPermissionList(Request $request)
+    {
+        $role = Role::select('id', 'name')
+            ->with('permissions')
+            ->find($request->input('id'));
+
+        $permissions = Permission::select('text_id', 'name')
+            ->get();
+
+        return view('admin.roles.permission_list')
+            ->with('role', $role)
+            ->with('permissions', $permissions);
+    }
+
+    public function savePermissionList(Request $request)
+    {
+        Role::select('id')
+            ->find($request->input('id'))
+            ->permissions()
+            ->sync($request->input('permission_text_id') ?? []);
+        return response()->redirectToRoute('admin.roles.index');
+    }
 
 }

@@ -16,6 +16,9 @@
                     Название
                 </th>
                 <th>
+                    Разрешения
+                </th>
+                <th>
                     Сортировка
                 </th>
                 <th>
@@ -26,6 +29,11 @@
                 <tr>
                     <td>
                         {{ $role->name }}
+                    </td>
+                    <td>
+                        <a href="{!! route('admin.roles.edit_permission_list', ['id' => $role->id]) !!}">
+                            {{ $role->permissions->count() }} шт.
+                        </a>
                     </td>
 
                     <td>
