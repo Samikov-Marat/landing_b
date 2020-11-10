@@ -112,7 +112,22 @@ Route::prefix('admin')->middleware('auth')->group(
             ->name('admin.roles.save_permission_list');
 
 
-
+        Route::get('/', 'admin\IndexController@index')
+            ->name('admin.index');
+        Route::get('users', 'admin\UserController@index')
+            ->name('admin.users.index');
+        Route::get('users/add', 'admin\UserController@edit')
+            ->name('admin.users.add');
+        Route::get('users/edit/{id}', 'admin\UserController@edit')
+            ->name('admin.users.edit');
+        Route::post('users/save', 'admin\UserController@save')
+            ->name('admin.users.save');
+        Route::post('users/delete', 'admin\UserController@delete')
+            ->name('admin.users.delete');
+        Route::get('users/edit-role-list', 'admin\UserController@editRoleList')
+            ->name('admin.users.edit_role_list');
+        Route::post('users/save-role-list', 'admin\UserController@saveRoleList')
+            ->name('admin.users.save_role_list');
     }
 );
 

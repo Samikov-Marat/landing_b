@@ -38,7 +38,7 @@ class AppServiceProvider extends ServiceProvider
                 ['route' => 'admin.pages.index', 'text' => 'Страницы', 'icon' => 'far fa-file',],
                 ['route' => 'admin.permissions.index', 'text' => 'Разрешения', 'icon' => 'fas fa-map-signs',],
                 ['route' => 'admin.roles.index', 'text' => 'Роли', 'icon' => 'far fa-address-card',],
-
+                ['route' => 'admin.users.index', 'text' => 'Пользователи', 'icon' => 'fas fa-user',],
             ];
             foreach ($menu as $item){
                 $event->menu->add($item);
