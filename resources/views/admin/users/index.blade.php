@@ -1,7 +1,8 @@
 @extends('admin.layout')
 @section('buttons')
     <div class="float-right">
-        <a href="{!! route('admin.users.add') !!}" class="btn btn-primary">+ Создать</a>
+        <a href="{!! route('admin.users.permission_tree') !!}" class="btn btn-secondary"><i class="fas fa-tree"></i> Дерево прав</a>
+        <a href="{!! route('admin.users.add') !!}" class="btn btn-primary"><i class="fas fa-plus"></i> Создать</a>
     </div>
     <div class="clearfix"></div>
 @endsection
@@ -19,6 +20,9 @@
                     email
                 </th>
                 <th>
+                    Статус
+                </th>
+                <th>
                     Роли
                 </th>
                 <th>
@@ -34,15 +38,20 @@
                         {{ $user->email }}
                     </td>
                     <td>
+                        @if($user->disabled)
+                            <i class="fas fa-user-slash"></i> заблокирован
+                        @endif
+                    </td>
+                    <td>
                         <a href="{!! route('admin.users.edit_role_list', ['id' => $user->id]) !!}">
                             {{ $user->roles->count() }} шт.
                         </a>
                     </td>
                     <td class="text-nowrap">
-                        <a href="{!! route('admin.users.edit', ['id' => $user->id]) !!}" class="btn btn-primary btn-sm">Редактировать</a>
+                        <a href="{!! route('admin.users.edit', ['id' => $user->id]) !!}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i> Редактировать</a>
                         <button type="button" data-text="Удалить {{ $user->domain }}?"
                                 data-action="{!! route('admin.users.delete') !!}" data-id="{{ $user->id }}"
-                                class="btn btn-danger btn-sm js-delete-confirm">Удалить
+                                class="btn btn-danger btn-sm js-delete-confirm"><i class="fas fa-trash"></i> Удалить
                         </button>
                     </td>
                 </tr>

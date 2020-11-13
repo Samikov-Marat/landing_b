@@ -1,7 +1,7 @@
 @extends('admin.layout')
 @section('buttons')
     <div class="float-right">
-        <a href="{!! route('admin.languages.add', ['site_id' => $site->id]) !!}" class="btn btn-primary">+ Создать</a>
+        <a href="{!! route('admin.languages.add', ['site_id' => $site->id]) !!}" class="btn btn-primary"><i class="fas fa-plus"></i> Создать</a>
     </div>
     <div class="clearfix"></div>
 @endsection
@@ -57,8 +57,8 @@
                         </form>
                     </td>
                     <td class="text-nowrap">
-                        <a href="{!! route('admin.languages.edit', ['id' => $language->id]) !!}" class="btn btn-primary btn-sm">Редактировать</a>
-                        <button type="button" data-text="Удалить {{ $language->shortname }} сайта {{ $site->domain }}?" data-action="{!! route('admin.languages.delete') !!}" data-id="{{ $language->id }}" class="btn btn-danger btn-sm js-delete-confirm">Удалить</button>
+                        <a href="{!! route('admin.languages.edit', ['id' => $language->id]) !!}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i> Редактировать</a>
+                        <button type="button" data-text="Удалить {{ $language->shortname }} сайта {{ $site->domain }}?" data-action="{!! route('admin.languages.delete') !!}" data-id="{{ $language->id }}" class="btn btn-danger btn-sm js-delete-confirm"><i class="fas fa-trash"></i> Удалить</button>
                     </td>
                 </tr>
             @endforeach

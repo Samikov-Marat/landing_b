@@ -1,7 +1,7 @@
 @extends('admin.layout')
 @section('buttons')
     <div class="float-right">
-        <a href="{!! route('admin.roles.add') !!}" class="btn btn-primary">+ Создать</a>
+        <a href="{!! route('admin.roles.add') !!}" class="btn btn-primary"><i class="fas fa-plus"></i> Создать</a>
     </div>
     <div class="clearfix"></div>
 @endsection
@@ -54,10 +54,10 @@
                     </td>
 
                     <td class="text-nowrap">
-                        <a href="{!! route('admin.roles.edit', ['id' => $role->id]) !!}" class="btn btn-primary btn-sm">Редактировать</a>
+                        <a href="{!! route('admin.roles.edit', ['id' => $role->id]) !!}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i> Редактировать</a>
                         <button type="button" data-text="Удалить {{ $role->url }}?"
                                 data-action="{!! route('admin.roles.delete') !!}" data-id="{{ $role->id }}"
-                                class="btn btn-danger btn-sm js-delete-confirm">Удалить
+                                class="btn btn-danger btn-sm js-delete-confirm"><i class="fas fa-trash"></i> Удалить
                         </button>
                     </td>
                 </tr>

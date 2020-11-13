@@ -20,6 +20,7 @@ Route::prefix('admin')->middleware('auth')->group(
     function () {
         Route::get('/', 'admin\IndexController@index')
             ->name('admin.index');
+
         Route::get('sites', 'admin\SiteController@index')
             ->name('admin.sites.index');
         Route::get('sites/add', 'admin\SiteController@edit')
@@ -112,8 +113,7 @@ Route::prefix('admin')->middleware('auth')->group(
             ->name('admin.roles.save_permission_list');
 
 
-        Route::get('/', 'admin\IndexController@index')
-            ->name('admin.index');
+
         Route::get('users', 'admin\UserController@index')
             ->name('admin.users.index');
         Route::get('users/add', 'admin\UserController@edit')
@@ -128,6 +128,8 @@ Route::prefix('admin')->middleware('auth')->group(
             ->name('admin.users.edit_role_list');
         Route::post('users/save-role-list', 'admin\UserController@saveRoleList')
             ->name('admin.users.save_role_list');
+        Route::get('users/permission-tree', 'admin\UserController@permissionTree')
+            ->name('admin.users.permission_tree');
     }
 );
 

@@ -1,5 +1,12 @@
 @extends('admin.layout')
+
 @section('buttons')
+    <div class="float-right">
+        <a href="{!! route('admin.users.index') !!}" class="btn btn-secondary">
+            <i class="fas fa-arrow-left"></i> Назад к списку пользователей
+        </a>
+    </div>
+    <div class="clearfix"></div>
 @endsection
 
 
@@ -24,6 +31,17 @@
                    value="{{ isset($user) ? $user->email : '' }}"
                    placeholder="название" autocomplete="off">
             <small id="id_email_help" class="form-text text-muted">Понятное название сайта</small>
+        </div>
+        <div class="form-group">
+            <label for="id_disabled">Для того, чтобы заблокировать пользователя</label>
+            <div class="form-check">
+                <input type="checkbox" name="disabled" value="1"
+                       id="check_disabled" {{ (isset($user) && $user->disabled) ? 'checked' : '' }}
+                       class="form-check-input">
+                <label for="check_disabled" class="form-check-label">
+                    Заблокирован
+                </label>
+            </div>
         </div>
         <button type="submit" class="btn btn-primary">Сохранить</button>
     </form>

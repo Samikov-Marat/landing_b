@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\admin;
 
 use App\Classes\UserPasswordGenerator;
+use App\Classes\UserRepository;
 use App\Http\Controllers\Controller;
+use App\Permission;
 use App\Role;
 use App\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -15,10 +18,10 @@ class UserController extends Controller
 
     public function index()
     {
-        $users = User::select('id', 'name', 'email')
+        $users = User::select('id', 'name', 'email', 'disabled')
             ->orderBy('name')
             ->orderBy('id')
-//            ->with('roles')
+            ->with('roles')
             ->get();
 
         return view('admin.users.index')
@@ -28,7 +31,7 @@ class UserController extends Controller
     public function edit($id = null)
     {
         if (isset($id)) {
-            $user = User::select('id', 'name', 'email')->find($id);
+            $user = User::select('id', 'name', 'email', 'disabled')->find($id);
         } else {
             $user = null;
         }
@@ -47,6 +50,7 @@ class UserController extends Controller
         }
         $user->name = $request->input('name');
         $user->email = $request->input('email');
+        $user->disabled = $request->input('disabled', 0);
         $user->save();
 
         return response()->redirectToRoute('admin.users.index');
@@ -80,8 +84,21 @@ class UserController extends Controller
         User::select('id')
             ->find($request->input('id'))
             ->roles()
-            ->sync($request->input('role_id') ?? []);
+            ->sync($request->input('role_id', []));
         return response()->redirectToRoute('admin.users.index');
+    }
+
+    public function permissionTree()
+    {
+        $users = User::select('id', 'name')
+            ->with('roles:id,name')
+            ->with('roles.permissions:text_id')
+            ->get();
+
+        UserRepository::attachPermissions($users, 'allPermissions');
+
+        return view('admin.users.permission_tree')
+            ->with('users', $users);
     }
 
 }

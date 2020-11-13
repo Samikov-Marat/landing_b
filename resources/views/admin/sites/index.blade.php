@@ -1,7 +1,7 @@
 @extends('admin.layout')
 @section('buttons')
     <div class="float-right">
-        <a href="{!! route('admin.sites.add') !!}" class="btn btn-primary">+ Создать</a>
+        <a href="{!! route('admin.sites.add') !!}" class="btn btn-primary"><i class="fas fa-plus"></i> Создать</a>
     </div>
     <div class="clearfix"></div>
 @endsection
@@ -61,10 +61,10 @@
                         </a>
                     </td>
                     <td class="text-nowrap">
-                        <a href="{!! route('admin.sites.edit', ['id' => $site->id]) !!}" class="btn btn-primary btn-sm">Редактировать</a>
+                        <a href="{!! route('admin.sites.edit', ['id' => $site->id]) !!}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i> Редактировать</a>
                         <button type="button" data-text="Удалить {{ $site->domain }}?"
                                 data-action="{!! route('admin.sites.delete') !!}" data-id="{{ $site->id }}"
-                                class="btn btn-danger btn-sm js-delete-confirm">Удалить
+                                class="btn btn-danger btn-sm js-delete-confirm"><i class="fas fa-trash"></i> Удалить
                         </button>
                     </td>
                 </tr>
