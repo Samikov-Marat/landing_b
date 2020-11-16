@@ -10,7 +10,7 @@
 
 @section('content')
 
-    <table class="table table-bordered table-hover table-striped">
+    <table class="table table-bordered table-hover">
         <tr>
             <th>Пользователь</th>
             <th>Роли</th>
