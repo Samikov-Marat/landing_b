@@ -1,7 +1,7 @@
 @extends('admin.layout')
 @section('buttons')
     <div class="float-right">
-        <a href="{!! route('admin.users.permission_tree') !!}" class="btn btn-secondary"><i class="fas fa-tree"></i> Дерево прав</a>
+        <a href="{!! route('admin.users.permission_tree') !!}" class="btn btn-secondary"><i class="fas fa-tree"></i> Дерево разрешений</a>
         <a href="{!! route('admin.users.add') !!}" class="btn btn-primary"><i class="fas fa-plus"></i> Создать</a>
     </div>
     <div class="clearfix"></div>
