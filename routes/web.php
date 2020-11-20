@@ -94,6 +94,8 @@ Route::prefix('admin')->middleware('auth')->group(
             ->name('admin.permissions.save');
         Route::post('permissions/delete', 'admin\PermissionController@delete')
             ->name('admin.permissions.delete');
+        Route::any('permissions/generate', 'admin\PermissionController@generate')
+            ->name('admin.permissions.generate');
 
         Route::get('roles', 'admin\RoleController@index')
             ->name('admin.roles.index');

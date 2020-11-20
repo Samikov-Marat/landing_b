@@ -5,6 +5,8 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Permission;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Str;
 
 class PermissionController extends Controller
 {
@@ -55,5 +57,27 @@ class PermissionController extends Controller
         $permission->delete();
         return response()->redirectToRoute('admin.permissions.index');
     }
+
+    public function generate()
+    {
+        $routes = Route::getRoutes();
+        foreach ($routes as $route) {
+            $routeName = $route->getName();
+            if (isset($routeName) &&
+                Str::startsWith($routeName, 'admin.') &&
+                Permission::where('text_id', $routeName)->doesntExist()) {
+
+                $permission = new Permission();
+                $permission->text_id = $routeName;
+                $permission->name = 'Маршрут ' . $routeName;
+
+                $permission->save();
+
+            }
+        }
+
+        return response()->redirectToRoute('admin.permissions.index');
+    }
+
 
 }

@@ -1,6 +1,11 @@
 @extends('admin.layout')
 @section('buttons')
     <div class="float-right">
+        <form method="post" action="{!! route('admin.permissions.generate') !!}" class="d-inline">
+            {!! csrf_field() !!}
+            <button class="btn btn-secondary" type="submit">Генерировать</button>
+        </form>
+
         <a href="{!! route('admin.permissions.add') !!}" class="btn btn-primary"><i class="fas fa-plus"></i> Создать</a>
     </div>
     <div class="clearfix"></div>
@@ -40,6 +45,7 @@
                 </tr>
             @endforeach
         </table>
+        {!! $permissions->links() !!}
     @else
         <span class="alert alert-info">Список пуст.</span>
     @endif
