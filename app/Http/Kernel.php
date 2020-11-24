@@ -65,4 +65,16 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'user.route.access' => \App\Http\Middleware\UserRouteAccess::class,
     ];
+
+    /**
+     * The priority-sorted list of middleware.
+     *
+     * This forces non-global middleware to always be in the given order.
+     *
+     * @var array
+     */
+    protected $middlewarePriority = [
+        \App\Http\Middleware\Authenticate::class,
+        \App\Http\Middleware\UserRouteAccess::class,
+    ];
 }

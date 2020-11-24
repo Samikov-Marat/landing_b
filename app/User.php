@@ -63,6 +63,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public $permissions;
+
     public function roles()
     {
         return $this->belongsToMany(Role::class, UserRole::class);

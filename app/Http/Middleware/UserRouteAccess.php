@@ -11,16 +11,15 @@ class UserRouteAccess
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
+     * @param \Illuminate\Http\Request $request
+     * @param \Closure $next
      * @return mixed
      */
     public function handle($request, Closure $next)
     {
-        if(!Auth::user()->permissions->contains('text_id', Route::current()->getName())){
-            return abort(403);
+        if (!Auth::user()->permissions->contains('text_id', Route::current()->getName())) {
+            return abort(403, 'У вас недостаточно прав для посещения этой страницы');
         }
-
         return $next($request);
     }
 }
