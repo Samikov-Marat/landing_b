@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Schema\Builder;
 
@@ -41,7 +42,9 @@ class AppServiceProvider extends ServiceProvider
                 ['route' => 'admin.users.index', 'text' => 'Пользователи', 'icon' => 'fas fa-user',],
             ];
             foreach ($menu as $item){
-                $event->menu->add($item);
+                if(Gate::allows($item['route'])){
+                    $event->menu->add($item);
+                }
             }
         });
 

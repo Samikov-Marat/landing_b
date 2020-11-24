@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
 
 class UserRouteAccess
@@ -17,7 +18,8 @@ class UserRouteAccess
      */
     public function handle($request, Closure $next)
     {
-        if (!Auth::user()->permissions->contains('text_id', Route::current()->getName())) {
+        $routeName = Route::current()->getName();
+        if (Gate::denies($routeName)) {
             return abort(403, 'У вас недостаточно прав для посещения этой страницы');
         }
         return $next($request);
