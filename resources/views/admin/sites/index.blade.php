@@ -1,8 +1,10 @@
 @extends('admin.layout')
 @section('buttons')
-    <div class="float-right">
-        <a href="{!! route('admin.sites.add') !!}" class="btn btn-primary"><i class="fas fa-plus"></i> Создать</a>
-    </div>
+    @can('admin.sites.add')
+        <div class="float-right">
+            <a href="{!! route('admin.sites.add') !!}" class="btn btn-primary"><i class="fas fa-plus"></i> Создать</a>
+        </div>
+    @endcan
     <div class="clearfix"></div>
 @endsection
 
@@ -21,18 +23,25 @@
                 <th>
                     Название
                 </th>
-                <th>
-                    Страницы
-                </th>
+
+                @can('admin.sites.edit_page_list')
+                    <th>
+                        Страницы
+                    </th>
+                @endcan
+
+
                 <th>
                     Языки
                 </th>
                 <th>
                     Тексты
                 </th>
-                <th>
+                @canany(['admin.sites.edit', 'admin.sites.delete'])
+                    <th>
 
-                </th>
+                    </th>
+                @endcan
             </tr>
             @foreach($sites as $site)
                 <tr>
@@ -45,11 +54,13 @@
                     <td>
                         {{ $site->name }}
                     </td>
-                    <td>
-                        <a href="{!! route('admin.sites.edit_page_list', ['id' => $site->id]) !!}">
-                            {{ $site->pages->count() }} шт.
-                        </a>
-                    </td>
+                    @can('admin.sites.edit_page_list')
+                        <td>
+                            <a href="{!! route('admin.sites.edit_page_list', ['id' => $site->id]) !!}">
+                                {{ $site->pages->count() }} шт.
+                            </a>
+                        </td>
+                    @endcan
                     <td>
                         <a href="{!! route('admin.languages.index', ['site_id' => $site->id]) !!}">
                             {{ $site->languages->count() }} шт.
@@ -60,13 +71,22 @@
                             Тексты
                         </a>
                     </td>
-                    <td class="text-nowrap">
-                        <a href="{!! route('admin.sites.edit', ['id' => $site->id]) !!}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i> Редактировать</a>
-                        <button type="button" data-text="Удалить {{ $site->domain }}?"
-                                data-action="{!! route('admin.sites.delete') !!}" data-id="{{ $site->id }}"
-                                class="btn btn-danger btn-sm js-delete-confirm"><i class="fas fa-trash"></i> Удалить
-                        </button>
-                    </td>
+                    @canany(['admin.sites.edit', 'admin.sites.delete'])
+                        <td class="text-nowrap">
+                            @can('admin.sites.edit')
+                                <a href="{!! route('admin.sites.edit', ['id' => $site->id]) !!}"
+                                   class="btn btn-primary btn-sm"><i
+                                        class="fas fa-edit"></i> Редактировать</a>
+                            @endcan
+                            @can('admin.sites.delete')
+                                <button type="button" data-text="Удалить {{ $site->domain }}?"
+                                        data-action="{!! route('admin.sites.delete') !!}" data-id="{{ $site->id }}"
+                                        class="btn btn-danger btn-sm js-delete-confirm"><i class="fas fa-trash"></i>
+                                    Удалить
+                                </button>
+                            @endcan
+                        </td>
+                    @endcan
                 </tr>
             @endforeach
         </table>

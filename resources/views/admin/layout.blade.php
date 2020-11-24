@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'Лендинг. Админка.')
 
 @section('content_header')
     @yield('buttons')
