@@ -11,5 +11,16 @@ $(function () {
 
         $modal.modal('show');
     });
+
+    $('.js-admin-role-permission-block').on('change', function () {
+        var $blockCheckbox = $(this);
+        $(this).closest('form').find('.js-admin-role-permission').each(function () {
+            console.log($blockCheckbox.data('block'), $(this).data('block'));
+            if ($blockCheckbox.data('block') == $(this).data('block')) {
+                $(this).prop('checked', $blockCheckbox.prop('checked'))
+            }
+        });
+    });
+
 });
 
