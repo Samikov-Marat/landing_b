@@ -30,7 +30,7 @@
             <input type="text" class="form-control" name="email" id="id_email"
                    value="{{ isset($user) ? $user->email : '' }}"
                    placeholder="название" autocomplete="off">
-            <small id="id_email_help" class="form-text text-muted">Понятное название сайта</small>
+            <small id="id_email_help" class="form-text text-muted">Имя</small>
         </div>
         <div class="form-group">
             <label for="id_disabled">Для того, чтобы заблокировать пользователя</label>
