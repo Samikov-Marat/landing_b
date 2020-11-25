@@ -1,4 +1,9 @@
 @extends('admin.layout')
+
+@section('header')
+    Сайты
+@endsection
+
 @section('buttons')
     @can('admin.sites.add')
         <div class="float-right">

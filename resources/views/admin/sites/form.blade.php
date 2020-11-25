@@ -1,5 +1,18 @@
 @extends('admin.layout')
-@section('buttons')
+
+@section('header')
+    @if(isset($site))
+        Редактирование сайта
+    @else
+        Добавление сайта
+    @endif
+@endsection
+
+@section('breadcrumbs')
+    @include('admin.breadcrumbs', ['breadcrumbs' => [
+        ['href' => route('admin.sites.index'), 'text' => 'Сайты'],
+        ['text' => isset($site)?'Редактирование':'Добавление'],
+    ]])
 @endsection
 
 

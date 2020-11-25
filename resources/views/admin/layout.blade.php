@@ -3,7 +3,7 @@
 @section('title', 'Лендинг. Админка.')
 
 @section('content_header')
-    @yield('buttons')
+    @include('admin.content_header')
 @stop
 
 @section('content')
