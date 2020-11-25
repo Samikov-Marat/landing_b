@@ -5,14 +5,23 @@
 
 @section('content')
 
-    <h2>{{ $site->domain }} <small>{{ $site->name }}</small></h2>
-    <h3>
+@section('header')
     @if(isset($language))
         Редактирование
     @else
         Добавление
     @endif
-    </h3>
+@endsection
+
+@section('breadcrumbs')
+    @include('admin.breadcrumbs', ['breadcrumbs' => [
+        ['href' => route('admin.sites.index'), 'text' => 'Сайты'],
+        ['text' => $site->name],
+        ['text' => 'Языки'],
+        ['text' => isset($language)?'Редактирование':'Добавление'],
+    ]])
+@endsection
+
 
     <form method="post" action="{!! route('admin.languages.save') !!}">
         @csrf

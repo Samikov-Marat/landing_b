@@ -1,15 +1,28 @@
 @extends('admin.layout')
+
+@section('header')
+    Языки сайта
+@endsection
+
+@section('breadcrumbs')
+    @include('admin.breadcrumbs', ['breadcrumbs' => [
+        ['href' => route('admin.sites.index'), 'text' => 'Сайты'],
+        ['text' => $site->name],
+        ['text' => 'Языки'],
+    ]])
+@endsection
+
+
 @section('buttons')
     <div class="float-right">
-        <a href="{!! route('admin.languages.add', ['site_id' => $site->id]) !!}" class="btn btn-primary"><i class="fas fa-plus"></i> Создать</a>
+        <a href="{!! route('admin.languages.add', ['site_id' => $site->id]) !!}" class="btn btn-primary"><i
+                class="fas fa-plus"></i> Создать</a>
     </div>
     <div class="clearfix"></div>
 @endsection
 
 
 @section('content')
-
-    <h2>Языки сайта {{ $site->domain }} <small>{{ $site->name }}</small></h2>
 
     @if($site->languages->isNotEmpty())
         <table class="table table-hover table-bordered">
@@ -42,23 +55,32 @@
                         {{ $language->name }}
                     </td>
                     <td>
-                        {{ $language->sort }}
                         <form method="post" action="{!! route('admin.languages.move') !!}">
                             @csrf
                             <input type="hidden" name="id" value="{{ $language->id }}">
 
                             @if (!$loop->first)
-                            <input type="submit" name="direction" value="up" class="btn btn-primary btn-sm">
+                                <button type="submit" name="direction" value="up" class="btn btn-primary btn-sm"
+                                        title="Вверх">
+                                    <i class="fas fa-arrow-up"></i>
+                                </button>
                             @endif
                             @if (!$loop->last)
-                            <input type="submit" name="direction" value="down" class="btn btn-primary btn-sm">
+                                <button type="submit" name="direction" value="down" class="btn btn-primary btn-sm"
+                                        title="Вниз">
+                                    <i class="fas fa-arrow-down"></i>
+                                </button>
                             @endif
 
                         </form>
                     </td>
                     <td class="text-nowrap">
-                        <a href="{!! route('admin.languages.edit', ['id' => $language->id]) !!}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i> Редактировать</a>
-                        <button type="button" data-text="Удалить {{ $language->shortname }} сайта {{ $site->domain }}?" data-action="{!! route('admin.languages.delete') !!}" data-id="{{ $language->id }}" class="btn btn-danger btn-sm js-delete-confirm"><i class="fas fa-trash"></i> Удалить</button>
+                        <a href="{!! route('admin.languages.edit', ['id' => $language->id]) !!}"
+                           class="btn btn-primary btn-sm"><i class="fas fa-edit"></i> Редактировать</a>
+                        <button type="button" data-text="Удалить {{ $language->shortname }} сайта {{ $site->domain }}?"
+                                data-action="{!! route('admin.languages.delete') !!}" data-id="{{ $language->id }}"
+                                class="btn btn-danger btn-sm js-delete-confirm"><i class="fas fa-trash"></i> Удалить
+                        </button>
                     </td>
                 </tr>
             @endforeach
