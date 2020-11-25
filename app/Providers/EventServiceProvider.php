@@ -2,11 +2,13 @@
 
 namespace App\Providers;
 
+use App\Listeners\MenuBuilder;
 use Illuminate\Auth\Events\Authenticated;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use App\Listeners\UserLoadPermissions;
+use JeroenNoten\LaravelAdminLte\Events\BuildingMenu;
 
 
 class EventServiceProvider extends ServiceProvider
@@ -21,8 +23,11 @@ class EventServiceProvider extends ServiceProvider
             SendEmailVerificationNotification::class,
         ],
         Authenticated::class => [
-            UserLoadPermissions::class
-        ]
+            UserLoadPermissions::class,
+        ],
+        BuildingMenu::class => [
+            MenuBuilder::class,
+        ],
     ];
 
     /**
