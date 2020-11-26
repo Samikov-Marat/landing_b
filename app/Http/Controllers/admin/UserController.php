@@ -42,17 +42,19 @@ class UserController extends Controller
 
     public function save(Request $request)
     {
+        $showPassword = false;
         if ($request->has('id')) {
             $user = User::find($request->input('id'));
         } else {
             $user = new User();
-            $user->password = Hash::make(UserPasswordGenerator::getPassword());
+            $showPassword = UserPasswordGenerator::getPassword();
+            $user->password = Hash::make($showPassword);
         }
         $user->name = $request->input('name');
         $user->email = $request->input('email');
         $user->disabled = $request->input('disabled', 0);
         $user->save();
-
+        dd($showPassword);
         return response()->redirectToRoute('admin.users.index');
     }
 
