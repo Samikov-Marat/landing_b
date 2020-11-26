@@ -26,15 +26,12 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Gate::before(function ($user, $ability) {
-            return true;
-        });
-
         $permissions = Permission::select('text_id')->get();
         foreach ($permissions as $permission) {
             Gate::define(
                 $permission->text_id,
                 function ($user) use ($permission) {
+                    return true;
                     return $user->permissions->contains('text_id', $permission->text_id);
                 }
             );
