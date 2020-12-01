@@ -1,11 +1,14 @@
 @extends('admin.layout')
-@section('buttons')
-    <div class="float-right">
-        <a href="{!! route('admin.pages.add') !!}" class="btn btn-primary"><i class="fas fa-plus"></i> Создать</a>
-    </div>
-    <div class="clearfix"></div>
+
+@section('header')
+    Страницы
 @endsection
 
+@can('admin.pages.add')
+    @push('buttons2')
+        <a href="{!! route('admin.pages.add') !!}" class="btn btn-primary"><i class="fas fa-plus"></i> Создать</a>
+    @endpush
+@endcan
 
 @section('content')
 
@@ -25,7 +28,7 @@
                     Шаблон
                 </th>
                 <th>
-                    Тексты
+                    Типы текстов
                 </th>
                 <th>
                     Сортировка
@@ -50,21 +53,21 @@
                     </td>
 
                     <td>
-                        <a href="{!! route('admin.text_types.index', ['page_id' => $page->id]) !!}">Тексты</a>
+                        <a href="{!! route('admin.text_types.index', ['page_id' => $page->id]) !!}">{{ $page->text_types_count }} шт.</a>
                     </td>
 
-                    <td>
+                    <td class="text-center">
                         <form method="post" action="{!! route('admin.pages.move') !!}">
                             @csrf
                             <input type="hidden" name="id" value="{{ $page->id }}">
                             @if (!$loop->first)
                                 <button type="submit" name="direction" value="up" class="btn btn-primary btn-sm">
-                                    Выше
+                                    <i class="fas fa-arrow-up"></i>
                                 </button>
                             @endif
                             @if (!$loop->last)
                                 <button type="submit" name="direction" value="down" class="btn btn-primary btn-sm">
-                                    Ниже
+                                    <i class="fas fa-arrow-down"></i>
                                 </button>
                             @endif
                         </form>

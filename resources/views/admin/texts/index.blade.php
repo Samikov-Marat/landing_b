@@ -1,8 +1,5 @@
 @extends('admin.layout')
-@section('buttons')
-@endsection
 
-@section('content')
 
 @section('header')
     Тексты сайта
@@ -15,6 +12,8 @@
         ['text' => 'Тексты'],
     ]])
 @endsection
+
+@section('content')
 
 @if($site->pages->isNotEmpty() && $site->languages->isNotEmpty())
     <table class="table table-hover table-bordered">

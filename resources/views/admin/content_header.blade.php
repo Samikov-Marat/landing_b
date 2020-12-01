@@ -9,4 +9,7 @@
     </div><!-- /.col -->
 </div><!-- /.row -->
 
-@yield('buttons')
+<div class="float-right">
+    @stack('buttons2')
+</div>
+<div class="clearfix"></div>

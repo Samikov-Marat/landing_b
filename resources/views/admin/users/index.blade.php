@@ -1,12 +1,20 @@
 @extends('admin.layout')
-@section('buttons')
-    <div class="float-right">
-        <a href="{!! route('admin.users.permission_tree') !!}" class="btn btn-secondary"><i class="fas fa-tree"></i> Дерево разрешений</a>
-        <a href="{!! route('admin.users.add') !!}" class="btn btn-primary"><i class="fas fa-plus"></i> Создать</a>
-    </div>
-    <div class="clearfix"></div>
+
+@section('header')
+    Пользователи
 @endsection
 
+@can('admin.users.permission_tree')
+    @push('buttons2')
+        <a href="{!! route('admin.users.permission_tree') !!}" class="btn btn-secondary"><i class="fas fa-tree"></i> Дерево разрешений</a>
+    @endpush
+@endcan
+
+@can('admin.users.add')
+    @push('buttons2')
+        <a href="{!! route('admin.users.add') !!}" class="btn btn-primary"><i class="fas fa-plus"></i> Создать</a>
+    @endpush
+@endcan
 
 @section('content')
 

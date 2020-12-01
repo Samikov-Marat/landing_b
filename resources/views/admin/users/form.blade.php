@@ -1,22 +1,28 @@
 @extends('admin.layout')
 
-@section('buttons')
-    <div class="float-right">
-        <a href="{!! route('admin.users.index') !!}" class="btn btn-secondary">
-            <i class="fas fa-arrow-left"></i> Назад к списку пользователей
-        </a>
-    </div>
-    <div class="clearfix"></div>
+
+@section('header')
+    @isset($user)
+        Редактирование пользователя
+    @else
+        Добавление пользователя
+    @endisset
 @endsection
 
+@section('breadcrumbs')
+    @include('admin.breadcrumbs', ['breadcrumbs' => [
+        ['href' => route('admin.users.index'), 'text' => 'Пользователи'],
+        ['text' => isset($user)?'Редактирование':'Добавление'],
+    ]])
+@endsection
 
 @section('content')
 
     <form method="post" action="{!! route('admin.users.save') !!}">
         @csrf
-        @if(isset($user))
+        @isset($user)
             <input type="hidden" name="id" value="{{ $user->id }}">
-        @endif
+        @endisset
 
         <div class="form-group">
             <label for="id_name">Имя</label>

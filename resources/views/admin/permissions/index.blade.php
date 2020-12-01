@@ -1,16 +1,23 @@
 @extends('admin.layout')
-@section('buttons')
-    <div class="float-right">
-        <form method="post" action="{!! route('admin.permissions.generate') !!}" class="d-inline">
-            {!! csrf_field() !!}
-            <button class="btn btn-secondary" type="submit">Генерировать</button>
-        </form>
 
-        <a href="{!! route('admin.permissions.add') !!}" class="btn btn-primary"><i class="fas fa-plus"></i> Создать</a>
-    </div>
-    <div class="clearfix"></div>
+@section('header')
+    Разрешения
 @endsection
 
+@can('admin.permissions.generate')
+    @push('buttons2')
+        <form method="post" action="{!! route('admin.permissions.generate') !!}" class="d-inline">
+            {!! csrf_field() !!}
+            <button class="btn btn-secondary" type="submit" disabled>Генерировать</button>
+        </form>
+    @endpush
+@endcan
+
+@can('admin.permissions.add')
+    @push('buttons2')
+        <a href="{!! route('admin.permissions.add') !!}" class="btn btn-primary"><i class="fas fa-plus"></i> Создать</a>
+    @endpush
+@endcan
 
 @section('content')
 

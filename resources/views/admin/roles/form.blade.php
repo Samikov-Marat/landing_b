@@ -1,6 +1,4 @@
 @extends('admin.layout')
-@section('buttons')
-@endsection
 
 @section('content')
     <form method="post" action="{!! route('admin.roles.save') !!}">

@@ -1,16 +1,11 @@
 @extends('admin.layout')
-@section('buttons')
-@endsection
-
-
-@section('content')
 
 @section('header')
-    @if(isset($language))
+    @isset($language)
         Редактирование
     @else
         Добавление
-    @endif
+    @endisset
 @endsection
 
 @section('breadcrumbs')
@@ -22,7 +17,7 @@
     ]])
 @endsection
 
-
+@section('content')
     <form method="post" action="{!! route('admin.languages.save') !!}">
         @csrf
         @if(isset($language))

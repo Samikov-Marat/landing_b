@@ -1,7 +1,4 @@
 @extends('admin.layout')
-@section('buttons')
-@endsection
-
 
 @section('content')
 

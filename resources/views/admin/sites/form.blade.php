@@ -1,11 +1,11 @@
 @extends('admin.layout')
 
 @section('header')
-    @if(isset($site))
+    @isset($site)
         Редактирование сайта
     @else
         Добавление сайта
-    @endif
+    @endisset
 @endsection
 
 @section('breadcrumbs')

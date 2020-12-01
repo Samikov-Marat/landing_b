@@ -1,11 +1,14 @@
 @extends('admin.layout')
-@section('buttons')
-    <div class="float-right">
-        <a href="{!! route('admin.roles.add') !!}" class="btn btn-primary"><i class="fas fa-plus"></i> Создать</a>
-    </div>
-    <div class="clearfix"></div>
+
+@section('header')
+    Роли
 @endsection
 
+@can('admin.roles.add')
+    @push('buttons2')
+        <a href="{!! route('admin.roles.add') !!}" class="btn btn-primary"><i class="fas fa-plus"></i> Создать</a>
+    @endpush
+@endcan
 
 @section('content')
 
@@ -32,22 +35,22 @@
                     </td>
                     <td>
                         <a href="{!! route('admin.roles.edit_permission_list', ['id' => $role->id]) !!}">
-                            {{ $role->permissions->count() }} шт.
+                            {{ $role->permissions_count }} шт.
                         </a>
                     </td>
 
-                    <td>
+                    <td class="text-center">
                         <form method="post" action="{!! route('admin.roles.move') !!}">
                             @csrf
                             <input type="hidden" name="id" value="{{ $role->id }}">
                             @if (!$loop->first)
                                 <button type="submit" name="direction" value="up" class="btn btn-primary btn-sm">
-                                    Выше
+                                    <i class="fas fa-arrow-up"></i>
                                 </button>
                             @endif
                             @if (!$loop->last)
                                 <button type="submit" name="direction" value="down" class="btn btn-primary btn-sm">
-                                    Ниже
+                                    <i class="fas fa-arrow-down"></i>
                                 </button>
                             @endif
                         </form>

@@ -66,7 +66,7 @@ class UserController extends Controller
 
     public function editRoleList(Request $request)
     {
-        $user = User::select('id', 'name')
+        $user = User::select('id', 'name', 'email')
             ->with('roles')
             ->find($request->input('id'));
 

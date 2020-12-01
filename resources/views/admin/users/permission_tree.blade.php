@@ -1,11 +1,15 @@
 @extends('admin.layout')
-@section('buttons')
-    <div class="float-right">
-        <a href="{!! route('admin.users.index') !!}" class="btn btn-secondary">
-            <i class="fas fa-arrow-left"></i> Назад к списку пользователей
-        </a>
-    </div>
-    <div class="clearfix"></div>
+
+@section('header')
+    Дерево разрешений
+@endsection
+
+
+@section('breadcrumbs')
+    @include('admin.breadcrumbs', ['breadcrumbs' => [
+        ['href' => route('admin.users.index'), 'text' => 'Пользователи'],
+        ['text' => 'Дерево разрешений'],
+    ]])
 @endsection
 
 @section('content')
@@ -41,9 +45,6 @@
             </tr>
         @endforeach
 
-
     </table>
-
-
 
 @endsection

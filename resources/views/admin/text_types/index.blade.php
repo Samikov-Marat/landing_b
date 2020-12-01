@@ -1,15 +1,15 @@
 @extends('admin.layout')
-@section('buttons')
-    <div class="float-right">
-        <a href="{!! route('admin.text_types.add', ['page_id' => $page->id]) !!}" class="btn btn-primary"><i class="fas fa-plus"></i> Создать</a>
-    </div>
-    <div class="clearfix"></div>
+@section('header')
+    Типы текстов на странице {{ $page->name }}
 @endsection
 
+@can('admin.text_types.add')
+    @push('buttons2')
+        <a href="{!! route('admin.text_types.add', ['page_id' => $page->id]) !!}" class="btn btn-primary"><i class="fas fa-plus"></i> Создать</a>
+    @endpush
+@endcan
 
 @section('content')
-
-    <h2>Типы текстов на странице {{ $page->name }}</h2>
 
     @if($page->textTypes->isNotEmpty())
         <table class="table table-hover table-bordered">

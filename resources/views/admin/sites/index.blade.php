@@ -4,15 +4,11 @@
     Сайты
 @endsection
 
-@section('buttons')
-    @can('admin.sites.add')
-        <div class="float-right">
-            <a href="{!! route('admin.sites.add') !!}" class="btn btn-primary"><i class="fas fa-plus"></i> Создать</a>
-        </div>
-    @endcan
-    <div class="clearfix"></div>
-@endsection
-
+@can('admin.sites.add')
+    @push('buttons2')
+        <a href="{!! route('admin.sites.add') !!}" class="btn btn-primary"><i class="fas fa-plus"></i> Создать</a>
+    @endpush
+@endcan
 
 @section('content')
 

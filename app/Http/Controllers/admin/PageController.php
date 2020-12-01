@@ -17,6 +17,7 @@ class PageController extends Controller
     public function index()
     {
         $pages = Page::select('id', 'url', 'name', 'template', 'sort')
+            ->withCount('textTypes')
             ->orderBy('sort')
             ->paginate(static::PER_PAGE);
 

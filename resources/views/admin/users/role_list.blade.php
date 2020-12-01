@@ -1,5 +1,16 @@
 @extends('admin.layout')
 
+@section('header')
+    Роли пользователя {{ $user->email }} ({{ $user->name }})
+@endsection
+
+@section('breadcrumbs')
+    @include('admin.breadcrumbs', ['breadcrumbs' => [
+        ['href' => route('admin.users.index'), 'text' => 'Пользователи'],
+        ['text' => 'Роли пользователя ' . $user->email ],
+    ]])
+@endsection
+
 @section('content')
 
     <form method="post" action="{!! route('admin.users.save_role_list') !!}">

@@ -12,15 +12,12 @@
     ]])
 @endsection
 
-
-@section('buttons')
-    <div class="float-right">
+@can('admin.languages.add')
+    @push('buttons2')
         <a href="{!! route('admin.languages.add', ['site_id' => $site->id]) !!}" class="btn btn-primary"><i
                 class="fas fa-plus"></i> Создать</a>
-    </div>
-    <div class="clearfix"></div>
-@endsection
-
+    @endpush
+@endcan
 
 @section('content')
 
@@ -54,7 +51,7 @@
                     <td>
                         {{ $language->name }}
                     </td>
-                    <td>
+                    <td class="text-center">
                         <form method="post" action="{!! route('admin.languages.move') !!}">
                             @csrf
                             <input type="hidden" name="id" value="{{ $language->id }}">
