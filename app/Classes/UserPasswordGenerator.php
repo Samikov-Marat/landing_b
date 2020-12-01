@@ -6,7 +6,7 @@ namespace App\Classes;
 
 class UserPasswordGenerator
 {
-    const UNDERSTANDABLE_SYMBOLS = 'AaBbCcDdEeFfHhiJjKkLMmNnoPpRrSsTtUuVvXxYyZz23456789';
+    const UNDERSTANDABLE_SYMBOLS = 'AabCcDdEeFfHhiJjKkLMmNnoPpRrSsTtUuVvXxYyZz2345679';
     const PASSWORD_LENGTH = 12;
 
     public static function getPassword(): string

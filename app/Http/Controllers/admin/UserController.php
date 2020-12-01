@@ -3,12 +3,11 @@
 namespace App\Http\Controllers\admin;
 
 use App\Classes\UserPasswordGenerator;
+use App\Classes\UserPasswordNotification;
 use App\Classes\UserRepository;
 use App\Http\Controllers\Controller;
-use App\Permission;
 use App\Role;
 use App\User;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -42,16 +41,21 @@ class UserController extends Controller
 
     public function save(Request $request)
     {
+        $notification = new UserPasswordNotification();
         if ($request->has('id')) {
             $user = User::find($request->input('id'));
         } else {
             $user = new User();
-            $user->password = Hash::make(UserPasswordGenerator::getPassword());
+            $password = UserPasswordGenerator::getPassword();
+            $notification->setPassword($password);
+            $user->password = Hash::make($password);
         }
         $user->name = $request->input('name');
         $user->email = $request->input('email');
         $user->disabled = $request->input('disabled', 0);
         $user->save();
+
+        $notification->sendTo($user);
 
         return response()->redirectToRoute('admin.users.index');
     }
