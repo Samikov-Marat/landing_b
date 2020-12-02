@@ -16,7 +16,7 @@
 
 @section('js')
     <script src="/admin_files/admin.js"></script>
-    <script src="/admin_files/texts.js"></script>
+    <script src="/admin_files/texts.js?v={{ time() . '-' . microtime(true) }}"></script>
 @stop
 
 @section('footer')
