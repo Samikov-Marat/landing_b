@@ -28,15 +28,15 @@
             <label for="id_name">Имя</label>
             <input type="text" class="form-control" name="name" id="id_name"
                    value="{{ isset($user) ? $user->name : '' }}"
-                   placeholder="название" autocomplete="off">
-            <small id="id_name_help" class="form-text text-muted">Понятное название сайта</small>
+                   placeholder="Имя и фамилия пользователя" autocomplete="off">
+            <small id="id_name_help" class="form-text text-muted">Имя и фамилия пользователя</small>
         </div>
         <div class="form-group">
             <label for="id_email">Email</label>
             <input type="text" class="form-control" name="email" id="id_email"
                    value="{{ isset($user) ? $user->email : '' }}"
-                   placeholder="название" autocomplete="off">
-            <small id="id_email_help" class="form-text text-muted">Имя</small>
+                   placeholder="email" autocomplete="off">
+            <small id="id_email_help" class="form-text text-muted">email</small>
         </div>
         <div class="form-group">
             <label for="id_disabled">Для того, чтобы заблокировать пользователя</label>
