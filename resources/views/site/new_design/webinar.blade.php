@@ -72,7 +72,7 @@
                         @foreach ($site->languages as $availableLanguage)
                             @if($availableLanguage->id != $language->id)
                                 <div class="header-container__language-item"><a
-                                        href="/{{ \Str::lower($availableLanguage->shortname) }}/webinar">{{ \Str::upper($availableLanguage->shortname) }}</a>
+                                        href="/{{ \Str::lower($availableLanguage->shortname) }}">{{ \Str::upper($availableLanguage->shortname) }}</a>
                                 </div>
                             @endif
                         @endforeach
