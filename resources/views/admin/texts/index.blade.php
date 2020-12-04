@@ -14,7 +14,7 @@
 @endsection
 
 @section('content')
-
+    @include('admin.texts.file_form', ['site' => $site])
     <form>
         <div class="input-group input-group-lg mx-sm-3">
             <div class="input-group-prepend">

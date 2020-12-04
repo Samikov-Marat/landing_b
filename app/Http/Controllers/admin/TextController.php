@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Classes\TextCsv;
+use App\Classes\TextRepository;
 use App\Http\Controllers\Controller;
 use App\Language;
 use App\Site;
@@ -13,39 +15,7 @@ class TextController extends Controller
 {
     public function index(Request $request)
     {
-        $site = Site::select('id', 'name')
-            ->with(
-                [
-                    'pages' => function ($query) {
-                        $query->select('id', 'site_id', 'name', 'domain')
-                            ->orderBy('sort');
-                    }
-                ]
-            )
-            ->with(
-                [
-                    'pages.textTypes' => function ($query) {
-                        $query->select('id', 'page_id', 'shortname', 'name')
-                            ->orderBy('sort');
-                    }
-                ]
-            )
-            ->with(
-                [
-                    'pages.textTypes.texts' => function ($query) {
-                        $query->select('id', 'text_type_id', 'language_id', 'value');
-                    }
-                ]
-            )
-            ->with(
-                [
-                    'languages' => function ($query) {
-                        $query->select('id', 'site_id', 'shortname', 'name')
-                            ->orderBy('sort');
-                    }
-                ]
-            )
-            ->find($request->input('site_id'));
+        $site = TextRepository::getSite($request->input('site_id'));
 
         return view('admin.texts.index')
             ->with('site', $site);
@@ -127,5 +97,16 @@ class TextController extends Controller
         return response()->redirectToRoute('admin.texts.index', ['site_id' => $request->input('site_id')]);
     }
 
+    public function download(Request $request)
+    {
+        $site = TextRepository::getSite($request->input('site_id'));
 
+        return response()->streamDownload(
+            function () use ($site) {
+                $csv = new TextCsv();
+                $csv->start($site);
+            },
+            'lang' . $site->id . '.csv'
+        );
+    }
 }

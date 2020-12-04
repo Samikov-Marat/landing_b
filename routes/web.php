@@ -83,6 +83,10 @@ Route::prefix('admin')->middleware(['auth', 'user.route.access'])->group(
             ->name('admin.texts.edit');
         Route::post('texts/save', 'admin\TextController@save')
             ->name('admin.texts.save');
+        Route::get('texts/download', 'admin\TextController@download')
+            ->name('admin.texts.download');
+        Route::post('texts/upload', 'admin\TextController@upload')
+            ->name('admin.texts.upload');
 
         Route::get('permissions', 'admin\PermissionController@index')
             ->name('admin.permissions.index');
