@@ -19,11 +19,10 @@
                     }
                 @endphp
                 @if($changeBlock)
-                    <h1></h1>
                     <div class="form-check">
-                        <input type="checkbox" id="block_{{ $loop->index }}"
-                               class="form-check-input js-admin-role-permission-block" data-block="{{ $blockTextId }}">
-                        <label for="block_{{ $loop->index }}" class="form-check-label">{{ $blockTextId }}</label>
+                        {{ $blockTextId }}:
+                        <button type="button" class="btn js-admin-role-permission-block" data-block="{{ $blockTextId }}" data-action="on"><i class="far fa-check-square"></i> Включить все</button>
+                        <button type="button" class="btn js-admin-role-permission-block" data-block="{{ $blockTextId }}"  data-action="off"><i class="far fa-square"></i> Выключить все</button>
                     </div>
                 @endif
 
