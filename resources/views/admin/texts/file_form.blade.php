@@ -7,7 +7,9 @@
         </div>
         <div class="col-6">
 
-            <form class="form-inline">
+            <form method="post" action="{!! route('admin.texts.upload') !!}" enctype="multipart/form-data" class="form-inline">
+                {!! csrf_field() !!}
+                <input type="hidden" name="site_id" value="{{ $site->id }}">
                 <div class="form-group">
                     <div class="custom-file">
                         <input type="file" name="file" class="custom-file-input" id="customFile" required>

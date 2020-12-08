@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\admin;
 
 use App\Classes\TextCsv;
+use App\Classes\TextCsvParser;
 use App\Classes\TextRepository;
 use App\Http\Controllers\Controller;
-use App\Language;
 use App\Site;
 use App\Text;
 use App\TextType;
@@ -94,7 +94,7 @@ class TextController extends Controller
         }
 
 
-        return response()->redirectToRoute('admin.texts.index', ['site_id' => $request->input('site_id')]);
+        return response()->redirectToRoute('admin.texts.index', ['site_id' => $site->id]);
     }
 
     public function download(Request $request)
@@ -109,4 +109,28 @@ class TextController extends Controller
             'lang' . $site->id . '.csv'
         );
     }
+
+    public function upload(Request $request)
+    {
+        $site = Site::select('id')
+            ->with(
+                [
+                    'languages' => function ($query) {
+                        $query->select('id', 'site_id');
+                    }
+                ]
+            )
+            ->find($request->input('site_id'));
+
+        try {
+            $path = $request->file('file')
+                ->store('admin/texts/upload');
+            $parser = new TextCsvParser($site);
+            $parser->parse($path);
+        } catch (\Exception $e) {
+            abort(400, $e->getMessage());
+        }
+        return response()->redirectToRoute('admin.texts.index', ['site_id' => $site->id]);
+    }
+
 }
