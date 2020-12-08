@@ -1,5 +1,19 @@
 @extends('admin.layout')
 
+
+@section('header')
+    Разрешения для роли
+@endsection
+
+@section('breadcrumbs')
+    @include('admin.breadcrumbs', ['breadcrumbs' => [
+        ['href' => route('admin.roles.index'), 'text' => 'Роли'],
+        ['text' => 'Разрешения для роли ' . $role->name],
+    ]])
+@endsection
+
+
+
 @section('content')
     @php
         $blockTextId = '';
