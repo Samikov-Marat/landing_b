@@ -8,7 +8,7 @@
     @push('buttons2')
         <form method="post" action="{!! route('admin.permissions.generate') !!}" class="d-inline">
             {!! csrf_field() !!}
-            <button class="btn btn-secondary" type="submit" disabled>Генерировать</button>
+            <button class="btn btn-secondary" type="submit">Генерировать</button>
         </form>
     @endpush
 @endcan
