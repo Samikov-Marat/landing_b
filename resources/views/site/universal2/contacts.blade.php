@@ -1,4 +1,4 @@
-@extends('admin.layout')
+@extends('site.universal2.layout')
 
 @section('content')
 
