@@ -77,6 +77,7 @@ class TextController extends Controller
         $textsByLanguage = $textType->texts->keyBy('language_id');
 
         $values = $request->input('values');
+
         foreach ($values as $languageId => $value) {
             if (!$avaiableLanguages->has($languageId)) {
                 throw new \Exception('На этом сайте нет такого языка');
@@ -89,7 +90,7 @@ class TextController extends Controller
                 $text->text_type_id = $textType->id;
                 $text->language_id = $languageId;
             }
-            $text->value = $value;
+            $text->value = $value ?? '';
             $text->save();
         }
 
