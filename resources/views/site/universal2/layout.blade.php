@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>CDEK UK</title>
+        <title>@d('title')</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
             <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
@@ -21,22 +21,22 @@
         <div class="main-menu header__menu">
             <ul class="main-menu__list">
                 <li class="main-menu__item">
-                    <a class="main-menu__link current" href="">О доставке</a>
+                    <a class="main-menu__link current" href="">@d('menu_delivery')</a>
                 </li>
                 <li class="main-menu__item">
-                    <a class="main-menu__link" href="">Компания</a>
+                    <a class="main-menu__link" href="">@d('menu_company')</a>
                 </li>
                 <li class="main-menu__item">
-                    <a class="main-menu__link" href="">Контакты</a>
+                    <a class="main-menu__link" href="">@d('menu_contects')</a>
                 </li>
             </ul>
         </div>
         <div class="header__right">
-            <a href="" class="header__button">Рассчитать доставку</a>
+            <a href="" class="header__button">@d('header_button')</a>
             <div class="header__language-selector">RU</div>
             <div class="header-contact">
                 <div class="header-contact__content">
-                    <a class="header-contact__phone" href="tel:+441473711668">+44 147 371 16 68</a>
+                    <a class="header-contact__phone" href="tel:@d('header_phone')">@d('header_phone_formatted')</a>
                 </div>
             </div>
         </div>
@@ -51,13 +51,13 @@
         <div class="main-menu">
             <ul class="main-menu__list">
                 <li class="main-menu__item">
-                    <a class="main-menu__link current" href="">О доставке</a>
+                    <a class="main-menu__link current" href="">@d('menu_delivery')</a>
                 </li>
                 <li class="main-menu__item">
-                    <a class="main-menu__link" href="">Компания</a>
+                    <a class="main-menu__link" href="">@d('menu_company')</a>
                 </li>
                 <li class="main-menu__item">
-                    <a class="main-menu__link" href="">Контакты</a>
+                    <a class="main-menu__link" href="">@d('menu_contects')</a>
                 </li>
             </ul>
         </div>
@@ -76,8 +76,8 @@
                         <a class="footer__link footer__link-mr-social" href="">Instagram</a>
                     </div>
                     <div class="footer__link-policy-item">
-                        <a class="footer__link footer__link-mr-policy" href="">Курьерская компания СДЭК,© 2000-2020</a>
-                        <a class="footer__link footer__link-mr-policy" href="">Политика конфиденциальности</a>
+                        <a class="footer__link footer__link-mr-policy" href="">@d('menu_contects')</a>
+                        <a class="footer__link footer__link-mr-policy" href="">@d('footer_policy')</a>
                     </div>
                 </div>
                 <div class="footer__right">
@@ -85,10 +85,10 @@
                     <div class="footer__right-text">
                         <div class="footer__contacts">
                             <div class="footer__phone-item">
-                                <a class="footer__phone" href="tel:+441473711668">+441473711668</a>
+                                <a class="footer__phone" href="tel:@d('header_phone')">@d('header_phone')</a>
                             </div>
                         </div>
-                        <a class="footer__email footer-email" href="mailto:fedorov.m@cdek.ru">fedorov.m@cdek.ru</a>
+                        <a class="footer__email footer-email" href="mailto:@d('footer_email')">@d('footer_email')</a>
                     </div>
                 </div>
             </div>
@@ -97,7 +97,7 @@
             <div class="modal" id="feedback-modal">
                 <div class="modal__close"></div>
                 <div class="modal__content">
-                    <div class="modal__heading">Обратная связь</div>
+                    <div class="modal__heading">@d('footer_feedback')</div>
                     <div class="form calculator_form">
                         <div class="form__row">
                             <div class="form-field">
@@ -121,7 +121,7 @@
                         </div>
                         <div class="form__row form__row_no-input">
                             <div class="checkbox-widget">
-                                <input type="checkbox" name="agree" id="modal-agree" /><label for="modal-agree"><span>Я соглашаюсь с <a class="checkbox-widget__link" href="#">условиями обработки персональных данных</a></span></label>
+                                <input type="checkbox" name="agree" id="modal-agree" /><label for="modal-agree"><span>@d('footer_feedback_agree_1') <a class="checkbox-widget__link" href="#">@d('footer_feedback_agree_2')</a></span></label>
                             </div>
                         </div>
                         <div class="form-field">
@@ -132,15 +132,15 @@
                 <div class="modal__content modal__content_result js-modal-result-ok" style="display: none;">
                     <div>
                         <div class="modal__result-icon modal__result-icon_ok"></div>
-                        <div class="modal__result-title">Сообщение<br />успешно отправлено!</div>
-                        <div class="modal__result-text">Постаремся ответить на ваш запрос как можно скорее.</div>
+                        <div class="modal__result-title">@d('footer_feedback_success_1')</div>
+                        <div class="modal__result-text">@d('footer_feedback_success_2')</div>
                     </div>
                 </div>
                 <div class="modal__content modal__content_result js-modal-result-error" style="display: none;">
                     <div>
                         <div class="modal__result-icon modal__result-icon_error"></div>
-                        <div class="modal__result-title">Ошибка!</div>
-                        <div class="modal__result-text">Что-то пошло не так, попробуйте отправить еще раз позднее.</div>
+                        <div class="modal__result-title">@d('footer_feedback_error_1')</div>
+                        <div class="modal__result-text">@d('footer_feedback_error_2')</div>
                     </div>
                 </div>
             </div>
