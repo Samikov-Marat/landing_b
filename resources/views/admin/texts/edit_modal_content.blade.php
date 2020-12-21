@@ -9,13 +9,15 @@
         </button>
     </div>
     <div class="modal-body">
+        <div>
+            {{ $textType->default_value }}
+        </div>
         @php
             $textsByLanguage = $textType->texts->keyBy('language_id');
         @endphp
         @foreach($site->languages as $language)
             @php
                 $labelId = 'id-language-' . $language->id;
-
             @endphp
 
             <div class="form-group">
