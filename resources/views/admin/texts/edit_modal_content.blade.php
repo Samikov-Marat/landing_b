@@ -10,6 +10,12 @@
     </div>
     <div class="modal-body">
         <div>
+            {{ $textType->name }}
+        </div>
+        <div>
+            {{ $textType->shortname }}
+        </div>
+        <div>
             {{ $textType->default_value }}
         </div>
         @php
