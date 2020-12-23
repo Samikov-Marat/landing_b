@@ -65,7 +65,7 @@ class TextTypeController extends Controller
 
         $textType->save();
 
-        return response()->redirectToRoute('admin.text_types.index', ['page_id' => $textType->page_id]);
+        return response()->redirectToRoute('admin.text_types.add', ['page_id' => $textType->page_id]);
     }
 
 

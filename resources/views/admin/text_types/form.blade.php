@@ -28,7 +28,7 @@
         <div class="form-group">
             <label for="id_name">Название</label>
             <input type="text" class="form-control" name="name" id="id_name"
-                   value="{{ isset($textType) ? $textType->name : '' }}"
+                   value="{{ isset($textType) ? $textType->name : '-' }}"
                    placeholder="название" autocomplete="off">
             <small id="id_name_help" class="form-text text-muted">Полное название текста. Например, <q>Заголовок блока доставки</q></small>
         </div>
