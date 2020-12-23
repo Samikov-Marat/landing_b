@@ -44,7 +44,7 @@
                     </td>
                     <td>
                         @if($page->is_layout)
-                            Фрагмент общей части шаблона
+                            <span class="badge badge-secondary">Фрагмент общей части шаблона</span>
                         @else
                             {{ $page->url }}
                         @endif
