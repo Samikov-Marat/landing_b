@@ -16,7 +16,7 @@ class PageController extends Controller
 
     public function index()
     {
-        $pages = Page::select('id', 'url', 'name', 'template', 'sort')
+        $pages = Page::select('id', 'url', 'name', 'template', 'is_layout', 'sort')
             ->withCount('textTypes')
             ->orderBy('sort')
             ->paginate(static::PER_PAGE);
@@ -28,7 +28,8 @@ class PageController extends Controller
     public function edit($id = null)
     {
         if (isset($id)) {
-            $page = Page::select('id', 'name', 'url', 'template')->find($id);
+            $page = Page::select('id', 'name', 'url', 'template', 'is_layout')
+                ->find($id);
         } else {
             $page = null;
         }
@@ -46,9 +47,10 @@ class PageController extends Controller
             $page = new Page();
         }
 
-        $page->url = $request->input('url');
+        $page->url = $request->input('url', '') ?? '';
         $page->name = $request->input('name');
         $page->template = $request->input('template');
+        $page->is_layout = $request->input('is_layout', false);
         if (!$isEditMode) {
             $page->sort = Page::max('sort') + self::SORT_STEP;
         }
@@ -58,7 +60,8 @@ class PageController extends Controller
         return response()->redirectToRoute('admin.pages.index');
     }
 
-    public function delete(Request $request){
+    public function delete(Request $request)
+    {
         $page = Page::find($request->input('id'));
         $page->delete();
         return response()->redirectToRoute('admin.pages.index');

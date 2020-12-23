@@ -43,7 +43,11 @@
                         {{ $page->id }}
                     </td>
                     <td>
-                        {{ $page->url }}
+                        @if($page->is_layout)
+                            Фрагмент общей части шаблона
+                        @else
+                            {{ $page->url }}
+                        @endif
                     </td>
                     <td>
                         {{ $page->name }}
