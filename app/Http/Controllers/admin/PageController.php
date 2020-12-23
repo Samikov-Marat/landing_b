@@ -47,7 +47,13 @@ class PageController extends Controller
             $page = new Page();
         }
 
-        $page->url = $request->input('url', '') ?? '';
+        if($request->has('url')){
+            $page->url = $request->input('url');
+        }
+        else{
+            $page->url = '';
+        }
+
         $page->name = $request->input('name');
         $page->template = $request->input('template');
         $page->is_layout = $request->input('is_layout', false);
