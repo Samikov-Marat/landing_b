@@ -26,6 +26,7 @@ class UserLoadPermissions
      */
     public function handle(Authenticated $event)
     {
+        dd(env('DB_PASSWORD'));
         Auth::user()->permissions = UserRepository::getAllPermissions($event->user);
     }
 }
