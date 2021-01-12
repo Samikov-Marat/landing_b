@@ -6,12 +6,10 @@
         <div class="company-poster">
             <div class="content">
                 <div class="company-poster__content">
-                    <h1 class="typo-h1 company-poster__heading">СДЭК – одна из крупнейших и наиболее популярных логистических компаний в России</h1>
+                    <h1 class="typo-h1 company-poster__heading">@d('poster_header')</h1>
                     <div class="divider company-poster__divider"></div>
                     <div class="company-poster__text">
-                        В 2000 году компания была основана в Сибири.<br />
-                        2001 ― открылся первый пункт выдачи СДЭК в Москве.<br />
-                        2008 ― компания вышла на международный рынок и запустила первый зарубежный офис.
+                        @d('poster_history')
                     </div>
                 </div>
             </div>
@@ -19,19 +17,19 @@
         <div class="company-grow screen">
             <div class="content">
                 <div class="company-grow__content">
-                    <h2 class="typo-h2 company-grow__title">Мы постоянно расширяемся</h2>
+                    <h2 class="typo-h2 company-grow__title">@d('grow_header')</h2>
                     <div class="company-grow__inner-content">
-                        <div class="company-grow__text">СДЭК сегодня ― это</div>
+                        <div class="company-grow__text">@d('grow_is')</div>
                         <div class="company-grow__cards">
                             <div class="company-grow__card company-grow__card_green">
                                 <div class="company-grow__card-num">200+</div>
-                                <div>направлений доставки<br />по всему миру</div>
+                                <div>@d('grow_text_1')</div>
                             </div>
                             <div class="company-grow__card-empty">
                                 <div class="company-grow__card-shadow"></div>
                                 <div class="company-grow__card company-grow__card_yellow">
                                     <div class="company-grow__card-num">20</div>
-                                    <div>стран с собственными<br />офисами</div>
+                                    <div>@d('grow_text_2')</div>
                                 </div>
                             </div>
                         </div>
@@ -78,76 +76,75 @@
                                 <div class="company-grow__flag company-grow__flag_country_it"></div>
 
                         </div>
-                        <div class="company-grow__countries">Россия, Украина, США, Великобритания, Германия, Киргизия, Казахстан, Республика Беларусь, Армения, Узбекистан, Грузия,  Чехия, Южная Корея, Китай, Латвия, ОАЭ, Турция, Таиланд, Азербайджан, Италия.</div>
+                        <div class="company-grow__countries">@d('grow_countries')</div>
                     </div>
                 </div>
             </div>
             <div class="company-grow__numbers">
-                <div class="company-grow__numbers-title">СДЭК в цифрах</div>
+                <div class="company-grow__numbers-title">@d('numbers_header')</div>
                 <div class="company-grow__numbers-list">
                     <div class="company-grow__numbers-item company-grow__numbers-item_icon_office">
                         <div class="company-grow__numbers-item-num">2300+</div>
-                        <div>офисов по всему миру</div>
+                        <div>@d('numbers_office_text')</div>
                     </div>
                     <div class="company-grow__numbers-item company-grow__numbers-item_icon_shop">
                         <div class="company-grow__numbers-item-num">64 000+</div>
-                        <div>интернет-магазинов</div>
+                        <div>@d('numbers_shop_text')</div>
                     </div>
                     <div class="company-grow__numbers-item company-grow__numbers-item_icon_city">
                         <div class="company-grow__numbers-item-num">36 000+</div>
-                        <div>городов и населенных пунктов в России</div>
+                        <div>@d('numbers_city_text')</div>
                     </div>
                     <div class="company-grow__numbers-item company-grow__numbers-item_icon_package">
                         <div class="company-grow__numbers-item-num">200 000</div>
-                        <div>отправлений в день</div>
+                        <div>@d('numbers_package_text')</div>
                     </div>
                     <div class="company-grow__numbers-item company-grow__numbers-item_icon_world">
                         <div class="company-grow__numbers-item-num">20</div>
-                        <div>международных подразделений</div>
+                        <div>@d('numbers_world_text')</div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="company-advantages screen-content">
-    <h2 class="typo-h2 company-advantages__heading">Почему выбирают доставку СДЭК</h2>
+    <h2 class="typo-h2 company-advantages__heading">@d('advantages_header')</h2>
     <div class="company-advantages__description">
-        Мы гарантируем безопасность груза при доставке любым видом транспорта.<br />
-        Вместе с надежными партнерами и подрядчиками мы выстроили оптимальные логистические маршруты. Отправлять со СДЭК ― это:
+        @d('advantages_text')
     </div>
     <div class="square-cards js-company-advantages owl-carousel">
         <div class="square-card square-card_icon_customs">
             <div class="square-card__bg"></div>
-            <div class="square-card__title">Просто</div>
+            <div class="square-card__title">@d('card_1_header')</div>
             <div class="square-card__description">
-                Возьмем на себя всю <span class="typo-bold">логистику и таможенное оформление</span> товаров;
+                @d('card_1_text_1') <span class="typo-bold">@d('card_1_text_2')</span> @d('card_1_text_3')
             </div>
         </div>
         <div class="square-card square-card_icon_settings">
             <div class="square-card__bg"></div>
-            <div class="square-card__title">Выгодно</div>
+            <div class="square-card__title">@d('card_2_header')</div>
             <div class="square-card__description">
-                Предлагаем <span class="typo-bold">комплексное решение</span>: доставка, интеграция, маркетинг для интернет-магазинов;
+                @d('card_2_text_1') <span class="typo-bold">@d('card_2_text_2')</span>@d('card_2_text_3')
             </div>
         </div>
         <div class="square-card square-card_icon_protect">
             <div class="square-card__bg"></div>
-            <div class="square-card__title">Надежно</div>
+            <div class="square-card__title">@d('card_3_header')</div>
             <div class="square-card__description">
-                Работаем с 2000 года, нам доверяют <span class="typo-bold">1 000 000+ клиентов;</span>
+                @d('card_3_text_1') <span class="typo-bold">@d('card_3_text_2')</span>
             </div>
         </div>
         <div class="square-card square-card_icon_lorry">
             <div class="square-card__bg"></div>
-            <div class="square-card__title">Доступно</div>
+            <div class="square-card__title">@d('card_4_header')</div>
             <div class="square-card__description">
-                Доставим клиенту на дом или в любой из <span class="typo-bold">2300+ офисов СДЭК;</span>
+                @d('card_4_text_1') <span class="typo-bold">@d('card_4_text_2')</span>
             </div>
         </div>
         <div class="square-card square-card_icon_parcels">
             <div class="square-card__bg"></div>
-            <div class="square-card__title">Удобно</div>
+            <div class="square-card__title">@d('card_2_header')</div>
             <div class="square-card__description">
-                Дадим трек-номер для <span class="typo-bold">отслеживания</span> посылки и оповестим, что отправление <span class="typo-bold">готово к выдаче.</span>
+                @d('card_2_text_1') <span class="typo-bold">@d('card_2_text_2')</span> @d('card_2_text_3') <span class="typo-bold">@d('card_2_text_4')</span>
             </div>
         </div>
     </div>

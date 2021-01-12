@@ -4,14 +4,14 @@
 
     <div class="contact-page screen">
         <div class="content">
-            <h1 class="typo-h1 contact-page__heading">Контакты</h1>
+            <h1 class="typo-h1 contact-page__heading">@d('page_header')</h1>
         </div>
         <div class="submenu contact-page__submenu">
             <div class="submenu__content">
-                <div class="submenu__item submenu__item_active">Великобритания</div>
-                <a class="submenu__item" href="#">Россия</a>
-                <a class="submenu__item" href="#">Другие страны</a>
-                <a href="#" class="submenu__item contact-page__feedback">Обратная связь</a>
+                <div class="submenu__item submenu__item_active">@d('tab_1')---</div>
+                <a class="submenu__item" href="#">@d('tab_2')</a>
+                <a class="submenu__item" href="#">@d('tab_3')</a>
+                <a href="#" class="submenu__item contact-page__feedback">@d('feedback')</a>
             </div>
         </div>
         <div class="contact-page__list">

@@ -6,7 +6,7 @@
         <div class="main-poster business-page__poster screen">
             <div class="main-poster__content">
                 <div class="main-poster__heading business-page__heading">
-                    <h1 class="typo-h1">Доставка для корпоративных клиентов<br />из Великобритании</h1>
+                    <h1 class="typo-h1">@d('poster_header')</h1>
                 </div>
                 <div class="circle-icon-list main-poster__icons">
                     <div class="circle-icon circle-icon_icon_business circle-icon-list__icon"></div>
@@ -14,57 +14,55 @@
                     <div class="circle-icon circle-icon_icon_calendar circle-icon-list__icon"></div>
                 </div>
                 <div class="main-poster__text">
-                    —  Бизнес-отправлений, образцов продукции и документов<br />
-                    —  Доставка по всему миру<br />
-                    —  Курьерская доставка от 5 дней
+                    @d('poster_list')
                 </div>
-                <a href="#" class="primary-button primary-button_with_arrow">Рассчитать стоимость</a>
+                <a href="#" class="primary-button primary-button_with_arrow">@d('poster_button')</a>
                 <div class="background-dots main-poster__dots-left"></div>
                 <div class="main-poster__wave-right"></div>
             </div>
         </div>
         <div class="company-advantages screen-content">
-            <h2 class="typo-h2 company-advantages__heading business-page__company-adv-heading">Тариф <span class="typo-colored_color_green">«Международный экспресс»</span></h2>
+            <h2 class="typo-h2 company-advantages__heading business-page__company-adv-heading">@d('advantages_header_1') <span class="typo-colored_color_green">@d('advantages_header_2')</span></h2>
             <div class="company-advantages__description business-page__company-adv-description">
-                Привезем посылки и документы из Великобритании вашим бизнес-партнерам по всему миру
+                @d('advantages_text')
             </div>
             <div class="two-icons business-page__company-adv-icons">
                 <div class="two-icons__item">
                     <div class="two-icons__icon"></div>
-                    <div class="two-icons__text"><span class="two-icons__text-big">0,5 кг</span> от <span class="two-icons__text-big">69,98 £</span></div>
+                    <div class="two-icons__text"><span class="two-icons__text-big">0,5 @d('advantages_kg')</span> @d('advantages_from') <span class="two-icons__text-big">69,98 £</span></div>
                 </div>
                 <div class="two-icons__item">
                     <div class="two-icons__icon two-icons__icon_icon_second"></div>
-                    <div class="two-icons__text"><span class="two-icons__text-big">1 кг</span> от <span class="two-icons__text-big">76,52 £</span></div>
+                    <div class="two-icons__text"><span class="two-icons__text-big">1 @d('advantages_kg')</span> @d('advantages_from') <span class="two-icons__text-big">76,52 £</span></div>
                 </div>
             </div>
             <div class="square-cards js-company-advantages owl-carousel">
                 <div class="square-card square-card_size_big square-card_big-icon_person">
                     <div class="square-card__bg"></div>
-                    <div class="square-card__title">Личный менеджер</div>
+                    <div class="square-card__title">@d('carousel_header_1')</div>
                     <div class="square-card__description">
-                        Ответит на все ваши вопросы и поможет на каждом этапе доставки.
+                        @d('carousel_text_1')
                     </div>
                 </div>
                 <div class="square-card square-card_size_big square-card_big-icon_contract">
                     <div class="square-card__bg"></div>
-                    <div class="square-card__title">Таможня</div>
+                    <div class="square-card__title">@d('carousel_header_2')</div>
                     <div class="square-card__description">
-                        Проведем таможенное оформление в Великобритании и стране получателя.
+                        @d('carousel_text_2')
                     </div>
                 </div>
                 <div class="square-card square-card_size_big square-card_big-icon_mail">
                     <div class="square-card__bg"></div>
-                    <div class="square-card__title">Уведомления</div>
+                    <div class="square-card__title">@d('carousel_header_3')</div>
                     <div class="square-card__description">
-                        Мы позвоним получателю и отправим ему уведомления в мессенджеры или по SMS, когда заказ будет готов к вручению.
+                        @d('carousel_text_3')
                     </div>
                 </div>
                 <div class="square-card square-card_size_big square-card_big-icon_courier">
                     <div class="square-card__bg"></div>
-                    <div class="square-card__title">Доставка курьером</div>
+                    <div class="square-card__title">@d('carousel_header_4')</div>
                     <div class="square-card__description">
-                        Курьер в Великобритании приедет к вам в офис или на дом, чтобы забрать груз. Мы доставим посылку в город получателя и привезем ее на нужный адрес, отдадим лично в руки.
+                        @d('carousel_text_4')
                     </div>
                 </div>
             </div>
