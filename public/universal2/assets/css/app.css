@@ -1434,6 +1434,7 @@ body {
     margin-right: 35px;
     font-size: 18px;
     color: #888888;
+      cursor: pointer;
     font-weight: 400;
     text-decoration: none;
     flex-shrink: 0; }
@@ -1441,6 +1442,7 @@ body {
       margin-right: 0; }
     .submenu__item_active {
       color: #1AB248;
+        cursor: default;
       border-bottom: solid 3px #1AB248; }
 
 @media (max-width: 480px) {
@@ -3604,3 +3606,7 @@ body {
   .contact-page__email {
     font-size: 14px;
     line-height: 18px; } }
+
+.hidden {
+    display: none;
+}

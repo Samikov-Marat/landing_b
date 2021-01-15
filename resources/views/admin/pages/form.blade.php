@@ -11,7 +11,7 @@
         <div class="form-group">
             <div class="form-check">
                 <input type="checkbox" name="is_layout" value="1"
-                       id="check_is_layout" {{ $page->is_layout?'checked':'' }}
+                       id="check_is_layout" {{ (isset($page) && $page->is_layout)?'checked':'' }}
                        class="form-check-input js-page-is-layout-checkbox"
                        data-url_field="#id_url">
                 <label for="check_is_layout" class="form-check-label">
@@ -27,7 +27,7 @@
                    value="{{ isset($page) ? $page->url : '' }}"
                    placeholder="URL" autocomplete="off"
                    required
-                {{ $page->is_layout?'disabled':'' }}>
+                {{ (isset($page) && $page->is_layout)?'disabled':'' }}>
             <small id="id_url_help" class="form-text text-muted">URL</small>
         </div>
 

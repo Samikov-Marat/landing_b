@@ -7,11 +7,10 @@
 
             <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
             <link href="/universal2/assets/vendor/owl.carousel.min.css" rel="stylesheet" type="text/css" />
-            <link rel="stylesheet" href="/universal2/assets/css/app.css?i20">
+            <link rel="stylesheet" href="/universal2/assets/css/app.css?v=22">
 
     </head>
     <body>
-
     <div class="body-wrapper js-body_wrapper ">
         <div class="fullscreen-modal-background js-fade_background "></div>
         <header class="header-shadow">
@@ -21,13 +20,13 @@
         <div class="main-menu header__menu">
             <ul class="main-menu__list">
                 <li class="main-menu__item">
-                    <a class="main-menu__link current" href="">@d('menu_delivery')</a>
+                    <a class="main-menu__link current" href="/{{ $language->uri }}">@d('menu_delivery')</a>
                 </li>
                 <li class="main-menu__item">
-                    <a class="main-menu__link" href="">@d('menu_company')</a>
+                    <a class="main-menu__link" href="/{{ $language->uri }}/company">@d('menu_company')</a>
                 </li>
                 <li class="main-menu__item">
-                    <a class="main-menu__link" href="">@d('menu_contects')</a>
+                    <a class="main-menu__link" href="/{{ $language->uri }}/contacts">@d('menu_contects')</a>
                 </li>
             </ul>
         </div>
@@ -151,7 +150,7 @@
         <script src="/universal2/assets/vendor/jquery.min.js"></script>
         <script src="/universal2/assets/vendor/owl.carousel.min.js"></script>
         <script src="/universal2/assets/vendor/jquery.autocomplete.js"></script>
-        <script src="/universal2/assets/js/app.js?i20"></script>
+        <script src="/universal2/assets/js/app.js?v=24"></script>
 
     </body>
 </html>

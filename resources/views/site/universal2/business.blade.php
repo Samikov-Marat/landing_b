@@ -320,44 +320,10 @@
         </div>
     </div>
 </div>
-        <div class="faq screen">
-            <div class="content faq__container">
-                <div class="faq__content">
-                    <div class="faq__dots-top background-dots background-dots_size_3x8"></div>
-                    <h2 class="typo-h2 faq__title">Часто задаваемые вопросы</h2>
-                    <div class="submenu faq__submenu">
-                        <div class="submenu__content">
-                            <a href="#" class="submenu__item">Интернет магазинам</a>
-                            <div class="submenu__item submenu__item_active">Корпоративным клиентам</div>
-                        </div>
-                    </div>
-                    <div class="faq-list faq__faq-list">
-                        <div class="faq-list__faq faq-list__faq_opened">
-                            <div class="faq-list__faq-question">Что можно отправить тарифом «Международный экспресс»?</div>
-                            <div class="faq-list__faq-answer">Наши тарифы включают таможенную очистку только для недорогих товаров. Ввозные и вывозные пошлины, местные и таможенные сборы, налоги/НДС на транспортные услуги в наши тарифы не включены.</div>
-                        </div>
-                        <div class="faq-list__faq">
-                            <div class="faq-list__faq-question">Как быстро доставите?</div>
-                        </div>
-                        <div class="faq-list__faq">
-                            <div class="faq-list__faq-question">Какие уведомления придут получателю посылки?</div>
-                        </div>
-                        <div class="faq-list__faq">
-                            <div class="faq-list__faq-question">Что нельзя отправить тарифом «Международный экспресс»?</div>
-                        </div>
-                        <div class="faq-list__faq">
-                            <div class="faq-list__faq-question">Как узнать, где посылка?</div>
-                        </div>
-                        <div class="faq-list__faq">
-                            <div class="faq-list__faq-question">Где есть офисы СДЭК? В какие страны осуществляете доставку?</div>
-                        </div>
-                    </div>
-                    <div class="faq__more">
-                        <a href="#" class="primary-button">Подробнее</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+        @include('site.universal2.faq_block')
+
+
         <div class="partner">
     <div class="content">
         <h2 class="typo-h2 partner__title">Наши клиенты и партнеры</h2>

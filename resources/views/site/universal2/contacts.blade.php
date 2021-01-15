@@ -8,7 +8,7 @@
         </div>
         <div class="submenu contact-page__submenu">
             <div class="submenu__content">
-                <div class="submenu__item submenu__item_active">@d('tab_1')---</div>
+                <div class="submenu__item submenu__item_active">@d('tab_1')</div>
                 <a class="submenu__item" href="#">@d('tab_2')</a>
                 <a class="submenu__item" href="#">@d('tab_3')</a>
                 <a href="#" class="submenu__item contact-page__feedback">@d('feedback')</a>

@@ -353,49 +353,9 @@
         </div>
     </div>
 </div>
-        <div class="faq screen">
-            <div class="content faq__container">
-                <div class="faq__content">
-                    <div class="faq__dots-top background-dots background-dots_size_3x8"></div>
-                    <h2 class="typo-h2 faq__title">@d('faq_header')</h2>
-                    <div class="submenu faq__submenu">
-                        <div class="submenu__content">
-                            <div class="submenu__item submenu__item_active">@d('faq_subheader_shop')</div>
-                            <a href="#" class="submenu__item">@d('faq_subheader_business')</a>
-                        </div>
-                    </div>
-                    <div class="faq-list faq__faq-list">
-                        <div class="faq-list__faq faq-list__faq_opened">
-                            <div class="faq-list__faq-question">@d('faq_question_1')</div>
-                            <div class="faq-list__faq-answer">@d('faq_answer_1')</div>
-                        </div>
-                        <div class="faq-list__faq">
-                            <div class="faq-list__faq-question">@d('faq_question_2')</div>
-                            <div class="faq-list__faq-answer">@d('faq_answer_2')</div>
-                        </div>
-                        <div class="faq-list__faq">
-                            <div class="faq-list__faq-question">@d('faq_question_3')</div>
-                            <div class="faq-list__faq-answer">@d('faq_answer_3')</div>
-                        </div>
-                        <div class="faq-list__faq">
-                            <div class="faq-list__faq-question">@d('faq_question_4')</div>
-                            <div class="faq-list__faq-answer">@d('faq_answer_4')</div>
-                        </div>
-                        <div class="faq-list__faq">
-                            <div class="faq-list__faq-question">@d('faq_question_5')</div>
-                            <div class="faq-list__faq-answer">@d('faq_answer_5')</div>
-                        </div>
-                        <div class="faq-list__faq">
-                            <div class="faq-list__faq-question">@d('faq_question_6')</div>
-                            <div class="faq-list__faq-answer">@d('faq_answer_6')</div>
-                        </div>
-                    </div>
-                    <div class="faq__more">
-                        <a href="#" class="primary-button">@d('faq_detail')</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+        @include('site.universal2.faq_block')
+
         <div class="partner">
     <div class="content">
         <h2 class="typo-h2 partner__title">@d('partners_header')</h2>
