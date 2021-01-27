@@ -142,6 +142,9 @@ Route::prefix('admin')->middleware(['auth', 'user.route.access'])->group(
 Route::get('/', 'site\PageController@selectDefaultLanguage')
     ->name('site.select_default_language');
 
+Route::post('/request/send', 'site\RequestController@send')
+    ->name('request.send');;
+
 Route::get('/{languageUrl}/{pageUrl?}', 'site\PageController@showPage')
     ->where('pageUrl', '.*')
     ->name('site.show_page');

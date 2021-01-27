@@ -13,6 +13,8 @@
 @section('content')
 
     @if($pages->isNotEmpty())
+        {!! $pages->render() !!}
+
         <table class="table table-hover table-bordered">
             <tr>
                 <th>

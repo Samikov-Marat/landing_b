@@ -2314,6 +2314,10 @@ body {
   .autocomplete-suggestions .autocomplete-suggestion {
     font-size: 14px; } }
 
+.autocomplete-suggestions .autocomplete-suggestion.autocomplete-selected {
+    color: #1AB248;
+}
+
 .modal-bg {
   position: absolute;
   z-index: 20;
