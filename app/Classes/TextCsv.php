@@ -10,7 +10,7 @@ class TextCsv
     var $stream = null;
     var $streamRead = null;
 
-    const DELIMITER = ';';
+    const DELIMITER = ',';
 
     const MESSAGE_1 = 'Первые две строки менять нельзя';
     const MESSAGE_2 = 'Первый столбец менять нельзя';
