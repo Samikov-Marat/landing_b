@@ -14,7 +14,7 @@ class TextCsvParser
     var $languages = null;
     var $handle = null;
 
-    const DELIMITER = ';';
+    const DELIMITER = ',';
 
     public function __construct(Site $site)
     {
