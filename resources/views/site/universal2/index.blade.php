@@ -81,55 +81,10 @@
                 </a>
             </div>
         </div>
-        <div class="how-it-works">
-            <h2 class="typo-h2 how-it-works__title">@d('how_title')</h2>
-            <div class="submenu submenu_centered how-it-works__submenu">
-                <div class="submenu__content">
-                    <div class="submenu__item submenu__item_active">@d('how_tab_shop')</div>
-                    <a href="#" class="submenu__item">@d('how_tab_business')</a>
-                </div>
-            </div>
-            <div class="content">
-                <div class="how-it-works__content index-page__how-it-works-content">
-                    <div class="index-page__how-it-works-dots background-dots"></div>
-                    <div class="how-it-works__item">
-                        <div class="how-it-works__item-icon-container">
-                            <div class="how-it-works__item-icon how-it-works__item-icon_icon_contract"></div>
-                        </div>
-                        <div class="how-it-works__item-num">1.</div>
-                        <div class="how-it-works__item-text">@d('how_text_1')</div>
-                    </div>
-                    <div class="how-it-works__item">
-                        <div class="how-it-works__item-icon-container">
-                            <div class="how-it-works__item-icon how-it-works__item-icon_icon_lorry"></div>
-                        </div>
-                        <div class="how-it-works__item-num">2.</div>
-                        <div class="how-it-works__item-text">@d('how_text_2')</div>
-                    </div>
-                    <div class="how-it-works__item how-it-works__item_no-margin">
-                        <div class="how-it-works__item-icon-container">
-                            <div class="how-it-works__item-icon how-it-works__item-icon_icon_stock"></div>
-                        </div>
-                        <div class="how-it-works__item-num">3.</div>
-                        <div class="how-it-works__item-text">@d('how_text_3')</div>
-                    </div>
-                    <div class="how-it-works__item">
-                        <div class="how-it-works__item-icon-container">
-                            <div class="how-it-works__item-icon how-it-works__item-icon_icon_phone"></div>
-                        </div>
-                        <div class="how-it-works__item-num">4.</div>
-                        <div class="how-it-works__item-text">@d('how_text_4')</div>
-                    </div>
-                    <div class="how-it-works__item">
-                        <div class="how-it-works__item-icon-container">
-                            <div class="how-it-works__item-icon how-it-works__item-icon_icon_got"></div>
-                        </div>
-                        <div class="how-it-works__item-num">5.</div>
-                        <div class="how-it-works__item-text">@d('how_text_5')</div>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+
+        @include('site.universal2.how_it_works_block')
+
         <div class="package-russia screen">
     <div class="package-russia__content content">
         <div class="package-russia__text">
@@ -171,26 +126,10 @@
                 </div>
             </div>
         </div>
-        <div class="partner">
-    <div class="content">
-        <h2 class="typo-h2 partner__title">@d('partners_header')</h2>
-        <div class="partner__list">
-            <div class="partner__item partner__item_asos"></div>
-            <div class="partner__item partner__item_ebay"></div>
-            <div class="partner__item partner__item_aliexpress"></div>
-            <div class="partner__item partner__item_ozon"></div>
-            <div class="partner__item partner__item_yves-rocher"></div>
-            <div class="partner__item partner__item_loreal"></div>
-            <div class="partner__item partner__item_oriflame"></div>
-            <div class="partner__item partner__item_avon"></div>
-            <div class="partner__item partner__item_mary-key"></div>
-            <div class="partner__item partner__item_rebound"></div>
-        </div>
-        <div class="partner__more-container">
-            <a href="#" class="partner__more">@d('partners_details')</a>
-        </div>
-    </div>
-</div>
+
+        @include('site.universal2.partners_block')
+
+
         <div class="question">
     <div class="question__content">
         <div class="question__icon-1">

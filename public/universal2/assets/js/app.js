@@ -149,7 +149,7 @@ $(document).ready(function () {
             $form.find('input[name=height]').val() / 100;
 
 
-        $('.js-calculator-header-volume').html(volume);
+        $('.js-calculator-header-volume').html(volume.toFixed(3));
 
         getTariffs();
 
@@ -240,8 +240,6 @@ $(document).ready(function () {
     function getTariffs() {
         let finishedRequest = {count: 0};
         let tariffCodes = calculator.getTariffCodes();
-        let tariffs = [];
-        tariffs.fill(null, 0, tariffCodes.length);
         let serviceParameters = {
             "orderType": 1,
             "senderCity": {"id": calculator.getCityCodeFrom()},
@@ -257,7 +255,10 @@ $(document).ready(function () {
             }],
             "lang": calculator.getLanguage(),
         };
-
+        let tariffs = [];
+        for (let position in tariffCodes) {
+            tariffs[position] = null;
+        }
         for (let position in tariffCodes) {
             serviceParameters.idServiceType = tariffCodes[position];
             getTariff(position, serviceParameters, tariffs, finishedRequest);
@@ -284,7 +285,8 @@ $(document).ready(function () {
 
     function showTariffs(tariffs) {
         let $template = $('.js-calculator-tariff-template').find('.calculator__tariff-item');
-
+        let $list = $('.calculator__tariff-list');
+        $list.empty();
         $.each(tariffs, function (index, tariff) {
             if (tariff !== null) {
                 let $tariffDiv = $template.clone();
@@ -298,7 +300,7 @@ $(document).ready(function () {
                 $tariffDiv.find('.calculator__tariff-item-description').html(tariffName.description);
                 $tariffDiv.find('.calculator__tariff-item-type').html(tariffName.type);
                 $tariffDiv.find('.calculator__tariff-item-price').html(tariff.price);
-                $('.calculator__tariff-list').append($tariffDiv);
+                $list.append($tariffDiv);
             }
         });
 
@@ -554,6 +556,14 @@ $(document).ready(function () {
         }, 2000);
         return false;
     });
+
+    $('.js-partners-more').click(function (){
+        $('.js-parners-other').show(400);
+        $(this).closest('.js-partners-more-block').hide();
+        return false;
+    });
+
+
 });
 
 
@@ -660,7 +670,7 @@ $(document).ready(function () {
 
 $(function () {
     $('.js-faq-tab').click(function () {
-        $('.submenu__item').removeClass('submenu__item_active');
+        $('.js-faq-tab').removeClass('submenu__item_active');
         $(this).addClass('submenu__item_active');
 
         let forTab = $(this).data('for');
@@ -672,6 +682,21 @@ $(function () {
 
     $('.faq-list__faq-question').click(function () {
         $(this).closest('.faq-list__faq').toggleClass('faq-list__faq_opened');
+    });
+
+    $('.js-how-it-works-tab').click(function (){
+        $('.js-how-it-works-tab').removeClass('submenu__item_active');
+        $(this).addClass('submenu__item_active');
+        let tab = $(this).data('for');
+        $('.js-how-it-works-content').each(function(){
+            if($(this).data('for') == tab){
+                $(this).removeClass('hidden');
+            }
+            else{
+                $(this).addClass('hidden');
+            }
+        });
+
     });
 
 });

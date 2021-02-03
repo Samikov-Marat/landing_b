@@ -11,7 +11,7 @@
                         <input type="text" name="from" class="form-field__input" value=""
                                data-for=".js-calculator-from-id"
                                placeholder="{{ $dictionary['calculator_from'] }}" autocomplete="off"/>
-                        <div class="form-field__error-message">@d('calculator_contacts_email_error')</div>
+                        <div class="form-field__error-message">@d('calculator_from_error')</div>
                     </div>
                 </div>
                 <div class="form__row">
@@ -20,13 +20,14 @@
                         <input type="text" name="to" class="form-field__input" value=""
                                data-for=".js-calculator-to-id"
                                placeholder="{{ $dictionary['calculator_to'] }}" autocomplete="off"/>
-                        <div class="form-field__error-message">@d('calculator_contacts_email_error')</div>
+                        <div class="form-field__error-message">@d('calculator_to_error')</div>
                     </div>
                 </div>
                 <div class="form__row">
                     <div class="form-field form-field_has_icon form-field_icon_weight">
                         <input type="text" name="mass" class="form-field__input" value=""
                                placeholder="{{ $dictionary['calculator_mass'] }}" autocomplete="off"/>
+                        <div class="form-field__error-message">@d('calculator_mass_error')</div>
                     </div>
                 </div>
                 <div class="form__three-fields form__row_last">
@@ -34,18 +35,21 @@
                         <div class="form-field">
                             <input type="text" name="length" class="form-field__input" value=""
                                    placeholder="{{ $dictionary['calculator_length'] }}" autocomplete="off"/>
+                            <div class="form-field__error-message">@d('calculator_length_error')</div>
                         </div>
                     </div>
                     <div class="form__row">
                         <div class="form-field">
                             <input type="text" name="width" class="form-field__input" value=""
                                    placeholder="{{ $dictionary['calculator_width'] }}" autocomplete="off"/>
+                            <div class="form-field__error-message">@d('calculator_width_error')</div>
                         </div>
                     </div>
                     <div class="form__row">
                         <div class="form-field">
                             <input type="text" name="height" class="form-field__input" value=""
                                    placeholder="{{ $dictionary['calculator_height'] }}" autocomplete="off"/>
+                            <div class="form-field__error-message">@d('calculator_height_error')</div>
                         </div>
                     </div>
                 </div>
@@ -103,11 +107,11 @@
             </div>
             <div class="calculator__tariff-used">
                 <div>
-                    <span class="js-calculator-header-from">Деланко, Нью-Джерси</span> <span class="typo-colored typo-colored_color_green">—</span> <span class="js-calculator-header-to">Москва</span><br/>
-                    @d('calculator_parcel_total') <span class="js-calculator-header-mass">???</span> @d('calculator_parcel_kg'), <span class="js-calculator-header-volume">???</span>
+                    <span class="js-calculator-header-from">из города</span> <span class="typo-colored typo-colored_color_green">—</span> <span class="js-calculator-header-to">в город</span><br/>
+                    @d('calculator_parcel_total') <span class="js-calculator-header-mass">вес</span> @d('calculator_parcel_kg'), <span class="js-calculator-header-volume">объём</span>
                     @d('calculator_parcel_m')<sup>3</sup>
                 </div>
-                <div class="calculator__tariff-used-price js-calculator-header-price">983.72 ₽</div>
+                <div class="calculator__tariff-used-price js-calculator-header-price">0.00 ₽</div>
             </div>
             <div class="calculator__contact-title">@d('calculator_contacts_title')</div>
             <div class="calculator__contact-description">
@@ -118,6 +122,7 @@
                     <div class="form-field">
                         <input type="text" name="name" class="form-field__input"
                                placeholder="{{ $dictionary['calculator_contacts_name'] }}"/>
+                        <div class="form-field__error-message">@d('calculator_contacts_name_error')</div>
                     </div>
                 </div>
                 <div class="form__row">
