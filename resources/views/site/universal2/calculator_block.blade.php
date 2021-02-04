@@ -145,6 +145,7 @@
                                     class="checkbox-widget__link"
                                     href="#">@d('calculator_contacts_confirm_2')</a></span></label>
                     </div>
+                    <div class="form-field__error-message">@d('calculator_contacts_agree_error')</div>
                 </div>
                 <div class="form-field">
                     <input type="submit" value="{{ $dictionary['calculator_contacts_submit'] }}"

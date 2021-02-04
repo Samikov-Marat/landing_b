@@ -98,43 +98,42 @@ $(document).ready(function () {
     })
 
 
-
     $('.js-calculator-step1-button').click(function () {
         let $form = $(this).closest('form');
         let hasError = false;
         let $formElement = $form.find('input[name=from_id]');
-        if($formElement.val() === ''){
+        if ($formElement.val() === '') {
             $formElement.closest('.form-field').addClass('form-field_error');
             hasError = true;
         }
         $formElement = $form.find('input[name=to_id]');
-        if($formElement.val() === ''){
+        if ($formElement.val() === '') {
             $formElement.closest('.form-field').addClass('form-field_error');
             hasError = true;
         }
 
         $formElement = $form.find('input[name=mass]');
-        if(isNaN($formElement.val()) || $formElement.val() <= 0){
+        if (isNaN($formElement.val()) || $formElement.val() <= 0) {
             $formElement.closest('.form-field').addClass('form-field_error');
             hasError = true;
         }
         $formElement = $form.find('input[name=length]');
-        if(isNaN($formElement.val()) || $formElement.val() <= 0){
+        if (isNaN($formElement.val()) || $formElement.val() <= 0) {
             $formElement.closest('.form-field').addClass('form-field_error');
             hasError = true;
         }
         $formElement = $form.find('input[name=width]');
-        if(isNaN($formElement.val()) || $formElement.val() <= 0){
+        if (isNaN($formElement.val()) || $formElement.val() <= 0) {
             $formElement.closest('.form-field').addClass('form-field_error');
             hasError = true;
         }
         $formElement = $form.find('input[name=height]');
-        if(isNaN($formElement.val()) || $formElement.val() <= 0){
+        if (isNaN($formElement.val()) || $formElement.val() <= 0) {
             $formElement.closest('.form-field').addClass('form-field_error');
             hasError = true;
         }
 
-        if(hasError){
+        if (hasError) {
             return false;
         }
         $('.calculator__content_step1').addClass('calculator__content_loading');
@@ -381,33 +380,39 @@ $(document).ready(function () {
     });
 
     $('.js-calculator-form').submit(function () {
-        if(calculator.getStep() == 1){
+        if (calculator.getStep() == 1) {
             $('.js-calculator-step1-button').trigger('click');
             return false;
         }
-        if(calculator.getStep() == 2){
+        if (calculator.getStep() == 2) {
             return false;
         }
 
         let $form = $(this);
         let hasError = false;
         let $formElement = $form.find('input[name=name]');
-        if($formElement.val() === ''){
+        if ($formElement.val() === '') {
             $formElement.closest('.form-field').addClass('form-field_error');
             hasError = true;
         }
         $formElement = $form.find('input[name=phone]');
-        if($formElement.val() === ''){
+        if ($formElement.val() === '') {
             $formElement.closest('.form-field').addClass('form-field_error');
             hasError = true;
         }
         $formElement = $form.find('input[name=email]');
-        if($formElement.val() === ''){
+        if ($formElement.val() === '') {
             $formElement.closest('.form-field').addClass('form-field_error');
             hasError = true;
         }
 
-        if(hasError){
+        $formElement = $form.find('input[name=agree]');
+        if (!$formElement.prop('checked')) {
+            $formElement.closest('.form__row').addClass('form-field_error');
+            hasError = true;
+        }
+
+        if (hasError) {
             return false;
         }
 
@@ -417,7 +422,7 @@ $(document).ready(function () {
 
         let request = {
             url: $form.prop('action'),
-            data: $(this).closest('form').serialize()
+            data: $form.serialize()
         };
 
         $.post(request).done(function () {
@@ -487,11 +492,15 @@ $(document).ready(function () {
         }
     });
 
-    $('.js-calculator-form').on('focus', 'input', function(){
+    $('.js-calculator-form, .js-feedback-form').on('focus', 'input', function () {
         $(this).closest('.form-field').removeClass('form-field_error');
     });
 
-    function ResetCity($input){
+    $('.js-calculator-form, .js-feedback-form').on('click', 'input', function () {
+        $(this).closest('.form-field_error').removeClass('form-field_error');
+    });
+
+    function ResetCity($input) {
         $input.val('');
         $input.autocomplete('clear');
         let forId = $input.data('for');
@@ -535,6 +544,11 @@ $(document).ready(function () {
     };
 
     $('.js-feedback-open').click(function () {
+        $('.js-modal-result-ok').hide();
+        $('.js-modal-result-error').hide();
+        $('.modal__content_form').removeClass('modal__content_loading').show();
+        $('.modal__content_form').find('textarea[name=message]').val('');
+
         modalOpen($('#feedback-modal'));
         return false;
     });
@@ -543,21 +557,62 @@ $(document).ready(function () {
         modalClose($('.modal').has(this));
     });
 
-    $('#feedback-modal .primary-button_submit').click(function () {
+    $('.js-feedback-form').submit(function () {
+
+        let $form = $(this);
+
+        let hasError = false;
+        let $formElement = $form.find('input[name=name]');
+        if ($formElement.val() === '') {
+            $formElement.closest('.form-field').addClass('form-field_error');
+            hasError = true;
+        }
+        $formElement = $form.find('input[name=phone]');
+        if ($formElement.val() === '') {
+            $formElement.closest('.form-field').addClass('form-field_error');
+            hasError = true;
+        }
+        $formElement = $form.find('input[name=email]');
+        if ($formElement.val() === '') {
+            $formElement.closest('.form-field').addClass('form-field_error');
+            hasError = true;
+        }
+        $formElement = $form.find('input[name=agree]');
+        if (!$formElement.prop('checked')) {
+            $formElement.closest('.form__row').addClass('form-field_error');
+            hasError = true;
+        }
+
+        if (hasError) {
+            return false;
+        }
+
+        let request = {
+            url: $form.prop('action'),
+            data: $form.serialize()
+        };
+
         var modalContent = $('.modal__content').has(this);
         modalContent.addClass('modal__content_loading');
-        setTimeout(function () {
+
+        $.post(request).done(function () {
             modalContent.hide();
             $('.js-modal-result-ok')
                 .css('height', modalContent.css('height'))
                 .removeClass('modal__content_loading')
-                .show()
-            ;
-        }, 2000);
+                .show();
+        }).fail(function () {
+            modalContent.hide();
+            $('.js-modal-result-error')
+                .css('height', modalContent.css('height'))
+                .removeClass('modal__content_loading')
+                .show();
+        });
+
         return false;
     });
 
-    $('.js-partners-more').click(function (){
+    $('.js-partners-more').click(function () {
         $('.js-parners-other').show(400);
         $(this).closest('.js-partners-more-block').hide();
         return false;
@@ -684,15 +739,14 @@ $(function () {
         $(this).closest('.faq-list__faq').toggleClass('faq-list__faq_opened');
     });
 
-    $('.js-how-it-works-tab').click(function (){
+    $('.js-how-it-works-tab').click(function () {
         $('.js-how-it-works-tab').removeClass('submenu__item_active');
         $(this).addClass('submenu__item_active');
         let tab = $(this).data('for');
-        $('.js-how-it-works-content').each(function(){
-            if($(this).data('for') == tab){
+        $('.js-how-it-works-content').each(function () {
+            if ($(this).data('for') == tab) {
                 $(this).removeClass('hidden');
-            }
-            else{
+            } else {
                 $(this).addClass('hidden');
             }
         });

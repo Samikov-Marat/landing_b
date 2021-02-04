@@ -92,58 +92,9 @@
                 </div>
             </div>
         </footer>
-        <div class="modal-container">
-            <div class="modal" id="feedback-modal">
-                <div class="modal__close"></div>
-                <div class="modal__content">
-                    <div class="modal__heading">@d('footer_feedback')</div>
-                    <div class="form calculator_form">
-                        <div class="form__row">
-                            <div class="form-field">
-                                <input type="text" name="name" class="form-field__input" placeholder="Имя" />
-                            </div>
-                        </div>
-                        <div class="form__row">
-                            <div class="form-field">
-                                <input type="text" name="phone" class="form-field__input" placeholder="Телефон" />
-                            </div>
-                        </div>
-                        <div class="form__row">
-                            <div class="form-field">
-                                <input type="text" name="email" class="form-field__input" placeholder="E-mail" />
-                            </div>
-                        </div>
-                        <div class="form__row">
-                            <div class="form-field">
-                                <textarea name="message" class="form-field__input" placeholder="Текст вопроса"></textarea>
-                            </div>
-                        </div>
-                        <div class="form__row form__row_no-input">
-                            <div class="checkbox-widget">
-                                <input type="checkbox" name="agree" id="modal-agree" /><label for="modal-agree"><span>@d('footer_feedback_agree_1') <a class="checkbox-widget__link" href="#">@d('footer_feedback_agree_2')</a></span></label>
-                            </div>
-                        </div>
-                        <div class="form-field">
-                            <input type="submit" value="Отправить" class="primary-button primary-button_wide primary-button_submit" />
-                        </div>
-                    </div>
-                </div>
-                <div class="modal__content modal__content_result js-modal-result-ok" style="display: none;">
-                    <div>
-                        <div class="modal__result-icon modal__result-icon_ok"></div>
-                        <div class="modal__result-title">@d('footer_feedback_success_1')</div>
-                        <div class="modal__result-text">@d('footer_feedback_success_2')</div>
-                    </div>
-                </div>
-                <div class="modal__content modal__content_result js-modal-result-error" style="display: none;">
-                    <div>
-                        <div class="modal__result-icon modal__result-icon_error"></div>
-                        <div class="modal__result-title">@d('footer_feedback_error_1')</div>
-                        <div class="modal__result-text">@d('footer_feedback_error_2')</div>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+        @include('site.universal2.feedback_block')
+
     </div>
 
 

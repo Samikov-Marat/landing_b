@@ -144,6 +144,8 @@ Route::get('/', 'site\PageController@selectDefaultLanguage')
 
 Route::post('/request/send', 'site\RequestController@send')
     ->name('request.send');;
+Route::post('/request/feedback', 'site\RequestController@feedback')
+    ->name('request.feedback');;
 
 Route::get('/{languageUrl}/{pageUrl?}', 'site\PageController@showPage')
     ->where('pageUrl', '.*')

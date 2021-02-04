@@ -12,6 +12,10 @@ class ApiMarketing
     const API_URI = 'http://192.168.1.162:8121/api/v1/landing';
     const TOKEN = 'PFpp_TFarNGuoqRbdDayoSV-DQUggkTtKb_5gKtt';
 
+    public static function getCountryId(){
+        return 'uk_test';
+    }
+
     public static function createRequest($form, $referer)
     {
         $message = PHP_EOL . 'Откуда: ' . $form['from'] . ' (код ' . $form['from_id'] . ') ' . PHP_EOL;
@@ -28,7 +32,21 @@ class ApiMarketing
             'email' => $form['email'],
             'project_name' => 'Лендинг с админкой',
             'message' => $message,
-            'country_id' => '-uk',
+            'country_id' => static::getCountryId(),
+            'url' => Str::after($referer, '//'),
+        ];
+    }
+
+    public static function createFeedback($form, $referer)
+    {
+        return [
+            'subject' => 'Лендинг. Обратная связь.',
+            'name' => $form['name'],
+            'phone' => $form['phone'],
+            'email' => $form['email'],
+            'project_name' => 'Лендинг с админкой',
+            'message' => $form['message'],
+            'country_id' => static::getCountryId(),
             'url' => Str::after($referer, '//'),
         ];
     }
