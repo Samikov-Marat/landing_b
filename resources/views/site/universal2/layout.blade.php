@@ -97,10 +97,6 @@
 
     </div>
 
-
-        <script src="/universal2/assets/vendor/jquery.min.js"></script>
-        <script src="/universal2/assets/vendor/owl.carousel.min.js"></script>
-        <script src="/universal2/assets/vendor/jquery.autocomplete.js"></script>
         <script src="{{ mix('universal2/new.js') }}"></script>
 
     </body>

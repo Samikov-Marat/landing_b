@@ -120,6 +120,10 @@ $(document).ready(function () {
             return this;
         }
 
+        this.getTariffDescriptionParameters = function (code) {
+            return tariffNames[code];
+        }
+
     };
 
     let calculator = new calculatorClass('div.calculator');
@@ -200,15 +204,15 @@ $(document).ready(function () {
         $.each(tariffs, function (index, tariff) {
             if (tariff !== null) {
                 let $tariffDiv = $template.clone();
-                let tariffName = tariffNames[tariff.id];
+                let tariffDescriptionParameters = calculator.getTariffDescriptionParameters(tariff.id)
 
                 $tariffDiv.find('.calculator__tariff-item-input').attr('id', tariff.id).prop('id', tariff.id);
-                $tariffDiv.find('.calculator__tariff-item-input').val(tariff.id + ' (' + tariffName.name + ') ' + tariff.price + calculator.getUsedCurrencyName());
+                $tariffDiv.find('.calculator__tariff-item-input').val(tariff.id + ' (' + tariffDescriptionParameters.name + ') ' + tariff.price + calculator.getUsedCurrencyName());
                 $tariffDiv.find('.calculator__tariff-item-input').data('price', tariff.price);
 
-                $tariffDiv.find('.calculator__tariff-item-label').html(tariffName.name).attr('for', tariff.id).prop('for', tariff.id);
-                $tariffDiv.find('.calculator__tariff-item-description').html(tariffName.description);
-                $tariffDiv.find('.calculator__tariff-item-type').html(tariffName.type);
+                $tariffDiv.find('.calculator__tariff-item-label').html(tariffDescriptionParameters.name).attr('for', tariff.id).prop('for', tariff.id);
+                $tariffDiv.find('.calculator__tariff-item-description').html(tariffDescriptionParameters.description);
+                $tariffDiv.find('.calculator__tariff-item-type').html(tariffDescriptionParameters.type);
                 $tariffDiv.find('.calculator__tariff-item-price').html(tariff.price);
                 $list.append($tariffDiv);
             }
@@ -632,38 +636,4 @@ $(document).ready(function () {
     };
 
 })(window, jQuery);
-
-
-$(function () {
-    $('.js-faq-tab').click(function () {
-        $('.js-faq-tab').removeClass('submenu__item_active');
-        $(this).addClass('submenu__item_active');
-
-        let forTab = $(this).data('for');
-
-        $('.faq__faq-list').addClass('hidden');
-        $(forTab).removeClass('hidden');
-        return false;
-    });
-
-    $('.faq-list__faq-question').click(function () {
-        $(this).closest('.faq-list__faq').toggleClass('faq-list__faq_opened');
-    });
-
-    $('.js-how-it-works-tab').click(function () {
-        $('.js-how-it-works-tab').removeClass('submenu__item_active');
-        $(this).addClass('submenu__item_active');
-        let tab = $(this).data('for');
-        $('.js-how-it-works-content').each(function () {
-            if ($(this).data('for') == tab) {
-                $(this).removeClass('hidden');
-            } else {
-                $(this).addClass('hidden');
-            }
-        });
-
-    });
-
-});
-
 
