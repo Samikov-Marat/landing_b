@@ -3,11 +3,11 @@
 @endphp
 
 <div class="how-it-works">
-    <h2 class="typo-h2 how-it-works__title">Как это работает?</h2>
+    <h2 class="typo-h2 how-it-works__title">@d('how_title')</h2>
     <div class="submenu submenu_centered how-it-works__submenu">
         <div class="submenu__content">
-            <div class="submenu__item @if(!$modeBusiness)submenu__item_active @endif js-how-it-works-tab" data-for="commerce">Интернет магазинам</div>
-            <div class="submenu__item @if($modeBusiness)submenu__item_active @endif js-how-it-works-tab" data-for="business">Корпоративным клиентам</div>
+            <div class="submenu__item @if(!$modeBusiness)submenu__item_active @endif js-how-it-works-tab" data-for="commerce">@d('how_tab_shop')</div>
+            <div class="submenu__item @if($modeBusiness)submenu__item_active @endif js-how-it-works-tab" data-for="business">@d('how_tab_business')</div>
         </div>
     </div>
     <div class="content">

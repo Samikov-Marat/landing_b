@@ -16,7 +16,7 @@
     <header class="header-shadow">
         <div class="header">
             <div class="header__content">
-                <a href="/" class="logo-cdek header__logo"></a>
+                <a href="/{{ $language->uri }}" class="logo-cdek header__logo"></a>
                 <div class="main-menu header__menu">
                     <ul class="main-menu__list">
                         <li class="main-menu__item">
@@ -32,7 +32,11 @@
                 </div>
                 <div class="header__right">
                     <a href="" class="header__button">@d('header_button')</a>
-                    <div class="header__language-selector">RU</div>
+                    @foreach($site->languages as $languageItem)
+                        @if($language->id != $languageItem->id)
+                            <div><a class="header__language-selector" href="/{{ $languageItem->uri }}">{{ $languageItem->shortname }}</a></div>
+                        @endif
+                    @endforeach
                     <div class="header-contact">
                         <div class="header-contact__content">
                             <a class="header-contact__phone"
