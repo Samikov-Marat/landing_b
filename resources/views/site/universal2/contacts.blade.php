@@ -38,7 +38,7 @@
                 <div class="contact-page__email">E-mail: <a href="#" class="contact-page__link">msk@cdek.ru</a></div>
             </div>
         </div>
-        <div class="contact-page__map"></div>
+        <div id="map" class="contact-page__map js-map"></div>
     </div>
 
 @endsection

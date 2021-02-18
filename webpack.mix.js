@@ -21,6 +21,7 @@ mix.combine([
     'resources/js/universal2/tariffs.js',
     'resources/js/universal2/app.js',
     'resources/js/universal2/faq.js',
-    'resources/js/universal2/how_it_works.js'
+    'resources/js/universal2/how_it_works.js',
+    'resources/js/universal2/map.js'
 ], 'public/universal2/new.js').version();
 
