@@ -14,7 +14,7 @@
                 <div class="main-poster__text">
                     @d('delivery_list')
                 </div>
-                <a href="#" class="primary-button primary-button_with_arrow">@d('delivery_calculate')</a>
+                <a href="#calculator" class="primary-button primary-button_with_arrow">@d('delivery_calculate')</a>
                 <div class="background-dots main-poster__dots-left"></div>
                 <div class="main-poster__wave-right"></div>
             </div>
@@ -101,7 +101,7 @@
             </div>
             <div class="divider package-russia__divider"></div>
             <div class="package-russia__know-more">@d('receive_more')</div>
-            <a href="#" class="primary-button">@d('receive_button')</a>
+            <a href="#" class="primary-button js-feedback-open">@d('receive_button')</a>
         </div>
         <div class="package-russia__office">
             <div class="package-russia__office-num">@d('receive_office_count')</div>
@@ -122,7 +122,7 @@
                     <div class="index-big-company__text">
                         @d('big_text')
                     </div>
-                    <a href="#" class="primary-button">@d('big_details')</a>
+                    <a href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'company']) !!}" class="primary-button">@d('big_details')</a>
                 </div>
             </div>
         </div>
@@ -130,19 +130,9 @@
         @include('site.universal2.partners_block')
 
 
-        <div class="question">
-    <div class="question__content">
-        <div class="question__icon-1">
-            <div class="question__icon-2">
-                <div class="question__icon-3">?</div>
-            </div>
-        </div>
-        <div class="question__title">@d('any_question_text_1')</div>
-        <div class="question__desc">@d('any_question_text_2')</div>
-        <div class="question__desc-2">@d('any_question_text_3')</div>
-        <a href="#" class="primary-button js-feedback-open">@d('any_question_text_4')</a>
-    </div>
-</div>
+        @include('site.universal2.any_questions_block')
+
+
     </div>
 
 @endsection

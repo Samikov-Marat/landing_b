@@ -136,26 +136,9 @@
 
         @include('site.universal2.faq_block')
 
-        <div class="partner">
-    <div class="content">
-        <h2 class="typo-h2 partner__title">@d('partners_header')</h2>
-        <div class="partner__list">
-            <div class="partner__item partner__item_asos"></div>
-            <div class="partner__item partner__item_ebay"></div>
-            <div class="partner__item partner__item_aliexpress"></div>
-            <div class="partner__item partner__item_ozon"></div>
-            <div class="partner__item partner__item_yves-rocher"></div>
-            <div class="partner__item partner__item_loreal"></div>
-            <div class="partner__item partner__item_oriflame"></div>
-            <div class="partner__item partner__item_avon"></div>
-            <div class="partner__item partner__item_mary-key"></div>
-            <div class="partner__item partner__item_rebound"></div>
-        </div>
-        <div class="partner__more-container">
-            <a href="#" class="partner__more">@d('partners_details')</a>
-        </div>
-    </div>
-</div>
+
+        @include('site.universal2.partners_block')
+
         <div class="question">
     <div class="question__content">
         <div class="question__icon-1">

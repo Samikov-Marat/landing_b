@@ -7,6 +7,11 @@ $(function () {
 
         $('.faq__faq-list').addClass('hidden');
         $(forTab).removeClass('hidden');
+
+        let forButton = $(this).data('for2');
+
+        $('.js-faq_button').addClass('hidden');
+        $(forButton).removeClass('hidden');
         return false;
     });
 

@@ -149,39 +149,11 @@
         </div>
     </div>
 </div>
-        <div class="partner">
-    <div class="content">
-        <h2 class="typo-h2 partner__title">Наши клиенты и партнеры</h2>
-        <div class="partner__list">
-            <div class="partner__item partner__item_asos"></div>
-            <div class="partner__item partner__item_ebay"></div>
-            <div class="partner__item partner__item_aliexpress"></div>
-            <div class="partner__item partner__item_ozon"></div>
-            <div class="partner__item partner__item_yves-rocher"></div>
-            <div class="partner__item partner__item_loreal"></div>
-            <div class="partner__item partner__item_oriflame"></div>
-            <div class="partner__item partner__item_avon"></div>
-            <div class="partner__item partner__item_mary-key"></div>
-            <div class="partner__item partner__item_rebound"></div>
-        </div>
-        <div class="partner__more-container">
-            <a href="#" class="partner__more">Показать еще</a>
-        </div>
-    </div>
-</div>
-        <div class="question">
-    <div class="question__content">
-        <div class="question__icon-1">
-            <div class="question__icon-2">
-                <div class="question__icon-3">?</div>
-            </div>
-        </div>
-        <div class="question__title">Остались вопросы?</div>
-        <div class="question__desc">Мы ответим на все и расскажем подробнее</div>
-        <div class="question__desc-2">Давайте обсудим наше сотрудничество </div>
-        <a href="#" class="primary-button js-feedback-open">Свяжитесь с нами</a>
-    </div>
-</div>
+
+        @include('site.universal2.partners_block')
+
+        @include('site.universal2.any_questions_block')
+
     </div>
 
 @endsection

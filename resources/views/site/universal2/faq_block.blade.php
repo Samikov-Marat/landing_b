@@ -5,8 +5,8 @@
             <h2 class="typo-h2 faq__title">@d('faq_header')</h2>
             <div class="submenu faq__submenu">
                 <div class="submenu__content">
-                    <div class="submenu__item submenu__item_active js-faq-tab" data-for="#faq_shop">@d('faq_subheader_shop')</div>
-                    <div class="submenu__item js-faq-tab" data-for="#faq_business">@d('faq_subheader_business')</div>
+                    <div class="submenu__item submenu__item_active js-faq-tab" data-for="#faq_shop" data-for2="#faq_button_shop">@d('faq_subheader_shop')</div>
+                    <div class="submenu__item js-faq-tab" data-for="#faq_business" data-for2="#faq_button_business">@d('faq_subheader_business')</div>
                 </div>
             </div>
             <div class="faq-list faq__faq-list" id="faq_shop">
@@ -63,8 +63,12 @@
                 </div>
             </div>
 
-            <div class="faq__more">
+            <div id="faq_button_shop" class="faq__more js-faq_button">
                 <a href="{!! route('site.show_page', ['languageUrl' => \Str::lower($language->shortname), 'pageUrl' => 'e-commerce' ]) !!}"
+                   class="primary-button">@d('faq_detail')</a>
+            </div>
+            <div id="faq_button_business" class="faq__more js-faq_button hidden">
+                <a href="{!! route('site.show_page', ['languageUrl' => \Str::lower($language->shortname), 'pageUrl' => 'business' ]) !!}"
                    class="primary-button">@d('faq_detail')</a>
             </div>
         </div>

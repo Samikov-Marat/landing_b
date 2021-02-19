@@ -16,25 +16,26 @@
     <header class="header-shadow">
         <div class="header">
             <div class="header__content">
-                <a href="/{{ $language->uri }}" class="logo-cdek header__logo"></a>
+                <a href="{!! route('site.show_page', ['languageUrl' => $language->uri]) !!}" class="logo-cdek header__logo"></a>
                 <div class="main-menu header__menu">
                     <ul class="main-menu__list">
                         <li class="main-menu__item">
-                            <a class="main-menu__link current" href="/{{ $language->uri }}">@d('menu_delivery')</a>
+                            <a class="main-menu__link current" href="{!! route('site.show_page', ['languageUrl' => $language->uri]) !!}">@d('menu_delivery')</a>
                         </li>
                         <li class="main-menu__item">
-                            <a class="main-menu__link" href="/{{ $language->uri }}/company">@d('menu_company')</a>
+                            <a class="main-menu__link" href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'company']) !!}">@d('menu_company')</a>
                         </li>
                         <li class="main-menu__item">
-                            <a class="main-menu__link" href="/{{ $language->uri }}/contacts">@d('menu_contects')</a>
+                            <a class="main-menu__link" href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'contacts']) !!}">@d('menu_contects')</a>
                         </li>
                     </ul>
                 </div>
                 <div class="header__right">
-                    <a href="" class="header__button">@d('header_button')</a>
+                    <a href="#calculator" class="header__button">@d('header_button')</a>
                     @foreach($site->languages as $languageItem)
                         @if($language->id != $languageItem->id)
-                            <div><a class="header__language-selector" href="/{{ $languageItem->uri }}">{{ $languageItem->shortname }}</a></div>
+                            <div><a class="header__language-selector" href="{!! route('site.show_page', ['languageUrl' => $languageItem->uri, 'pageUrl' => $page->url]) !!}">{{ \Str::upper($languageItem->shortname) }}</a></div>
+
                         @endif
                     @endforeach
                     <div class="header-contact">
@@ -74,13 +75,13 @@
     <footer class="footer">
         <div class="footer__content">
             <div class="footer__left">
-                <a class="footer__footer-logo footer-logo" href=""></a>
+                <a class="footer__footer-logo footer-logo" href="{!! route('site.show_page', ['languageUrl' => $language->uri]) !!}"></a>
                 <div class="footer__link-social-item">
                     <a class="footer__link footer__link-mr-social" href="">Facebook</a>
                     <a class="footer__link footer__link-mr-social" href="">Instagram</a>
                 </div>
                 <div class="footer__link-policy-item">
-                    <a class="footer__link footer__link-mr-policy" href="">@d('menu_contects')</a>
+                    <a class="footer__link footer__link-mr-policy" href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'contacts']) !!}">@d('menu_contects')</a>
                     <a class="footer__link footer__link-mr-policy" href="">@d('footer_policy')</a>
                 </div>
             </div>
@@ -102,7 +103,14 @@
 
 </div>
 
-<script src="https://api-maps.yandex.ru/2.1/?apikey=a3a191e8-8704-4696-964a-1dac59b0730b&lang=ru_RU"
+@php
+    $yandexParameters = [
+        'apikey' => 'a3a191e8-8704-4696-964a-1dac59b0730b',
+        'lang' => $dictionary['contacts_yandex_lang'],
+    ];
+@endphp
+
+<script src="https://api-maps.yandex.ru/2.1/?{!! http_build_query($yandexParameters) !!}"
         type="text/javascript">
 </script>
 

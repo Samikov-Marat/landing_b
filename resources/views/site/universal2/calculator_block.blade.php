@@ -30,7 +30,7 @@
 @endphp
 
 
-<div class="calculator">
+<div id="calculator" class="calculator">
     <form action="{!! route('request.send') !!}" method="post" class="js-calculator-form"
           data-tariffs="{{ $tariffCollection }}">
         {!! csrf_field() !!}
