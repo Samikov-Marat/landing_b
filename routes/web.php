@@ -82,7 +82,8 @@ Route::prefix('admin')->middleware(['auth', 'user.route.access'])->group(
         Route::get('texts/edit', 'admin\TextController@edit')
             ->name('admin.texts.edit');
         Route::post('texts/save', 'admin\TextController@save')
-            ->name('admin.texts.save');
+            ->name('admin.texts.save')
+            ->withoutMiddleware(\App\Http\Middleware\TrimStrings::class);
         Route::get('texts/download', 'admin\TextController@download')
             ->name('admin.texts.download');
         Route::post('texts/upload', 'admin\TextController@upload')
@@ -117,7 +118,6 @@ Route::prefix('admin')->middleware(['auth', 'user.route.access'])->group(
             ->name('admin.roles.edit_permission_list');
         Route::post('roles/save-permission-list', 'admin\RoleController@savePermissionList')
             ->name('admin.roles.save_permission_list');
-
 
 
         Route::get('users', 'admin\UserController@index')
