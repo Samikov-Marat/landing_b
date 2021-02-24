@@ -26,8 +26,8 @@
 {{--            <div class="partner__item partner__item_rebound hidden js-parners-other"></div>--}}
 
         </div>
-        <div class="partner__more-container js-partners-more-block">
-            <a href="#" class="partner__more js-partners-more">@d('partners_details')</a>
-        </div>
+{{--        <div class="partner__more-container js-partners-more-block">--}}
+{{--            <a href="#" class="partner__more js-partners-more">@d('partners_details')</a>--}}
+{{--        </div>--}}
     </div>
 </div>
