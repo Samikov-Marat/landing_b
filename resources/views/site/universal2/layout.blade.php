@@ -7,7 +7,7 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
     <link href="/universal2/assets/vendor/owl.carousel.min.css" rel="stylesheet" type="text/css"/>
-    <link rel="stylesheet" href="/universal2/assets/css/app.css?v=22">
+    <link rel="stylesheet" href="/universal2/assets/css/app.css?v=23">
 
 </head>
 <body>
@@ -77,8 +77,8 @@
             <div class="footer__left">
                 <a class="footer__footer-logo footer-logo" href="{!! route('site.show_page', ['languageUrl' => $language->uri]) !!}"></a>
                 <div class="footer__link-social-item">
-                    <a class="footer__link footer__link-mr-social" href="">Facebook</a>
-                    <a class="footer__link footer__link-mr-social" href="">Instagram</a>
+                    <a class="footer__link footer__link-mr-social {{ $dictionary['footer_facebook']?'':'hidden' }}" href="{!! $dictionary['footer_facebook'] !!}">Facebook</a>
+                    <a class="footer__link footer__link-mr-social {{ $dictionary['footer_instagram']?'':'hidden' }}" href="{!! $dictionary['footer_instagram'] !!}">Instagram</a>
                 </div>
                 <div class="footer__link-policy-item">
                     <a class="footer__link footer__link-mr-policy" href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'contacts']) !!}">@d('menu_contects')</a>

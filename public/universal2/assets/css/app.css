@@ -3614,3 +3614,8 @@ body {
 .hidden {
     display: none;
 }
+
+.invisible{
+    visibility: hidden;
+    opacity: 0;
+}

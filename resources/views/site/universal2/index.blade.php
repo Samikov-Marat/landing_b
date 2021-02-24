@@ -71,11 +71,11 @@
             <div class="index-special-conditions__content">
                 <div class="index-special-conditions__dots-left background-dots background-dots_size_3x4"></div>
                 <div class="index-special-conditions__dots-right background-dots"></div>
-                <a href="#" class="index-special-conditions__card index-special-conditions__card_yellow">
+                <a href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'e-commerce']) !!}" class="index-special-conditions__card index-special-conditions__card_yellow">
                     <div class="index-special-conditions__card-text">@d('special_conditions_tab_shop')</div>
                     <div class="index-special-conditions__arrow"></div>
                 </a>
-                <a href="#" class="index-special-conditions__card">
+                <a href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'business']) !!}" class="index-special-conditions__card">
                     <div class="index-special-conditions__card-text">@d('special_conditions_tab_business')</div>
                     <div class="index-special-conditions__arrow"></div>
                 </a>
