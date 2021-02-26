@@ -48,7 +48,7 @@ class RequestController extends Controller
                 'id' => $office->code,
                 'geometry' => [
                     'type' => 'Point',
-                    'coordinates' => [$office->coordinates->y, $office->coordinates->x],
+                    'coordinates' => [(float)$office->coordinates->x, (float)$office->coordinates->y],
                 ],
                 'properties' => [
                     'balloonContent' => $office->address . '<br>' .
