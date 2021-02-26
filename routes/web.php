@@ -143,9 +143,11 @@ Route::get('/', 'site\PageController@selectDefaultLanguage')
     ->name('site.select_default_language');
 
 Route::post('/request/send', 'site\RequestController@send')
-    ->name('request.send');;
+    ->name('request.send');
 Route::post('/request/feedback', 'site\RequestController@feedback')
-    ->name('request.feedback');;
+    ->name('request.feedback');
+Route::get('/request/get-office-list', 'site\RequestController@getOfficeList')
+    ->name('request.get_office_list');
 
 Route::get('/{languageUrl}/{pageUrl?}', 'site\PageController@showPage')
     ->where('pageUrl', '.*')
