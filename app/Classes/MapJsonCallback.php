@@ -24,6 +24,7 @@ class MapJsonCallback
 
     public function start()
     {
+        \Debugbar::disable();
         $this->stream = fopen($this->streamName, 'w');
         fwrite($this->stream, $this->callbackName . '(');
         fwrite($this->stream, '{"type":"FeatureCollection","features":[');
