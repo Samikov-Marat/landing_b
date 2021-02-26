@@ -14,6 +14,7 @@ class CreateOfficesTable extends Migration
     public function up()
     {
         Schema::create('offices', function (Blueprint $table) {
+            $table->engine = 'MyISAM';
             $table->id();
             $table->timestamps();
             $table->string('code');
@@ -25,8 +26,7 @@ class CreateOfficesTable extends Migration
             $table->text('address_comment');
             $table->string('email');
             $table->string('phone');
-            $table->string('coord_x');
-            $table->string('coord_y');
+            $table->point('coordinates')->spatialIndex();
         });
     }
 

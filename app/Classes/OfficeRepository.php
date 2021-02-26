@@ -14,6 +14,11 @@ class OfficeRepository
         $this->bufferSize = $bufferSize;
     }
 
+    function __destruct()
+    {
+        $this->flush();
+    }
+
     public function clear()
     {
         Office::whereColumn('id', 'id')->delete();
@@ -31,27 +36,29 @@ class OfficeRepository
         $office->address_comment = $attributes['AddressComment'];
         $office->email = $attributes['Email'];
         $office->phone = $attributes['Phone'];
-        $office->coord_x = $attributes['coordX'];
-        $office->coord_y = $attributes['coordY'];
-
-        if (1 == $this->bufferSize) {
-            $office->save();
-        } else {
-            $this->saveWithBuffer($office->toArray());
-        }
+        $office->coordinates = new Point($attributes['coordX'], $attributes['coordY']);
+        $this->saveWithBuffer($office);
     }
 
-    private function saveWithBuffer(array $values)
+    public function find($x, $y, $x2, $y2)
     {
-        $this->buffer[] = $values;
+        foreach ([$x, $y, $x2, $y2] as $value) {
+            if (!is_numeric($value)) {
+                throw new \Exception('Неверные координаты');
+            }
+        }
+        //  MBR - minimum bounding rectangle
+        return Office::select('*')->fixCoordinates()
+            ->withinRectangle($x, $y, $x2, $y2)
+            ->get();
+    }
+
+    private function saveWithBuffer($office)
+    {
+        $this->buffer[] = $office->getAttributes();
         if (count($this->buffer) >= $this->bufferSize) {
             $this->flush();
         }
-    }
-
-    function __destruct()
-    {
-        $this->flush();
     }
 
     public function flush()
@@ -59,5 +66,4 @@ class OfficeRepository
         Office::query()->insert($this->buffer);
         $this->buffer = [];
     }
-
 }
