@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\site;
 
 use App\Classes\ApiMarketing;
+use App\Classes\MapJsonCallback;
 use App\Classes\OfficeRepository;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -41,33 +42,12 @@ class RequestController extends Controller
         $repository = new OfficeRepository();
         $offices = $repository->find($coordinates[1], $coordinates[0], $coordinates[3], $coordinates[2]);
 
-        $features = [];
-        foreach ($offices as $office){
-            $features[] = [
-                'type' => 'Feature',
-                'id' => $office->code,
-                'geometry' => [
-                    'type' => 'Point',
-                    'coordinates' => [(float)$office->coordinates->y, (float)$office->coordinates->x],
-                ],
-                'properties' => [
-//                    'balloonContent' => $office->address . '<br>' .
-//                        $office->addressComment . '<br>' .
-//                        $office->email   . '<br>' .
-//                        $office->phone,
-                    'balloonContent' => $office->address,
-                    'clusterCaption' => 'CDEK',
-                    'hintContent' => $office->address
-                ]
-
-            ];
+        $responseGenerator = new MapJsonCallback();
+        $responseGenerator->setCallbackName($request->input('callback'));
+        $responseGenerator->start();
+        foreach ($offices as $office) {
+            $responseGenerator->add($office);
         }
-
-        $FeatureCollection = [
-            'type'=> 'FeatureCollection',
-            'features' => $features,
-        ];
-
-        return response()->json($FeatureCollection);
+        $responseGenerator->finish();
     }
 }
