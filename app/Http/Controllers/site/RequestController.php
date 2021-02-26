@@ -39,7 +39,7 @@ class RequestController extends Controller
             }
         }
         $repository = new OfficeRepository();
-        $offices = $repository->find($coordinates[0], $coordinates[1], $coordinates[2], $coordinates[3]);
+        $offices = $repository->find($coordinates[1], $coordinates[0], $coordinates[3], $coordinates[2]);
 
         $features = [];
         foreach ($offices as $office){
@@ -48,7 +48,7 @@ class RequestController extends Controller
                 'id' => $office->code,
                 'geometry' => [
                     'type' => 'Point',
-                    'coordinates' => [$office->coordinates->x, $office->coordinates->y],
+                    'coordinates' => [$office->coordinates->y, $office->coordinates->x],
                 ],
                 'properties' => [
                     'balloonContent' => $office->address . '<br>' .
