@@ -48,13 +48,14 @@ class RequestController extends Controller
                 'id' => $office->code,
                 'geometry' => [
                     'type' => 'Point',
-                    'coordinates' => [(float)$office->coordinates->x, (float)$office->coordinates->y],
+                    'coordinates' => [(float)$office->coordinates->y, (float)$office->coordinates->x],
                 ],
                 'properties' => [
-                    'balloonContent' => $office->address . '<br>' .
-                        $office->addressComment . '<br>' .
-                        $office->email   . '<br>' .
-                        $office->phone,
+//                    'balloonContent' => $office->address . '<br>' .
+//                        $office->addressComment . '<br>' .
+//                        $office->email   . '<br>' .
+//                        $office->phone,
+                    'balloonContent' => $office->address,
                     'clusterCaption' => 'CDEK',
                     'hintContent' => $office->address
                 ]
