@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\site;
 
 use App\Classes\ApiMarketing;
+use App\Classes\OfficeRepository;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -41,6 +42,9 @@ class RequestController extends Controller
             throw $e;
         }
         fclose($handle);
-        dump($this->repository->find(40,64,41,65));
+
+        $repository = new OfficeRepository();
+
+        dump($repository->find(40,64,41,65));
     }
 }
