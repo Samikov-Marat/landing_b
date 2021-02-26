@@ -1719,6 +1719,18 @@ function init(){
         zoom: 9
     });
 
+    var urlTemplate = $('#map').data('urlTemplate');
+
+    var loadingObjectManager = new ymaps.LoadingObjectManager(urlTemplate, {
+        // Включаем кластеризацию.
+        clusterize: true,
+        // Зададим опции кластерам.
+        // Опции кластеров задаются с префиксом cluster.
+        clusterHasBalloon: false,
+        // Опции объектов задаются с префиксом geoObject.
+        geoObjectOpenBalloonOnClick: false
+    });
+    myMap.geoObjects.add(loadingObjectManager);
 
     let myPlacemark = new ymaps.Placemark([51.776848, 0.117733], {
         balloonContentHeader: $('#harlow_baloon .js-baloon-header').html(),

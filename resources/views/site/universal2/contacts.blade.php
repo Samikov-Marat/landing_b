@@ -50,7 +50,7 @@
             </div>
 
         </div>
-        <div id="map" class="contact-page__map js-map"></div>
+        <div id="map" class="contact-page__map js-map" data-url-template="http://landing.dev.cdek.ru/request/get-office-list?bbox=%b"></div>
     </div>
 
 @endsection
