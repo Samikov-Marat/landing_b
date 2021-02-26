@@ -34,7 +34,7 @@ class RequestController extends Controller
     public function getOfficeList(Request $request)
     {
         $fullPath = Storage::disk('local')->path('yandex_map_log.txt');
-        $handle = fopen($fullPath, 'w');
+        $handle = fopen($fullPath, 'a');
         try {
             fwrite($handle, var_export($request->all(), true));
         } catch (\Exception $e) {
@@ -45,6 +45,9 @@ class RequestController extends Controller
 
         $repository = new OfficeRepository();
 
-        dump($repository->find(40,64,41,65));
+//        dump($repository->find(40,64,41,65));
+
+        echo file_get_contents($fullPath);
+
     }
 }
