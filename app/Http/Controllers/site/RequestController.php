@@ -6,8 +6,7 @@ use App\Classes\ApiMarketing;
 use App\Classes\OfficeRepository;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Response as HttpResponse;
 
 class RequestController extends Controller
 {
@@ -17,7 +16,7 @@ class RequestController extends Controller
             $apiMarketingRequest = ApiMarketing::createRequest($request->all(), $_SERVER['HTTP_REFERER']);
             return ApiMarketing::send($apiMarketingRequest);
         } catch (\Exception $e) {
-            abort(Response::HTTP_INTERNAL_SERVER_ERROR);
+            abort(HttpResponse::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -27,27 +26,47 @@ class RequestController extends Controller
             $apiMarketingRequest = ApiMarketing::createFeedback($request->all(), $_SERVER['HTTP_REFERER']);
             return ApiMarketing::send($apiMarketingRequest);
         } catch (\Exception $e) {
-            abort(Response::HTTP_INTERNAL_SERVER_ERROR);
+            abort(HttpResponse::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 
     public function getOfficeList(Request $request)
     {
-        $fullPath = Storage::disk('local')->path('yandex_map_log.txt');
-        $handle = fopen($fullPath, 'a');
-        try {
-            fwrite($handle, var_export($request->all(), true));
-        } catch (\Exception $e) {
-            fclose($handle);
-            throw $e;
+        $coordinates = explode(',', $request->input('bbox'));
+        foreach ($coordinates as $value) {
+            if (!is_numeric($value)) {
+                abort(HttpResponse::HTTP_BAD_REQUEST);
+            }
         }
-        fclose($handle);
-
         $repository = new OfficeRepository();
+        $offices = $repository->find($coordinates[0], $coordinates[1], $coordinates[2], $coordinates[3]);
 
-//        dump($repository->find(40,64,41,65));
+        $features = [];
+        foreach ($offices as $office){
+            $features[] = [
+                'type' => 'Feature',
+                'id' => $office->code,
+                'geometry' => [
+                    'type' => 'Point',
+                    'coordinates' => [$office->coordinates->x, $office->coordinates->y],
+                ],
+                'properties' => [
+                    'balloonContent' => $office->address . '<br>' .
+                        $office->addressComment . '<br>' .
+                        $office->email   . '<br>' .
+                        $office->phone,
+                    'clusterCaption' => 'CDEK',
+                    'hintContent' => $office->address
+                ]
 
-        echo file_get_contents($fullPath);
+            ];
+        }
 
+        $FeatureCollection = [
+            'type'=> 'FeatureCollection',
+            'features' => $features,
+        ];
+
+        return response()->json($FeatureCollection);
     }
 }
