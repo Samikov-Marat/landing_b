@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\site;
 
 use App\Classes\DictionaryBuilder;
+use App\Classes\Domain;
 use App\Classes\FragmentRepository;
 use App\Classes\SiteRepository;
 use App\Exceptions\CurrentPageNotFound;
@@ -21,19 +22,10 @@ class PageController extends Controller
 {
     public function selectDefaultLanguage(Request $request)
     {
-        $domain = $request->server('HTTP_HOST');
-
+        $domain = Domain::getInstance($request)->get();
         try {
-            $site = Site::where('domain', $domain)
-                ->with(
-                    [
-                        'languages' => function ($query) {
-                            $query->select('id', 'site_id', 'shortname')
-                                ->orderBy('sort');
-                        }
-                    ]
-                )
-                ->firstOrFail();
+            $siteRepository = new SiteRepository($domain);
+            $site = $siteRepository->getSite();
         } catch (ModelNotFoundException $exception) {
             abort(Response::HTTP_NOT_FOUND);
         }
@@ -48,7 +40,7 @@ class PageController extends Controller
 
     public function showPage(Request $request, $languageUrl, $pageUrl = '/')
     {
-        $domain = $request->server('HTTP_HOST');
+        $domain = Domain::getInstance($request)->get();
         try {
             $siteRepository = new SiteRepository($domain);
         } catch (ModelNotFoundException $exception) {
@@ -61,8 +53,7 @@ class PageController extends Controller
         $language = $siteRepository->getLanguage($languageShortname);
         try {
             $page = $siteRepository->getCurrentPage($pageUrl);
-        }
-        catch (CurrentPageNotFound $e){
+        } catch (CurrentPageNotFound $e) {
             abort(Response::HTTP_NOT_FOUND);
         }
         $fragments = $siteRepository->getLayoutFragments();
