@@ -8,14 +8,9 @@ use App\Classes\FragmentRepository;
 use App\Classes\SiteRepository;
 use App\Exceptions\CurrentPageNotFound;
 use App\Http\Controllers\Controller;
-use App\Page;
-use App\Site;
-use App\Text;
-use App\TextType;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
 class PageController extends Controller

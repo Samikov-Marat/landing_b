@@ -40,11 +40,11 @@ class MapJsonCallback
                 'coordinates' => [(float)$office->coordinates->y, (float)$office->coordinates->x],
             ],
             'properties' => [
-//                    'balloonContent' => $office->address . '<br>' .
-//                        $office->addressComment . '<br>' .
-//                        $office->email   . '<br>' .
-//                        $office->phone,
-                'balloonContent' => $office->address,
+                    'balloonContent' => $office->address . '<br>' .
+                        $office->addressComment . '<br>' .
+                        $office->email   . '<br>' .
+                        $office->phone,
+//                'balloonContent' => $office->address,
                 'clusterCaption' => 'CDEK',
                 'hintContent' => $office->address
             ]
