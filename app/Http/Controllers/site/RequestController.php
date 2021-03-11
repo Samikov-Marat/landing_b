@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\site;
 
 use App\Classes\ApiMarketing;
+use App\Classes\DatabaseSynchronizer;
 use App\Classes\MapJsonCallback;
 use App\Classes\OfficeRepository;
 use App\Http\Controllers\Controller;
@@ -50,4 +51,17 @@ class RequestController extends Controller
         }
         $responseGenerator->finish();
     }
+
+    public function giveTable(Request $request)
+    {
+        \Debugbar::disable();
+        DatabaseSynchronizer::take();
+
+        return response(
+            DatabaseSynchronizer::give($request->table)->toJson(JSON_PRETTY_PRINT),
+            200,
+            ['Content-Type' => 'application/json']
+        );
+    }
+
 }

@@ -148,6 +148,8 @@ Route::post('/request/feedback', 'site\RequestController@feedback')
     ->name('request.feedback');
 Route::get('/request/get-office-list', 'site\RequestController@getOfficeList')
     ->name('request.get_office_list');
+Route::get('/request/give-table', 'site\RequestController@giveTable')
+    ->name('request.give_table');
 
 Route::get('/{languageUrl}/{pageUrl?}', 'site\PageController@showPage')
     ->where('pageUrl', '.*')
