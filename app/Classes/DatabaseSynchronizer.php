@@ -3,11 +3,8 @@
 
 namespace App\Classes;
 
-
 use App\Dummy;
 use GuzzleHttp\Client;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\DB;
 
 class DatabaseSynchronizer
 {
@@ -23,7 +20,6 @@ class DatabaseSynchronizer
     {
         $tables = [
             'languages',
-            'offices',
             'pages',
             'permissions',
             'role_permission',
@@ -41,10 +37,16 @@ class DatabaseSynchronizer
 
         $client = new Client();
         foreach ($tables as $table) {
-            $from = $url . '?' . http_build_query(['table' => 'users']);
-            $client->get($from);
+            $from = $url . '?' . http_build_query(['table' => $table]);
+            $response = $client->get($from);
+            $content = $response->getBody()->getContents();
+            $items = json_decode($content, true);
+            foreach ($items as $item) {
+                $model = new Dummy();
+                $model->setTable($table);
+                $model->fill($item);
+                $model->save();
+            }
         }
     }
-
-
 }
