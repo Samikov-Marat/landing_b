@@ -25,7 +25,9 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
-
+        if(app()->runningInConsole()){
+            return;
+        }
         $permissions = Permission::select('text_id')->get();
         foreach ($permissions as $permission) {
             Gate::define(
