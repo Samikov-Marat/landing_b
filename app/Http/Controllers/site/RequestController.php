@@ -55,13 +55,16 @@ class RequestController extends Controller
     public function giveTable(Request $request)
     {
         \Debugbar::disable();
-        DatabaseSynchronizer::take();
-
         return response(
             DatabaseSynchronizer::give($request->table)->toJson(JSON_PRETTY_PRINT),
             200,
             ['Content-Type' => 'application/json']
         );
+    }
+
+    public function takeTable(Request $request)
+    {
+        DatabaseSynchronizer::take();
     }
 
 }
