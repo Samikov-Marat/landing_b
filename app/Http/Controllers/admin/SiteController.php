@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Classes\SiteCloner;
 use App\Http\Controllers\Controller;
 use App\Page;
 use App\Site;
@@ -79,4 +80,27 @@ class SiteController extends Controller
             ->sync($request->input('page_id') ?? []);
         return response()->redirectToRoute('admin.sites.index');
     }
+
+    public function cloneForm($id)
+    {
+        $site = Site::select('id', 'name', 'domain')
+            ->with('languages')
+            ->find($id);
+
+        return view('admin.sites.clone_form')
+            ->with('site', $site);
+    }
+
+    public function clone(Request $request)
+    {
+        SiteCloner::getInstance()
+            ->setSite($request->input('id'))
+            ->setLanguage($request->input('language_id'))
+            ->setNewDomain($request->input('domain'))
+            ->setNewName($request->input('name'))
+            ->makeClone();
+
+        return response()->redirectToRoute('admin.sites.index');
+    }
+
 }

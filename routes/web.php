@@ -36,6 +36,12 @@ Route::prefix('admin')->middleware(['auth', 'user.route.access'])->group(
         Route::post('sites/save-page-list', 'admin\SiteController@savePageList')
             ->name('admin.sites.save_page_list');
 
+        Route::get('sites/clone-form/{id}', 'admin\SiteController@cloneForm')
+            ->name('admin.sites.clone_form');
+        Route::post('sites/clone', 'admin\SiteController@clone')
+            ->name('admin.sites.clone');
+
+
         Route::get('languages', 'admin\LanguageController@index')
             ->name('admin.languages.index');
         Route::get('languages/add', 'admin\LanguageController@edit')

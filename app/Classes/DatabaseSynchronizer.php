@@ -4,6 +4,7 @@
 namespace App\Classes;
 
 use App\Dummy;
+use App\User;
 use GuzzleHttp\Client;
 
 class DatabaseSynchronizer
@@ -18,6 +19,10 @@ class DatabaseSynchronizer
 
     public static function take()
     {
+        if(User::count()){
+            echo "Skip. Already load.\n";
+            return;
+        }
         $tables = [
             'languages',
             'pages',
@@ -30,7 +35,8 @@ class DatabaseSynchronizer
             'text_types',
             'texts',
             'user_role',
-            'users'
+            'users',
+            'images',
         ];
 
         $url = 'http://landing.dev.cdek.ru/request/give-table';

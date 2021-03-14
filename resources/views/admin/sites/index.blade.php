@@ -87,6 +87,11 @@
                                    class="btn btn-primary btn-sm"><i
                                         class="fas fa-edit"></i> Редактировать</a>
                             @endcan
+                            @can('admin.sites.clone_form')
+                                <a href="{!! route('admin.sites.clone_form', ['id' => $site->id]) !!}"
+                                   class="btn btn-primary btn-sm"><i
+                                        class="fas fa-edit"></i> Клонировать</a>
+                            @endcan
                             @can('admin.sites.delete')
                                 <button type="button" data-text="Удалить {{ $site->domain }}?"
                                         data-action="{!! route('admin.sites.delete') !!}" data-id="{{ $site->id }}"
