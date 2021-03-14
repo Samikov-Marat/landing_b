@@ -20,7 +20,6 @@ Route::prefix('admin')->middleware(['auth', 'user.route.access'])->group(
     function () {
         Route::get('/', 'admin\IndexController@index')
             ->name('admin.index');
-
         Route::get('sites', 'admin\SiteController@index')
             ->name('admin.sites.index');
         Route::get('sites/add', 'admin\SiteController@edit')
@@ -160,6 +159,11 @@ Route::prefix('admin')->middleware(['auth', 'user.route.access'])->group(
 
 Route::get('/', 'site\PageController@selectDefaultLanguage')
     ->name('site.select_default_language');
+
+Route::get('/init', function (){
+    Artisan::call('database:synchronize');
+    Artisan::call('image:copy');
+});
 
 Route::post('/request/send', 'site\RequestController@send')
     ->name('request.send');
