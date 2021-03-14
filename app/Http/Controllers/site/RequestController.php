@@ -4,10 +4,15 @@ namespace App\Http\Controllers\site;
 
 use App\Classes\ApiMarketing;
 use App\Classes\DatabaseSynchronizer;
+use App\Classes\Domain;
 use App\Classes\MapJsonCallback;
 use App\Classes\OfficeRepository;
 use App\Http\Controllers\Controller;
+use App\Site;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\Response as HttpResponse;
 
 class RequestController extends Controller
@@ -56,7 +61,7 @@ class RequestController extends Controller
     {
         \Debugbar::disable();
         return response(
-            DatabaseSynchronizer::give($request->table)->toJson(JSON_PRETTY_PRINT),
+            DatabaseSynchronizer::give($request->input('table'))->toJson(JSON_PRETTY_PRINT),
             200,
             ['Content-Type' => 'application/json']
         );
@@ -65,6 +70,28 @@ class RequestController extends Controller
     public function takeTable(Request $request)
     {
         DatabaseSynchronizer::take();
+    }
+
+    public function images(Request $request, $imageUrl)
+    {
+        $domain = Domain::getInstance($request)->get();
+
+        try {
+            $site = Site::where('domain', $domain)
+                ->firstOrFail();
+        } catch (ModelNotFoundException $exception) {
+            abort(Response::HTTP_NOT_FOUND);
+        }
+        try {
+            $image = $site->images()
+                ->select('id', 'site_id', 'url', 'path')
+                ->where('url', '/' . $imageUrl)
+                ->firstOrFail();
+        } catch (ModelNotFoundException $exception) {
+            abort(Response::HTTP_NOT_FOUND);
+        }
+        $path = Storage::disk('public')->path($image->path);
+        return response()->file($path);
     }
 
 }

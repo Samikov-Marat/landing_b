@@ -1150,7 +1150,7 @@ body {
 
 .calculator {
   padding-top: 33px;
-  background: url("../../img/calculator-bg.jpg") no-repeat calc(50% - 50px) 100px; }
+  background: url("/request/images/calculator-bg.jpg") no-repeat calc(50% - 50px) 100px; }
   .calculator__content {
     width: 660px;
     margin: 0 auto;
@@ -1392,7 +1392,7 @@ body {
 @media (min-width: 481px) and (max-width: 1199px) {
   .calculator {
     padding-top: 27px;
-    background: url("../../img/calculator-bg-tablet.jpg") no-repeat center 100px; }
+    background: url("/request/images/calculator-bg-tablet.jpg") no-repeat center 100px; }
     .calculator__content {
       width: 330px;
       padding: 45px 40px 40px; }
@@ -1542,7 +1542,7 @@ body {
     .how-it-works::after {
       content: "";
       position: absolute;
-      background: url("../../img/hw-iw-bg-mobile.svg") no-repeat right bottom;
+      background: url("/request/images/hw-iw-bg-mobile.svg") no-repeat right bottom;
       width: 459px;
       height: 126px;
       bottom: 0;
@@ -1773,7 +1773,7 @@ body {
       margin: 97px auto 0; } }
 
 .faq__content {
-  background: url("../../img/faq-girl.png") no-repeat left top;
+  background: url("/request/images/faq-girl.png") no-repeat left top;
   padding-left: 500px;
   position: relative; }
 
@@ -1851,7 +1851,7 @@ body {
 
 @media (min-width: 481px) and (max-width: 1199px) {
   .faq__content {
-    background: url("../../img/faq-girl-2x.png") no-repeat left top;
+    background: url("/request/images/faq-girl-2x.png") no-repeat left top;
     background-size: 286px 376px;
     padding-left: 330px; }
   .faq__title {
@@ -2445,17 +2445,17 @@ body {
       padding: 35px 40px 40px; } }
 
 .index-page__poster {
-  background: url("../../img/index/poster.jpg") no-repeat center top; }
+  background: url("/request/images/index/poster.jpg") no-repeat center top; }
 
 .index-page__poster-heading::after {
   position: absolute;
   top: -47px;
   right: -62px;
-  content: url("../../img/index/uk-flag.svg"); }
+  content: url("../../img/index/flag.svg"); }
 
 .index-page__how-it-works-content {
   padding-bottom: 188px;
-  background: url("../../img/hw-iw-man.jpg") no-repeat right bottom;
+  background: url("/request/images/hw-iw-man.jpg") no-repeat right bottom;
   position: relative; }
 
 .index-page__how-it-works-dots {
@@ -2465,25 +2465,25 @@ body {
 
 @media (max-width: 480px) {
   .index-page__poster {
-    background: url("../../img/index/poster-mobile.jpg") no-repeat center bottom #F5F5F6;
+    background: url("/request/images/index/poster-mobile.jpg") no-repeat center bottom #F5F5F6;
     background-size: contain;
     padding-bottom: 355px; }
   .index-page__poster-heading::after {
     top: 0;
     right: 0; }
   .index-page__how-it-works-content {
-    background: url("../../img/hw-iw-man-2x.jpg") no-repeat center bottom;
+    background: url("/request/images/hw-iw-man-2x.jpg") no-repeat center bottom;
     background-size: 251px 338px;
     padding-bottom: 360px; } }
 
 @media (min-width: 481px) and (max-width: 1199px) {
   .index-page__poster {
-    background: url("../../img/index/poster-tablet.png") no-repeat right top #F5F5F6; }
+    background: url("/request/images/index/poster-tablet.png") no-repeat right top #F5F5F6; }
   .index-page__poster-heading::after {
     top: 0;
     right: 0; }
   .index-page__how-it-works-content {
-    background: url("../../img/hw-iw-man-2x.jpg") no-repeat right 98px bottom;
+    background: url("/request/images/hw-iw-man-2x.jpg") no-repeat right 98px bottom;
     background-size: 251px 338px; } }
 
 .index-special-conditions__title {
@@ -2607,7 +2607,7 @@ body {
       margin-bottom: 0; } }
 
 .business-page__poster {
-  background: url("../../img/business/poster.jpg") no-repeat center top; }
+  background: url("/request/images/business/poster.jpg") no-repeat center top; }
 
 .business-page__company-adv-description {
   margin-bottom: 50px; }
@@ -2620,7 +2620,7 @@ body {
 
 .business-page__how-it-works-content {
   padding-bottom: 188px;
-  background: url("../../img/hw-iw-man2.jpg") no-repeat right bottom;
+  background: url("/request/images/hw-iw-man2.jpg") no-repeat right bottom;
   position: relative; }
 
 .business-page__how-it-works-dots {
@@ -2642,7 +2642,7 @@ body {
 
 @media (max-width: 480px) {
   .business-page__poster {
-    background: url("../../img/business/poster-mobile.jpg") no-repeat center bottom #F5F5F6;
+    background: url("/request/images/business/poster-mobile.jpg") no-repeat center bottom #F5F5F6;
     background-size: contain;
     padding-bottom: 355px; }
   .business-page__company-adv-description {
@@ -2652,13 +2652,13 @@ body {
   .business-page__company-adv-heading {
     margin-bottom: 20px; }
   .business-page__how-it-works-content {
-    background: url("../../img/hw-iw-man2-2x.jpg") no-repeat center bottom;
+    background: url("/request/images/hw-iw-man2-2x.jpg") no-repeat center bottom;
     background-size: 307px 350px;
     padding-bottom: 370px; } }
 
 @media (min-width: 481px) and (max-width: 1199px) {
   .business-page__poster {
-    background: url("../../img/business/poster-tablet.jpg") no-repeat right top #F5F5F6; }
+    background: url("/request/images/business/poster-tablet.jpg") no-repeat right top #F5F5F6; }
   .business-page__heading {
     width: 350px; }
   .business-page__company-adv-description {
@@ -2669,11 +2669,11 @@ body {
     margin-bottom: 20px; }
   .business-page__how-it-works-content {
     padding-bottom: 225px;
-    background: url("../../img/hw-iw-man2-2x.jpg") no-repeat right 90px bottom;
+    background: url("/request/images/hw-iw-man2-2x.jpg") no-repeat right 90px bottom;
     background-size: 307px 350px; } }
 
 .e-commerce-page__poster {
-  background: url("../../img/e-commerce/poster.jpg") no-repeat center top; }
+  background: url("/request/images/e-commerce/poster.jpg") no-repeat center top; }
 
 .e-commerce-page__company-adv-description {
   margin-bottom: 50px; }
@@ -2686,7 +2686,7 @@ body {
 
 .e-commerce-page__how-it-works-content {
   padding-bottom: 188px;
-  background: url("../../img/hw-iw-man.jpg") no-repeat right bottom;
+  background: url("/request/images/hw-iw-man.jpg") no-repeat right bottom;
   position: relative; }
 
 .e-commerce-page__how-it-works-dots {
@@ -2702,7 +2702,7 @@ body {
 
 @media (max-width: 480px) {
   .e-commerce-page__poster {
-    background: url("../../img/e-commerce/poster-mobile.jpg") no-repeat center bottom #F5F5F6;
+    background: url("/request/images/e-commerce/poster-mobile.jpg") no-repeat center bottom #F5F5F6;
     background-size: contain;
     padding-bottom: 355px; }
   .e-commerce-page__company-adv-description {
@@ -2712,13 +2712,13 @@ body {
   .e-commerce-page__company-adv-heading {
     margin-bottom: 20px; }
   .e-commerce-page__how-it-works-content {
-    background: url("../../img/hw-iw-man-2x.jpg") no-repeat center bottom;
+    background: url("/request/images/hw-iw-man-2x.jpg") no-repeat center bottom;
     background-size: 251px 338px;
     padding-bottom: 360px; } }
 
 @media (min-width: 481px) and (max-width: 1199px) {
   .e-commerce-page__poster {
-    background: url("../../img/e-commerce/poster-tablet.jpg") no-repeat right top #F5F5F6;
+    background: url("/request/images/e-commerce/poster-tablet.jpg") no-repeat right top #F5F5F6;
     padding-top: 40px; }
   .e-commerce-page__heading {
     width: 350px; }
@@ -2729,7 +2729,7 @@ body {
   .e-commerce-page__company-adv-heading {
     margin-bottom: 20px; }
   .e-commerce-page__how-it-works-content {
-    background: url("../../img/hw-iw-man-2x.jpg") no-repeat right 98px bottom;
+    background: url("/request/images/hw-iw-man-2x.jpg") no-repeat right 98px bottom;
     background-size: 251px 338px; } }
 
 .ecom-solution__content {
@@ -2979,7 +2979,7 @@ body {
   box-sizing: border-box;
   padding-top: 100px;
   position: relative;
-  background: url("../../img/company/poster.jpg") no-repeat center top; }
+  background: url("/request/images/company/poster.jpg") no-repeat center top; }
   .company-poster__content {
     position: relative;
     height: 100%;
@@ -3002,7 +3002,7 @@ body {
     height: auto;
     padding-top: 45px;
     padding-bottom: 390px;
-    background: url("../../img/company/poster-mobile.png") no-repeat center bottom #1AB248;
+    background: url("/request/images/company/poster-mobile.png") no-repeat center bottom #1AB248;
     background-size: contain; }
     .company-poster__content {
       width: auto; }
@@ -3022,7 +3022,7 @@ body {
     padding-top: 45px;
     padding-bottom: 60px;
     padding-right: 390px;
-    background: url("../../img/company/poster-tablet.jpg") no-repeat right center #1AB248;
+    background: url("/request/images/company/poster-tablet.jpg") no-repeat right center #1AB248;
     background-size: contain; }
     .company-poster__content {
       width: auto; }

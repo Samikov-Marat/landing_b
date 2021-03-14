@@ -38,6 +38,9 @@
                 <th>
                     Тексты
                 </th>
+                <th>
+                    Картинки
+                </th>
                 @canany(['admin.sites.edit', 'admin.sites.delete'])
                     <th>
 
@@ -70,6 +73,11 @@
                     <td>
                         <a href="{!! route('admin.texts.index', ['site_id' => $site->id]) !!}">
                             Тексты
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{!! route('admin.images.index', ['site_id' => $site->id]) !!}">
+                            Картинки
                         </a>
                     </td>
                     @canany(['admin.sites.edit', 'admin.sites.delete'])

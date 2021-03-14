@@ -49,6 +49,19 @@ Route::prefix('admin')->middleware(['auth', 'user.route.access'])->group(
         Route::post('languages/move', 'admin\LanguageController@move')
             ->name('admin.languages.move');
 
+        Route::get('images', 'admin\ImageController@index')
+            ->name('admin.images.index');
+        Route::get('images/add', 'admin\ImageController@edit')
+            ->name('admin.images.add');
+        Route::get('images/edit/{id}', 'admin\ImageController@edit')
+            ->name('admin.images.edit');
+        Route::post('images/save', 'admin\ImageController@save')
+            ->name('admin.images.save');
+        Route::post('images/delete', 'admin\ImageController@delete')
+            ->name('admin.images.delete');
+        Route::post('images/move', 'admin\ImageController@move')
+            ->name('admin.images.move');
+
 
         Route::get('pages', 'admin\PageController@index')
             ->name('admin.pages.index');
@@ -152,6 +165,10 @@ Route::get('/request/give-table', 'site\RequestController@giveTable')
     ->name('request.give_table');
 Route::get('/request/take-table', 'site\RequestController@takeTable')
     ->name('request.take_table');
+
+Route::get('/request/images/{imageUrl}', 'site\RequestController@images')
+    ->where('imageUrl', '.*')
+    ->name('request.images');
 
 Route::get('/{languageUrl}/{pageUrl?}', 'site\PageController@showPage')
     ->where('pageUrl', '.*')
