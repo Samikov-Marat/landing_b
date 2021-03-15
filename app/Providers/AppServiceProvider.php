@@ -35,5 +35,9 @@ class AppServiceProvider extends ServiceProvider
                 return "<?php echo nl2br(e(\$dictionary[$expression])); ?>";
             }
         );
+
+        if(config('app.env') === 'production') {
+            \URL::forceScheme('https');
+        }
     }
 }
