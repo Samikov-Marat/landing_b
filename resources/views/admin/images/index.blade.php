@@ -31,7 +31,7 @@
                     URL
                 </th>
                 <th>
-                    Название
+                    Внешний вид
                 </th>
                 <th>
                     Сортировка
@@ -49,7 +49,8 @@
                         {{ $image->url }}
                     </td>
                     <td>
-                        <img src="{!! Storage::disk('public')->url($image->path) !!}" style="max-width: 200px; max-height: 200px;">
+
+                        <img src="{!! url(Storage::disk('images')->url($image->path)) !!}" style="max-width: 200px; max-height: 200px;">
                     </td>
                     <td class="text-center">
                         <form method="post" action="{!! route('admin.images.move') !!}">
@@ -74,7 +75,7 @@
                     <td class="text-nowrap">
                         <a href="{!! route('admin.images.edit', ['id' => $image->id]) !!}"
                            class="btn btn-primary btn-sm"><i class="fas fa-edit"></i> Редактировать</a>
-                        <button type="button" data-text="Удалить {{ $image->shortname }} сайта {{ $site->domain }}?"
+                        <button type="button" data-text="Удалить {{ $image->url }} сайта {{ $site->domain }}?"
                                 data-action="{!! route('admin.images.delete') !!}" data-id="{{ $image->id }}"
                                 class="btn btn-danger btn-sm js-delete-confirm"><i class="fas fa-trash"></i> Удалить
                         </button>

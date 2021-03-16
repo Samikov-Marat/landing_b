@@ -57,21 +57,6 @@ class RequestController extends Controller
         $responseGenerator->finish();
     }
 
-    public function giveTable(Request $request)
-    {
-        \Debugbar::disable();
-        return response(
-            DatabaseSynchronizer::give($request->input('table'))->toJson(JSON_PRETTY_PRINT),
-            200,
-            ['Content-Type' => 'application/json']
-        );
-    }
-
-    public function takeTable(Request $request)
-    {
-        DatabaseSynchronizer::take();
-    }
-
     public function images(Request $request, $imageUrl)
     {
         $domain = Domain::getInstance($request)->get();
@@ -90,8 +75,7 @@ class RequestController extends Controller
         } catch (ModelNotFoundException $exception) {
             abort(Response::HTTP_NOT_FOUND);
         }
-        $path = Storage::disk('public')->path($image->path);
+        $path = Storage::disk('images')->path($image->path);
         return response()->file($path);
     }
-
 }

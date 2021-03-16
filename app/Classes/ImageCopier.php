@@ -12,10 +12,10 @@ class ImageCopier
         $images = Image::select('url', 'path')->get();
         $remoteBase = 'http://landing.dev.cdek.ru/storage/';
         foreach ($images as $image) {
-            if (!Storage::disk('public')->exists($image->path)) {
+            if (!Storage::disk('images')->exists($image->path)) {
                 echo $image->url . "\n";
                 if (false !== ($contents = file_get_contents($remoteBase . $image->path))) {
-                    Storage::disk('public')->put($image->path, $contents);
+                    Storage::disk('images')->put($image->path, $contents);
                 }
             }
         }

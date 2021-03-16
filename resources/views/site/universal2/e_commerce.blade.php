@@ -17,7 +17,7 @@
                 <div class="main-poster__text">
                     @d('delivery_list')
                 </div>
-                <a href="#" class="primary-button primary-button_with_arrow">@d('delivery_button')</a>
+                <a href="#calculator" class="primary-button primary-button_with_arrow">@d('delivery_button')</a>
                 <div class="background-dots main-poster__dots-left"></div>
                 <div class="main-poster__wave-right"></div>
             </div>
@@ -98,7 +98,7 @@
                             <div class="ecom-solution__promo-list-text">@d('solution_text_3')</div>
                         </div>
                     </div>
-                    <a href="#" class="ecom-solution__link">@d('solution_download')</a>
+                    <a href="/storage/CDEK_marketing_solution_2021.pdf" target="_blank" class="ecom-solution__link">@d('solution_download')</a>
                 </div>
             </div>
         </div>
@@ -125,7 +125,7 @@
             </div>
             <div class="divider package-russia__divider"></div>
             <div class="package-russia__know-more">@d('receive_more')</div>
-            <a href="#" class="primary-button">@d('receive_button')</a>
+            <a href="#" class="primary-button js-feedback-open">@d('receive_button')</a>
         </div>
         <div class="package-russia__office">
             <div class="package-russia__office-num">@d('receive_office_count')</div>

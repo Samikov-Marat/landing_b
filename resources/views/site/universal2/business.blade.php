@@ -16,7 +16,7 @@
                 <div class="main-poster__text">
                     @d('poster_list')
                 </div>
-                <a href="#" class="primary-button primary-button_with_arrow">@d('poster_button')</a>
+                <a href="#calculator" class="primary-button primary-button_with_arrow">@d('poster_button')</a>
                 <div class="background-dots main-poster__dots-left"></div>
                 <div class="main-poster__wave-right"></div>
             </div>
@@ -89,7 +89,7 @@
             </div>
             <div class="divider package-russia__divider"></div>
             <div class="package-russia__know-more">Узнайте больше о сотрудничестве со СДЭК!</div>
-            <a href="#" class="primary-button">Свяжитесь с нами</a>
+            <a href="#" class="primary-button js-feedback-open">Свяжитесь с нами</a>
         </div>
         <div class="package-russia__office">
             <div class="package-russia__office-num">2 300+</div>

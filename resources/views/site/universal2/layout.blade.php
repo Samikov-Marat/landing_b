@@ -82,7 +82,7 @@
                 </div>
                 <div class="footer__link-policy-item">
                     <a class="footer__link footer__link-mr-policy" href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'contacts']) !!}">@d('menu_contects')</a>
-                    <a class="footer__link footer__link-mr-policy" href="">@d('footer_policy')</a>
+                    <a class="footer__link footer__link-mr-policy" target="_blank" href="/storage/Privacy_Policy.pdf">@d('footer_policy')</a>
                 </div>
             </div>
             <div class="footer__right">

@@ -160,21 +160,12 @@ Route::prefix('admin')->middleware(['auth', 'user.route.access'])->group(
 Route::get('/', 'site\PageController@selectDefaultLanguage')
     ->name('site.select_default_language');
 
-Route::get('/init', function (){
-    Artisan::call('database:synchronize');
-    Artisan::call('image:copy');
-});
-
 Route::post('/request/send', 'site\RequestController@send')
     ->name('request.send');
 Route::post('/request/feedback', 'site\RequestController@feedback')
     ->name('request.feedback');
 Route::get('/request/get-office-list', 'site\RequestController@getOfficeList')
     ->name('request.get_office_list');
-Route::get('/request/give-table', 'site\RequestController@giveTable')
-    ->name('request.give_table');
-Route::get('/request/take-table', 'site\RequestController@takeTable')
-    ->name('request.take_table');
 
 Route::get('/request/images/{imageUrl}', 'site\RequestController@images')
     ->where('imageUrl', '.*')
