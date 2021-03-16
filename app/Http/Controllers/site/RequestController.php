@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\site;
 
 use App\Classes\ApiMarketing;
-use App\Classes\DatabaseSynchronizer;
 use App\Classes\Domain;
 use App\Classes\MapJsonCallback;
 use App\Classes\OfficeRepository;
@@ -20,7 +19,7 @@ class RequestController extends Controller
     public function send(Request $request)
     {
         try {
-            $apiMarketingRequest = ApiMarketing::createRequest($request->all(), $_SERVER['HTTP_REFERER']);
+            $apiMarketingRequest = ApiMarketing::createRequest($request->all(), Domain::getInstance($request)->get());
             return ApiMarketing::send($apiMarketingRequest);
         } catch (\Exception $e) {
             abort(HttpResponse::HTTP_INTERNAL_SERVER_ERROR);
@@ -30,7 +29,7 @@ class RequestController extends Controller
     public function feedback(Request $request)
     {
         try {
-            $apiMarketingRequest = ApiMarketing::createFeedback($request->all(), $_SERVER['HTTP_REFERER']);
+            $apiMarketingRequest = ApiMarketing::createFeedback($request->all(), Domain::getInstance($request)->get());
             return ApiMarketing::send($apiMarketingRequest);
         } catch (\Exception $e) {
             abort(HttpResponse::HTTP_INTERNAL_SERVER_ERROR);

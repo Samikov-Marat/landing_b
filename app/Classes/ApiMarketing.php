@@ -5,18 +5,23 @@ namespace App\Classes;
 
 use GuzzleHttp\Client;
 use Illuminate\Http\Response;
-use Illuminate\Support\Str;
 
 class ApiMarketing
 {
     const API_URI = 'http://192.168.1.162:8121/api/v1/landing';
     const TOKEN = 'PFpp_TFarNGuoqRbdDayoSV-DQUggkTtKb_5gKtt';
 
-    public static function getCountryId(){
-        return 'uk_test';
+    public static function getCountryId($domain){
+        if('cdek.uk' == $domain){
+            return 'gb-ipswich';
+        }
+        if('cdek.es' == $domain){
+            return 'es';
+        }
+        return 'gb-ipswich';
     }
 
-    public static function createRequest($form, $referer)
+    public static function createRequest($form, $domain)
     {
         $message = PHP_EOL . 'Откуда: ' . $form['from'] . ' (код ' . $form['from_id'] . ') ' . PHP_EOL;
         $message .= 'Куда: ' . $form['to'] . ' (код ' . $form['to_id'] . ') ' . PHP_EOL;
@@ -32,12 +37,12 @@ class ApiMarketing
             'email' => $form['email'],
             'project_name' => 'Лендинг с админкой',
             'message' => $message,
-            'country_id' => static::getCountryId(),
-            'url' => Str::after($referer, '//'),
+            'country_id' => static::getCountryId($domain),
+            'url' => $domain,
         ];
     }
 
-    public static function createFeedback($form, $referer)
+    public static function createFeedback($form, $domain)
     {
         return [
             'subject' => 'Лендинг. Обратная связь.',
@@ -46,8 +51,8 @@ class ApiMarketing
             'email' => $form['email'],
             'project_name' => 'Лендинг с админкой',
             'message' => $form['message'],
-            'country_id' => static::getCountryId(),
-            'url' => Str::after($referer, '//'),
+            'country_id' => static::getCountryId($domain),
+            'url' => $domain,
         ];
     }
 
