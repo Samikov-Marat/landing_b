@@ -4,6 +4,7 @@ namespace App\Http\Controllers\site;
 
 use App\Classes\ApiMarketing;
 use App\Classes\Domain;
+use App\Classes\ImageResponse;
 use App\Classes\MapJsonCallback;
 use App\Classes\OfficeRepository;
 use App\Http\Controllers\Controller;
@@ -59,7 +60,6 @@ class RequestController extends Controller
     public function images(Request $request, $imageUrl)
     {
         $domain = Domain::getInstance($request)->get();
-
         try {
             $site = Site::where('domain', $domain)
                 ->firstOrFail();
@@ -74,7 +74,10 @@ class RequestController extends Controller
         } catch (ModelNotFoundException $exception) {
             abort(Response::HTTP_NOT_FOUND);
         }
-        $path = Storage::disk('images')->path($image->path);
-        return response()->file($path);
+        $imageResponse = ImageResponse::getInstance()->setPath($image->path);
+        return response()->file(
+            $imageResponse->getPath(),
+            ['Content-Type' => $imageResponse->getMimeType()]
+        );
     }
 }

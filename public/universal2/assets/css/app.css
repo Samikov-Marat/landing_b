@@ -2451,7 +2451,7 @@ body {
   position: absolute;
   top: -47px;
   right: -62px;
-  content: url("../../img/index/flag.svg"); }
+  content: url("/request/images/index/flag.svg"); }
 
 .index-page__how-it-works-content {
   padding-bottom: 188px;
@@ -3619,3 +3619,57 @@ body {
     visibility: hidden;
     opacity: 0;
 }
+
+.prohibition{
+
+}
+
+.prohibition ul, .prohibition  ol  {
+    margin-left: 2em;
+}
+.prohibition  li ul, .prohibition  li ol  {
+    margin-left: 4em;
+}
+.prohibition  li {
+    font-size: 21px;
+    line-height: 26px;
+}
+.prohibition  div {
+    font-size: 21px;
+    line-height: 26px;
+}
+
+
+.prohibition .typo-h1 {
+    margin-top: 28px;
+    font-size: 28px;
+    line-height: 32px;
+    color: #222;
+    font-weight: 600; }
+
+.prohibition .typo-h2 {
+    margin-top: 28px;
+    font-weight: 600;
+    font-size: 21px;
+    line-height: 26px;
+    color: #222; }
+
+.prohibition .typo-h2.mt0 {
+    margin-top: 0px;
+}
+
+@media (max-width: 480px) {
+    .prohibition .typo-h1 {
+        font-size: 28px;
+        line-height: 32px; }
+    .prohibition .typo-h2 {
+        font-size: 21px;
+        line-height: 26px; } }
+
+@media (min-width: 481px) and (max-width: 1199px) {
+    .prohibition .typo-h1 {
+        font-size: 28px;
+        line-height: 32px; }
+    .prohibition .typo-h2 {
+        font-size: 21px;
+        line-height: 26px; } }
