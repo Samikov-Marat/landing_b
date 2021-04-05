@@ -172,6 +172,7 @@ Route::get('/request/images/{imageUrl}', 'site\RequestController@images')
     ->name('request.images');
 
 Route::get('/{languageUrl}/{pageUrl?}', 'site\PageController@showPage')
+    ->middleware(['save.utm.to.cookies'])
     ->where('pageUrl', '.*')
     ->name('site.show_page');
 

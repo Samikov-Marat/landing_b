@@ -64,6 +64,7 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'user.route.access' => \App\Http\Middleware\UserRouteAccess::class,
+        'save.utm.to.cookies' => \App\Http\Middleware\SaveUtmToCookies::class,
     ];
 
     /**

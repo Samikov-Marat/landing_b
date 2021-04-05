@@ -3,23 +3,17 @@
 
 namespace App\Classes;
 
+use App\Exceptions\LocalOfficeNotFoundByUtm;
 use GuzzleHttp\Client;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Log;
 
 class ApiMarketing
 {
     const API_URI = 'http://192.168.1.162:8121/api/v1/landing';
     const TOKEN = 'PFpp_TFarNGuoqRbdDayoSV-DQUggkTtKb_5gKtt';
-
-    public static function getCountryId($domain){
-        if('cdek.uk' == $domain){
-            return 'gb-ipswich';
-        }
-        if('cdek.es' == $domain){
-            return 'es';
-        }
-        return 'gb-ipswich';
-    }
 
     public static function createRequest($form, $domain)
     {
@@ -56,6 +50,34 @@ class ApiMarketing
         ];
     }
 
+    public static function getCountryId($domain)
+    {
+        try {
+            $localOfficeRepository = new UtmSiteRepository($domain);
+        } catch (ModelNotFoundException $exception) {
+            Log::error($exception->getMessage());
+            return '';
+        }
+        $old = Cookie::get(UtmCookie::COOKIE_NAME);
+        if (!is_null($old)) {
+            try {
+                $oldUtmCookie = UtmCookie::getInstanceFromJson($old);
+                return $localOfficeRepository->getCategory($oldUtmCookie->getData());
+            } catch (LocalOfficeNotFoundByUtm $e) {
+                Log::debug($e->getMessage());
+            } catch (Exception $e) {
+                Log::error($e->getMessage());
+            }
+        }
+        try {
+            return CategoryInTurn::getInstance($localOfficeRepository->site->localOffices)
+                ->getNext();
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+        }
+        return '';
+    }
+
     public static function send($apiMarketingRequest)
     {
         $client = new Client();
@@ -83,6 +105,4 @@ class ApiMarketing
         }
         return $responseDecoded;
     }
-
-
 }

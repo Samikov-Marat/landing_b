@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLocalOfficesTable extends Migration
+class CreateHistoryCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,10 @@ class CreateLocalOfficesTable extends Migration
      */
     public function up()
     {
-        Schema::create('local_offices', function (Blueprint $table) {
+        Schema::create('history_categories', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('site_id');
-            $table->string('code');
-            $table->string('utm_tag');
-            $table->string('utm_value');
-            $table->string('category');
-            $table->bigInteger('sort');
+            $table->foreignId('local_office_id');
+            $table->boolean('by_turns')->default(false);
             $table->timestamps();
         });
     }
@@ -32,6 +28,6 @@ class CreateLocalOfficesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('local_offices');
+        Schema::dropIfExists('history_categories');
     }
 }

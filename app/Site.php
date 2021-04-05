@@ -20,4 +20,10 @@ class Site extends Model
     {
         return $this->hasMany('App\Image', 'site_id', 'id');
     }
+
+    public function localOffices()
+    {
+        return $this->hasMany('App\LocalOffice', 'site_id', 'id');
+    }
+
 }
