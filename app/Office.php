@@ -12,7 +12,7 @@ class Office extends Model
 
     public function scopeFixCoordinates($query)
     {
-        return $query->addSelect(DB::raw('AsWKT(coordinates) AS coordinates'));
+        return $query->addSelect(DB::raw('ST_AsWKT(coordinates) AS coordinates'));
     }
 
     public function scopeWithinRectangle($query, $x, $y, $x2, $y2)
