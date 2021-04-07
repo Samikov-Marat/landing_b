@@ -158,6 +158,7 @@ Route::prefix('admin')->middleware(['auth', 'user.route.access'])->group(
 );
 
 Route::get('/', 'site\PageController@selectDefaultLanguage')
+    ->middleware(['save.utm.to.cookies'])
     ->name('site.select_default_language');
 
 Route::post('/request/send', 'site\RequestController@send')

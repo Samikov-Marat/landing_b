@@ -3,9 +3,9 @@
 namespace App\Listeners;
 
 use App\Classes\UserPermissionsLoader;
-use Illuminate\Auth\Events\Authenticated;
+use Illuminate\Auth\Events\Login;
 
-class UserLoadPermissions
+class LoginListener
 {
     /**
      * Create the event listener.
@@ -20,10 +20,10 @@ class UserLoadPermissions
     /**
      * Handle the event.
      *
-     * @param  Authenticated  $event
+     * @param IlluminateAuthEventsLogin $event
      * @return void
      */
-    public function handle(Authenticated $event)
+    public function handle(Login $event)
     {
         UserPermissionsLoader::load($event->user);
     }

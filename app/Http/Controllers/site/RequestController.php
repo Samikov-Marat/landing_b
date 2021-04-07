@@ -67,16 +67,23 @@ class RequestController extends Controller
         }
         try {
             $image = $site->images()
-                ->select('id', 'site_id', 'url', 'path')
+                ->select('id', 'site_id', 'url', 'path', 'updated_at')
                 ->where('url', '/' . $imageUrl)
                 ->firstOrFail();
         } catch (ModelNotFoundException $exception) {
             abort(Response::HTTP_NOT_FOUND);
         }
         $imageResponse = ImageResponse::getInstance()->setPath($image->path);
+        $hash = $image->updated_at->format('Y-m-d H:i:s');
+        if($request->header('If-None-Match') == $hash){
+            abort(HttpResponse::HTTP_NOT_MODIFIED);
+        }
         return response()->file(
             $imageResponse->getPath(),
-            ['Content-Type' => $imageResponse->getMimeType()]
+            [
+                'Content-Type' => $imageResponse->getMimeType(),
+                'ETag' => $hash,
+            ]
         );
     }
 }
