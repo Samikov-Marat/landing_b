@@ -1,0 +1,75 @@
+.submenu__item {
+    cursor: pointer;
+}
+
+.submenu__item_active {
+    cursor: default;
+}
+
+.autocomplete-suggestions .autocomplete-suggestion.autocomplete-selected {
+    color: #1AB248;
+}
+
+
+.hidden {
+    display: none;
+}
+
+.invisible{
+    visibility: hidden;
+    opacity: 0;
+}
+
+.prohibition{
+
+}
+
+.prohibition ul, .prohibition  ol  {
+    margin-left: 2em;
+}
+.prohibition  li ul, .prohibition  li ol  {
+    margin-left: 4em;
+}
+.prohibition  li {
+    font-size: 21px;
+    line-height: 26px;
+}
+.prohibition  div {
+    font-size: 21px;
+    line-height: 26px;
+}
+
+
+.prohibition .typo-h1 {
+    margin-top: 28px;
+    font-size: 28px;
+    line-height: 32px;
+    color: #222;
+    font-weight: 600; }
+
+.prohibition .typo-h2 {
+    margin-top: 28px;
+    font-weight: 600;
+    font-size: 21px;
+    line-height: 26px;
+    color: #222; }
+
+.prohibition .typo-h2.mt0 {
+    margin-top: 0px;
+}
+
+@media (max-width: 480px) {
+    .prohibition .typo-h1 {
+        font-size: 28px;
+        line-height: 32px; }
+    .prohibition .typo-h2 {
+        font-size: 21px;
+        line-height: 26px; } }
+
+@media (min-width: 481px) and (max-width: 1199px) {
+    .prohibition .typo-h1 {
+        font-size: 28px;
+        line-height: 32px; }
+    .prohibition .typo-h2 {
+        font-size: 21px;
+        line-height: 26px; } }

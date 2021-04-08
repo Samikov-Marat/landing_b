@@ -18,6 +18,10 @@
                 <div class="background-dots main-poster__dots-left"></div>
                 <div class="main-poster__wave-right"></div>
             </div>
+            <picture  class="index-page__poster-image-wrapper">
+                <source srcset="/request/images/index/poster-mobile.jpg, /request/images/index/poster-mobile-2x.jpg 2x">
+                <img src="/request/images/index/poster-mobile.jpg" alt="" class="index-page__poster-image">
+            </picture>
         </div>
         <div class="company-advantages screen-content">
     <h2 class="typo-h2 company-advantages__heading">@d('why_header')</h2>

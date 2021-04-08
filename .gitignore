@@ -18,3 +18,5 @@ yarn-error.log
 /_ide_helper_models.php
 /public/mix-manifest.json
 /public/universal2/new.js
+/public/universal2/app.css
+/public/universal2/custom.css

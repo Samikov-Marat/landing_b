@@ -7,10 +7,12 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
     <link href="/universal2/assets/vendor/owl.carousel.min.css" rel="stylesheet" type="text/css"/>
-    <link rel="stylesheet" href="/universal2/assets/css/app.css?v=23">
 
+    <link rel="stylesheet" href="{{ mix('universal2/app.css') }}">
+    <link rel="stylesheet" href="/request/images/theme.css">
+    <link rel="stylesheet" href="{{ mix('universal2/custom.css') }}">
 </head>
-<body>
+<body class="site-theme">
 <div class="body-wrapper js-body_wrapper ">
     <div class="fullscreen-modal-background js-fade_background "></div>
     <header class="header-shadow">
