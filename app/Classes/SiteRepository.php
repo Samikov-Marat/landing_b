@@ -70,4 +70,24 @@ class SiteRepository
         );
     }
 
+    public function loadLocalOffices($laguage){
+        $language_id = $laguage->id;
+        $this->site->load(
+            [
+                'localOffices' => function ($query) use ($language_id) {
+                    $query->select('id', 'site_id')
+                        ->orderBy('sort');
+                },
+                'localOffices.localOfficeTexts' => function ($query) use ($language_id) {
+                    $query->where('language_id', $language_id);
+                },
+                'localOffices.localOfficePhones' => function ($query) {
+                    $query->orderBy('sort');
+                },
+                'localOffices.localOfficeEmails' => function ($query) {
+                    $query->orderBy('sort');
+                },
+            ]
+        );
+    }
 }

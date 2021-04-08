@@ -55,6 +55,7 @@ class PageController extends Controller
         $fragments->push($page);
         $fragmentRepository = new FragmentRepository($fragments);
         $dictionary = DictionaryBuilder::get($fragmentRepository->getWithTexts($language));
+        $siteRepository->loadLocalOffices($language);
 
         return view('site.' . $page->template)
             ->with('site', $siteRepository->getSite())

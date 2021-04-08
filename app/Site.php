@@ -25,5 +25,4 @@ class Site extends Model
     {
         return $this->hasMany('App\LocalOffice', 'site_id', 'id');
     }
-
 }

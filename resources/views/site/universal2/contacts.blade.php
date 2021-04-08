@@ -16,24 +16,30 @@
         </div>
         <div class="contact-page__list">
 
+            @foreach($site->localOffices as $localOffice)
+
             <div class="contact-page__item">
-                <div class="contact-page__city">@d('contacts_ipswich_name')</div>
-                <div class="contact-page__street">@d('contacts_ipswich_address')</div>
-                <div class="contact-page__metro">@d('contacts_ipswich_path')</div>
+
+                <div class="contact-page__city">{{ $localOffice->localOfficeTexts[0]->name }}</div>
+                <div class="contact-page__street">{{ $localOffice->localOfficeTexts[0]->address }}</div>
+                <div class="contact-page__metro">{{ $localOffice->localOfficeTexts[0]->path }}</div>
+
                 <div class="contact-page__schedule">
-                    @d('contacts_ipswich_time')
+                    {!! nl2br(e($localOffice->localOfficeTexts[0]->worktime)) !!}
                 </div>
-                <div class="contact-page__phone">@d('contacts_ipswich_phone_formatted')</div>
-                <div class="contact-page__email">E-mail: <a href="mailto:{{ $dictionary['contacts_ipswich_email'] }}"
-                                                            class="contact-page__link">@d('contacts_ipswich_email')</a>
+                @foreach($localOffice->localOfficePhones as $localOfficePhone)
+                    <div class="contact-page__phone">{{ $localOfficePhone->phone_text }}</div>
+                @endforeach
+                @foreach($localOffice->localOfficeEmails as $localOfficeEmail)
+                <div class="contact-page__email">E-mail: <a href="mailto:{{ $localOfficeEmail->email }}"
+                                                            class="contact-page__link">{{ $localOfficeEmail->email }}</a>
                 </div>
+                @endforeach
             </div>
 
-            <div class="hidden" id="ipswich_baloon">
-                <div class="js-baloon-header">@d('contacts_ipswich_name')</div>
-                <div class="js-baloon-body">@d('contacts_ipswich_address')</div>
-                <div class="js-baloon-footer">@d('contacts_ipswich_phone_formatted')</div>
-            </div>
+            @endforeach
+
+
 
         </div>
         <div id="map" class="contact-page__map js-map"
