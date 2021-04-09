@@ -17,6 +17,7 @@ class SiteController extends Controller
             ->orderBy('id')
             ->with('languages')
             ->with('pages')
+            ->with('localOffices')
             ->get();
 
         return view('admin.sites.index')

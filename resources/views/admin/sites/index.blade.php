@@ -41,6 +41,9 @@
                 <th>
                     Картинки
                 </th>
+                <th>
+                    Местные офисы
+                </th>
                 @canany(['admin.sites.edit', 'admin.sites.delete'])
                     <th>
 
@@ -80,6 +83,13 @@
                             Картинки
                         </a>
                     </td>
+                    <td>
+                        <a href="{!! route('admin.local_offices.index', ['site_id' => $site->id]) !!}">
+                            {{ $site->localOffices->count() }} шт.
+                        </a>
+                    </td>
+
+
                     @canany(['admin.sites.edit', 'admin.sites.delete'])
                         <td class="text-nowrap">
                             @can('admin.sites.edit')

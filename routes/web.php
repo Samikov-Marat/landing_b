@@ -54,6 +54,20 @@ Route::prefix('admin')->middleware(['auth', 'user.route.access'])->group(
         Route::post('languages/move', 'admin\LanguageController@move')
             ->name('admin.languages.move');
 
+        Route::get('local-offices', 'admin\LocalOfficeController@index')
+            ->name('admin.local_offices.index');
+        Route::get('local-offices/add', 'admin\LocalOfficeController@edit')
+            ->name('admin.local_offices.add');
+        Route::get('local-offices/edit/{id}', 'admin\LocalOfficeController@edit')
+            ->name('admin.local_offices.edit');
+        Route::post('local-offices/save', 'admin\LocalOfficeController@save')
+            ->name('admin.local_offices.save')
+            ->withoutMiddleware(\App\Http\Middleware\TrimStrings::class);
+        Route::post('local-offices/delete', 'admin\LocalOfficeController@delete')
+            ->name('admin.local_offices.delete');
+        Route::post('local-offices/move', 'admin\LocalOfficeController@move')
+            ->name('admin.local_offices.move');
+
         Route::get('images', 'admin\ImageController@index')
             ->name('admin.images.index');
         Route::get('images/add', 'admin\ImageController@edit')
