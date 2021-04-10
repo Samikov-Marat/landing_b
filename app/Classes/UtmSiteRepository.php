@@ -41,8 +41,8 @@ class UtmSiteRepository
                 ($localOffice->utm_value == $utms[$localOffice->utm_tag])) {
                 return $localOffice->category;
             }
-            throw new LocalOfficeNotFoundByUtm('Офис по utm в cookies не найден');
         }
+        throw new LocalOfficeNotFoundByUtm('Офис по utm в cookies не найден');
     }
 
 }
