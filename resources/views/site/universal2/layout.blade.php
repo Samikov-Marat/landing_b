@@ -91,11 +91,26 @@
                 <div class="footer__right-img"></div>
                 <div class="footer__right-text">
                     <div class="footer__contacts">
-                        <div class="footer__phone-item">
-                            <a class="footer__phone" href="tel:@d('header_phone')">@d('header_phone')</a>
-                        </div>
+                        @if($site->localOffices->count() == 1)
+                        @foreach($site->localOffices as $localOffice)
+{{--                            <small>{{ $localOffice->localOfficetexts[0]->name }}</small>--}}
+                            @foreach($localOffice->localOfficePhones as $localOfficePhone)
+                            <div class="footer__phone-item">
+                                <a class="footer__phone" href="tel:{{ $localOfficePhone->phone_value }}">{{ $localOfficePhone->phone_text }}</a>
+                            </div>
+                                @break(1)
+                            @endforeach
+                            @break(1)
+                        @endforeach
+                        @endif
                     </div>
-                    <a class="footer__email footer-email" href="mailto:@d('footer_email')">@d('footer_email')</a>
+                    @if($site->localOffices->count() == 1)
+                        @foreach($site->localOffices as $localOffice)
+                            @foreach($localOffice->localOfficeEmails as $localOfficeEmails)
+                            <a class="footer__email footer-email" href="mailto:{!! $localOfficeEmails->email !!}">{!! $localOfficeEmails->email !!}</a>
+                            @endforeach
+                        @endforeach
+                    @endif
                 </div>
             </div>
         </div>
