@@ -30,7 +30,7 @@
             <input type="text" class="form-control" name="code" id="id_code"
                    value="{{ isset($localOffice) ? $localOffice->code : '' }}"
                    placeholder="Обозначение" autocomplete="off">
-            <small id="id_code_help" class="form-text text-muted">3 буквы из справочника офисов</small>
+            <small id="id_code_help" class="form-text text-muted">4 буквы из справочника офисов</small>
         </div>
 
         <div class="form-group">

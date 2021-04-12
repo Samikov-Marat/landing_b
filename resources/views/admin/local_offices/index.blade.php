@@ -1,14 +1,14 @@
 @extends('admin.layout')
 
 @section('header')
-    Языки сайта
+    Местные офисы
 @endsection
 
 @section('breadcrumbs')
     @include('admin.breadcrumbs', ['breadcrumbs' => [
         ['href' => route('admin.sites.index'), 'text' => 'Сайты'],
         ['text' => $site->name],
-        ['text' => 'Языки'],
+        ['text' => 'Местные офисы'],
     ]])
 @endsection
 
