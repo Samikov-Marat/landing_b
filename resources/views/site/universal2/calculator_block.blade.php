@@ -29,9 +29,12 @@
 
 @endphp
 
-
 <div id="calculator" class="calculator">
     <form action="{!! route('request.send') !!}" method="post" class="js-calculator-form"
+          data-language="{{ $dictionary['calculator_language'] }}"
+          data-currency-code="{{ $dictionary['calculator_currency_code'] }}"
+          data-currency-name="{{ $dictionary['calculator_currency_name'] }}"
+
           data-tariffs="{{ $tariffCollection }}">
         {!! csrf_field() !!}
         <div class="screen-content">

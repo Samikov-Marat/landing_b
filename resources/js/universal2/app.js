@@ -77,11 +77,11 @@ $(document).ready(function () {
         }
 
         this.getUsedCurrency = function () {
-            return 1;
+            return this.form.data('currencyCode');
         }
 
         this.getUsedCurrencyName = function () {
-            return '₽';
+            return this.form.data('currencyName');
         }
 
         this.getCityCodeFrom = function () {
@@ -108,7 +108,7 @@ $(document).ready(function () {
         }
 
         this.getLanguage = function () {
-            return 'rus';
+            return this.form.data('language');
         }
 
         this.getStep = function () {
@@ -126,7 +126,7 @@ $(document).ready(function () {
 
     };
 
-    let calculator = new calculatorClass('div.calculator');
+    let calculator = new calculatorClass($('div.calculator form'));
 
     let tariffApiClass = function () {
         this.url = 'https://webproxy.cdek.ru/calculator';
@@ -377,7 +377,7 @@ $(document).ready(function () {
                 params['limit'] = 5;
                 params['field'] = 'term';
                 params['value'] = $.trim(params['query']) + '%';
-                params['lang'] = 'rus';
+                params['lang'] = calculator.getLanguage();
             },
 
             transformResult: function (response) {
