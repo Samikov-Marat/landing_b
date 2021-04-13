@@ -4,7 +4,6 @@ ymaps.ready(init);
 function init() {
 
     var mapState = $('#map').data('map-state');
-    console.log(mapState);
 
     var myMap = new ymaps.Map('map', mapState);
 
