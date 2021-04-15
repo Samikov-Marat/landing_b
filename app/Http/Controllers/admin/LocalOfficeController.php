@@ -9,6 +9,7 @@ use App\LocalOfficeText;
 use App\Site;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 class LocalOfficeController extends Controller
 {
@@ -46,6 +47,36 @@ class LocalOfficeController extends Controller
     {
         if (isset($id)) {
             $localOffice = LocalOffice::select('id', 'code', 'utm_tag', 'utm_value', 'category', 'site_id')
+                ->with(
+                    [
+                        'localOfficeTexts' => function ($query) {
+                            $query->select(
+                                'id',
+                                'local_office_id',
+                                'name',
+                                'language_id',
+                                'address',
+                                'path',
+                                'worktime'
+                            );
+                        },
+                        'localOfficePhones' => function ($query) {
+                            $query->select(
+                                'id',
+                                'local_office_id',
+                                'phone_text',
+                                'phone_value'
+                            )->orderby('sort', 'ASC');
+                        },
+                        'localOfficeEmails' => function ($query) {
+                            $query->select(
+                                'id',
+                                'local_office_id',
+                                'email'
+                            )->orderby('sort', 'ASC');
+                        },
+                    ]
+                )
                 ->find($id);
             $siteId = $localOffice->site_id;
         } else {
@@ -95,6 +126,52 @@ class LocalOfficeController extends Controller
             $localOfficeText->save();
         }
 
+        $oldPhones = [];
+        if ($request->has('phone_old')) {
+            $oldPhones = $request->input('phone_old');
+            foreach ($oldPhones as $id => $phone) {
+                $localOfficePhone = $localOfficeRepository->getPhone($id);
+                $localOfficePhone->phone_text = $phone['phone_text'];
+                $localOfficePhone->phone_value = $phone['phone_value'];
+                $localOfficePhone->save();
+            }
+        }
+        $localOfficeRepository->deleteOtherPhones(array_keys($oldPhones));
+
+        if ($request->has('phone_new')) {
+            $newPhones = $request->input('phone_new');
+            foreach ($newPhones as $phone) {
+                $localOfficePhone = $localOfficeRepository->makePhone();
+                $localOfficePhone->phone_text = $phone['phone_text'];
+                $localOfficePhone->phone_value = $phone['phone_value'];
+                $localOfficePhone->sort = $localOfficeRepository->getNextPhoneSort();
+                $localOfficePhone->save();
+            }
+        }
+
+
+
+        $oldEmails = [];
+        if ($request->has('email_old')) {
+            $oldEmails = $request->input('email_old');
+            foreach ($oldEmails as $id => $email) {
+                $localOfficeEmail = $localOfficeRepository->getEmail($id);
+                $localOfficeEmail->email = $email['email'];
+
+                $localOfficeEmail->save();
+            }
+        }
+        $localOfficeRepository->deleteOtherEmails(array_keys($oldEmails));
+
+        if ($request->has('email_new')) {
+            $newEmails = $request->input('email_new');
+            foreach ($newEmails as $email) {
+                $localOfficeEmail = $localOfficeRepository->makeEmail();
+                $localOfficeEmail->email = $email['email'];
+                $localOfficeEmail->sort = $localOfficeRepository->getNextEmailSort();
+                $localOfficeEmail->save();
+            }
+        }
         return response()->redirectToRoute('admin.local_offices.index', ['site_id' => $localOffice->site_id]);
     }
 
