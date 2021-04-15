@@ -11,8 +11,8 @@
 </div>
 
 <div class="form-group">
-    <button type="button" class="btn btn-success js-local-office-email-add" data-name="email_new">Добавить строку
-        телефона
+    <button type="button" class="btn btn-outline-success js-local-office-email-add" data-name="email_new">
+        <i class="fas fa-plus"></i> Добавить почтовый адрес
     </button>
 </div>
 

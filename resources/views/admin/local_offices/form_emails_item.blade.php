@@ -11,6 +11,8 @@
     </div>
 
     <div class="col-auto">
-        <button type="button" class="btn btn-danger mb-2 js-local-office-email-delete">Удалить</button>
+        <button type="button" class="btn btn-outline-danger mb-2 js-local-office-email-delete">
+            <i class="fas fa-trash"></i> Удалить
+        </button>
     </div>
 </div>
