@@ -84,23 +84,23 @@
                 <div class="company-grow__numbers-title">@d('numbers_header')</div>
                 <div class="company-grow__numbers-list">
                     <div class="company-grow__numbers-item company-grow__numbers-item_icon_office">
-                        <div class="company-grow__numbers-item-num">2300+</div>
+                        <div class="company-grow__numbers-item-num">@d('numbers_office_value')</div>
                         <div>@d('numbers_office_text')</div>
                     </div>
                     <div class="company-grow__numbers-item company-grow__numbers-item_icon_shop">
-                        <div class="company-grow__numbers-item-num">64 000+</div>
+                        <div class="company-grow__numbers-item-num">@d('numbers_shop_value')</div>
                         <div>@d('numbers_shop_text')</div>
                     </div>
                     <div class="company-grow__numbers-item company-grow__numbers-item_icon_city">
-                        <div class="company-grow__numbers-item-num">36 000+</div>
+                        <div class="company-grow__numbers-item-num">@d('numbers_city_value')</div>
                         <div>@d('numbers_city_text')</div>
                     </div>
                     <div class="company-grow__numbers-item company-grow__numbers-item_icon_package">
-                        <div class="company-grow__numbers-item-num">200 000</div>
+                        <div class="company-grow__numbers-item-num">@d('numbers_package_value')</div>
                         <div>@d('numbers_package_text')</div>
                     </div>
                     <div class="company-grow__numbers-item company-grow__numbers-item_icon_world">
-                        <div class="company-grow__numbers-item-num">20</div>
+                        <div class="company-grow__numbers-item-num">@d('numbers_world_value')</div>
                         <div>@d('numbers_world_text')</div>
                     </div>
                 </div>
