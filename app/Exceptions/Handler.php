@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use App\Classes\AuthLoginReturn;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 
@@ -50,6 +51,10 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
+        if ($exception instanceof AliasNeedAuthentication) {
+            AuthLoginReturn::set($exception->url);
+            return redirect()->route('login');
+        }
         return parent::render($request, $exception);
     }
 }
