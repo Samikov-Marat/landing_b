@@ -3,6 +3,15 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
+
+        @if($aliasReturn)
+            <div class="alert alert-info">
+
+                Это <a href="{{ $aliasReturn }}" class="alert-link">{{ $aliasReturn }}</a> тестовый адрес страницы. По этому адресу её можно просмотреть только после авторизации.
+
+            </div>
+        @endif
+
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Login') }}</div>
