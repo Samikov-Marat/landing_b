@@ -18,13 +18,8 @@ class AuthLoginReturn
         return Session::has(self::KEY);
     }
 
-    public static function get()
+    public static function getAndClear()
     {
-        return Session::get(self::KEY);
-    }
-
-    public static function forget()
-    {
-        return Session::forget(self::KEY);
+        return Session::pull(self::KEY);
     }
 }
