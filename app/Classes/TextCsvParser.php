@@ -1,11 +1,11 @@
 <?php
 
-
 namespace App\Classes;
 
-
+use App\LocalOfficeText;
 use App\Site;
 use App\Text;
+use Exception;
 use Illuminate\Support\Facades\Storage;
 
 class TextCsvParser
@@ -15,6 +15,8 @@ class TextCsvParser
     var $handle = null;
 
     const DELIMITER = ',';
+
+    const REGULAR = '#^(?<table>\w+)\.(?<id>\d+)\.(?<attribute>\w+)#u';
 
     public function __construct(Site $site)
     {
@@ -64,10 +66,14 @@ class TextCsvParser
     public function loadAllTexts()
     {
         while (!empty($line = $this->parseLine())) {
-            if ($this->isPageHeader($line)) {
+            if(is_numeric($line[0])){
+                $this->loadTexts($line);
                 continue;
             }
-            $this->loadTexts($line);
+            if(preg_match(static::REGULAR, $line[0], $compositeId)){
+                $this->loadSpecial($line, $compositeId);
+                continue;
+            }
         }
     }
 
@@ -90,9 +96,41 @@ class TextCsvParser
         }
     }
 
-    public function isPageHeader($line)
-    {
-        return !is_numeric($line[0]);
+    public function loadSpecial($line, $compositeId){
+        if('office' == $compositeId['table']){
+            $this->loadOfficeAttribute($compositeId['id'], $compositeId['attribute'], $line);
+        }
+    }
+
+    public function loadOfficeAttribute($id, $attribute, $line){
+        $dynamicAttributes = ['name', 'address', 'path', 'worktime'];
+        if(!in_array($attribute, $dynamicAttributes)){
+            throw new Exception('Это поле нельзя загрузить');
+        }
+
+        array_shift($line);
+        foreach ($this->languages as $language) {
+            if (empty($line)) {
+                throw new \Exception('Недостаточно данных');
+            }
+            $value = array_shift($line);
+
+            $attributes = array_merge(['id', 'local_office_id', 'language_id'], $dynamicAttributes);
+            $text = LocalOfficeText::select($attributes)
+                ->where('local_office_id', $id)
+                ->where('language_id', $language)
+                ->firstOrNew();
+            $text->local_office_id = $id;
+            $text->language_id = $language;
+
+            foreach ($dynamicAttributes as $dynamicAttribute) {
+                if(is_null($text->getAttribute($dynamicAttribute))){
+                    $text->setAttribute($dynamicAttribute, '');
+                }
+            }
+            $text->setAttribute($attribute, $value);
+            $text->save();
+        }
     }
 
     public function parseLine()

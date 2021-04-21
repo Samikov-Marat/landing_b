@@ -40,6 +40,21 @@ class TextRepository
                     }
                 ]
             )
+            ->with(
+                [
+                    'localOffices' => function ($query) {
+                        $query->select('id', 'site_id', 'code')
+                            ->orderBy('sort');
+                    }
+                ]
+            )
+            ->with(
+                [
+                    'localOffices.localOfficeTexts' => function ($query) {
+                        $query->select('id', 'local_office_id', 'language_id', 'name', 'address', 'path', 'worktime');
+                    }
+                ]
+            )
             ->find($site_id);
     }
 }

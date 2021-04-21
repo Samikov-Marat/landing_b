@@ -101,7 +101,6 @@ class TextController extends Controller
     public function download(Request $request)
     {
         $site = TextRepository::getSite($request->input('site_id'));
-
         return response()->streamDownload(
             function () use ($site) {
                 $csv = new TextCsv();
