@@ -18,27 +18,27 @@
 
             @foreach($site->localOffices as $localOffice)
 
-            <div class="contact-page__item">
+                <div class="contact-page__item">
+                    @if($localOffice->localOfficeTexts->count())
+                        <div class="contact-page__city">{{ $localOffice->localOfficeTexts[0]->name }}</div>
+                        <div class="contact-page__street">{{ $localOffice->localOfficeTexts[0]->address }}</div>
+                        <div class="contact-page__metro">{{ $localOffice->localOfficeTexts[0]->path }}</div>
 
-                <div class="contact-page__city">{{ $localOffice->localOfficeTexts[0]->name }}</div>
-                <div class="contact-page__street">{{ $localOffice->localOfficeTexts[0]->address }}</div>
-                <div class="contact-page__metro">{{ $localOffice->localOfficeTexts[0]->path }}</div>
-
-                <div class="contact-page__schedule">
-                    {!! nl2br(e($localOffice->localOfficeTexts[0]->worktime)) !!}
+                        <div class="contact-page__schedule">
+                            {!! nl2br(e($localOffice->localOfficeTexts[0]->worktime)) !!}
+                        </div>
+                    @endif
+                    @foreach($localOffice->localOfficePhones as $localOfficePhone)
+                        <div class="contact-page__phone">{{ $localOfficePhone->phone_text }}</div>
+                    @endforeach
+                    @foreach($localOffice->localOfficeEmails as $localOfficeEmail)
+                        <div class="contact-page__email">E-mail: <a href="mailto:{{ $localOfficeEmail->email }}"
+                                                                    class="contact-page__link">{{ $localOfficeEmail->email }}</a>
+                        </div>
+                    @endforeach
                 </div>
-                @foreach($localOffice->localOfficePhones as $localOfficePhone)
-                    <div class="contact-page__phone">{{ $localOfficePhone->phone_text }}</div>
-                @endforeach
-                @foreach($localOffice->localOfficeEmails as $localOfficeEmail)
-                <div class="contact-page__email">E-mail: <a href="mailto:{{ $localOfficeEmail->email }}"
-                                                            class="contact-page__link">{{ $localOfficeEmail->email }}</a>
-                </div>
-                @endforeach
-            </div>
 
             @endforeach
-
 
 
         </div>
