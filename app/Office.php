@@ -22,5 +22,4 @@ class Office extends Model
             [$x, $y, $x2, $y2]
         );
     }
-
 }
