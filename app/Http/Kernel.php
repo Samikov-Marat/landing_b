@@ -65,6 +65,7 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'user.route.access' => \App\Http\Middleware\UserRouteAccess::class,
         'save.utm.to.cookies' => \App\Http\Middleware\SaveUtmToCookies::class,
+        'http.secure' => \App\Http\Middleware\HttpSecure::class,
     ];
 
     /**
