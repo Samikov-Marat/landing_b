@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Classes\AliasHttpCookie;
 use App\Classes\AuthLoginReturn;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 
 
 class LoginController extends Controller
@@ -55,6 +57,7 @@ class LoginController extends Controller
 
     protected function authenticated(Request $request, $user)
     {
+        Cookie::queue(AliasHttpCookie::getInstance()->get());
         if (AuthLoginReturn::exists()) {
             return redirect(AuthLoginReturn::getAndClear());
         }

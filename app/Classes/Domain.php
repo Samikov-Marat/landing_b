@@ -30,15 +30,8 @@ class Domain
         $domain = $this->request->server('HTTP_HOST');
 
         try {
-            $alias = Alias::where('domain', $domain)
-                ->with('site')
-                ->firstOrFail();
-            if (!$alias->site->count()) {
-                throw new Exception('Не найден сайт');
-            }
-            if(Auth::guest()){
-                throw new AliasNeedAuthentication('Страница только для авторизованных пользователей', $this->request->fullUrl());
-            }
+            $alias = $this->getAlias($domain);
+            $this->checkAliasAccess();
             return $alias->site->domain;
         } catch (ModelNotFoundException $e) {
             return $domain;
@@ -48,4 +41,30 @@ class Domain
         }
     }
 
+    private function getAlias($domain)
+    {
+        $alias = Alias::where('domain', $domain)
+            ->with('site')
+            ->firstOrFail();
+        if (!$alias->site->count()) {
+            throw new Exception('Не найден сайт');
+        }
+        return $alias;
+    }
+
+    /**
+     * Домены 4 уровня для тестовых версий сайтов оказались без https.
+     * Поэтому сделана вторизация по cookies для запрета доступа поисковикам.
+     * @throws AliasNeedAuthentication
+     */
+    private function checkAliasAccess()
+    {
+        if (Auth::guest() &&
+            !$this->request->hasCookie(AliasHttpCookie::NAME)) {
+            throw new AliasNeedAuthentication(
+                'Страница только для авторизованных пользователей',
+                $this->request->fullUrl()
+            );
+        }
+    }
 }
