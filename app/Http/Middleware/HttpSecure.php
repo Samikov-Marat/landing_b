@@ -16,7 +16,7 @@ class HttpSecure
      */
     public function handle($request, Closure $next)
     {
-        if (App::environment('production') && !$request->secure()) {
+        if (App::environment('production') && !$request->isSecure()) {
             return redirect()->secure($request->getRequestUri());
         }
         return $next($request);

@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 
-Route::prefix('admin')->middleware(['auth', 'user.route.access', 'http.secure'])->group(
+Route::prefix('admin')->middleware(['auth', 'user.route.access'])->group(
     function () {
         Route::get('/', 'admin\IndexController@index')
             ->name('admin.index');
