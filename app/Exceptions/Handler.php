@@ -53,9 +53,9 @@ class Handler extends ExceptionHandler
     {
         if ($exception instanceof AliasNeedAuthentication) {
             AuthLoginReturn::set($exception->url);
-            if(!$request->isSecure()){
-                return redirect(env('ALIAS_REDIRECT'));
-            }
+//            if(!$request->isSecure()){
+//                return redirect(env('ALIAS_REDIRECT'));
+//            }
             return redirect()->route('login');
         }
         return parent::render($request, $exception);
