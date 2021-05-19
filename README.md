@@ -22,3 +22,5 @@ composer install
 ```
 php artisan ide-helper:generate
 ```
+
+https работает для адреса landing.local (через файл hosts)
