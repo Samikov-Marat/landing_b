@@ -29,10 +29,10 @@ class ApiMarketing
             'name' => $form['name'],
             'phone' => $form['phone'],
             'email' => $form['email'],
-            'project_name' => 'Лендинг с админкой',
+            'project_name' => $domain,
             'message' => $message,
             'country_id' => static::getCountryId($domain),
-            'url' => $domain,
+            'url' => $form['url'] ?? $domain,
         ];
     }
 
@@ -40,13 +40,13 @@ class ApiMarketing
     {
         return [
             'subject' => 'Лендинг. Обратная связь.',
-            'name' => $form['name'],
-            'phone' => $form['phone'],
-            'email' => $form['email'],
-            'project_name' => 'Лендинг с админкой',
-            'message' => $form['message'],
+            'name' => $form['name'] ?? '',
+            'phone' => $form['phone'] ?? '',
+            'email' => $form['email'] ?? '',
+            'project_name' => $domain,
+            'message' => $form['message'] ?? '',
             'country_id' => static::getCountryId($domain),
-            'url' => $domain,
+            'url' => $form['url'] ?? $domain,
         ];
     }
 
