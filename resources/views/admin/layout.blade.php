@@ -15,11 +15,7 @@
 {{--@stop--}}
 
 @section('js')
-    <script src="/admin_files/admin.js?v={{ time() . '-' . microtime(true) }}"></script>
-    <script src="/admin_files/texts.js?v={{ time() . '-' . microtime(true) }}"></script>
-    <script src="/admin_files/permissions.js?v={{ time() . '-' . microtime(true) }}"></script>
-    <script src="/admin_files/pages.js?v={{ time() . '-' . microtime(true) }}"></script>
-    <script src="/admin_files/local_offices.js?v={{ time() . '-' . microtime(true) }}"></script>
+    <script src="{{ mix('admin_files/new_admin.js') }}"></script>
 @stop
 
 @section('footer')

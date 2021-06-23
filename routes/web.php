@@ -168,6 +168,15 @@ Route::prefix('admin')->middleware(['auth', 'user.route.access'])->group(
             ->name('admin.users.save_role_list');
         Route::get('users/permission-tree', 'admin\UserController@permissionTree')
             ->name('admin.users.permission_tree');
+
+        Route::get('top-offices', 'admin\TopOfficeController@index')
+            ->name('admin.top_offices.index');
+        Route::get('top-offices/add', 'admin\TopOfficeController@edit')
+            ->name('admin.top_offices.add');
+        Route::get('top-offices/save', 'admin\TopOfficeController@save')
+            ->name('admin.top_offices.save');
+        Route::get('top-offices/search', 'admin\TopOfficeController@search')
+            ->name('admin.top_offices.search');
     }
 );
 

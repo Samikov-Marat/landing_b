@@ -12,6 +12,17 @@ mix.combine([
 ], 'public/universal2/new.js').version();
 
 
-mix.copy('resources/css/universal2/app.css', 'public/universal2/app.css');
-mix.copy('resources/css/universal2/custom.css', 'public/universal2/custom.css');
+mix.copy('resources/css/universal2/app.css', 'public/universal2/app.css').version();
+mix.copy('resources/css/universal2/custom.css', 'public/universal2/custom.css').version();
+
+mix.copy('vendor/almasaeed2010/adminlte/plugins/select2/', 'public/admin_files/select2').version();
+
+mix.combine([
+    "resources/js/admin_files/admin.js",
+    "resources/js/admin_files/texts.js",
+    "resources/js/admin_files/permissions.js",
+    "resources/js/admin_files/pages.js",
+    "resources/js/admin_files/local_offices.js",
+    "resources/js/admin_files/top_offices.js",
+], 'public/admin_files/new_admin.js').version();
 
