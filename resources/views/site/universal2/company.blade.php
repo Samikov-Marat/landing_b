@@ -142,9 +142,9 @@
         </div>
         <div class="square-card square-card_icon_parcels">
             <div class="square-card__bg"></div>
-            <div class="square-card__title">@d('card_2_header')</div>
+            <div class="square-card__title">@d('card_5_header')</div>
             <div class="square-card__description">
-                @d('card_2_text_1') <span class="typo-bold">@d('card_2_text_2')</span> @d('card_2_text_3') <span class="typo-bold">@d('card_2_text_4')</span>
+                @d('card_5_text_1') <span class="typo-bold">@d('card_5_text_2')</span> @d('card_5_text_3') <span class="typo-bold">@d('card_5_text_4')</span>
             </div>
         </div>
     </div>
