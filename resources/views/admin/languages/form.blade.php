@@ -39,6 +39,17 @@
                    placeholder="название" autocomplete="off">
             <small id="id_name_help" class="form-text text-muted">Полное название языка. Например, <q>Английский язык</q></small>
         </div>
+        <div class="form-group">
+            <div class="form-check">
+                <input type="checkbox" name="rtl" value="1"
+                       id="check_rtl" {{ (isset($language) && $language->rtl)?'checked':'' }}
+                       class="form-check-input">
+                <label for="check_rtl" class="form-check-label">
+                    Письмо справа налево (RTL)
+                </label>
+            </div>
+        </div>
+
         <button type="submit" class="btn btn-primary">Сохранить</button>
     </form>
 

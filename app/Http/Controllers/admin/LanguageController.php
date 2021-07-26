@@ -17,7 +17,7 @@ class LanguageController extends Controller
             ->with(
                 [
                     'languages' => function ($query) {
-                        $query->select('id', 'site_id', 'shortname', 'name', 'sort')
+                        $query->select('id', 'site_id', 'shortname', 'name', 'rtl', 'sort')
                             ->orderBy('sort');
                     },
                 ]
@@ -30,7 +30,7 @@ class LanguageController extends Controller
     public function edit($id = null, Request $request)
     {
         if (isset($id)) {
-            $language = Language::select('id', 'shortname', 'name', 'site_id')
+            $language = Language::select('id', 'shortname', 'name', 'site_id', 'rtl')
                 ->find($id);
             $siteId = $language->site_id;
         } else {
@@ -58,6 +58,8 @@ class LanguageController extends Controller
         $language->site_id = $request->input('site_id');
         $language->shortname = $request->input('shortname');
         $language->name = $request->input('name');
+        $language->rtl = $request->input('rtl', false);
+
 
         if (!$isEditMode) {
             $language->sort = Language::where('site_id', $language->site_id)->max('sort') + self::SORT_STEP;
