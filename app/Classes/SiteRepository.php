@@ -20,7 +20,7 @@ class SiteRepository
             ->with(
                 [
                     'languages' => function ($query) {
-                        $query->select('id', 'site_id', 'shortname', 'name')
+                        $query->select('id', 'site_id', 'shortname', 'rtl', 'name')
                             ->orderBy('sort');
                     }
                 ]
