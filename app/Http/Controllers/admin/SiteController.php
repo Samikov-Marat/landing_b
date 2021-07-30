@@ -47,6 +47,8 @@ class SiteController extends Controller
         $site->domain = $request->input('domain');
         $site->name = $request->input('name');
 
+        $site->project_id = 0;
+
         $site->save();
 
         return response()->redirectToRoute('admin.sites.index');
