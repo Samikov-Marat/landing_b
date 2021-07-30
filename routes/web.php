@@ -173,10 +173,18 @@ Route::prefix('admin')->middleware(['auth', 'user.route.access'])->group(
             ->name('admin.top_offices.index');
         Route::get('top-offices/add', 'admin\TopOfficeController@edit')
             ->name('admin.top_offices.add');
-        Route::get('top-offices/save', 'admin\TopOfficeController@save')
+        Route::get('top-offices/edit/{id}', 'admin\TopOfficeController@edit')
+            ->name('admin.top_offices.edit');
+        Route::post('top-offices/save', 'admin\TopOfficeController@save')
             ->name('admin.top_offices.save');
+        Route::post('top-offices/delete', 'admin\TopOfficeController@delete')
+            ->name('admin.top_offices.delete');
         Route::get('top-offices/search', 'admin\TopOfficeController@search')
             ->name('admin.top_offices.search');
+        Route::post('top-offices/move', 'admin\TopOfficeController@move')
+            ->name('admin.top_offices.move');
+
+
     }
 );
 

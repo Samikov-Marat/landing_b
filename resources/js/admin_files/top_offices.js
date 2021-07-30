@@ -19,6 +19,7 @@ $(function () {
     });
 
     function formatRepo(repo) {
+        console.log('formatRepo');
         var $container = $(
             '<div class="clearfix">' +
             '<samp style="background: #9affc6">' + repo.code + '</samp> ' +
@@ -29,12 +30,20 @@ $(function () {
     }
 
     function formatRepoSelection(repo) {
+        if ($(repo.element).data('old') !== undefined) {
+            office = $(repo.element).data('old');
+        } else {
+            office = repo;
+        }
+
         var $container = $(
             '<div class="clearfix">' +
-            '<samp style="background: #9affc6">' + repo.code + '</samp> ' +
-            repo.full_address +
+            '<samp style="background: #9affc6">' + office.code + '</samp> ' +
+            office.full_address +
             '</div>'
         );
         return $container;
     }
+
+
 });

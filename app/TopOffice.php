@@ -6,7 +6,7 @@ use App\Classes\OfficeHash;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class TopOffices extends Model
+class TopOffice extends Model
 {
     public function office(): HasOne
     {

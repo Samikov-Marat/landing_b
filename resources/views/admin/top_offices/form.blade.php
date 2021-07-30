@@ -26,8 +26,13 @@
 
         <div class="form-group">
             <label for="id_domain">Офис</label>
-
-            <select class="form-select form-control js-top-office-code-search" name="code" data-ajax-url="{!! route('admin.top_offices.search') !!}">
+            <select class="form-select form-control js-top-office-code-search" name="code"
+                    data-ajax-url="{!! route('admin.top_offices.search') !!}">
+                @if(isset($topOffice) && isset($topOffice->office))
+                    <option value="{{ $topOffice->code }}" selected data-old="{{ $topOffice->office }}">
+                        {{ $topOffice->code }}
+                    </option>
+                @endif
             </select>
 
             <small id="id_domain_help" class="form-text text-muted">Адрес</small>

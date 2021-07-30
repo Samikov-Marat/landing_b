@@ -2,6 +2,7 @@
 
 namespace App\Classes;
 
+use App\Classes\AdapterToSelect2\OfficeAdapter;
 use App\Office;
 
 class TopOfficeSearcher
@@ -11,32 +12,26 @@ class TopOfficeSearcher
 
     const PER_PAGE = 7;
 
-    public function __construct($term, $page)
+    const COLUMNS = ['id', 'code', 'full_address'];
+
+    var $paginator;
+
+    public static function getInstance(): self
     {
-        $this->term = $term;
-        $this->page = $page;
+        return new self();
     }
 
-    public static function getInstance($term, $page): self
+    public static function search($term, $page): Select2SearchResult
     {
-        return new self($term, $page);
-    }
-
-    public function search(): TopOfficeSearchResult
-    {
-        return new TopOfficeSearchResult($this->getPaginator());
-    }
-
-    private function getPaginator()
-    {
-        return Office::where('full_address', 'like', '%' . $this->term . '%')
+        $escapedTerm = str_replace(['%', '_'], ['\\%', '\\_'], $term);
+        $paginator = Office::where('full_address', 'like', '%' . $escapedTerm . '%')
             ->simplePaginate(
                 self::PER_PAGE,
-                ['id', 'code', 'full_address'],
+                self::COLUMNS,
                 'page',
-                $this->page
+                $page
             );
+        $adapter = new OfficeAdapter();
+        return new Select2SearchResult($paginator, $adapter);
     }
-
-
 }

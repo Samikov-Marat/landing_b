@@ -2,16 +2,22 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Classes\OfficeHash;
 use App\Classes\TopOfficeSearcher;
 use App\Http\Controllers\Controller;
-use App\TopOffices;
+use App\Office;
+use App\TopOffice;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 
 class TopOfficeController extends Controller
 {
+    const SORT_STEP = 10;
+
     public function index()
     {
-        $topOffices = TopOffices::select('id', 'code', 'hash')
+        $topOffices = TopOffice::select('id', 'code', 'hash')
+            ->with('office')
             ->orderBy('sort')
             ->get();
 
@@ -19,11 +25,11 @@ class TopOfficeController extends Controller
             ->with('topOffices', $topOffices);
     }
 
-
     public function edit($id = null)
     {
         if (isset($id)) {
-            $topOffice = TopOffices::select('id', 'code', 'domain')->find($id);
+            $topOffice = TopOffice::select('id', 'code', 'hash')->with('office:code,full_address')
+                ->find($id);
         } else {
             $topOffice = null;
         }
@@ -34,29 +40,79 @@ class TopOfficeController extends Controller
 
     public function save(Request $request)
     {
-        if ($request->has('id')) {
-            $site = Site::find($request->input('id'));
+        $isEditMode = $request->has('id');
+        if ($isEditMode) {
+            $topOffice = TopOffice::find($request->input('id'));
         } else {
-            $site = new Site();
+            $topOffice = new TopOffice();
         }
-
-        $site->domain = $request->input('domain');
-        $site->name = $request->input('name');
-
-        $site->save();
-
-        return response()->redirectToRoute('admin.sites.index');
+        try {
+            $office = Office::select(
+                'code',
+                'name',
+                'work_time',
+                'address',
+                'full_address',
+                'address_comment',
+                'email',
+                'phone'
+            )->where('code', $request->input('code'))
+                ->firstOrFail();
+        } catch (ModelNotFoundException $e) {
+            abort(401, 'Не найден базовый (ЭК5) офис ' . $topOffice->code);
+            return '';
+        }
+        $topOffice->code = $office->code;
+        $topOffice->hash = OfficeHash::getInstance($office)->getHash();
+        if (!$isEditMode) {
+            $topOffice->sort = TopOffice::max('sort') + self::SORT_STEP;
+        }
+        $topOffice->save();
+        return response()->redirectToRoute('admin.top_offices.index');
     }
 
     public function search(Request $request)
     {
-        $topOfficeSearcher = TopOfficeSearcher::getInstance(
-            $request->input('term'),
-            $request->input('page', 1)
-        );
+        $term = $request->input('term', '');
+        $page = $request->input('page', 1);
+        $topOfficeSearchResult = TopOfficeSearcher::getInstance()->search($term, $page);
         \Debugbar::disable();
-        return response()->json($topOfficeSearcher->search()->asArray());
+        return response()->json($topOfficeSearchResult->asArray());
     }
 
 
+    public function move(Request $request)
+    {
+        $topOffice = TopOffice::select('id', 'sort')
+            ->find($request->input('id'));
+
+        $direction = $request->input('direction');
+        if ('up' == $direction) {
+            $sign = '<';
+            $orderByDirection = 'desc';
+        }
+        if ('down' == $direction) {
+            $sign = '>';
+            $orderByDirection = 'asc';
+        }
+        $otherTopOffice = TopOffice::select('id', 'sort')
+            ->where('sort', $sign, $topOffice->sort)
+            ->orderBy('sort', $orderByDirection)
+            ->first();
+
+        $sort = $topOffice->sort;
+        $topOffice->sort = $otherTopOffice->sort;
+        $topOffice->save();
+        $otherTopOffice->sort = $sort;
+        $otherTopOffice->save();
+
+        return response()->redirectToRoute('admin.top_offices.index');
+    }
+
+    public function delete(Request $request)
+    {
+        $topOffice = TopOffice::findOrFail($request->input('id'));
+        $topOffice->delete();
+        return response()->redirectToRoute('admin.top_offices.index');
+    }
 }
