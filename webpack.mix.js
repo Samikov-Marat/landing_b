@@ -12,6 +12,7 @@ mix.combine([
     'resources/js/universal2/map.js'
 ], 'public/universal2/new.js').version();
 
+
 mix.combine([
     'public/personal/assets/vendor/jquery.min.js',
     'public/personal/assets/vendor/owl.carousel.min.js',
