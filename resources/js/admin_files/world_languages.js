@@ -1,6 +1,6 @@
 $(function () {
 
-    let target = $('.js-top-office-code-search')
+    let target = $('.js-world-languages-code-search')
     target.select2({
         language: 'ru',
         ajax: {
@@ -21,8 +21,8 @@ $(function () {
     function formatRepo(repo) {
         var $container = $(
             '<div class="clearfix">' +
-            '<samp style="background: #9affc6">' + repo.code + '</samp> ' +
-            repo.full_address +
+            '<samp style="background: #9affc6">' + repo.code_iso + '</samp> ' +
+            repo.name +
             '</div>'
         );
         return $container;
@@ -37,8 +37,8 @@ $(function () {
 
         var $container = $(
             '<div class="clearfix">' +
-            '<samp style="background: #9affc6">' + office.code + '</samp> ' +
-            office.full_address +
+            '<samp style="background: #9affc6">' + office.code_iso + '</samp> ' +
+            office.name +
             '</div>'
         );
         return $container;

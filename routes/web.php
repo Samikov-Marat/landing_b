@@ -185,6 +185,28 @@ Route::prefix('admin')->middleware(['auth', 'user.route.access'])->group(
             ->name('admin.top_offices.move');
 
 
+        Route::get('world-languages', 'admin\WorldLanguageController@index')
+            ->name('admin.world_languages.index');
+        Route::get('world-languages/add', 'admin\WorldLanguageController@edit')
+            ->name('admin.world_languages.add');
+        Route::get('world-languages/edit/{id}', 'admin\WorldLanguageController@edit')
+            ->name('admin.world_languages.edit');
+        Route::post('world-languages/save', 'admin\WorldLanguageController@save')
+            ->name('admin.world_languages.save');
+        Route::post('world-languages/delete', 'admin\WorldLanguageController@delete')
+            ->name('admin.world_languages.delete');
+        Route::post('world-languages/move', 'admin\WorldLanguageController@move')
+            ->name('admin.world_languages.move');
+        Route::get('world-languages/search-iso', 'admin\WorldLanguageController@searchIso')
+            ->name('admin.world_languages.search_iso');
+
+        Route::get('top-office-world-languages', 'admin\TopOfficeWorldLanguageController@index')
+            ->name('admin.top_office_world_languages.index');
+        Route::get('top-office-world-languages/edit', 'admin\TopOfficeWorldLanguageController@edit')
+            ->name('admin.top_office_world_languages.edit');
+        Route::post('top-office-world-languages/save', 'admin\TopOfficeWorldLanguageController@save')
+            ->name('admin.top_office_world_languages.save');
+
     }
 );
 

@@ -2,14 +2,13 @@
 
 namespace App\Classes;
 
-use App\Classes\AdapterToSelect2\OfficeAdapter;
-use App\Office;
+use App\Classes\AdapterToSelect2\LanguageIsoAdapter;
+use App\LanguageIso;
 
-class TopOfficeSearcher
+class LanguageIsoSearcher
 {
     const PER_PAGE = 7;
-
-    const COLUMNS = ['id', 'code', 'full_address'];
+    const COLUMNS = ['code_iso', 'name'];
 
     public static function getInstance(): self
     {
@@ -19,14 +18,14 @@ class TopOfficeSearcher
     public static function search($term, $page): Select2SearchResult
     {
         $escapedTerm = str_replace(['%', '_'], ['\\%', '\\_'], $term);
-        $paginator = Office::where('full_address', 'like', '%' . $escapedTerm . '%')
+        $paginator = LanguageIso::where('name', 'like', '%' . $escapedTerm . '%')
             ->simplePaginate(
                 self::PER_PAGE,
                 self::COLUMNS,
                 'page',
                 $page
             );
-        $adapter = new OfficeAdapter();
+        $adapter = new LanguageIsoAdapter();
         return new Select2SearchResult($paginator, $adapter);
     }
 }

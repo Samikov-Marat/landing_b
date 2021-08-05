@@ -12,15 +12,6 @@ mix.combine([
     'resources/js/universal2/map.js'
 ], 'public/universal2/new.js').version();
 
-mix.combine([
-    'public/personal/assets/vendor/jquery.min.js',
-    'public/personal/assets/vendor/owl.carousel.min.js',
-    'public/personal/assets/vendor/jquery.autocomplete.js',
-    'resources/js/personal/app.js',
-    'resources/js/universal2/tariffs.js',
-    'resources/js/universal2/calculator.js',
-], 'public/personal/new.js').version();
-
 
 mix.copy('resources/css/universal2/app.css', 'public/universal2/app.css').version();
 mix.copy('resources/css/universal2/custom.css', 'public/universal2/custom.css').version();
@@ -34,5 +25,6 @@ mix.combine([
     "resources/js/admin_files/pages.js",
     "resources/js/admin_files/local_offices.js",
     "resources/js/admin_files/top_offices.js",
+    "resources/js/admin_files/world_languages.js",
 ], 'public/admin_files/new_admin.js').version();
 

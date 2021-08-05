@@ -15,6 +15,9 @@ class CreateWorldLanguagesTable extends Migration
     {
         Schema::create('world_languages', function (Blueprint $table) {
             $table->id();
+            $table->string('language_code_iso', 3);
+            $table->string('name');
+            $table->bigInteger('sort');
             $table->timestamps();
         });
     }

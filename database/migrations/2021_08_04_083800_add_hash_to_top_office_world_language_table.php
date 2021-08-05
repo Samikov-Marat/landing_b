@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTopOfficeLanguagesTable extends Migration
+class AddHashToTopOfficeWorldLanguageTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class CreateTopOfficeLanguagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('top_office_languages', function (Blueprint $table) {
-            $table->id();
-            $table->string('code');
-            $table->bigInteger('sort');
-            $table->timestamps();
+        Schema::table('top_office_world_language', function (Blueprint $table) {
+            $table->string('office_hash')->after('work_time');
         });
     }
 
@@ -28,6 +25,8 @@ class CreateTopOfficeLanguagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('top_office_languages');
+        Schema::table('top_office_world_language', function (Blueprint $table) {
+            $table->dropColumn('office_hash');
+        });
     }
 }

@@ -10,7 +10,7 @@
 
 @section('breadcrumbs')
     @include('admin.breadcrumbs', ['breadcrumbs' => [
-        ['href' => route('admin.top_offices.index'), 'text' => 'Избранные офисы'],
+        ['href' => route('admin.top_offices.index'), 'text' => 'Международные офисы'],
         ['text' => isset($topOffice)?'Редактирование':'Добавление'],
     ]])
 @endsection

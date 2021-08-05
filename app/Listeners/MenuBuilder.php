@@ -23,7 +23,8 @@ class MenuBuilder
         $this->menu = [
             ['route' => 'admin.sites.index', 'text' => 'Сайты', 'icon' => 'far fa-folder',],
             ['route' => 'admin.pages.index', 'text' => 'Страницы', 'icon' => 'far fa-file',],
-            ['route' => 'admin.top_offices.index', 'text' => 'Избранные офисы', 'icon' => 'fab fa-fort-awesome',],
+            ['route' => 'admin.top_offices.index', 'text' => 'Международные офисы', 'icon' => 'fab fa-fort-awesome',],
+            ['route' => 'admin.world_languages.index', 'text' => 'Международные языки', 'icon' => 'fas fa-om',],
             ['route' => 'admin.permissions.index', 'text' => 'Разрешения', 'icon' => 'fas fa-map-signs',],
             ['route' => 'admin.roles.index', 'text' => 'Роли', 'icon' => 'far fa-address-card',],
             ['route' => 'admin.users.index', 'text' => 'Пользователи', 'icon' => 'fas fa-user',],

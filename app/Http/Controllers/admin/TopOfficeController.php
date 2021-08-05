@@ -7,6 +7,7 @@ use App\Classes\TopOfficeSearcher;
 use App\Http\Controllers\Controller;
 use App\Office;
 use App\TopOffice;
+use App\WorldLanguage;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 
@@ -17,12 +18,13 @@ class TopOfficeController extends Controller
     public function index()
     {
         $topOffices = TopOffice::select('id', 'code', 'hash')
-            ->with('office')
+            ->with('office', 'worldLanguages')
             ->orderBy('sort')
             ->get();
-
+        $worldLanguageTotal = WorldLanguage::count();
         return view('admin.top_offices.index')
-            ->with('topOffices', $topOffices);
+            ->with('topOffices', $topOffices)
+            ->with('worldLanguageTotal', $worldLanguageTotal);
     }
 
     public function edit($id = null)

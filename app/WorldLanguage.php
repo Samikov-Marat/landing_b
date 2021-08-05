@@ -6,24 +6,23 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class TopOffice extends Model
+class WorldLanguage extends Model
 {
-    public function office(): HasOne
+    public function languageIso(): HasOne
     {
-        return $this->hasOne('App\Office', 'code', 'code');
+        return $this->hasOne('App\LanguageIso', 'code_iso', 'language_code_iso');
     }
 
-    public function worldLanguages(): BelongsToMany
+    public function topOffices(): BelongsToMany
     {
         return $this->belongsToMany(
-            'App\WorldLanguage',
+            'App\TopOffice',
             'App\TopOfficeWorldLanguage',
-            'top_office_id',
             'world_language_id',
+            'top_office_id',
             'id',
             'id'
-        )
-            ->withPivot(
+        )->withPivot(
             [
                 'name',
                 'full_address',

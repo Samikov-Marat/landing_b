@@ -1,7 +1,7 @@
 @extends('admin.layout')
 
 @section('header')
-    Избранные офисы
+    Международные офисы
 @endsection
 
 @can('admin.top_offices.add')
@@ -25,12 +25,12 @@
                     Название, адрес
                 </th>
                 <th>
-                    Актуальность
+                    Переводы
                 </th>
                 @can('admin.top_offices.move')
-                <th>
-                    Сортировка
-                </th>
+                    <th>
+                        Сортировка
+                    </th>
                 @endcan
 
                 @canany(['admin.top_offices.edit', 'admin.top_offices.delete'])
@@ -52,40 +52,49 @@
                         {{ $topOffice->office->full_address }}
                     </td>
                     <td>
-                        @if(!$topOffice->isActual)
-                            Нет
-                        @endif
+                        <a href="{!! route('admin.top_office_world_languages.index', ['top_office_id' => $topOffice->id]) !!}">
+                            Переводы
+                        </a>
+                        @php
+                            $actualHash = \App\Classes\OfficeHash::getInstance($topOffice->office)->getHash();
+                            $worldLanguageActualCount = $topOffice->worldLanguages->filter(function ($worldLanguage, $key)use($actualHash) {
+                                    return $worldLanguage->pivot->office_hash == $actualHash;
+                                })->count();
+                        @endphp
+                        {{ $worldLanguageActualCount }} / {{ $worldLanguageTotal }}
                     </td>
                     @can('admin.top_offices.move')
-                    <td class="text-center">
-                        <form method="post" action="{!! route('admin.top_offices.move') !!}">
-                            @csrf
-                            <input type="hidden" name="id" value="{{ $topOffice->id }}">
+                        <td class="text-center">
+                            <form method="post" action="{!! route('admin.top_offices.move') !!}">
+                                @csrf
+                                <input type="hidden" name="id" value="{{ $topOffice->id }}">
 
-                            @if (!$loop->first)
-                                <button type="submit" name="direction" value="up" class="btn btn-primary btn-sm"
-                                        title="Вверх">
-                                    <i class="fas fa-arrow-up"></i>
-                                </button>
-                            @endif
-                            @if (!$loop->last)
-                                <button type="submit" name="direction" value="down" class="btn btn-primary btn-sm"
-                                        title="Вниз">
-                                    <i class="fas fa-arrow-down"></i>
-                                </button>
-                            @endif
+                                @if (!$loop->first)
+                                    <button type="submit" name="direction" value="up" class="btn btn-primary btn-sm"
+                                            title="Вверх">
+                                        <i class="fas fa-arrow-up"></i>
+                                    </button>
+                                @endif
+                                @if (!$loop->last)
+                                    <button type="submit" name="direction" value="down" class="btn btn-primary btn-sm"
+                                            title="Вниз">
+                                        <i class="fas fa-arrow-down"></i>
+                                    </button>
+                                @endif
 
-                        </form>
-                    </td>
+                            </form>
+                        </td>
                     @endcan
                     @canany(['admin.top_offices.edit', 'admin.top_offices.delete'])
                         <td class="text-nowrap">
                             @can('admin.top_offices.edit')
-                            <a href="{!! route('admin.top_offices.edit', ['id' => $topOffice->id]) !!}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i> Редактировать</a>
+                                <a href="{!! route('admin.top_offices.edit', ['id' => $topOffice->id]) !!}"
+                                   class="btn btn-primary btn-sm"><i class="fas fa-edit"></i> Редактировать</a>
                             @endcan
                             @can('admin.top_offices.delete')
                                 <button type="button" data-text="Удалить {{ $topOffice->code }}?"
-                                        data-action="{!! route('admin.top_offices.delete') !!}" data-id="{{ $topOffice->id }}"
+                                        data-action="{!! route('admin.top_offices.delete') !!}"
+                                        data-id="{{ $topOffice->id }}"
                                         class="btn btn-danger btn-sm js-delete-confirm"><i class="fas fa-trash"></i>
                                     Удалить
                                 </button>
