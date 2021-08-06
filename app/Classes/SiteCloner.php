@@ -74,7 +74,7 @@ class SiteCloner
             $newImage = $oldImage->replicate();
             $newImage->setAttribute('site_id', $newSite->id);
 
-            $newPath = 'images/' . $newImage->page_id .'/'. Str::random(40);
+            $newPath = 'images/' . $newImage->page_id . '/' . Str::random(40);
 
             File::copy(
                 Storage::disk('public')->path($oldImage->path),
@@ -95,6 +95,9 @@ class SiteCloner
             ]
         );
         foreach ($oldPage->textTypes as $textType) {
+            if ($textType->texts->isEmpty()) {
+                throw new \Exception('Нет текста Страница ' . $oldPage->id . ' Язык ' . $oldLanguage->id);
+            }
             $textType->texts[0]->replicate()
                 ->setAttribute('language_id', $newLanguage->id)
                 ->save();

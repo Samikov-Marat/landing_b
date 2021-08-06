@@ -5,6 +5,7 @@ namespace App\Http\Controllers\site;
 use App\Classes\DictionaryBuilder;
 use App\Classes\Domain;
 use App\Classes\FragmentRepository;
+use App\Classes\LanguageDetector;
 use App\Classes\SiteRepository;
 use App\Exceptions\CurrentPageNotFound;
 use App\Http\Controllers\Controller;
@@ -28,6 +29,7 @@ class PageController extends Controller
         if ($site->languages->isEmpty()) {
             abort(Response::HTTP_NOT_FOUND);
         }
+        new LanguageDetector();
         $languageShortName = Str::lower($site->languages->first()->shortname);
         return response()->redirectToRoute('site.show_page', ['languageUrl' => $languageShortName]);
     }

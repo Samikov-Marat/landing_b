@@ -12,6 +12,7 @@ use App\Site;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response as HttpResponse;
 
 class RequestController extends Controller
@@ -81,7 +82,7 @@ class RequestController extends Controller
         return response()->file(
             $imageResponse->getPath(),
             [
-                'Content-Type' => $imageResponse->getMimeType(),
+                'Content-Type' => $imageResponse->getMimeTypeByUrl($image->url),
                 'ETag' => $hash,
             ]
         );

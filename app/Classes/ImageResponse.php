@@ -3,6 +3,7 @@
 namespace App\Classes;
 
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class ImageResponse
 {
@@ -38,4 +39,23 @@ class ImageResponse
         }
         return $mimeType;
     }
+
+    public function getMimeTypeByUrl($url)
+    {
+        $extension = Str::lower(pathinfo($url, PATHINFO_EXTENSION));
+        if ('svg' == $extension) {
+            return 'image/svg+xml';
+        }
+        if ('css' == $extension) {
+            return 'text/css';
+        }
+        if (in_array($extension, ['jpg', 'jpeg'])) {
+            return 'image/jpeg';
+        }
+        if ('png' == $extension) {
+            return 'image/png';
+        }
+        return 'text/plain';
+    }
+
 }
