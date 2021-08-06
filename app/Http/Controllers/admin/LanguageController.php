@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Classes\LanguageDetector;
+use App\Classes\LanguageIsoSearcher;
 use App\Http\Controllers\Controller;
 use App\Language;
 use App\Site;
@@ -30,7 +32,8 @@ class LanguageController extends Controller
     public function edit($id = null, Request $request)
     {
         if (isset($id)) {
-            $language = Language::select('id', 'shortname', 'name', 'site_id', 'rtl')
+            $language = Language::select('id', 'shortname', 'language_code_iso', 'name', 'site_id', 'rtl')
+                ->with('languageIso')
                 ->find($id);
             $siteId = $language->site_id;
         } else {
@@ -57,6 +60,7 @@ class LanguageController extends Controller
 
         $language->site_id = $request->input('site_id');
         $language->shortname = $request->input('shortname');
+        $language->language_code_iso = $request->input('language_code_iso');
         $language->name = $request->input('name');
         $language->rtl = $request->input('rtl', false);
 
@@ -106,6 +110,15 @@ class LanguageController extends Controller
         $otherLanguage->save();
 
         return response()->redirectToRoute('admin.languages.index', ['site_id' => $language->site_id]);
+    }
+
+    public function searchIso(Request $request)
+    {
+        $term = $request->input('term', '');
+        $page = $request->input('page', 1);
+        $languageIsoSearchResult = LanguageIsoSearcher::getInstance()->search($term, $page);
+        \Debugbar::disable();
+        return response()->json($languageIsoSearchResult->asArray());
     }
 
 }

@@ -32,6 +32,22 @@
                    placeholder="Обозначение" autocomplete="off">
             <small id="id_shortname_help" class="form-text text-muted">Обычно 2 буквы. Например, <q>RU</q></small>
         </div>
+
+        <div class="form-group">
+            <label for="id_domain">Код автоопределения языка браузера (по ISO 639-1)</label>
+            <select class="form-select form-control js-languages-code-search" name="language_code_iso"
+                    data-ajax-url="{!! route('admin.languages.search_iso') !!}">
+                @if(isset($language) && isset($language->languageIso))
+                    <option value="{{ $language->language_code_iso }}" selected data-old="{{ $language->languageIso }}">
+                        {{ $language->language_code_iso }}
+                    </option>
+                @endif
+            </select>
+
+            <small id="id_domain_help" class="form-text text-muted">ISO код языка</small>
+        </div>
+
+
         <div class="form-group">
             <label for="id_name">Название</label>
             <input type="text" class="form-control" name="name" id="id_name"

@@ -53,6 +53,8 @@ Route::prefix('admin')->middleware(['auth', 'user.route.access'])->group(
             ->name('admin.languages.delete');
         Route::post('languages/move', 'admin\LanguageController@move')
             ->name('admin.languages.move');
+        Route::get('languages/search-iso', 'admin\LanguageController@searchIso')
+            ->name('admin.languages.search_iso');
 
         Route::get('local-offices', 'admin\LocalOfficeController@index')
             ->name('admin.local_offices.index');

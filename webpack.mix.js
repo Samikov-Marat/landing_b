@@ -26,5 +26,6 @@ mix.combine([
     "resources/js/admin_files/local_offices.js",
     "resources/js/admin_files/top_offices.js",
     "resources/js/admin_files/world_languages.js",
+    "resources/js/admin_files/languages.js",
 ], 'public/admin_files/new_admin.js').version();
 
