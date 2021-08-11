@@ -8,6 +8,8 @@ use App\Classes\FragmentRepository;
 use App\Classes\LanguageDetector;
 use App\Classes\SiteRepository;
 use App\Exceptions\CurrentPageNotFound;
+use App\Exceptions\PageController\LanguageListIsEmpty;
+use App\Exceptions\PageController\SiteNotFound;
 use App\Http\Controllers\Controller;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
@@ -18,20 +20,20 @@ class PageController extends Controller
 {
     public function selectDefaultLanguage(Request $request)
     {
-        $domain = Domain::getInstance($request)->get();
         try {
+            $domain = Domain::getInstance($request)
+                ->get();
             $siteRepository = new SiteRepository($domain);
             $site = $siteRepository->getSite();
-        } catch (ModelNotFoundException $exception) {
+            $language = LanguageDetector::getInstance($_SERVER['HTTP_ACCEPT_LANGUAGE'])
+                ->chooseFrom($site->languages);
+            $languageShortName = Str::lower($language->shortname);
+            return response()->redirectToRoute('site.show_page', ['languageUrl' => $languageShortName]);
+        } catch (SiteNotFound $e) {
+            abort(Response::HTTP_NOT_FOUND);
+        } catch (LanguageListIsEmpty $e) {
             abort(Response::HTTP_NOT_FOUND);
         }
-
-        if ($site->languages->isEmpty()) {
-            abort(Response::HTTP_NOT_FOUND);
-        }
-        new LanguageDetector();
-        $languageShortName = Str::lower($site->languages->first()->shortname);
-        return response()->redirectToRoute('site.show_page', ['languageUrl' => $languageShortName]);
     }
 
 

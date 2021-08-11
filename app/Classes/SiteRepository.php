@@ -4,10 +4,13 @@
 namespace App\Classes;
 
 use App\Exceptions\CurrentPageNotFound;
+use App\Exceptions\PageController\LanguageListIsEmpty;
+use App\Exceptions\PageController\SiteNotFound;
 use App\Language;
 use App\Page;
 use App\Site;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use phpDocumentor\Reflection\Types\Boolean;
 
 class SiteRepository
@@ -16,16 +19,41 @@ class SiteRepository
 
     public function __construct($domain)
     {
-        $this->site = Site::where('domain', $domain)
-            ->with(
-                [
-                    'languages' => function ($query) {
-                        $query->select('id', 'site_id', 'shortname', 'rtl', 'name')
-                            ->orderBy('sort');
-                    }
-                ]
-            )
-            ->firstOrFail();
+        try {
+            $this->site = Site::where('domain', $domain)
+                ->with(
+                    [
+                        'languages' => function ($query) {
+                            $query->select('id', 'site_id', 'shortname', 'rtl', 'name', 'language_code_iso')
+                                ->orderBy('sort');
+                        }
+                    ]
+                )
+                ->firstOrFail();
+        } catch (ModelNotFoundException $e) {
+            throw new SiteNotFound('Сайт не найден', 0, $e);
+        }
+    }
+
+    public function getSite(): Site
+    {
+        $this->loadLanguages();
+        return $this->site;
+    }
+
+    public function loadLanguages()
+    {
+        $this->site->load(
+            [
+                'languages' => function ($query) {
+                    $query->select('id', 'site_id', 'shortname', 'rtl', 'name', 'language_code_iso')
+                        ->orderBy('sort');
+                }
+            ]
+        );
+        if ($this->site->languages->isEmpty()) {
+            throw new LanguageListIsEmpty('Не найдена ни одного языка у этого сайта');
+        }
     }
 
     public function containsLanguage($languageShortname): bool
@@ -54,10 +82,6 @@ class SiteRepository
             ->get();
     }
 
-    public function getSite(): Site
-    {
-        return $this->site;
-    }
 
     private function loadPages($pageUrl)
     {
@@ -70,7 +94,8 @@ class SiteRepository
         );
     }
 
-    public function loadLocalOffices($laguage){
+    public function loadLocalOffices($laguage)
+    {
         $language_id = $laguage->id;
         $this->site->load(
             [
