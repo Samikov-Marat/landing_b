@@ -42,7 +42,7 @@
                     <div class="form-field__error-message">@d('feedback_agree_error')</div>
                 </div>
                 <div class="form-field">
-                    <button type="submit" class="primary-button primary-button_wide primary-button_submit">Отправить
+                    <button type="submit" class="primary-button primary-button_wide primary-button_submit">@d('feedback_submit')
                     </button>
                 </div>
             </form>
