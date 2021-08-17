@@ -57,6 +57,13 @@ $(document).ready(function () {
         modalClose($('.modal').has(this));
     });
 
+    $('.modal-container').click(function () {
+        modalClose($(this).find('.modal'));
+    })
+    $('.modal').click(function (e) {
+        e.stopPropagation();
+    })
+
     $('.js-feedback-form').submit(function () {
 
         let $form = $(this);
