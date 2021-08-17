@@ -2,6 +2,7 @@
 
 namespace App\Classes;
 
+use App\Exceptions\LanguageDetector\LanguagesIsEmpty;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 
@@ -21,6 +22,12 @@ class LanguageDetector
 
     public function chooseFrom(Collection $languages)
     {
+        if ($languages->isEmpty()){
+            throw new LanguagesIsEmpty();
+        }
+        if($languages->count() == 1){
+            return $languages->first();
+        }
         $wishfulLanguages = $this->getRating();
         foreach ($wishfulLanguages as $wishfulLanguage) {
             foreach ($languages as $language) {

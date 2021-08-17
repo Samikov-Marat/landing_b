@@ -3,6 +3,7 @@
 namespace Tests\Unit;
 
 use App\Classes\LanguageDetector;
+use App\Exceptions\LanguageDetector\LanguagesIsEmpty;
 use App\Language;
 use PHPUnit\Framework\TestCase;
 
@@ -101,6 +102,18 @@ class LanguageDetectorTest extends TestCase
             $chosenLanguage = LanguageDetector::getInstance($httpAcceptLanguage)
                 ->chooseFrom($pair['languages']);
             $this->assertTrue($chosenLanguage->language_code_iso == $pair['expected'], $pair['message']);
+        }
+    }
+
+    public function testEmptyDatasetException()
+    {
+        $httpAcceptLanguage = 'ru-RU, ru;q=0.9, en-US;q=0.8, en;q=0.7, fr;q=0.6';
+        try {
+            LanguageDetector::getInstance($httpAcceptLanguage)
+                ->chooseFrom(collect());
+            $this->fail();
+        } catch (LanguagesIsEmpty $e) {
+            $this->assertTrue(true);
         }
     }
 
