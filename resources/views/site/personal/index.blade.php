@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>@d('personal_1')</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+            <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap" rel="stylesheet">
+            <link href="/personal/assets/vendor/owl.carousel.min.css" rel="stylesheet" type="text/css" />
+            <link rel="stylesheet" href="/personal/assets/css/app.css?cssv6">
+            <link rel="stylesheet" href="/universal2/custom.css?v=2">
+
+    </head>
+    <body class="site-theme">
+    <div class="body-wrapper js-body_wrapper office-page-wrapper ">
+        <div class="fullscreen-modal-background js-fade_background "></div>
+        <header class="header-shadow">
+            <div class="header office-page-header">
+    <div class="header__content">
+        <a href="/" class="logo-cdek header__logo office-page-header__logo"></a>
+        <div class="office-page-header__office">
+            <div>@d('personal_2')</div>
+            <div class="office-page-header__office-city">@d('personal_3')</div>
+        </div>
+        <div class="office-page-header__left">
+            <div class="header__language-selector">@d('personal_4')</div>
+            <a href="#" class="office-page-button office-page-header__button_fc office-page-button_type_calculate office-page-header__button">@d('personal_5')</a>
+            <a href="#" class="office-page-button office-page-button_type_search office-page-header__button">@d('personal_6')</a>
+        </div>
+        <div class="header__right">
+            <div class="header-contact">
+                <div class="header-contact__content office-page-header__phone">
+                    <a class="header-contact__phone" href="tel:+441473711668">@d('personal_7')</a>
+                </div>
+            </div>
+            <a href="#" class="office-page-header__contact">@d('personal_8')</a>
+        </div>
+        <div class="menu-mobile js-menu-open-button"></div>
+    </div>
+</div>
+<div class="fullscreen-modal-background js-fade_background "></div>
+<div class="header-mobile-open-wrapper">
+    <div class="header-mobile-open office-page-mobile-menu js-menu-container transition_slide-right ">
+        <div class="header-mobile-open__close js-menu-close-button"></div>
+        <div class="header__language-selector office-page-mobile-menu__lang">@d('personal_9')</div>
+        <div class="office-page-mobile-menu__buttons">
+            <a href="#" class="office-page-button office-page-button_type_calculate office-page-mobile-menu__button">@d('personal_10')</a>
+            <a href="#" class="office-page-button office-page-button_type_search office-page-mobile-menu__button">@d('personal_11')</a>
+        </div>
+        <div class="office-page-mobile-menu__text">
+            @d('personal_12')<br />
+            @d('personal_13')
+        </div>
+        <a href="#" class="office-page-mobile-menu__phone">@d('personal_14')</a>
+        <div class="office-page-mobile-menu__email-container">
+            <a href="#" class="office-page-mobile-menu__email">@d('personal_15')</a>
+        </div>
+        <a href="#" class="office-page-mobile-menu__contact">@d('personal_16')</a>
+    </div>
+</div>
+        </header>
+
+    <div class="office-page-poster">
+        <div class="office-page-poster__container">
+            <picture class="office-page-poster__image">
+                <source srcset="/personal/img-op/poster-mobile.jpg, /personal/img-op/poster-mobile-2x.jpg 2x" media="(max-width: 480px)">
+                <source srcset="/personal/img-op/poster-tablet.jpg, /personal/img-op/poster-tablet-2x.jpg 2x" media="(min-width: 480px) and (max-width: 1199px)">
+                <source srcset="/personal/img-op/poster-desktop.jpg">
+                <img src="/personal/img-op/poster-desktop.jpg" />
+            </picture>
+            <div class="office-page-poster__content">
+                <div>
+                    <div class="office-page-poster__title">@d('personal_17')</div>
+                    <div class="office-page-poster__description">@d('personal_18')</div>
+                </div>
+                <div class="office-page-poster__advantages">
+                    <div class="office-page-poster__adv-col">
+                        <div class="office-page-poster__adv-row office-page-poster__adv-row_outside">
+                            <div class="office-page-poster__adv office-page-poster__adv_green">
+                                <div class="office-page-poster__adv-icon office-page-poster__adv-icon_customs"></div>
+                                <div>@d('personal_19')</div>
+                            </div>
+                        </div>
+                        <div class="office-page-poster__adv-row">
+                            <div class="office-page-poster__adv">
+                                <div class="office-page-poster__adv-icon office-page-poster__adv-icon_year"></div>
+                                <div class="office-page-poster__number">@d('personal_20')</div>
+                                <div>@d('personal_21')</div>
+                            </div>
+                        </div>
+                        <div class="office-page-poster__adv-row">
+                            <div class="office-page-poster__adv office-page-poster__adv_yellow">
+                                <div class="office-page-poster__adv-icon office-page-poster__adv-icon_delivery"></div>
+                                <div>@d('personal_22')</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="office-page-poster__adv-col">
+                        <div class="office-page-poster__adv-row">
+                            <div class="office-page-poster__adv office-page-poster__adv_green">
+                                <div class="office-page-poster__adv-icon office-page-poster__adv-icon_pvz"></div>
+                                <div class="office-page-poster__number">@d('personal_23')</div>
+                                <div>@d('personal_24')</div>
+                            </div>
+                        </div>
+                        <div class="office-page-poster__adv-row">
+                            <div class="office-page-poster__adv">
+                                <div class="office-page-poster__adv-icon office-page-poster__adv-icon_world"></div>
+                                <div class="office-page-poster__number">@d('personal_25')</div>
+                                <div>@d('personal_26')</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="office-page-services screen-content">
+        <div class="office-page__heading2 office-page__heading2_centered">@d('personal_27')</div>
+        <div class="office-page-services__main owl-carousel">
+            <div class="office-page-services__main-item">
+                <div class="office-page-services__main-item-head office-page-services__main-item-head_shop">
+                    <div class="office-page-services__main-item-counter">@d('personal_28')</div>
+                </div>
+                <div class="office-page-services__main-item-body">
+                    @d('personal_29')
+                </div>
+            </div>
+            <div class="office-page-services__main-item">
+                <div class="office-page-services__main-item-head office-page-services__main-item-head_courier">
+                    <div class="office-page-services__main-item-counter">@d('personal_30')</div>
+                </div>
+                <div class="office-page-services__main-item-body">
+                    @d('personal_31')
+                </div>
+            </div>
+            <div class="office-page-services__main-item">
+                <div class="office-page-services__main-item-head office-page-services__main-item-head_forward">
+                    <div class="office-page-services__main-item-counter">@d('personal_32')</div>
+                </div>
+                <div class="office-page-services__main-item-body">
+                    @d('personal_33')
+                </div>
+            </div>
+            <div class="office-page-services__main-item">
+                <div class="office-page-services__main-item-head office-page-services__main-item-head_post">
+                    <div class="office-page-services__main-item-counter">@d('personal_34')</div>
+                </div>
+                <div class="office-page-services__main-item-body">
+                    @d('personal_35')
+                </div>
+            </div>
+        </div>
+        <div class="office-page__heading3 office-page__heading3_centered">@d('personal_36')</div>
+        <div class="office-page-services__secondary">
+            <div class="office-page-services__secondary-item">
+                <div class="office-page-services__secondary-item-title">@d('personal_37')</div>
+                <div>
+                    @d('personal_38')
+                </div>
+            </div>
+            <div class="office-page-services__secondary-item">
+                <div class="office-page-services__secondary-item-title">@d('personal_39')</div>
+                <div>
+                    @d('personal_40')
+                </div>
+            </div>
+            <div class="office-page-services__secondary-item">
+                <div class="office-page-services__secondary-item-title">@d('personal_41')</div>
+                <div>
+                    @d('personal_42')
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="office-page-presentation">
+        <div class="office-page-presentation__content">
+            <div class="office-page-presentation__info">
+                <div class="office-page-presentation__title">@d('personal_43')</div>
+                <div class="office-page-presentation__download">@d('personal_44')</div>
+            </div>
+            <div class="office-page-presentation__img-container">
+                <picture>
+                    <source srcset="/personal/img-op/pr-girl-tablet.jpg, /personal/img-op/pr-girl-tablet-2x.jpg 2x" media="(min-width: 480px) and (max-width: 1199px)">
+                    <source srcset="/personal/img-op/pr-girl.jpg, /personal/img-op/pr-girl-2x.jpg 2x">
+                    <img src="/personal/img-op/pr-girl.jpg" />
+                </picture>
+            </div>
+        </div>
+    </div>
+    <div class="office-page-offices">
+        <div class="content">
+            <div class="office-page__heading2 office-page-offices__heading">@d('personal_45')</div>
+            <div class="office-page-offices__cmenu">
+                <div class="office-page-offices__cmenu-item office-page-offices__cmenu-item_active">@d('personal_46')</div>
+                <div class="office-page-offices__cmenu-item">@d('personal_47')</div>
+                <div class="office-page-offices__cmenu-item">@d('personal_48')</div>
+            </div>
+            <div class="submenu office-page-offices__submenu">
+                <div class="submenu__content">
+                    <div class="submenu__item submenu__item_active">@d('personal_49')</div>
+                    <a href="#" class="submenu__item">@d('personal_50')</a>
+                </div>
+            </div>
+        </div>
+        <div class="office-page-offices__content">
+            <div class="office-page-offices__side-left">
+                <div class="office-page-offices__left-content">
+                    <div class="office-page-offices__title">@d('personal_51')</div>
+                    <div class="office-page-offices__info office-page-offices__info_road">
+                        <div>@d('personal_52')</div>
+                        <div class="office-page-offices__info-desc">@d('personal_53')  </div>
+                    </div>
+                    <div class="office-page-offices__info office-page-offices__info_time">
+                        <div>@d('personal_54')</div>
+                        <div>@d('personal_55')</div>
+                    </div>
+                    <div class="office-page-offices__info office-page-offices__info_phone">
+                        <div><a class="office-page-offices__info-phone" href="#">@d('personal_56')</a></div>
+                        <div><a class="office-page-offices__info-email" href="#">@d('personal_57')</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="office-page-offices__side-right">
+                <div class="office-page-offices__photos owl-carousel">
+
+                    <picture class="office-page-poster__image">
+                        <source srcset="/personal/img-op/office-sample-mobile.jpg, /personal/img-op/office-sample-mobile-2x.jpg 2x" media="(max-width: 480px)">
+                        <source srcset="/personal/img-op/office-sample-tablet.jpg, /personal/img-op/office-sample-tablet-2x.jpg 2x" media="(min-width: 480px) and (max-width: 1199px)">
+                        <source srcset="/personal/img-op/office-sample.jpg, /personal/img-op/office-sample-2x.jpg 2x">
+                        <img src="/personal/img-op/office-sample.jpg" />
+                    </picture>
+
+                    <picture class="office-page-poster__image">
+                        <source srcset="/personal/img-op/office-sample-mobile.jpg, /personal/img-op/office-sample-mobile-2x.jpg 2x" media="(max-width: 480px)">
+                        <source srcset="/personal/img-op/office-sample-tablet.jpg, /personal/img-op/office-sample-tablet-2x.jpg 2x" media="(min-width: 480px) and (max-width: 1199px)">
+                        <source srcset="/personal/img-op/office-sample.jpg, /personal/img-op/office-sample-2x.jpg 2x">
+                        <img src="/personal/img-op/office-sample.jpg" />
+                    </picture>
+
+                    <picture class="office-page-poster__image">
+                        <source srcset="/personal/img-op/office-sample-mobile.jpg, /personal/img-op/office-sample-mobile-2x.jpg 2x" media="(max-width: 480px)">
+                        <source srcset="/personal/img-op/office-sample-tablet.jpg, /personal/img-op/office-sample-tablet-2x.jpg 2x" media="(min-width: 480px) and (max-width: 1199px)">
+                        <source srcset="/personal/img-op/office-sample.jpg, /personal/img-op/office-sample-2x.jpg 2x">
+                        <img src="/personal/img-op/office-sample.jpg" />
+                    </picture>
+
+                    <picture class="office-page-poster__image">
+                        <source srcset="/personal/img-op/office-sample-mobile.jpg, /personal/img-op/office-sample-mobile-2x.jpg 2x" media="(max-width: 480px)">
+                        <source srcset="/personal/img-op/office-sample-tablet.jpg, /personal/img-op/office-sample-tablet-2x.jpg 2x" media="(min-width: 480px) and (max-width: 1199px)">
+                        <source srcset="/personal/img-op/office-sample.jpg, /personal/img-op/office-sample-2x.jpg 2x">
+                        <img src="/personal/img-op/office-sample.jpg" />
+                    </picture>
+
+                    <picture class="office-page-poster__image">
+                        <source srcset="/personal/img-op/office-sample-mobile.jpg, /personal/img-op/office-sample-mobile-2x.jpg 2x" media="(max-width: 480px)">
+                        <source srcset="/personal/img-op/office-sample-tablet.jpg, /personal/img-op/office-sample-tablet-2x.jpg 2x" media="(min-width: 480px) and (max-width: 1199px)">
+                        <source srcset="/personal/img-op/office-sample.jpg, /personal/img-op/office-sample-2x.jpg 2x">
+                        <img src="/personal/img-op/office-sample.jpg" />
+                    </picture>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="office-page-team">
+        <div class="office-page__heading2 office-page__heading2_centered">@d('personal_58')</div>
+        <div class="office-page-team__text">@d('personal_59')<br />@d('personal_60')</div>
+        <div class="office-page-team__content owl-carousel">
+            <div class="office-page-team__item">
+                <img src="/personal/img-op/team-sample3.jpg" class="office-page-team__photo" />
+                <div class="office-page-team__name">@d('personal_61')</div>
+                <div>@d('personal_62')</div>
+            </div>
+            <div class="office-page-team__item">
+                <img src="/personal/img-op/team-sample.jpg" class="office-page-team__photo" />
+                <div class="office-page-team__name">@d('personal_63')</div>
+                <div>@d('personal_64')</div>
+            </div>
+            <div class="office-page-team__item">
+                <img src="/personal/img-op/team-sample2.jpg" class="office-page-team__photo" />
+                <div class="office-page-team__name">@d('personal_65')</div>
+                <div>@d('personal_66')</div>
+            </div>
+        </div>
+    </div>
+    <div class="office-page__calculator">
+        @include('site.universal2.calculator_block')
+    </div>
+    <div class="office-page-track">
+        @include('site.personal.tracking')
+
+    </div>
+    <div class="content">
+        <div class="office-page__heading2">@d('personal_111')</div>
+    </div>
+    <div class="office-page-reviews">
+        <div class="office-page-reviews__content owl-carousel">
+
+                <div class="office-page-reviews__review">
+                    <div class="office-page-reviews__review-title">
+                        @d('personal_112')
+                    </div>
+                    <div>
+                        @d('personal_113')
+                        @d('personal_113')
+                        @d('personal_113')
+                        @d('personal_113')
+                        @d('personal_113')
+                    </div>
+                </div>
+                <div class="office-page-reviews__review">
+                    <div class="office-page-reviews__review-title">
+                        @d('personal_114')
+                    </div>
+                    <div>
+                        @d('personal_115')
+                        @d('personal_115')
+                        @d('personal_115')
+                        @d('personal_115')
+                        @d('personal_115')
+                    </div>
+                </div>
+
+                <div class="office-page-reviews__review">
+                    <div class="office-page-reviews__review-title">
+                        @d('personal_116')
+                    </div>
+                    <div>
+                        @d('personal_117')
+                        @d('personal_117')
+                        @d('personal_117')
+                        @d('personal_117')
+                        @d('personal_117')
+                    </div>
+                </div>
+                <div class="office-page-reviews__review">
+                    <div class="office-page-reviews__review-title">
+                        @d('personal_118')
+                    </div>
+                    <div>
+                        @d('personal_119')
+                        @d('personal_119')
+                        @d('personal_119')
+                        @d('personal_119')
+                        @d('personal_119')
+                    </div>
+                </div>
+
+                <div class="office-page-reviews__review">
+                    <div class="office-page-reviews__review-title">
+                        @d('personal_120')
+                    </div>
+                    <div>
+                        @d('personal_121')
+                        @d('personal_121')
+                        @d('personal_121')
+                        @d('personal_121')
+                        @d('personal_121')
+                    </div>
+                </div>
+                <div class="office-page-reviews__review">
+                    <div class="office-page-reviews__review-title">
+                        @d('personal_122')
+                    </div>
+                    <div>
+                        @d('personal_123')
+                        @d('personal_123')
+                        @d('personal_123')
+                        @d('personal_123')
+                        @d('personal_123')
+                    </div>
+                </div>
+
+                <div class="office-page-reviews__review">
+                    <div class="office-page-reviews__review-title">
+                        @d('personal_124')
+                    </div>
+                    <div>
+                        @d('personal_125')
+                        @d('personal_125')
+                        @d('personal_125')
+                        @d('personal_125')
+                        @d('personal_125')
+                    </div>
+                </div>
+                <div class="office-page-reviews__review">
+                    <div class="office-page-reviews__review-title">
+                        @d('personal_126')
+                    </div>
+                    <div>
+                        @d('personal_127')
+                        @d('personal_127')
+                        @d('personal_127')
+                        @d('personal_127')
+                        @d('personal_127')
+                    </div>
+                </div>
+
+                <div class="office-page-reviews__review">
+                    <div class="office-page-reviews__review-title">
+                        @d('personal_128')
+                    </div>
+                    <div>
+                        @d('personal_129')
+                        @d('personal_129')
+                        @d('personal_129')
+                        @d('personal_129')
+                        @d('personal_129')
+                    </div>
+                </div>
+                <div class="office-page-reviews__review">
+                    <div class="office-page-reviews__review-title">
+                        @d('personal_130')
+                    </div>
+                    <div>
+                        @d('personal_131')
+                        @d('personal_131')
+                        @d('personal_131')
+                        @d('personal_131')
+                        @d('personal_131')
+                    </div>
+                </div>
+
+        </div>
+        <div class="office-page-reviews__add content">
+            <div class="office-page-reviews__add-text">
+                @d('personal_132')<br />
+                @d('personal_133')
+            </div>
+            <a href="#" class="primary-button">@d('personal_134')</a>
+        </div>
+    </div>
+    <div class="office-page-cam">
+        <div class="office-page-cam__content">
+            <div class="office-page-cam__img">
+                <picture class="office-page-poster__image">
+                    <source srcset="/personal/img-op/office-sample-mobile.jpg, /personal/img-op/office-sample-mobile-2x.jpg 2x" media="(max-width: 480px)">
+                    <source srcset="/personal/img-op/office-sample-tablet.jpg, /personal/img-op/office-sample-tablet-2x.jpg 2x" media="(min-width: 480px) and (max-width: 1199px)">
+                    <source srcset="/personal/img-op/office-sample.jpg, /personal/img-op/office-sample-2x.jpg 2x">
+                    <img src="/personal/img-op/office-sample.jpg" />
+                </picture>
+                <div class="office-page-cam__cam"></div>
+            </div>
+            <div class="office-page-cam__text">
+                <div class="office-page-cam__title">@d('personal_135')</div>
+                <div>@d('personal_136')</div>
+            </div>
+        </div>
+    </div>
+    <div class="screen-content">
+        <div class="office-page__heading2">@d('personal_137')</div>
+        <div class="news-list__content">
+
+                <div class="news news-list__news">
+                    <a href="#"><img class="news__img" src="/personal/img-op/news-sample.jpg" alt="News" /></a>
+                    <div class="news__date">@d('personal_138')</div>
+                    <a href="#" class="news__title">@d('personal_139')</a>
+                    <div class="news__desc">@d('personal_140')</div>
+                </div>
+
+                <div class="news news-list__news">
+                    <a href="#"><img class="news__img" src="/personal/img-op/news-sample.jpg" alt="News" /></a>
+                    <div class="news__date">@d('personal_141')</div>
+                    <a href="#" class="news__title">@d('personal_142')</a>
+                    <div class="news__desc">@d('personal_143')</div>
+                </div>
+
+                <div class="news news-list__news">
+                    <a href="#"><img class="news__img" src="/personal/img-op/news-sample.jpg" alt="News" /></a>
+                    <div class="news__date">@d('personal_144')</div>
+                    <a href="#" class="news__title">@d('personal_145')</a>
+                    <div class="news__desc">@d('personal_146')</div>
+                </div>
+
+                <div class="news news-list__news">
+                    <a href="#"><img class="news__img" src="/personal/img-op/news-sample.jpg" alt="News" /></a>
+                    <div class="news__date">@d('personal_147')</div>
+                    <a href="#" class="news__title">@d('personal_148')</a>
+                    <div class="news__desc">@d('personal_149')</div>
+                </div>
+
+        </div>
+    </div>
+    <div class="office-page-feedback">
+        <div class="office-page-feedback__content">
+            <div class="office-page-feedback__title js-result-hide">@d('personal_150')</div>
+            <div class="office-page-feedback__text js-result-hide">@d('personal_151')<br />@d('personal_152')</div>
+            <div class="office-page-feedback__form js-result-hide">
+                <div class="office-page-feedback__form-item">
+                    <div class="office-page-feedback__form-item-left">
+                        <div class="form__row">
+                            <div class="form-field">
+                                <input type="text" name="name" class="form-field__input" placeholder="Имя" />
+                            </div>
+                        </div>
+                        <div class="form__row">
+                            <div class="form-field">
+                                <input type="text" name="email" class="form-field__input" placeholder="E-mail" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="office-page-feedback__form-item-right">
+                        <div class="form__row">
+                            <div class="form-field">
+                                <textarea name="message" class="form-field__input office-page-feedback__textarea" placeholder="Текст вопроса"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="office-page-feedback__form-item office-page-feedback__form-item_centered">
+                    <div class="office-page-feedback__form-item-left">
+                        <div class="form-field">
+                            <input type="submit" value="Отправить" class="primary-button primary-button_wide primary-button_submit" />
+                        </div>
+                    </div>
+                    <div class="office-page-feedback__form-item-right">
+                        <div class="office-page-feedback__item-text">
+                            @d('personal_153') <a class="office-page-feedback__link" href="#">@d('personal_154')</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="office-page-feedback__result js-result-ok" style="display: none;">
+                <div class="office-page-feedback__result-icon office-page-feedback__result-icon_ok"></div>
+                <div class="office-page-feedback__result-title">@d('personal_155')<br />@d('personal_156')</div>
+                <div class="office-page-feedback__result-text">@d('personal_157')</div>
+            </div>
+            <div class="office-page-feedback__result js-result-failed" style="display: none;">
+                <div class="office-page-feedback__result-icon office-page-feedback__result-icon_error"></div>
+                <div class="office-page-feedback__result-title">@d('personal_158')</div>
+                <div class="office-page-feedback__result-text">@d('personal_159')</div>
+            </div>
+        </div>
+    </div>
+    <div class="office-page-logos">
+        <div class="office-page-logos__item">
+            <picture>
+                <source srcset="/personal/img-op/logo/ali-mobile.svg" media="(max-width: 1199px)">
+                <source srcset="/personal/img-op/logo/ali.svg">
+                <img src="/personal/img-op/logo/ali.svg" />
+            </picture>
+        </div>
+        <div class="office-page-logos__item">
+            <picture>
+                <source srcset="/personal/img-op/logo/asos-mobile.svg" media="(max-width: 1199px)">
+                <source srcset="/personal/img-op/logo/asos.svg">
+                <img src="/personal/img-op/logo/asos.svg" />
+            </picture>
+        </div>
+        <div class="office-page-logos__item">
+            <picture>
+                <source srcset="/personal/img-op/logo/avon-mobile.svg" media="(max-width: 1199px)">
+                <source srcset="/personal/img-op/logo/avon.svg">
+                <img src="/personal/img-op/logo/avon.svg" />
+            </picture>
+        </div>
+        <div class="office-page-logos__item">
+            <picture>
+                <source srcset="/personal/img-op/logo/ebay-mobile.svg" media="(max-width: 1199px)">
+                <source srcset="/personal/img-op/logo/ebay.svg">
+                <img src="/personal/img-op/logo/ebay.svg" />
+            </picture>
+        </div>
+        <div class="office-page-logos__item">
+            <picture>
+                <source srcset="/personal/img-op/logo/loreal-mobile.svg" media="(max-width: 1199px)">
+                <source srcset="/personal/img-op/logo/loreal.svg">
+                <img src="/personal/img-op/logo/loreal.svg" />
+            </picture>
+        </div>
+        <div class="office-page-logos__item">
+            <picture>
+                <source srcset="/personal/img-op/logo/marykay-mobile.svg" media="(max-width: 1199px)">
+                <source srcset="/personal/img-op/logo/marykay.svg">
+                <img src="/personal/img-op/logo/marykay.svg" />
+            </picture>
+        </div>
+        <div class="office-page-logos__item">
+            <picture>
+                <source srcset="/personal/img-op/logo/oriflame-mobile.svg" media="(max-width: 1199px)">
+                <source srcset="/personal/img-op/logo/oriflame.svg">
+                <img src="/personal/img-op/logo/oriflame.svg" />
+            </picture>
+        </div>
+        <div class="office-page-logos__item">
+            <picture>
+                <source srcset="/personal/img-op/logo/ozon-mobile.svg" media="(max-width: 1199px)">
+                <source srcset="/personal/img-op/logo/ozon.svg">
+                <img src="/personal/img-op/logo/ozon.svg" />
+            </picture>
+        </div>
+        <div class="office-page-logos__item">
+            <picture>
+                <source srcset="/personal/img-op/logo/rebound-mobile.svg" media="(max-width: 1199px)">
+                <source srcset="/personal/img-op/logo/rebound.svg">
+                <img src="/personal/img-op/logo/rebound.svg" />
+            </picture>
+        </div>
+        <div class="office-page-logos__item">
+            <picture>
+                <source srcset="/personal/img-op/logo/yvesrocher-mobile.svg" media="(max-width: 1199px)">
+                <source srcset="/personal/img-op/logo/yvesrocher.svg">
+                <img src="/personal/img-op/logo/yvesrocher.svg" />
+            </picture>
+        </div>
+    </div>
+
+        <footer class="footer-new">
+            <div class="footer-new__content">
+                <div class="footer-new__left">
+                    <a class="footer-logo footer-new__logo" href="#"></a>
+                    <div>
+                        <div class="footer-new__links">
+                            <div class="footer-new__links-item">
+                                <a href="#" class="footer-new__link footer-new__link_bold">@d('personal_160')</a>
+                            </div>
+                            <div class="footer-new__links-item">
+                                <a href="#" class="footer-new__link footer-new__link_bold">@d('personal_161')</a>
+                            </div>
+                        </div>
+                        <div class="footer-new__links footer-new__links_last">
+                            <div class="footer-new__links-item">
+                                @d('personal_162')
+                            </div>
+                            <div class="footer-new__links-item">
+                                <a href="#" class="footer-new__link">@d('personal_163')</a>
+                            </div>
+                        </div>
+                        <a href="#" class="footer-new__link footer-new__link_bold">@d('personal_164')</a>
+                    </div>
+                </div>
+                <div class="footer-new__right">
+                    <div class="footer-new__text">
+                        @d('personal_165')<br />
+                        @d('personal_166')<br />
+                        @d('personal_167')
+                    </div>
+                    <div>
+                        <div class="footer-new__phone">@d('personal_168')</div>
+                        <a href="#" class="footer-new__link footer-email">@d('personal_169')</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+
+
+
+        <div class="modal-container">
+            <div class="modal" id="feedback-modal">
+                <div class="modal__close"></div>
+                <div class="modal__content">
+                    <div class="modal__heading">@d('personal_170')</div>
+                    <div class="form calculator_form">
+                        <div class="form__row">
+                            <div class="form-field">
+                                <input type="text" name="name" class="form-field__input" placeholder="Имя" />
+                            </div>
+                        </div>
+                        <div class="form__row">
+                            <div class="form-field">
+                                <input type="text" name="phone" class="form-field__input" placeholder="Телефон" />
+                            </div>
+                        </div>
+                        <div class="form__row">
+                            <div class="form-field">
+                                <input type="text" name="email" class="form-field__input" placeholder="E-mail" />
+                            </div>
+                        </div>
+                        <div class="form__row">
+                            <div class="form-field">
+                                <textarea name="message" class="form-field__input" placeholder="Текст вопроса"></textarea>
+                            </div>
+                        </div>
+                        <div class="form__row form__row_no-input">
+                            <div class="checkbox-widget">
+                                <input type="checkbox" name="agree" id="modal-agree" /><label for="modal-agree"><span>@d('personal_171') <a class="checkbox-widget__link" href="#">@d('personal_172')</a></span></label>
+                            </div>
+                        </div>
+                        <div class="form-field">
+                            <input type="submit" value="Отправить" class="primary-button primary-button_wide primary-button_submit" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal__content modal__content_result js-modal-result-ok" style="display: none;">
+                    <div>
+                        <div class="modal__result-icon modal__result-icon_ok"></div>
+                        <div class="modal__result-title">@d('personal_173')<br />@d('personal_174')</div>
+                        <div class="modal__result-text">@d('personal_175')</div>
+                    </div>
+                </div>
+                <div class="modal__content modal__content_result js-modal-result-error" style="display: none;">
+                    <div>
+                        <div class="modal__result-icon modal__result-icon_error"></div>
+                        <div class="modal__result-title">@d('personal_176')</div>
+                        <div class="modal__result-text">@d('personal_177')</div>
+                    </div>
+                </div>
+            </div>
+            <div id="news-modal" class="news-modal">
+                <div class="news-modal__close"></div>
+                <div class="news-modal__img">
+                    <picture>
+                        <source srcset="/personal/img-op/news-modal-sample-mobile.jpg, /personal/img-op/news-modal-sample-mobile-2x.jpg 2x" media="(max-width: 480px)">
+                        <source srcset="/personal/img-op/news-modal-sample.jpg, /personal/img-op/news-modal-sample-2x.jpg 2x">
+                        <img src="/personal/img-op/news-modal-sample.jpg" />
+                    </picture>
+                </div>
+                <div class="news-modal__title-container">
+                    <div class="news-modal__date">@d('personal_178')</div>
+                    <div class="news-modal__title">@d('personal_179')</div>
+                </div>
+                <div class="news-modal__text">
+                    <div class="news-modal__paragraph">@d('personal_180')</div>
+                    <div class="news-modal__paragraph">@d('personal_181')</div>
+                </div>
+            </div>
+            <div id="review-modal" class="review-modal">
+                <div class="review-modal__close"></div>
+                <div class="review-modal__title">@d('personal_182')</div>
+                <div class="review-modal__text">
+                    @d('personal_183')
+                    @d('personal_183')
+                </div>
+            </div>
+            <div id="presentation-modal" class="presentation-modal">
+                <div class="presentation-modal__close"></div>
+                <div class="presentation-modal__form">
+                    <div class="presentation-modal__bg"></div>
+                    <div class="presentation-modal__title">@d('personal_184')</div>
+                    <div class="form calculator_form">
+                        <div class="form__row">
+                            <div class="form-field">
+                                <input type="text" name="name" class="form-field__input" placeholder="Имя" />
+                            </div>
+                        </div>
+                        <div class="form__row">
+                            <div class="form-field">
+                                <input type="text" name="phone" class="form-field__input" placeholder="Телефон" />
+                            </div>
+                        </div>
+                        <div class="form__row">
+                            <div class="form-field">
+                                <input type="text" name="email" class="form-field__input" placeholder="E-mail" />
+                            </div>
+                        </div>
+                        <div class="form__row form__row_no-input">
+                            <div class="checkbox-widget">
+                                <input type="checkbox" name="agree" id="modal-agree2" /><label for="modal-agree2"><span>@d('personal_185') <a class="checkbox-widget__link" href="#">@d('personal_186')</a></span></label>
+                            </div>
+                        </div>
+                        <div class="form-field">
+                            <input type="submit" value="Далее" class="primary-button primary-button_wide primary-button_submit" />
+                        </div>
+                    </div>
+                </div>
+                <div class="presentation-modal__result js-modal-result-ok" style="display: none;">
+                    <div>
+                        <div class="presentation-modal__result-icon presentation-modal__result-icon_ok"></div>
+                        <div class="presentation-modal__result-title">@d('personal_187')</div>
+                        <div class="presentation-modal__result-text">@d('personal_188')</div>
+                        <a href="#" class="presentation-modal__download">@d('personal_189')</a>
+                    </div>
+                </div>
+                <div class="presentation-modal__result js-modal-result-error" style="display: none;">
+                    <div>
+                        <div class="presentation-modal__result-icon presentation-modal__result-icon_error"></div>
+                        <div class="presentation-modal__result-title">@d('personal_190')</div>
+                        <div class="presentation-modal__result-text">@d('personal_191')</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cookie-confirm">
+            <div class="cookie-confirm__close"></div>
+            <div class="cookie-confirm__container">
+                <div class="cookie-confirm__heading">@d('personal_192')</div>
+                <div class="cookie-confirm__paragraph">
+                    @d('personal_193')
+                </div>
+                <div class="cookie-confirm__heading">@d('personal_194')</div>
+                <div class="cookie-confirm__paragraph">
+                    @d('personal_195')
+                    <a href="#" class="cookie-confirm__link">@d('personal_196')</a>
+                </div>
+            </div>
+            <a href="#" class="primary-button cookie-confirm__button">@d('personal_197')</a>
+        </div>
+    </div>
+
+
+    <script src="{{ mix('personal/new.js') }}" defer></script>
+    </body>
+</html>

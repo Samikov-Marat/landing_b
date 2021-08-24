@@ -13,6 +13,20 @@ mix.combine([
 ], 'public/universal2/new.js').version();
 
 
+mix.combine([
+    'public/personal/assets/vendor/jquery.min.js',
+    'public/personal/assets/vendor/owl.carousel.min.js',
+    'public/personal/assets/vendor/jquery.autocomplete.js',
+    "resources/js/personal/tracking.js",
+    "resources/js/personal/tracking_short.js",
+    "resources/js/personal/tracking_result.js",
+    "resources/js/personal/tracking_result_item.js",
+    'resources/js/personal/app.js',
+    'resources/js/universal2/tariffs.js',
+    'resources/js/universal2/calculator.js',
+], 'public/personal/new.js').version();
+
+
 mix.copy('resources/css/universal2/app.css', 'public/universal2/app.css').version();
 mix.copy('resources/css/universal2/custom.css', 'public/universal2/custom.css').version();
 

@@ -1,0 +1,21 @@
+fetch("https://webproxy.cdek.ru/track", {
+  "headers": {
+    "accept": "application/json, text/plain, */*",
+    "accept-language": "ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7",
+    "access-control-allow-origin": "*",
+    "cache-control": "no-cache",
+    "content-type": "application/json;charset=UTF-8",
+    "pragma": "no-cache",
+    "sec-ch-ua": "\" Not;A Brand\";v=\"99\", \"Google Chrome\";v=\"91\", \"Chromium\";v=\"91\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-fetch-dest": "empty",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-site": "cross-site"
+  },
+  "referrer": "http://rimini.landing.local/",
+  "referrerPolicy": "strict-origin-when-cross-origin",
+  "body": "enableTrace=true&lang=eng&orderNumber=151515151",
+  "method": "POST",
+  "mode": "cors",
+  "credentials": "include"
+});
