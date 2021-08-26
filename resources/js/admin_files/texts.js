@@ -36,7 +36,7 @@ $(function () {
             let needShow = false;
             if(inputValue !== ''){
                 $(this).find('.js-admin-texts-td-for-filter').each(function () {
-                    if(pattern.test($(this).data('text'))){
+                    if(isIncluded($(this).attr('data-text'), pattern)){
                         needShow = true;
                         return false;
                     }
@@ -48,6 +48,12 @@ $(function () {
             $(this).toggle(needShow);
         });
     });
+
+    function isIncluded(text, pattern){
+        return -1 != text.search(pattern);
+    }
+
+
     //
     // $('body').on('keyup', function(e) {
     //     if (e.key == "Escape") {
