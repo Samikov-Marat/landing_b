@@ -25,10 +25,15 @@ $(function () {
     let $form = $('.js-tracking-form');
 
     $form.submit(function () {
+
+        if (hasError()) {
+            return false;
+        }
+
         let orderParameters = {
             'enableTrace': true,
             'lang': $(this).find('[name=lang]').val(),
-            'orderNumber': $(this).find('[name=order]').val(),
+            'orderNumber': $form.find('[name=order]').val(),
         };
 
         let $phone = $form.find('[name=phone]');
@@ -101,6 +106,25 @@ $(function () {
         $('.js-tracking-detail-block').addClass('hidden');
         trackingResult.clear();
     });
+
+    $form.on('input change cut paste', '[name=order],[name=phone]', function () {
+        $(this).closest('.form-field').removeClass('form-field_error');
+    });
+
+    function hasError() {
+        let result = false;
+        let $order = $form.find('[name=order]');
+        if ($.trim($order.val()) == '') {
+            $order.closest('.form-field').addClass('form-field_error')
+            result = true;
+        }
+        let $phone = $form.find('[name=phone]');
+        if ((!$phone.prop('disabled')) && !$phone.val().match(/\d{4}/)) {
+            $phone.closest('.form-field').addClass('form-field_error')
+            result = true;
+        }
+        return result;
+    }
 
 });
 

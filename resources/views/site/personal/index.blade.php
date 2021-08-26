@@ -785,7 +785,7 @@
                     <a href="#" class="cookie-confirm__link">@d('personal_196')</a>
                 </div>
             </div>
-            <a href="#" class="primary-button cookie-confirm__button">@d('personal_197')</a>
+            <button type="button" class="primary-button cookie-confirm__button js-cookies-confirm">@d('personal_197')</button>
         </div>
     </div>
 
