@@ -33,7 +33,7 @@ class AppServiceProvider extends ServiceProvider
         Blade::directive(
             'd',
             function ($expression) {
-                return "<?php echo nl2br(e(\$dictionary[$expression])); ?>";
+                return "<?php echo preg_replace('#(\d)(\s)(\d)#u', '\$1&nbsp;\$3', nl2br(e(\$dictionary[$expression]))); ?>";
             }
         );
 
