@@ -22,13 +22,13 @@
                         <div class="company-grow__text">@d('grow_is')</div>
                         <div class="company-grow__cards">
                             <div class="company-grow__card company-grow__card_green">
-                                <div class="company-grow__card-num">200+</div>
+                                <div class="company-grow__card-num">@d('grow_number_1')</div>
                                 <div>@d('grow_text_1')</div>
                             </div>
                             <div class="company-grow__card-empty">
                                 <div class="company-grow__card-shadow"></div>
                                 <div class="company-grow__card company-grow__card_yellow">
-                                    <div class="company-grow__card-num">20</div>
+                                    <div class="company-grow__card-num">@d('grow_number_2')</div>
                                     <div>@d('grow_text_2')</div>
                                 </div>
                             </div>
