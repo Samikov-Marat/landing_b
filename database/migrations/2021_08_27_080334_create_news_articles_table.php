@@ -15,10 +15,12 @@ class CreateNewsArticlesTable extends Migration
     {
         Schema::create('news_articles', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('site_id');
+            $table->foreignId('language_id');
             $table->string('header');
-            $table->string('author');
             $table->text('note');
             $table->text('text');
+            $table->string('publication_date_text');
             $table->dateTime('publication_date');
             $table->timestamps();
         });
