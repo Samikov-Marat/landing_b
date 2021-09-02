@@ -9,38 +9,28 @@
         ['href' => route('admin.sites.index'), 'text' => 'Сайты'],
         ['text' => $site->name],
         ['text' => 'Местные офисы'],
+        ['text' => $localOffice->code],
+        ['text' => 'Фотографии местных офисов'],
     ]])
 @endsection
 
-@can('admin.local_offices.add')
+@can('admin.local_office_photos.add')
     @push('buttons2')
-        <a href="{!! route('admin.local_offices.add', ['site_id' => $site->id]) !!}" class="btn btn-primary"><i
+        <a href="{!! route('admin.local_office_photos.add', ['local_office_id' => $localOffice->id]) !!}" class="btn btn-primary"><i
                 class="fas fa-plus"></i> Создать</a>
     @endpush
 @endcan
 
 @section('content')
 
-    @if($site->localOffices->isNotEmpty())
+    @if($localOffice->localOfficePhotos->isNotEmpty())
         <table class="table table-hover table-bordered">
             <tr>
                 <th>
                     id
                 </th>
                 <th>
-                    Обозначение
-                </th>
-                <th>
-                    Название
-                </th>
-                <th>
-                    UTM
-                </th>
-                <th>
-                    Категория api-marketing
-                </th>
-                <th>
-                    Фотографии
+                    Файл
                 </th>
                 <th>
                     Сортировка
@@ -49,34 +39,18 @@
 
                 </th>
             </tr>
-            @foreach($site->localOffices as $localOffice)
+            @foreach($localOffice->localOfficePhotos as $localOfficePhoto)
                 <tr>
                     <td>
-                        {{ $localOffice->id }}
+                        {{ $localOfficePhoto->id }}
                     </td>
                     <td>
-                        {{ $localOffice->code }}
-                    </td>
-                    <td>
-                        @foreach($localOffice->localOfficeTexts as $text)
-                            <div>
-                                {{ $text->name }}
-                            </div>
-                        @endforeach
-                    </td>
-                    <td>
-                        {{ $localOffice->utm_tag }}={{ $localOffice->utm_value }}
-                    </td>
-                    <td>
-                        {{ $localOffice->category }}
-                    </td>
-                    <td>
-                        <a href="{!! route('admin.local_office_photos.index', ['local_office_id'=>$localOffice->id]) !!}">Фотографии</a>
+                        {{ $localOfficePhoto->sample }}
                     </td>
                     <td class="text-center">
-                        <form method="post" action="{!! route('admin.local_offices.move') !!}">
+                        <form method="post" action="{!! route('admin.local_office_photos.move') !!}">
                             @csrf
-                            <input type="hidden" name="id" value="{{ $localOffice->id }}">
+                            <input type="hidden" name="id" value="{{ $localOfficePhoto->id }}">
 
                             @if (!$loop->first)
                                 <button type="submit" name="direction" value="up" class="btn btn-primary btn-sm"
@@ -94,10 +68,10 @@
                         </form>
                     </td>
                     <td class="text-nowrap">
-                        <a href="{!! route('admin.local_offices.edit', ['id' => $localOffice->id]) !!}"
+                        <a href="{!! route('admin.local_office_photos.edit', ['id' => $localOfficePhoto->id]) !!}"
                            class="btn btn-primary btn-sm"><i class="fas fa-edit"></i> Редактировать</a>
-                        <button type="button" data-text="Удалить {{ $localOffice->code }} сайта {{ $site->domain }}?"
-                                data-action="{!! route('admin.local_offices.delete') !!}" data-id="{{ $localOffice->id }}"
+                        <button type="button" data-text="Удалить {{ $localOfficePhoto->sample }}?"
+                                data-action="{!! route('admin.local_office_photos.delete') !!}" data-id="{{ $localOfficePhoto->id }}"
                                 class="btn btn-danger btn-sm js-delete-confirm"><i class="fas fa-trash"></i> Удалить
                         </button>
                     </td>

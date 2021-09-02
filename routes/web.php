@@ -56,6 +56,21 @@ Route::prefix('admin')->middleware(['auth', 'user.route.access'])->group(
         Route::get('languages/search-iso', 'admin\LanguageController@searchIso')
             ->name('admin.languages.search_iso');
 
+
+        Route::get('local-office-photos', 'admin\LocalOfficePhotoController@index')
+            ->name('admin.local_office_photos.index');
+        Route::get('local-office-photos/add', 'admin\LocalOfficePhotoController@edit')
+            ->name('admin.local_office_photos.add');
+        Route::get('local-office-photos/edit/{id}', 'admin\LocalOfficePhotoController@edit')
+            ->name('admin.local_office_photos.edit');
+        Route::post('local-office-photos/save', 'admin\LocalOfficePhotoController@save')
+            ->name('admin.local_office_photos.save');
+        Route::post('local-office-photos/delete', 'admin\LocalOfficePhotoController@delete')
+            ->name('admin.local_office_photos.delete');
+        Route::post('local-office-photos/move', 'admin\LocalOfficePhotoController@move')
+            ->name('admin.local_office_photos.move');
+
+
         Route::get('local-offices', 'admin\LocalOfficeController@index')
             ->name('admin.local_offices.index');
         Route::get('local-offices/add', 'admin\LocalOfficeController@edit')

@@ -60,6 +60,12 @@ class FileUploader
                 'image/' . $this->modelInstance->id . '.' . $this->request->file($this->requestField)->extension(),
             'photo' =>
                 $this->modelInstance->id . '.' . $this->request->file($this->requestField)->extension(),
+            'sample' =>  $this->modelInstance->id .'/sample.' . $this->request->file($this->requestField)->extension(),
+            'sample2' =>  $this->modelInstance->id .'/sample2.' . $this->request->file($this->requestField)->extension(),
+            'mobile' =>  $this->modelInstance->id .'/mobile.' . $this->request->file($this->requestField)->extension(),
+            'mobile2' =>  $this->modelInstance->id .'/mobile2.' . $this->request->file($this->requestField)->extension(),
+            'tablet' =>  $this->modelInstance->id .'/tablet.' . $this->request->file($this->requestField)->extension(),
+            'tablet2' =>  $this->modelInstance->id .'/tablet2.' . $this->request->file($this->requestField)->extension(),
         ];
         if (!Arr::exists($filenameByRequestField, $this->requestField)) {
             throw new \Exception('Не удалось найти путь для сохранения файла');

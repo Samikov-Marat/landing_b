@@ -81,6 +81,14 @@ return [
             'visibility' => 'public',
         ],
 
+        'local_office_photos' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/local_office_photos'),
+            'url' => '/storage/local_office_photos',
+            'visibility' => 'public',
+        ],
+
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),

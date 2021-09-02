@@ -223,41 +223,16 @@
             </div>
             <div class="office-page-offices__side-right">
                 <div class="office-page-offices__photos owl-carousel">
-
-                    <picture class="office-page-poster__image">
-                        <source srcset="/personal/img-op/office-sample-mobile.jpg, /personal/img-op/office-sample-mobile-2x.jpg 2x" media="(max-width: 480px)">
-                        <source srcset="/personal/img-op/office-sample-tablet.jpg, /personal/img-op/office-sample-tablet-2x.jpg 2x" media="(min-width: 480px) and (max-width: 1199px)">
-                        <source srcset="/personal/img-op/office-sample.jpg, /personal/img-op/office-sample-2x.jpg 2x">
-                        <img src="/personal/img-op/office-sample.jpg" />
-                    </picture>
-
-                    <picture class="office-page-poster__image">
-                        <source srcset="/personal/img-op/office-sample-mobile.jpg, /personal/img-op/office-sample-mobile-2x.jpg 2x" media="(max-width: 480px)">
-                        <source srcset="/personal/img-op/office-sample-tablet.jpg, /personal/img-op/office-sample-tablet-2x.jpg 2x" media="(min-width: 480px) and (max-width: 1199px)">
-                        <source srcset="/personal/img-op/office-sample.jpg, /personal/img-op/office-sample-2x.jpg 2x">
-                        <img src="/personal/img-op/office-sample.jpg" />
-                    </picture>
-
-                    <picture class="office-page-poster__image">
-                        <source srcset="/personal/img-op/office-sample-mobile.jpg, /personal/img-op/office-sample-mobile-2x.jpg 2x" media="(max-width: 480px)">
-                        <source srcset="/personal/img-op/office-sample-tablet.jpg, /personal/img-op/office-sample-tablet-2x.jpg 2x" media="(min-width: 480px) and (max-width: 1199px)">
-                        <source srcset="/personal/img-op/office-sample.jpg, /personal/img-op/office-sample-2x.jpg 2x">
-                        <img src="/personal/img-op/office-sample.jpg" />
-                    </picture>
-
-                    <picture class="office-page-poster__image">
-                        <source srcset="/personal/img-op/office-sample-mobile.jpg, /personal/img-op/office-sample-mobile-2x.jpg 2x" media="(max-width: 480px)">
-                        <source srcset="/personal/img-op/office-sample-tablet.jpg, /personal/img-op/office-sample-tablet-2x.jpg 2x" media="(min-width: 480px) and (max-width: 1199px)">
-                        <source srcset="/personal/img-op/office-sample.jpg, /personal/img-op/office-sample-2x.jpg 2x">
-                        <img src="/personal/img-op/office-sample.jpg" />
-                    </picture>
-
-                    <picture class="office-page-poster__image">
-                        <source srcset="/personal/img-op/office-sample-mobile.jpg, /personal/img-op/office-sample-mobile-2x.jpg 2x" media="(max-width: 480px)">
-                        <source srcset="/personal/img-op/office-sample-tablet.jpg, /personal/img-op/office-sample-tablet-2x.jpg 2x" media="(min-width: 480px) and (max-width: 1199px)">
-                        <source srcset="/personal/img-op/office-sample.jpg, /personal/img-op/office-sample-2x.jpg 2x">
-                        <img src="/personal/img-op/office-sample.jpg" />
-                    </picture>
+                    @if($site->localOffices->isNotEmpty())
+                        @foreach($site->localOffices->first()->localOfficePhotos as $photo)
+                            <picture class="office-page-poster__image">
+                                <source srcset="{{ Storage::disk('local_office_photos')->url($photo->mobile) }}, {{ Storage::disk('local_office_photos')->url($photo->mobile2) }} 2x" media="(max-width: 480px)">
+                                <source srcset="{{ Storage::disk('local_office_photos')->url($photo->tablet) }}, {{ Storage::disk('local_office_photos')->url($photo->tablet2) }} 2x" media="(min-width: 480px) and (max-width: 1199px)">
+                                <source srcset="{{ Storage::disk('local_office_photos')->url($photo->sample) }}, {{ Storage::disk('local_office_photos')->url($photo->sample2) }} 2x">
+                                <img src="{{ Storage::disk('local_office_photos')->url($photo->sample) }}" />
+                            </picture>
+                        @endforeach
+                    @endif
 
                 </div>
             </div>
