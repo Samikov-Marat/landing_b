@@ -70,6 +70,32 @@ Route::prefix('admin')->middleware(['auth', 'user.route.access'])->group(
         Route::post('local-offices/move', 'admin\LocalOfficeController@move')
             ->name('admin.local_offices.move');
 
+        Route::get('our-workers', 'admin\OurWorkerController@index')
+            ->name('admin.our_workers.index');
+        Route::get('our-workers/add', 'admin\OurWorkerController@edit')
+            ->name('admin.our_workers.add');
+        Route::get('our-workers/edit/{id}', 'admin\OurWorkerController@edit')
+            ->name('admin.our_workers.edit');
+        Route::post('our-workers/save', 'admin\OurWorkerController@save')
+            ->name('admin.our_workers.save')
+            ->withoutMiddleware(\App\Http\Middleware\TrimStrings::class);
+        Route::post('our-workers/delete', 'admin\OurWorkerController@delete')
+            ->name('admin.our_workers.delete');
+        Route::post('our-workers/move', 'admin\OurWorkerController@move')
+            ->name('admin.our_workers.move');
+
+        Route::get('news-articles', 'admin\NewsArticleController@index')
+            ->name('admin.news_articles.index');
+        Route::get('news-articles/add', 'admin\NewsArticleController@edit')
+            ->name('admin.news_articles.add');
+        Route::get('news-articles/edit/{id}', 'admin\NewsArticleController@edit')
+            ->name('admin.news_articles.edit');
+        Route::post('news-articles/save', 'admin\NewsArticleController@save')
+            ->name('admin.news_articles.save')
+            ->withoutMiddleware(\App\Http\Middleware\TrimStrings::class);
+        Route::post('news-articles/delete', 'admin\NewsArticleController@delete')
+            ->name('admin.news_articles.delete');
+
         Route::get('images', 'admin\ImageController@index')
             ->name('admin.images.index');
         Route::get('images/add', 'admin\ImageController@edit')

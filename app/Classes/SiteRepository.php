@@ -16,6 +16,8 @@ use phpDocumentor\Reflection\Types\Boolean;
 class SiteRepository
 {
     var $site;
+    var $newsLimit = 4;
+    var $ourWorkersLimit = 3;
 
     public function __construct($domain)
     {
@@ -38,6 +40,7 @@ class SiteRepository
     public function getSite(): Site
     {
         $this->loadLanguages();
+
         return $this->site;
     }
 
@@ -54,6 +57,39 @@ class SiteRepository
         if ($this->site->languages->isEmpty()) {
             throw new LanguageListIsEmpty('Не найдена ни одного языка у этого сайта');
         }
+    }
+
+    public function loadNewsArticles($language)
+    {
+        $newsLimit = $this->newsLimit;
+        $this->site->load(
+            [
+                'newsArticles' => function ($query) use ($language, $newsLimit) {
+                    $query->select(['id', 'site_id', 'publication_date_text', 'header', 'note', 'text', 'preview', 'image'])
+                        ->orderBy('publication_date', 'desc')
+                    ->where('language_id', $language->id)
+                    ->limit($newsLimit);
+                }
+            ]
+        );
+    }
+
+    public function loadOurWorkers($language)
+    {
+        $ourWorkersLimit = $this->ourWorkersLimit;
+        $this->site->load(
+            [
+                'ourWorkers' => function ($query) use ($ourWorkersLimit) {
+                    $query->select(['id', 'site_id', 'photo'])
+                        ->orderBy('sort')
+                    ->limit($ourWorkersLimit);
+                },
+                'ourWorkers.ourWorkerTexts' => function ($query) use ($language) {
+                    $query->select(['id', 'our_worker_id', 'name', 'post'])
+                    ->where('language_id', $language->id);
+                }
+            ]
+        );
     }
 
     public function containsLanguage($languageShortname): bool
@@ -94,9 +130,9 @@ class SiteRepository
         );
     }
 
-    public function loadLocalOffices($laguage)
+    public function loadLocalOffices($language)
     {
-        $language_id = $laguage->id;
+        $language_id = $language->id;
         $this->site->load(
             [
                 'localOffices' => function ($query) use ($language_id) {

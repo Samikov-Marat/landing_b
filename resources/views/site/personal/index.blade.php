@@ -263,27 +263,26 @@
             </div>
         </div>
     </div>
+
+
     <div class="office-page-team">
         <div class="office-page__heading2 office-page__heading2_centered">@d('personal_58')</div>
         <div class="office-page-team__text">@d('personal_59')<br />@d('personal_60')</div>
         <div class="office-page-team__content owl-carousel">
-            <div class="office-page-team__item">
-                <img src="/personal/img-op/team-sample3.jpg" class="office-page-team__photo" />
-                <div class="office-page-team__name">@d('personal_61')</div>
-                <div>@d('personal_62')</div>
-            </div>
-            <div class="office-page-team__item">
-                <img src="/personal/img-op/team-sample.jpg" class="office-page-team__photo" />
-                <div class="office-page-team__name">@d('personal_63')</div>
-                <div>@d('personal_64')</div>
-            </div>
-            <div class="office-page-team__item">
-                <img src="/personal/img-op/team-sample2.jpg" class="office-page-team__photo" />
-                <div class="office-page-team__name">@d('personal_65')</div>
-                <div>@d('personal_66')</div>
-            </div>
+            @foreach($site->ourWorkers as $ourWorker)
+                <div class="office-page-team__item">
+                    <img src="{{ Storage::disk('our_worker_photos')->url($ourWorker->photo) }}" class="office-page-team__photo" />
+                    @if($ourWorker->ourWorkerTexts->isnotEmpty())
+                        <div class="office-page-team__name">{{ $ourWorker->ourWorkerTexts->first()->name }}</div>
+                        <div>{{ $ourWorker->ourWorkerTexts->first()->post }}</div>
+                    @endif
+                </div>
+            @endforeach
         </div>
     </div>
+
+
+
     <div class="office-page__calculator">
         @include('site.universal2.calculator_block')
     </div>
@@ -448,40 +447,22 @@
             </div>
         </div>
     </div>
+
     <div class="screen-content">
         <div class="office-page__heading2">@d('personal_137')</div>
         <div class="news-list__content">
-
-                <div class="news news-list__news">
-                    <a href="#"><img class="news__img" src="/personal/img-op/news-sample.jpg" alt="News" /></a>
-                    <div class="news__date">@d('personal_138')</div>
-                    <a href="#" class="news__title">@d('personal_139')</a>
-                    <div class="news__desc">@d('personal_140')</div>
+            @foreach($site->newsArticles as $newsArticle)
+                <div class="news news-list__news" data-item="{{ $newsArticle }}">
+                    <a href="#"><img class="news__img" src="{{ Storage::disk('news_images')->url($newsArticle->preview)  }}" alt="{{ $newsArticle->header }}" /></a>
+                    <div class="news__date">{{ $newsArticle->publication_date_text }}</div>
+                    <a href="#" class="news__title">{{ $newsArticle->header }}</a>
+                    <div class="news__desc">{{ $newsArticle->note }}</div>
                 </div>
-
-                <div class="news news-list__news">
-                    <a href="#"><img class="news__img" src="/personal/img-op/news-sample.jpg" alt="News" /></a>
-                    <div class="news__date">@d('personal_141')</div>
-                    <a href="#" class="news__title">@d('personal_142')</a>
-                    <div class="news__desc">@d('personal_143')</div>
-                </div>
-
-                <div class="news news-list__news">
-                    <a href="#"><img class="news__img" src="/personal/img-op/news-sample.jpg" alt="News" /></a>
-                    <div class="news__date">@d('personal_144')</div>
-                    <a href="#" class="news__title">@d('personal_145')</a>
-                    <div class="news__desc">@d('personal_146')</div>
-                </div>
-
-                <div class="news news-list__news">
-                    <a href="#"><img class="news__img" src="/personal/img-op/news-sample.jpg" alt="News" /></a>
-                    <div class="news__date">@d('personal_147')</div>
-                    <a href="#" class="news__title">@d('personal_148')</a>
-                    <div class="news__desc">@d('personal_149')</div>
-                </div>
-
+            @endforeach
         </div>
     </div>
+
+
     <div class="office-page-feedback">
         <div class="office-page-feedback__content">
             <div class="office-page-feedback__title js-result-hide">@d('personal_150')</div>

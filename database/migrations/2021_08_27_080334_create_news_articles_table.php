@@ -22,6 +22,8 @@ class CreateNewsArticlesTable extends Migration
             $table->text('text');
             $table->string('publication_date_text');
             $table->dateTime('publication_date');
+            $table->string('preview')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }
