@@ -1,11 +1,11 @@
-$(document).ready(function () {
+$(document).ready(function() {
     sliders();
     menu();
 
     //console.log('hello');
 
     //demoFormProcessing
-    $(".js-form").on('submit', function () {
+    $(".js-form").on('submit', function() {
         $(this).hide();
         $(".js-form-result").show();
         return false;
@@ -79,11 +79,11 @@ $(document).ready(function () {
     });
 
     var cities = [
-        {value: 'Москва', data: 1},
-        {value: 'Магнитогорск', data: 2},
-        {value: 'Магадан', data: 3},
-        {value: 'Майкоп', data: 4},
-        {value: 'Миасс', data: 5},
+        { value: 'Москва', data: 1 },
+        { value: 'Магнитогорск', data: 2 },
+        { value: 'Магадан', data: 3 },
+        { value: 'Майкоп', data: 4 },
+        { value: 'Миасс', data: 5 },
     ];
 
     $('.form-field__input[name=from]')
@@ -97,7 +97,8 @@ $(document).ready(function () {
         })
     ;
 
-    modalOpen = function (jsel) {
+    modalOpen = function(jsel)
+    {
         if ($('.modal-opened').length) {
             modalClose($('.modal-opened'));
         }
@@ -105,15 +106,15 @@ $(document).ready(function () {
         if ($('.modal-bg').length == 0) {
             $('<div></div>')
                 .addClass('modal-bg')
-                .css('width', $(document).width())
-                .css('height', $(document).height())
+                .css('width',$(document).width())
+                .css('height',$(document).height())
                 .prependTo('body')
             ;
         }
 
         var vscroll = (document.all ? document.scrollTop : window.pageYOffset);
         $('.modal-container').has(jsel).css('display', 'flex').css('padding-top', vscroll + 'px');
-        jsel.addClass('modal-opened').css('display', 'block');
+        jsel.addClass('modal-opened').css('display','block');
 
         if ($(window).width() <= 480) {
             $('body')
@@ -123,8 +124,9 @@ $(document).ready(function () {
         }
     };
 
-    modalClose = function (jsel) {
-        jsel.removeClass('modal-opened').css('display', 'none');
+    modalClose = function(jsel)
+    {
+        jsel.removeClass('modal-opened').css('display','none');
         $('.modal-container').has(jsel).css('display', 'none').css('padding-top', 0);
         $('.modal-bg').remove();
         $('body')
@@ -155,7 +157,7 @@ $(document).ready(function () {
         return false;
     });
 
-    $('.js-partner-show-more').click(function () {
+    $('.js-partner-show-more').click(function (){
         $('.partner__item_hidden').fadeIn({
             duration: 700,
         });
@@ -163,22 +165,22 @@ $(document).ready(function () {
         return false;
     });
 
-    $('.office-page-feedback .primary-button').click(function () {
+    $('.office-page-feedback .primary-button').click(function (){
         var $content = $('.office-page-feedback__content').has(this);
         $content.addClass('office-page-feedback__content_loading');
-        setTimeout(function () {
+        setTimeout(function (){
             $content.removeClass('office-page-feedback__content_loading');
             $content.find('.js-result-hide').hide();
             $content.find('.js-result-ok').show();
         }, 1500);
     });
 
-    $('.office-page-wrapper .news a').click(function () {
+    $('.office-page-wrapper .news a').click(function (){
         modalOpen($('#news-modal'));
         return false;
     });
 
-    $('.news-modal__close').click(function () {
+    $('.news-modal__close').click(function (){
         modalClose($('#news-modal'));
         return false;
     });
@@ -191,52 +193,73 @@ $(document).ready(function () {
         return false;
     });
 
-    $('.review-modal__close').click(function () {
+    $('.review-modal__close').click(function (){
         modalClose($('#review-modal'));
         return false;
     });
 
-    $('.office-page-presentation__download').click(function () {
+    $('.office-page-presentation__download').click(function (){
         modalOpen($('#presentation-modal'));
         return false;
     });
 
-    $('.presentation-modal__close').click(function () {
+    $('.presentation-modal__close').click(function (){
         modalClose($('#presentation-modal'));
         return false;
     });
 
-    $('#presentation-modal .primary-button').click(function () {
+    $('#presentation-modal .primary-button').click(function (){
         var $content = $('#presentation-modal');
         $content.addClass('presentation-modal_loading');
-        setTimeout(function () {
+        setTimeout(function (){
             $content.removeClass('presentation-modal_loading');
             $content.find('.presentation-modal__form').hide();
             $content.find('.js-modal-result-ok').show();
         }, 1500);
     });
 
-    $('.cookie-confirm__close').click(function () {
+    $('.cookie-confirm__close').click(function (){
         $('.cookie-confirm').hide();
+    });
+
+    $('.js-review-add-open').click(function () {
+        modalOpen($('#review-add-modal'));
+        return false;
+    });
+
+    // $('#review-add-modal .primary-button').click(function (){
+    //     var $modal = $('.review-add-modal').has(this);
+    //     $modal.addClass('review-add-modal_loading');
+    //     setTimeout(function (){
+    //         $modal.removeClass('review-add-modal_loading');
+    //         $modal.find('.js-modal-result-hide').hide();
+    //         $modal.find('.js-modal-result-ok').show();
+    //     }, 1000);
+    //     return false;
+    // });
+
+    $('.review-add-modal__close').click(function (){
+        modalClose($('#review-modal'));
+        return false;
     });
 });
 
 
-(function (window, $) {
+(function(window, $) {
 
-    window.menu = function () {
-        $('.js-menu-open-button').click(function () {
+    window.menu = function() {
+        $('.js-menu-open-button').click(function(){
             $('.js-menu-container').addClass('opened');
             $('.js-fade_background').addClass('opened');
             return false;
         });
 
-        $('.js-menu-close-button').click(function () {
+        $('.js-menu-close-button').click(function(){
             closeMenu();
             return false;
         });
 
-        $('.js-fade_background').click(function () {
+        $('.js-fade_background').click(function(){
             closeMenu();
             return false;
         });
@@ -250,11 +273,12 @@ $(document).ready(function () {
 })(window, jQuery);
 
 
-(function (window, $) {
+
+(function(window, $) {
 
     var activatedClass = 'activated';
 
-    window.activateSlider = function (sliderDiv, sliderOptions) {
+    window.activateSlider = function(sliderDiv, sliderOptions){
         if (sliderDiv.hasClass(activatedClass)) {
             return;
         }
@@ -266,7 +290,7 @@ $(document).ready(function () {
         }, 100);
     }
 
-    window.destroySlider = function (sliderDiv) {
+    window.destroySlider = function(sliderDiv) {
         if (!sliderDiv.hasClass(activatedClass)) {
             return;
         }
@@ -278,22 +302,42 @@ $(document).ready(function () {
 })(window, jQuery);
 
 
-(function (window, $) {
 
-    window.sliders = function () {
+(function(window, $) {
+
+    window.sliders = function() {
 
         var companyAdvantagesSlider = $('.js-company-advantages');
-        var companyAdvantagesOptions = {
-            nav: true,
-            dots: true,
-            items: 1,
-            loop: true,
-            autoplay: false,
-            autoplayTimeout: 5000,
-            autoplayHoverPause: true,
-            margin: 0,
-            autoHeight: true,
-        };
+        var companyAdvantagesOptions  = {};
+
+        if ($('html').attr('dir') === 'rtl') {
+            // RTL slider options
+            companyAdvantagesOptions  = {
+                rtl:true,
+                nav: true,
+                dots: true,
+                items: 1,
+                loop: true,
+                autoplay: false,
+                autoplayTimeout: 5000,
+                autoplayHoverPause: true,
+                margin: 0,
+                autoHeight: true,
+            };
+        } else {
+            // Default slider options
+            companyAdvantagesOptions  = {
+                nav: true,
+                dots: true,
+                items: 1,
+                loop: true,
+                autoplay: false,
+                autoplayTimeout: 5000,
+                autoplayHoverPause: true,
+                margin: 0,
+                autoHeight: true,
+            };
+        }
 
         var officePageSlider = $('.office-page-services__main');
         var officePageOptions = {
@@ -342,7 +386,7 @@ $(document).ready(function () {
             autoWidth: true,
         });
 
-        $(window).resize(function () {
+        $(window).resize(function() {
             processOnResize()
         });
 
@@ -367,7 +411,7 @@ $(document).ready(function () {
         }
 
         function isWider480() {
-            if (window.innerWidth >= 481) {
+            if(window.innerWidth >= 481) {
                 return true;
             } else {
                 return false;
@@ -375,7 +419,7 @@ $(document).ready(function () {
         }
 
         function isWider1200() {
-            if (window.innerWidth >= 1200) {
+            if(window.innerWidth >= 1200) {
                 return true;
             } else {
                 return false;
@@ -385,4 +429,5 @@ $(document).ready(function () {
     };
 
 })(window, jQuery);
+
 

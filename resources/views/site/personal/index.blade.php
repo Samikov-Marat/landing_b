@@ -23,7 +23,14 @@
             <div class="office-page-header__office-city">@d('personal_3')</div>
         </div>
         <div class="office-page-header__left">
-            <div class="header__language-selector">@d('personal_4')</div>
+
+            @foreach($site->languages as $languageItem)
+                @if($language->id != $languageItem->id)
+                    <div><a class="header__language-selector" href="{!! route('site.show_page', ['languageUrl' => $languageItem->uri, 'pageUrl' => $page->url]) !!}">{{ \Str::upper($languageItem->shortname) }}</a></div>
+
+                @endif
+            @endforeach
+
             <a href="#" class="office-page-button office-page-header__button_fc office-page-button_type_calculate office-page-header__button">@d('personal_5')</a>
             <a href="#" class="office-page-button office-page-button_type_search office-page-header__button">@d('personal_6')</a>
         </div>
@@ -288,7 +295,7 @@
                 @d('personal_132')<br />
                 @d('personal_133')
             </div>
-            <a href="#" class="primary-button">@d('personal_134')</a>
+            <a href="#" class="primary-button js-review-add-open">@d('personal_134')</a>
         </div>
     </div>
     <div class="office-page-cam">
@@ -333,7 +340,7 @@
                     <div class="office-page-feedback__form-item-left">
                         <div class="form__row">
                             <div class="form-field">
-                                <input type="text" name="name" class="form-field__input" placeholder="Имя" />
+                                <input type="text" name="name" class="form-field__input" placeholder="{{ $dictionary['personal_feedback_name'] }}" />
                             </div>
                         </div>
                         <div class="form__row">
@@ -345,7 +352,7 @@
                     <div class="office-page-feedback__form-item-right">
                         <div class="form__row">
                             <div class="form-field">
-                                <textarea name="message" class="form-field__input office-page-feedback__textarea" placeholder="Текст вопроса"></textarea>
+                                <textarea name="message" class="form-field__input office-page-feedback__textarea" placeholder="{{ $dictionary['personal_feedback_text'] }}"></textarea>
                             </div>
                         </div>
                     </div>
@@ -353,7 +360,7 @@
                 <div class="office-page-feedback__form-item office-page-feedback__form-item_centered">
                     <div class="office-page-feedback__form-item-left">
                         <div class="form-field">
-                            <input type="submit" value="Отправить" class="primary-button primary-button_wide primary-button_submit" />
+                            <input type="submit" value="{{ $dictionary['personal_feedback_send'] }}" class="primary-button primary-button_wide primary-button_submit" />
                         </div>
                     </div>
                     <div class="office-page-feedback__form-item-right">
@@ -616,6 +623,58 @@
                     </div>
                 </div>
             </div>
+
+            <div id="review-add-modal" class="review-add-modal">
+                <div class="review-add-modal__close"></div>
+                <div class="review-add-modal__content js-modal-result-hide">
+                    <div class="review-add-modal__title">Добавить отзыв</div>
+                    <form method="post" action="{!! route('request.feedback_review') !!}" class="form calculator_form js-feedback-review-form">
+                        {{ csrf_field() }}
+                        <input type="hidden" name="language_id" value="{{ $language->id }}">
+                        <div class="review-add-modal__two-fields">
+                            <div class="form__row review-add-modal__two-fields-item">
+                                <div class="form-field">
+                                    <input type="text" name="name" class="form-field__input js-feedback-review-name" placeholder="Ваше имя" />
+                                    <div class="form-field__error-message">Поле обязательно для заполнения</div>
+                                </div>
+                            </div>
+                            <div class="form__row review-add-modal__two-fields-item">
+                                <div class="form-field">
+                                    <input type="text" name="email" class="form-field__input js-feedback-review-email" placeholder="E-mail" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form__row">
+                            <div class="form-field">
+                                <textarea name="text" class="form-field__input js-feedback-review-text" placeholder="Текст отзыва"></textarea>
+                            </div>
+                        </div>
+                        <div class="form__row form__row_no-input">
+                            <div class="checkbox-widget">
+                                <input type="checkbox" name="agree" id="modal-agree_review" class="js-feedback-review-checkbox" /><label for="modal-agree_review"><span>Я соглашаюсь с <a class="checkbox-widget__link" href="#">условиями обработки персональных данных</a></span></label>
+                            </div>
+                        </div>
+                        <div class="form-field">
+                            <input type="submit" value="Отправить" class="primary-button primary-button_wide primary-button_submit" />
+                        </div>
+                    </form>
+                </div>
+                <div class="review-add-modal__result js-modal-result-ok" style="display: none;">
+                    <div>
+                        <div class="review-add-modal__result-icon review-add-modal__result-icon_ok"></div>
+                        <div class="review-add-modal__result-title">Сообщение<br />успешно отправлено!</div>
+                        <div class="review-add-modal__result-text">Постаремся ответить на ваш запрос, как можно скорее.</div>
+                    </div>
+                </div>
+                <div class="review-add-modal__result js-modal-result-error" style="display: none;">
+                    <div>
+                        <div class="review-add-modal__result-icon review-add-modal__result-icon_error"></div>
+                        <div class="review-add-modal__result-title">Сообщение не отправлено!</div>
+                        <div class="review-add-modal__result-text">Что-то пошло не так, попробуйте отправить еще раз позднее.</div>
+                    </div>
+                </div>
+            </div>
+
         </div>
         <div class="cookie-confirm">
             <div class="cookie-confirm__close"></div>
