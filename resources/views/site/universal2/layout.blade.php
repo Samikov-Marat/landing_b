@@ -132,6 +132,7 @@
 </script>
 
 <script src="{{ mix('universal2/new.js') }}" defer></script>
-
+@include('site.universal2.binotel')
+@include('site.universal2.jivosite')
 </body>
 </html>
