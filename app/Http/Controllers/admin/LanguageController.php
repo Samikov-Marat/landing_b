@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\admin;
 
-use App\Classes\LanguageDetector;
 use App\Classes\LanguageIsoSearcher;
 use App\Http\Controllers\Controller;
 use App\Language;

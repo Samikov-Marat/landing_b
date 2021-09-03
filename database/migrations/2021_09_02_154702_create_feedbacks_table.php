@@ -20,7 +20,8 @@ class CreateFeedbacksTable extends Migration
             $table->string('name');
             $table->string('email');
             $table->text('text');
-
+            $table->boolean('published');
+            $table->dateTime('writing_date');
             $table->timestamps();
         });
     }

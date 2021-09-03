@@ -50,6 +50,9 @@
                 <th>
                     Сотрудники
                 </th>
+                <th>
+                    Отзывы
+                </th>
                 @canany(['admin.sites.edit', 'admin.sites.delete'])
                     <th>
 
@@ -103,6 +106,12 @@
                     <td>
                         <a href="{!! route('admin.our_workers.index', ['site_id' => $site->id]) !!}">
                             Сотрудники
+                        </a>
+                    </td>
+
+                    <td>
+                        <a href="{!! route('admin.feedbacks.index', ['site_id' => $site->id]) !!}">
+                            Отзывы
                         </a>
                     </td>
 

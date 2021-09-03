@@ -57,6 +57,18 @@ Route::prefix('admin')->middleware(['auth', 'user.route.access'])->group(
             ->name('admin.languages.search_iso');
 
 
+        Route::get('feedbacks', 'admin\FeedbackController@index')
+            ->name('admin.feedbacks.index');
+        Route::get('feedbacks/add', 'admin\FeedbackController@edit')
+            ->name('admin.feedbacks.add');
+        Route::get('feedbacks/edit/{id}', 'admin\FeedbackController@edit')
+            ->name('admin.feedbacks.edit');
+        Route::post('feedbacks/save', 'admin\FeedbackController@save')
+            ->name('admin.feedbacks.save');
+        Route::post('feedbacks/delete', 'admin\FeedbackController@delete')
+            ->name('admin.feedbacks.delete');
+
+
         Route::get('local-office-photos', 'admin\LocalOfficePhotoController@index')
             ->name('admin.local_office_photos.index');
         Route::get('local-office-photos/add', 'admin\LocalOfficePhotoController@edit')

@@ -18,6 +18,7 @@ class SiteRepository
     var $site;
     var $newsLimit = 4;
     var $ourWorkersLimit = 3;
+    var $feedbacksLimit = 10;
 
     public function __construct($domain)
     {
@@ -94,6 +95,23 @@ class SiteRepository
         );
     }
 
+    public function loadFeedbacks($language)
+    {
+        $feedbacksLimit = $this->feedbacksLimit;
+        $language_id = $language->id;
+        $this->site->load(
+            [
+                'feedbacks' => function ($query) use ($feedbacksLimit, $language_id) {
+                    $query->select(['id', 'site_id', 'language_id', 'name', 'email', 'text'])
+                        ->where('language_id', $language_id)
+                        ->where('published', 1)
+                        ->orderBy('writing_date', 'desc')
+                        ->limit($feedbacksLimit);
+                }
+            ]
+        );
+    }
+
     public function containsLanguage($languageShortname): bool
     {
         return $this->site->languages->contains('shortname', $languageShortname);
@@ -137,7 +155,7 @@ class SiteRepository
         $language_id = $language->id;
         $this->site->load(
             [
-                'localOffices' => function ($query) use ($language_id) {
+                'localOffices' => function ($query) {
                     $query->select('id', 'site_id')
                         ->orderBy('sort');
                 },

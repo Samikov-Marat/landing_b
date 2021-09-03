@@ -271,130 +271,16 @@
     <div class="office-page-reviews">
         <div class="office-page-reviews__content owl-carousel">
 
+            @foreach($site->feedbacks as $feedback)
                 <div class="office-page-reviews__review">
                     <div class="office-page-reviews__review-title">
-                        @d('personal_112')
+                        {{ $feedback->name }}
                     </div>
                     <div>
-                        @d('personal_113')
-                        @d('personal_113')
-                        @d('personal_113')
-                        @d('personal_113')
-                        @d('personal_113')
+                        {{ $feedback->text }}
                     </div>
                 </div>
-                <div class="office-page-reviews__review">
-                    <div class="office-page-reviews__review-title">
-                        @d('personal_114')
-                    </div>
-                    <div>
-                        @d('personal_115')
-                        @d('personal_115')
-                        @d('personal_115')
-                        @d('personal_115')
-                        @d('personal_115')
-                    </div>
-                </div>
-
-                <div class="office-page-reviews__review">
-                    <div class="office-page-reviews__review-title">
-                        @d('personal_116')
-                    </div>
-                    <div>
-                        @d('personal_117')
-                        @d('personal_117')
-                        @d('personal_117')
-                        @d('personal_117')
-                        @d('personal_117')
-                    </div>
-                </div>
-                <div class="office-page-reviews__review">
-                    <div class="office-page-reviews__review-title">
-                        @d('personal_118')
-                    </div>
-                    <div>
-                        @d('personal_119')
-                        @d('personal_119')
-                        @d('personal_119')
-                        @d('personal_119')
-                        @d('personal_119')
-                    </div>
-                </div>
-
-                <div class="office-page-reviews__review">
-                    <div class="office-page-reviews__review-title">
-                        @d('personal_120')
-                    </div>
-                    <div>
-                        @d('personal_121')
-                        @d('personal_121')
-                        @d('personal_121')
-                        @d('personal_121')
-                        @d('personal_121')
-                    </div>
-                </div>
-                <div class="office-page-reviews__review">
-                    <div class="office-page-reviews__review-title">
-                        @d('personal_122')
-                    </div>
-                    <div>
-                        @d('personal_123')
-                        @d('personal_123')
-                        @d('personal_123')
-                        @d('personal_123')
-                        @d('personal_123')
-                    </div>
-                </div>
-
-                <div class="office-page-reviews__review">
-                    <div class="office-page-reviews__review-title">
-                        @d('personal_124')
-                    </div>
-                    <div>
-                        @d('personal_125')
-                        @d('personal_125')
-                        @d('personal_125')
-                        @d('personal_125')
-                        @d('personal_125')
-                    </div>
-                </div>
-                <div class="office-page-reviews__review">
-                    <div class="office-page-reviews__review-title">
-                        @d('personal_126')
-                    </div>
-                    <div>
-                        @d('personal_127')
-                        @d('personal_127')
-                        @d('personal_127')
-                        @d('personal_127')
-                        @d('personal_127')
-                    </div>
-                </div>
-
-                <div class="office-page-reviews__review">
-                    <div class="office-page-reviews__review-title">
-                        @d('personal_128')
-                    </div>
-                    <div>
-                        @d('personal_129')
-                        @d('personal_129')
-                        @d('personal_129')
-                        @d('personal_129')
-                        @d('personal_129')
-                    </div>
-                </div>
-                <div class="office-page-reviews__review">
-                    <div class="office-page-reviews__review-title">
-                        @d('personal_130')
-                    </div>
-                    <div>
-                        @d('personal_131')
-                        @d('personal_131')
-                        @d('personal_131')
-                        @d('personal_131')
-                        @d('personal_131')
-                    </div>
-                </div>
+            @endforeach
 
         </div>
         <div class="office-page-reviews__add content">

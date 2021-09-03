@@ -26,9 +26,7 @@
         <input type="hidden" name="site_id" value="{{ $site->id }}">
 
         <div class="form-group">
-
             <label>Язык</label>
-
             @foreach($site->languages as $language)
                 @php($forId = 'language_id_' . $language->id)
                 <div class="form-check">
