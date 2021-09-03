@@ -277,6 +277,8 @@ Route::get('/request/get-office-list', 'site\RequestController@getOfficeList')
     ->name('request.get_office_list');
 Route::post('/request/feedback-review', 'site\RequestController@feedbackReview')
     ->name('request.feedback_review');
+Route::post('/request/allow-cookies', 'site\RequestController@allowCookies')
+    ->name('request.allow_cookies');
 
 Route::get('/request/images/{imageUrl}', 'site\RequestController@images')
     ->where('imageUrl', '.*')

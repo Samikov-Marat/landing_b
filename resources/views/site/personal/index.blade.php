@@ -676,6 +676,9 @@
             </div>
 
         </div>
+
+        @if(!isset($_COOKIE['allow_cookies']))
+
         <div class="cookie-confirm">
             <div class="cookie-confirm__close"></div>
             <div class="cookie-confirm__container">
@@ -689,10 +692,11 @@
                     <a href="#" class="cookie-confirm__link">@d('personal_196')</a>
                 </div>
             </div>
-            <button type="button" class="primary-button cookie-confirm__button js-cookies-confirm">@d('personal_197')</button>
+            <button type="button" data-url="{{ route('request.allow_cookies') }}" class="primary-button cookie-confirm__button js-cookies-confirm">@d('personal_197')</button>
         </div>
-    </div>
+            @endif
 
+    </div>
 
     <script src="{{ mix('personal/new.js') }}" defer></script>
     </body>

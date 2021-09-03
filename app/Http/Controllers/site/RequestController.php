@@ -39,6 +39,13 @@ class RequestController extends Controller
         }
     }
 
+    public function allowCookies(Request $request)
+    {
+        setcookie('allow_cookies', 1, strtotime('+3 years'), '/');
+        return response('saved', 200)
+            ->header('Content-Type', 'text/plain');
+    }
+
     public function feedbackReview(Request $request)
     {
         $domain = Domain::getInstance($request)->get();

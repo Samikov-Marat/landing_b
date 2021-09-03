@@ -49,5 +49,11 @@ $(function () {
         return false;
     });
 
+    $('.js-cookies-confirm').click(function(){
+        $.post({
+            url: $(this).data('url')
+        });
+    });
+
 
 });
