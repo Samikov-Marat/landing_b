@@ -18,4 +18,8 @@ class LocalOffice extends Model
     {
         return $this->hasMany('App\LocalOfficeEmail', 'local_office_id', 'id');
     }
+    public function localOfficePhotos()
+    {
+        return $this->hasMany('App\LocalOfficePhoto', 'local_office_id', 'id');
+    }
 }

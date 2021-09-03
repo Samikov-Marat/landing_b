@@ -25,4 +25,20 @@ class Site extends Model
     {
         return $this->hasMany('App\LocalOffice', 'site_id', 'id');
     }
+
+    public function newsArticles()
+    {
+        return $this->hasMany('App\NewsArticle', 'site_id', 'id');
+    }
+
+    public function ourWorkers()
+    {
+        return $this->hasMany('App\OurWorker', 'site_id', 'id');
+    }
+
+    public function feedbacks()
+    {
+        return $this->hasMany('App\Feedback', 'site_id', 'id');
+    }
+
 }

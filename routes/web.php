@@ -56,6 +56,33 @@ Route::prefix('admin')->middleware(['auth', 'user.route.access'])->group(
         Route::get('languages/search-iso', 'admin\LanguageController@searchIso')
             ->name('admin.languages.search_iso');
 
+
+        Route::get('feedbacks', 'admin\FeedbackController@index')
+            ->name('admin.feedbacks.index');
+        Route::get('feedbacks/add', 'admin\FeedbackController@edit')
+            ->name('admin.feedbacks.add');
+        Route::get('feedbacks/edit/{id}', 'admin\FeedbackController@edit')
+            ->name('admin.feedbacks.edit');
+        Route::post('feedbacks/save', 'admin\FeedbackController@save')
+            ->name('admin.feedbacks.save');
+        Route::post('feedbacks/delete', 'admin\FeedbackController@delete')
+            ->name('admin.feedbacks.delete');
+
+
+        Route::get('local-office-photos', 'admin\LocalOfficePhotoController@index')
+            ->name('admin.local_office_photos.index');
+        Route::get('local-office-photos/add', 'admin\LocalOfficePhotoController@edit')
+            ->name('admin.local_office_photos.add');
+        Route::get('local-office-photos/edit/{id}', 'admin\LocalOfficePhotoController@edit')
+            ->name('admin.local_office_photos.edit');
+        Route::post('local-office-photos/save', 'admin\LocalOfficePhotoController@save')
+            ->name('admin.local_office_photos.save');
+        Route::post('local-office-photos/delete', 'admin\LocalOfficePhotoController@delete')
+            ->name('admin.local_office_photos.delete');
+        Route::post('local-office-photos/move', 'admin\LocalOfficePhotoController@move')
+            ->name('admin.local_office_photos.move');
+
+
         Route::get('local-offices', 'admin\LocalOfficeController@index')
             ->name('admin.local_offices.index');
         Route::get('local-offices/add', 'admin\LocalOfficeController@edit')
@@ -69,6 +96,32 @@ Route::prefix('admin')->middleware(['auth', 'user.route.access'])->group(
             ->name('admin.local_offices.delete');
         Route::post('local-offices/move', 'admin\LocalOfficeController@move')
             ->name('admin.local_offices.move');
+
+        Route::get('our-workers', 'admin\OurWorkerController@index')
+            ->name('admin.our_workers.index');
+        Route::get('our-workers/add', 'admin\OurWorkerController@edit')
+            ->name('admin.our_workers.add');
+        Route::get('our-workers/edit/{id}', 'admin\OurWorkerController@edit')
+            ->name('admin.our_workers.edit');
+        Route::post('our-workers/save', 'admin\OurWorkerController@save')
+            ->name('admin.our_workers.save')
+            ->withoutMiddleware(\App\Http\Middleware\TrimStrings::class);
+        Route::post('our-workers/delete', 'admin\OurWorkerController@delete')
+            ->name('admin.our_workers.delete');
+        Route::post('our-workers/move', 'admin\OurWorkerController@move')
+            ->name('admin.our_workers.move');
+
+        Route::get('news-articles', 'admin\NewsArticleController@index')
+            ->name('admin.news_articles.index');
+        Route::get('news-articles/add', 'admin\NewsArticleController@edit')
+            ->name('admin.news_articles.add');
+        Route::get('news-articles/edit/{id}', 'admin\NewsArticleController@edit')
+            ->name('admin.news_articles.edit');
+        Route::post('news-articles/save', 'admin\NewsArticleController@save')
+            ->name('admin.news_articles.save')
+            ->withoutMiddleware(\App\Http\Middleware\TrimStrings::class);
+        Route::post('news-articles/delete', 'admin\NewsArticleController@delete')
+            ->name('admin.news_articles.delete');
 
         Route::get('images', 'admin\ImageController@index')
             ->name('admin.images.index');
@@ -222,6 +275,8 @@ Route::post('/request/feedback', 'site\RequestController@feedback')
     ->name('request.feedback');
 Route::get('/request/get-office-list', 'site\RequestController@getOfficeList')
     ->name('request.get_office_list');
+Route::post('/request/feedback-review', 'site\RequestController@feedbackReview')
+    ->name('request.feedback_review');
 
 Route::get('/request/images/{imageUrl}', 'site\RequestController@images')
     ->where('imageUrl', '.*')

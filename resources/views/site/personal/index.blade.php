@@ -23,7 +23,14 @@
             <div class="office-page-header__office-city">@d('personal_3')</div>
         </div>
         <div class="office-page-header__left">
-            <div class="header__language-selector">@d('personal_4')</div>
+
+            @foreach($site->languages as $languageItem)
+                @if($language->id != $languageItem->id)
+                    <div><a class="header__language-selector" href="{!! route('site.show_page', ['languageUrl' => $languageItem->uri, 'pageUrl' => $page->url]) !!}">{{ \Str::upper($languageItem->shortname) }}</a></div>
+
+                @endif
+            @endforeach
+
             <a href="#" class="office-page-button office-page-header__button_fc office-page-button_type_calculate office-page-header__button">@d('personal_5')</a>
             <a href="#" class="office-page-button office-page-button_type_search office-page-header__button">@d('personal_6')</a>
         </div>
@@ -223,67 +230,41 @@
             </div>
             <div class="office-page-offices__side-right">
                 <div class="office-page-offices__photos owl-carousel">
-
-                    <picture class="office-page-poster__image">
-                        <source srcset="/personal/img-op/office-sample-mobile.jpg, /personal/img-op/office-sample-mobile-2x.jpg 2x" media="(max-width: 480px)">
-                        <source srcset="/personal/img-op/office-sample-tablet.jpg, /personal/img-op/office-sample-tablet-2x.jpg 2x" media="(min-width: 480px) and (max-width: 1199px)">
-                        <source srcset="/personal/img-op/office-sample.jpg, /personal/img-op/office-sample-2x.jpg 2x">
-                        <img src="/personal/img-op/office-sample.jpg" />
-                    </picture>
-
-                    <picture class="office-page-poster__image">
-                        <source srcset="/personal/img-op/office-sample-mobile.jpg, /personal/img-op/office-sample-mobile-2x.jpg 2x" media="(max-width: 480px)">
-                        <source srcset="/personal/img-op/office-sample-tablet.jpg, /personal/img-op/office-sample-tablet-2x.jpg 2x" media="(min-width: 480px) and (max-width: 1199px)">
-                        <source srcset="/personal/img-op/office-sample.jpg, /personal/img-op/office-sample-2x.jpg 2x">
-                        <img src="/personal/img-op/office-sample.jpg" />
-                    </picture>
-
-                    <picture class="office-page-poster__image">
-                        <source srcset="/personal/img-op/office-sample-mobile.jpg, /personal/img-op/office-sample-mobile-2x.jpg 2x" media="(max-width: 480px)">
-                        <source srcset="/personal/img-op/office-sample-tablet.jpg, /personal/img-op/office-sample-tablet-2x.jpg 2x" media="(min-width: 480px) and (max-width: 1199px)">
-                        <source srcset="/personal/img-op/office-sample.jpg, /personal/img-op/office-sample-2x.jpg 2x">
-                        <img src="/personal/img-op/office-sample.jpg" />
-                    </picture>
-
-                    <picture class="office-page-poster__image">
-                        <source srcset="/personal/img-op/office-sample-mobile.jpg, /personal/img-op/office-sample-mobile-2x.jpg 2x" media="(max-width: 480px)">
-                        <source srcset="/personal/img-op/office-sample-tablet.jpg, /personal/img-op/office-sample-tablet-2x.jpg 2x" media="(min-width: 480px) and (max-width: 1199px)">
-                        <source srcset="/personal/img-op/office-sample.jpg, /personal/img-op/office-sample-2x.jpg 2x">
-                        <img src="/personal/img-op/office-sample.jpg" />
-                    </picture>
-
-                    <picture class="office-page-poster__image">
-                        <source srcset="/personal/img-op/office-sample-mobile.jpg, /personal/img-op/office-sample-mobile-2x.jpg 2x" media="(max-width: 480px)">
-                        <source srcset="/personal/img-op/office-sample-tablet.jpg, /personal/img-op/office-sample-tablet-2x.jpg 2x" media="(min-width: 480px) and (max-width: 1199px)">
-                        <source srcset="/personal/img-op/office-sample.jpg, /personal/img-op/office-sample-2x.jpg 2x">
-                        <img src="/personal/img-op/office-sample.jpg" />
-                    </picture>
+                    @if($site->localOffices->isNotEmpty())
+                        @foreach($site->localOffices->first()->localOfficePhotos as $photo)
+                            <picture class="office-page-poster__image">
+                                <source srcset="{{ Storage::disk('local_office_photos')->url($photo->mobile) }}, {{ Storage::disk('local_office_photos')->url($photo->mobile2) }} 2x" media="(max-width: 480px)">
+                                <source srcset="{{ Storage::disk('local_office_photos')->url($photo->tablet) }}, {{ Storage::disk('local_office_photos')->url($photo->tablet2) }} 2x" media="(min-width: 480px) and (max-width: 1199px)">
+                                <source srcset="{{ Storage::disk('local_office_photos')->url($photo->sample) }}, {{ Storage::disk('local_office_photos')->url($photo->sample2) }} 2x">
+                                <img src="{{ Storage::disk('local_office_photos')->url($photo->sample) }}" />
+                            </picture>
+                        @endforeach
+                    @endif
 
                 </div>
             </div>
         </div>
     </div>
+
+
     <div class="office-page-team">
         <div class="office-page__heading2 office-page__heading2_centered">@d('personal_58')</div>
         <div class="office-page-team__text">@d('personal_59')<br />@d('personal_60')</div>
         <div class="office-page-team__content owl-carousel">
-            <div class="office-page-team__item">
-                <img src="/personal/img-op/team-sample3.jpg" class="office-page-team__photo" />
-                <div class="office-page-team__name">@d('personal_61')</div>
-                <div>@d('personal_62')</div>
-            </div>
-            <div class="office-page-team__item">
-                <img src="/personal/img-op/team-sample.jpg" class="office-page-team__photo" />
-                <div class="office-page-team__name">@d('personal_63')</div>
-                <div>@d('personal_64')</div>
-            </div>
-            <div class="office-page-team__item">
-                <img src="/personal/img-op/team-sample2.jpg" class="office-page-team__photo" />
-                <div class="office-page-team__name">@d('personal_65')</div>
-                <div>@d('personal_66')</div>
-            </div>
+            @foreach($site->ourWorkers as $ourWorker)
+                <div class="office-page-team__item">
+                    <img src="{{ Storage::disk('our_worker_photos')->url($ourWorker->photo) }}" class="office-page-team__photo" />
+                    @if($ourWorker->ourWorkerTexts->isnotEmpty())
+                        <div class="office-page-team__name">{{ $ourWorker->ourWorkerTexts->first()->name }}</div>
+                        <div>{{ $ourWorker->ourWorkerTexts->first()->post }}</div>
+                    @endif
+                </div>
+            @endforeach
         </div>
     </div>
+
+
+
     <div class="office-page__calculator">
         @include('site.universal2.calculator_block')
     </div>
@@ -297,130 +278,16 @@
     <div class="office-page-reviews">
         <div class="office-page-reviews__content owl-carousel">
 
-                <div class="office-page-reviews__review">
+            @foreach($site->feedbacks as $feedback)
+                <div class="office-page-reviews__review" data-name="{{ $feedback->name }}" data-text="{{ $feedback->text }}">
                     <div class="office-page-reviews__review-title">
-                        @d('personal_112')
+                        {{ $feedback->name }}
                     </div>
                     <div>
-                        @d('personal_113')
-                        @d('personal_113')
-                        @d('personal_113')
-                        @d('personal_113')
-                        @d('personal_113')
+                        {{ $feedback->text }}
                     </div>
                 </div>
-                <div class="office-page-reviews__review">
-                    <div class="office-page-reviews__review-title">
-                        @d('personal_114')
-                    </div>
-                    <div>
-                        @d('personal_115')
-                        @d('personal_115')
-                        @d('personal_115')
-                        @d('personal_115')
-                        @d('personal_115')
-                    </div>
-                </div>
-
-                <div class="office-page-reviews__review">
-                    <div class="office-page-reviews__review-title">
-                        @d('personal_116')
-                    </div>
-                    <div>
-                        @d('personal_117')
-                        @d('personal_117')
-                        @d('personal_117')
-                        @d('personal_117')
-                        @d('personal_117')
-                    </div>
-                </div>
-                <div class="office-page-reviews__review">
-                    <div class="office-page-reviews__review-title">
-                        @d('personal_118')
-                    </div>
-                    <div>
-                        @d('personal_119')
-                        @d('personal_119')
-                        @d('personal_119')
-                        @d('personal_119')
-                        @d('personal_119')
-                    </div>
-                </div>
-
-                <div class="office-page-reviews__review">
-                    <div class="office-page-reviews__review-title">
-                        @d('personal_120')
-                    </div>
-                    <div>
-                        @d('personal_121')
-                        @d('personal_121')
-                        @d('personal_121')
-                        @d('personal_121')
-                        @d('personal_121')
-                    </div>
-                </div>
-                <div class="office-page-reviews__review">
-                    <div class="office-page-reviews__review-title">
-                        @d('personal_122')
-                    </div>
-                    <div>
-                        @d('personal_123')
-                        @d('personal_123')
-                        @d('personal_123')
-                        @d('personal_123')
-                        @d('personal_123')
-                    </div>
-                </div>
-
-                <div class="office-page-reviews__review">
-                    <div class="office-page-reviews__review-title">
-                        @d('personal_124')
-                    </div>
-                    <div>
-                        @d('personal_125')
-                        @d('personal_125')
-                        @d('personal_125')
-                        @d('personal_125')
-                        @d('personal_125')
-                    </div>
-                </div>
-                <div class="office-page-reviews__review">
-                    <div class="office-page-reviews__review-title">
-                        @d('personal_126')
-                    </div>
-                    <div>
-                        @d('personal_127')
-                        @d('personal_127')
-                        @d('personal_127')
-                        @d('personal_127')
-                        @d('personal_127')
-                    </div>
-                </div>
-
-                <div class="office-page-reviews__review">
-                    <div class="office-page-reviews__review-title">
-                        @d('personal_128')
-                    </div>
-                    <div>
-                        @d('personal_129')
-                        @d('personal_129')
-                        @d('personal_129')
-                        @d('personal_129')
-                        @d('personal_129')
-                    </div>
-                </div>
-                <div class="office-page-reviews__review">
-                    <div class="office-page-reviews__review-title">
-                        @d('personal_130')
-                    </div>
-                    <div>
-                        @d('personal_131')
-                        @d('personal_131')
-                        @d('personal_131')
-                        @d('personal_131')
-                        @d('personal_131')
-                    </div>
-                </div>
+            @endforeach
 
         </div>
         <div class="office-page-reviews__add content">
@@ -428,7 +295,7 @@
                 @d('personal_132')<br />
                 @d('personal_133')
             </div>
-            <a href="#" class="primary-button">@d('personal_134')</a>
+            <a href="#" class="primary-button js-review-add-open">@d('personal_134')</a>
         </div>
     </div>
     <div class="office-page-cam">
@@ -448,40 +315,22 @@
             </div>
         </div>
     </div>
+
     <div class="screen-content">
         <div class="office-page__heading2">@d('personal_137')</div>
         <div class="news-list__content">
-
-                <div class="news news-list__news">
-                    <a href="#"><img class="news__img" src="/personal/img-op/news-sample.jpg" alt="News" /></a>
-                    <div class="news__date">@d('personal_138')</div>
-                    <a href="#" class="news__title">@d('personal_139')</a>
-                    <div class="news__desc">@d('personal_140')</div>
+            @foreach($site->newsArticles as $newsArticle)
+                <div class="news news-list__news" data-item="{{ $newsArticle }}">
+                    <a href="#"><img class="news__img" src="{{ Storage::disk('news_images')->url($newsArticle->preview)  }}" alt="{{ $newsArticle->header }}" /></a>
+                    <div class="news__date">{{ $newsArticle->publication_date_text }}</div>
+                    <a href="#" class="news__title">{{ $newsArticle->header }}</a>
+                    <div class="news__desc">{{ $newsArticle->note }}</div>
                 </div>
-
-                <div class="news news-list__news">
-                    <a href="#"><img class="news__img" src="/personal/img-op/news-sample.jpg" alt="News" /></a>
-                    <div class="news__date">@d('personal_141')</div>
-                    <a href="#" class="news__title">@d('personal_142')</a>
-                    <div class="news__desc">@d('personal_143')</div>
-                </div>
-
-                <div class="news news-list__news">
-                    <a href="#"><img class="news__img" src="/personal/img-op/news-sample.jpg" alt="News" /></a>
-                    <div class="news__date">@d('personal_144')</div>
-                    <a href="#" class="news__title">@d('personal_145')</a>
-                    <div class="news__desc">@d('personal_146')</div>
-                </div>
-
-                <div class="news news-list__news">
-                    <a href="#"><img class="news__img" src="/personal/img-op/news-sample.jpg" alt="News" /></a>
-                    <div class="news__date">@d('personal_147')</div>
-                    <a href="#" class="news__title">@d('personal_148')</a>
-                    <div class="news__desc">@d('personal_149')</div>
-                </div>
-
+            @endforeach
         </div>
     </div>
+
+
     <div class="office-page-feedback">
         <div class="office-page-feedback__content">
             <div class="office-page-feedback__title js-result-hide">@d('personal_150')</div>
@@ -491,7 +340,7 @@
                     <div class="office-page-feedback__form-item-left">
                         <div class="form__row">
                             <div class="form-field">
-                                <input type="text" name="name" class="form-field__input" placeholder="Имя" />
+                                <input type="text" name="name" class="form-field__input" placeholder="{{ $dictionary['personal_feedback_name'] }}" />
                             </div>
                         </div>
                         <div class="form__row">
@@ -503,7 +352,7 @@
                     <div class="office-page-feedback__form-item-right">
                         <div class="form__row">
                             <div class="form-field">
-                                <textarea name="message" class="form-field__input office-page-feedback__textarea" placeholder="Текст вопроса"></textarea>
+                                <textarea name="message" class="form-field__input office-page-feedback__textarea" placeholder="{{ $dictionary['personal_feedback_text'] }}"></textarea>
                             </div>
                         </div>
                     </div>
@@ -511,7 +360,7 @@
                 <div class="office-page-feedback__form-item office-page-feedback__form-item_centered">
                     <div class="office-page-feedback__form-item-left">
                         <div class="form-field">
-                            <input type="submit" value="Отправить" class="primary-button primary-button_wide primary-button_submit" />
+                            <input type="submit" value="{{ $dictionary['personal_feedback_send'] }}" class="primary-button primary-button_wide primary-button_submit" />
                         </div>
                     </div>
                     <div class="office-page-feedback__form-item-right">
@@ -716,6 +565,7 @@
                     <div class="news-modal__paragraph">@d('personal_181')</div>
                 </div>
             </div>
+
             <div id="review-modal" class="review-modal">
                 <div class="review-modal__close"></div>
                 <div class="review-modal__title">@d('personal_182')</div>
@@ -724,6 +574,8 @@
                     @d('personal_183')
                 </div>
             </div>
+
+
             <div id="presentation-modal" class="presentation-modal">
                 <div class="presentation-modal__close"></div>
                 <div class="presentation-modal__form">
@@ -771,6 +623,58 @@
                     </div>
                 </div>
             </div>
+
+            <div id="review-add-modal" class="review-add-modal">
+                <div class="review-add-modal__close"></div>
+                <div class="review-add-modal__content js-modal-result-hide">
+                    <div class="review-add-modal__title">Добавить отзыв</div>
+                    <form method="post" action="{!! route('request.feedback_review') !!}" class="form calculator_form js-feedback-review-form">
+                        {{ csrf_field() }}
+                        <input type="hidden" name="language_id" value="{{ $language->id }}">
+                        <div class="review-add-modal__two-fields">
+                            <div class="form__row review-add-modal__two-fields-item">
+                                <div class="form-field">
+                                    <input type="text" name="name" class="form-field__input js-feedback-review-name" placeholder="Ваше имя" />
+                                    <div class="form-field__error-message">Поле обязательно для заполнения</div>
+                                </div>
+                            </div>
+                            <div class="form__row review-add-modal__two-fields-item">
+                                <div class="form-field">
+                                    <input type="text" name="email" class="form-field__input js-feedback-review-email" placeholder="E-mail" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form__row">
+                            <div class="form-field">
+                                <textarea name="text" class="form-field__input js-feedback-review-text" placeholder="Текст отзыва"></textarea>
+                            </div>
+                        </div>
+                        <div class="form__row form__row_no-input">
+                            <div class="checkbox-widget">
+                                <input type="checkbox" name="agree" id="modal-agree_review" class="js-feedback-review-checkbox" /><label for="modal-agree_review"><span>Я соглашаюсь с <a class="checkbox-widget__link" href="#">условиями обработки персональных данных</a></span></label>
+                            </div>
+                        </div>
+                        <div class="form-field">
+                            <input type="submit" value="Отправить" class="primary-button primary-button_wide primary-button_submit" />
+                        </div>
+                    </form>
+                </div>
+                <div class="review-add-modal__result js-modal-result-ok" style="display: none;">
+                    <div>
+                        <div class="review-add-modal__result-icon review-add-modal__result-icon_ok"></div>
+                        <div class="review-add-modal__result-title">Сообщение<br />успешно отправлено!</div>
+                        <div class="review-add-modal__result-text">Постаремся ответить на ваш запрос, как можно скорее.</div>
+                    </div>
+                </div>
+                <div class="review-add-modal__result js-modal-result-error" style="display: none;">
+                    <div>
+                        <div class="review-add-modal__result-icon review-add-modal__result-icon_error"></div>
+                        <div class="review-add-modal__result-title">Сообщение не отправлено!</div>
+                        <div class="review-add-modal__result-text">Что-то пошло не так, попробуйте отправить еще раз позднее.</div>
+                    </div>
+                </div>
+            </div>
+
         </div>
         <div class="cookie-confirm">
             <div class="cookie-confirm__close"></div>

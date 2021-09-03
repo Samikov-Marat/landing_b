@@ -7,12 +7,14 @@ use App\Classes\Domain;
 use App\Classes\ImageResponse;
 use App\Classes\MapJsonCallback;
 use App\Classes\OfficeRepository;
+use App\Feedback;
 use App\Http\Controllers\Controller;
+use App\Language;
 use App\Site;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response as HttpResponse;
 
 class RequestController extends Controller
@@ -32,6 +34,36 @@ class RequestController extends Controller
         try {
             $apiMarketingRequest = ApiMarketing::createFeedback($request->all(), Domain::getInstance($request)->get());
             return ApiMarketing::send($apiMarketingRequest);
+        } catch (\Exception $e) {
+            abort(HttpResponse::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    public function feedbackReview(Request $request)
+    {
+        $domain = Domain::getInstance($request)->get();
+        try {
+            $site = Site::where('domain', $domain)
+                ->firstOrFail();
+        } catch (ModelNotFoundException $exception) {
+            abort(Response::HTTP_NOT_FOUND);
+        }
+        $language = Language::select('id')
+            ->findOrFail($request->input('language_id'));
+
+        try {
+            $feedback = new Feedback();
+            $feedback->site_id = $site->id;
+            $feedback->language_id = $language->id;
+            $feedback->name = $request->input('name', '');
+            $feedback->email = $request->input('email', '');
+            $feedback->text = $request->input('text', '');
+            $feedback->writing_date = Carbon::now();
+            $feedback->published = false;
+            $feedback->save();
+
+            return response('saved', 200)
+                ->header('Content-Type', 'text/plain');
         } catch (\Exception $e) {
             abort(HttpResponse::HTTP_INTERNAL_SERVER_ERROR);
         }
