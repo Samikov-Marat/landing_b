@@ -183,8 +183,11 @@ $(document).ready(function () {
         return false;
     });
 
-    $('.office-page-reviews__review').click(function () {
-        modalOpen($('#review-modal'));
+    $('.office-page-reviews').on('click', '.office-page-reviews__review', function () {
+        let $modal = $('#review-modal');
+        $modal.find('.review-modal__title').html($(this).data('header'));
+        $modal.find('.review-modal__text').html($(this).data('text'));
+        modalOpen($modal);
         return false;
     });
 

@@ -272,7 +272,7 @@
         <div class="office-page-reviews__content owl-carousel">
 
             @foreach($site->feedbacks as $feedback)
-                <div class="office-page-reviews__review">
+                <div class="office-page-reviews__review" data-name="{{ $feedback->name }}" data-text="{{ $feedback->text }}">
                     <div class="office-page-reviews__review-title">
                         {{ $feedback->name }}
                     </div>
@@ -558,6 +558,7 @@
                     <div class="news-modal__paragraph">@d('personal_181')</div>
                 </div>
             </div>
+
             <div id="review-modal" class="review-modal">
                 <div class="review-modal__close"></div>
                 <div class="review-modal__title">@d('personal_182')</div>
@@ -566,6 +567,8 @@
                     @d('personal_183')
                 </div>
             </div>
+
+
             <div id="presentation-modal" class="presentation-modal">
                 <div class="presentation-modal__close"></div>
                 <div class="presentation-modal__form">
