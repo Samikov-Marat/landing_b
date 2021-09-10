@@ -2,7 +2,7 @@ FROM php:7.2.34-fpm
 ARG USER_ID
 ARG GROUP_ID
 
-RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
+COPY ./config/php.ini /usr/local/etc/php/php.ini
 
 RUN apt-get update
 RUN    apt-get install -y libzip-dev
