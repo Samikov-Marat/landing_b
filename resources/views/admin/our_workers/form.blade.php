@@ -26,7 +26,7 @@
         <input type="hidden" name="site_id" value="{{ $site->id }}">
 
         <div class="form-group">
-            <label for="id_photo">Фото</label>
+            <label for="id_photo">Фото 180x180</label>
             <input type="file" name="photo" class="form-control-file" id="id_photo">
             {{ isset($ourWorker, $ourWorker->photo) ? $ourWorker->photo : '' }}
         </div>
