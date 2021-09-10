@@ -29,11 +29,11 @@
             <div class="two-icons business-page__company-adv-icons">
                 <div class="two-icons__item">
                     <div class="two-icons__icon"></div>
-                    <div class="two-icons__text"><span class="two-icons__text-big">0,5 @d('advantages_kg')</span> @d('advantages_from') <span class="two-icons__text-big">69,98 £</span></div>
+                    <div class="two-icons__text"><span class="two-icons__text-big">@d('1_weight') @d('advantages_kg')</span> @d('advantages_from') <span class="two-icons__text-big">@d('1_weight_price')</span></div>
                 </div>
                 <div class="two-icons__item">
                     <div class="two-icons__icon two-icons__icon_icon_second"></div>
-                    <div class="two-icons__text"><span class="two-icons__text-big">1 @d('advantages_kg')</span> @d('advantages_from') <span class="two-icons__text-big">76,52 £</span></div>
+                    <div class="two-icons__text"><span class="two-icons__text-big">@d('2_weight') @d('advantages_kg')</span> @d('advantages_from') <span class="two-icons__text-big">@d('2_weight_price')</span></div>
                 </div>
             </div>
             <div class="square-cards js-company-advantages owl-carousel">
