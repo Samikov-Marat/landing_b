@@ -70,9 +70,9 @@
     <div class="office-page-poster">
         <div class="office-page-poster__container">
             <picture class="office-page-poster__image">
-                <source srcset="/personal/img-op/poster-mobile.jpg, /personal/img-op/poster-mobile-2x.jpg 2x" media="(max-width: 480px)">
-                <source srcset="/personal/img-op/poster-tablet.jpg, /personal/img-op/poster-tablet-2x.jpg 2x" media="(min-width: 480px) and (max-width: 1199px)">
-                <source srcset="/personal/img-op/poster-desktop.jpg">
+                <source srcset="/request/images/poster-mobile.jpg, /request/images/poster-mobile-2x.jpg 2x" media="(max-width: 480px)">
+                <source srcset="/request/images/poster-tablet.jpg, /request/images/poster-tablet-2x.jpg 2x" media="(min-width: 480px) and (max-width: 1199px)">
+                <source srcset="/request/images/poster-desktop.jpg">
                 <img src="/personal/img-op/poster-desktop.jpg" />
             </picture>
             <div class="office-page-poster__content">
@@ -595,7 +595,7 @@
                         <div class="presentation-modal__result-icon presentation-modal__result-icon_ok"></div>
                         <div class="presentation-modal__result-title">@d('personal_187')</div>
                         <div class="presentation-modal__result-text">@d('personal_188')</div>
-                        <a href="#" class="presentation-modal__download">@d('personal_189')</a>
+                        <a href="/request/images/presentation.pptx" class="presentation-modal__download">@d('personal_189')</a>
                     </div>
                 </div>
                 <div class="presentation-modal__result js-modal-result-error" style="display: none;">
