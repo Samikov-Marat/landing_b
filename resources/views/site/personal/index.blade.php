@@ -199,34 +199,50 @@
         <div class="content">
             <div class="office-page__heading2 office-page-offices__heading">@d('personal_45')</div>
             <div class="office-page-offices__cmenu">
-                <div class="office-page-offices__cmenu-item office-page-offices__cmenu-item_active">@d('personal_46')</div>
-                <div class="office-page-offices__cmenu-item">@d('personal_47')</div>
-                <div class="office-page-offices__cmenu-item">@d('personal_48')</div>
+                @foreach($site->localOffices as $localOffice)
+                    <div class="office-page-offices__cmenu-item office-page-offices__cmenu-item_active">@d('personal_46')</div>
+                @endforeach
             </div>
             <div class="submenu office-page-offices__submenu">
                 <div class="submenu__content">
-                    <div class="submenu__item submenu__item_active">@d('personal_49')</div>
-                    <a href="#" class="submenu__item">@d('personal_50')</a>
+                    @foreach($site->localOffices as $localOffice)
+                        <div class="submenu__item submenu__item_active">{{ $localOffice->localOfficeTexts->first()->name  }}</div>
+                    @endforeach
                 </div>
             </div>
         </div>
         <div class="office-page-offices__content">
             <div class="office-page-offices__side-left">
+
+                @foreach($site->localOffices as $localOffice)
                 <div class="office-page-offices__left-content">
                     <div class="office-page-offices__title">@d('personal_51')</div>
                     <div class="office-page-offices__info office-page-offices__info_road">
-                        <div>@d('personal_52')</div>
-                        <div class="office-page-offices__info-desc">@d('personal_53')  </div>
+                        <div>{{ $localOffice->localOfficeTexts->first()->address  }}</div>
+                        @if($localOffice->localOfficeTexts->first()->path)
+                            <div class="office-page-offices__info-desc">{{ $localOffice->localOfficeTexts->first()->path }}</div>
+                        @endif
                     </div>
                     <div class="office-page-offices__info office-page-offices__info_time">
-                        <div>@d('personal_54')</div>
-                        <div>@d('personal_55')</div>
+                        <div>
+                            {{ nl2br(e($localOffice->localOfficeTexts->first()->worktime)) }}
+                        </div>
                     </div>
                     <div class="office-page-offices__info office-page-offices__info_phone">
-                        <div><a class="office-page-offices__info-phone" href="#">@d('personal_56')</a></div>
-                        <div><a class="office-page-offices__info-email" href="#">@d('personal_57')</a></div>
+                        <div>
+                            @foreach($localOffice->localOfficePhones as $localOfficePhone)
+                                <a class="office-page-offices__info-phone" href="tel:{{ $localOfficePhone->phone_value }}">{{ $localOfficePhone->phone_text }}</a><br>
+                            @endforeach
+                        </div>
+                        <div>
+                            @foreach($localOffice->localOfficeEmails as $localOfficeEmail)
+                                <a class="office-page-offices__info-email" href="mailto:{{ $localOfficeEmail->email }}">{{ $localOfficeEmail->email }}</a>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
+                @endforeach
+
             </div>
             <div class="office-page-offices__side-right">
                 <div class="office-page-offices__photos owl-carousel">
