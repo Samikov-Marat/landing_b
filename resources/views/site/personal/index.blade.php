@@ -298,23 +298,6 @@
             <a href="#" class="primary-button js-review-add-open">@d('personal_134')</a>
         </div>
     </div>
-    <div class="office-page-cam">
-        <div class="office-page-cam__content">
-            <div class="office-page-cam__img">
-                <picture class="office-page-poster__image">
-                    <source srcset="/personal/img-op/office-sample-mobile.jpg, /personal/img-op/office-sample-mobile-2x.jpg 2x" media="(max-width: 480px)">
-                    <source srcset="/personal/img-op/office-sample-tablet.jpg, /personal/img-op/office-sample-tablet-2x.jpg 2x" media="(min-width: 480px) and (max-width: 1199px)">
-                    <source srcset="/personal/img-op/office-sample.jpg, /personal/img-op/office-sample-2x.jpg 2x">
-                    <img src="/personal/img-op/office-sample.jpg" />
-                </picture>
-                <div class="office-page-cam__cam"></div>
-            </div>
-            <div class="office-page-cam__text">
-                <div class="office-page-cam__title">@d('personal_135')</div>
-                <div>@d('personal_136')</div>
-            </div>
-        </div>
-    </div>
 
     <div class="screen-content">
         <div class="office-page__heading2">@d('personal_137')</div>
