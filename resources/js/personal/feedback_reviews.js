@@ -33,14 +33,14 @@ $(function () {
             data: $(this).serialize()
         }).done(function () {
 
-            setTimeout(function (){
+            setTimeout(function () {
                 $modal.removeClass('review-add-modal_loading');
                 $modal.find('.js-modal-result-hide').hide();
                 $modal.find('.js-modal-result-ok').show();
             }, 1000);
 
         }).fail(function () {
-            setTimeout(function (){
+            setTimeout(function () {
                 $modal.removeClass('review-add-modal_loading');
                 $modal.find('.js-modal-result-hide').hide();
                 $modal.find('.js-modal-result-error').show();
@@ -48,12 +48,4 @@ $(function () {
         });
         return false;
     });
-
-    $('.js-cookies-confirm').click(function(){
-        $.post({
-            url: $(this).data('url')
-        });
-    });
-
-
 });
