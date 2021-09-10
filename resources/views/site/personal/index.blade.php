@@ -31,8 +31,8 @@
                 @endif
             @endforeach
 
-            <a href="#" class="office-page-button office-page-header__button_fc office-page-button_type_calculate office-page-header__button">@d('personal_5')</a>
-            <a href="#" class="office-page-button office-page-button_type_search office-page-header__button">@d('personal_6')</a>
+            <a href="#calculator" class="office-page-button office-page-header__button_fc office-page-button_type_calculate office-page-header__button">@d('personal_5')</a>
+            <a href="#tracking" class="office-page-button office-page-button_type_search office-page-header__button">@d('personal_6')</a>
         </div>
         <div class="header__right">
             <div class="header-contact">
@@ -40,7 +40,7 @@
                     <a class="header-contact__phone" href="tel:+441473711668">@d('personal_7')</a>
                 </div>
             </div>
-            <a href="#" class="office-page-header__contact">@d('personal_8')</a>
+            <a href="#feedback" class="office-page-header__contact">@d('personal_8')</a>
         </div>
         <div class="menu-mobile js-menu-open-button"></div>
     </div>
@@ -268,7 +268,7 @@
     <div class="office-page__calculator">
         @include('site.universal2.calculator_block')
     </div>
-    <div class="office-page-track">
+    <div class="office-page-track" id="tracking">
         @include('site.personal.tracking')
 
     </div>
@@ -314,7 +314,7 @@
     </div>
 
 
-    <div class="office-page-feedback">
+    <div class="office-page-feedback" id="feedback">
         <div class="office-page-feedback__content">
             <div class="office-page-feedback__title js-result-hide">@d('personal_150')</div>
             <div class="office-page-feedback__text js-result-hide">@d('personal_151')<br />@d('personal_152')</div>
