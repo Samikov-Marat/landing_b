@@ -552,7 +552,7 @@
                     <picture>
                         <source srcset="/personal/img-op/news-modal-sample-mobile.jpg, /personal/img-op/news-modal-sample-mobile-2x.jpg 2x" media="(max-width: 480px)">
                         <source srcset="/personal/img-op/news-modal-sample.jpg, /personal/img-op/news-modal-sample-2x.jpg 2x">
-                        <img src="/personal/img-op/news-modal-sample.jpg" />
+                        <img class="news-modal__image" src="/personal/img-op/news-modal-sample.jpg" />
                     </picture>
                 </div>
                 <div class="news-modal__title-container">
@@ -561,7 +561,6 @@
                 </div>
                 <div class="news-modal__text">
                     <div class="news-modal__paragraph">@d('personal_180')</div>
-                    <div class="news-modal__paragraph">@d('personal_181')</div>
                 </div>
             </div>
 
