@@ -2,100 +2,12 @@ $(document).ready(function() {
     sliders();
     menu();
 
-    //console.log('hello');
-
     //demoFormProcessing
     $(".js-form").on('submit', function() {
         $(this).hide();
         $(".js-form-result").show();
         return false;
-    })
-
-    $('.calculator__content_step1 .primary-button_submit').click(function () {
-        $('.calculator__content').has(this).addClass('calculator__content_loading');
-        setTimeout(function () {
-            $('.calculator__content_step1').hide();
-            $('.calculator__content_step2')
-                .removeClass('calculator__content_loading')
-                .show()
-            ;
-        }, 3000);
-        return false;
     });
-
-    $('.calculator__content_step2 .calculator__step-link_back').click(function () {
-        $('.calculator__content_step2').hide();
-        $('.calculator__content_step1')
-            .removeClass('calculator__content_loading')
-            .show()
-        ;
-        return false;
-    });
-
-    $('.calculator__content_step2 input[type=radio]').change(function () {
-        $('.calculator__content').has(this).addClass('calculator__content_loading');
-        setTimeout(function () {
-            $('.calculator__content_step2').hide();
-            $('.calculator__content_step3')
-                .removeClass('calculator__content_loading')
-                .show()
-            ;
-        }, 1000);
-        return false;
-    });
-
-    $('.calculator__content_step3 .calculator__step-link_back').click(function () {
-        $('.calculator__content_step3').hide();
-        $('.calculator__content_step2')
-            .removeClass('calculator__content_loading')
-            .show()
-        ;
-        return false;
-    });
-
-    $('.calculator__content .calculator__step-link_repeat').click(function () {
-        $('.calculator__content')
-            .css('display', 'none')
-        ;
-        $('.calculator__content_step1')
-            .removeClass('calculator__content_loading')
-            .show()
-        ;
-        return false;
-    });
-
-    $('.calculator__content_step3 .primary-button_submit').click(function () {
-        var calculatorContent = $('.calculator__content').has(this);
-        calculatorContent.addClass('calculator__content_loading');
-        setTimeout(function () {
-            $('.calculator__content_step3').hide();
-            $('.js-calculator__content_step-result-ok')
-                .css('height', calculatorContent.css('height'))
-                .removeClass('calculator__content_loading')
-                .show()
-            ;
-        }, 3000);
-        return false;
-    });
-
-    var cities = [
-        { value: 'Москва', data: 1 },
-        { value: 'Магнитогорск', data: 2 },
-        { value: 'Магадан', data: 3 },
-        { value: 'Майкоп', data: 4 },
-        { value: 'Миасс', data: 5 },
-    ];
-
-    $('.form-field__input[name=from]')
-        .autocomplete({
-            //serviceUrl: '',
-            lookup: cities,
-            noCache: true,
-            onSelect: function (suggestion) {
-                $(this).val(suggestion.value);
-            },
-        })
-    ;
 
     modalOpen = function(jsel)
     {
@@ -225,14 +137,21 @@ $(document).ready(function() {
         return false;
     });
 
-    $('#presentation-modal .primary-button').click(function (){
-        var $content = $('#presentation-modal');
+    $('.js-presentation-form').submit(function (){
+        let $content = $('#presentation-modal');
         $content.addClass('presentation-modal_loading');
-        setTimeout(function (){
-            $content.removeClass('presentation-modal_loading');
-            $content.find('.presentation-modal__form').hide();
-            $content.find('.js-modal-result-ok').show();
-        }, 1500);
+
+        $.post({
+            url: $(this).prop('action'),
+            data: $(this).serialize()
+        }).always(function (){
+            setTimeout(function (){
+                $content.removeClass('presentation-modal_loading');
+                $content.find('.presentation-modal__form').hide();
+                $content.find('.js-modal-result-ok').show();
+            }, 1500);
+        });
+        return false;
     });
 
 

@@ -576,35 +576,35 @@
 
             <div id="presentation-modal" class="presentation-modal">
                 <div class="presentation-modal__close"></div>
-                <div class="presentation-modal__form">
+                <form method="post" action="{{ route('request.presentation') }}" class="presentation-modal__form js-presentation-form">
                     <div class="presentation-modal__bg"></div>
                     <div class="presentation-modal__title">@d('personal_184')</div>
                     <div class="form calculator_form">
                         <div class="form__row">
                             <div class="form-field">
-                                <input type="text" name="name" class="form-field__input" placeholder="Имя" />
+                                <input type="text" name="name" class="form-field__input" placeholder="{{ $dictionary['personal_presentation_form_name'] }}" />
                             </div>
                         </div>
                         <div class="form__row">
                             <div class="form-field">
-                                <input type="text" name="phone" class="form-field__input" placeholder="Телефон" />
+                                <input type="text" name="phone" class="form-field__input" placeholder="{{ $dictionary['personal_presentation_form_phone'] }}" />
                             </div>
                         </div>
                         <div class="form__row">
                             <div class="form-field">
-                                <input type="text" name="email" class="form-field__input" placeholder="E-mail" />
+                                <input type="text" name="email" class="form-field__input" placeholder="{{ $dictionary['personal_presentation_form_email'] }}" />
                             </div>
                         </div>
                         <div class="form__row form__row_no-input">
                             <div class="checkbox-widget">
-                                <input type="checkbox" name="agree" id="modal-agree2" /><label for="modal-agree2"><span>@d('personal_185') <a class="checkbox-widget__link" href="#">@d('personal_186')</a></span></label>
+                                <input type="checkbox" name="agree" value="1" id="modal-agree2" required /><label for="modal-agree2"><span>@d('personal_185') <a class="checkbox-widget__link" href="#">@d('personal_186')</a></span></label>
                             </div>
                         </div>
                         <div class="form-field">
-                            <input type="submit" value="Далее" class="primary-button primary-button_wide primary-button_submit" />
+                            <input type="submit" value="{{ $dictionary['personal_presentation_form_submit'] }}" class="primary-button primary-button_wide primary-button_submit" />
                         </div>
                     </div>
-                </div>
+                </form>
                 <div class="presentation-modal__result js-modal-result-ok" style="display: none;">
                     <div>
                         <div class="presentation-modal__result-icon presentation-modal__result-icon_ok"></div>

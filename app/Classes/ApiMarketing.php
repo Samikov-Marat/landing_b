@@ -36,10 +36,24 @@ class ApiMarketing
         ];
     }
 
-    public static function createFeedback($form, $domain)
+    public static function createPresentation($form, $domain)
     {
         return [
-            'subject' => 'Лендинг. Обратная связь.',
+            'subject' => 'Лендинг. Запрос презентации.',
+            'name' => $form['name'] ?? '',
+            'phone' => $form['phone'] ?? '',
+            'email' => $form['email'] ?? '',
+            'project_name' => $domain,
+            'message' => '',
+            'country_id' => static::getCountryId($domain),
+            'url' => $domain,
+        ];
+    }
+
+    public static function createFeedbackReview($form, $domain)
+    {
+        return [
+            'subject' => 'Лендинг. Отзыв.',
             'name' => $form['name'] ?? '',
             'phone' => $form['phone'] ?? '',
             'email' => $form['email'] ?? '',

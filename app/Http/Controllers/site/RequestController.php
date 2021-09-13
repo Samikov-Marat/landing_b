@@ -39,6 +39,16 @@ class RequestController extends Controller
         }
     }
 
+    public function presentation(Request $request)
+    {
+        try {
+            $apiMarketingRequest = ApiMarketing::createPresentation($request->all(), Domain::getInstance($request)->get());
+            return ApiMarketing::send($apiMarketingRequest);
+        } catch (\Exception $e) {
+            abort(HttpResponse::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
     public function allowCookies(Request $request)
     {
         setcookie('allow_cookies', 1, strtotime('+3 years'), '/');
