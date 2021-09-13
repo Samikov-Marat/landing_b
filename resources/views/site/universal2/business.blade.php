@@ -16,7 +16,7 @@
                 <div class="main-poster__text">
                     @d('poster_list')
                 </div>
-                <a href="#calculator" class="primary-button primary-button_with_arrow">@d('poster_button')</a>
+                <a href="/#calculator" class="primary-button primary-button_with_arrow">@d('poster_button')</a>
                 <div class="background-dots main-poster__dots-left"></div>
                 <div class="main-poster__wave-right"></div>
             </div>
