@@ -37,7 +37,9 @@
                     <div class="checkbox-widget">
                         <input type="checkbox" name="agree" value="да" id="modal-agree"/><label for="modal-agree"><span>@d('footer_feedback_agree_1') <a
                                     class="checkbox-widget__link"
-                                    href="#">@d('footer_feedback_agree_2')</a></span></label>
+                                    href="{{ route('request.images', ['imageUrl' => 'privacy_policy.pdf']) }}"
+                                    target="_blank"
+                                >@d('footer_feedback_agree_2')</a></span></label>
                     </div>
                     <div class="form-field__error-message">@d('feedback_agree_error')</div>
                 </div>
