@@ -31,7 +31,7 @@
                 @endif
             @endforeach
 
-            <a href="/#calculator" class="office-page-button office-page-header__button_fc office-page-button_type_calculate office-page-header__button">@d('personal_5')</a>
+            <a href="#calculator" class="office-page-button office-page-header__button_fc office-page-button_type_calculate office-page-header__button">@d('personal_5')</a>
             <a href="#tracking" class="office-page-button office-page-button_type_search office-page-header__button">@d('personal_6')</a>
         </div>
         <div class="header__right">

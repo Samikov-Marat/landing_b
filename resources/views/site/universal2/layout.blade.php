@@ -33,7 +33,7 @@
                     </ul>
                 </div>
                 <div class="header__right">
-                    <a href="/#calculator" class="header__button">@d('header_button')</a>
+                    <a href="#calculator" class="header__button">@d('header_button')</a>
                     @foreach($site->languages as $languageItem)
                         @if($language->id != $languageItem->id)
                             <div><a class="header__language-selector" href="{!! route('site.show_page', ['languageUrl' => $languageItem->uri, 'pageUrl' => $page->url]) !!}">{{ \Str::upper($languageItem->shortname) }}</a></div>
@@ -58,13 +58,13 @@
                 <div class="main-menu">
                     <ul class="main-menu__list">
                         <li class="main-menu__item">
-                            <a class="main-menu__link current" href="">@d('menu_delivery')</a>
+                            <a class="main-menu__link current" href="{!! route('site.show_page', ['languageUrl' => $language->uri]) !!}">@d('menu_delivery')</a>
                         </li>
                         <li class="main-menu__item">
-                            <a class="main-menu__link" href="">@d('menu_company')</a>
+                            <a class="main-menu__link" href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'company']) !!}">@d('menu_company')</a>
                         </li>
                         <li class="main-menu__item">
-                            <a class="main-menu__link" href="">@d('menu_contects')</a>
+                            <a class="main-menu__link" href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'contacts']) !!}">@d('menu_contects')</a>
                         </li>
                     </ul>
                 </div>
