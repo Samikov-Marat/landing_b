@@ -485,8 +485,16 @@
                         @d('personal_167')
                     </div>
                     <div>
-                        <div class="footer-new__phone">@d('personal_168')</div>
-                        <a href="#" class="footer-new__link footer-email">@d('personal_169')</a>
+
+                        @foreach($site->localOffices as $localOffice)
+                            @foreach($localOffice->localOfficePhones as $localOfficePhone)
+                                <div class="footer-new__phone">{{$localOfficePhone->phone_text}}</div>
+                            @endforeach
+                                @foreach($localOffice->localOfficeEmails as $localOfficeEmail)
+                                    <a href="mailto:{{ $localOfficeEmail->email }}" class="footer-new__link footer-email">{{ $localOfficeEmail->email }}</a>
+                                @endforeach
+                        @endforeach
+
                     </div>
                 </div>
             </div>
