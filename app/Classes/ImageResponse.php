@@ -58,6 +58,9 @@ class ImageResponse
         if ('pptx' == $extension) {
             return 'application/vnd.openxmlformats-officedocument.presentationml.presentation';
         }
+        if ('pdf' == $extension) {
+            return 'application/pdf';
+        }
         return 'text/plain';
     }
 
