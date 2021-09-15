@@ -199,23 +199,29 @@
         <div class="content">
             <div class="office-page__heading2 office-page-offices__heading">@d('personal_45')</div>
             <div class="office-page-offices__cmenu">
-                @foreach($site->localOffices as $localOffice)
-                    <div class="office-page-offices__cmenu-item office-page-offices__cmenu-item_active">@d('personal_46')</div>
-                @endforeach
+                <div class="office-page-offices__cmenu-item office-page-offices__cmenu-item_active">@d('personal_46')</div>
             </div>
             <div class="submenu office-page-offices__submenu">
                 <div class="submenu__content">
+                    @php
+                    $extraClass = 'submenu__item_active';
+                    @endphp
                     @foreach($site->localOffices as $localOffice)
-                        <div class="submenu__item submenu__item_active">{{ $localOffice->localOfficeTexts->first()->name  }}</div>
+                        <div class="submenu__item {{ $extraClass }} js-office-name" data-id="{{ $localOffice->id }}">{{ $localOffice->localOfficeTexts->first()->name  }}</div>
+                        @php
+                            $extraClass = '';
+                        @endphp
                     @endforeach
                 </div>
             </div>
         </div>
         <div class="office-page-offices__content">
             <div class="office-page-offices__side-left">
-
+                @php
+                    $extraClass = '';
+                @endphp
                 @foreach($site->localOffices as $localOffice)
-                <div class="office-page-offices__left-content">
+                <div class="office-page-offices__left-content {{ $extraClass }} js-office-body" data-id="{{ $localOffice->id }}">
                     <div class="office-page-offices__title">@d('personal_51')</div>
                     <div class="office-page-offices__info office-page-offices__info_road">
                         <div>{{ $localOffice->localOfficeTexts->first()->address  }}</div>
@@ -241,6 +247,9 @@
                         </div>
                     </div>
                 </div>
+                @php
+                    $extraClass = 'hidden';
+                @endphp
                 @endforeach
 
             </div>
