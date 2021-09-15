@@ -334,7 +334,7 @@
         <div class="office-page-feedback__content">
             <div class="office-page-feedback__title js-result-hide">@d('personal_150')</div>
             <div class="office-page-feedback__text js-result-hide">@d('personal_151')<br />@d('personal_152')</div>
-            <div class="office-page-feedback__form js-result-hide">
+            <form method="post" action="{{ route('request.feedback') }}" class="office-page-feedback__form js-result-hide js-feedback-form">
                 <div class="office-page-feedback__form-item">
                     <div class="office-page-feedback__form-item-left">
                         <div class="form__row">
@@ -368,7 +368,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </form>
             <div class="office-page-feedback__result js-result-ok" style="display: none;">
                 <div class="office-page-feedback__result-icon office-page-feedback__result-icon_ok"></div>
                 <div class="office-page-feedback__result-title">@d('personal_155')<br />@d('personal_156')</div>
