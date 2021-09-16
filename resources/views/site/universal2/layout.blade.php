@@ -33,7 +33,7 @@
                     </ul>
                 </div>
                 <div class="header__right">
-                    <a href="#calculator" class="header__button">@d('header_button')</a>
+                    <a href="/#calculator" class="header__button">@d('header_button')</a>
                     @foreach($site->languages as $languageItem)
                         @if($language->id != $languageItem->id)
                             <div><a class="header__language-selector" href="{!! route('site.show_page', ['languageUrl' => $languageItem->uri, 'pageUrl' => $page->url]) !!}">{{ \Str::upper($languageItem->shortname) }}</a></div>
