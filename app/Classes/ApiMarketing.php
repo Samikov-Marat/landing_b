@@ -36,6 +36,19 @@ class ApiMarketing
         ];
     }
 
+    public static function createFeedback($form, $domain)
+    {
+        return [
+            'subject' => 'Лендинг. Форма обратной связи.',
+            'name' => $form['name'],
+            'email' => $form['email'],
+            'project_name' => $domain,
+            'message' => $form['message'],
+            'country_id' => static::getCountryId($domain),
+            'url' => $form['url'] ?? $domain,
+        ];
+    }
+
     public static function createPresentation($form, $domain)
     {
         return [

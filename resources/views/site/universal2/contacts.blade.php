@@ -29,7 +29,9 @@
                         </div>
                     @endif
                     @foreach($localOffice->localOfficePhones as $localOfficePhone)
-                        <div class="contact-page__phone">{{ $localOfficePhone->phone_text }}</div>
+                        <div class="contact-page__phone">
+                            <a class="contact-page__link" href="tel:{{ $localOfficePhone->phone_value }}">{{ $localOfficePhone->phone_text }}</a>
+                        </div>
                     @endforeach
                     @foreach($localOffice->localOfficeEmails as $localOfficeEmail)
                         <div class="contact-page__email">E-mail: <a href="mailto:{{ $localOfficeEmail->email }}"
