@@ -271,7 +271,7 @@
         </div>
     </div>
 
-
+    @if($site->ourWorkers->isNotEmpty())
     <div class="office-page-team">
         <div class="office-page__heading2 office-page__heading2_centered">@d('personal_58')</div>
         <div class="office-page-team__text">@d('personal_59')<br />@d('personal_60')</div>
@@ -287,6 +287,7 @@
             @endforeach
         </div>
     </div>
+    @endif
 
 
 
