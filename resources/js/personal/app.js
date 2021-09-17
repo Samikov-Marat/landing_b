@@ -70,6 +70,7 @@ $(document).ready(function() {
     });
 
     $('.js-partner-show-more').click(function (){
+        console.log('aaa');
         $('.partner__item_hidden').fadeIn({
             duration: 700,
         });
