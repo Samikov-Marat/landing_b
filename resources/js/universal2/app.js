@@ -125,6 +125,13 @@ $(document).ready(function () {
         return false;
     });
 
+    $('.js-partner-show-more').click(function (e){
+        $('.partner__item_hidden').fadeIn({
+            duration: 700,
+        });
+        $(this).parent().hide();
+        return false;
+    });
 
 });
 

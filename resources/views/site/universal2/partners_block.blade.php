@@ -31,7 +31,6 @@
 {{--            <div class="partner__item partner__item_avon hidden js-parners-other"></div>--}}
 {{--            <div class="partner__item partner__item_mary-key hidden js-parners-other"></div>--}}
 {{--            <div class="partner__item partner__item_rebound hidden js-parners-other"></div>--}}
-
         </div>
         <div class="partner__more-container">
             <a href="#" class="partner__more js-partner-show-more">Показать еще</a>
