@@ -23,6 +23,7 @@ mix.combine([
     "resources/js/personal/tracking_result_item.js",
     'resources/js/personal/app.js',
     'resources/js/personal/feedback_reviews.js',
+    'resources/js/personal/office.js',
     'resources/js/personal/allow_cookies.js',
     'resources/js/universal2/tariffs.js',
     'resources/js/universal2/calculator.js',

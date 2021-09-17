@@ -31,7 +31,7 @@
                 @endif
             @endforeach
 
-            <a href="#calculator" class="office-page-button office-page-header__button_fc office-page-button_type_calculate office-page-header__button">@d('personal_5')</a>
+            <a href="/#calculator" class="office-page-button office-page-header__button_fc office-page-button_type_calculate office-page-header__button">@d('personal_5')</a>
             <a href="#tracking" class="office-page-button office-page-button_type_search office-page-header__button">@d('personal_6')</a>
         </div>
         <div class="header__right">
@@ -199,23 +199,29 @@
         <div class="content">
             <div class="office-page__heading2 office-page-offices__heading">@d('personal_45')</div>
             <div class="office-page-offices__cmenu">
-                @foreach($site->localOffices as $localOffice)
-                    <div class="office-page-offices__cmenu-item office-page-offices__cmenu-item_active">@d('personal_46')</div>
-                @endforeach
+                <div class="office-page-offices__cmenu-item office-page-offices__cmenu-item_active">@d('personal_46')</div>
             </div>
             <div class="submenu office-page-offices__submenu">
                 <div class="submenu__content">
+                    @php
+                    $extraClass = 'submenu__item_active';
+                    @endphp
                     @foreach($site->localOffices as $localOffice)
-                        <div class="submenu__item submenu__item_active">{{ $localOffice->localOfficeTexts->first()->name  }}</div>
+                        <div class="submenu__item {{ $extraClass }} js-office-name" data-id="{{ $localOffice->id }}">{{ $localOffice->localOfficeTexts->first()->name  }}</div>
+                        @php
+                            $extraClass = '';
+                        @endphp
                     @endforeach
                 </div>
             </div>
         </div>
         <div class="office-page-offices__content">
             <div class="office-page-offices__side-left">
-
+                @php
+                    $extraClass = '';
+                @endphp
                 @foreach($site->localOffices as $localOffice)
-                <div class="office-page-offices__left-content">
+                <div class="office-page-offices__left-content {{ $extraClass }} js-office-body" data-id="{{ $localOffice->id }}">
                     <div class="office-page-offices__title">@d('personal_51')</div>
                     <div class="office-page-offices__info office-page-offices__info_road">
                         <div>{{ $localOffice->localOfficeTexts->first()->address  }}</div>
@@ -241,6 +247,9 @@
                         </div>
                     </div>
                 </div>
+                @php
+                    $extraClass = 'hidden';
+                @endphp
                 @endforeach
 
             </div>
@@ -262,7 +271,7 @@
         </div>
     </div>
 
-
+    @if($site->ourWorkers->isNotEmpty())
     <div class="office-page-team">
         <div class="office-page__heading2 office-page__heading2_centered">@d('personal_58')</div>
         <div class="office-page-team__text">@d('personal_59')<br />@d('personal_60')</div>
@@ -278,6 +287,7 @@
             @endforeach
         </div>
     </div>
+    @endif
 
 
 
@@ -334,7 +344,7 @@
         <div class="office-page-feedback__content">
             <div class="office-page-feedback__title js-result-hide">@d('personal_150')</div>
             <div class="office-page-feedback__text js-result-hide">@d('personal_151')<br />@d('personal_152')</div>
-            <div class="office-page-feedback__form js-result-hide">
+            <form method="post" action="{{ route('request.feedback') }}" class="office-page-feedback__form js-result-hide js-feedback-form">
                 <div class="office-page-feedback__form-item">
                     <div class="office-page-feedback__form-item-left">
                         <div class="form__row">
@@ -368,7 +378,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </form>
             <div class="office-page-feedback__result js-result-ok" style="display: none;">
                 <div class="office-page-feedback__result-icon office-page-feedback__result-icon_ok"></div>
                 <div class="office-page-feedback__result-title">@d('personal_155')<br />@d('personal_156')</div>
@@ -485,8 +495,16 @@
                         @d('personal_167')
                     </div>
                     <div>
-                        <div class="footer-new__phone">@d('personal_168')</div>
-                        <a href="#" class="footer-new__link footer-email">@d('personal_169')</a>
+
+                        @foreach($site->localOffices as $localOffice)
+                            @foreach($localOffice->localOfficePhones as $localOfficePhone)
+                                <div class="footer-new__phone">{{$localOfficePhone->phone_text}}</div>
+                            @endforeach
+                                @foreach($localOffice->localOfficeEmails as $localOfficeEmail)
+                                    <a href="mailto:{{ $localOfficeEmail->email }}" class="footer-new__link footer-email">{{ $localOfficeEmail->email }}</a>
+                                @endforeach
+                        @endforeach
+
                     </div>
                 </div>
             </div>
