@@ -24,7 +24,7 @@
                 </div>
                 <div class="faq-list__faq">
                     <div class="faq-list__faq-question">@d('faq_shop_question_4')</div>
-                    <div class="faq-list__faq-answer">@d('faq_shop_answer_4')</div>
+                    <div class="faq-list__faq-answer">@d('faq_shop_answer_4')<a href="{!!route('request.images','prohibited.pdf')!!}" target="_blank">ссылка</a></div>
                 </div>
                 <div class="faq-list__faq">
                     <div class="faq-list__faq-question">@d('faq_shop_question_5')</div>
@@ -51,7 +51,7 @@
                 </div>
                 <div class="faq-list__faq">
                     <div class="faq-list__faq-question">@d('faq_business_question_4')</div>
-                    <div class="faq-list__faq-answer">@d('faq_business_answer_4')</div>
+                    <div class="faq-list__faq-answer">@d('faq_business_answer_4')<a href="{!!route('request.images','prohibited.pdf')!!}" target="_blank">ссылка</a></div>
                 </div>
                 <div class="faq-list__faq">
                     <div class="faq-list__faq-question">@d('faq_business_question_5')</div>
