@@ -69,8 +69,7 @@ $(document).ready(function() {
         return false;
     });
 
-    $('.js-partner-show-more').click(function (){
-        console.log('aaa');
+    $('.js-partner-show-more').click(function () {
         $('.partner__item_hidden').fadeIn({
             duration: 700,
         });
