@@ -58,6 +58,8 @@ class FileUploader
                 'preview/' . $this->modelInstance->id . '.' . $this->request->file($this->requestField)->extension(),
             'image' =>
                 'image/' . $this->modelInstance->id . '.' . $this->request->file($this->requestField)->extension(),
+            'image2' =>
+                'image2/' . $this->modelInstance->id . '.' . $this->request->file($this->requestField)->extension(),
             'photo' =>
                 $this->modelInstance->id . '.' . $this->request->file($this->requestField)->extension(),
             'sample' =>  $this->modelInstance->id .'/sample.' . $this->request->file($this->requestField)->extension(),

@@ -7,10 +7,8 @@ use App\Classes\NewsArticleRepository;
 use App\Http\Controllers\Controller;
 use App\NewsArticle;
 use App\NewsArticleText;
-use Carbon\Carbon;
 use Elasticsearch\ClientBuilder;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 class NewsArticleController extends Controller
 {
@@ -40,7 +38,10 @@ class NewsArticleController extends Controller
                     'note',
                     'text',
                     'preview',
-                    'image'
+                    'image',
+                    'image2',
+                    'mobile',
+                    'mobile2',
                 ]
             )
                 ->find($id);
@@ -88,8 +89,22 @@ class NewsArticleController extends Controller
             ->setDisk('news_images')
             ->store();
 
-        $newsArticle->save();
+        FileUploader::to($newsArticle, 'image2')
+            ->from($request, 'image2')
+            ->setDisk('news_images')
+            ->store();
 
+        FileUploader::to($newsArticle, 'mobile')
+            ->from($request, 'mobile')
+            ->setDisk('news_images')
+            ->store();
+
+        FileUploader::to($newsArticle, 'mobile2')
+            ->from($request, 'mobile2')
+            ->setDisk('news_images')
+            ->store();
+
+        $newsArticle->save();
 
         return response()->redirectToRoute('admin.news_articles.index', ['site_id' => $newsArticle->site_id]);
     }

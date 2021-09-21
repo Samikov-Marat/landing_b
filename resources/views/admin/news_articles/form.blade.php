@@ -31,7 +31,8 @@
                 @php($forId = 'language_id_' . $language->id)
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="language_id" id="{{ $forId }}"
-                           value="{{ $language->id }}" required {{ isset($newsArticle) && $newsArticle->language_id == $language->id ? 'checked' : '' }}>
+                           value="{{ $language->id }}"
+                           required {{ isset($newsArticle) && $newsArticle->language_id == $language->id ? 'checked' : '' }}>
                     <label class="form-check-label" for="{{ $forId }}">{{ $language->name }}</label>
                 </div>
             @endforeach
@@ -82,16 +83,36 @@
             </div>
         </div>
 
-        <div class="form-group">
-            <label for="id_preview">Превью</label>
-            <input type="file" name="preview" class="form-control-file" id="id_preview">
-            {{ isset($newsArticle, $newsArticle->preview) ? $newsArticle->preview : '' }}
-        </div>
-        <div class="form-group">
-            <label for="id_image">Картинка</label>
-            <input type="file" name="image" class="form-control-file" id="id_image">
-            {{ isset($newsArticle, $newsArticle->image) ? $newsArticle->image : '' }}
-        </div>
+        @include('admin.news_articles.image',
+            ['newsArticle' => $newsArticle,
+            'inputName' => 'preview',
+            'attribute' => 'preview',
+            'label' => 'Превью 224x174'])
+
+        @include('admin.news_articles.image',
+            ['newsArticle' => $newsArticle,
+            'inputName' => 'image',
+            'attribute' => 'image',
+            'label' => 'Картинка. Основной размер 600x398'])
+
+        @include('admin.news_articles.image',
+            ['newsArticle' => $newsArticle,
+            'inputName' => 'image2',
+            'attribute' => 'image2',
+            'label' => 'Картинка. Основной двойной размер 1200x796'])
+
+        @include('admin.news_articles.image',
+            ['newsArticle' => $newsArticle,
+            'inputName' => 'mobile',
+            'attribute' => 'mobile',
+            'label' => 'Картинка. Мобильный размер. 320x213'])
+
+        @include('admin.news_articles.image',
+            ['newsArticle' => $newsArticle,
+            'inputName' => 'mobile2',
+            'attribute' => 'mobile2',
+            'label' => 'Картинка. Мобильный двойной размер. 640x425'])
+
 
         <button type="submit" class="btn btn-primary">Сохранить</button>
     </form>
