@@ -48,6 +48,11 @@ return [
             'root' => storage_path('app'),
         ],
 
+        'views' => [
+            'driver' => 'local',
+            'root' => resource_path('views'),
+        ],
+
         'admin_texts' => [
             'driver' => 'local',
             'root' => storage_path('app/admin/texts/'),
