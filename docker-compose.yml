@@ -35,9 +35,6 @@ services:
     build:
       context:
         ./docker/mysql_8
-      args:
-        USER_ID: ${USER_ID}
-        GROUP_ID: ${GROUP_ID}
 
     command: --default-authentication-plugin=mysql_native_password
     volumes:
@@ -51,24 +48,6 @@ services:
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     networks:
       - default
-
-#
-#  mysql_old:
-#    build:
-#      context:
-#        ./docker/mysql
-#    volumes:
-#      - ./docker/mysql/db:/var/lib/mysql
-#    ports:
-#      - 4444:3306
-#    environment:
-#      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-#      MYSQL_DATABASE: ${MYSQL_DATABASE}
-#      MYSQL_USER: ${MYSQL_USER}
-#      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-#    networks:
-#      - default
-
   nodejs:
     build:
       context:
