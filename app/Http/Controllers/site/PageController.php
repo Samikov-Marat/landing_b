@@ -25,7 +25,7 @@ class PageController extends Controller
                 ->get();
             $siteRepository = new SiteRepository($domain);
             $site = $siteRepository->getSite();
-            $language = LanguageDetector::getInstance($_SERVER['HTTP_ACCEPT_LANGUAGE'])
+            $language = LanguageDetector::getInstance($request->server('HTTP_ACCEPT_LANGUAGE', ''))
                 ->chooseFrom($site->languages);
             $languageShortName = Str::lower($language->shortname);
             return response()->redirectToRoute('site.show_page', ['languageUrl' => $languageShortName]);

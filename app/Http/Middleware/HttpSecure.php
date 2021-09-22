@@ -17,7 +17,7 @@ class HttpSecure
      */
     public function handle($request, Closure $next)
     {
-        if (('on' == $request->server->get('HTTPS')) && !$request->isSecure()) {
+        if (('on' == $request->server('HTTPS', 'off')) && !$request->isSecure()) {
             abort(
                 Response::HTTP_FORBIDDEN,
                 'Подключение не защищено. Возможно, устарел адрес балансировщика в файле config/trustedproxy.php'
