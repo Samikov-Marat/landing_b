@@ -69,6 +69,8 @@ class PageController extends Controller
             ->with('language', $language)
             ->with('page', $page)
             ->with('dictionary', $dictionary)
-            ->with('pageUrl', $pageUrl);
+            ->with('pageUrl', $pageUrl)
+            ->with('allowCookies', isset($_COOKIE['allow_cookies']));
+
     }
 }

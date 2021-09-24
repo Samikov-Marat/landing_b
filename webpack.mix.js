@@ -9,7 +9,8 @@ mix.combine([
     'resources/js/universal2/calculator.js',
     'resources/js/universal2/faq.js',
     'resources/js/universal2/how_it_works.js',
-    'resources/js/universal2/map.js'
+    'resources/js/universal2/map.js',
+    'resources/js/universal2/allow_cookies.js',
 ], 'public/universal2/new.js').version();
 
 
