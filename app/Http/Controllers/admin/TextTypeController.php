@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Classes\TextTypeStarter;
 use App\Http\Controllers\Controller;
 use App\Page;
 use App\TextType;
@@ -65,6 +66,10 @@ class TextTypeController extends Controller
 
         $textType->save();
 
+        if (!$isEditMode) {
+            TextTypeStarter::getInstance($textType)
+                ->createTextForAllSites();
+        }
         return response()->redirectToRoute('admin.text_types.add', ['page_id' => $textType->page_id]);
     }
 
