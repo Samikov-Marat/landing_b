@@ -20,7 +20,7 @@
                 </div>
                 <div class="faq-list__faq">
                     <div class="faq-list__faq-question">@d('faq_shop_question_3')</div>
-                    <div class="faq-list__faq-answer">@d('faq_shop_answer_3')</div>
+                    <div class="faq-list__faq-answer">@d('faq_shop_answer_3')<a href="{!!route('request.images','import_restrictions.pdf')!!}" target="_blank">ссылка</a></div></div>
                 </div>
                 <div class="faq-list__faq">
                     <div class="faq-list__faq-question">@d('faq_shop_question_4')</div>
