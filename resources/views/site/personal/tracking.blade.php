@@ -7,12 +7,12 @@
                 <div class="form__row office-page-track__input-row">
                     <div class="form-field ">
                         <input type="text" name="order" class="form-field__input office-page-track__input js-tracking-order-number"
-                               placeholder="Укажите номер заказа"/>
+                               placeholder="{{ $dictionary['personal_tracking_order_number'] }}"/>
                         <div class="form-field__error-message">@d('personal_tracking_2')</div>
                     </div>
                 </div>
                 <div class="form__row">
-                    <input type="submit" class="office-page-track__submit" value="Поиск"/>
+                    <input type="submit" class="office-page-track__submit" value="{{ $dictionary['personal_tracking_search_button'] }}"/>
                 </div>
             </div>
 
