@@ -111,32 +111,16 @@ $(document).ready(function() {
         return false;
     });
 
-
-
     $('.office-page-wrapper .news a').click(function (){
-        let $modal = $('#news-modal');
-        let newsItem = $(this).closest('.news').data('item');
-
-        $modal.find('.news-modal__date').html(newsItem.publication_date_text);
-        $modal.find('.news-modal__title').html(newsItem.header);
-        $modal.find('.news-modal__text .news-modal__paragraph').html(newsItem.text.split('\n').join('<br>'));
-        $modal.find('.news-modal__image').prop('src', '/storage/news_images/' + newsItem.image);
-
-        $modal.find('.news-modal__img source:eq(1)').prop('srcset',
-            '/storage/news_images/' + newsItem.image +', ' + '/storage/news_images/' + newsItem.image + ' 2x');
-
-        $modal.find('.news-modal__img source:eq(2)').prop('srcset',
-            '/storage/news_images/' + newsItem.image +', ' + '/storage/news_images/' + newsItem.image + ' 2x');
-
-
-
-
-        modalOpen($('#news-modal'));
+        let id = $(this).closest('.js-news-item').data('id');
+        let $modal = $('.js-news-modal').filter(function(){return $(this).data('id') == id});
+        modalOpen($modal);
         return false;
     });
 
     $('.news-modal__close').click(function (){
-        modalClose($('#news-modal'));
+        let $modal = $(this).closest('.js-news-modal');
+        modalClose($modal);
         return false;
     });
 

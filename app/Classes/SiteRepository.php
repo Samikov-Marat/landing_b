@@ -67,7 +67,7 @@ class SiteRepository
             [
                 'newsArticles' => function ($query) use ($language, $newsLimit) {
                     $query->select(
-                        ['id', 'site_id', 'publication_date_text', 'header', 'note', 'text', 'preview', 'image']
+                        ['id', 'site_id', 'publication_date_text', 'header', 'note', 'text', 'preview', 'image', 'image2', 'mobile', 'mobile2']
                     )
                         ->orderBy('publication_date', 'desc')
                         ->where('language_id', $language->id)

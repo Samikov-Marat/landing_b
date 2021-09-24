@@ -27,11 +27,10 @@
             @foreach($site->languages as $languageItem)
                 @if($language->id != $languageItem->id)
                     <div><a class="header__language-selector" href="{!! route('site.show_page', ['languageUrl' => $languageItem->uri, 'pageUrl' => $page->url]) !!}">{{ \Str::upper($languageItem->shortname) }}</a></div>
-
                 @endif
             @endforeach
 
-            <a href="/#calculator" class="office-page-button office-page-header__button_fc office-page-button_type_calculate office-page-header__button">@d('personal_5')</a>
+            <a href="#calculator" class="office-page-button office-page-header__button_fc office-page-button_type_calculate office-page-header__button">@d('personal_5')</a>
             <a href="#tracking" class="office-page-button office-page-button_type_search office-page-header__button">@d('personal_6')</a>
         </div>
         <div class="header__right">
@@ -325,20 +324,70 @@
         </div>
     </div>
 
-    <div class="screen-content">
+    <div class="screen-content" id="news">
         <div class="office-page__heading2">@d('personal_137')</div>
         <div class="news-list__content">
             @foreach($site->newsArticles as $newsArticle)
-                <div class="news news-list__news" data-item="{{ $newsArticle }}">
+                <div class="news news-list__news js-news-item" data-id="{{ $newsArticle->id }}">
                     <a href="#"><img class="news__img" src="{{ Storage::disk('news_images')->url($newsArticle->preview)  }}" alt="{{ $newsArticle->header }}" /></a>
                     <div class="news__date">{{ $newsArticle->publication_date_text }}</div>
                     <a href="#" class="news__title">{{ $newsArticle->header }}</a>
                     <div class="news__desc">{{ $newsArticle->note }}</div>
+
+
+                    <div class="news-modal js-news-modal">
+                        <div class="news-modal__close"></div>
+                        <div class="news-modal__img">
+                            <picture>
+                                <source srcset="{{ Storage::disk('news_images')->url($newsArticle->mobile) }}, {{ Storage::disk('news_images')->url($newsArticle->mobile2) }} 2x" media="(max-width: 480px)">
+                                <source srcset="{{ Storage::disk('news_images')->url($newsArticle->image) }}, {{ Storage::disk('news_images')->url($newsArticle->image2) }} 2x">
+                                <img class="news-modal__image" src="{{ Storage::disk('news_images')->url($newsArticle->image) }}" />
+                            </picture>
+                        </div>
+                        <div class="news-modal__title-container">
+                            <div class="news-modal__date">{{ $newsArticle->publication_date_text }}</div>
+                            <div class="news-modal__title">{{ $newsArticle->header }}</div>
+                        </div>
+                        <div class="news-modal__text">
+                            @php
+                                $paragraphs = explode("\n", $newsArticle->text);
+                            @endphp
+                            @foreach($paragraphs as $paragraph)
+                                <div class="news-modal__paragraph">{{ $paragraph }}</div>
+                            @endforeach
+                        </div>
+                    </div>
                 </div>
             @endforeach
         </div>
     </div>
 
+    <div class="modal-container">
+        @foreach($site->newsArticles as $newsArticle)
+            <div class="news-modal js-news-modal" data-id="{{ $newsArticle->id }}">
+                <div class="news-modal__close"></div>
+                <div class="news-modal__img">
+                    <picture>
+                        <source srcset="{{ Storage::disk('news_images')->url($newsArticle->mobile) }}, {{ Storage::disk('news_images')->url($newsArticle->mobile2) }} 2x" media="(max-width: 480px)">
+                        <source srcset="{{ Storage::disk('news_images')->url($newsArticle->image) }}, {{ Storage::disk('news_images')->url($newsArticle->image2) }} 2x">
+                        <img class="news-modal__image" src="{{ Storage::disk('news_images')->url($newsArticle->image) }}" />
+                    </picture>
+                </div>
+                <div class="news-modal__title-container">
+                    <div class="news-modal__date">{{ $newsArticle->publication_date_text }}</div>
+                    <div class="news-modal__title">{{ $newsArticle->header }}</div>
+                </div>
+                <div class="news-modal__text">
+                    @php
+                        $paragraphs = explode("\n", $newsArticle->text);
+                    @endphp
+                    @foreach($paragraphs as $paragraph)
+                        <div class="news-modal__paragraph">{{ $paragraph }}</div>
+                    @endforeach
+                </div>
+            </div>
+        @endforeach
+    </div>
 
     <div class="office-page-feedback" id="feedback">
         <div class="office-page-feedback__content">
@@ -562,23 +611,6 @@
                         <div class="modal__result-title">@d('personal_176')</div>
                         <div class="modal__result-text">@d('personal_177')</div>
                     </div>
-                </div>
-            </div>
-            <div id="news-modal" class="news-modal">
-                <div class="news-modal__close"></div>
-                <div class="news-modal__img">
-                    <picture>
-                        <source srcset="/personal/img-op/news-modal-sample-mobile.jpg, /personal/img-op/news-modal-sample-mobile-2x.jpg 2x" media="(max-width: 480px)">
-                        <source srcset="/personal/img-op/news-modal-sample.jpg, /personal/img-op/news-modal-sample-2x.jpg 2x">
-                        <img class="news-modal__image" src="/personal/img-op/news-modal-sample.jpg" />
-                    </picture>
-                </div>
-                <div class="news-modal__title-container">
-                    <div class="news-modal__date">@d('personal_178')</div>
-                    <div class="news-modal__title">@d('personal_179')</div>
-                </div>
-                <div class="news-modal__text">
-                    <div class="news-modal__paragraph">@d('personal_180')</div>
                 </div>
             </div>
 
