@@ -98,7 +98,7 @@
                             <div class="ecom-solution__promo-list-text">@d('solution_text_3')</div>
                         </div>
                     </div>
-                    <a href="/storage/CDEK_marketing_solution_2021.pdf" target="_blank" class="ecom-solution__link">@d('solution_download')</a>
+                    <a href="{!!route('request.images','presentation.pdf')!!}" target="_blank" class="ecom-solution__link">@d('solution_download')</a>
                 </div>
             </div>
         </div>
