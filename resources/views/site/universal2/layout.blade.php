@@ -11,6 +11,10 @@
     <link rel="stylesheet" href="{{ mix('universal2/app.css') }}">
     <link rel="stylesheet" href="/request/images/theme.css">
     <link rel="stylesheet" href="{{ mix('universal2/custom.css') }}">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+          integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+          crossorigin=""/>
+    <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css' rel='stylesheet' />
 </head>
 <body class="site-theme">
 <div class="body-wrapper js-body_wrapper ">
@@ -119,17 +123,6 @@
     @include('site.universal2.feedback_block')
 
 </div>
-
-@php
-    $yandexParameters = [
-        'apikey' => 'a3a191e8-8704-4696-964a-1dac59b0730b',
-        'lang' => $dictionary['contacts_yandex_lang'],
-    ];
-@endphp
-
-<script src="https://api-maps.yandex.ru/2.1/?{!! http_build_query($yandexParameters) !!}"
-        type="text/javascript">
-</script>
 
 <script src="{{ mix('universal2/new.js') }}" defer></script>
 @include('site.universal2.binotel')

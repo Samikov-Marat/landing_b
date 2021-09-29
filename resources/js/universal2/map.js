@@ -1,5 +1,18 @@
 // загрузятся все компоненты API, а также когда будет готово DOM-дерево.
-ymaps.ready(init);
+if (typeof ymaps === 'undefined') {
+    let mymap;
+    let coords = $('#map').data('map-state');
+    mymap = L.map('map').setView(coords, 15);
+    let osm = new L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+    });
+    osm.addTo(mymap);
+    mymap.addControl(new L.Control.Fullscreen());
+    let marker = L.marker(coords).addTo(mymap);
+    marker.bindPopup("Украина, Киевская обл., Киев, ул. Борщаговская, 154");
+} else {
+    ymaps.ready(init);
+}
 
 function init() {
 
@@ -42,3 +55,4 @@ function init() {
         return true;
     });
 }
+
