@@ -81,7 +81,6 @@ function initOpenStreetMap($map) {
                 setTimeout(function(){
                     outputPart(features, i);
                 },1);
-                console.log((new Date()).getTime() - startTime.getTime());
                 break;
             }
             office = features[i];
