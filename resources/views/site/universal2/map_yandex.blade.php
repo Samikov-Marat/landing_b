@@ -1,6 +1,6 @@
-<div id="map" class="contact-page__map js-map"
+<div id="map" class="contact-page__map js-yandex-map"
      @if('local' == env('APP_ENV'))
-     data-url-template="http://landing.dev.cdek.ru/request/get-office-list?bbox=%b"
+     data-url-template="https://cdek.uk/request/get-office-list?bbox=%b"
      @else
      data-url-template="{!! route('request.get_office_list') . '?bbox=%b' !!}"
      @endif

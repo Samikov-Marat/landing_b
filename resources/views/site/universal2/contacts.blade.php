@@ -43,7 +43,7 @@
 
 
         </div>
-        @if (isset($dictionary['contacts_open_street_map_state']))
+        @if('' != $dictionary['contacts_open_street_map_state'])
             @include('site.universal2.map_open_street')
         @else
             @include('site.universal2.map_yandex')

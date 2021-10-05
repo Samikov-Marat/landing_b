@@ -34,6 +34,13 @@ mix.combine([
 mix.copy('resources/css/universal2/app.css', 'public/universal2/app.css').version();
 mix.copy('resources/css/universal2/custom.css', 'public/universal2/custom.css').version();
 
+mix.copy('node_modules/leaflet.markercluster/dist/MarkerCluster.css', 'public/universal2/MarkerCluster.css').version();
+mix.copy('node_modules/leaflet.markercluster/dist/MarkerCluster.Default.css', 'public/universal2/MarkerCluster.Default.css').version();
+
+mix.copy('resources/css/universal2/custom.css', 'public/universal2/custom.css').version();
+
+mix.copy('node_modules/leaflet.markercluster/dist/leaflet.markercluster.js', 'public/universal2/leaflet.markercluster.js').version();
+
 mix.copy('vendor/almasaeed2010/adminlte/plugins/select2/', 'public/admin_files/select2').version();
 
 mix.combine([
