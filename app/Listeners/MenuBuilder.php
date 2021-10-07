@@ -25,6 +25,7 @@ class MenuBuilder
             ['route' => 'admin.pages.index', 'text' => 'Страницы', 'icon' => 'far fa-file',],
             ['route' => 'admin.top_offices.index', 'text' => 'Международные офисы', 'icon' => 'fab fa-fort-awesome',],
             ['route' => 'admin.world_languages.index', 'text' => 'Международные языки', 'icon' => 'fas fa-om',],
+            ['route' => 'admin.tariffs.index', 'text' => 'Тарифы', 'icon' => 'far fa-credit-card',],
             ['route' => 'admin.permissions.index', 'text' => 'Разрешения', 'icon' => 'fas fa-map-signs',],
             ['route' => 'admin.roles.index', 'text' => 'Роли', 'icon' => 'far fa-address-card',],
             ['route' => 'admin.users.index', 'text' => 'Пользователи', 'icon' => 'fas fa-user',],

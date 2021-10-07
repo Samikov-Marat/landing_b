@@ -263,6 +263,14 @@ Route::prefix('admin')->middleware(['auth', 'user.route.access', 'http.secure', 
         Route::post('top-office-world-languages/save', 'admin\TopOfficeWorldLanguageController@save')
             ->name('admin.top_office_world_languages.save');
 
+        //тарифы
+        Route::get('tariffs', 'admin\TariffController@index')
+            ->name('admin.tariffs.index');
+        Route::get('tariffs/edit/{id}', 'admin\TariffController@edit')
+            ->name('admin.tariffs.edit');
+        Route::post('tariffs/delete', 'admin\TariffController@delete')
+            ->name('admin.tariffs.delete');
+
     }
 );
 
