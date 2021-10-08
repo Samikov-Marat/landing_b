@@ -270,6 +270,8 @@ Route::prefix('admin')->middleware(['auth', 'user.route.access', 'http.secure', 
             ->name('admin.tariffs.edit');
         Route::post('tariffs/delete', 'admin\TariffController@delete')
             ->name('admin.tariffs.delete');
+        Route::post('tariffs/save', 'admin\TariffController@save')
+            ->name('admin.tariffs.save');
 
     }
 );

@@ -63,7 +63,7 @@
 
                     <td class="text-nowrap">
                         <a href="{!! route('admin.tariffs.edit', ['id' => $tariff->id]) !!}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i> Редактировать</a>
-                        <button type="button" data-text="Удалить {{ $tariff->url }}?"
+                        <button type="button" data-text="Удалить?"
                                data-action="{!! route('admin.tariffs.delete') !!}" data-id="{{ $tariff->id }}"
                                class="btn btn-danger btn-sm js-delete-confirm"><i class="fas fa-trash"></i> Удалить
                        </button>

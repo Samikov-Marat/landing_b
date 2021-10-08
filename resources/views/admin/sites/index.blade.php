@@ -42,6 +42,9 @@
                     Картинки
                 </th>
                 <th>
+                    Тарифы
+                </th>
+                <th>
                     Местные офисы
                 </th>
                 <th>
@@ -90,6 +93,11 @@
                     <td>
                         <a href="{!! route('admin.images.index', ['site_id' => $site->id]) !!}">
                             Картинки
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{!! route('admin.tariffs.index', ['site_id' => $site->id]) !!}">
+                            Тарифы
                         </a>
                     </td>
                     <td>
