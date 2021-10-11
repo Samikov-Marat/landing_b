@@ -11,6 +11,7 @@ mix.combine([
     'resources/js/universal2/how_it_works.js',
     'resources/js/universal2/map.js',
     'resources/js/universal2/allow_cookies.js',
+    'resources/js/universal2/google_tag_manager.js',
 ], 'public/universal2/new.js').version();
 
 
