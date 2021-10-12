@@ -86,6 +86,9 @@
             </div>
         </div>
 
+        @if(isset($dictionary['personal_tracking_2']))
+            @include('site.personal.tracking')
+        @endif
 
         @include('site.universal2.how_it_works_block')
 

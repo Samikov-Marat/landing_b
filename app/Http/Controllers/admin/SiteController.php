@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Classes\Admin\SitePageStarter;
 use App\Classes\SiteCloner;
 use App\Http\Controllers\Controller;
 use App\Page;
@@ -77,10 +78,19 @@ class SiteController extends Controller
 
     public function savePageList(Request $request)
     {
-        Site::select('id')
-            ->find($request->input('id'))
-            ->pages()
+        $site = Site::select('id')
+            ->with('languages')
+            ->find($request->input('id'));
+        $changes = $site->pages()
             ->sync($request->input('page_id') ?? []);
+
+        $pages = Page::select('id')
+            ->with('textTypes')
+            ->with('textTypes.texts')
+            ->find($changes['attached']);
+        SitePageStarter::getInstance($site->languages)
+            ->createTextsForPages($pages);
+
         return response()->redirectToRoute('admin.sites.index');
     }
 

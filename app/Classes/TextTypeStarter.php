@@ -29,16 +29,16 @@ class TextTypeStarter
             })
             ->get();
         foreach ($sites as $site) {
-            $this->createTextForLanguages($site->languages);
+            $this->createTextForLanguages($site->languages->pluck('id'));
         }
     }
 
-    public function createTextForLanguages($languages)
+    public function createTextForLanguages($languageIds)
     {
-        foreach ($languages as $language) {
+        foreach ($languageIds as $languageId) {
             $text = new Text();
             $text->text_type_id = $this->textType->id;
-            $text->language_id = $language->id;
+            $text->language_id = $languageId;
             $text->value = $this->textType->default_value;
             $text->save();
         }
