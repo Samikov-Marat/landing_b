@@ -11,15 +11,14 @@ class TariffController extends Controller
 {
     public function index()
     {
-       $tariffs = Tariff::select('id','ek_id', 'tariff_type_id')->paginate(10);
+        $tariffs = Tariff::with('tariffText')->paginate(10);
         return view('admin.tariffs.index', ['tariffs' => $tariffs]);
-
     }
 
     public function edit($id)
     {
         if (isset($id)) {
-            $tariff = Tariff::select('id','ek_id', 'tariff_type_id')->find($id);
+            $tariff = Tariff::select('id', 'ek_id', 'tariff_type_id')->find($id);
             $tariffTexts = $tariff->tariffText;
         } else {
             $tariff = null;
@@ -36,7 +35,7 @@ class TariffController extends Controller
             'tariff_type_id' => 'required',
         ]);
         $tariffs = $request->all();
-        $tariff = Tariff::select('id','ek_id', 'tariff_type_id')->find($request['id']);
+        $tariff = Tariff::select('id', 'ek_id', 'tariff_type_id')->find($request['id']);
         $tariff->ek_id = $tariffs['ek_id'];
         $tariff->tariff_type_id = $tariffs['tariff_type_id'];
         $tariffText = $tariff->tariffText()->where('tariff_id', $request['id'])->first();
