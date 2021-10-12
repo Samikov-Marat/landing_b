@@ -139,5 +139,6 @@
 <script src="{{ mix('universal2/new.js') }}" defer></script>
 @include('site.universal2.binotel')
 @include('site.universal2.jivosite')
+@include('site.universal2.tawk_block')
 </body>
 </html>
