@@ -10,4 +10,9 @@ class Tariff extends Model
         'ek_id',
         'tariff_type_id'
     ];
+
+    public function tariffText()
+    {
+        return $this->hasMany('App\TariffText');
+    }
 }

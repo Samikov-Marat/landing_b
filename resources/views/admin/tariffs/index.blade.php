@@ -12,8 +12,8 @@
 
 @section('content')
 
-    @if($tariffs->isNotEmpty())
-        {!! $tariffs->render() !!}
+{{--    @if($tariffs->isNotEmpty())--}}
+{{--        {!! $tariffs->render() !!}--}}
 
         <table class="table table-hover table-bordered">
             <tr>
@@ -27,8 +27,11 @@
                 <th>
                     Тип тарифа
                 </th>
+
             </tr>
+
             @foreach($tariffs as $tariff)
+
                 <tr>
                     <td>
                         {{ $tariff->id }}
@@ -39,6 +42,7 @@
                     <td>
                         {{ $tariff->tariff_type_id }}
                     </td>
+
 
 {{--                    <td>--}}
 {{--                        <a href="{!! route('admin.text_types.index', ['tariff_id' => $tariff->id]) !!}">{{ $tariff->text_types_count }} шт.</a>--}}
@@ -70,8 +74,9 @@
                    </td>
                 </tr>
             @endforeach
+
         </table>
-    @else
-        <span class="alert alert-info">Список пуст.</span>
-    @endif
+{{--    @else--}}
+{{--        <span class="alert alert-info">Список пуст.</span>--}}
+{{--    @endif--}}
 @endsection
