@@ -81,7 +81,7 @@
     min-height: 406px;
     box-sizing: border-box;
     padding-top: 80px;
-    background: url("../../img-op/bg-track.jpg") no-repeat top center;
+    background: url("/universal2/img-op/bg-track.jpg") no-repeat top center;
     position: relative;
     z-index: 2; }
 @media (max-width: 480px) {
@@ -94,7 +94,7 @@
     width: 1200px;
     margin: 0 auto;
     border-radius: 25px;
-    background: url("../../img/search-track.svg") no-repeat top right 24px, #fff;
+    background: url("/universal2/img/search-track.svg") no-repeat top right 24px, #fff;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.09); }
 @media (max-width: 1199px) {
     .office-page-track__content {
@@ -156,7 +156,7 @@
     font-family: "Roboto", sans-serif;
     background-color: #1AB248; }
 .office-page-track__submit_arrow {
-    background-image: url("../../img/arrow.svg");
+    background-image: url("/universal2/img/arrow.svg");
     background-repeat: no-repeat;
     background-position: center center;
     height: 50px;
@@ -187,7 +187,7 @@
     position: relative; }
 .office-page-track__form-information-item::after {
     content: '';
-    background: url("../../img/arrow-track.svg") no-repeat;
+    background: url("/universal2/img/arrow-track.svg") no-repeat;
     width: 28px;
     height: 17px;
     position: absolute;
@@ -201,7 +201,7 @@
     color: #666;
     margin-bottom: 10px; }
 .office-page-track__form-information-city-content {
-    background: url("../../img/location.svg") no-repeat top 31px left 20px #FFF;
+    background: url("/universal2/img/location.svg") no-repeat top 31px left 20px #FFF;
     border-radius: 15px;
     padding: 25px 20px 25px 58px;
     min-height: 35px;
@@ -235,7 +235,7 @@
 .office-page-track__form-detail-button:last-child {
     margin-bottom: 0; }
 .office-page-track__state {
-    background: url("../../img/question-track.svg") no-repeat top 3px left;
+    background: url("/universal2/img/question-track.svg") no-repeat top 3px left;
     min-height: 47px;
     padding-left: 59px;
     font-weight: normal;
@@ -245,11 +245,11 @@
 .office-page-track__state:last-child {
     margin-bottom: 0; }
 .office-page-track__state_not-found {
-    background: url("../../img/not-found.svg") no-repeat;
+    background: url("/universal2/img/not-found.svg") no-repeat;
     padding-top: 11px; }
 .office-page-track__state_error {
     color: #E91717;
-    background: url("../../img/track-error.svg") no-repeat;
+    background: url("/universal2/img/track-error.svg") no-repeat;
     padding-left: 56px;
     padding-top: 8px; }
 .office-page-track__more-title {
@@ -294,7 +294,7 @@
 .office-page-track__form-detail-item_done {
     padding-bottom: 0; }
 .office-page-track__form-detail-item_done .office-page-track__form-detail-circle {
-    background: url("../../img/track-checked.svg") no-repeat center center #1AB248; }
+    background: url("/universal2/img/track-checked.svg") no-repeat center center #1AB248; }
 .office-page-track__form-detail-item_done .office-page-track__form-detail-line {
     display: none; }
 .office-page-track__form-detail-item_done .office-page-track__form-detail-circle-small {
@@ -342,7 +342,7 @@
     .office-page-track {
         min-height: 191px;
         padding: 40px 20px 0;
-        background: url("../../img-op/bg-track-mobile-2x.jpg") no-repeat top center;
+        background: url("/universal2/img-op/bg-track-mobile-2x.jpg") no-repeat top center;
         background-size: 480px 191px; }
     .office-page-track__title {
         font-size: 20px;
@@ -350,7 +350,7 @@
         margin-bottom: 20px; }
     .office-page-track__content {
         border-radius: 16px;
-        background: url("../../img/search-track-mobile.svg") no-repeat top right, #fff;
+        background: url("/universal2/img/search-track-mobile.svg") no-repeat top right, #fff;
         padding: 0; }
     .office-page-track__content_korea {
         padding: 20px;
@@ -406,7 +406,7 @@
         font-size: 13px;
         margin-bottom: 4px; }
     .office-page-track__form-information-city-content {
-        background: url("../../img/location.svg") no-repeat top 19px left 20px #FFF;
+        background: url("/universal2/img/location.svg") no-repeat top 19px left 20px #FFF;
         border-radius: 11px;
         padding: 13px 20px 13px 58px;
         width: 100%; }
@@ -498,7 +498,7 @@
     .office-page-track {
         min-height: 194px;
         padding: 45px 20px 0;
-        background: url("../../img-op/bg-track-tablet-2x.jpg") no-repeat top center;
+        background: url("/universal2/img-op/bg-track-tablet-2x.jpg") no-repeat top center;
         background-size: 1200px 194px; }
     .office-page-track__title {
         font-size: 24px;
@@ -506,7 +506,7 @@
         margin-bottom: 27px; }
     .office-page-track__content {
         border-radius: 16px;
-        background: url("../../img/search-track-tablet.svg") no-repeat top right 30px, #fff;
+        background: url("/universal2/img/search-track-tablet.svg") no-repeat top right 30px, #fff;
         padding: 0; }
     .office-page-track__content_korea {
         padding: 30px;
