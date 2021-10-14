@@ -15,7 +15,13 @@ class TariffController extends Controller
         return view('admin.tariffs.index', ['tariffs' => $tariffs]);
     }
 
-    public function edit($id)
+    public function add()
+    {
+//        $tariffs = Tariff::with('tariffText')->paginate(10);
+//        return view('admin.tariffs.index', ['tariffs' => $tariffs]);
+    }
+
+    public function edit($id = null)
     {
         if (isset($id)) {
             $tariff = Tariff::select('id', 'ek_id', 'tariff_type_id')->find($id);
@@ -24,25 +30,34 @@ class TariffController extends Controller
             $tariff = null;
         }
         $tariffTypes = Tariff::select('tariff_type_id')->get();
-        return view('admin.tariffs.form', ['tariff' => $tariff, 'tariffTypes' => $tariffTypes, 'tariffTexts' => $tariffTexts]);
+        return view('admin.tariffs.form', ['tariff' => $tariff, 'tariffTypes' => $tariffTypes, 'tariffTexts' => $tariffTexts ?? '']);
 
     }
 
     public function save(Request $request)
     {
-        $this->validate($request, [
-            'ek_id' => 'required',
-            'tariff_type_id' => 'required',
-        ]);
         $tariffs = $request->all();
-        $tariff = Tariff::select('id', 'ek_id', 'tariff_type_id')->find($request['id']);
+        $isEditMode = $request->has('id');
+        if ($isEditMode){
+            $tariff = Tariff::select('id', 'ek_id', 'tariff_type_id')->find($request['id']);
+            $tariffText = $tariff->tariffText()->where('tariff_id', $request['id'])->first();
+        } else {
+            $tariff = new Tariff();
+            $tariffText = new TariffText();
+        }
+
         $tariff->ek_id = $tariffs['ek_id'];
         $tariff->tariff_type_id = $tariffs['tariff_type_id'];
-        $tariffText = $tariff->tariffText()->where('tariff_id', $request['id'])->first();
+        $tariff->save();
+        if($tariffText = new TariffText()) {
+        $value = Tariff::latest()->first();
+        $tariffText->tariff_id = $value->id;
+        $tariffText->language_code_iso = $tariffs['language_code_iso'];
+        }
         $tariffText->name = $tariffs['name'];
         $tariffText->description = $tariffs['description'];
+
         $tariffText->save();
-        $tariff->save();
         return response()->redirectToRoute('admin.tariffs.index');
     }
 

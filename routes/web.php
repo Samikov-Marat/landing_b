@@ -272,6 +272,12 @@ Route::prefix('admin')->middleware(['auth', 'user.route.access', 'http.secure', 
             ->name('admin.tariffs.delete');
         Route::post('tariffs/save', 'admin\TariffController@save')
             ->name('admin.tariffs.save');
+        Route::get('tariffs/add', 'admin\TariffController@edit')
+            ->name('admin.tariffs.add');
+
+        //тарифы переводы
+        Route::get('tariff-languages', 'admin\TariffTranslationController@index')
+            ->name('admin.tariff_languages.index');
 
     }
 );
