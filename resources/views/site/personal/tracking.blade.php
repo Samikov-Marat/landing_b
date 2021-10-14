@@ -12,7 +12,7 @@
                     </div>
                 </div>
                 <div class="form__row">
-                    <input type="submit" class="office-page-track__submit" value="{{ $dictionary['personal_tracking_search_button'] }}"/>
+                    <input type="submit" class="office-page-track__submit" value=""/>
                 </div>
             </div>
 
