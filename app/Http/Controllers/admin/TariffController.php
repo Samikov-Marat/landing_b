@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Tariff;
 use App\TariffText;
+use App\TariffType;
 use Illuminate\Http\Request;
 
 class TariffController extends Controller
@@ -15,12 +16,6 @@ class TariffController extends Controller
         return view('admin.tariffs.index', ['tariffs' => $tariffs]);
     }
 
-    public function add()
-    {
-//        $tariffs = Tariff::with('tariffText')->paginate(10);
-//        return view('admin.tariffs.index', ['tariffs' => $tariffs]);
-    }
-
     public function edit($id = null)
     {
         if (isset($id)) {
@@ -29,7 +24,7 @@ class TariffController extends Controller
         } else {
             $tariff = null;
         }
-        $tariffTypes = Tariff::select('tariff_type_id')->get();
+        $tariffTypes = TariffType::select('id')->get();
         return view('admin.tariffs.form', ['tariff' => $tariff, 'tariffTypes' => $tariffTypes, 'tariffTexts' => $tariffTexts ?? '']);
 
     }

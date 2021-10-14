@@ -20,8 +20,8 @@
             <label for="tariff_type_id">Тип тарифа</label></br>
             @foreach($tariffTypes as $type)
                 <input type="radio" class="tariff__type-radio" name="tariff_type_id" id="tariff_type_id" required
-                       value="{{$type->tariff_type_id}}">
-                {{$type->tariff_type_id}}
+                       value="{{$type->id}}">
+                {{$type->id}}
             @endforeach
         </div>
         @if($tariffTexts !=='')

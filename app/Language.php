@@ -16,4 +16,9 @@ class Language extends Model
     {
         return $this->hasOne('App\LanguageIso', 'code_iso', 'language_code_iso');
     }
+
+    public function site()
+    {
+        return $this->belongsTo(Site::class);
+    }
 }
