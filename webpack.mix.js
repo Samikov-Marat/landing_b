@@ -12,6 +12,10 @@ mix.combine([
     'resources/js/universal2/map.js',
     'resources/js/universal2/allow_cookies.js',
     'resources/js/universal2/google_tag_manager.js',
+    "resources/js/personal/tracking.js",
+    "resources/js/personal/tracking_short.js",
+    "resources/js/personal/tracking_result.js",
+    "resources/js/personal/tracking_result_item.js",
 ], 'public/universal2/new.js').version();
 
 
