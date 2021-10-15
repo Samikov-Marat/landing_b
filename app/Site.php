@@ -41,4 +41,9 @@ class Site extends Model
         return $this->hasMany('App\Feedback', 'site_id', 'id');
     }
 
+    public function certificateChecks()
+    {
+        return $this->hasOne(CertificateChecks::class, 'site_id', 'id');
+    }
+
 }

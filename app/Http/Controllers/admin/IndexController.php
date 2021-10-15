@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\LocalOffice;
 use App\Site;
+use Carbon\Carbon;
 
 class IndexController extends Controller
 {
@@ -12,16 +13,16 @@ class IndexController extends Controller
     {
         $columns = [
             'innerKey' => LocalOffice::newModelInstance()->qualifyColumn('site_id'),
-            'outterKey' => Site::newModelInstance()->qualifyColumn('id'),
+            'outerKey' => Site::newModelInstance()->qualifyColumn('id'),
             'category' => LocalOffice::newModelInstance()->qualifyColumn('category'),
         ];
 
         $localOfficeExistsQuery = LocalOffice::selectRaw('1')
-            ->whereColumn($columns['innerKey'], '=', $columns['outterKey'])
+            ->whereColumn($columns['innerKey'], '=', $columns['outerKey'])
             ->getQuery();
 
         $localOfficeHaveEmptyCategoryQuery = LocalOffice::selectRaw('1')
-            ->whereColumn($columns['innerKey'], '=', $columns['outterKey'])
+            ->whereColumn($columns['innerKey'], '=', $columns['outerKey'])
             ->where($columns['category'], '')
             ->getQuery();
 
@@ -40,8 +41,16 @@ class IndexController extends Controller
                    ])
             ->get();
 
+        $siteCertification = Site::select(['id', 'name', 'domain'])
+            ->with('certificateChecks')
+            ->get();
+        $now = new Carbon('now');
+        $inAMonth = new Carbon('+1 month');
 
         return view('admin.index')
-            ->with('problems', $problems);
+            ->with('problems', $problems)
+            ->with('siteCertification', $siteCertification)
+            ->with('now', $now)
+            ->with('inAMonth', $inAMonth);
     }
 }
