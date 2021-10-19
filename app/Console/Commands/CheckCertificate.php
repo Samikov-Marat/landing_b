@@ -29,7 +29,9 @@ class CheckCertificate extends Command
             $check->site_id = $site->id;
             try {
                 $check->valid_to = CertificateChecker::getInstance($site->domain)->getTimestamp();
+                $check->error = '';
             } catch (\Exception $e) {
+                $check->valid_to = null;
                 $check->error = $e->getMessage();
             }
             $check->save();
