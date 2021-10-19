@@ -94,6 +94,8 @@ $(document).ready(function () {
             return false;
         }
 
+        $('body').trigger('gtm:event', [$form.data('sendFormEvent')]);
+
         let request = {
             url: $form.prop('action'),
             data: $form.serialize()

@@ -30,12 +30,22 @@
 @endphp
 
 <div id="calculator" class="calculator">
+
+    @php
+        $templateGtm = [
+            'universal2.index' => 'rassitat_form',
+            'universal2.e_commerce' => 'rassitat_form_im',
+            'universal2.business' => 'rassitat_form_b2b',
+            ];
+        $showTariffGtm = $templateGtm[$page->template] ?? '';
+    @endphp
+
     <form action="{!! route('request.send') !!}" method="post" class="js-calculator-form"
           data-language="{{ $dictionary['calculator_language'] }}"
           data-currency-code="{{ $dictionary['calculator_currency_code'] }}"
           data-currency-name="{{ $dictionary['calculator_currency_name'] }}"
-
-          data-tariffs="{{ $tariffCollection }}">
+          data-tariffs="{{ $tariffCollection }}"
+          data-show-tariffs-event="{{ $showTariffGtm }}">
         {!! csrf_field() !!}
         <div class="screen-content">
             <div class="calculator__content calculator__content_step1">

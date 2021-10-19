@@ -213,6 +213,8 @@ $(function () {
             .removeClass('calculator__content_loading')
             .show();
         calculator.setStep(2);
+
+        $('body').trigger('gtm:event', [$('.js-calculator-form').data('showTariffsEvent')]);
     }
 
 

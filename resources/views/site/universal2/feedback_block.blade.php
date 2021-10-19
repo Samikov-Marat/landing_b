@@ -3,8 +3,19 @@
         <div class="modal__close"></div>
         <div class="modal__content modal__content_form">
             <div class="modal__heading">@d('feedback_header')</div>
+
+            @php
+                $templateGtm = [
+                    'universal2.index' => 'send_form',
+                    'universal2.e_commerce' => 'send_form_im',
+                    'universal2.business' => 'send_form_b2b',
+                    ];
+                $formGtm = $templateGtm[$page->template] ?? '';
+            @endphp
+
             <form method="post" action="{!! route('request.feedback') !!}"
-                  class="form calculator_form js-feedback-form">
+                  class="form calculator_form js-feedback-form"
+                  data-send-form-event="{{ $formGtm }}">
                 {{ csrf_field() }}
                 <div class="form__row">
                     <div class="form-field">
@@ -44,7 +55,8 @@
                     <div class="form-field__error-message">@d('feedback_agree_error')</div>
                 </div>
                 <div class="form-field">
-                    <button type="submit" class="primary-button primary-button_wide primary-button_submit">@d('feedback_submit')
+                    <button type="submit" class="primary-button primary-button_wide primary-button_submit">
+                        @d('feedback_submit')
                     </button>
                 </div>
             </form>

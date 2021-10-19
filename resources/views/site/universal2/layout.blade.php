@@ -49,7 +49,26 @@
                     </ul>
                 </div>
                 <div class="header__right">
-                    <a href="/#calculator" class="header__button">@d('header_button')</a>
+                    @php
+
+                        $templateHref = [
+                            'universal2.index' => '#calculator',
+                            'universal2.e_commerce' => '#calculator',
+                            'universal2.business' => '#calculator',
+                            'universal2.contacts' => '/#calculator',
+                            ];
+                        $calculatorHeaderAnchorHref = $templateHref[$page->template] ?? '/#calculator';
+
+
+                        $templateGtm = [
+                            'universal2.index' => 'rassitat_header',
+                            'universal2.e_commerce' => 'rassitat_header_im',
+                            'universal2.business' => 'rassitat_header_b2b',
+                            ];
+                        $calculatorHeaderAnchorGtm = $templateGtm[$page->template] ?? '';
+                    @endphp
+                    <a href="{{ $calculatorHeaderAnchorHref }}" class="header__button gtm-click"
+                       data-click="{{ $calculatorHeaderAnchorGtm }}">@d('header_button')</a>
                     @foreach($site->languages as $languageItem)
                         @if($language->id != $languageItem->id)
                             <div><a class="header__language-selector" href="{!! route('site.show_page', ['languageUrl' => $languageItem->uri, 'pageUrl' => $page->url]) !!}">{{ \Str::upper($languageItem->shortname) }}</a></div>
