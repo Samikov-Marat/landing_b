@@ -58,9 +58,15 @@
             </div>
             <div class="form-group">
                 <label for="tariff_description_id">Код iso</label>
-                <input type="text" class="form-control" name="language_code_iso" id="language_code_iso" required
-                       value=""
-                       placeholder="Код iso" autocomplete="off">
+                <select name="language_code_iso" id ="language_code_iso">
+                    @foreach($languageCodeIso as $codeIso)
+                        <option value="{{ $codeIso->code_iso }}">{{ $codeIso->code_iso }}</option>
+                        required
+                    @endforeach
+                </select>
+                {{--                <input type="text" class="form-control" name="language_code_iso" id="language_code_iso" required--}}
+                {{--                       value=""--}}
+                {{--                       placeholder="Код iso" autocomplete="off">--}}
                 <small id="language_code_iso" class="form-text text-muted">Код iso</small>
             </div>
         @endif

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\LanguageIso;
 use App\Tariff;
 use App\TariffText;
 use App\TariffType;
@@ -10,9 +11,11 @@ use Illuminate\Http\Request;
 
 class TariffController extends Controller
 {
+    const PER_PAGE = 10;
+
     public function index()
     {
-        $tariffs = Tariff::with('tariffText')->paginate(10);
+        $tariffs = Tariff::with('tariffText')->paginate(self::PER_PAGE);
         return view('admin.tariffs.index', ['tariffs' => $tariffs]);
     }
 
@@ -23,10 +26,10 @@ class TariffController extends Controller
             $tariffTexts = $tariff->tariffText;
         } else {
             $tariff = null;
+            $languageCodeIso = LanguageIso::select('code_iso')->get();
         }
         $tariffTypes = TariffType::select('id')->get();
-        return view('admin.tariffs.form', ['tariff' => $tariff, 'tariffTypes' => $tariffTypes, 'tariffTexts' => $tariffTexts ?? '']);
-
+        return view('admin.tariffs.form', ['tariff' => $tariff, 'tariffTypes' => $tariffTypes, 'tariffTexts' => $tariffTexts ?? '', 'languageCodeIso' => $languageCodeIso ?? '']);
     }
 
     public function save(Request $request)
