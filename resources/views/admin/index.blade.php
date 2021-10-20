@@ -52,7 +52,7 @@
                             <div class="alert alert-danger" role="alert">
                                 Просрочен
                             </div>
-                        @elseif($now->greaterThan($site->certificateChecks->valid_to))
+                        @elseif($inAMonth->greaterThan($site->certificateChecks->valid_to))
                             <div class="alert alert-warning" role="alert">
                                 Будет просрочен в течении месяца
                             </div>
