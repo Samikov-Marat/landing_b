@@ -15,6 +15,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpFoundation\Response as HttpResponse;
 
 class RequestController extends Controller
@@ -25,6 +26,7 @@ class RequestController extends Controller
             $apiMarketingRequest = ApiMarketing::createRequest($request->all(), Domain::getInstance($request)->get());
             return ApiMarketing::send($apiMarketingRequest);
         } catch (\Exception $e) {
+            Log::error($e);
             abort(HttpResponse::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
@@ -35,6 +37,7 @@ class RequestController extends Controller
             $apiMarketingRequest = ApiMarketing::createFeedback($request->all(), Domain::getInstance($request)->get());
             return ApiMarketing::send($apiMarketingRequest);
         } catch (\Exception $e) {
+            Log::error($e);
             abort(HttpResponse::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
@@ -45,6 +48,7 @@ class RequestController extends Controller
             $apiMarketingRequest = ApiMarketing::createPresentation($request->all(), Domain::getInstance($request)->get());
             return ApiMarketing::send($apiMarketingRequest);
         } catch (\Exception $e) {
+            Log::error($e);
             abort(HttpResponse::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
@@ -63,6 +67,7 @@ class RequestController extends Controller
             $site = Site::where('domain', $domain)
                 ->firstOrFail();
         } catch (ModelNotFoundException $exception) {
+            Log::error($exception);
             abort(Response::HTTP_NOT_FOUND);
         }
         $language = Language::select('id')
@@ -82,6 +87,7 @@ class RequestController extends Controller
             return response('saved', 200)
                 ->header('Content-Type', 'text/plain');
         } catch (\Exception $e) {
+            Log::error($e);
             abort(HttpResponse::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
@@ -91,6 +97,7 @@ class RequestController extends Controller
         $coordinates = explode(',', $request->input('bbox'));
         foreach ($coordinates as $value) {
             if (!is_numeric($value)) {
+                Log::error('Формат координат в запросе неверный. Не число в одной из координат' . var_export($value, true));
                 abort(HttpResponse::HTTP_BAD_REQUEST);
             }
         }
@@ -121,6 +128,7 @@ class RequestController extends Controller
                 ->where('url', '/' . $imageUrl)
                 ->firstOrFail();
         } catch (ModelNotFoundException $exception) {
+            Log::error(new \Exception('Не найдена ' . $imageUrl));
             abort(Response::HTTP_NOT_FOUND);
         }
         $imageResponse = ImageResponse::getInstance()->setPath($image->path);

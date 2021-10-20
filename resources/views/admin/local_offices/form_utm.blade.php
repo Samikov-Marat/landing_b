@@ -18,6 +18,7 @@
     <label for="id_category">Код категории api-marketing</label>
     <input type="text" class="form-control" name="category" id="id_category"
            value="{{ isset($localOffice) ? $localOffice->category : '' }}"
+           maxlength="15"
            placeholder="Обозначение" autocomplete="off">
     <small id="id_category_help" class="form-text text-muted">Строка. Например, <q>es</q> или <q>gb-ipswich</q></small>
 </div>

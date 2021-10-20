@@ -127,9 +127,20 @@ class ApiMarketing
             throw new \Exception('Ошибка API markerting. HTTP-код' . $response->getStatusCode());
         }
         $responseDecoded = json_decode($response->getBody()->getContents(), true);
-        if (!$responseDecoded['success']) {
-            throw new \Exception('Ошибка параметров');
-        }
+        self::checkResponse($responseDecoded);
         return $responseDecoded;
+    }
+
+    private static function checkResponse($responseDecoded){
+        if(!array_key_exists('success', $responseDecoded)){
+            throw new \Exception('Неправильный ответ сервера (нет поля success)');
+        }
+        if($responseDecoded['success']){
+            return;
+        }
+        if(!array_key_exists('error', $responseDecoded)){
+            throw new \Exception('Неправильный ответ сервера (нет поля error)');
+        }
+        throw new \Exception('Ошибка параметров ' . $responseDecoded['error']);
     }
 }
