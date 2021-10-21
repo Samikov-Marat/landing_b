@@ -46,10 +46,8 @@
                         <li class="main-menu__item">
                             <a class="main-menu__link" href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'contacts']) !!}">@d('menu_contects')</a>
                         </li>
-                        @if (!empty($dictionary['menu_to_kazakhstan']))
-                            <li class="main-menu__item">
-                                <a class="main-menu__link" href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'to-kazakhstan']) !!}</a>
-                            </li>
+                        @if (isset($dictionary['menu_to_kazakhstan']))
+                            @include('site.universal2.to_kazakhstan')
                         @endif
                     </ul>
                 </div>
