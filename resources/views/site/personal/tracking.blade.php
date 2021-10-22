@@ -88,9 +88,9 @@
                             <div class="office-page-track__form-detail-line"></div>
                         </div>
                         <div class="office-page-track__form-detail-description">
-                            <div class="office-page-track__form-detail-date js-tracking-detail-date">@d('personal_tracking_20')</div>
-                            <div class="office-page-track__form-detail-status js-tracking-detail-status">@d('personal_tracking_21')</div>
-                            <div class="office-page-track__form-detail-city js-tracking-detail-city">@d('personal_tracking_22')</div>
+                            <div class="office-page-track__form-detail-date js-tracking-detail-date">дата начала</div>
+                            <div class="office-page-track__form-detail-status js-tracking-detail-status">статус</div>
+                            <div class="office-page-track__form-detail-city js-tracking-detail-city">город</div>
                         </div>
                     </div>
                     <div class="office-page-track__form-detail-item office-page-track__form-detail-item_done js-tracking-detail-template-finish">
@@ -101,9 +101,9 @@
                             <div class="office-page-track__form-detail-line"></div>
                         </div>
                         <div class="office-page-track__form-detail-description">
-                            <div class="office-page-track__form-detail-date js-tracking-detail-date">@d('personal_tracking_23')</div>
-                            <div class="office-page-track__form-detail-status js-tracking-detail-status">@d('personal_tracking_24')</div>
-                            <div class="office-page-track__form-detail-city js-tracking-detail-city">@d('personal_tracking_25')</div>
+                            <div class="office-page-track__form-detail-date js-tracking-detail-date">дата окончания</div>
+                            <div class="office-page-track__form-detail-status js-tracking-detail-status">статус</div>
+                            <div class="office-page-track__form-detail-city js-tracking-detail-city">Город, место</div>
                         </div>
                     </div>
                 </div>
