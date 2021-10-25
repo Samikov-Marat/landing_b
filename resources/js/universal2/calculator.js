@@ -203,7 +203,7 @@ $(function () {
                 $tariffDiv.find('.calculator__tariff-item-label').html(tariffDescriptionParameters.name).attr('for', tariff.id).prop('for', tariff.id);
                 $tariffDiv.find('.calculator__tariff-item-description').html(tariffDescriptionParameters.description);
                 $tariffDiv.find('.calculator__tariff-item-type').html(tariffDescriptionParameters.type);
-                $tariffDiv.find('.calculator__tariff-item-price').html(tariff.price);
+                $tariffDiv.find('.calculator__tariff-item-price').html('' + tariff.price + ' ' + calculator.getUsedCurrencyName());
                 $list.append($tariffDiv);
             }
         });
