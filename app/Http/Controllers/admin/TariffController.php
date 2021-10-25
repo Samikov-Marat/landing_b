@@ -15,8 +15,8 @@ class TariffController extends Controller
 
     public function index()
     {
-        $tariffs = Tariff::with('tariffText')->paginate(self::PER_PAGE);
-        return view('admin.tariffs.index', ['tariffs' => $tariffs]);
+          $tariffs = Tariff::with('tariffText')->paginate(self::PER_PAGE);
+          return view('admin.tariffs.index', ['tariffs' => $tariffs]);
     }
 
     public function edit($id = null)
@@ -26,10 +26,9 @@ class TariffController extends Controller
             $tariffTexts = $tariff->tariffText;
         } else {
             $tariff = null;
-            $languageCodeIso = LanguageIso::select('code_iso')->get();
         }
         $tariffTypes = TariffType::select('id')->get();
-        return view('admin.tariffs.form', ['tariff' => $tariff, 'tariffTypes' => $tariffTypes, 'tariffTexts' => $tariffTexts ?? '', 'languageCodeIso' => $languageCodeIso ?? '']);
+        return view('admin.tariffs.form', ['tariff' => $tariff, 'tariffTypes' => $tariffTypes, 'tariffTexts' => $tariffTexts?? '']);
     }
 
     public function save(Request $request)
@@ -50,7 +49,7 @@ class TariffController extends Controller
         if($tariffText = new TariffText()) {
         $value = Tariff::latest()->first();
         $tariffText->tariff_id = $value->id;
-        $tariffText->language_code_iso = $tariffs['language_code_iso'];
+        $tariffText->language_code_iso = config('tariff_default_language');
         }
         $tariffText->name = $tariffs['name'];
         $tariffText->description = $tariffs['description'];

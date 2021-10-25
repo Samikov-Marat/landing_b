@@ -11,4 +11,9 @@ class TariffText extends Model
      {
          return $this-> belongsTo('App\Tariff');
      }
+
+     public function languageIso()
+     {
+         return $this->belongsTo(LanguageIso::class, 'code_iso', 'language_code_iso');
+     }
 }

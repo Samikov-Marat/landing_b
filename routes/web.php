@@ -278,7 +278,12 @@ Route::prefix('admin')->middleware(['auth', 'user.route.access', 'http.secure', 
         //тарифы переводы
         Route::get('tariff-languages', 'admin\TariffTranslationController@index')
             ->name('admin.tariff_languages.index');
-
+        Route::get('tariff-translation/{language}', 'admin\TariffTranslationController@translationList')
+            ->name('admin.tariff_translation');
+        Route::get('tariff-translation/{language}/edit', 'admin\TariffTranslationController@edit')
+            ->name('admin.tariff_translation.edit');
+        Route::post('tariff-translation/save', 'admin\TariffTranslationController@save')
+            ->name('admin.tariff_translation.save');
     }
 );
 

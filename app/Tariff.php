@@ -15,4 +15,5 @@ class Tariff extends Model
     {
         return $this->hasMany('App\TariffText');
     }
+
 }

@@ -24,19 +24,19 @@
                 {{$type->id}}
             @endforeach
         </div>
-        @if($tariffTexts !=='')
+        @if($tariffTexts !== '')
             @foreach($tariffTexts as $tariffText)
                 <div class="form-group">
                     <label for="tariff_type_id">Название</label>
                     <input type="text" class="form-control" name="name" id="tariff_type_id" required
-                           value="{{$tariffText->name}}"
+                           value="{{ $tariffText->name}}"
                            placeholder="название" autocomplete="off">
                     <small id="tariff_type_id" class="form-text text-muted">название</small>
                 </div>
                 <div class="form-group">
                     <label for="tariff_description_id">Описание</label>
                     <input type="text" class="form-control" name="description" id="tariff_description_id" required
-                           value="{{$tariffText->description}}"
+                           value="{{ $tariffText->description }}"
                            placeholder="описание" autocomplete="off">
                     <small id="tariff_description_id" class="form-text text-muted">описание</small>
                 </div>
@@ -55,19 +55,6 @@
                        value=""
                        placeholder="описание" autocomplete="off">
                 <small id="tariff_description_id" class="form-text text-muted">описание</small>
-            </div>
-            <div class="form-group">
-                <label for="tariff_description_id">Код iso</label>
-                <select name="language_code_iso" id ="language_code_iso">
-                    @foreach($languageCodeIso as $codeIso)
-                        <option value="{{ $codeIso->code_iso }}">{{ $codeIso->code_iso }}</option>
-                        required
-                    @endforeach
-                </select>
-                {{--                <input type="text" class="form-control" name="language_code_iso" id="language_code_iso" required--}}
-                {{--                       value=""--}}
-                {{--                       placeholder="Код iso" autocomplete="off">--}}
-                <small id="language_code_iso" class="form-text text-muted">Код iso</small>
             </div>
         @endif
         <button type="submit" class="btn btn-primary">Сохранить</button>
