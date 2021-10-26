@@ -17,7 +17,7 @@ use Symfony\Component\HttpFoundation\IpUtils;
 Auth::routes();
 
 
-Route::prefix('admin')->middleware(['auth', 'user.route.access', 'http.secure', 'verify.csrf.token'])->group(
+Route::prefix('admin')->middleware(['auth', 'user.route.access', 'http.secure', 'verify.csrf.token', 'start.session', 'share.errors.from.session'])->group(
     function () {
         Route::get('/', 'admin\IndexController@index')
             ->name('admin.index');
