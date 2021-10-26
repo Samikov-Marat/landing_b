@@ -45,12 +45,12 @@ class IndexController extends Controller
             ->with('certificateChecks')
             ->get();
         $now = new Carbon('now');
-        $inAMonth = new Carbon('+1 month');
+        $tooClose = new Carbon('+1 week');
 
         return view('admin.index')
             ->with('problems', $problems)
             ->with('siteCertification', $siteCertification)
             ->with('now', $now)
-            ->with('inAMonth', $inAMonth);
+            ->with('tooClose', $tooClose);
     }
 }

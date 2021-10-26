@@ -52,15 +52,21 @@
                             <div class="alert alert-danger" role="alert">
                                 Просрочен
                             </div>
-                        @elseif($inAMonth->greaterThan($site->certificateChecks->valid_to))
+                        @elseif($tooClose->greaterThan($site->certificateChecks->valid_to))
                             <div class="alert alert-warning" role="alert">
-                                Будет просрочен в течении месяца
+                                Будет просрочен в течении недели. Годен до {{ $site->certificateChecks->valid_to->format('d.m.Y') }}
                             </div>
-                        @else
-                            Годен до {{ $site->certificateChecks->valid_to->format('d.m.Y') }}
                         @endif
                     @endif
                 @endif
+            </td>
+            <td>
+                @if(isset($site->certificateChecks))
+                    @if(!$site->certificateChecks->error)
+                        Годен до {{ $site->certificateChecks->valid_to->format('d.m.Y') }}
+                    @endif
+                @endif
+
             </td>
         </tr>
     @endforeach
