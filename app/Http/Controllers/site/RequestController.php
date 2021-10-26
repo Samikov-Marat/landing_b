@@ -7,6 +7,7 @@ use App\Classes\Domain;
 use App\Classes\ImageResponse;
 use App\Classes\MapJsonCallback;
 use App\Classes\OfficeRepository;
+use App\Classes\Site\AllowCookie;
 use App\Feedback;
 use App\Http\Controllers\Controller;
 use App\Language;
@@ -45,7 +46,10 @@ class RequestController extends Controller
     public function presentation(Request $request)
     {
         try {
-            $apiMarketingRequest = ApiMarketing::createPresentation($request->all(), Domain::getInstance($request)->get());
+            $apiMarketingRequest = ApiMarketing::createPresentation(
+                $request->all(),
+                Domain::getInstance($request)->get()
+            );
             return ApiMarketing::send($apiMarketingRequest);
         } catch (\Exception $e) {
             Log::error($e);
@@ -55,7 +59,8 @@ class RequestController extends Controller
 
     public function allowCookies(Request $request)
     {
-        setcookie('allow_cookies', 1, strtotime('+3 years'), '/');
+        AllowCookie::getInstance($request)
+            ->setAllow();
         return response('saved', 200)
             ->header('Content-Type', 'text/plain');
     }
@@ -97,7 +102,9 @@ class RequestController extends Controller
         $coordinates = explode(',', $request->input('bbox'));
         foreach ($coordinates as $value) {
             if (!is_numeric($value)) {
-                Log::error('Формат координат в запросе неверный. Не число в одной из координат' . var_export($value, true));
+                Log::error(
+                    'Формат координат в запросе неверный. Не число в одной из координат' . var_export($value, true)
+                );
                 abort(HttpResponse::HTTP_BAD_REQUEST);
             }
         }
@@ -133,7 +140,7 @@ class RequestController extends Controller
         }
         $imageResponse = ImageResponse::getInstance()->setPath($image->path);
         $hash = $image->updated_at->format('Y-m-d H:i:s');
-        if($request->header('If-None-Match') == $hash){
+        if ($request->header('If-None-Match') == $hash) {
             abort(HttpResponse::HTTP_NOT_MODIFIED);
         }
         return response()->file(
