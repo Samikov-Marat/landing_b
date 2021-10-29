@@ -264,6 +264,24 @@ Route::prefix('admin')->middleware(['auth', 'user.route.access', 'http.secure', 
         Route::post('top-office-world-languages/save', 'admin\TopOfficeWorldLanguageController@save')
             ->name('admin.top_office_world_languages.save');
 
+        Route::get('yandex-metrica-goals', 'admin\YandexMetricaGoalController@index')
+            ->name('admin.yandex_metrica_goals.index');
+        Route::get('yandex-metrica-goals/add', 'admin\YandexMetricaGoalController@edit')
+            ->name('admin.yandex_metrica_goals.add');
+        Route::get('yandex-metrica-goals/edit/{id}', 'admin\YandexMetricaGoalController@edit')
+            ->name('admin.yandex_metrica_goals.edit');
+        Route::post('yandex-metrica-goals/save', 'admin\YandexMetricaGoalController@save')
+            ->name('admin.yandex_metrica_goals.save');
+        Route::post('yandex-metrica-goals/delete', 'admin\YandexMetricaGoalController@delete')
+            ->name('admin.yandex_metrica_goals.delete');
+        Route::get('yandex-metrica-goals/yandex-auth', 'admin\YandexMetricaGoalController@yandexAuth')
+            ->name('admin.yandex_metrica_goals.yandex_auth');
+        Route::get('yandex-metrica-goals/save-yandex-auth', 'admin\YandexMetricaGoalController@saveYandexAuth')
+            ->name('admin.yandex_metrica_goals.save_yandex_auth');
+        Route::get('yandex-metrica-goals/yandex-form', 'admin\YandexMetricaGoalController@yandexForm')
+            ->name('admin.yandex_metrica_goals.yandex_form');
+        Route::post('yandex-metrica-goals/clone-goals-to-yandex', 'admin\YandexMetricaGoalController@cloneGoalsToYandex')
+            ->name('admin.yandex_metrica_goals.clone_goals_to_yandex');
     }
 );
 
