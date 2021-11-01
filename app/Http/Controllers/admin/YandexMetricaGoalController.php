@@ -101,6 +101,9 @@ class YandexMetricaGoalController extends Controller
 
     public function cloneGoalsToYandex(Request $request)
     {
+        if (!$request->has('counter_id')) {
+            return response()->redirectToRoute('admin.yandex_metrica_goals.index');
+        }
         $token = YandexToken::select(['id', 'access_token', 'refresh_token', 'login', 'received_at'])
             ->findOrFail($request->input('token_id'));
         if ($request->input('project_id') != 1) {
@@ -110,10 +113,12 @@ class YandexMetricaGoalController extends Controller
         $goals = YandexMetricaGoal::select(['id', 'name', 'description'])
             ->get();
 
-        foreach ($goals as $goal) {
-            YandexMetricaGoalRepository::getInstance($token->access_token)
-                ->setCounter($request->input('counter_id'))
-                ->create($goal);
+        foreach ($request->input('counter_id') as $counterId) {
+            foreach ($goals as $goal) {
+                YandexMetricaGoalRepository::getInstance($token->access_token)
+                    ->setCounter($counterId)
+                    ->create($goal);
+            }
         }
 
         return response()->redirectToRoute('admin.yandex_metrica_goals.index');

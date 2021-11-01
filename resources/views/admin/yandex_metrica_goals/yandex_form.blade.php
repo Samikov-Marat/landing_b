@@ -20,13 +20,14 @@
         <div class="form-group">
             <label>Счётчик в котором создать цели {{ $token->login . '@yandex.ru' }}</label>
             @foreach($counters as $k => $counter)
+                @php
+                    $forId = 'counter_' . $k;
+                @endphp
                 <div class="form-check">
-                    @php
-                        $forId = 'counter_' . $k;
-                    @endphp
-                    <input class="form-check-input" type="radio" name="counter_id" id="{{ $forId }}"
-                           value="{{ $counter['id'] }}" required>
-                    <label class="form-check-label" for="{{ $forId }}">{{ $counter['name'] }}</label>
+                    <input class="form-check-input" type="checkbox" name="counter_id[]" value="{{ $counter['id'] }}" id="{{ $forId }}">
+                    <label class="form-check-label" for="{{ $forId }}">
+                        {{ $counter['name'] }}
+                    </label>
                 </div>
             @endforeach
         </div>
