@@ -29,6 +29,7 @@ class YandexMetricaGoalRepository
     public function create($goal)
     {
         $this->goal = $goal;
+        usleep(35000);
         $response = Http::withHeaders($this->getHeaders())
             ->withBody(
                 $this->getBody(),
