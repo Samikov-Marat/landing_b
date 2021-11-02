@@ -8,6 +8,17 @@
         <div class="question__title">@d('any_question_text_1')</div>
         <div class="question__desc">@d('any_question_text_2')</div>
         <div class="question__desc-2">@d('any_question_text_3')</div>
-        <a href="#" class="primary-button js-feedback-open">@d('any_question_text_4')</a>
+
+        @php
+            $templateGtm = [
+                'universal2.index' => 'open_form',
+                'universal2.e_commerce' => 'open_form_im',
+                'universal2.business' => 'open_form_b2b',
+                ];
+            $buttonGtm = $templateGtm[$page->template] ?? '';
+        @endphp
+
+        <a href="#" class="primary-button js-feedback-open gtm-click"
+           data-click="{{ $buttonGtm }}">@d('any_question_text_4')</a>
     </div>
 </div>

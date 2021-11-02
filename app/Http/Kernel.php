@@ -31,9 +31,9 @@ class Kernel extends HttpKernel
         'web' => [
             \App\Http\Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
-            \Illuminate\Session\Middleware\StartSession::class,
+//            \Illuminate\Session\Middleware\StartSession::class,
             // \Illuminate\Session\Middleware\AuthenticateSession::class,
-            \Illuminate\View\Middleware\ShareErrorsFromSession::class,
+//            \Illuminate\View\Middleware\ShareErrorsFromSession::class,
 //            \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \App\Http\Middleware\TrimStrings::class,
@@ -67,6 +67,9 @@ class Kernel extends HttpKernel
         'save.utm.to.cookies' => \App\Http\Middleware\SaveUtmToCookies::class,
         'http.secure' => \App\Http\Middleware\HttpSecure::class,
         'verify.csrf.token' => \App\Http\Middleware\VerifyCsrfToken::class,
+        'start.session' => \Illuminate\Session\Middleware\StartSession::class,
+        'share.errors.from.session' => \Illuminate\View\Middleware\ShareErrorsFromSession::class,
+//        \Illuminate\Session\Middleware\AuthenticateSession::class,
     ];
 
     /**
@@ -77,7 +80,10 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $middlewarePriority = [
+        \Illuminate\Session\Middleware\StartSession::class,
+        \Illuminate\View\Middleware\ShareErrorsFromSession::class,
         \App\Http\Middleware\Authenticate::class,
         \App\Http\Middleware\UserRouteAccess::class,
+        \App\Http\Middleware\VerifyCsrfToken::class,
     ];
 }

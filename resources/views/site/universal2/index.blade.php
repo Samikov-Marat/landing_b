@@ -14,7 +14,8 @@
                 <div class="main-poster__text">
                     @d('delivery_list')
                 </div>
-                <a href="/#calculator" class="primary-button primary-button_with_arrow">@d('delivery_calculate')</a>
+                <a href="#calculator" class="primary-button primary-button_with_arrow gtm-click"
+                   data-click="rassitat">@d('delivery_calculate')</a>
                 <div class="background-dots main-poster__dots-left"></div>
                 <div class="main-poster__wave-right"></div>
             </div>
@@ -75,17 +76,24 @@
             <div class="index-special-conditions__content">
                 <div class="index-special-conditions__dots-left background-dots background-dots_size_3x4"></div>
                 <div class="index-special-conditions__dots-right background-dots"></div>
-                <a href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'e-commerce']) !!}" class="index-special-conditions__card index-special-conditions__card_yellow">
+                <a href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'e-commerce']) !!}"
+                   class="index-special-conditions__card index-special-conditions__card_yellow gtm-click"
+                   data-click="perehod_im">
                     <div class="index-special-conditions__card-text">@d('special_conditions_tab_shop')</div>
                     <div class="index-special-conditions__arrow"></div>
                 </a>
-                <a href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'business']) !!}" class="index-special-conditions__card">
+                <a href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'business']) !!}"
+                   class="index-special-conditions__card gtm-click"
+                   data-click="perehod_b2b">
                     <div class="index-special-conditions__card-text">@d('special_conditions_tab_business')</div>
                     <div class="index-special-conditions__arrow"></div>
                 </a>
             </div>
         </div>
 
+        @if(isset($dictionary['personal_tracking_2']))
+            @include('site.personal.tracking')
+        @endif
 
         @include('site.universal2.how_it_works_block')
 

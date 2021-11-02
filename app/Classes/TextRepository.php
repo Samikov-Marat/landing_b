@@ -11,9 +11,8 @@ class TextRepository
         return Site::select('id', 'name')
             ->with(
                 [
-                    'pages' => function ($query) {
-                        $query->select('id', 'site_id', 'name', 'domain')
-                            ->orderBy('sort');
+                    'pages.textTypes.texts' => function ($query) {
+                        $query->select('id', 'text_type_id', 'language_id', 'value');
                     }
                 ]
             )
@@ -27,8 +26,9 @@ class TextRepository
             )
             ->with(
                 [
-                    'pages.textTypes.texts' => function ($query) {
-                        $query->select('id', 'text_type_id', 'language_id', 'value');
+                    'pages' => function ($query) {
+                        $query->select('id', 'site_id', 'name', 'url')
+                            ->orderBy('sort');
                     }
                 ]
             )

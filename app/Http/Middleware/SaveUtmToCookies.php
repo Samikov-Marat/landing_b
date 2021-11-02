@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Classes\Site\AllowCookie;
 use Closure;
 use Exception;
 use Illuminate\Support\Facades\Cookie;
@@ -52,7 +53,7 @@ class SaveUtmToCookies
                 Log::error('Неверный формат сохранённого utm. Данные будут перезаписаны.');
             }
         }
-        if ($needSave) {
+        if ($needSave && AllowCookie::getInstance($request)->isAllow()) {
             Cookie::queue(
                 UtmCookie::COOKIE_NAME,
                 $utmCookie->getAsJson(),

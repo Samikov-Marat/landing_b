@@ -73,3 +73,526 @@
     .prohibition .typo-h2 {
         font-size: 21px;
         line-height: 26px; } }
+
+
+
+.office-page-track {
+    margin-bottom: 120px;
+    min-height: 406px;
+    box-sizing: border-box;
+    padding-top: 80px;
+    background: url("/universal2/img-op/bg-track.jpg") no-repeat top center;
+    position: relative;
+    z-index: 2; }
+@media (max-width: 480px) {
+    .office-page-track {
+        margin-bottom: 44px; } }
+@media (min-width: 481px) and (max-width: 1199px) {
+    .office-page-track {
+        margin-bottom: 60px; } }
+.office-page-track__content {
+    width: 1200px;
+    margin: 0 auto;
+    border-radius: 25px;
+    background: url("/universal2/img/search-track.svg") no-repeat top right 24px, #fff;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.09); }
+@media (max-width: 1199px) {
+    .office-page-track__content {
+        width: 100%;
+        box-sizing: border-box; } }
+@media (max-width: 480px) {
+    .office-page-track__content {
+        padding: 0 20px; } }
+@media (min-width: 481px) and (max-width: 1199px) {
+    .office-page-track__content {
+        padding: 0 30px; } }
+.office-page-track__content_korea {
+    padding: 50px;
+    background: #fff;
+    border-radius: 0; }
+.office-page-track__item {
+    padding: 50px 50px 35px;
+    box-sizing: border-box; }
+.office-page-track__title {
+    font-weight: normal;
+    font-size: 30px;
+    line-height: 37px;
+    margin-bottom: 24px; }
+.office-page-track__form {
+    display: flex;
+    margin-bottom: 8px; }
+.office-page-track__form:last-child {
+    margin-bottom: 0; }
+.office-page-track__input-row {
+    margin-right: 20px; }
+.office-page-track__input {
+    height: 60px;
+    box-sizing: border-box;
+    width: 600px;
+    border: none;
+    border-bottom: 2px solid #DDDDDD;
+    outline: none;
+    padding-bottom: 13px;
+    font-size: 18px;
+    font-weight: normal;
+    color: #888;
+    padding-left: 15px;
+    padding-right: 15px; }
+.office-page-track__input::placeholder {
+    font-size: 18px;
+    font-weight: normal;
+    color: #888; }
+.office-page-track__submit {
+    border-radius: 5px;
+    padding: 17px 25px;
+    border: none;
+    outline: none;
+    height: 60px;
+    box-sizing: border-box;
+    cursor: pointer;
+    color: #FFF;
+    font-size: 18px;
+    line-height: 25px;
+    font-family: "Roboto", sans-serif;
+    background-color: #1AB248; }
+.office-page-track__submit_arrow {
+    background-image: url("/universal2/img/arrow.svg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 50px;
+    width: 50px;
+    padding: 0; }
+.office-page-track .form-field__error-message {
+    color: #E91717;
+    font-weight: normal;
+    font-size: 13px;
+    position: static;
+    padding-top: 8px; }
+.office-page-track .form-field_error .form-field__input {
+    border-color: #E91717; }
+.office-page-track__form-information {
+    background: #F9F9F9;
+    padding: 40px 50px 50px;
+    font-weight: normal;
+    border-radius: 0 0 25px 25px; }
+.office-page-track__form-information-subtitle {
+    font-size: 20px;
+    line-height: 24px;
+    margin-bottom: 26px; }
+.office-page-track__form-information-direction {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 24px; }
+.office-page-track__form-information-item {
+    position: relative; }
+.office-page-track__form-information-item::after {
+    content: '';
+    background: url("/universal2/img/arrow-track.svg") no-repeat;
+    width: 28px;
+    height: 17px;
+    position: absolute;
+    top: 74px;
+    right: -52px; }
+.office-page-track__form-information-item:last-child::after {
+    display: none; }
+.office-page-track__form-information-text {
+    font-size: 16px;
+    line-height: 21px;
+    color: #666;
+    margin-bottom: 10px; }
+.office-page-track__form-information-city-content {
+    background: url("/universal2/img/location.svg") no-repeat top 31px left 20px #FFF;
+    border-radius: 15px;
+    padding: 25px 20px 25px 58px;
+    min-height: 35px;
+    width: 512px;
+    box-sizing: border-box; }
+.office-page-track__form-information-city {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 23px;
+    margin-bottom: 5px; }
+.office-page-track__form-information-date {
+    font-size: 14px;
+    line-height: 21px;
+    color: #666; }
+.office-page-track__form-information-status {
+    font-size: 20px;
+    line-height: 24px;
+    margin-bottom: 20px; }
+.office-page-track__form-detail-button {
+    border: 1px solid #222;
+    border-radius: 4px;
+    color: #222;
+    font-size: 14px;
+    line-height: 18px;
+    padding: 13px 25px;
+    display: inline-block;
+    text-decoration: none;
+    margin-bottom: 30px;
+    background: none;
+    cursor: pointer; }
+.office-page-track__form-detail-button:last-child {
+    margin-bottom: 0; }
+.office-page-track__state {
+    background: url("/universal2/img/question-track.svg") no-repeat top 3px left;
+    min-height: 47px;
+    padding-left: 59px;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 23px;
+    margin-bottom: 24px; }
+.office-page-track__state:last-child {
+    margin-bottom: 0; }
+.office-page-track__state_not-found {
+    background: url("/universal2/img/not-found.svg") no-repeat;
+    padding-top: 11px; }
+.office-page-track__state_error {
+    color: #E91717;
+    background: url("/universal2/img/track-error.svg") no-repeat;
+    padding-left: 56px;
+    padding-top: 8px; }
+.office-page-track__more-title {
+    font-size: 20px;
+    line-height: 25px;
+    margin-bottom: 5px; }
+.office-page-track__more-text {
+    font-size: 15px;
+    line-height: 21px; }
+.office-page-track__more-text_mobile {
+    display: none; }
+.office-page-track__more-phone {
+    display: flex;
+    padding-left: 59px; }
+.office-page-track__more-phone-input {
+    border: 2px solid #DDD;
+    box-sizing: border-box;
+    border-radius: 5px;
+    width: 220px;
+    height: 50px;
+    padding: 0 15px;
+    font-weight: normal;
+    font-family: "Roboto", sans-serif;
+    margin-right: 15px; }
+.office-page-track__more-phone-input::placeholder {
+    font-weight: normal;
+    font-family: "Roboto", sans-serif; }
+.office-page-track__form-detail {
+    background: #FFF;
+    border-radius: 15px;
+    padding: 30px 30px 35px;
+    font-weight: normal; }
+.office-page-track__form-detail-title {
+    font-size: 20px;
+    line-height: 24px;
+    margin-bottom: 24px; }
+.office-page-track__form-detail-item {
+    padding-bottom: 42px;
+    position: relative;
+    padding-left: 90px;
+    display: flex; }
+.office-page-track__form-detail-item_done {
+    padding-bottom: 0; }
+.office-page-track__form-detail-item_done .office-page-track__form-detail-circle {
+    background: url("/universal2/img/track-checked.svg") no-repeat center center #1AB248; }
+.office-page-track__form-detail-item_done .office-page-track__form-detail-line {
+    display: none; }
+.office-page-track__form-detail-item_done .office-page-track__form-detail-circle-small {
+    display: none; }
+.office-page-track__form-detail-circle-wrapper {
+    margin-right: 15px; }
+.office-page-track__form-detail-circle {
+    width: 28px;
+    height: 28px;
+    border: 2px solid #1AB248;
+    box-sizing: border-box;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5px; }
+.office-page-track__form-detail-circle-small {
+    width: 10px;
+    height: 10px;
+    background: #1AB248;
+    border-radius: 50%; }
+.office-page-track__form-detail-date {
+    position: absolute;
+    top: 5px;
+    left: 0;
+    font-size: 15px;
+    line-height: 18px;
+    color: #000; }
+.office-page-track__form-detail-status {
+    font-size: 16px;
+    line-height: 18px;
+    margin-bottom: 6px;
+    padding-top: 5px; }
+.office-page-track__form-detail-city {
+    font-size: 14px;
+    line-height: 18px;
+    color: #888; }
+.office-page-track__form-detail-line {
+    border-left: 1px dashed #999;
+    height: 100%;
+    width: 1px;
+    margin: 0 auto; }
+
+@media (max-width: 480px) {
+    .office-page-track {
+        min-height: 191px;
+        padding: 40px 20px 0;
+        background: url("/universal2/img-op/bg-track-mobile-2x.jpg") no-repeat top center;
+        background-size: 480px 191px; }
+    .office-page-track__title {
+        font-size: 20px;
+        line-height: 26px;
+        margin-bottom: 20px; }
+    .office-page-track__content {
+        border-radius: 16px;
+        background: url("/universal2/img/search-track-mobile.svg") no-repeat top right, #fff;
+        padding: 0; }
+    .office-page-track__content_korea {
+        padding: 20px;
+        background: #fff;
+        border-radius: 0; }
+    .office-page-track__item {
+        padding: 25px 20px 25px; }
+    .office-page-track__form {
+        flex-direction: column;
+        margin-bottom: 15px; }
+    .office-page-track__input-row {
+        margin-right: 0;
+        width: 100%;
+        margin-bottom: 20px; }
+    .office-page-track__input {
+        height: auto;
+        width: 100%;
+        padding-bottom: 10px;
+        font-size: 14px;
+        font-weight: normal;
+        padding-left: 5px;
+        padding-right: 5px; }
+    .office-page-track__input::placeholder {
+        font-size: 14px;
+        font-weight: normal; }
+    .office-page-track__submit {
+        width: 100%;
+        padding: 9px 25px;
+        height: 45px;
+        font-size: 14px; }
+    .office-page-track__submit_arrow {
+        width: 43px;
+        height: 43px;
+        padding: 0; }
+    .office-page-track .form-field__error-message {
+        padding-top: 6px; }
+    .office-page-track__form-information {
+        padding: 20px 20px 32px;
+        border-radius: 0 0 16px 16px; }
+    .office-page-track__form-information-subtitle {
+        font-size: 16px;
+        margin-bottom: 20px; }
+    .office-page-track__form-information-direction {
+        flex-direction: column;
+        margin-bottom: 20px; }
+    .office-page-track__form-information-item {
+        margin-bottom: 12px; }
+    .office-page-track__form-information-item::after {
+        display: none; }
+    .office-page-track__form-information-item:last-child {
+        margin-bottom: 0; }
+    .office-page-track__form-information-text {
+        font-size: 13px;
+        margin-bottom: 4px; }
+    .office-page-track__form-information-city-content {
+        background: url("/universal2/img/location.svg") no-repeat top 19px left 20px #FFF;
+        border-radius: 11px;
+        padding: 13px 20px 13px 58px;
+        width: 100%; }
+    .office-page-track__form-information-city {
+        font-size: 16px;
+        margin-bottom: 3px; }
+    .office-page-track__form-information-date {
+        font-size: 13px; }
+    .office-page-track__form-information-status {
+        font-size: 16px; }
+    .office-page-track__form-detail-button {
+        width: 100%;
+        padding: 10px 25px;
+        margin-bottom: 20px;
+        box-sizing: border-box;
+        text-align: center; }
+    .office-page-track__state {
+        background-size: 37px 37px;
+        min-height: 37px;
+        padding-left: 52px;
+        margin-bottom: 8px;
+        font-size: 16px;
+        line-height: 19px;
+        background-position: top left; }
+    .office-page-track__state_not-found {
+        padding-top: 9px; }
+    .office-page-track__state_error {
+        padding-top: 0; }
+    .office-page-track__more-title {
+        font-size: 16px;
+        line-height: 19px;
+        margin-bottom: 0; }
+    .office-page-track__more-text {
+        font-size: 13px;
+        line-height: 18px;
+        margin-bottom: 20px; }
+    .office-page-track__more-text_desktop {
+        display: none; }
+    .office-page-track__more-text_mobile {
+        display: block;
+        font-weight: normal; }
+    .office-page-track__more-phone {
+        padding-left: 0;
+        justify-content: space-between; }
+    .office-page-track .form-field {
+        flex-grow: 1; }
+    .office-page-track__more-phone-input {
+        width: 94.92386%;
+        height: 43px;
+        margin-right: 10px; }
+    .office-page-track__form-detail {
+        border-radius: 11px;
+        padding: 20px 20px 15px; }
+    .office-page-track__form-detail-title {
+        font-size: 16px;
+        margin-bottom: 20px; }
+    .office-page-track__form-detail-item {
+        padding-bottom: 0;
+        padding-left: 0;
+        margin-bottom: 10px; }
+    .office-page-track__form-detail-item_done {
+        padding-bottom: 0;
+        margin-bottom: 0; }
+    .office-page-track__form-detail-item_done .office-page-track__form-detail-circle {
+        background-size: 14px 10px; }
+    .office-page-track__form-detail-circle-wrapper {
+        margin-right: 11px; }
+    .office-page-track__form-detail-circle {
+        width: 24px;
+        height: 24px;
+        margin-bottom: 10px; }
+    .office-page-track__form-detail-date {
+        position: static;
+        font-size: 13px;
+        margin-bottom: 4px;
+        padding-top: 2px; }
+    .office-page-track__form-detail-status {
+        font-size: 15px;
+        line-height: 18px;
+        margin-bottom: 4px;
+        padding-top: 0; }
+    .office-page-track__form-detail-city {
+        font-size: 13px;
+        padding-bottom: 14px; }
+    .office-page-track__form-detail-line {
+        height: 61px; } }
+
+@media (min-width: 481px) and (max-width: 1199px) {
+    .office-page-track {
+        min-height: 194px;
+        padding: 45px 20px 0;
+        background: url("/universal2/img-op/bg-track-tablet-2x.jpg") no-repeat top center;
+        background-size: 1200px 194px; }
+    .office-page-track__title {
+        font-size: 24px;
+        line-height: 29px;
+        margin-bottom: 27px; }
+    .office-page-track__content {
+        border-radius: 16px;
+        background: url("/universal2/img/search-track-tablet.svg") no-repeat top right 30px, #fff;
+        padding: 0; }
+    .office-page-track__content_korea {
+        padding: 30px;
+        background: #fff;
+        border-radius: 0; }
+    .office-page-track__item {
+        padding: 40px 40px 42px; }
+    .office-page-track__form {
+        margin-bottom: 16px; }
+    .office-page-track__input {
+        height: 43px;
+        width: 452px;
+        padding-bottom: 10px;
+        font-size: 14px;
+        font-weight: normal;
+        padding-left: 10px;
+        padding-right: 10px; }
+    .office-page-track__input::placeholder {
+        font-size: 14px;
+        font-weight: normal; }
+    .office-page-track__submit {
+        padding: 9px 25px;
+        height: 43px;
+        font-size: 14px; }
+    .office-page-track__submit_arrow {
+        width: 43px;
+        height: 43px;
+        padding: 0; }
+    .office-page-track__form-information {
+        padding: 40px 40px 50px;
+        border-radius: 0 0 16px 16px; }
+    .office-page-track__form-information-subtitle {
+        font-size: 18px;
+        margin-bottom: 30px; }
+    .office-page-track__form-information-direction {
+        margin-bottom: 20px; }
+    .office-page-track__form-information-item {
+        width: 46.14198%; }
+    .office-page-track__form-information-item::after {
+        background-size: 19px 12px;
+        width: 19px;
+        height: 12px;
+        top: 66px;
+        right: -35px; }
+    .office-page-track__form-information-text {
+        font-size: 14px;
+        margin-bottom: 6px; }
+    .office-page-track__form-information-city-content {
+        background-position: top 26px left 20px;
+        border-radius: 11px;
+        padding: 21px 20px 22px 58px;
+        min-height: 35px;
+        width: 100%; }
+    .office-page-track__form-information-city {
+        font-size: 18px;
+        margin-bottom: 3px; }
+    .office-page-track__form-information-date {
+        font-size: 13px; }
+    .office-page-track__form-information-status {
+        font-size: 18px; }
+    .office-page-track__form-detail-button {
+        height: 38px;
+        box-sizing: border-box;
+        padding: 9px 25px; }
+    .office-page-track__state {
+        font-size: 18px;
+        margin-bottom: 20px;
+        background-position: top left; }
+    .office-page-track__more-title {
+        font-size: 18px;
+        margin-bottom: 0; }
+    .office-page-track__more-text {
+        font-size: 13px; }
+    .office-page-track__more-phone-input {
+        height: 43px;
+        margin-right: 10px; }
+    .office-page-track__form-detail {
+        border-radius: 11px; }
+    .office-page-track__form-detail-title {
+        font-size: 18px; }
+    .office-page-track__form-detail-date {
+        top: 5px;
+        font-size: 14px; }
+    .office-page-track__form-detail-status {
+        margin-bottom: 5px;
+        padding-top: 5px;
+        font-size: 15px; }
+    .office-page-track__form-detail-city {
+        font-size: 13px; } }

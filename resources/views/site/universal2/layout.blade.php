@@ -3,6 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>@d('title')</title>
+
+    <script>
+        dataLayer = [];
+    </script>
+
+    @if($allowCookies)
+        <!-- Google Tag Manager -->
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-T5FMSQB');</script>
+        <!-- End Google Tag Manager -->
+    @endif
+
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
@@ -13,6 +28,10 @@
     <link rel="stylesheet" href="{{ mix('universal2/custom.css') }}">
 </head>
 <body class="site-theme">
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T5FMSQB"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 <div class="body-wrapper js-body_wrapper ">
     <div class="fullscreen-modal-background js-fade_background "></div>
     <header class="header-shadow">
@@ -30,10 +49,32 @@
                         <li class="main-menu__item">
                             <a class="main-menu__link" href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'contacts']) !!}">@d('menu_contects')</a>
                         </li>
+                        @if (isset($dictionary['menu_to_kazakhstan']))
+                            @include('site.universal2.to_kazakhstan')
+                        @endif
                     </ul>
                 </div>
                 <div class="header__right">
-                    <a href="/#calculator" class="header__button">@d('header_button')</a>
+                    @php
+
+                        $templateHref = [
+                            'universal2.index' => '#calculator',
+                            'universal2.e_commerce' => '#calculator',
+                            'universal2.business' => '#calculator',
+                            'universal2.contacts' => '/#calculator',
+                            ];
+                        $calculatorHeaderAnchorHref = $templateHref[$page->template] ?? '/#calculator';
+
+
+                        $templateGtm = [
+                            'universal2.index' => 'rassitat_header',
+                            'universal2.e_commerce' => 'rassitat_header_im',
+                            'universal2.business' => 'rassitat_header_b2b',
+                            ];
+                        $calculatorHeaderAnchorGtm = $templateGtm[$page->template] ?? '';
+                    @endphp
+                    <a href="{{ $calculatorHeaderAnchorHref }}" class="header__button gtm-click"
+                       data-click="{{ $calculatorHeaderAnchorGtm }}">@d('header_button')</a>
                     @foreach($site->languages as $languageItem)
                         @if($language->id != $languageItem->id)
                             <div><a class="header__language-selector" href="{!! route('site.show_page', ['languageUrl' => $languageItem->uri, 'pageUrl' => $page->url]) !!}">{{ \Str::upper($languageItem->shortname) }}</a></div>
@@ -120,19 +161,9 @@
 
 </div>
 
-@php
-    $yandexParameters = [
-        'apikey' => 'a3a191e8-8704-4696-964a-1dac59b0730b',
-        'lang' => $dictionary['contacts_yandex_lang'],
-    ];
-@endphp
-
-<script src="https://api-maps.yandex.ru/2.1/?{!! http_build_query($yandexParameters) !!}"
-        type="text/javascript">
-</script>
-
 <script src="{{ mix('universal2/new.js') }}" defer></script>
 @include('site.universal2.binotel')
 @include('site.universal2.jivosite')
+@include('site.universal2.tawk_block')
 </body>
 </html>

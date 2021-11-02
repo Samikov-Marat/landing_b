@@ -11,6 +11,11 @@ mix.combine([
     'resources/js/universal2/how_it_works.js',
     'resources/js/universal2/map.js',
     'resources/js/universal2/allow_cookies.js',
+    'resources/js/universal2/google_tag_manager.js',
+    "resources/js/personal/tracking.js",
+    "resources/js/personal/tracking_short.js",
+    "resources/js/personal/tracking_result.js",
+    "resources/js/personal/tracking_result_item.js",
 ], 'public/universal2/new.js').version();
 
 
@@ -33,6 +38,13 @@ mix.combine([
 
 mix.copy('resources/css/universal2/app.css', 'public/universal2/app.css').version();
 mix.copy('resources/css/universal2/custom.css', 'public/universal2/custom.css').version();
+
+mix.copy('node_modules/leaflet.markercluster/dist/MarkerCluster.css', 'public/universal2/MarkerCluster.css').version();
+mix.copy('node_modules/leaflet.markercluster/dist/MarkerCluster.Default.css', 'public/universal2/MarkerCluster.Default.css').version();
+
+mix.copy('resources/css/universal2/custom.css', 'public/universal2/custom.css').version();
+
+mix.copy('node_modules/leaflet.markercluster/dist/leaflet.markercluster.js', 'public/universal2/leaflet.markercluster.js').version();
 
 mix.copy('vendor/almasaeed2010/adminlte/plugins/select2/', 'public/admin_files/select2').version();
 

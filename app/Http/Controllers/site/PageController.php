@@ -6,6 +6,7 @@ use App\Classes\DictionaryBuilder;
 use App\Classes\Domain;
 use App\Classes\FragmentRepository;
 use App\Classes\LanguageDetector;
+use App\Classes\Site\AllowCookie;
 use App\Classes\SiteRepository;
 use App\Exceptions\CurrentPageNotFound;
 use App\Exceptions\PageController\LanguageListIsEmpty;
@@ -70,7 +71,7 @@ class PageController extends Controller
             ->with('page', $page)
             ->with('dictionary', $dictionary)
             ->with('pageUrl', $pageUrl)
-            ->with('allowCookies', isset($_COOKIE['allow_cookies']));
+            ->with('allowCookies', AllowCookie::getInstance($request)->isAllow());
 
     }
 }

@@ -39,18 +39,14 @@
                         </div>
                     @endforeach
                 </div>
-
             @endforeach
 
 
         </div>
-        <div id="map" class="contact-page__map js-map"
-             @if('local' == env('APP_ENV'))
-             data-url-template="http://landing.dev.cdek.ru/request/get-office-list?bbox=%b"
-             @else
-             data-url-template="{!! route('request.get_office_list') . '?bbox=%b' !!}"
-             @endif
-             data-map-state="{{ $dictionary['contacts_map_state'] }}"></div>
+        @if('' != $dictionary['contacts_open_street_map_state'])
+            @include('site.universal2.map_open_street')
+        @else
+            @include('site.universal2.map_yandex')
+        @endif
     </div>
-
 @endsection
