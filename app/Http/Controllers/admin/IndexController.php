@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\CertificateChecks;
 use App\Http\Controllers\Controller;
 use App\LocalOffice;
 use App\Site;
@@ -41,8 +42,12 @@ class IndexController extends Controller
                    ])
             ->get();
 
+        $site = new Site();
+        $certificateCheck = new CertificateChecks();
         $siteCertification = Site::select(['id', 'name', 'domain'])
+            ->join($certificateCheck->getTable(), $site->qualifyColumn('id'), $certificateCheck->qualifyColumn('site_id'))
             ->with('certificateChecks')
+            ->orderBy($certificateCheck->qualifyColumn('valid_to'))
             ->get();
         $now = new Carbon('now');
         $tooClose = new Carbon('+1 week');
