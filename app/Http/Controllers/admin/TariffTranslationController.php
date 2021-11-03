@@ -37,27 +37,27 @@ class TariffTranslationController extends Controller
             ->with('language', $language);
     }
 
-    public function edit(Request $request)
+    public function edit(Request $request, $language)
     {
-        $language = $request['language'];
-        $id = $request['id'];
-        $translationItems = TariffText::where('tariff_id', $request['id'])->where('language_code_iso', $language)->get();
-        return view('admin.tariff_translation.edit_form')->with(['translationItems' => $translationItems, 'language' => $language, 'id' => $id]);
+        $tariff = Tariff::select('id')->findOrFail($request->input('id'));
+        $translationItem = TariffText::select('id', 'tariff_id', 'language_code_iso', 'name', 'description')
+            ->where('tariff_id', $tariff->id)
+            ->where('language_code_iso', $language)
+            ->firstOrNew();
+        dd($translationItem);
+        return view('admin.tariff_translation.edit_form')
+            ->with(['tariff' => $tariff, 'translationItem' => $translationItem, 'language' => $language]);
     }
 
     public function save(Request $request)
     {
-        $lang = $request['language_code_iso'];
-        $tariffText = TariffText::find($request['id']);
-        if ($tariffText == null) {
-            $tariffText = new TariffText();
-        }
-        $tariffText->name = $request['name'];
-        $tariffText->description = $request['description'];
-        $tariffText->tariff_id = $request['tariff_id'];
-        $tariffText->language_code_iso = $request['language_code_iso'];
+        $tariffText = TariffText::findOrNew($request->input('id'));
+        $tariffText->name = $request->input('name');
+        $tariffText->description = $request->input('description');
+        $tariffText->tariff_id = $request->input('tariff_id');
+        $tariffText->language_code_iso = $request->input('language_code_iso');
         $tariffText->save();
-        return response()->redirectToRoute('admin.tariff_translation', $lang);
+        return response()->redirectToRoute('admin.tariff_translation', ['language' => $tariffText->language_code_iso]);
     }
 
 }

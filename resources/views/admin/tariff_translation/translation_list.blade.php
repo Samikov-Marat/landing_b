@@ -39,7 +39,7 @@
                         <h2>{{ $tariffTextIndexed[$language]->name }}</h2>
                         {{ $tariffTextIndexed[$language]->description }}
                     @else
-                        <h2>нет перевода</h2>
+                        <span class="badge badge-warning">Нет перевода</span>
                     @endif
                 </td>
                 <td class="text-nowrap">

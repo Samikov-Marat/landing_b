@@ -15,46 +15,60 @@ class TariffController extends Controller
 
     public function index()
     {
-          $tariffs = Tariff::with('tariffText')->paginate(self::PER_PAGE);
-          return view('admin.tariffs.index', ['tariffs' => $tariffs]);
+        $tariffs = Tariff::select('id', 'ek_id', 'tariff_type_id')
+            ->with(['tariffText' => function ($q) {
+                $q->where('language_code_iso', config('app.tariff_default_language'));
+            }])
+            ->orderBy('id')
+            ->paginate(self::PER_PAGE);
+        return view('admin.tariffs.index', ['tariffs' => $tariffs]);
     }
 
     public function edit($id = null)
     {
         if (isset($id)) {
-            $tariff = Tariff::select('id', 'ek_id', 'tariff_type_id')->find($id);
-            $tariffTexts = $tariff->tariffText;
+            $tariff = Tariff::select('id', 'ek_id', 'tariff_type_id')
+                ->with(['tariffText' => function ($q) {
+                    $q->where('language_code_iso', config('app.tariff_default_language'));
+                }])
+                ->find($id);
         } else {
-            $tariff = null;
+            $tariff = new Tariff();
         }
         $tariffTypes = TariffType::select('id')->get();
-        return view('admin.tariffs.form', ['tariff' => $tariff, 'tariffTypes' => $tariffTypes, 'tariffTexts' => $tariffTexts?? '']);
+        return view('admin.tariffs.form', ['tariff' => $tariff, 'tariffTypes' => $tariffTypes]);
     }
 
     public function save(Request $request)
     {
-        $tariffs = $request->all();
         $isEditMode = $request->has('id');
-        if ($isEditMode){
-            $tariff = Tariff::select('id', 'ek_id', 'tariff_type_id')->find($request['id']);
-            $tariffText = $tariff->tariffText()->where('tariff_id', $request['id'])->first();
+        if ($isEditMode) {
+            $tariff = Tariff::select('id', 'ek_id', 'tariff_type_id')
+                ->findOrFail($request->input('id'));
         } else {
             $tariff = new Tariff();
-            $tariffText = new TariffText();
         }
-
-        $tariff->ek_id = $tariffs['ek_id'];
-        $tariff->tariff_type_id = $tariffs['tariff_type_id'];
+        $tariff->ek_id = $request->input('ek_id');
+        $tariff->tariff_type_id = $request->input('tariff_type_id');
         $tariff->save();
-        if($tariffText = new TariffText()) {
-        $value = Tariff::latest()->first();
-        $tariffText->tariff_id = $value->id;
-        $tariffText->language_code_iso = config('tariff_default_language');
-        }
-        $tariffText->name = $tariffs['name'];
-        $tariffText->description = $tariffs['description'];
 
+        if ($isEditMode) {
+            $tariff->load(['tariffText' => function ($q) {
+                $q->where('language_code_iso', config('app.tariff_default_language'));
+            }]);
+            if (!isset($tariff->tariffText)) {
+                throw new Exception('Не найден стандартный перевод');
+            }
+            $tariffText = $tariff->tariffText;
+        } else {
+            $tariffText = new TariffText();
+            $tariffText->tariff_id = $tariff->id;
+            $tariffText->language_code_iso = config('app.tariff_default_language');
+        }
+        $tariffText->name = $request->input('name');
+        $tariffText->description = $request->input('description');
         $tariffText->save();
+
         return response()->redirectToRoute('admin.tariffs.index');
     }
 
