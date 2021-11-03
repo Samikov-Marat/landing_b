@@ -16,6 +16,8 @@ class TextCsv
     const MESSAGE_2 = 'Первый столбец менять нельзя';
     const PAGE_PREFIX = 'страница ';
     const PREFIX_OFFICE = 'офис ';
+    const PREFIX_NEWS_ARTICLE = 'новость ';
+
 
     public function __construct()
     {
@@ -45,6 +47,11 @@ class TextCsv
     private static function getOfficePrefix($page)
     {
         return static::PREFIX_OFFICE . $page->code;
+    }
+
+    private static function getNewsArticlePrefix($newsArticle)
+    {
+        return static::PREFIX_NEWS_ARTICLE . $newsArticle->header;
     }
 
     public function start($site)
@@ -90,20 +97,49 @@ class TextCsv
             $this->put($officeHeader);
 
             $textsByLanguage = $office->localOfficeTexts->keyBy('language_id');
-            foreach (['name', 'address', 'path', 'worktime'] as $attribute){
+            foreach (['name', 'address', 'path', 'worktime'] as $attribute) {
                 $line = $this->getLocalOfficeTextAttribute($site, $office, $textsByLanguage, $attribute);
                 $this->put($line);
             }
         }
+
+        foreach ($site->newsArticles as $newsArticle) {
+            $newsArticleHeader = [static::getNewsArticlePrefix($newsArticle),];
+            foreach ($site->languages as $language) {
+                $newsArticleHeader[] = '';
+            }
+            $this->put($newsArticleHeader);
+
+            foreach (['header', 'note', 'text', 'publication_date_text'] as $attribute) {
+                $line = $this->getNewsArticleAttribute($site, $newsArticle, $attribute);
+                $this->put($line);
+            }
+        }
+
         $this->closeStream();
     }
 
-    public function getLocalOfficeTextAttribute($site, $office, $textsByLanguage, $attribute){
+    public function getLocalOfficeTextAttribute($site, $office, $textsByLanguage, $attribute)
+    {
         $superId = implode('.', ['office', $office->id, $attribute]);
         $line = [$superId,];
         foreach ($site->languages as $language) {
             if ($textsByLanguage->has($language->id)) {
                 $line[] = $textsByLanguage->get($language->id)->getAttribute($attribute);
+            } else {
+                $line[] = '';
+            }
+        }
+        return $line;
+    }
+
+    public function getNewsArticleAttribute($site, $newsArticle, $attribute)
+    {
+        $superId = implode('.', ['news_article', $newsArticle->id, $attribute]);
+        $line = [$superId,];
+        foreach ($site->languages as $language) {
+            if ($newsArticle->language_id == $language->id) {
+                $line[] = $newsArticle->getAttribute($attribute);
             } else {
                 $line[] = '';
             }

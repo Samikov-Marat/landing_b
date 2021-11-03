@@ -68,6 +68,18 @@ class SiteCloner
             $this->cloneText($oldPage, $oldLanguage, $newLanguage);
         }
 
+        $oldSite->load(['newsArticles' => function($q) use ($oldLanguage){
+            $q->where('language_id', $oldLanguage->id);
+        }]);
+
+        $oldNewsArticles = $oldSite->newsArticles;
+        foreach ($oldNewsArticles as $oldNewsArticle) {
+            $newNewsArticles = $oldNewsArticle->replicate()
+                ->setAttribute('site_id', $newSite->id)
+                ->setAttribute('language_id', $newLanguage->id);
+            $newNewsArticles->save();
+        }
+
         $oldSite->load('images');
         $oldImages = $oldSite->images;
         foreach ($oldImages as $oldImage) {
@@ -103,6 +115,4 @@ class SiteCloner
                 ->save();
         }
     }
-
-
 }
