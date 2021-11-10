@@ -328,11 +328,12 @@
         <div class="office-page__heading2">@d('personal_137')</div>
         <div class="news-list__content">
             @foreach($site->newsArticles as $newsArticle)
+                @if($newsArticle->newsArticleTexts->isNotEmpty())
                 <div class="news news-list__news js-news-item" data-id="{{ $newsArticle->id }}">
-                    <a href="#"><img class="news__img" src="{{ Storage::disk('news_images')->url($newsArticle->preview)  }}" alt="{{ $newsArticle->header }}" /></a>
-                    <div class="news__date">{{ $newsArticle->publication_date_text }}</div>
-                    <a href="#" class="news__title">{{ $newsArticle->header }}</a>
-                    <div class="news__desc">{{ $newsArticle->note }}</div>
+                    <a href="#"><img class="news__img" src="{{ Storage::disk('news_images')->url($newsArticle->preview)  }}" alt="{{ $newsArticle->newsArticleTexts->first()->header }}" /></a>
+                    <div class="news__date">{{ $newsArticle->newsArticleTexts->first()->publication_date_text }}</div>
+                    <a href="#" class="news__title">{{ $newsArticle->newsArticleTexts->first()->header }}</a>
+                    <div class="news__desc">{{ $newsArticle->newsArticleTexts->first()->note }}</div>
 
 
                     <div class="news-modal js-news-modal">
@@ -345,12 +346,12 @@
                             </picture>
                         </div>
                         <div class="news-modal__title-container">
-                            <div class="news-modal__date">{{ $newsArticle->publication_date_text }}</div>
-                            <div class="news-modal__title">{{ $newsArticle->header }}</div>
+                            <div class="news-modal__date">{{ $newsArticle->newsArticleTexts->first()->publication_date_text }}</div>
+                            <div class="news-modal__title">{{ $newsArticle->newsArticleTexts->first()->header }}</div>
                         </div>
                         <div class="news-modal__text">
                             @php
-                                $paragraphs = explode("\n", $newsArticle->text);
+                                $paragraphs = explode("\n", $newsArticle->newsArticleTexts->first()->text);
                             @endphp
                             @foreach($paragraphs as $paragraph)
                                 <div class="news-modal__paragraph">{{ $paragraph }}</div>
@@ -358,12 +359,14 @@
                         </div>
                     </div>
                 </div>
+                @endif
             @endforeach
         </div>
     </div>
 
     <div class="modal-container">
         @foreach($site->newsArticles as $newsArticle)
+            @if($newsArticle->newsArticleTexts->isNotEmpty())
             <div class="news-modal js-news-modal" data-id="{{ $newsArticle->id }}">
                 <div class="news-modal__close"></div>
                 <div class="news-modal__img">
@@ -374,18 +377,19 @@
                     </picture>
                 </div>
                 <div class="news-modal__title-container">
-                    <div class="news-modal__date">{{ $newsArticle->publication_date_text }}</div>
-                    <div class="news-modal__title">{{ $newsArticle->header }}</div>
+                    <div class="news-modal__date">{{ $newsArticle->newsArticleTexts->first()->publication_date_text }}</div>
+                    <div class="news-modal__title">{{ $newsArticle->newsArticleTexts->first()->header }}</div>
                 </div>
                 <div class="news-modal__text">
                     @php
-                        $paragraphs = explode("\n", $newsArticle->text);
+                        $paragraphs = explode("\n", $newsArticle->newsArticleTexts->first()->text);
                     @endphp
                     @foreach($paragraphs as $paragraph)
                         <div class="news-modal__paragraph">{{ $paragraph }}</div>
                     @endforeach
                 </div>
             </div>
+            @endif
         @endforeach
     </div>
 
