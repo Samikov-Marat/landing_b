@@ -4,58 +4,61 @@
 
     <form method="post" action="{!! route('admin.tariff_translation.save') !!}">
         {{ csrf_field() }}
-        @if($translationItem->exists)
-            <input type="hidden" name="id" value="{{ $translationItem->id }}">
-        @endif
-        <input type="hidden" name="tariff_id" value="{{ $tariff->id }}">
-        <input type="hidden" name="language_code_iso" value="{{ $translationItem->exists ? $translationItem->language_code_iso : $language }}">
+        {{--        @dump($translationItems)--}}
+        @foreach($translationItems as $translationItem)
+            {{--            @if($translationItem->exists)--}}
+            {{--                <input type="hidden" name="id" value="{{ $translationItem->id }}">--}}
+            {{--            @endif--}}
+            {{--            <input type="hidden" name="tariff_id" value="{{ $tariff->id }}">--}}
+            {{--            <input type="hidden" name="language_code_iso"--}}
+            {{--                   value="{{ $language }}">--}}
+            <div class="row">
+                @dump($translationItem->language_code_iso)
+                @if($translationItem->language_code_iso == config('app.tariff_default_language'))
+                    <div class="form-group col">
+                        <label>Название тарифа {{ config('app.tariff_default_language') }}</label>
+                        <input type="text" class="form-control"
 
+                               placeholder="{{ $translationItem->name}}" autocomplete="off" disabled>
+                        <label>Описание тарифа {{ config('app.tariff_default_language') }}</label>
+                        <input type="text" class="form-control"
+                               placeholder="{{ $translationItem->description }}" autocomplete="off" disabled>
+                    </div>
+                @endif
 
-        <table class="table table-hover table-bordered">
-            <tr>
-                <th>Название тарифа</th>
-                <th>Перевод</th>
-            </tr>
-            <tr>
-                <td>
-                    <input type="text" class="form-control" name="name"
-                           value="" disabled></br>
-                    <input type="text" class="form-control" name="name"
-                           value="{{ $translationItem->exists ? $translationItem->name:'' }}">
-                </td>
-                <td>
-                    <input type="text" class="form-control" name="name"
-                           value="" disabled></br>
-                    <input type="text" class="form-control" name="name"
-                           value="{{ $translationItem->exists ? $translationItem->description:'' }}">
-                </td>
-            </tr>
-        </table>
-        {{--        <input type="hidden" name="tariff_id" value="{{ $tariff->id }}">--}}
-        {{--        <input type="hidden" name="language_code_iso"--}}
-        {{--               value="{{ $translationItem->exists ? $translationItem->language_code_iso : $language }}">--}}
-        {{--        <div class="form-group">--}}
-        {{--            <label for="id_url">Название тарифа</label>--}}
-        {{--            <input type="text" class="form-control" name="name"--}}
-        {{--                   value="{{ $translationItem->exists ? $translationItem->name:'' }}"--}}
-        {{--                   placeholder="Название тарифа" autocomplete="off"--}}
-        {{--                   disabled></div>--}}
-        {{--        </br>--}}
-        {{--        <input type="text" class="form-control" name="name"--}}
-        {{--               value="{{ $translationItem->exists ? $translationItem->name:'' }}"--}}
-        {{--               placeholder="Название тарифа" autocomplete="off"--}}
-        {{--               required>--}}
-        {{--        <small id="id_url_help" class="form-text text-muted">Название</small>--}}
-        {{--        </div>--}}
-
-        {{--        <div class="form-group">--}}
-        {{--            <label for="id_name">Описание</label>--}}
-        {{--            <input type="text" class="form-control" name="description"--}}
-        {{--                   value="{{ $translationItem->exists ? $translationItem->description : '' }}"--}}
-        {{--                   placeholder="название" autocomplete="off">--}}
-        {{--            <small id="id_name_help" class="form-text text-muted">Описание</small>--}}
-        {{--        </div>--}}
-
+                @if($translationItem->language_code_iso == $language)
+                    <div class="form-group col">
+                        <input type="hidden" name="id" value="{{ $translationItem->id }}">
+                        <input type="hidden" name="tariff_id" value="{{ $tariff->id }}">
+                        <input type="hidden" name="language_code_iso"
+                               value="{{ $language }}">
+                        <label>Название тарифа {{ $language }}</label>
+                        <input type="text" class="form-control" name="name"
+                               value="{{$translationItem->name }}"
+                               placeholder="Название" autocomplete="off">
+                        <label>Описание тарифа {{ $language }}</label>
+                        <input type="text" class="form-control" name="description"
+                               value="{{ $translationItem->description}}"
+                               placeholder="Описание" autocomplete="off">
+                    </div>
+                @else
+                    <div class="form-group col">
+                        <input type="hidden" name="id" value="">
+                        <input type="hidden" name="tariff_id" value="{{ $tariff->id }}">
+                        <input type="hidden" name="language_code_iso"
+                               value="{{ $language }}">
+                        <label>Название тарифа {{ $language }}</label>
+                        <input type="text" class="form-control" name="name"
+                               value=""
+                               placeholder="Название" autocomplete="off" required>
+                        <label>Описание тарифа {{ $language }}</label>
+                        <input type="text" class="form-control" name="description"
+                               value=""
+                               placeholder="Описание" autocomplete="off" required>
+                    </div>
+                @endif
+            </div>
+        @endforeach
         <button type="submit" class="btn btn-primary">Сохранить</button>
     </form>
 @endsection

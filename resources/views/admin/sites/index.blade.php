@@ -96,7 +96,7 @@
                         </a>
                     </td>
                     <td>
-                        <a href="{!! route('admin.tariffs.index', ['site_id' => $site->id]) !!}">
+                        <a href="{!! route('admin.tariffs.site_tariffs', ['site_id' => $site->id]) !!}">
                             Тарифы
                         </a>
                     </td>
@@ -122,7 +122,6 @@
                             Отзывы
                         </a>
                     </td>
-
 
                     @canany(['admin.sites.edit', 'admin.sites.delete'])
                         <td class="text-nowrap">

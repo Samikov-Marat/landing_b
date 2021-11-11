@@ -40,17 +40,18 @@ class TariffTranslationController extends Controller
     public function edit(Request $request, $language)
     {
         $tariff = Tariff::select('id')->findOrFail($request->input('id'));
-        $translationItem = TariffText::select('id', 'tariff_id', 'language_code_iso', 'name', 'description')
+        $translationItems = TariffText::select('id', 'tariff_id', 'language_code_iso', 'name', 'description')
             ->where('tariff_id', $tariff->id)
-            ->where('language_code_iso', $language)
-            ->firstOrNew();
-        dd($translationItem);
+            ->whereIn('language_code_iso', [config('app.tariff_default_language'), $language])
+            ->get();
+//       dd($translationItems);
         return view('admin.tariff_translation.edit_form')
-            ->with(['tariff' => $tariff, 'translationItem' => $translationItem, 'language' => $language]);
+            ->with(['tariff' => $tariff, 'translationItems' => $translationItems, 'language' => $language]);
     }
 
     public function save(Request $request)
     {
+//      dd($request->all());
         $tariffText = TariffText::findOrNew($request->input('id'));
         $tariffText->name = $request->input('name');
         $tariffText->description = $request->input('description');

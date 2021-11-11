@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Language;
 use App\LanguageIso;
 use App\Tariff;
 use App\TariffText;
@@ -21,7 +22,18 @@ class TariffController extends Controller
             }])
             ->orderBy('id')
             ->paginate(self::PER_PAGE);
+
         return view('admin.tariffs.index', ['tariffs' => $tariffs]);
+    }
+
+    public function siteTariffs(Request $request)
+    {
+        $site_id = $request->input('site_id');
+        $tariffs = Language::select('site_id', 'language_code_iso')
+            ->where('site_id', $site_id)
+            ->with('tariffText')
+            ->paginate(self::PER_PAGE);
+       return view('admin.tariffs.site_tariffs', ['tariffs' => $tariffs]);
     }
 
     public function edit($id = null)
@@ -40,7 +52,7 @@ class TariffController extends Controller
     }
 
     public function save(Request $request)
-    {
+     {
         $isEditMode = $request->has('id');
         if ($isEditMode) {
             $tariff = Tariff::select('id', 'ek_id', 'tariff_type_id')

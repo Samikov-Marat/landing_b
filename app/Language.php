@@ -21,4 +21,9 @@ class Language extends Model
     {
         return $this->belongsTo(Site::class);
     }
+
+    public function tariffText()
+    {
+        return $this->hasMany('App\TariffText', 'language_code_iso', 'language_code_iso');
+    }
 }
