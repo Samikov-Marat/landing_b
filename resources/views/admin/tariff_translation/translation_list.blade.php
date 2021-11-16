@@ -8,24 +8,22 @@
 
     <table class="table table-hover table-bordered">
         <tr>
-
             <th>
                 Название тарифа ({{ config('app.tariff_default_language') }})
             </th>
             <th>
                 Перевод
             </th>
-
             <th>
 
             </th>
-
         </tr>
-
         @foreach($tariffs as $tariff)
             @php
                 $tariffTextIndexed = $tariff->tariffText->keyBy('language_code_iso');
+
             @endphp
+
             <tr>
                 <td>
                     @if(isset($tariffTextIndexed[config('app.tariff_default_language')]))
@@ -47,7 +45,7 @@
                        class="btn btn-primary btn-sm"><i class="fas fa-edit"></i> Редактировать</a>
                 </td>
             </tr>
+
         @endforeach
     </table>
 @endsection
-

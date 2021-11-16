@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Language;
 use App\LanguageIso;
 use App\Tariff;
 use App\TariffText;
@@ -24,14 +25,22 @@ class TariffTranslationController extends Controller
         return view('admin.tariff_translation.tariff_languages', ['languageIsoItems' => $languageIsoItems, 'tariffCount' => $tariffCount]);
     }
 
-    public function translationList($language)
+    public function translationList(Request $request, $language)
     {
-        $tariffs = Tariff::select('id')
-            ->with(['tariffText' => function ($q) use ($language) {
-                $q->whereIn('language_code_iso', [config('app.tariff_default_language'), $language]);
-            }])
-            ->orderBy('id')
-            ->get();
+//        if ($request->has('site_id')) {
+//            $site_id = $request->input('site_id');
+//            $tariffs = Language::select('site_id', 'language_code_iso')
+//                ->where('site_id', $site_id)
+//                ->with('tariffText')
+//                ->paginate(self::PER_PAGE);
+//        } else {
+            $tariffs = Tariff::select('id')
+                ->with(['tariffText' => function ($q) use ($language) {
+                    $q->whereIn('language_code_iso', [config('app.tariff_default_language'), $language]);
+                }])
+                ->orderBy('id')
+                ->get();
+
         return view('admin.tariff_translation.translation_list')
             ->with('tariffs', $tariffs)
             ->with('language', $language);
@@ -45,13 +54,13 @@ class TariffTranslationController extends Controller
             ->whereIn('language_code_iso', [config('app.tariff_default_language'), $language])
             ->get();
 //       dd($translationItems);
+//        dd($language);
         return view('admin.tariff_translation.edit_form')
             ->with(['tariff' => $tariff, 'translationItems' => $translationItems, 'language' => $language]);
     }
 
     public function save(Request $request)
     {
-//      dd($request->all());
         $tariffText = TariffText::findOrNew($request->input('id'));
         $tariffText->name = $request->input('name');
         $tariffText->description = $request->input('description');
@@ -59,6 +68,17 @@ class TariffTranslationController extends Controller
         $tariffText->language_code_iso = $request->input('language_code_iso');
         $tariffText->save();
         return response()->redirectToRoute('admin.tariff_translation', ['language' => $tariffText->language_code_iso]);
+    }
+
+    public function siteTariffs(Request $request)
+    {
+        $site_id = $request->input('site_id');
+        $tariffs = Language::select('site_id', 'language_code_iso')
+            ->where('site_id', $site_id)
+            ->with('tariffText')
+            ->paginate(self::PER_PAGE);
+
+        return view('admin.tariffs.site_tariffs', ['tariffs' => $tariffs]);
     }
 
 }

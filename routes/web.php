@@ -294,8 +294,6 @@ Route::prefix('admin')->middleware(['auth', 'user.route.access', 'http.secure', 
             ->name('admin.tariffs.save');
         Route::get('tariffs/add', 'admin\TariffController@edit')
             ->name('admin.tariffs.add');
-        Route::get('tariffs', 'admin\TariffController@siteTariffs')
-            ->name('admin.tariffs.site_tariffs');
 
         //тарифы переводы
         Route::get('tariff-languages', 'admin\TariffTranslationController@index')
@@ -306,6 +304,8 @@ Route::prefix('admin')->middleware(['auth', 'user.route.access', 'http.secure', 
             ->name('admin.tariff_translation.edit');
         Route::post('tariff-translation/save', 'admin\TariffTranslationController@save')
             ->name('admin.tariff_translation.save');
+        Route::get('site-tariffs', 'admin\TariffTranslationController@siteTariffs')
+            ->name('admin.tariffs.site_tariffs');
     }
 );
 
@@ -334,4 +334,3 @@ Route::get('/{languageUrl}/{pageUrl?}', 'site\PageController@showPage')
     ->middleware(['save.utm.to.cookies'])
     ->where('pageUrl', '.*')
     ->name('site.show_page');
-

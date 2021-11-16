@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
-use App\Language;
-use App\LanguageIso;
 use App\Tariff;
 use App\TariffText;
 use App\TariffType;
@@ -26,16 +24,6 @@ class TariffController extends Controller
         return view('admin.tariffs.index', ['tariffs' => $tariffs]);
     }
 
-    public function siteTariffs(Request $request)
-    {
-        $site_id = $request->input('site_id');
-        $tariffs = Language::select('site_id', 'language_code_iso')
-            ->where('site_id', $site_id)
-            ->with('tariffText')
-            ->paginate(self::PER_PAGE);
-       return view('admin.tariffs.site_tariffs', ['tariffs' => $tariffs]);
-    }
-
     public function edit($id = null)
     {
         if (isset($id)) {
@@ -47,6 +35,7 @@ class TariffController extends Controller
         } else {
             $tariff = new Tariff();
         }
+//        dd($tariff);
         $tariffTypes = TariffType::select('id')->get();
         return view('admin.tariffs.form', ['tariff' => $tariff, 'tariffTypes' => $tariffTypes]);
     }

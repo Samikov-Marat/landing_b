@@ -19,8 +19,11 @@
                 <th>
                     Описание
                 </th>
+                <th>
+                    язык
+                </th>
             </tr>
-{{--                        @dump($tariffs)--}}
+{{--                      @dump($tariffs)--}}
             @foreach($tariffs as $tariff)
                 @foreach($tariff->tariffText as $value)
                     <tr>
@@ -33,16 +36,19 @@
                         <td>
                             {{ $value->description}}
                         </td>
-
-                        <td class="text-nowrap">
-                                                <a href="{!! route('admin.tariffs.edit', ['id' => $value->id]) !!}"
-                                                   class="btn btn-primary btn-sm"><i class="fas fa-edit"></i> Редактировать</a>
-                            {{--                    <button type="button" data-text="Удалить?"--}}
-                            {{--                            data-action="{!! route('admin.tariffs.delete',['id' => $tariff->id]) !!}"--}}
-                            {{--                            data-id="{{ $tariff->id }}"--}}
-                            {{--                            class="btn btn-danger btn-sm js-delete-confirm"><i class="fas fa-trash"></i> Удалить--}}
-                            {{--                    </button>--}}
+                        <td>
+                            {{ $value->language_code_iso}}
                         </td>
+
+{{--                        <td class="text-nowrap">--}}
+{{--                                                <a href="{!! route('admin.tariffs.edit', ['language' => $value->language_code_iso, 'id' => $value->tariff_id]) !!}"--}}
+{{--                                                   class="btn btn-primary btn-sm"><i class="fas fa-edit"></i> Редактировать</a>--}}
+{{--                            --}}{{--                    <button type="button" data-text="Удалить?"--}}
+{{--                            --}}{{--                            data-action="{!! route('admin.tariffs.delete',['id' => $tariff->id]) !!}"--}}
+{{--                            --}}{{--                            data-id="{{ $tariff->id }}"--}}
+{{--                            --}}{{--                            class="btn btn-danger btn-sm js-delete-confirm"><i class="fas fa-trash"></i> Удалить--}}
+{{--                            --}}{{--                    </button>--}}
+{{--                        </td>--}}
                     </tr>
                 @endforeach
             @endforeach
