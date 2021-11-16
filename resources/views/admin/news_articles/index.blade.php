@@ -28,14 +28,13 @@
                     id
                 </th>
                 <th>
-                    Дата
-                </th>
-                <th>
                     Дата публикации
                 </th>
                 <th>
-                    Заголовок<br>
-                    Краткое изложение
+                    Дата на разных языках
+                </th>
+                <th>
+                    Заголовок на разных языках
                 </th>
                 <th>
 
@@ -46,15 +45,22 @@
                     <td>
                         {{ $newsArticle->id }}
                     </td>
-                    <td style="white-space: nowrap;">
-                        {{ $newsArticle->publication_date_text }}
-                    </td>
                     <td>
                         {{ $newsArticle->publication_date->format('d.m.Y') }}
                     </td>
+                    <td style="white-space: nowrap;">
+                        @foreach($newsArticle->newsArticleTexts as $newsArticleText)
+                            <div>
+                                {{ $newsArticleText->publication_date_text }}
+                            </div>
+                        @endforeach
+                    </td>
                     <td>
-                        <b>{{ $newsArticle->header }}</b><br>
-                        {!! nl2br(e($newsArticle->note)) !!}
+                        @foreach($newsArticle->newsArticleTexts as $newsArticleText)
+                            <div>
+                                {{ $newsArticleText->header }}
+                            </div>
+                        @endforeach
                     </td>
                     <td class="text-nowrap">
                         <a href="{!! route('admin.news_articles.edit', ['id' => $newsArticle->id]) !!}"
