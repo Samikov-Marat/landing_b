@@ -3,6 +3,7 @@
 namespace App\Classes;
 
 use App\LocalOfficeText;
+use App\NewsArticleText;
 use App\Site;
 use App\Text;
 use Exception;
@@ -100,6 +101,9 @@ class TextCsvParser
         if('office' == $compositeId['table']){
             $this->loadOfficeAttribute($compositeId['id'], $compositeId['attribute'], $line);
         }
+        if('news' == $compositeId['table']){
+            $this->loadNewsAttribute($compositeId['id'], $compositeId['attribute'], $line);
+        }
     }
 
     public function loadOfficeAttribute($id, $attribute, $line){
@@ -132,6 +136,38 @@ class TextCsvParser
             $text->save();
         }
     }
+
+    public function loadNewsAttribute($id, $attribute, $line){
+        $dynamicAttributes = ['header', 'note', 'text', 'publication_date_text'];
+        if(!in_array($attribute, $dynamicAttributes)){
+            throw new Exception('Это поле нельзя загрузить');
+        }
+
+        array_shift($line);
+        foreach ($this->languages as $language) {
+            if (empty($line)) {
+                throw new \Exception('Недостаточно данных');
+            }
+            $value = array_shift($line);
+
+            $attributes = array_merge(['id', 'news_article_id', 'language_id'], $dynamicAttributes);
+            $text = NewsArticleText::select($attributes)
+                ->where('news_article_id', $id)
+                ->where('language_id', $language)
+                ->firstOrNew();
+            $text->news_article_id = $id;
+            $text->language_id = $language;
+
+            foreach ($dynamicAttributes as $dynamicAttribute) {
+                if(is_null($text->getAttribute($dynamicAttribute))){
+                    $text->setAttribute($dynamicAttribute, '');
+                }
+            }
+            $text->setAttribute($attribute, $value);
+            $text->save();
+        }
+    }
+
 
     public function parseLine()
     {

@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Classes\Admin\NewsArticleTextHelper;
 use App\Classes\FileUploader;
 use App\Classes\NewsArticleRepository;
 use App\Http\Controllers\Controller;
 use App\NewsArticle;
-use App\NewsArticleText;
-use Elasticsearch\ClientBuilder;
+use App\Site;
 use Illuminate\Http\Request;
 
 class NewsArticleController extends Controller
@@ -44,13 +44,27 @@ class NewsArticleController extends Controller
                     'mobile2',
                 ]
             )
+                ->with([
+                           'newsArticleTexts' => function ($query) {
+                               $query->select(
+                                   [
+                                       'id',
+                                       'language_id',
+                                       'news_article_id',
+                                       'publication_date_text',
+                                       'header',
+                                       'note',
+                                       'text'
+                                   ]
+                               );
+                           },
+                       ])
                 ->find($id);
             $siteId = $newsArticle->site_id;
         } else {
             $newsArticle = null;
             $siteId = $request->input('site_id');
         }
-
         $site = NewsArticleRepository::getInstance()
             ->withLanguages()
             ->getSite($siteId);
@@ -69,14 +83,9 @@ class NewsArticleController extends Controller
             $newsArticle = new NewsArticle();
         }
         $newsArticle->site_id = $request->input('site_id');
-        $newsArticle->language_id = $request->input('language_id');
-        $newsArticle->header = $request->input('header', '');
-        $newsArticle->note = $request->input('note', '');
-        $newsArticle->text = $request->input('text', '');
-        $newsArticle->publication_date_text = $request->input('publication_date_text', '');
-        $newsArticle->publication_date = $request->input('publication_date') . ' ' . $request->input(
-                'publication_date_time'
-            );
+        $newsArticle->publication_date = $request->input('publication_date') .
+            ' ' .
+            $request->input('publication_date_time');
         $newsArticle->save();
 
         FileUploader::to($newsArticle, 'preview')
@@ -105,6 +114,19 @@ class NewsArticleController extends Controller
             ->store();
 
         $newsArticle->save();
+
+        $site = Site::select('id', 'name', 'domain')
+            ->with('languages')
+            ->find($newsArticle->site_id);
+        foreach ($site->languages as $language) {
+            $localOfficeText = NewsArticleTextHelper::getInstance($newsArticle->newsArticleTexts())
+                ->getFirstOrNewByLanguage($language->id);
+            $localOfficeText->header = $request->input('header')[$language->id] ?? '';
+            $localOfficeText->note = $request->input('note')[$language->id] ?? '';
+            $localOfficeText->text = $request->input('text')[$language->id] ?? '';
+            $localOfficeText->publication_date_text = $request->input('publication_date_text')[$language->id] ?? '';
+            $localOfficeText->save();
+        }
 
         return response()->redirectToRoute('admin.news_articles.index', ['site_id' => $newsArticle->site_id]);
     }
