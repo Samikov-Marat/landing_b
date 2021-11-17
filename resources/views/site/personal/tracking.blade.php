@@ -1,5 +1,5 @@
 <form action="{{ config('tracking_api_url') }}" method="post" class="js-tracking-form">
-    <input type="hidden" name="lang" value="rus">
+    <input type="hidden" name="lang" value="{{ $dictionary['personal_tracking_language'] }}">
     <div class="office-page-track__content">
         <div class="office-page-track__item">
             <div class="office-page-track__title">@d('personal_110')</div>
