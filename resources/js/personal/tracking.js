@@ -1,7 +1,7 @@
 $(function () {
 
-    let trackingApiClass = function () {
-        this.url = 'https://webproxy.cdek.ru/track';
+    let trackingApiClass = function (url) {
+        this.url = url;
         this.getSettings = function (serviceParameters) {
             return {
                 method: 'post',
@@ -19,10 +19,12 @@ $(function () {
         }
     };
 
-    let trackingApi = new trackingApiClass();
+    let $form = $('.js-tracking-form');
+
+    let trackingApi = new trackingApiClass($form.prop('action'));
     let trackingResult = new TrackingResult($('.js-tracking-detail-items'));
 
-    let $form = $('.js-tracking-form');
+
 
     $form.submit(function () {
 
