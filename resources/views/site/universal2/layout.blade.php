@@ -160,6 +160,7 @@
     @include('site.universal2.feedback_block')
 
 </div>
+<script id="recaptcha_script" data-key="{{ config('app.recapcha3_key') }}" src="https://www.google.com/recaptcha/api.js?render={{ config('app.recapcha3_key') }}"></script>
 
 <script src="{{ mix('universal2/new.js') }}" defer></script>
 @include('site.universal2.binotel')

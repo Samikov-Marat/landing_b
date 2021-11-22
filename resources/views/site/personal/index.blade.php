@@ -36,7 +36,7 @@
         <div class="header__right">
             <div class="header-contact">
                 <div class="header-contact__content office-page-header__phone">
-                    <a class="header-contact__phone" href="tel:+441473711668">@d('personal_7')</a>
+                    <a class="header-contact__phone" href="tel:{{ $dictionary['personal_phone_value'] }}">@d('personal_7')</a>
                 </div>
             </div>
             <a href="#feedback" class="office-page-header__contact">@d('personal_8')</a>
@@ -732,6 +732,7 @@
         @include('site.universal2.allow_cookies')
     </div>
 
+    <script id="recaptcha_script" data-key="{{ config('app.recapcha3_key') }}" src="https://www.google.com/recaptcha/api.js?render={{ config('app.recapcha3_key') }}"  async defer></script>
     <script src="{{ mix('personal/new.js') }}" defer></script>
     </body>
 </html>

@@ -67,6 +67,7 @@ class Kernel extends HttpKernel
         'save.utm.to.cookies' => \App\Http\Middleware\SaveUtmToCookies::class,
         'http.secure' => \App\Http\Middleware\HttpSecure::class,
         'verify.csrf.token' => \App\Http\Middleware\VerifyCsrfToken::class,
+        'verify.recaptcha.token' => \App\Http\Middleware\VerifyRecaptchaToken::class,
         'start.session' => \Illuminate\Session\Middleware\StartSession::class,
         'share.errors.from.session' => \Illuminate\View\Middleware\ShareErrorsFromSession::class,
 //        \Illuminate\Session\Middleware\AuthenticateSession::class,
