@@ -205,6 +205,12 @@
                                class="primary-button primary-button_wide primary-button_submit"/>
                     </div>
                 </div>
+                <div class="calculator__description">
+                    This site is protected by reCAPTCHA and the Google<br>
+                    <a href="https://policies.google.com/privacy">Privacy Policy</a> and
+                    <a href="https://policies.google.com/terms">Terms of Service</a> apply.
+                </div>
+
             </div>
             <div class="calculator__content calculator__content_step-result js-calculator__content_step-result-ok"
                  style="display: none;">

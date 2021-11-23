@@ -423,6 +423,13 @@
                     <div class="office-page-feedback__form-item-left">
                         <div class="form-field">
                             <input type="submit" value="{{ $dictionary['personal_feedback_send'] }}" class="primary-button primary-button_wide primary-button_submit" />
+
+                            <div class="calculator__description" style="margin-top: 25px;">
+                                This site is protected by reCAPTCHA and the Google<br>
+                                <a href="https://policies.google.com/privacy">Privacy Policy</a> and
+                                <a href="https://policies.google.com/terms">Terms of Service</a> apply.
+                            </div>
+
                         </div>
                     </div>
                     <div class="office-page-feedback__form-item-right">
@@ -708,6 +715,11 @@
                         </div>
                         <div class="form-field">
                             <input type="submit" value="Отправить" class="primary-button primary-button_wide primary-button_submit" />
+                            <div class="calculator__description" style="margin-top: 25px;">
+                                This site is protected by reCAPTCHA and the Google<br>
+                                <a href="https://policies.google.com/privacy">Privacy Policy</a> and
+                                <a href="https://policies.google.com/terms">Terms of Service</a> apply.
+                            </div>
                         </div>
                     </form>
                 </div>

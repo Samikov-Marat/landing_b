@@ -57,6 +57,13 @@
                     <button type="submit" class="primary-button primary-button_wide primary-button_submit">
                         @d('feedback_submit')
                     </button>
+
+                    <div class="calculator__description" style="margin-top: 25px;">
+                        This site is protected by reCAPTCHA and the Google<br>
+                        <a href="https://policies.google.com/privacy">Privacy Policy</a> and
+                        <a href="https://policies.google.com/terms">Terms of Service</a> apply.
+                    </div>
+
                 </div>
             </form>
         </div>
