@@ -63,7 +63,7 @@ $(function () {
         this.step = 1;
 
         this.getTariffCodes = function () {
-            return [7, 8, 291, 344, 345, 291, 293, 294, 295, 352];
+            return [291, 294, 293, 7, 8, 178, 179, 180, 181, 182, 183];
         }
 
         this.getUsedCurrency = function () {

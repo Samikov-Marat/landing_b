@@ -44,18 +44,18 @@
             <td>
                 @if(isset($site->certificateChecks))
                     @if($site->certificateChecks->error)
-                        <div class="alert alert-danger" role="alert">
+                        <span class="badge badge-danger">
                             {{ $site->certificateChecks->error }}
-                        </div>
+                        </span>
                     @else
                         @if($now->greaterThan($site->certificateChecks->valid_to))
-                            <div class="alert alert-danger" role="alert">
+                            <span class="badge badge-danger">
                                 Просрочен
-                            </div>
+                            </span>
                         @elseif($tooClose->greaterThan($site->certificateChecks->valid_to))
-                            <div class="alert alert-warning" role="alert">
+                            <span class="badge badge-warning">
                                 Будет просрочен в течении недели. Годен до {{ $site->certificateChecks->valid_to->format('d.m.Y') }}
-                            </div>
+                            </span>
                         @endif
                     @endif
                 @endif

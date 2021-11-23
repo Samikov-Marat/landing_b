@@ -62,17 +62,16 @@ class SiteRepository
 
     public function loadNewsArticles($language)
     {
-        $newsLimit = $this->newsLimit;
         $this->site->load(
             [
-                'newsArticles' => function ($query) use ($language, $newsLimit) {
-                    $query->select(
-                        ['id', 'site_id', 'publication_date_text', 'header', 'note', 'text', 'preview', 'image', 'image2', 'mobile', 'mobile2']
-                    )
-                        ->orderBy('publication_date', 'desc')
-                        ->where('language_id', $language->id)
-                        ->limit($newsLimit);
-                }
+                'newsArticles.newsArticleTexts' => function ($query) use ($language) {
+                    $query->select(['id', 'news_article_id', 'publication_date_text', 'header', 'note', 'text'])
+                        ->where('language_id', $language->id);
+                },
+                'newsArticles' => function ($query) {
+                    $query->select(['id', 'site_id', 'preview', 'image', 'image2', 'mobile', 'mobile2'])
+                        ->orderBy('publication_date', 'desc');
+                },
             ]
         );
     }
@@ -169,11 +168,16 @@ class SiteRepository
                     $query->orderBy('sort');
                 },
                 'localOffices.localOfficePhotos' => function ($query) {
-                    $query->select(['id', 'local_office_id',
-                                       'sample', 'sample2',
-                                       'mobile', 'mobile2',
-                                       'tablet', 'tablet2',
-                                       ])
+                    $query->select([
+                                       'id',
+                                       'local_office_id',
+                                       'sample',
+                                       'sample2',
+                                       'mobile',
+                                       'mobile2',
+                                       'tablet',
+                                       'tablet2',
+                                   ])
                         ->orderBy('sort');
                 },
             ]

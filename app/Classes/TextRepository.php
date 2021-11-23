@@ -55,6 +55,21 @@ class TextRepository
                     }
                 ]
             )
+            ->with(
+                [
+                    'newsArticles' => function ($query) {
+                        $query->select('id', 'site_id')
+                            ->orderBy('publication_date');
+                    }
+                ]
+            )
+            ->with(
+                [
+                    'newsArticles.newsArticleTexts' => function ($query) {
+                        $query->select('id', 'news_article_id', 'language_id', 'header', 'note', 'text', 'publication_date_text');
+                    }
+                ]
+            )
             ->find($site_id);
     }
 }

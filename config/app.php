@@ -58,6 +58,9 @@ return [
 
     'tracking_api_url' => env('TRACKING_API_URL'),
 
+    'recapcha3_key' => '6Le0bEEdAAAAABm69F3WypBbZTVPp3pLnvyqU6wz',
+
+    'recapcha3_secret' => '6Le0bEEdAAAAAHeFSTmaaCWyEcN50FeCTf6GazIf',
     /*
     |--------------------------------------------------------------------------
     | Application Timezone

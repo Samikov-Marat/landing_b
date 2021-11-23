@@ -16,7 +16,6 @@
             <form method="post" action="{!! route('request.feedback') !!}"
                   class="form calculator_form js-feedback-form"
                   data-send-form-event="{{ $formGtm }}">
-                {{ csrf_field() }}
                 <div class="form__row">
                     <div class="form-field">
                         <input type="text" name="name" class="form-field__input"

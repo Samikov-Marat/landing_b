@@ -15,8 +15,11 @@ class NewsArticleRepository
 
     public function withNewsArticles()
     {
+        $this->relations['newsArticles.newsArticleTexts'] = function ($query) {
+            $query->select(['id', 'news_article_id', 'publication_date_text', 'header',]);
+        };
         $this->relations['newsArticles'] = function ($query) {
-            $query->select(['id', 'site_id', 'publication_date_text', 'publication_date', 'header', 'note',])
+            $query->select(['id', 'site_id', 'publication_date',])
                 ->orderBy('publication_date', 'desc');
         };
         return $this;

@@ -43,15 +43,6 @@ $(document).ready(function () {
             .css('overflow', 'auto');
     };
 
-    $('.js-feedback-open').click(function () {
-        $('.js-modal-result-ok').hide();
-        $('.js-modal-result-error').hide();
-        $('.modal__content_form').removeClass('modal__content_loading').show();
-        $('.modal__content_form').find('textarea[name=message]').val('');
-
-        modalOpen($('#feedback-modal'));
-        return false;
-    });
 
     $('.modal__close').click(function () {
         modalClose($('.modal').has(this));
@@ -64,62 +55,7 @@ $(document).ready(function () {
         e.stopPropagation();
     })
 
-    $('.js-feedback-form').submit(function () {
 
-        let $form = $(this);
-
-        let hasError = false;
-        let $formElement = $form.find('input[name=name]');
-        if ($formElement.val() === '') {
-            $formElement.closest('.form-field').addClass('form-field_error');
-            hasError = true;
-        }
-        $formElement = $form.find('input[name=phone]');
-        if ($formElement.val() === '') {
-            $formElement.closest('.form-field').addClass('form-field_error');
-            hasError = true;
-        }
-        $formElement = $form.find('input[name=email]');
-        if ($formElement.val() === '') {
-            $formElement.closest('.form-field').addClass('form-field_error');
-            hasError = true;
-        }
-        $formElement = $form.find('input[name=agree]');
-        if (!$formElement.prop('checked')) {
-            $formElement.closest('.form__row').addClass('form-field_error');
-            hasError = true;
-        }
-
-        if (hasError) {
-            return false;
-        }
-
-        $('body').trigger('gtm:event', [$form.data('sendFormEvent')]);
-
-        let request = {
-            url: $form.prop('action'),
-            data: $form.serialize()
-        };
-
-        var modalContent = $('.modal__content').has(this);
-        modalContent.addClass('modal__content_loading');
-
-        $.post(request).done(function () {
-            modalContent.hide();
-            $('.js-modal-result-ok')
-                .css('height', modalContent.css('height'))
-                .removeClass('modal__content_loading')
-                .show();
-        }).fail(function () {
-            modalContent.hide();
-            $('.js-modal-result-error')
-                .css('height', modalContent.css('height'))
-                .removeClass('modal__content_loading')
-                .show();
-        });
-
-        return false;
-    });
 
     $('.js-partners-more').click(function () {
         $('.js-parners-other').show(400);

@@ -316,7 +316,7 @@ Route::get('/', 'site\PageController@selectDefaultLanguage')
 Route::post('/request/send', 'site\RequestController@send')
     ->name('request.send');
 Route::post('/request/feedback', 'site\RequestController@feedback')
-    ->name('request.feedback');
+    ->name('request.feedback')->middleware(['verify.recaptcha.token']);
 Route::post('/request/presentation', 'site\RequestController@presentation')
     ->name('request.presentation');
 Route::get('/request/get-office-list', 'site\RequestController@getOfficeList')

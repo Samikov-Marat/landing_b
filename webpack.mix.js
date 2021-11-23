@@ -4,6 +4,7 @@ mix.combine([
     'public/universal2/assets/vendor/jquery.min.js',
     'public/universal2/assets/vendor/owl.carousel.min.js',
     'public/universal2/assets/vendor/jquery.autocomplete.js',
+    'resources/js/universal2/feedback.js',
     'resources/js/universal2/app.js',
     'resources/js/universal2/tariffs.js',
     'resources/js/universal2/calculator.js',
@@ -28,6 +29,7 @@ mix.combine([
     "resources/js/personal/tracking_result.js",
     "resources/js/personal/tracking_result_item.js",
     'resources/js/personal/app.js',
+    'resources/js/personal/feedback.js',
     'resources/js/personal/feedback_reviews.js',
     'resources/js/personal/office.js',
     'resources/js/personal/allow_cookies.js',
@@ -57,5 +59,6 @@ mix.combine([
     "resources/js/admin_files/top_offices.js",
     "resources/js/admin_files/world_languages.js",
     "resources/js/admin_files/languages.js",
+    "resources/js/admin_files/images.js",
 ], 'public/admin_files/new_admin.js').version();
 

@@ -27,7 +27,7 @@
 
         <div class="form-group">
             <label for="id_url">URL (после /images)</label>
-            <input type="text" class="form-control" name="url" id="id_url"
+            <input type="text" class="form-control url_autocomplete_to" name="url" id="id_url"
                    value="{{ isset($image) ? $image->url : '' }}"
                    placeholder="Обозначение" autocomplete="off">
             <small id="id_url_help" class="form-text text-muted"></small>
@@ -35,7 +35,7 @@
         <div class="form-group">
             <label for="id_page_id">Страница</label>
             <input type="text" class="form-control" name="page_id" id="id_page_id"
-                   value="{{ isset($image) ? $image->page_id : '' }}"
+                   value="{{ isset($image) ? $image->page_id : '0' }}"
                    placeholder="Обозначение" autocomplete="off">
             <small id="id_page_id_help" class="form-text text-muted">Пока id страницы</small>
         </div>
@@ -46,8 +46,8 @@
                     <span class="input-group-text">Из файла</span>
                 </div>
                 <div class="custom-file">
-                    <input type="file" name="file" class="custom-file-input" id="inputGroupFile01">
-                    <label class="custom-file-label" for="inputGroupFile01">Выбрать файл на диске</label>
+                    <input type="file" name="file" class="custom-file-input {{ isset($image) ? '' : 'image_file_autocomplete_from' }}" id="image_file">
+                    <label class="custom-file-label" for="image_file">Выбрать файл на диске</label>
                 </div>
             </div>
         </div>

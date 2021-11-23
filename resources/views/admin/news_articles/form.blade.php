@@ -25,46 +25,79 @@
         @endif
         <input type="hidden" name="site_id" value="{{ $site->id }}">
 
-        <div class="form-group">
-            <label>Язык</label>
+        <h5>Заголовок на разных языках</h5>
+
+        @php
+            $headers = collect();
+            if(isset($newsArticle)){
+                $headers = $newsArticle->newsArticleTexts->pluck('header', 'language_id');
+            }
+        @endphp
+
+        <div class="row">
             @foreach($site->languages as $language)
-                @php($forId = 'language_id_' . $language->id)
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="language_id" id="{{ $forId }}"
-                           value="{{ $language->id }}"
-                           required {{ isset($newsArticle) && $newsArticle->language_id == $language->id ? 'checked' : '' }}>
-                    <label class="form-check-label" for="{{ $forId }}">{{ $language->name }}</label>
+                <div class="form-group col">
+                    <label>{{ $language->name }}</label>
+                    <input type="text" class="form-control" name="header[{{ $language->id }}]"
+                           value="{{ isset($headers[$language->id]) ? $headers[$language->id] : '' }}"
+                           placeholder="Заголовок" autocomplete="off">
                 </div>
             @endforeach
         </div>
 
-        <div class="form-group">
-            <label for="id_header">Заголовок</label>
-            <input type="text" class="form-control" name="header" id="id_code"
-                   value="{{ isset($newsArticle) ? $newsArticle->header : '' }}"
-                   placeholder="Заголовок" autocomplete="off">
-            <small id="id_code_help" class="form-text text-muted">Заголовок новости</small>
+
+        <h5>Анонс на разных языках</h5>
+        @php
+            $notes = collect();
+            if(isset($newsArticle)){
+                $notes = $newsArticle->newsArticleTexts->pluck('note', 'language_id');
+            }
+        @endphp
+        <div class="row">
+            @foreach($site->languages as $language)
+                <div class="form-group col">
+                    <label>{{ $language->name }}</label>
+                    <textarea class="form-control" name="note[{{ $language->id }}]"
+                              rows="3">{{ isset($notes[$language->id]) ? $notes[$language->id] : '' }}</textarea>
+                </div>
+            @endforeach
         </div>
 
-        <div class="form-group">
-            <label for="id_note">Анонс</label>
-            <textarea class="form-control" id="id_note" name="note"
-                      rows="3">{{ isset($newsArticle) ? $newsArticle->note : '' }}</textarea>
+        <h5>Текст новости на разных языках</h5>
+        @php
+            $texts = collect();
+            if(isset($newsArticle)){
+                $texts = $newsArticle->newsArticleTexts->pluck('text', 'language_id');
+            }
+        @endphp
+        <div class="row">
+            @foreach($site->languages as $language)
+                <div class="form-group col">
+                    <label>{{ $language->name }}</label>
+                    <textarea class="form-control" name="text[{{ $language->id }}]"
+                              rows="7">{{ isset($texts[$language->id]) ? $texts[$language->id] : '' }}</textarea>
+                </div>
+            @endforeach
         </div>
 
-        <div class="form-group">
-            <label for="id_text">Текст новости</label>
-            <textarea class="form-control" id="id_text" name="text"
-                      rows="7">{{ isset($newsArticle) ? $newsArticle->text : '' }}</textarea>
+        <h5>Дата в текстовом формате на разных языках</h5>
+        @php
+            $publicationDateTexts = collect();
+            if(isset($newsArticle)){
+                $publicationDateTexts = $newsArticle->newsArticleTexts->pluck('publication_date_text', 'language_id');
+            }
+        @endphp
+        <div class="row">
+            @foreach($site->languages as $language)
+                <div class="form-group col">
+                    <label>{{ $language->name }}</label>
+                    <input type="text" class="form-control" name="publication_date_text[{{ $language->id }}]"
+                           value="{{ isset($publicationDateTexts[$language->id]) ? $publicationDateTexts[$language->id] : '' }}"
+                           placeholder="Дата в текстовом формате. Например, 21 апреля 2021" autocomplete="off">
+                </div>
+            @endforeach
         </div>
 
-        <div class="form-group">
-            <label for="id_publication_date_text">Дата в текстовом формате</label>
-            <input type="text" class="form-control" name="publication_date_text" id="id_publication_date_text"
-                   value="{{ isset($newsArticle) ? $newsArticle->publication_date_text : '' }}"
-                   placeholder="Дата в текстовом форрмате. Например, 21 апреля 2021" autocomplete="off">
-            <small id="id_code_help" class="form-text text-muted">Дата в текстовом форрмате</small>
-        </div>
 
         <div class="form-group">
             <div class="form-row">
