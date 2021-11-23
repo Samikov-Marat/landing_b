@@ -25,6 +25,7 @@ mix.combine([
     'public/personal/assets/vendor/jquery.min.js',
     'public/personal/assets/vendor/owl.carousel.min.js',
     'public/personal/assets/vendor/jquery.autocomplete.js',
+    'resources/js/universal2/recaptcha_ext.js',
     "resources/js/personal/tracking.js",
     "resources/js/personal/tracking_short.js",
     "resources/js/personal/tracking_result.js",

@@ -114,6 +114,36 @@ $(function () {
             return tariffNames[code];
         }
 
+        this.sendForm = function(token){
+
+            this.calculatorContent = this.form.find('.calculator__content');
+            this.calculatorContent.addClass('calculator__content_loading');
+
+
+            let formExtended = this.form.serializeArray();
+            formExtended.push({name: 'recaptcha_token', value: token});
+            let request = {
+                url: this.form.prop('action'),
+                data: formExtended
+            };
+
+            let thisForCallback = this;
+            $.post(request).done(function () {
+                $('.calculator__content_step3').hide();
+                $('.js-calculator__content_step-result-ok')
+                    .css('height', thisForCallback.calculatorContent.css('height'))
+                    .removeClass('calculator__content_loading')
+                    .show();
+            }).fail(function () {
+                $('.calculator__content_step3').hide();
+                $('.js-calculator__content_step-result-error')
+                    .css('height', thisForCallback.calculatorContent.css('height'))
+                    .removeClass('calculator__content_loading')
+                    .show();
+            });
+
+        }
+
     };
 
     let calculator = new calculatorClass($('div.calculator form'));
@@ -324,27 +354,13 @@ $(function () {
         }
 
 
-        var calculatorContent = $('.calculator__content').has(this);
-        calculatorContent.addClass('calculator__content_loading');
 
-        let request = {
-            url: $form.prop('action'),
-            data: $form.serialize()
-        };
-
-        $.post(request).done(function () {
-            $('.calculator__content_step3').hide();
-            $('.js-calculator__content_step-result-ok')
-                .css('height', calculatorContent.css('height'))
-                .removeClass('calculator__content_loading')
-                .show();
-        }).fail(function () {
-            $('.calculator__content_step3').hide();
-            $('.js-calculator__content_step-result-error')
-                .css('height', calculatorContent.css('height'))
-                .removeClass('calculator__content_loading')
-                .show();
+        let recaptchaExt = new RecaptchaExt();
+        recaptchaExt.setRecaptchaAction('calculator');
+        recaptchaExt.execute(function (token) {
+            calculator.sendForm(token);
         });
+
 
         return false;
     });

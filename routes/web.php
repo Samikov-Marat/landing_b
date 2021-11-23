@@ -290,7 +290,7 @@ Route::get('/', 'site\PageController@selectDefaultLanguage')
     ->name('site.select_default_language');
 
 Route::post('/request/send', 'site\RequestController@send')
-    ->name('request.send');
+    ->name('request.send')->middleware(['verify.recaptcha.token']);
 Route::post('/request/feedback', 'site\RequestController@feedback')
     ->name('request.feedback')->middleware(['verify.recaptcha.token']);
 Route::post('/request/presentation', 'site\RequestController@presentation')
