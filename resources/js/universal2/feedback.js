@@ -1,90 +1,119 @@
-$(function () {
+function universal2FeedbackForm($form) {
+    this.$form = $form;
+    this.$modalContent = this.$form.closest('.modal__content');
+    this.recaptchaToken = '';
 
-    $('.js-feedback-open').click(function () {
-        $('.js-modal-result-ok').hide();
-        $('.js-modal-result-error').hide();
-        $('.modal__content_form').removeClass('modal__content_loading').show();
-        $('.modal__content_form').find('textarea[name=message]').val('');
+    this.submit = function () {
 
-        modalOpen($('#feedback-modal'));
-        return false;
-    });
-
-    function sendFeedback($form, token) {
-
-        let hasError = false;
-        let $formElement = $form.find('input[name=name]');
-        if ($formElement.val() === '') {
-            $formElement.closest('.form-field').addClass('form-field_error');
-            hasError = true;
-        }
-        $formElement = $form.find('input[name=phone]');
-        if ($formElement.val() === '') {
-            $formElement.closest('.form-field').addClass('form-field_error');
-            hasError = true;
-        }
-        $formElement = $form.find('input[name=email]');
-        if ($formElement.val() === '') {
-            $formElement.closest('.form-field').addClass('form-field_error');
-            hasError = true;
-        }
-        $formElement = $form.find('input[name=agree]');
-        if (!$formElement.prop('checked')) {
-            $formElement.closest('.form__row').addClass('form-field_error');
-            hasError = true;
-        }
-
-        if (hasError) {
-            return false;
+        if (this.hasError()) {
+            return;
         }
 
         $('body').trigger('gtm:event', [$form.data('sendFormEvent')]);
 
-        let formExtended = $form.serializeArray();
-        formExtended.push({name: 'recaptcha_token', value: token});
+        let recaptchaExt = new RecaptchaExt();
+        recaptchaExt.setRecaptchaAction('universal2.feedback');
+
+        let thisForCallback = this;
+        recaptchaExt.execute(function (token) {
+            thisForCallback.setRecaptchaToken(token).send();
+        });
+
+    }
+
+    this.hasError = function () {
+        let hasError = false;
+        let $formElement = this.$form.find('input[name=name]');
+        if ($formElement.val() === '') {
+            $formElement.closest('.form-field').addClass('form-field_error');
+            hasError = true;
+        }
+        $formElement = this.$form.find('input[name=phone]');
+        if ($formElement.val() === '') {
+            $formElement.closest('.form-field').addClass('form-field_error');
+            hasError = true;
+        }
+        $formElement = this.$form.find('input[name=email]');
+        if ($formElement.val() === '') {
+            $formElement.closest('.form-field').addClass('form-field_error');
+            hasError = true;
+        }
+        $formElement = this.$form.find('input[name=agree]');
+        if (!$formElement.prop('checked')) {
+            $formElement.closest('.form__row').addClass('form-field_error');
+            hasError = true;
+        }
+        return hasError;
+    }
+
+    this.setRecaptchaToken = function (recaptchaToken) {
+        this.recaptchaToken = recaptchaToken;
+        return this;
+    }
+
+    this.send = function () {
+        let formExtended = this.$form.serializeArray();
+        formExtended.push({name: 'recaptcha_token', value: this.recaptchaToken});
         let request = {
-            url: $form.prop('action'),
+            url: this.$form.prop('action'),
             data: formExtended
         };
 
-        var modalContent = $form.closest('.modal__content');
-        modalContent.addClass('modal__content_loading');
-
+        let thisForCallback = this;
+        thisForCallback.setState('loading');
         $.post(request).done(function () {
-            modalContent.hide();
-            $('.js-modal-result-ok')
-                .css('height', modalContent.css('height'))
-                .removeClass('modal__content_loading')
-                .show();
+            thisForCallback.setState('success');
         }).fail(function () {
-            modalContent.hide();
-            $('.js-modal-result-error')
-                .css('height', modalContent.css('height'))
+            thisForCallback.setState('error');
+        });
+    }
+
+    this.setState = function (state) {
+        if ('open' == state) {
+            $('.js-modal-result-ok').hide();
+            $('.js-modal-result-error').hide();
+            this.$modalContent.removeClass('modal__content_loading').show();
+            this.$modalContent.find('textarea[name=message]').val('');
+            return;
+        }
+
+
+        if ('loading' == state) {
+            this.$modalContent.addClass('modal__content_loading');
+            return;
+        }
+        if ('success' == state) {
+            this.$modalContent.hide();
+            $('.js-modal-result-ok')
+                .css('height', this.$modalContent.css('height'))
                 .removeClass('modal__content_loading')
                 .show();
-        });
-
-        return false;
+            return;
+        }
+        if ('error' == state) {
+            this.$modalContent.hide();
+            $('.js-modal-result-error')
+                .css('height', this.$modalContent.css('height'))
+                .removeClass('modal__content_loading')
+                .show();
+            return;
+        }
     }
-
-    function recaptcha(sendform) {
-        grecaptcha.ready(function () {
-            let key = $('#recaptcha_script').data('key');
-            grecaptcha.execute(key, {action: 'submit'})
-                .then(function (token) {
-                    sendform(token);
-                });
-        });
-    }
+}
 
 
-    $('.js-feedback-form').submit(function () {
-        let $form = $(this);
-        recaptcha(function (token) {
-            sendFeedback($form, token);
-        });
+$(function () {
+    $('.js-feedback-open').click(function () {
+        let feedbackForm = new universal2FeedbackForm($('.js-feedback-form'));
+        feedbackForm.setState('open');
+        modalOpen($('#feedback-modal'));
         return false;
     });
 
-
+    $('.js-feedback-form').submit(function () {
+        let $form = $(this);
+        let feedbackForm = new universal2FeedbackForm($form);
+        feedbackForm.submit();
+        return false;
+    });
 });
