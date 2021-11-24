@@ -531,10 +531,10 @@
                     <div>
                         <div class="footer-new__links">
                             <div class="footer-new__links-item">
-                                <a href="#" class="footer-new__link footer-new__link_bold">@d('personal_160')</a>
+                                <a href="{{ $dictionary['personal_facebook_link'] }}" class="footer-new__link footer-new__link_bold">@d('personal_160')</a>
                             </div>
                             <div class="footer-new__links-item">
-                                <a href="#" class="footer-new__link footer-new__link_bold">@d('personal_161')</a>
+                                <a href="{{ $dictionary['personal_instagram_link'] }}" class="footer-new__link footer-new__link_bold">@d('personal_161')</a>
                             </div>
                         </div>
                         <div class="footer-new__links footer-new__links_last">
