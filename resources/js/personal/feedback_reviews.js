@@ -61,7 +61,7 @@ $(function () {
         let feedbackReview = new FeedbackReviewClass($(this));
 
         let recaptchaExt = new RecaptchaExt();
-        recaptchaExt.setRecaptchaAction('feedback.review');
+        recaptchaExt.setRecaptchaAction('feedback_review');
         recaptchaExt.execute(function (token) {
             feedbackReview.send(token);
         });

@@ -50,7 +50,7 @@ $(function () {
     function recaptcha(sendform) {
         grecaptcha.ready(function () {
             let key = $('#recaptcha_script').data('key');
-            grecaptcha.execute(key, {action: 'personal.feedback'})
+            grecaptcha.execute(key, {action: 'personal/feedback'})
                 .then(function (token) {
                     sendform(token);
                 });

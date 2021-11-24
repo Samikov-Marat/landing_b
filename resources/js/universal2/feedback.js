@@ -12,7 +12,7 @@ function universal2FeedbackForm($form) {
         $('body').trigger('gtm:event', [$form.data('sendFormEvent')]);
 
         let recaptchaExt = new RecaptchaExt();
-        recaptchaExt.setRecaptchaAction('universal2.feedback');
+        recaptchaExt.setRecaptchaAction('universal2/feedback');
 
         let thisForCallback = this;
         recaptchaExt.execute(function (token) {
