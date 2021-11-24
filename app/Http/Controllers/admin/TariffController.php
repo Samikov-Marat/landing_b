@@ -35,13 +35,12 @@ class TariffController extends Controller
         } else {
             $tariff = new Tariff();
         }
-//        dd($tariff);
         $tariffTypes = TariffType::select('id')->get();
         return view('admin.tariffs.form', ['tariff' => $tariff, 'tariffTypes' => $tariffTypes]);
     }
 
     public function save(Request $request)
-     {
+    {
         $isEditMode = $request->has('id');
         if ($isEditMode) {
             $tariff = Tariff::select('id', 'ek_id', 'tariff_type_id')

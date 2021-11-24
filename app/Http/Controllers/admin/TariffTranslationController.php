@@ -46,8 +46,6 @@ class TariffTranslationController extends Controller
             ->where('tariff_id', $tariff->id)
             ->whereIn('language_code_iso', [config('app.tariff_default_language'), $language])
             ->get();
-     //dd($translationItems);
-//       dd($language);
         return view('admin.tariff_translation.edit_form')
             ->with(['tariff' => $tariff, 'translationItems' => $translationItems, 'language' => $language]);
     }
