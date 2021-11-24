@@ -56,10 +56,10 @@ class TariffController extends Controller
             $tariff->load(['tariffText' => function ($q) {
                 $q->where('language_code_iso', config('app.tariff_default_language'));
             }]);
-            if (!isset($tariff->tariffText)) {
+            if ($tariff->tariffText->count() != 1) {
                 throw new Exception('Не найден стандартный перевод');
             }
-            $tariffText = $tariff->tariffText;
+            $tariffText = $tariff->tariffText->first();
         } else {
             $tariffText = new TariffText();
             $tariffText->tariff_id = $tariff->id;

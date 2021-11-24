@@ -22,17 +22,19 @@ class TariffTranslationController extends Controller
             ->with('tariffText')
             ->with('languages.site')
             ->paginate(self::PER_PAGE);
-        return view('admin.tariff_translation.tariff_languages', ['languageIsoItems' => $languageIsoItems, 'tariffCount' => $tariffCount]);
+        return view('admin.tariff_translation.tariff_languages')
+            ->with('languageIsoItems', $languageIsoItems)
+            ->with('tariffCount', $tariffCount);
     }
 
     public function translationList($language)
     {
-            $tariffs = Tariff::select('id')
-                ->with(['tariffText' => function ($q) use ($language) {
-                    $q->whereIn('language_code_iso', [config('app.tariff_default_language'), $language]);
-                }])
-                ->orderBy('id')
-                ->get();
+        $tariffs = Tariff::select('id')
+            ->with(['tariffText' => function ($q) use ($language) {
+                $q->whereIn('language_code_iso', [config('app.tariff_default_language'), $language]);
+            }])
+            ->orderBy('id')
+            ->get();
 
         return view('admin.tariff_translation.translation_list')
             ->with('tariffs', $tariffs)
