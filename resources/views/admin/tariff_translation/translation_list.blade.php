@@ -21,9 +21,7 @@
         @foreach($tariffs as $tariff)
             @php
                 $tariffTextIndexed = $tariff->tariffText->keyBy('language_code_iso');
-
             @endphp
-
             <tr>
                 <td>
                     @if(isset($tariffTextIndexed[config('app.tariff_default_language')]))
@@ -45,7 +43,6 @@
                        class="btn btn-primary btn-sm"><i class="fas fa-edit"></i> Редактировать</a>
                 </td>
             </tr>
-
         @endforeach
     </table>
 @endsection

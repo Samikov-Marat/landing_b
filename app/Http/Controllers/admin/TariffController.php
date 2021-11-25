@@ -35,7 +35,7 @@ class TariffController extends Controller
         } else {
             $tariff = new Tariff();
         }
-        $tariffTypes = TariffType::select('id')->get();
+        $tariffTypes = TariffType::select('id', 'name')->get();
         return view('admin.tariffs.form', ['tariff' => $tariff, 'tariffTypes' => $tariffTypes]);
     }
 

@@ -49,7 +49,9 @@ class TariffTranslationController extends Controller
             ->whereIn('language_code_iso', [config('app.tariff_default_language'), $language])
             ->get();
         return view('admin.tariff_translation.edit_form')
-            ->with(['tariff' => $tariff, 'translationItems' => $translationItems, 'language' => $language]);
+            ->with('tariff', $tariff)
+            ->with('translationItems', $translationItems)
+            ->with('language', $language);
     }
 
     public function save(Request $request)
@@ -70,6 +72,6 @@ class TariffTranslationController extends Controller
             ->where('site_id', $site_id)
             ->with('tariffText')
             ->paginate(self::PER_PAGE);
-        return view('admin.tariffs.site_tariffs', ['tariffs' => $tariffs]);
+        return view('admin.tariffs.site_tariffs')->with('tariffs', $tariffs);
     }
 }

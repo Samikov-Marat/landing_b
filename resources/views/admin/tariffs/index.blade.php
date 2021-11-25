@@ -6,12 +6,13 @@
 
 @section('content')
 
-    <div>
+    <div class="float-right">
         <a href="{!! route('admin.tariffs.add') !!}" class="btn btn-primary"><i class="fas fa-plus"></i> Создать</a>
     </div
     @if($tariffs->isNotEmpty())
 
         >
+    {{$tariffs->links()}}
     <table class="table table-hover table-bordered">
         <tr>
             <th>
@@ -64,7 +65,6 @@
             @endforeach
         @endforeach
     </table>
-    {{$tariffs->links()}}
     @else
         <span class="alert alert-info">Список пуст.</span>
     @endif

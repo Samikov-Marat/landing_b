@@ -20,27 +20,27 @@
             <label for="tariff_type_id">Тип тарифа</label></br>
             @foreach($tariffTypes as $type)
                 <input type="radio" class="tariff__type-radio" name="tariff_type_id" id="tariff_type_id" required
-                       value="{{ $type->id }}">
-                {{ $type->id }}
+                       value="{{ $type->id }}" {{$tariff->tariff_type_id == $type->id? "checked" : " "}}>
+                {{ $type->name }}
             @endforeach
         </div>
-                @if($tariff->exists)
-                    @foreach($tariff->tariffText as $value)
-                        <div class="form-group">
-                            <label for="tariff_type_id">Название</label>
-                            <input type="text" class="form-control" name="name" id="tariff_type_id" required
-                                   value="{{ $value->name }}"
-                                   placeholder="название" autocomplete="off">
-                            <small id="tariff_type_id" class="form-text text-muted">название</small>
-                        </div>
-                        <div class="form-group">
-                            <label for="tariff_description_id">Описание</label>
-                            <input type="text" class="form-control" name="description" id="tariff_description_id" required
-                                   value="{{ $value->description }}"
-                                   placeholder="описание" autocomplete="off">
-                            <small id="tariff_description_id" class="form-text text-muted">описание</small>
-                        </div>
-                    @endforeach
+        @if($tariff->exists)
+            @foreach($tariff->tariffText as $value)
+                <div class="form-group">
+                    <label for="tariff_type_id">Название</label>
+                    <input type="text" class="form-control" name="name" id="tariff_type_id" required
+                           value="{{ $value->name }}"
+                           placeholder="название" autocomplete="off">
+                    <small id="tariff_type_id" class="form-text text-muted">название</small>
+                </div>
+                <div class="form-group">
+                    <label for="tariff_description_id">Описание</label>
+                    <input type="text" class="form-control" name="description" id="tariff_description_id" required
+                           value="{{ $value->description }}"
+                           placeholder="описание" autocomplete="off">
+                    <small id="tariff_description_id" class="form-text text-muted">описание</small>
+                </div>
+            @endforeach
         @else
             <div class="form-group">
                 <label for="tariff_type_id">Название</label>
@@ -56,7 +56,7 @@
                        placeholder="описание" autocomplete="off">
                 <small id="tariff_description_id" class="form-text text-muted">описание</small>
             </div>
-                @endif
+        @endif
         <button type="submit" class="btn btn-primary">Сохранить</button>
     </form>
 @endsection
