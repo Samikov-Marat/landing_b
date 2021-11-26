@@ -19,24 +19,29 @@
         <div class="form-group">
             <label for="tariff_type_id">Тип тарифа</label></br>
             @foreach($tariffTypes as $type)
-                <input type="radio" class="tariff__type-radio" name="tariff_type_id" id="tariff_type_id" required
-                       value="{{ $type->id }}" {{$tariff->tariff_type_id == $type->id? "checked" : " "}}>
-                {{ $type->name }}
+                <div class="form-check form-check-inline">
+                    <input type="radio" class="form-check-input" name="tariff_type_id"
+                           id="id_tariff_type_{{ $type->id }}" required
+                           value="{{ $type->id }}" {{$tariff->tariff_type_id == $type->id? "checked" : " "}}>
+                        <label class="form-check-label" for="id_tariff_type_{{ $type->id }}">
+                            {{ $type->name }}
+                        </label>
+                </div>
             @endforeach
         </div>
         @if($tariff->exists)
-            @foreach($tariff->tariffText as $value)
+            @foreach($tariff->tariffTexts as $tariffText)
                 <div class="form-group">
                     <label for="tariff_type_id">Название</label>
                     <input type="text" class="form-control" name="name" id="tariff_type_id" required
-                           value="{{ $value->name }}"
+                           value="{{ $tariffText->name }}"
                            placeholder="название" autocomplete="off">
                     <small id="tariff_type_id" class="form-text text-muted">название</small>
                 </div>
                 <div class="form-group">
                     <label for="tariff_description_id">Описание</label>
                     <input type="text" class="form-control" name="description" id="tariff_description_id" required
-                           value="{{ $value->description }}"
+                           value="{{ $tariffText->description }}"
                            placeholder="описание" autocomplete="off">
                     <small id="tariff_description_id" class="form-text text-muted">описание</small>
                 </div>

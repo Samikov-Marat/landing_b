@@ -296,10 +296,10 @@ Route::prefix('admin')->middleware(['auth', 'user.route.access', 'http.secure', 
             ->name('admin.tariffs.add');
 
         //тарифы переводы
-        Route::get('tariff-languages', 'admin\TariffTranslationController@index')
-            ->name('admin.tariff_languages.index');
+        Route::get('tariff-translation', 'admin\TariffTranslationController@index')
+            ->name('admin.tariff_translation.index');
         Route::get('tariff-translation/{language}', 'admin\TariffTranslationController@translationList')
-            ->name('admin.tariff_translation');
+            ->name('admin.tariff_translation.translation_list');
         Route::get('tariff-translation/{language}/edit', 'admin\TariffTranslationController@edit')
             ->name('admin.tariff_translation.edit');
         Route::post('tariff-translation/save', 'admin\TariffTranslationController@save')

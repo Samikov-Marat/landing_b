@@ -6,33 +6,32 @@
 
 @section('content')
 
-    @if($tariffs->isNotEmpty())
+    @if($site->languages->isNotEmpty())
         <table class="table table-hover table-bordered">
             <tr>
+                @foreach($site->languages as $language)
                 <th>
-                    Название тарифа ({{ config('app.tariff_default_language') }})
+                    {{ $language->name }}
                 </th>
-                <th>
-                    Перевод
-                </th>
+                @endforeach
             </tr>
             @foreach($tariffs as $tariff)
-                @php
-                    $tariffTextIndexed = $tariff->tariffText->keyBy('tariff_id');
-                @endphp
-                @foreach($tariffTextIndexed as $value)
-                    <tr>
+                <tr>
+                    @php
+                        $tariffTextIndexed = $tariff->tariffTexts->keyBy('language_code_iso');
+                    @endphp
+                    @foreach($site->languages as $language)
                         <td>
-                            @if($value->language_code_iso == config('app.tariff_default_language'))
-                                <h2>{{ $value->name }}</h2>
-                                {{ $value->description}}
+                            @if($tariffTextIndexed->has($language->language_code_iso))
+                                <h2>{{ $tariffTextIndexed[$language->language_code_iso]->name }}</h2>
+                                {{ $tariffTextIndexed[$language->language_code_iso]->description }}
+                            @else
+                                <span class="badge badge-warning">Нет перевода</span>
                             @endif
                         </td>
-                        <td>
+                    @endforeach
 
-                        </td>
-                    </tr>
-                @endforeach
+                </tr>
             @endforeach
         </table>
         {{$tariffs->links()}}

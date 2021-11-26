@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
-use App\Language;
 use App\LanguageIso;
+use App\Site;
 use App\Tariff;
 use App\TariffText;
 use Illuminate\Http\Request;
@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 class TariffTranslationController extends Controller
 {
     const PER_PAGE = 10;
+    const PER_PAGE_TARIFF = 10;
 
     public function index()
     {
@@ -19,7 +20,7 @@ class TariffTranslationController extends Controller
         $languageIsoItems = LanguageIso::select('code_iso', 'name')
             ->has('languages')
             ->with('languages')
-            ->with('tariffText')
+            ->with('tariffTexts')
             ->with('languages.site')
             ->paginate(self::PER_PAGE);
         return view('admin.tariff_translation.tariff_languages')
@@ -30,7 +31,7 @@ class TariffTranslationController extends Controller
     public function translationList($language)
     {
         $tariffs = Tariff::select('id')
-            ->with(['tariffText' => function ($q) use ($language) {
+            ->with(['tariffTexts' => function ($q) use ($language) {
                 $q->whereIn('language_code_iso', [config('app.tariff_default_language'), $language]);
             }])
             ->orderBy('id')
@@ -62,16 +63,22 @@ class TariffTranslationController extends Controller
         $tariffText->tariff_id = $request->input('tariff_id');
         $tariffText->language_code_iso = $request->input('language_code_iso');
         $tariffText->save();
-        return response()->redirectToRoute('admin.tariff_translation', ['language' => $tariffText->language_code_iso]);
+        return response()->redirectToRoute('admin.tariff_translation.translation_list', ['language' => $tariffText->language_code_iso]);
     }
 
     public function siteTariffs(Request $request)
     {
         $site_id = $request->input('site_id');
-        $tariffs = Language::select('site_id', 'language_code_iso')
-            ->where('site_id', $site_id)
-            ->with('tariffText')
-            ->paginate(self::PER_PAGE);
-        return view('admin.tariffs.site_tariffs')->with('tariffs', $tariffs);
+        $site = Site::select('id', 'name', 'domain')
+            ->with(['languages' => function($q){
+                $q->orderBy('sort');
+            }])
+            ->findOrFail($site_id);
+        $tariffs = Tariff::select('id')
+            ->with('tariffTexts')
+            ->paginate(self::PER_PAGE_TARIFF);
+        return view('admin.tariffs.site_tariffs')
+            ->with('site', $site)
+            ->with('tariffs', $tariffs );
     }
 }

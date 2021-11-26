@@ -20,7 +20,7 @@
         </tr>
         @foreach($tariffs as $tariff)
             @php
-                $tariffTextIndexed = $tariff->tariffText->keyBy('language_code_iso');
+                $tariffTextIndexed = $tariff->tariffTexts->keyBy('language_code_iso');
             @endphp
             <tr>
                 <td>

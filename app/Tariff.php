@@ -11,9 +11,14 @@ class Tariff extends Model
         'tariff_type_id'
     ];
 
-    public function tariffText()
+    public function tariffTexts()
     {
         return $this->hasMany('App\TariffText');
+    }
+
+    public function tariffType()
+    {
+        return $this->hasOne('App\TariffType', 'id', 'tariff_type_id');
     }
 
 }

@@ -21,7 +21,7 @@
                         <input type="hidden" name="id" value="{{ $translationItem->id }}">
                         <input type="hidden" name="tariff_id" value="{{ $tariff->id }}">
                         <input type="hidden" name="language_code_iso"
-                               value="{{ $language }}">
+                               value="{{ $language }}" required>
                         <label>Название тарифа {{ $language }}</label>
                         <input type="text" class="form-control" name="name"
                                value="{{ $translationItem->name }}"
@@ -29,7 +29,7 @@
                         <label>Описание тарифа {{ $language }}</label>
                         <input type="text" class="form-control" name="description"
                                value="{{ $translationItem->description }}"
-                               placeholder="Описание" autocomplete="off">
+                               placeholder="Описание" autocomplete="off" required>
                     </div>
                 @else
                     @if($translationItems->count() == 1)
@@ -41,11 +41,11 @@
                             <label>Название тарифа {{ $language }}</label>
                             <input type="text" class="form-control" name="name"
                                    value=""
-                                   placeholder="Название" autocomplete="off">
+                                   placeholder="Название" autocomplete="off" required>
                             <label>Описание тарифа {{ $language }}</label>
                             <input type="text" class="form-control" name="description"
                                    value=""
-                                   placeholder="Описание" autocomplete="off">
+                                   placeholder="Описание" autocomplete="off" required>
                         </div>
                     @endif
                 @endif

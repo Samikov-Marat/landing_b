@@ -8,10 +8,8 @@
 
     <div class="float-right">
         <a href="{!! route('admin.tariffs.add') !!}" class="btn btn-primary"><i class="fas fa-plus"></i> Создать</a>
-    </div
+    </div>
     @if($tariffs->isNotEmpty())
-
-        >
     {{$tariffs->links()}}
     <table class="table table-hover table-bordered">
         <tr>
@@ -33,7 +31,7 @@
         </tr>
 
         @foreach($tariffs as $tariff)
-            @foreach($tariff->tariffText as $value)
+            @foreach($tariff->tariffTexts as $tariffText)
 
                 <tr>
                     <td>
@@ -43,13 +41,13 @@
                         {{ $tariff->ek_id}}
                     </td>
                     <td>
-                        {{ $tariff->tariff_type_id}}
+                        {{ $tariff->tariffType->name }}
                     </td>
                     <td>
-                        {{ $value->name}}
+                        {{ $tariffText->name}}
                     </td>
                     <td>
-                        {{ $value->description}}
+                        {{ $tariffText->description}}
                     </td>
 
                     <td class="text-nowrap">

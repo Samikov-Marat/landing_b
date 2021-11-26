@@ -15,9 +15,10 @@ class TariffController extends Controller
     public function index()
     {
         $tariffs = Tariff::select('id', 'ek_id', 'tariff_type_id')
-            ->with(['tariffText' => function ($q) {
+            ->with(['tariffTexts' => function ($q) {
                 $q->where('language_code_iso', config('app.tariff_default_language'));
             }])
+            ->with('tariffType')
             ->orderBy('id')
             ->paginate(self::PER_PAGE);
 
@@ -28,7 +29,7 @@ class TariffController extends Controller
     {
         if (isset($id)) {
             $tariff = Tariff::select('id', 'ek_id', 'tariff_type_id')
-                ->with(['tariffText' => function ($q) {
+                ->with(['tariffTexts' => function ($q) {
                     $q->where('language_code_iso', config('app.tariff_default_language'));
                 }])
                 ->find($id);
@@ -53,13 +54,13 @@ class TariffController extends Controller
         $tariff->save();
 
         if ($isEditMode) {
-            $tariff->load(['tariffText' => function ($q) {
+            $tariff->load(['tariffTexts' => function ($q) {
                 $q->where('language_code_iso', config('app.tariff_default_language'));
             }]);
-            if ($tariff->tariffText->count() != 1) {
+            if ($tariff->tariffTexts->count() != 1) {
                 throw new Exception('Не найден стандартный перевод');
             }
-            $tariffText = $tariff->tariffText->first();
+            $tariffText = $tariff->tariffTexts->first();
         } else {
             $tariffText = new TariffText();
             $tariffText->tariff_id = $tariff->id;
@@ -75,7 +76,7 @@ class TariffController extends Controller
     public function delete(Request $request)
     {
         $tariffs = Tariff::findOrFail($request->input('id'));
-        $tariffs->tariffText()->delete();
+        $tariffs->tariffTexts()->delete();
         $tariffs->delete();
         return response()->redirectToRoute('admin.tariffs.index');
     }

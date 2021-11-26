@@ -16,6 +16,7 @@
                     Название
                 </th>
                 <th>
+                    Языки и сайты на которых они используются
                 </th>
                 <th>
                     Переведено
@@ -36,18 +37,17 @@
                         @endforeach
                     </td>
                     <td>
-                        {{ $language->tariffText->count() }}/{{ $tariffCount}}
+                        {{ $language->tariffTexts->count() }}/{{ $tariffCount}}
                     </td>
                     <td class="text-nowrap">
-                        <a href="{!! route('admin.tariff_translation', ['language' => $language->code_iso] ) !!}"
+                        <a href="{!! route('admin.tariff_translation.translation_list', ['language' => $language->code_iso] ) !!}"
                            class="btn btn-primary btn-sm"><i class="fas fa-edit"></i>Список переводов</a>
 
                     </td>
                 </tr>
             @endforeach
         </table>
-        {{$languageIsoItems->links()}}
-        {{--    {{ $languageIsoItems->links() }}--}}
+        {{ $languageIsoItems->links() }}
     @else
         <span class="alert alert-info">Список пуст.</span>
     @endif
