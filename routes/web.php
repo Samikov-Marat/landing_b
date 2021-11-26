@@ -282,6 +282,30 @@ Route::prefix('admin')->middleware(['auth', 'user.route.access', 'http.secure', 
             ->name('admin.yandex_metrica_goals.yandex_form');
         Route::post('yandex-metrica-goals/clone-goals-to-yandex', 'admin\YandexMetricaGoalController@cloneGoalsToYandex')
             ->name('admin.yandex_metrica_goals.clone_goals_to_yandex');
+
+        //тарифы
+        Route::get('tariffs', 'admin\TariffController@index')
+            ->name('admin.tariffs.index');
+        Route::get('tariffs/edit/{id}', 'admin\TariffController@edit')
+            ->name('admin.tariffs.edit');
+        Route::post('tariffs/delete', 'admin\TariffController@delete')
+            ->name('admin.tariffs.delete');
+        Route::post('tariffs/save', 'admin\TariffController@save')
+            ->name('admin.tariffs.save');
+        Route::get('tariffs/add', 'admin\TariffController@edit')
+            ->name('admin.tariffs.add');
+
+        //тарифы переводы
+        Route::get('tariff-translation', 'admin\TariffTranslationController@index')
+            ->name('admin.tariff_translation.index');
+        Route::get('tariff-translation/{language}', 'admin\TariffTranslationController@translationList')
+            ->name('admin.tariff_translation.translation_list');
+        Route::get('tariff-translation/{language}/edit', 'admin\TariffTranslationController@edit')
+            ->name('admin.tariff_translation.edit');
+        Route::post('tariff-translation/save', 'admin\TariffTranslationController@save')
+            ->name('admin.tariff_translation.save');
+        Route::get('site-tariffs', 'admin\TariffTranslationController@siteTariffs')
+            ->name('admin.tariffs.site_tariffs');
     }
 );
 
@@ -310,4 +334,3 @@ Route::get('/{languageUrl}/{pageUrl?}', 'site\PageController@showPage')
     ->middleware(['save.utm.to.cookies'])
     ->where('pageUrl', '.*')
     ->name('site.show_page');
-

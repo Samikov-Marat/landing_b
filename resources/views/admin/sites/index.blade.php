@@ -42,6 +42,9 @@
                     Картинки
                 </th>
                 <th>
+                    Тарифы
+                </th>
+                <th>
                     Местные офисы
                 </th>
                 <th>
@@ -93,6 +96,11 @@
                         </a>
                     </td>
                     <td>
+                        <a href="{!! route('admin.tariffs.site_tariffs', ['site_id' => $site->id]) !!}">
+                            Тарифы
+                        </a>
+                    </td>
+                    <td>
                         <a href="{!! route('admin.local_offices.index', ['site_id' => $site->id]) !!}">
                             {{ $site->localOffices->count() }} шт.
                         </a>
@@ -114,7 +122,6 @@
                             Отзывы
                         </a>
                     </td>
-
 
                     @canany(['admin.sites.edit', 'admin.sites.delete'])
                         <td class="text-nowrap">

@@ -20,7 +20,6 @@
             </div>
         </div>
 
-
         <div class="form-group">
             <label for="id_url">URL</label>
             <input type="text" class="form-control" name="url" id="id_url"
@@ -47,6 +46,5 @@
         </div>
         <button type="submit" class="btn btn-primary">Сохранить</button>
     </form>
-
 
 @endsection
