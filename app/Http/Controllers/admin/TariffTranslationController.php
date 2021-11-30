@@ -22,6 +22,7 @@ class TariffTranslationController extends Controller
             ->with('languages')
             ->with('tariffTexts')
             ->with('languages.site')
+            ->orderBy('name')
             ->paginate(self::PER_PAGE);
         return view('admin.tariff_translation.tariff_languages')
             ->with('languageIsoItems', $languageIsoItems)
