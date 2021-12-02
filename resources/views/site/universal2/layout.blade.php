@@ -122,6 +122,9 @@
                 <div class="footer__link-social-item">
                     <a class="footer__link footer__link-mr-social {{ $dictionary['footer_facebook']?'':'hidden' }}" href="{!! $dictionary['footer_facebook'] !!}">Facebook</a>
                     <a class="footer__link footer__link-mr-social {{ $dictionary['footer_instagram']?'':'hidden' }}" href="{!! $dictionary['footer_instagram'] !!}">Instagram</a>
+                    @if($dictionary['footer_ukraine_reglament'] != '-')
+                        <a class="footer__link footer__link-mr-social" href="{!! $dictionary['footer_ukraine_reglament'] !!}">@d('footer_ukraine_reglament_text')</a>
+                    @endif
                 </div>
                 <div class="footer__link-policy-item">
                     <a class="footer__link footer__link-mr-policy" href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'contacts']) !!}">@d('menu_contects')</a>
