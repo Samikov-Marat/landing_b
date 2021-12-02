@@ -28,9 +28,11 @@ class MenuBuilder
             ['route' => 'admin.yandex_metrica_goals.index', 'text' => 'Яндекс цели', 'icon' => 'fas fa-bullseye',],
             ['route' => 'admin.tariffs.index', 'text' => 'Тарифы', 'icon' => 'far fa-credit-card',],
             ['route' => 'admin.tariff_translation.index', 'text' => 'Переводы тарифов', 'icon' => 'fas fa-language',],
+            ['route' => 'admin.tariff_types.index', 'text' => 'Типы тарифов', 'icon' => 'far fa-credit-card',],
             ['route' => 'admin.permissions.index', 'text' => 'Разрешения', 'icon' => 'fas fa-map-signs',],
             ['route' => 'admin.roles.index', 'text' => 'Роли', 'icon' => 'far fa-address-card',],
             ['route' => 'admin.users.index', 'text' => 'Пользователи', 'icon' => 'fas fa-user',],
+
         ];
         $this->routeRoots = [
             'admin.languages.index' => 'admin.sites.index',

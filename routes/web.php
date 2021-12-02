@@ -306,6 +306,18 @@ Route::prefix('admin')->middleware(['auth', 'user.route.access', 'http.secure', 
             ->name('admin.tariff_translation.save');
         Route::get('site-tariffs', 'admin\TariffTranslationController@siteTariffs')
             ->name('admin.tariffs.site_tariffs');
+
+        //типы тарифов
+        Route::get('tariff-types', 'admin\TariffTypeController@index')
+            ->name('admin.tariff_types.index');
+        Route::get('tariff-types/edit/{id}', 'admin\TariffTypeController@edit')
+            ->name('admin.tariff_types.edit');
+        Route::post('tariff-types/delete', 'admin\TariffTypeController@delete')
+            ->name('admin.tariff_types.delete');
+        Route::post('tariff-types/save', 'admin\TariffTypeController@save')
+            ->name('admin.tariff_types.save');
+        Route::get('tariff-types/add', 'admin\TariffTypeController@edit')
+            ->name('admin.tariff_types.add');
     }
 );
 
