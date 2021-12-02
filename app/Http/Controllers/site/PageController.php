@@ -64,13 +64,14 @@ class PageController extends Controller
         $siteRepository->loadNewsArticles($language);
         $siteRepository->loadOurWorkers($language);
         $siteRepository->loadFeedbacks($language);
-
+        $topOffices = $siteRepository->getTopOffices(['en','ru',]);
         return view('site.' . $page->template)
             ->with('site', $siteRepository->getSite())
             ->with('language', $language)
             ->with('page', $page)
             ->with('dictionary', $dictionary)
             ->with('pageUrl', $pageUrl)
+            ->with('topOffices', $topOffices)
             ->with('allowCookies', AllowCookie::getInstance($request)->isAllow());
 
     }

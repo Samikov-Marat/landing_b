@@ -1,4 +1,4 @@
-<div id="map" class="contact-page__map js-yandex-map"
+<div id="map" class="contact-page__map js-yandex-map js-contacts-tab-content-1"
      @if('local' == env('APP_ENV'))
      data-url-template="https://cdek.uk/request/get-office-list?bbox=%b"
      @else

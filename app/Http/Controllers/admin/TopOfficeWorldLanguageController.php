@@ -38,6 +38,7 @@ class TopOfficeWorldLanguageController extends Controller
             'id',
             'top_office_id',
             'world_language_id',
+            'country',
             'name',
             'full_address',
             'address_comment',
@@ -77,6 +78,7 @@ class TopOfficeWorldLanguageController extends Controller
                 ]
             );
 
+        $topOfficeWorldLanguage->country = $request->input('country');
         $topOfficeWorldLanguage->name = $request->input('name');
         $topOfficeWorldLanguage->full_address = $request->input('full_address');
         $topOfficeWorldLanguage->address_comment = $request->input('address_comment');

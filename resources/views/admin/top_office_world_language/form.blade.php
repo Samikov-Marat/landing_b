@@ -24,6 +24,19 @@
         <input type="hidden" name="world_language_id" value="{{ $topOfficeWorldLanguage->world_language_id }}">
 
         <div class="form-group">
+            <label for="id_country">
+                Страна.
+                @if('' != $topOfficeWorldLanguage->topOffice->office->country_code_iso)
+                    Известен код "{{ $topOfficeWorldLanguage->topOffice->office->country_code_iso }}"
+                @endif
+            </label>
+            <input type="text" class="form-control" name="country" id="id_country"
+                   value="{{ $topOfficeWorldLanguage->exists ? $topOfficeWorldLanguage->country : '' }}"
+                   placeholder="Страна, в которой находится офис" autocomplete="off">
+            <small id="id_country_help" class="form-text text-muted">Страна, в которой находится офис</small>
+        </div>
+
+        <div class="form-group">
             <label for="id_name">{{ $topOfficeWorldLanguage->topOffice->office->name }}</label>
             <input type="text" class="form-control" name="name" id="id_name"
                    value="{{ $topOfficeWorldLanguage->exists ? $topOfficeWorldLanguage->name : '' }}"

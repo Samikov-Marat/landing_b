@@ -3,6 +3,7 @@
 
 namespace App\Classes;
 
+use App\Classes\Site\TopOfficeRepository;
 use App\Exceptions\CurrentPageNotFound;
 use App\Exceptions\PageController\LanguageListIsEmpty;
 use App\Exceptions\PageController\SiteNotFound;
@@ -11,7 +12,7 @@ use App\Page;
 use App\Site;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use phpDocumentor\Reflection\Types\Boolean;
+
 
 class SiteRepository
 {
@@ -109,6 +110,10 @@ class SiteRepository
                 }
             ]
         );
+    }
+
+    public function getTopOffices($priorityLanguageList){
+        return TopOfficeRepository::getInstance()->getList($priorityLanguageList);
     }
 
     public function containsLanguage($languageShortname): bool
