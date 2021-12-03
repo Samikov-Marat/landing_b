@@ -28,10 +28,6 @@
     <link rel="stylesheet" href="{{ mix('universal2/custom.css') }}">
 </head>
 <body class="site-theme">
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T5FMSQB"
-                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
 <div class="body-wrapper js-body_wrapper ">
     <div class="fullscreen-modal-background js-fade_background "></div>
     <header class="header-shadow">

@@ -9,14 +9,17 @@
         @endif
 
         <div class="form-group">
-            <div class="form-check">
-                @php
-                    $forId = 'project_1';
-                @endphp
-                <input class="form-check-input" type="radio" name="project_id" id="{{ $forId }}"
-                       value="1" required checked>
-                <label class="form-check-label" for="{{ $forId }}">Лендинги стран</label>
-            </div>
+            @foreach($projects as $project)
+                <div class="form-check">
+                    @php
+                        $forId = 'project_' . $project->id;
+                        $checked = isset($yandexMetricaGoal) && ($yandexMetricaGoal->project_id == $project->id);
+                    @endphp
+                    <input class="form-check-input" type="radio" name="project_id" id="{{ $forId }}"
+                           value="{{ $project->id }}" required {{ $checked?'checked':'' }}>
+                    <label class="form-check-label" for="{{ $forId }}">{{ $project->name }}</label>
+                </div>
+            @endforeach
         </div>
 
         <div class="form-group">

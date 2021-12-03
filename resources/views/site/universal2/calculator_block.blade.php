@@ -36,6 +36,7 @@
             'universal2.index' => 'rassitat_form',
             'universal2.e_commerce' => 'rassitat_form_im',
             'universal2.business' => 'rassitat_form_b2b',
+            'personal.index' => 'rassitat_form',
             ];
         $showTariffGtm = $templateGtm[$page->template] ?? '';
     @endphp

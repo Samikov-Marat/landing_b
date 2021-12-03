@@ -43,6 +43,12 @@ $(function () {
             orderParameters["numbersReceiverPhone"] = $phone.val();
         }
 
+        let trackingEvent = $form.data('trackingEvent');
+        if(trackingEvent !== undefined){
+            $('body').trigger('gtm:event', [trackingEvent]);
+        }
+
+
         $.post(trackingApi.getSettings(orderParameters))
             .fail(function (jqXHR, textStatus, errorThrown) {
 

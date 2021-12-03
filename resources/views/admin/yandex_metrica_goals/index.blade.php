@@ -14,19 +14,22 @@
 
 @section('content')
 
-    @if($yandexMetricaGoals->isNotEmpty())
-        <table class="table table-hover table-bordered">
+    <table class="table table-hover table-bordered">
+        <tr>
+            <th>
+                id
+            </th>
+            <th>
+                Название
+            </th>
+            <th>&nbsp;
+            </th>
+        </tr>
+        @foreach($projects as $project)
             <tr>
-                <th>
-                    id
-                </th>
-                <th>
-                    Название
-                </th>
-                <th>
-                </th>
+            <th colspan="4">{{ $project->name }}</th>
             </tr>
-            @foreach($yandexMetricaGoals as $yandexMetricaGoal)
+            @foreach($project->yandexMetricaGoals as $yandexMetricaGoal)
                 <tr>
                     <td>
                         {{ $yandexMetricaGoal->id }}
@@ -47,9 +50,6 @@
                     </td>
                 </tr>
             @endforeach
+        @endforeach
         </table>
-        {!! $yandexMetricaGoals->links() !!}
-    @else
-        <span class="alert alert-info">Список пуст.</span>
-    @endif
 @endsection

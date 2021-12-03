@@ -58,6 +58,11 @@ $(function () {
             return false;
         }
 
+        let feedbackReviewSubmitEvent = $(this).data('feedbackReviewSubmitEvent');
+        if(feedbackReviewSubmitEvent !== undefined){
+            $('body').trigger('gtm:event', [feedbackReviewSubmitEvent]);
+        }
+
         let feedbackReview = new FeedbackReviewClass($(this));
 
         let recaptchaExt = new RecaptchaExt();

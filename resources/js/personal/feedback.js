@@ -57,8 +57,6 @@ $(function () {
         });
     }
 
-
-
     $('.js-feedback-form').submit(function () {
         let $form = $(this);
         recaptcha(function (token) {
@@ -66,8 +64,6 @@ $(function () {
         });
         return false;
     });
-
-
 
 });
 

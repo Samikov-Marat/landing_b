@@ -3,6 +3,22 @@
     <head>
         <meta charset="UTF-8">
         <title>@d('personal_1')</title>
+
+        <script>
+            dataLayer = [];
+        </script>
+
+        @if($allowCookies)
+        <!-- Google Tag Manager -->
+            <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+                })(window,document,'script','dataLayer','GTM-T5FMSQB');</script>
+            <!-- End Google Tag Manager -->
+        @endif
+
+
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
             <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap" rel="stylesheet">
@@ -30,8 +46,10 @@
                 @endif
             @endforeach
 
-            <a href="#calculator" class="office-page-button office-page-header__button_fc office-page-button_type_calculate office-page-header__button">@d('personal_5')</a>
-            <a href="#tracking" class="office-page-button office-page-button_type_search office-page-header__button">@d('personal_6')</a>
+            <a href="#calculator" class="office-page-button office-page-header__button_fc office-page-button_type_calculate office-page-header__button gtm-click"
+               data-click="rassitat_header">@d('personal_5')</a>
+            <a href="#tracking" class="office-page-button office-page-button_type_search office-page-header__button gtm-click"
+               data-click="track_header">@d('personal_6')</a>
         </div>
         <div class="header__right">
             <div class="header-contact">
@@ -183,7 +201,7 @@
         <div class="office-page-presentation__content">
             <div class="office-page-presentation__info">
                 <div class="office-page-presentation__title">@d('personal_43')</div>
-                <div class="office-page-presentation__download">@d('personal_44')</div>
+                <div class="office-page-presentation__download gtm-click" data-click="presdownload">@d('personal_44')</div>
             </div>
             <div class="office-page-presentation__img-container">
                 <picture>
@@ -320,7 +338,7 @@
                 @d('personal_132')<br />
                 @d('personal_133')
             </div>
-            <a href="#" class="primary-button js-review-add-open">@d('personal_134')</a>
+            <a href="#" class="primary-button js-review-add-open" data-feedback-event="feedback_button">@d('personal_134')</a>
         </div>
     </div>
 
@@ -397,7 +415,8 @@
         <div class="office-page-feedback__content">
             <div class="office-page-feedback__title js-result-hide">@d('personal_150')</div>
             <div class="office-page-feedback__text js-result-hide">@d('personal_151')<br />@d('personal_152')</div>
-            <form method="post" action="{{ route('request.feedback') }}" class="office-page-feedback__form js-result-hide js-feedback-form">
+            <form method="post" action="{{ route('request.feedback') }}" class="office-page-feedback__form js-result-hide js-feedback-form"
+                data-send-form-event="feedback_form_bottom">
                 <div class="office-page-feedback__form-item">
                     <div class="office-page-feedback__form-item-left">
                         <div class="form__row">
@@ -671,7 +690,8 @@
                         <div class="presentation-modal__result-icon presentation-modal__result-icon_ok"></div>
                         <div class="presentation-modal__result-title">@d('personal_187')</div>
                         <div class="presentation-modal__result-text">@d('personal_188')</div>
-                        <a href="/request/images/presentation.pptx" class="presentation-modal__download">@d('personal_189')</a>
+                        <a href="/request/images/presentation.pptx" class="presentation-modal__download"
+                            >@d('personal_189')</a>
                     </div>
                 </div>
                 <div class="presentation-modal__result js-modal-result-error" style="display: none;">
@@ -687,8 +707,8 @@
                 <div class="review-add-modal__close"></div>
                 <div class="review-add-modal__content js-modal-result-hide">
                     <div class="review-add-modal__title">Добавить отзыв</div>
-                    <form method="post" action="{!! route('request.feedback_review') !!}" class="form calculator_form js-feedback-review-form">
-                        {{ csrf_field() }}
+                    <form method="post" action="{!! route('request.feedback_review') !!}" class="form calculator_form js-feedback-review-form"
+                        data-feedback-review-submit-event="feedback_form">
                         <input type="hidden" name="language_id" value="{{ $language->id }}">
                         <div class="review-add-modal__two-fields">
                             <div class="form__row review-add-modal__two-fields-item">

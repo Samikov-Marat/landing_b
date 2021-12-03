@@ -132,6 +132,10 @@ $(document).ready(function() {
 
 
     $('.js-review-add-open').click(function () {
+        let feedbackEvent = $(this).data('feedbackEvent');
+        if(feedbackEvent !== undefined){
+            $('body').trigger('gtm:event', [feedbackEvent]);
+        }
         modalOpen($('#review-add-modal'));
         return false;
     });

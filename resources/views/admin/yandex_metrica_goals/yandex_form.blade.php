@@ -7,14 +7,16 @@
         <input type="hidden" name="token_id" value="{{ $token->id }}">
         <div class="form-group">
             <label>Проект админки (набор целей)</label>
+            @foreach($projects as $project)
             <div class="form-check">
                 @php
-                    $forId = 'project_1';
+                    $forId = 'project_' . $project->id;
                 @endphp
                 <input class="form-check-input" type="radio" name="project_id" id="{{ $forId }}"
-                       value="1" required checked>
-                <label class="form-check-label" for="{{ $forId }}">Лендинги стран</label>
+                       value="{{ $project->id }}" required>
+                <label class="form-check-label" for="{{ $forId }}">{{ $project->name }}</label>
             </div>
+            @endforeach
         </div>
 
         <div class="form-group">

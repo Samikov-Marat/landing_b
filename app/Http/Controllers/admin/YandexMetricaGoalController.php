@@ -6,6 +6,7 @@ use App\Classes\Admin\YandexMetricaCountersRepository;
 use App\Classes\Admin\YandexMetricaGoalRepository;
 use App\Classes\Admin\YandexTokenRepository;
 use App\Http\Controllers\Controller;
+use App\Project;
 use App\YandexMetricaGoal;
 use App\YandexToken;
 use Illuminate\Http\Request;
@@ -17,25 +18,35 @@ class YandexMetricaGoalController extends Controller
 
     public function index()
     {
-        $yandexMetricaGoals = YandexMetricaGoal::select('id', 'name', 'description', 'image')
-            ->orderBy('id')
-            ->paginate(static::PER_PAGE);
+        $projects = Project::select('id', 'name')
+            ->orderBy('sort')
+            ->with([
+                       'yandexMetricaGoals' => function ($q) {
+                           $q->select('id', 'project_id', 'name', 'description', 'image')
+                               ->orderBy('id');
+                       },
+                   ])
+            ->get();
         return view('admin.yandex_metrica_goals.index')
-            ->with('yandexMetricaGoals', $yandexMetricaGoals);
+            ->with('projects', $projects);
     }
 
 
     public function edit($id = null)
     {
         if (isset($id)) {
-            $yandexMetricaGoal = YandexMetricaGoal::select('id', 'name', 'description', 'image')
+            $yandexMetricaGoal = YandexMetricaGoal::select('id', 'project_id', 'name', 'description', 'image')
                 ->find($id);
         } else {
             $yandexMetricaGoal = null;
         }
+        $projects = Project::select('id', 'name')
+            ->orderBy('sort')
+            ->get();
 
         return view('admin.yandex_metrica_goals.form')
-            ->with('yandexMetricaGoal', $yandexMetricaGoal);
+            ->with('yandexMetricaGoal', $yandexMetricaGoal)
+            ->with('projects', $projects);
     }
 
     public function save(Request $request)
@@ -45,9 +56,8 @@ class YandexMetricaGoalController extends Controller
             $yandexMetricaGoal = YandexMetricaGoal::find($request->input('id'));
         } else {
             $yandexMetricaGoal = new YandexMetricaGoal();
-
-            $yandexMetricaGoal->project_id = $request->input('project_id');
         }
+        $yandexMetricaGoal->project_id = $request->input('project_id');
         $yandexMetricaGoal->name = $request->input('name');
         $yandexMetricaGoal->description = $request->input('description');
         $yandexMetricaGoal->save();
@@ -91,11 +101,16 @@ class YandexMetricaGoalController extends Controller
         $token = YandexToken::select(['id', 'access_token', 'refresh_token', 'login', 'received_at'])
             ->findOrFail($request->input('token_id'));
 
+        $projects = Project::select('id', 'name')
+            ->orderBy('sort')
+            ->withCount('yandexMetricaGoals')
+            ->get();
+
         $counters = YandexMetricaCountersRepository::getInstance($token->access_token)
             ->getCounters();
-
         return view('admin.yandex_metrica_goals.yandex_form')
             ->with('token', $token)
+            ->with('projects', $projects)
             ->with('counters', $counters);
     }
 
@@ -106,11 +121,9 @@ class YandexMetricaGoalController extends Controller
         }
         $token = YandexToken::select(['id', 'access_token', 'refresh_token', 'login', 'received_at'])
             ->findOrFail($request->input('token_id'));
-        if ($request->input('project_id') != 1) {
-            abort(Response::HTTP_NOT_FOUND);
-        }
 
         $goals = YandexMetricaGoal::select(['id', 'name', 'description'])
+            ->where('project_id', $request->input('project_id'))
             ->get();
 
         foreach ($request->input('counter_id') as $counterId) {
