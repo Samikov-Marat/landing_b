@@ -318,7 +318,20 @@ Route::prefix('admin')->middleware(['auth', 'user.route.access', 'http.secure', 
             ->name('admin.tariff_types.save');
         Route::get('tariff-types/add', 'admin\TariffTypeController@edit')
             ->name('admin.tariff_types.add');
+
+        //переводы типов тарифов
+        Route::get('tariff-types-translation', 'admin\TariffTypeTranslationController@index')
+            ->name('admin.tariff_types_translation.index');
+//        Route::get('tariff-translation/{language}', 'admin\TariffTranslationController@translationList')
+//            ->name('admin.tariff_translation.translation_list');
+//        Route::get('tariff-translation/{language}/edit', 'admin\TariffTranslationController@edit')
+//            ->name('admin.tariff_translation.edit');
+//        Route::post('tariff-translation/save', 'admin\TariffTranslationController@save')
+//            ->name('admin.tariff_translation.save');
+//        Route::get('site-tariffs', 'admin\TariffTranslationController@siteTariffs')
+//            ->name('admin.tariffs.site_tariffs');
     }
+
 );
 
 Route::get('/', 'site\PageController@selectDefaultLanguage')

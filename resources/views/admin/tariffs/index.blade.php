@@ -41,7 +41,7 @@
                         {{ $tariff->ek_id}}
                     </td>
                     <td>
-                        {{ $tariff->tariffType->name }}
+                        {{ $tariff->tariffType->name?? '' }}
                     </td>
                     <td>
                         {{ $tariffText->name}}
