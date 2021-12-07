@@ -26,4 +26,9 @@ class Language extends Model
     {
         return $this->hasMany('App\TariffText', 'language_code_iso', 'language_code_iso');
     }
+
+    public function worldLanguage()
+    {
+        return $this->hasOne(WorldLanguage::class, 'id','world_language_id');
+    }
 }

@@ -28,8 +28,17 @@ class SiteRepository
                 ->with(
                     [
                         'languages' => function ($query) {
-                            $query->select('id', 'site_id', 'shortname', 'rtl', 'name', 'language_code_iso')
-                                ->orderBy('sort');
+                            $query->select(
+                                [
+                                    'id',
+                                    'site_id',
+                                    'shortname',
+                                    'rtl',
+                                    'name',
+                                    'language_code_iso',
+                                    'world_language_id',
+                                ]
+                            )->orderBy('sort');
                         }
                     ]
                 )
@@ -112,8 +121,9 @@ class SiteRepository
         );
     }
 
-    public function getTopOffices($priorityLanguageList){
-        return TopOfficeRepository::getInstance()->getList($priorityLanguageList);
+    public function getTopOffices($language)
+    {
+        return TopOfficeRepository::getInstance()->getList($language);
     }
 
     public function containsLanguage($languageShortname): bool

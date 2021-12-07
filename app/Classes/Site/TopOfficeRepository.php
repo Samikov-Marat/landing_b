@@ -3,6 +3,7 @@
 namespace App\Classes\Site;
 
 use App\WorldLanguage;
+use Illuminate\Database\Eloquent\Collection;
 
 class TopOfficeRepository
 {
@@ -11,22 +12,17 @@ class TopOfficeRepository
         return new static();
     }
 
-    public function getList(array $priorityLanguageList)
+    public function getList($language)
     {
-        $worldLanguages = WorldLanguage::select(['id', 'language_code_iso'])
-            ->whereIn('language_code_iso', $priorityLanguageList)
-            ->get();
-
-        $worldLanguage = $worldLanguages->sortBy(function ($worldLanguage, $key) use ($priorityLanguageList) {
-            return array_search($worldLanguage->language_code_iso, $priorityLanguageList);
-        })->first();
-
-        $worldLanguage->load([
-                                 'topOffices' => function ($q) {
-                                     $q->orderBy('sort');
-                                 },
-                                'topOffices.office',
-                             ]);
-        return $worldLanguage->topOffices;
+        if (!isset($language->world_language_id)) {
+            return new Collection();
+        }
+        $language->load([
+                            'worldLanguage.topOffices' => function ($q) {
+                                $q->orderBy('sort');
+                            },
+                            'worldLanguage.topOffices.office',
+                        ]);
+        return $language->worldLanguage->topOffices;
     }
 }

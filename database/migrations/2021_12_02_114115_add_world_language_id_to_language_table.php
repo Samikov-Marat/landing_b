@@ -13,8 +13,10 @@ class AddWorldLanguageIdToLanguageTable extends Migration
      */
     public function up()
     {
-        Schema::table('language', function (Blueprint $table) {
-            //
+        Schema::table('languages', function (Blueprint $table) {
+            $table->foreignId('world_language_id')
+                ->nullable()
+                ->default(null);
         });
     }
 
@@ -25,8 +27,8 @@ class AddWorldLanguageIdToLanguageTable extends Migration
      */
     public function down()
     {
-        Schema::table('language', function (Blueprint $table) {
-            //
+        Schema::table('languages', function (Blueprint $table) {
+            $table->dropColumn('world_language_id');
         });
     }
 }

@@ -53,7 +53,8 @@
             <input type="text" class="form-control" name="name" id="id_name"
                    value="{{ isset($language) ? $language->name : '' }}"
                    placeholder="название" autocomplete="off">
-            <small id="id_name_help" class="form-text text-muted">Полное название языка. Например, <q>Английский язык</q></small>
+            <small id="id_name_help" class="form-text text-muted">Полное название языка. Например, <q>Английский
+                    язык</q></small>
         </div>
         <div class="form-group">
             <div class="form-check">
@@ -64,6 +65,23 @@
                     Письмо справа налево (RTL)
                 </label>
             </div>
+        </div>
+        <div class="form-group">
+            <label>Язык международных офисов</label>
+
+            <select name="world_language_id" class="form-control">
+                <option></option>
+                @foreach($worldLanguages as $worldLanguage)
+                    @php
+                        $selected = isset($language) &&
+                            $language->world_language_id == $worldLanguage->id;
+                    @endphp
+                    <option value="{{ $worldLanguage->id }}" {{ $selected?'selected':'' }}
+                    >{{ $worldLanguage->name }}</option>
+                @endforeach
+            </select>
+
+
         </div>
 
         <button type="submit" class="btn btn-primary">Сохранить</button>

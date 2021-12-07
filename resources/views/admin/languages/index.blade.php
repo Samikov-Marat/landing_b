@@ -34,6 +34,9 @@
                     Название
                 </th>
                 <th>
+                    Международные офисы
+                </th>
+                <th>
                     Сортировка
                 </th>
                 <th>
@@ -50,6 +53,11 @@
                     </td>
                     <td>
                         {{ $language->name }}
+                    </td>
+                    <td>
+                        @if(isset($language->worldLanguage))
+                            {{ $language->worldLanguage->name }}
+                        @endif
                     </td>
                     <td class="text-center">
                         <form method="post" action="{!! route('admin.languages.move') !!}">

@@ -64,7 +64,7 @@ class PageController extends Controller
         $siteRepository->loadNewsArticles($language);
         $siteRepository->loadOurWorkers($language);
         $siteRepository->loadFeedbacks($language);
-        $topOffices = $siteRepository->getTopOffices(['en','ru',]);
+        $topOffices = $siteRepository->getTopOffices($language);
         return view('site.' . $page->template)
             ->with('site', $siteRepository->getSite())
             ->with('language', $language)
