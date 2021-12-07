@@ -25,6 +25,7 @@ class WorldLanguage extends Model
         )->withPivot(
             [
                 'name',
+                'country',
                 'full_address',
                 'address_comment',
                 'work_time',

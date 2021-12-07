@@ -6,6 +6,7 @@ use App\Classes\LanguageIsoSearcher;
 use App\Http\Controllers\Controller;
 use App\Language;
 use App\Site;
+use App\WorldLanguage;
 use Illuminate\Http\Request;
 
 class LanguageController extends Controller
@@ -18,11 +19,12 @@ class LanguageController extends Controller
             ->with(
                 [
                     'languages' => function ($query) {
-                        $query->select('id', 'site_id', 'shortname', 'name', 'rtl', 'sort')
+                        $query->select(['id', 'site_id', 'shortname', 'name', 'rtl', 'sort', 'world_language_id'])
                             ->orderBy('sort');
                     },
                 ]
             )
+            ->with('languages.worldLanguage')
             ->find($request->input('site_id'));
         return view('admin.languages.index')
             ->with('site', $site);
@@ -31,8 +33,11 @@ class LanguageController extends Controller
     public function edit($id = null, Request $request)
     {
         if (isset($id)) {
-            $language = Language::select('id', 'shortname', 'language_code_iso', 'name', 'site_id', 'rtl')
+            $language = Language::select(
+                ['id', 'shortname', 'language_code_iso', 'name', 'site_id', 'rtl', 'world_language_id']
+            )
                 ->with('languageIso')
+                ->with('worldLanguage')
                 ->find($id);
             $siteId = $language->site_id;
         } else {
@@ -41,10 +46,13 @@ class LanguageController extends Controller
         }
         $site = Site::select('id', 'name', 'domain')
             ->find($siteId);
-
+        $worldLanguages = WorldLanguage::select(['id', 'name',])
+            ->orderBy('sort')
+            ->get();
 
         return view('admin.languages.form')
             ->with('site', $site)
+            ->with('worldLanguages', $worldLanguages)
             ->with('language', $language);
     }
 
@@ -63,6 +71,11 @@ class LanguageController extends Controller
         $language->name = $request->input('name');
         $language->rtl = $request->input('rtl', false);
 
+        if ($request->input('world_language_id') === '') {
+            $language->world_language_id = null;
+        } elseif ($request->has('world_language_id')) {
+            $language->world_language_id = $request->input('world_language_id');
+        }
 
         if (!$isEditMode) {
             $language->sort = Language::where('site_id', $language->site_id)->max('sort') + self::SORT_STEP;

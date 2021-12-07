@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="{{ mix('universal2/MarkerCluster.Default.css') }}">
 
 
-<div class="contact-page__map js-open-street-map" data-map-state="{{ $dictionary['contacts_open_street_map_state'] }}"
+<div class="contact-page__map js-open-street-map js-contacts-tab-content-1" data-map-state="{{ $dictionary['contacts_open_street_map_state'] }}"
      data-url-template="{!! route('request.get_office_list') . '?bbox=%b' !!}"
 ></div>
 

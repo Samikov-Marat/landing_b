@@ -25,6 +25,7 @@ class TopOffice extends Model
         )
             ->withPivot(
             [
+                'country',
                 'name',
                 'full_address',
                 'address_comment',
