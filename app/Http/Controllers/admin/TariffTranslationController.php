@@ -16,7 +16,7 @@ class TariffTranslationController extends Controller
 
     public function index()
     {
-        $tariffCount = Tariff::select('id')->count();
+        $tariffCount = Tariff::count();
         $languageIsoItems = LanguageIso::select('code_iso', 'name')
             ->has('languages')
             ->with('languages')

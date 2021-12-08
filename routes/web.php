@@ -322,14 +322,13 @@ Route::prefix('admin')->middleware(['auth', 'user.route.access', 'http.secure', 
         //переводы типов тарифов
         Route::get('tariff-types-translation', 'admin\TariffTypeTranslationController@index')
             ->name('admin.tariff_types_translation.index');
-//        Route::get('tariff-translation/{language}', 'admin\TariffTranslationController@translationList')
-//            ->name('admin.tariff_translation.translation_list');
-//        Route::get('tariff-translation/{language}/edit', 'admin\TariffTranslationController@edit')
-//            ->name('admin.tariff_translation.edit');
-//        Route::post('tariff-translation/save', 'admin\TariffTranslationController@save')
-//            ->name('admin.tariff_translation.save');
-//        Route::get('site-tariffs', 'admin\TariffTranslationController@siteTariffs')
-//            ->name('admin.tariffs.site_tariffs');
+        Route::get('tariff-types-translation/{language}', 'admin\TariffTypeTranslationController@translationList')
+            ->name('admin.tariff_types.translation_list');
+        Route::get('tariff-types-translation/{language}/edit', 'admin\TariffTypeTranslationController@edit')
+            ->name('admin.tariff_types_translation.edit');
+        Route::post('tariff-types-translation/save', 'admin\TariffTypeTranslationController@save')
+            ->name('admin.tariff_types_translation.save');
+
     }
 
 );

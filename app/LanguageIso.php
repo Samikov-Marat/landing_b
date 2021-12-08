@@ -18,5 +18,10 @@ class LanguageIso extends Model
     {
         return $this->hasMany(TariffText::class, 'language_code_iso', 'code_iso');
     }
+
+    public function tariffTypeTexts()
+    {
+        return $this->hasMany(TariffTypeText::class, 'language_code_iso', 'code_iso');
+    }
 }
 

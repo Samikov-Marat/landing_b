@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\TariffTypeText;
 use Illuminate\Http\Request;
 use App\TariffType;
 
@@ -37,12 +38,29 @@ class TariffTypeController extends Controller
         $tariffType->ek_id = $request->input('ek_id');
         $tariffType->name = $request->input('name');
         $tariffType->save();
+
+        if ($isEditMode) {
+            $tariffType->load(['tariffTypeTexts' => function ($q) {
+                $q->where('language_code_iso', config('app.tariff_default_language'));
+            }]);
+            if ($tariffType->tariffTypeTexts->count() != 1) {
+                throw new Exception('Не найден перевод типа тарифа');
+            }
+            $tariffTypeText = $tariffType->tariffTypeTexts->first();
+        } else {
+            $tariffTypeText = new TariffTypeText();
+            $tariffTypeText->tariff_type_id = $tariffType->id;
+            $tariffTypeText->language_code_iso = config('app.tariff_default_language');
+        }
+        $tariffTypeText->name = $request->input('name');
+        $tariffTypeText->save();
         return response()->redirectToRoute('admin.tariff_types.index');
     }
 
     public function delete(Request $request)
     {
         $tariffType = TariffType::findOrFail($request->input('id'));
+        $tariffType->tariffTypeTexts()->delete();
         $tariffType->delete();
         return response()->redirectToRoute('admin.tariff_types.index');
     }
