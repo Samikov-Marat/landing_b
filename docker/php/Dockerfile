@@ -3,6 +3,7 @@ ARG USER_ID
 ARG GROUP_ID
 
 COPY ./config/php.ini /usr/local/etc/php/php.ini
+COPY ./config/cacert.pem /usr/local/etc/php/cacert.pem
 
 RUN apt-get update
 RUN    apt-get install -y libzip-dev

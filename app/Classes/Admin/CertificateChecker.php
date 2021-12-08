@@ -35,7 +35,7 @@ class CertificateChecker
 
     private function getParams()
     {
-        $context = stream_context_create(array('ssl' => array('capture_peer_cert' => true)));
+        $context = stream_context_create(['ssl' => ['verify_peer' => false, 'capture_peer_cert' => true,],]);
         $file = fopen($this->getUrl(), 'rb', false, $context);
         $params = stream_context_get_params($file);
         fclose($file);
