@@ -1,18 +1,18 @@
 
-.info-page {
+.info-page-markdown {
     padding-top: 50px;
     padding-bottom: 95px;
     color: #222222;
 }
 
-.info-page__typo-h1, .info-page h1 {
+.info-page-markdown h1 {
     font-weight: 900;
     font-size: 55px;
     line-height: 65px;
     margin-bottom: 15px;
 }
 
-.info-page__line, .info-page hr {
+.info-page-markdown hr {
     width: 50px;
     height: 4px;
     background: #FFCB07;
@@ -21,22 +21,14 @@
     border: none;
 }
 
-.info-page__text, .info-page p, .info-page li {
+.info-page-markdown p, .info-page-markdown li {
     font-weight: normal;
     font-size: 17px;
     line-height: 23px;
     margin-bottom: 25px;
 }
 
-.info-page__text:last-child {
-    margin-bottom: 0;
-}
-
-.info-page__text_mb_size_l {
-    margin-bottom: 35px;
-}
-
-.info-page__title, .info-page h2 {
+.info-page-markdown h2 {
     font-weight: bold;
     font-size: 24px;
     line-height: 23px;
@@ -44,18 +36,18 @@
     margin-bottom: 25px;
 }
 
-.info-page__list, .info-page ul {
+.info-page-markdown ul {
     margin-bottom: 30px;
 }
 
-.info-page__list-item, .info-page li {
+.info-page-markdown li {
     list-style-type: none;
     margin-bottom: 20px;
     display: flex;
     padding-left: 10px;
 }
 
-.info-page__list-item::before, .info-page li::before {
+.info-page-markdown li::before {
     content: "";
     display: block;
     flex-shrink: 0;
@@ -68,65 +60,53 @@
 }
 
 @media (max-width: 480px) {
-    .info-page {
+    .info-page-markdown {
         padding-bottom: 50px;
     }
 
-    .info-page__typo-h1, .info-page h1 {
+    .info-page-markdown h1 {
         font-size: 28px;
         line-height: 35px;
     }
 
-    .info-page__line, .info-page hr {
+    .info-page-markdown hr {
         margin-bottom: 25px;
     }
 }
 
 @media (max-width: 1199px) {
-    .info-page {
+    .info-page-markdown {
         padding-top: 30px;
     }
 
-    .info-page__text, .info-page p {
+    .info-page-markdown p {
         font-size: 15px;
         line-height: 22px;
         margin-bottom: 20px;
     }
 
-    .info-page__text:last-child {
-        margin-bottom: 0;
-    }
-
-    .info-page__text_mb_size_m {
-        margin-bottom: 25px;
-    }
-
-    .info-page__text_mb_size_l {
-        margin-bottom: 30px;
-    }
-
-    .info-page__title, .info-page h2 {
+    .info-page-markdown h2 {
         font-size: 24px;
         line-height: 32px;
         margin-bottom: 20px;
     }
 
-    .info-page__list-item, .info-page li {
+    .info-page-markdown li {
         padding-left: 7px;
     }
 }
 
 @media (min-width: 481px) and (max-width: 1199px) {
-    .info-page {
+    .info-page-markdown {
         padding-bottom: 70px;
     }
 
-    .info-page__typo-h1, .info-page h1 {
+    .info-page-markdown h1 {
         font-size: 45px;
         line-height: 52px;
     }
 
-    .info-page__line {
+    .info-page-markdown hr {
         margin-bottom: 30px;
     }
 }
