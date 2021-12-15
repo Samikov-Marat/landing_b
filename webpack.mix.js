@@ -43,6 +43,7 @@ mix.combine([
 
 
 mix.copy('resources/css/universal2/app.css', 'public/universal2/app.css').version();
+mix.copy('resources/css/universal2/info.css', 'public/universal2/info.css').version();
 mix.copy('resources/css/universal2/custom.css', 'public/universal2/custom.css').version();
 
 mix.copy('node_modules/leaflet.markercluster/dist/MarkerCluster.css', 'public/universal2/MarkerCluster.css').version();
