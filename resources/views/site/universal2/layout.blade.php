@@ -123,9 +123,18 @@
                         <a class="footer__link footer__link-mr-social" href="{!! $dictionary['footer_ukraine_reglament'] !!}">@d('footer_ukraine_reglament_text')</a>
                     @endif
                 </div>
+
                 <div class="footer__link-policy-item">
                     <a class="footer__link footer__link-mr-policy" href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'contacts']) !!}">@d('menu_contects')</a>
-                    <a class="footer__link footer__link-mr-policy" target="_blank" href="/storage/Privacy_Policy.pdf">@d('footer_policy')</a>
+
+                    @if(isset($dictionary['privacy_policy_content']))
+                        <a class="footer__link footer__link-mr-policy" href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'privacy-policy']) !!}">@d('footer_policy')</a>
+                    @else
+                        <a class="footer__link footer__link-mr-policy" target="_blank" href="/storage/Privacy_Policy.pdf">@d('footer_policy')</a>
+                    @endif
+                    @if(isset($dictionary['legal_content']))
+                        <a class="footer__link footer__link-mr-policy" href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'impressum']) !!}">@d('footer_legal_info')</a>
+                    @endif
                 </div>
             </div>
             <div class="footer__right">

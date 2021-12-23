@@ -5,6 +5,14 @@
     color: #222222;
 }
 
+.info-page-markdown ul, .info-page-markdown ol{
+    padding-left: 30px;
+}
+
+.info-page-markdown a, .info-page-markdown a:hover, .info-page-markdown a:active{
+    color: #1ab248;
+}
+
 .info-page-markdown h1 {
     font-weight: 900;
     font-size: 55px;
@@ -41,22 +49,7 @@
 }
 
 .info-page-markdown li {
-    list-style-type: none;
     margin-bottom: 20px;
-    display: flex;
-    padding-left: 10px;
-}
-
-.info-page-markdown li::before {
-    content: "";
-    display: block;
-    flex-shrink: 0;
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
-    background: #222222;
-    margin-right: 12px;
-    margin-top: 10px;
 }
 
 @media (max-width: 480px) {
