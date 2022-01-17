@@ -596,3 +596,7 @@
         font-size: 15px; }
     .office-page-track__form-detail-city {
         font-size: 13px; } }
+
+.calculator_currency_sign{
+    font-family: 'Inter', sans-serif;
+}

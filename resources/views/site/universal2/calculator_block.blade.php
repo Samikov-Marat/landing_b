@@ -142,7 +142,7 @@
                                 <div class="calculator__tariff-item-type">Дверь-дверь</div>
                             </div>
                         </div>
-                        <div class="calculator__tariff-item-price">Цена ₽</div>
+                        <div class="calculator__tariff-item-price calculator_currency_sign">Цена ₽</div>
                     </div>
                 </div>
 
@@ -165,7 +165,7 @@
                         @d('calculator_parcel_kg'), <span class="js-calculator-header-volume">объём</span>
                         @d('calculator_parcel_m')<sup>3</sup>
                     </div>
-                    <div class="calculator__tariff-used-price js-calculator-header-price">0.00 ₽</div>
+                    <div class="calculator__tariff-used-price js-calculator-header-price calculator_currency_sign">0.00 ₽</div>
                 </div>
                 <div class="calculator__contact-title">@d('calculator_contacts_title')</div>
                 <div class="calculator__contact-description">
