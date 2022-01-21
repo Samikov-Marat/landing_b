@@ -310,7 +310,7 @@ Route::prefix('admin')->middleware(['auth', 'user.route.access', 'http.secure', 
 );
 
 Route::get('/', 'site\PageController@selectDefaultLanguage')
-    ->middleware(['save.utm.to.cookies'])
+    ->middleware(['clear.get', 'save.utm.to.cookies'])
     ->name('site.select_default_language');
 
 Route::post('/request/send', 'site\RequestController@send')
@@ -331,6 +331,6 @@ Route::get('/request/images/{imageUrl}', 'site\RequestController@images')
     ->name('request.images');
 
 Route::get('/{languageUrl}/{pageUrl?}', 'site\PageController@showPage')
-    ->middleware(['save.utm.to.cookies'])
+    ->middleware(['clear.get', 'save.utm.to.cookies'])
     ->where('pageUrl', '.*')
     ->name('site.show_page');

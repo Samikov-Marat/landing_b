@@ -63,6 +63,7 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'user.route.access' => \App\Http\Middleware\UserRouteAccess::class,
+        'clear.get' => \App\Http\Middleware\ClearGet::class,
         'save.utm.to.cookies' => \App\Http\Middleware\SaveUtmToCookies::class,
         'http.secure' => \App\Http\Middleware\HttpSecure::class,
         'verify.csrf.token' => \App\Http\Middleware\VerifyCsrfToken::class,
@@ -85,5 +86,7 @@ class Kernel extends HttpKernel
         \App\Http\Middleware\Authenticate::class,
         \App\Http\Middleware\UserRouteAccess::class,
         \App\Http\Middleware\VerifyCsrfToken::class,
+        \App\Http\Middleware\ClearGet::class,
+        \App\Http\Middleware\SaveUtmToCookies::class,
     ];
 }

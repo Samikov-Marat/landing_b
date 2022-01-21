@@ -7,6 +7,7 @@ use App\Classes\Domain;
 use App\Classes\FragmentRepository;
 use App\Classes\LanguageDetector;
 use App\Classes\Site\AllowCookie;
+use App\Classes\Site\RequestCleaner;
 use App\Classes\SiteRepository;
 use App\Exceptions\CurrentPageNotFound;
 use App\Exceptions\PageController\LanguageListIsEmpty;
@@ -29,7 +30,11 @@ class PageController extends Controller
             $language = LanguageDetector::getInstance($request->server('HTTP_ACCEPT_LANGUAGE', ''))
                 ->chooseFrom($site->languages);
             $languageShortName = Str::lower($language->shortname);
-            return response()->redirectToRoute('site.show_page', ['languageUrl' => $languageShortName]);
+
+            $requestCleaner = new RequestCleaner($request);
+            $params = array_merge(['languageUrl' => $languageShortName], $requestCleaner->getCleared());
+
+            return response()->redirectToRoute('site.show_page', $params);
         } catch (SiteNotFound $e) {
             abort(Response::HTTP_NOT_FOUND);
         } catch (LanguageListIsEmpty $e) {
