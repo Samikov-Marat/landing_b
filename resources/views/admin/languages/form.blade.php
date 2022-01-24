@@ -67,6 +67,16 @@
             </div>
         </div>
         <div class="form-group">
+            <div class="form-check">
+                <input type="checkbox" name="disabled" value="1"
+                       id="check_disabled" {{ (isset($language) && $language->disabled)?'checked':'' }}
+                       class="form-check-input">
+                <label for="check_disabled" class="form-check-label">
+                    Отключение отображения языка для клиента (disabled)
+                </label>
+            </div>
+        </div>
+        <div class="form-group">
             <label>Язык международных офисов</label>
 
             <select name="world_language_id" class="form-control">
@@ -80,8 +90,6 @@
                     >{{ $worldLanguage->name }}</option>
                 @endforeach
             </select>
-
-
         </div>
 
         <button type="submit" class="btn btn-primary">Сохранить</button>

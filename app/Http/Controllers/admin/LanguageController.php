@@ -19,7 +19,7 @@ class LanguageController extends Controller
             ->with(
                 [
                     'languages' => function ($query) {
-                        $query->select(['id', 'site_id', 'shortname', 'name', 'rtl', 'sort', 'world_language_id'])
+                        $query->select(['id', 'site_id', 'shortname', 'name', 'rtl', 'sort', 'world_language_id', 'disabled'])
                             ->orderBy('sort');
                     },
                 ]
@@ -34,7 +34,7 @@ class LanguageController extends Controller
     {
         if (isset($id)) {
             $language = Language::select(
-                ['id', 'shortname', 'language_code_iso', 'name', 'site_id', 'rtl', 'world_language_id']
+                ['id', 'shortname', 'language_code_iso', 'name', 'site_id', 'rtl', 'world_language_id', 'disabled']
             )
                 ->with('languageIso')
                 ->with('worldLanguage')
@@ -70,6 +70,7 @@ class LanguageController extends Controller
         $language->language_code_iso = $request->input('language_code_iso');
         $language->name = $request->input('name');
         $language->rtl = $request->input('rtl', false);
+        $language->disabled = $request->input('disabled', false);
 
         if ($request->input('world_language_id') === '') {
             $language->world_language_id = null;

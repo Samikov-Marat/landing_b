@@ -37,6 +37,9 @@
                     Международные офисы
                 </th>
                 <th>
+                    Недоступен для клиента (disabled)
+                </th>
+                <th>
                     Сортировка
                 </th>
                 <th>
@@ -57,6 +60,11 @@
                     <td>
                         @if(isset($language->worldLanguage))
                             {{ $language->worldLanguage->name }}
+                        @endif
+                    </td>
+                    <td>
+                        @if($language->disabled == 1)
+                            Да
                         @endif
                     </td>
                     <td class="text-center">
