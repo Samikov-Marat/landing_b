@@ -11,9 +11,17 @@
 @endcan
 
 @section('content')
-
+<style>
+    thead {
+        position: sticky;
+        top: 0;
+        background: white;
+        border-color: #0e5b44;
+    }
+</style>
     @if($sites->isNotEmpty())
         <table class="table table-hover table-bordered">
+            <thead>
             <tr>
                 <th>
                     id
@@ -62,6 +70,8 @@
                     </th>
                 @endcan
             </tr>
+            </thead>
+            <tbody>
             @foreach($sites as $site)
                 <tr>
                     <td>
@@ -146,6 +156,7 @@
                     @endcan
                 </tr>
             @endforeach
+            </tbody>
         </table>
     @else
         <span class="alert alert-info">Список пуст.</span>
