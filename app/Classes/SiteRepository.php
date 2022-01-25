@@ -60,7 +60,7 @@ class SiteRepository
         $this->site->load(
             [
                 'languages' => function ($query) {
-                    $query->select('id', 'site_id', 'shortname', 'rtl', 'name', 'language_code_iso')
+                    $query->select('id', 'site_id', 'shortname', 'rtl', 'name', 'language_code_iso', 'disabled')
                         ->orderBy('sort');
                 }
             ]
@@ -184,15 +184,15 @@ class SiteRepository
                 },
                 'localOffices.localOfficePhotos' => function ($query) {
                     $query->select([
-                                       'id',
-                                       'local_office_id',
-                                       'sample',
-                                       'sample2',
-                                       'mobile',
-                                       'mobile2',
-                                       'tablet',
-                                       'tablet2',
-                                   ])
+                        'id',
+                        'local_office_id',
+                        'sample',
+                        'sample2',
+                        'mobile',
+                        'mobile2',
+                        'tablet',
+                        'tablet2',
+                    ])
                         ->orderBy('sort');
                 },
             ]
