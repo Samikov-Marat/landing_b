@@ -28,12 +28,12 @@ class PageController extends Controller
             $siteRepository = new SiteRepository($domain);
             $site = $siteRepository->getSite();
             $language = LanguageDetector::getInstance($request->server('HTTP_ACCEPT_LANGUAGE', ''))
-                ->chooseFrom($site->languages);
+                ->chooseFrom($site->languages->filter(function ($language, $key){
+                    return !$language->disabled;
+                }));
             $languageShortName = Str::lower($language->shortname);
-
             $requestCleaner = new RequestCleaner($request);
             $params = array_merge(['languageUrl' => $languageShortName], $requestCleaner->getCleared());
-
             return response()->redirectToRoute('site.show_page', $params);
         } catch (SiteNotFound $e) {
             abort(Response::HTTP_NOT_FOUND);
@@ -56,6 +56,11 @@ class PageController extends Controller
             abort(Response::HTTP_NOT_FOUND);
         }
         $language = $siteRepository->getLanguage($languageShortname);
+        if ($language->disabled) {
+            $requestCleaner = new RequestCleaner($request);
+            return response()->redirectToRoute('site.select_default_language', $requestCleaner->getCleared());
+        }
+        $siteRepository->deleteDisabledLanguages();
         try {
             $page = $siteRepository->getCurrentPage($pageUrl);
         } catch (CurrentPageNotFound $e) {
