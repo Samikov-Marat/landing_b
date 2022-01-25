@@ -54,7 +54,7 @@
                 </div>
                 <div class="office-page-header__left">
                     @foreach($site->languages as $languageItem)
-                        @if($language->id != $languageItem->id && $languageItem->disabled == false)
+                        @if($language->id != $languageItem->id)
                             <div><a class="header__language-selector"
                                     href="{!! route('site.show_page', ['languageUrl' => $languageItem->uri, 'pageUrl' => $page->url]) !!}">{{ \Str::upper($languageItem->shortname) }}</a>
                             </div>

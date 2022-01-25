@@ -37,6 +37,7 @@ class SiteRepository
                                     'name',
                                     'language_code_iso',
                                     'world_language_id',
+                                    'disabled',
                                 ]
                             )->orderBy('sort');
                         }
@@ -197,5 +198,12 @@ class SiteRepository
                 },
             ]
         );
+    }
+
+    public function deleteDisabledLanguages()
+    {
+        $this->site->languages = $this->site->languages->filter(function ($language, $key) {
+            return !$language->disabled;
+        });
     }
 }
