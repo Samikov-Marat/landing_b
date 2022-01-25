@@ -16,7 +16,6 @@
         position: sticky;
         top: 0;
         background: white;
-        border-color: #0e5b44;
     }
 </style>
     @if($sites->isNotEmpty())
