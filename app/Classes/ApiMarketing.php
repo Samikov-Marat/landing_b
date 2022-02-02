@@ -7,6 +7,7 @@ use App\Exceptions\LocalOfficeNotFoundByUtm;
 use GuzzleHttp\Client;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Response;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Log;
 
@@ -23,7 +24,9 @@ class ApiMarketing
         $message .= 'Размер: ' . $form['length'] . 'x' . $form['width'] . 'x' . $form['height'] . ' см' . PHP_EOL;
         $message .= 'Тариф: ' . $form['tariff'] . PHP_EOL;
         $message .= 'Согласен на обработку персональных данных: ' . $form['agree'] . PHP_EOL;
-
+        // TODO:
+        //        $message .= 'Дата заявки ' . Carbon::now()->setTimezone(-5)->toDayDateTimeString() . PHP_EOL;
+        //        dd(Carbon::now()->setTimezone(-5)->toDayDateTimeString());
         return [
             'subject' => 'Лендинг. Калькулятор.',
             'name' => $form['name'],
