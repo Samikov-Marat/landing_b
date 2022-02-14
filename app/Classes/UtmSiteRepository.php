@@ -17,7 +17,7 @@ class UtmSiteRepository
             ->with(
                 [
                     'localOffices' => function ($query) {
-                        $query->select('id', 'site_id', 'utm_tag', 'utm_value', 'category')
+                        $query->select('id', 'site_id', 'utm_tag', 'utm_value', 'category', 'request_timezone')
                             ->orderBy('sort');
                     }
                 ]
@@ -40,6 +40,17 @@ class UtmSiteRepository
             if (isset($utms[$localOffice->utm_tag]) &&
                 ($localOffice->utm_value == $utms[$localOffice->utm_tag])) {
                 return $localOffice->category;
+            }
+        }
+        throw new LocalOfficeNotFoundByUtm('Офис по utm в cookies не найден');
+    }
+
+    public function getLocalOffice($utms)
+    {
+        foreach ($this->site->localOffices as $localOffice) {
+            if (isset($utms[$localOffice->utm_tag]) &&
+                ($localOffice->utm_value == $utms[$localOffice->utm_tag])) {
+                return $localOffice;
             }
         }
         throw new LocalOfficeNotFoundByUtm('Офис по utm в cookies не найден');

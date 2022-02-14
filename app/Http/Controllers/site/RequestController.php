@@ -8,6 +8,7 @@ use App\Classes\ImageResponse;
 use App\Classes\MapJsonCallback;
 use App\Classes\OfficeRepository;
 use App\Classes\Site\AllowCookie;
+use App\Classes\Site\ApiMarketing\NewApiMarketingNew;
 use App\Feedback;
 use App\Http\Controllers\Controller;
 use App\Language;
@@ -24,8 +25,7 @@ class RequestController extends Controller
     public function send(Request $request)
     {
         try {
-            $apiMarketingRequest = ApiMarketing::createRequest($request->all(), Domain::getInstance($request)->get());
-            return ApiMarketing::send($apiMarketingRequest);
+            return NewApiMarketingNew::getInstance($request)->sendCalculatorRequest();
         } catch (\Exception $e) {
             Log::error($e);
             abort(HttpResponse::HTTP_INTERNAL_SERVER_ERROR);

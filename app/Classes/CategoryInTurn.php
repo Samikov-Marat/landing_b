@@ -27,6 +27,17 @@ class CategoryInTurn
         }
     }
 
+    public function getNextNew()
+    {
+        try {
+            $localOffice = $this->getNextLocalOffice();
+            HistoryCategoryRepository::getInstance()->saveForHistory($localOffice);
+            return $localOffice;
+        } catch (\Exception $e) {
+            throw $e;
+        }
+    }
+
     private function getNextLocalOffice()
     {
         if ($this->localOffices->isEmpty()) {
