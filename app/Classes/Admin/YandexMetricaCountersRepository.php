@@ -49,7 +49,6 @@ class YandexMetricaCountersRepository
     private function getParams()
     {
         return [
-            'permission' => 'own',
             'status' => 'Active',
         ];
     }
