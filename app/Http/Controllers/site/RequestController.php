@@ -35,8 +35,7 @@ class RequestController extends Controller
     public function feedback(Request $request)
     {
         try {
-            $apiMarketingRequest = ApiMarketing::createFeedback($request->all(), Domain::getInstance($request)->get());
-            return ApiMarketing::send($apiMarketingRequest);
+            return NewApiMarketingNew::getInstance($request)->sendFeedbackRequest();
         } catch (\Exception $e) {
             Log::error($e);
             abort(HttpResponse::HTTP_INTERNAL_SERVER_ERROR);
@@ -46,11 +45,7 @@ class RequestController extends Controller
     public function presentation(Request $request)
     {
         try {
-            $apiMarketingRequest = ApiMarketing::createPresentation(
-                $request->all(),
-                Domain::getInstance($request)->get()
-            );
-            return ApiMarketing::send($apiMarketingRequest);
+            return NewApiMarketingNew::getInstance($request)->sendPresentationRequest();
         } catch (\Exception $e) {
             Log::error($e);
             abort(HttpResponse::HTTP_INTERNAL_SERVER_ERROR);

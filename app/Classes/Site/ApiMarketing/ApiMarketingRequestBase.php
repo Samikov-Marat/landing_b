@@ -28,7 +28,7 @@ class ApiMarketingRequestBase
     {
         return Carbon::now()
             ->setTimezone($this->receiverTimezone)
-            ->toDayDateTimeString();
+            ->format('d M Y H:i:s  (e)');
     }
 
 }

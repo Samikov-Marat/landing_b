@@ -41,7 +41,29 @@ class NewApiMarketingNew
             $this->apiMarketingCategory,
             $this->timezone
         );
-        return ApiMarketing::send($apiMarketingRequestCalculator->get());
+        return ApiMarketingSender::send($apiMarketingRequestCalculator->get());
+    }
+
+    public function sendFeedbackRequest()
+    {
+        $apiMarketingRequestFeedback = new ApiMarketingRequestFeedback(
+            $this->request,
+            $this->domain,
+            $this->apiMarketingCategory,
+            $this->timezone
+        );
+        return ApiMarketingSender::send($apiMarketingRequestFeedback->get());
+    }
+
+    public function sendPresentationRequest()
+    {
+        $apiMarketingRequestPresentation = new ApiMarketingRequestPresentation(
+            $this->request,
+            $this->domain,
+            $this->apiMarketingCategory,
+            $this->timezone
+        );
+        return ApiMarketingSender::send($apiMarketingRequestPresentation->get());
     }
 
 
