@@ -368,6 +368,7 @@ $(function () {
 
     $('.form-field__input[name=from],.form-field__input[name=to]')
         .autocomplete({
+            noCache: true,
             minChars: 1,
             deferRequestBy: 0,
             serviceUrl: 'https://webproxy.cdek.ru/city',
