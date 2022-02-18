@@ -22,6 +22,7 @@ $(function () {
 
         let formExtended = $form.serializeArray();
         formExtended.push({name: 'recaptcha_token', value: token});
+        formExtended.push({name: 'url', value: window.location.href});
         let request = {
             url: $form.prop('action'),
             data: formExtended
