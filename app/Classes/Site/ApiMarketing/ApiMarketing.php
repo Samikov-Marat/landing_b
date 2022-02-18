@@ -2,7 +2,6 @@
 
 namespace App\Classes\Site\ApiMarketing;
 
-use App\Classes\ApiMarketing;
 use App\Classes\CategoryInTurn;
 use App\Classes\Domain;
 use App\Classes\UtmCookie;
@@ -13,7 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Log;
 
-class NewApiMarketingNew
+class ApiMarketing
 {
     private $request;
     private $domain;

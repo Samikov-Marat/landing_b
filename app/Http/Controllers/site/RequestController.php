@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\site;
 
-use App\Classes\ApiMarketing;
 use App\Classes\Domain;
 use App\Classes\ImageResponse;
 use App\Classes\MapJsonCallback;
 use App\Classes\OfficeRepository;
 use App\Classes\Site\AllowCookie;
-use App\Classes\Site\ApiMarketing\NewApiMarketingNew;
+use App\Classes\Site\ApiMarketing\ApiMarketing;
 use App\Feedback;
 use App\Http\Controllers\Controller;
 use App\Language;
@@ -25,7 +24,7 @@ class RequestController extends Controller
     public function send(Request $request)
     {
         try {
-            return NewApiMarketingNew::getInstance($request)->sendCalculatorRequest();
+            return ApiMarketing::getInstance($request)->sendCalculatorRequest();
         } catch (\Exception $e) {
             Log::error($e);
             abort(HttpResponse::HTTP_INTERNAL_SERVER_ERROR);
@@ -35,7 +34,7 @@ class RequestController extends Controller
     public function feedback(Request $request)
     {
         try {
-            return NewApiMarketingNew::getInstance($request)->sendFeedbackRequest();
+            return ApiMarketing::getInstance($request)->sendFeedbackRequest();
         } catch (\Exception $e) {
             Log::error($e);
             abort(HttpResponse::HTTP_INTERNAL_SERVER_ERROR);
@@ -45,7 +44,7 @@ class RequestController extends Controller
     public function presentation(Request $request)
     {
         try {
-            return NewApiMarketingNew::getInstance($request)->sendPresentationRequest();
+            return ApiMarketing::getInstance($request)->sendPresentationRequest();
         } catch (\Exception $e) {
             Log::error($e);
             abort(HttpResponse::HTTP_INTERNAL_SERVER_ERROR);
