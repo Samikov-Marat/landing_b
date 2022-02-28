@@ -119,6 +119,9 @@
                     @if($dictionary['footer_ukraine_reglament'] != '-')
                         <a class="footer__link footer__link-mr-social" href="{!! $dictionary['footer_ukraine_reglament'] !!}">@d('footer_ukraine_reglament_text')</a>
                     @endif
+                    @if($dictionary['footer_fulfilment'] != '-')
+                        <a class="footer__link footer__link-mr-social" href="{!! $dictionary['footer_fulfilment'] !!}">@d('footer_fulfilment_text')</a>
+                    @endif
                 </div>
 
                 <div class="footer__link-policy-item">
