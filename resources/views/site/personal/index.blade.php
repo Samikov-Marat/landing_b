@@ -85,9 +85,9 @@
                 <div class="header-mobile-open__close js-menu-close-button"></div>
                 <div class="header__language-selector office-page-mobile-menu__lang">@d('personal_9')</div>
                 <div class="office-page-mobile-menu__buttons">
-                    <a href="#"
+                    <a href="#calculator"
                        class="office-page-button office-page-button_type_calculate office-page-mobile-menu__button">@d('personal_10')</a>
-                    <a href="#"
+                    <a href="#tracking"
                        class="office-page-button office-page-button_type_search office-page-mobile-menu__button">@d('personal_11')</a>
                 </div>
                 <div class="office-page-mobile-menu__text">
