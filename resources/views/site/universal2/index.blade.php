@@ -117,13 +117,7 @@
         </div>
 
         @include('site.universal2.partners_block')
-
-
         @include('site.universal2.any_questions_block')
-
-        @include('site.universal2.allow_cookies')
     </div>
-
-
 @endsection
 

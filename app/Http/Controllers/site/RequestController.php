@@ -55,8 +55,7 @@ class RequestController extends Controller
     {
         AllowCookie::getInstance($request)
             ->setAllow();
-        return response('saved', 200)
-            ->header('Content-Type', 'text/plain');
+        return view('site.universal2.gtm_block');
     }
 
     public function feedbackReview(Request $request)
