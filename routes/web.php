@@ -306,7 +306,31 @@ Route::prefix('admin')->middleware(['auth', 'user.route.access', 'http.secure', 
             ->name('admin.tariff_translation.save');
         Route::get('site-tariffs', 'admin\TariffTranslationController@siteTariffs')
             ->name('admin.tariffs.site_tariffs');
+
+        //типы тарифов
+        Route::get('tariff-types', 'admin\TariffTypeController@index')
+            ->name('admin.tariff_types.index');
+        Route::get('tariff-types/edit/{id}', 'admin\TariffTypeController@edit')
+            ->name('admin.tariff_types.edit');
+        Route::post('tariff-types/delete', 'admin\TariffTypeController@delete')
+            ->name('admin.tariff_types.delete');
+        Route::post('tariff-types/save', 'admin\TariffTypeController@save')
+            ->name('admin.tariff_types.save');
+        Route::get('tariff-types/add', 'admin\TariffTypeController@edit')
+            ->name('admin.tariff_types.add');
+
+        //переводы типов тарифов
+        Route::get('tariff-types-translation', 'admin\TariffTypeTranslationController@index')
+            ->name('admin.tariff_types_translation.index');
+        Route::get('tariff-types-translation/{language}', 'admin\TariffTypeTranslationController@translationList')
+            ->name('admin.tariff_types.translation_list');
+        Route::get('tariff-types-translation/{language}/edit', 'admin\TariffTypeTranslationController@edit')
+            ->name('admin.tariff_types_translation.edit');
+        Route::post('tariff-types-translation/save', 'admin\TariffTypeTranslationController@save')
+            ->name('admin.tariff_types_translation.save');
+
     }
+
 );
 
 Route::get('/', 'site\PageController@selectDefaultLanguage')

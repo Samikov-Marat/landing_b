@@ -4,14 +4,6 @@
     Тарифы
 @endsection
 
-@section('breadcrumbs')
-    @include('admin.breadcrumbs', ['breadcrumbs' => [
-        ['href' => route('admin.sites.index'), 'text' => 'Сайты'],
-        ['text' => $site->name],
-        ['text' => 'Тарифы'],
-    ]])
-@endsection
-
 @section('content')
 
     @if($site->languages->isNotEmpty())
