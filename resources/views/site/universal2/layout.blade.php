@@ -114,13 +114,13 @@
             <div class="footer__left">
                 <a class="footer__footer-logo footer-logo" href="{!! route('site.show_page', ['languageUrl' => $language->uri]) !!}"></a>
                 <div class="footer__link-social-item">
-                    <a class="footer__link footer__link-mr-social {{ $dictionary['footer_facebook']?'':'hidden' }}" href="{!! $dictionary['footer_facebook'] !!}">Facebook</a>
-                    <a class="footer__link footer__link-mr-social {{ $dictionary['footer_instagram']?'':'hidden' }}" href="{!! $dictionary['footer_instagram'] !!}">Instagram</a>
+                    <a class="footer__link footer__link-mr-social {{ $dictionary['footer_facebook']?'':'hidden' }}" href="{!! $dictionary['footer_facebook'] !!}" target="_blank">Facebook</a>
+                    <a class="footer__link footer__link-mr-social {{ $dictionary['footer_instagram']?'':'hidden' }}" href="{!! $dictionary['footer_instagram'] !!}" target="_blank">Instagram</a>
                     @if($dictionary['footer_ukraine_reglament'] != '-')
                         <a class="footer__link footer__link-mr-social" href="{!! $dictionary['footer_ukraine_reglament'] !!}">@d('footer_ukraine_reglament_text')</a>
                     @endif
                     @if($dictionary['footer_fulfilment'] != '-')
-                        <a class="footer__link footer__link-mr-social" href="{!! $dictionary['footer_fulfilment'] !!}">@d('footer_fulfilment_text')</a>
+                        <a class="footer__link footer__link-mr-social" href="{!! $dictionary['footer_fulfilment'] !!}" target="_blank">@d('footer_fulfilment_text')</a>
                     @endif
                 </div>
 
