@@ -7,7 +7,7 @@ use Illuminate\Http\Response;
 
 class ApiMarketingSender
 {
-    const API_URI = 'http://192.168.1.162:8121/api/v1/landing';
+    const API_URI = 'https://api-marketing.cdek.ru/api/v1/landing';
     const TOKEN = 'PFpp_TFarNGuoqRbdDayoSV-DQUggkTtKb_5gKtt';
 
     public static function send($apiMarketingRequest)
