@@ -38,9 +38,6 @@
                             <a class="main-menu__link current" href="{!! route('site.show_page', ['languageUrl' => $language->uri]) !!}">@d('menu_delivery')</a>
                         </li>
                         <li class="main-menu__item">
-                            <a class="main-menu__link" href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'company']) !!}">@d('menu_company')</a>
-                        </li>
-                        <li class="main-menu__item">
                             <a class="main-menu__link" href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'contacts']) !!}">@d('menu_contects')</a>
                         </li>
                         @if (isset($dictionary['menu_to_kazakhstan']))
@@ -94,9 +91,6 @@
                     <ul class="main-menu__list">
                         <li class="main-menu__item">
                             <a class="main-menu__link current" href="{!! route('site.show_page', ['languageUrl' => $language->uri]) !!}">@d('menu_delivery')</a>
-                        </li>
-                        <li class="main-menu__item">
-                            <a class="main-menu__link" href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'company']) !!}">@d('menu_company')</a>
                         </li>
                         <li class="main-menu__item">
                             <a class="main-menu__link" href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'contacts']) !!}">@d('menu_contects')</a>
