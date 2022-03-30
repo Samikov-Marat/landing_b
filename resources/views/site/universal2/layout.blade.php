@@ -126,7 +126,10 @@
                         <a class="footer__link footer__link-mr-policy" target="_blank" href="/storage/Privacy_Policy.pdf">@d('footer_policy')</a>
                     @endif
                     @if($dictionary['footer_has_legal_page'] != '-')
-                        <a class="footer__link footer__link-mr-policy" href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'impressum']) !!}">@d('footer_legal_info')</a>
+                        <a class="footer__link footer__link-mr-policy" href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'legal']) !!}">@d('footer_legal_info')</a>
+                    @endif
+                    @if($dictionary['footer_has_impressum'] != '-')
+                        <a class="footer__link footer__link-mr-policy" href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'impressum']) !!}">@d('footer_impressum_text')</a>
                     @endif
                 </div>
             </div>
