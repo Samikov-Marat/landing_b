@@ -1,0 +1,1666 @@
+.site-theme .square-card_size_big {
+  width: 200px; }
+  .site-theme .square-card_size_big .square-card__bg {
+    height: 200px; }
+
+.site-theme .square-card_big-icon_person .square-card__bg {
+  background-size: 109px 114px; }
+
+.site-theme .square-card_big-icon_contract .square-card__bg {
+  background-size: 135px 84px; }
+
+.site-theme .square-card_big-icon_mail .square-card__bg {
+  background-size: 98px 98px; }
+
+.site-theme .square-card_big-icon_courier .square-card__bg {
+  background-size: 112px 245px;
+  background-position: top center; }
+
+.site-theme .square-card_big-icon_packages .square-card__bg {
+  background-size: 114px 127px; }
+
+.site-theme .square-card_big-icon_integration .square-card__bg {
+  background-size: 130px 93px; }
+
+.site-theme .square-card__bg {
+  border-radius: 50%;
+  background-color: #FFFFFF; }
+
+.site-theme .square-card__title {
+  text-align: center;
+  font-weight: 600;
+  font-size: 21px;
+  line-height: 26px;
+  margin-bottom: 20px; }
+
+.site-theme .square-card__description {
+  text-align: center; }
+
+@media (max-width: 480px) {
+  .site-theme .square-card__bg {
+    width: 200px;
+    margin: 0 auto 20px; }
+  .site-theme .square-card__title {
+    font-size: 18px;
+    line-height: 26px;
+    margin-bottom: 10px; }
+  .site-theme .square-card__description {
+    font-size: 15px;
+    line-height: 21px; } }
+
+@media (min-width: 481px) and (max-width: 1199px) {
+  .site-theme .square-card__bg {
+    margin: 0 auto 25px; }
+  .site-theme .square-card__title {
+    font-size: 18px;
+    line-height: 26px;
+    margin-bottom: 15px; }
+  .site-theme .square-card__description {
+    font-size: 15px;
+    line-height: 21px; } }
+
+.site-theme .company-advantages {
+  background: #F5F5F6;
+  padding: 120px 0 109px; }
+  .site-theme .company-advantages__description {
+    font-size: 18px;
+    line-height: 22px; }
+
+@media (max-width: 480px) {
+  .site-theme .company-advantages {
+    padding: 45px 0 0;
+    background: #fff; }
+    .site-theme .company-advantages .content {
+      padding: 0; }
+    .site-theme .company-advantages__heading {
+      margin-bottom: 25px;
+      padding: 0 20px;
+      box-sizing: border-box; }
+    .site-theme .company-advantages__description {
+      font-size: 15px;
+      line-height: 22px;
+      margin-bottom: 45px;
+      padding: 0 20px;
+      box-sizing: border-box; } }
+
+@media (min-width: 481px) and (max-width: 1199px) {
+  .site-theme .company-advantages {
+    padding: 70px 0 70px; }
+    .site-theme .company-advantages__heading {
+      margin-bottom: 25px; }
+    .site-theme .company-advantages__description {
+      font-size: 18px;
+      line-height: 22px;
+      margin-bottom: 35px; } }
+
+.site-theme .index-page__poster {
+  margin-bottom: 0;
+  height: 709px;
+  background: url("../../img/themes/vietnam/index/poster.jpg") no-repeat center top; }
+
+.site-theme .index-page__poster-heading::after {
+  display: none; }
+
+.site-theme .index-page .square-cards {
+  position: relative; }
+  .site-theme .index-page .square-cards::after {
+    position: absolute;
+    content: url("../../img/themes/vietnam/index/company-advantages.png");
+    right: -360px;
+    bottom: -391px; }
+
+.site-theme .index-page .index-special-conditions {
+  margin-bottom: 44px; }
+
+.site-theme .index-page__how-it-works-content {
+  background: #fff;
+  padding-bottom: 77px; }
+  .site-theme .index-page__how-it-works-content::before {
+    content: url("../../img/themes/vietnam/hw-iw-bg.png");
+    position: absolute;
+    top: -204px;
+    left: 0;
+    z-index: 2; }
+
+.site-theme .index-page__how-it-works-dots {
+  display: none; }
+
+@media (max-width: 480px) {
+  .site-theme .index-page__poster {
+    margin-bottom: 0;
+    height: unset;
+    background: url("../../img/themes/vietnam/index/poster-320.jpg") no-repeat center top;
+    background-size: cover;
+    padding-right: 55px;
+    padding-bottom: 45px;
+    min-height: 308px; }
+  .site-theme .index-page .main-poster__text {
+    display: none; }
+  .site-theme .index-page .main-poster__content {
+    width: 96%;
+    max-width: 280px; }
+  .site-theme .index-page .square-cards {
+    background: #F4F4F5;
+    padding: 40px 20px 87px;
+    box-sizing: border-box; }
+    .site-theme .index-page .square-cards::after {
+      display: none; }
+  .site-theme .index-page__how-it-works-content {
+    padding-bottom: 77px;
+    background: url("../../img/themes/vietnam/hw-iw-bg-320.png") no-repeat center bottom 39px;
+    background-size: 282px 331px; }
+    .site-theme .index-page__how-it-works-content::before {
+      display: none; }
+  .site-theme .index-page .primary-button {
+    border-radius: 0; } }
+
+@media (min-width: 481px) and (max-width: 1199px) {
+  .site-theme .index-page__poster {
+    margin-bottom: 0;
+    height: unset;
+    background: url("../../img/themes/vietnam/index/poster-768.jpg") no-repeat center top;
+    background-size: cover;
+    min-height: 489px; }
+  .site-theme .index-page .square-cards {
+    background: #F4F4F5; }
+    .site-theme .index-page .square-cards::after {
+      display: none; }
+  .site-theme .index-page .how-it-works {
+    padding-top: 82px; }
+    .site-theme .index-page .how-it-works .content {
+      padding: 0; }
+  .site-theme .index-page__how-it-works-content {
+    background: #fff;
+    padding-bottom: 33px; }
+    .site-theme .index-page__how-it-works-content::before {
+      display: none; }
+  .site-theme .index-page .primary-button {
+    border-radius: 0; } }
+
+.site-theme .circle-icon {
+  box-shadow: none;
+  border-radius: 50%; }
+  .site-theme .circle-icon_icon_cart {
+    background-image: url("../../img/themes/vietnam/c-icon/cart.svg"); }
+  .site-theme .circle-icon_icon_business {
+    background-image: url("../../img/themes/vietnam/c-icon/business.svg"); }
+  .site-theme .circle-icon_icon_map {
+    background-image: url("../../img/themes/vietnam/c-icon/map.svg"); }
+  .site-theme .circle-icon_icon_hand-box {
+    background-image: url("../../img/themes/vietnam/c-icon/hand-box.svg"); }
+  .site-theme .circle-icon_icon_earth {
+    background-image: url("../../img/themes/vietnam/c-icon/earth.svg"); }
+  .site-theme .circle-icon_icon_courier {
+    background-image: url("../../img/themes/vietnam/c-icon/courier.svg"); }
+  .site-theme .circle-icon_icon_ru {
+    background-image: url("../../img/themes/vietnam/c-icon/ru.svg"); }
+
+.site-theme .typo-h1 {
+  font-size: 55px;
+  line-height: 65px;
+  color: #fff;
+  font-weight: 500; }
+
+.site-theme .typo-h2 {
+  font-weight: normal; }
+
+.site-theme .typo-colored_color_green {
+  color: #1AB248; }
+
+.site-theme .typo-bold {
+  font-weight: 500; }
+
+@media (max-width: 480px) {
+  .site-theme .typo-h1 {
+    font-size: 21px;
+    line-height: 30px; }
+  .site-theme .typo-h2 {
+    font-size: 21px;
+    line-height: 30px; } }
+
+@media (min-width: 481px) and (max-width: 1199px) {
+  .site-theme .typo-h1 {
+    font-size: 25px;
+    line-height: 33px; }
+  .site-theme .typo-h2 {
+    font-size: 30px;
+    line-height: 38px; } }
+
+.site-theme .faq__container {
+  position: relative; }
+  .site-theme .faq__container::before {
+    position: absolute;
+    content: url("../../img/themes/vietnam/faq-before.jpg");
+    width: 247px;
+    height: 244px;
+    top: -217px;
+    left: -297px;
+    z-index: 1; }
+
+.site-theme .faq__content {
+  background: #fff;
+  padding-left: 0; }
+
+.site-theme .faq__title {
+  margin-bottom: 20px;
+  text-align: center; }
+
+.site-theme .faq__more {
+  display: none; }
+
+.site-theme .faq__dots-top {
+  display: none; }
+
+@media (max-width: 480px) {
+  .site-theme .faq__title {
+    margin-bottom: 7px; }
+  .site-theme .faq__container::before {
+    display: none; }
+  .site-theme .faq__submenu {
+    margin-bottom: 32px;
+    height: 53px; }
+  .site-theme .faq__faq-list {
+    margin-bottom: 0; } }
+
+@media (min-width: 481px) and (max-width: 1199px) {
+  .site-theme .faq {
+    padding-top: 42px; }
+    .site-theme .faq__title {
+      margin-bottom: 7px; }
+    .site-theme .faq__container::before {
+      display: none; }
+    .site-theme .faq__submenu {
+      margin-bottom: 0;
+      height: 53px; }
+    .site-theme .faq__faq-list {
+      margin-bottom: 0; } }
+
+.site-theme .faq-list__faq {
+  padding-left: 20px; }
+  .site-theme .faq-list__faq:last-child {
+    border-bottom: none; }
+
+.site-theme .faq-list__faq-question {
+  font-size: 20px;
+  font-weight: bold; }
+
+@media (min-width: 481px) and (max-width: 1199px) {
+  .site-theme .faq-list__faq {
+    padding-left: 0; }
+  .site-theme .faq-list__faq-question {
+    font-size: 16px;
+    line-height: 20px;
+    padding-right: 21px; }
+    .site-theme .faq-list__faq-question::after {
+      right: 0;
+      top: 0;
+      width: 11px;
+      background-size: 11px 7px; }
+  .site-theme .faq-list__faq-answer {
+    font-size: 14px;
+    line-height: 18px; } }
+
+@media (max-width: 480px) {
+  .site-theme .faq-list__faq {
+    padding-left: 0; }
+  .site-theme .faq-list__faq-question {
+    font-size: 16px;
+    line-height: 20px;
+    padding-right: 21px; }
+    .site-theme .faq-list__faq-question::after {
+      right: 0;
+      top: 0;
+      width: 11px;
+      background-size: 11px 7px; }
+  .site-theme .faq-list__faq-answer {
+    font-size: 14px;
+    line-height: 18px; } }
+
+.site-theme .partner {
+  background: #1AB248; }
+  .site-theme .partner__title {
+    font-weight: normal;
+    font-size: 45px;
+    line-height: 53px;
+    margin-bottom: 31px; }
+  .site-theme .partner__more {
+    display: inline-block;
+    padding: 17px 35px;
+    border: 1px solid #FFFFFF; }
+
+@media (max-width: 480px) {
+  .site-theme .partner__title {
+    font-size: 22px;
+    line-height: 30px;
+    margin-bottom: 25px; }
+  .site-theme .partner__item {
+    border-radius: 0; }
+  .site-theme .partner__list {
+    margin-bottom: 30px; }
+  .site-theme .partner__more {
+    font-size: 16px;
+    line-height: 24px;
+    padding: 12px 25px; } }
+
+@media (min-width: 481px) and (max-width: 1199px) {
+  .site-theme .partner {
+    padding: 60px 0; }
+    .site-theme .partner__title {
+      font-size: 30px;
+      line-height: 38px;
+      margin-bottom: 25px; }
+    .site-theme .partner__more {
+      font-size: 16px;
+      line-height: 24px;
+      padding: 12px 25px;
+      font-weight: bold; } }
+
+.site-theme .question {
+  background: url("../../img/themes/vietnam/question-bg-1.png") no-repeat calc(50% - 770px) -178px, url("../../img/themes/vietnam/question-bg-2.png") no-repeat calc(50% + 782px) calc(50% + 226px);
+  text-align: left;
+  min-height: auto; }
+  .site-theme .question__content {
+    background: url("../../img/themes/vietnam/question-content-bg.png") no-repeat left 164px bottom, url("../../img/themes/vietnam/question-content-circle.png") no-repeat left 44px bottom -94px;
+    box-sizing: border-box;
+    padding: 169px 0 112px 600px; }
+  .site-theme .question__icon-1 {
+    display: none; }
+  .site-theme .question__title {
+    margin-bottom: 25px; }
+  .site-theme .question__desc {
+    font-size: 25px;
+    line-height: 31px;
+    margin-bottom: 50px; }
+
+@media (max-width: 480px) {
+  .site-theme .question {
+    background: unset;
+    text-align: center; }
+    .site-theme .question__content {
+      background: unset;
+      padding: 56px 20px 50px; }
+    .site-theme .question__title {
+      font-weight: normal;
+      font-size: 22px;
+      line-height: 30px; }
+    .site-theme .question__desc {
+      font-size: 16px;
+      line-height: 22px;
+      font-weight: normal;
+      margin-bottom: 20px; }
+    .site-theme .question__desc-2 {
+      font-size: 16px;
+      line-height: 22px;
+      margin-bottom: 30px; } }
+
+@media (min-width: 481px) and (max-width: 1199px) {
+  .site-theme .question {
+    background: url("../../img/themes/vietnam/question-content-bg-tablet.png") no-repeat calc(50% - 169px) bottom;
+    min-height: 383px; }
+    .site-theme .question__content {
+      background: unset;
+      padding: 108px 0 0;
+      width: 354px;
+      margin: 0;
+      position: relative;
+      left: 50%; }
+    .site-theme .question__title {
+      font-weight: normal;
+      font-size: 22px;
+      line-height: 30px; }
+    .site-theme .question__desc {
+      font-size: 16px;
+      line-height: 22px;
+      font-weight: normal;
+      margin-bottom: 20px; }
+    .site-theme .question__desc-2 {
+      font-size: 16px;
+      line-height: 22px;
+      margin-bottom: 30px; } }
+
+.site-theme .modal {
+  border-radius: 0; }
+  .site-theme .modal .form-field__input {
+    border: 1px solid #E1E1E1;
+    padding: 13px 16px; }
+
+@media (min-width: 1200px) {
+  .site-theme .modal .form-field__input:hover {
+    border-color: #BBB; } }
+
+@media (max-width: 1199px) {
+  .site-theme .modal__result-icon {
+    margin-bottom: 20px; }
+  .site-theme .modal__result-title {
+    font-size: 25px;
+    line-height: 33px;
+    margin-bottom: 16px; }
+  .site-theme .modal__result-text {
+    font-size: 15px;
+    line-height: 21px;
+    margin-bottom: 20px; } }
+
+@media (max-width: 480px) {
+  .site-theme .modal-container {
+    justify-content: flex-start;
+    align-items: flex-start; }
+  .site-theme .modal {
+    border-radius: 0;
+    box-shadow: none;
+    width: 100%;
+    height: 100%; }
+    .site-theme .modal__content {
+      padding: 30px 20px; }
+    .site-theme .modal__heading {
+      font-size: 25px;
+      line-height: 33px;
+      text-align: center; }
+    .site-theme .modal__close {
+      cursor: pointer;
+      background: url("../../img/modal-close-mobile.svg") no-repeat center center;
+      width: 23px;
+      height: 23px;
+      position: absolute;
+      right: 15px;
+      top: 15px; } }
+
+@media (min-width: 481px) and (max-width: 1199px) {
+  .site-theme .modal {
+    width: 380px; }
+    .site-theme .modal__heading {
+      font-size: 25px;
+      line-height: 33px;
+      text-align: center; }
+    .site-theme .modal__content {
+      padding: 35px 40px 40px; } }
+
+.site-theme .owl-nav .owl-prev {
+  left: 20px;
+  bottom: 37px; }
+
+.site-theme .owl-nav .owl-next {
+  right: 20px;
+  bottom: 37px; }
+
+.site-theme .owl-dots {
+  bottom: 42px;
+  left: 50%; }
+
+.site-theme .main-poster__wave-right {
+  display: none; }
+
+.site-theme .main-poster__text {
+  color: #FFF; }
+
+.site-theme .main-poster__dots-left {
+  display: none; }
+
+@media (max-width: 480px) {
+  .site-theme .main-poster {
+    padding-top: 30px; }
+    .site-theme .main-poster__heading {
+      display: block;
+      margin-bottom: 20px;
+      padding-right: 0; }
+      .site-theme .main-poster__heading br {
+        display: none; }
+    .site-theme .main-poster__content {
+      margin: 0; }
+    .site-theme .main-poster__icons {
+      margin-bottom: 30px; }
+    .site-theme .main-poster__text {
+      font-size: 16px;
+      line-height: 24px;
+      font-weight: normal;
+      margin-bottom: 30px; } }
+
+@media (min-width: 481px) and (max-width: 1199px) {
+  .site-theme .main-poster {
+    padding-top: 50px;
+    height: 489px; }
+    .site-theme .main-poster__heading {
+      display: block;
+      margin-bottom: 25px;
+      padding-right: 0; }
+      .site-theme .main-poster__heading br {
+        display: none; }
+    .site-theme .main-poster__content {
+      margin: 0; }
+    .site-theme .main-poster__icons {
+      margin-bottom: 30px; }
+    .site-theme .main-poster__text {
+      font-size: 16px;
+      line-height: 24px;
+      font-weight: normal;
+      margin-bottom: 40px; }
+    .site-theme .main-poster .primary-button {
+      font-size: 16px; } }
+
+.site-theme .calculator {
+  padding-top: 54px;
+  background: url("../../img/themes/vietnam/calculator-bg.jpg") no-repeat top center; }
+  .site-theme .calculator__content {
+    width: 600px;
+    margin-left: 46px;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 60px 60px 65px;
+    border: 1px solid #E1E1E1; }
+    .site-theme .calculator__content::before {
+      display: none; }
+    .site-theme .calculator__content_step2 {
+      padding: 60px 60px 65px; }
+  .site-theme .calculator__title {
+    text-align: left;
+    margin-bottom: 25px;
+    font-size: 45px;
+    line-height: 53px; }
+
+@media (max-width: 480px) {
+  .site-theme .calculator {
+    padding-top: 0;
+    background: none; }
+    .site-theme .calculator__content {
+      border-left: 0;
+      border-right: 0;
+      margin: 0;
+      width: 100%;
+      padding: 40px 20px 45px; }
+      .site-theme .calculator__content_step2 {
+        padding: 47px 20px 38px; }
+      .site-theme .calculator__content_step-result {
+        padding: 0 35px; }
+      .site-theme .calculator__content::before {
+        top: -27px;
+        width: 54px;
+        height: 54px;
+        margin-left: -27px;
+        background-size: 19px 24px; }
+    .site-theme .calculator__title {
+      margin-bottom: 25px;
+      font-size: 22px;
+      line-height: 30px;
+      text-align: center; }
+    .site-theme .calculator__description {
+      font-size: 14px;
+      line-height: 21px; }
+    .site-theme .calculator .form-field__input {
+      font-size: 16px;
+      line-height: 21px; }
+      .site-theme .calculator .form-field__input::placeholder {
+        font-size: 16px;
+        line-height: 21px; }
+    .site-theme .calculator .primary-button {
+      border-radius: 0; } }
+
+@media (min-width: 481px) and (max-width: 1199px) {
+  .site-theme .calculator {
+    padding-top: 38px;
+    background: url("../../img/themes/vietnam/calculator-bg-tablet.jpg") no-repeat center;
+    background-size: cover;
+    border-left: 30px solid #fff;
+    border-right: 30px solid #fff;
+    height: 642px;
+    box-sizing: border-box; }
+    .site-theme .calculator .screen-content {
+      padding: 0; }
+    .site-theme .calculator__content {
+      width: 50%;
+      padding: 45px 40px 53px;
+      margin-left: 30px; }
+      .site-theme .calculator__content_step2 {
+        padding: 42px 40px 53px; }
+    .site-theme .calculator__title {
+      font-size: 30px;
+      line-height: 38px;
+      text-align: center;
+      margin-bottom: 15px; }
+    .site-theme .calculator__description {
+      font-size: 14px;
+      line-height: 21px; }
+    .site-theme .calculator .form-field__input {
+      font-size: 16px;
+      line-height: 21px; }
+      .site-theme .calculator .form-field__input::placeholder {
+        font-size: 16px;
+        line-height: 21px; }
+    .site-theme .calculator .primary-button {
+      border-radius: 0; } }
+
+.site-theme .index-special-conditions__title {
+  font-size: 45px; }
+
+.site-theme .index-special-conditions__card {
+  border-radius: 0;
+  font-size: 25px;
+  line-height: 31px;
+  font-weight: bold; }
+
+.site-theme .index-special-conditions__dots-left {
+  display: none; }
+
+.site-theme .index-special-conditions__dots-right {
+  display: none; }
+
+@media (max-width: 480px) {
+  .site-theme .index-special-conditions__title {
+    font-size: 21px;
+    line-height: 26px;
+    margin-bottom: 25px; }
+  .site-theme .index-special-conditions__content {
+    display: block;
+    padding-bottom: 57px; }
+  .site-theme .index-special-conditions__card {
+    width: 100%;
+    font-size: 18px;
+    line-height: 31px; }
+    .site-theme .index-special-conditions__card_yellow {
+      margin-bottom: 97px; } }
+
+@media (min-width: 481px) and (max-width: 1199px) {
+  .site-theme .index-special-conditions {
+    padding-top: 130px; }
+    .site-theme .index-special-conditions__title {
+      font-size: 30px;
+      line-height: 38px;
+      margin-bottom: 25px; }
+    .site-theme .index-special-conditions__content {
+      padding-bottom: 0; } }
+
+.site-theme .index-big-company {
+  background-image: url("../../img/themes/vietnam/index/cdek-box.png");
+  background-position: calc(50% + 490px) center;
+  background-repeat: no-repeat;
+  background-size: 700px;
+  padding: 120px 0; }
+  .site-theme .index-big-company__content {
+    width: 570px;
+    position: relative; }
+    .site-theme .index-big-company__content::before {
+      position: absolute;
+      content: url("../../img/themes/vietnam/index/big-company-before.png");
+      width: 247px;
+      height: 244px;
+      top: -121px;
+      left: -360px;
+      z-index: 1; }
+  .site-theme .index-big-company__title {
+    font-weight: normal;
+    font-size: 45px;
+    line-height: 53px; }
+  .site-theme .index-big-company__divider {
+    display: none; }
+  .site-theme .index-big-company__dots-top {
+    display: none; }
+
+@media (max-width: 480px) {
+  .site-theme .index-big-company {
+    background-image: url("../../img/themes/vietnam/cdek-box-2x.png");
+    background-position: center bottom -1px;
+    background-size: contain;
+    padding: 18px 0 250px; }
+    .site-theme .index-big-company__content {
+      width: 100%; }
+      .site-theme .index-big-company__content:before {
+        display: none; }
+    .site-theme .index-big-company__title {
+      font-size: 22px;
+      line-height: 30px;
+      margin-bottom: 26px; }
+    .site-theme .index-big-company__text {
+      font-size: 16px;
+      line-height: 22px;
+      font-weight: 300;
+      margin-bottom: 30px; } }
+
+@media (min-width: 481px) and (max-width: 1199px) {
+  .site-theme .index-big-company {
+    background-image: url("../../img/themes/vietnam/cdek-box-tablet.png");
+    background-position: center right;
+    background-size: unset;
+    padding: 60px 365px 70px 0;
+    min-height: 457px;
+    box-sizing: border-box; }
+    .site-theme .index-big-company__content {
+      width: 100%; }
+      .site-theme .index-big-company__content:before {
+        display: none; }
+    .site-theme .index-big-company__title {
+      font-size: 30px;
+      line-height: 38px;
+      margin-bottom: 25px; }
+    .site-theme .index-big-company__text {
+      font-size: 16px;
+      line-height: 22px;
+      font-weight: 300;
+      margin-bottom: 30px; } }
+
+.site-theme .how-it-works {
+  background: unset; }
+  .site-theme .how-it-works__head {
+    padding-top: 75px;
+    width: 100%;
+    background: #F5F5F6; }
+  .site-theme .how-it-works__title {
+    text-align: left;
+    width: 1200px;
+    margin: 0 auto 24px;
+    padding-left: 600px;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 2; }
+  .site-theme .how-it-works__submenu {
+    width: 1200px;
+    margin: 0 auto 66px;
+    position: relative;
+    z-index: 2; }
+  .site-theme .how-it-works__content {
+    padding-right: 0;
+    padding-left: 600px;
+    position: relative; }
+    .site-theme .how-it-works__content::after {
+      content: '';
+      background: url("../../img/themes/vietnam/hw-iw-circle.jpg");
+      position: absolute;
+      top: 145px;
+      right: -360px;
+      width: 208px;
+      height: 318px; }
+  .site-theme .how-it-works__item_no-margin {
+    margin-right: 60px; }
+  .site-theme .how-it-works__item:nth-child(2n+1) {
+    margin-right: 0; }
+  .site-theme .how-it-works .submenu {
+    border-bottom: none;
+    padding-left: 600px;
+    box-sizing: border-box; }
+    .site-theme .how-it-works .submenu_centered .submenu__content {
+      justify-content: flex-start; }
+
+@media (max-width: 480px) {
+  .site-theme .how-it-works__head {
+    padding-top: 0;
+    background: #fff; }
+  .site-theme .how-it-works::before, .site-theme .how-it-works::after {
+    display: none; }
+  .site-theme .how-it-works__title {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 5px;
+    padding-left: 0; }
+  .site-theme .how-it-works__submenu {
+    width: 100%;
+    margin-bottom: 30px; }
+  .site-theme .how-it-works__content {
+    padding-left: 0;
+    padding-bottom: 385px; }
+    .site-theme .how-it-works__content::after {
+      display: none; }
+  .site-theme .how-it-works__item_no-margin {
+    margin-right: 0; }
+  .site-theme .how-it-works .submenu {
+    padding: 0 20px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #E1E1E1;
+    height: 53px; }
+    .site-theme .how-it-works .submenu_centered .submenu__content {
+      justify-content: center; } }
+
+@media (min-width: 481px) and (max-width: 1199px) {
+  .site-theme .how-it-works {
+    padding: 0 30px;
+    box-sizing: border-box; }
+    .site-theme .how-it-works__head {
+      padding-top: 0;
+      background: #fff; }
+    .site-theme .how-it-works::before, .site-theme .how-it-works::after {
+      display: none; }
+    .site-theme .how-it-works__title {
+      text-align: center;
+      width: 100%;
+      margin-bottom: 5px;
+      padding-left: 0; }
+    .site-theme .how-it-works__submenu {
+      width: 100%;
+      margin-bottom: 30px; }
+    .site-theme .how-it-works__content {
+      padding-left: 0; }
+      .site-theme .how-it-works__content::after {
+        display: none; }
+    .site-theme .how-it-works__item {
+      margin-right: 15px; }
+      .site-theme .how-it-works__item_no-margin {
+        margin-right: 15px; }
+    .site-theme .how-it-works .submenu {
+      padding: 0;
+      border-bottom: 1px solid #E1E1E1;
+      height: 53px; }
+      .site-theme .how-it-works .submenu_centered .submenu__content {
+        justify-content: center; } }
+
+.site-theme .submenu__content {
+  justify-content: center; }
+
+@media (max-width: 480px) {
+  .site-theme .submenu {
+    padding-left: 20px;
+    padding-right: 20px; }
+    .site-theme .submenu_centered .site-theme .submenu__content {
+      justify-content: flex-start; } }
+
+.site-theme .package-russia {
+  background-image: url("../../img/themes/vietnam/russia.svg");
+  background-position: calc(50% + 470px) bottom;
+  background-repeat: no-repeat;
+  background-color: #EEEEEE;
+  min-height: 585px;
+  position: relative;
+  z-index: 2; }
+  .site-theme .package-russia__content {
+    position: relative; }
+  .site-theme .package-russia__text {
+    padding: 119px 0;
+    width: 725px;
+    margin-right: 159px; }
+  .site-theme .package-russia__title {
+    font-size: 45px;
+    line-height: 53px;
+    margin-bottom: 40px;
+    width: 100%; }
+  .site-theme .package-russia__ways {
+    width: 616px;
+    margin-bottom: 30px; }
+  .site-theme .package-russia__divider {
+    display: none; }
+  .site-theme .package-russia__know-more {
+    margin-bottom: 39px; }
+  .site-theme .package-russia__way-text {
+    font-size: 20px;
+    margin-left: 20px;
+    font-weight: normal; }
+  .site-theme .package-russia__office {
+    position: absolute;
+    bottom: -34px;
+    border-radius: 0;
+    right: 45px; }
+  .site-theme .package-russia__office-num {
+    margin-bottom: 15px; }
+  .site-theme .package-russia__office-text {
+    font-size: 20px; }
+
+@media (min-width: 481px) and (max-width: 1199px) {
+  .site-theme .package-russia {
+    background-image: url("../../img/themes/vietnam/russia-tablet.svg");
+    background-position: right top 68px;
+    background-repeat: no-repeat;
+    background-size: unset;
+    min-height: 542px; }
+    .site-theme .package-russia__text {
+      padding: 60px 0;
+      width: 290px;
+      margin-right: 72px; }
+    .site-theme .package-russia__content {
+      justify-content: flex-start; }
+    .site-theme .package-russia__office {
+      margin-top: 372px;
+      width: 200px;
+      height: 200px;
+      background-position: center top 30px;
+      padding: 98px 45px 0;
+      right: 60px; }
+    .site-theme .package-russia__office-num {
+      margin-bottom: 18px; }
+    .site-theme .package-russia__office-text {
+      font-size: 15px; }
+    .site-theme .package-russia__title {
+      font-size: 30px;
+      line-height: 38px;
+      margin-bottom: 25px; }
+    .site-theme .package-russia__ways {
+      margin-bottom: 25px; }
+    .site-theme .package-russia__know-more {
+      font-size: 18px;
+      line-height: 24px;
+      margin-bottom: 30px; }
+    .site-theme .package-russia__way-text {
+      font-size: 16px;
+      line-height: 22px; } }
+
+@media (max-width: 480px) {
+  .site-theme .package-russia {
+    background-image: url("../../img/themes/vietnam/russia-mobile.svg");
+    background-position: left bottom 10px;
+    background-size: contain;
+    min-height: unset;
+    padding-bottom: 73px; }
+    .site-theme .package-russia__text {
+      padding: 39px 0 0;
+      margin-right: 0;
+      width: 100%; }
+    .site-theme .package-russia__title {
+      font-size: 22px;
+      line-height: 30px;
+      margin-bottom: 24px;
+      text-align: center; }
+    .site-theme .package-russia__ways {
+      width: 100%;
+      margin-bottom: 25px; }
+    .site-theme .package-russia__know-more {
+      margin-bottom: 20px;
+      font-size: 18px;
+      line-height: 24px; }
+    .site-theme .package-russia__way-text {
+      font-size: 16px;
+      line-height: 22px; }
+    .site-theme .package-russia__office {
+      margin-top: 85px;
+      width: 200px;
+      height: 200px;
+      background-position: center top 30px;
+      padding: 98px 45px 0;
+      position: static; }
+    .site-theme .package-russia__office-num {
+      margin-bottom: 18px; }
+    .site-theme .package-russia__office-text {
+      font-size: 15px; } }
+
+.site-theme .business-page__poster {
+  background: url("../../img/themes/vietnam/business/poster.jpg") no-repeat center top;
+  margin-bottom: 0;
+  z-index: 2; }
+
+.site-theme .business-page__company-adv-description {
+  margin-bottom: 40px; }
+
+.site-theme .business-page__company-adv-icons {
+  margin-bottom: 40px; }
+
+.site-theme .business-page__company-adv-heading {
+  margin-bottom: 30px; }
+
+.site-theme .business-page .square-cards {
+  width: 1103px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1; }
+  .site-theme .business-page .square-cards::after {
+    position: absolute;
+    content: url("../../img/themes/vietnam/business/company-advantages.png");
+    right: -409px;
+    top: -526px; }
+
+.site-theme .business-page .square-card {
+  margin-right: 101px; }
+  .site-theme .business-page .square-card:last-child {
+    margin-right: 0; }
+
+.site-theme .business-page__how-it-works-content {
+  padding-bottom: 77px;
+  background: #fff;
+  position: static; }
+  .site-theme .business-page__how-it-works-content::before {
+    content: url("../../img/themes/vietnam/business/hw-iw-bg.png");
+    position: absolute;
+    top: 75px;
+    left: calc(50% - 600px);
+    z-index: 2; }
+
+.site-theme .business-page__how-it-works-dots {
+  display: none; }
+
+.site-theme .business-page .primary-button {
+  border-radius: 0; }
+
+@media (min-width: 1200px) {
+  .site-theme .business-page__heading {
+    width: 724px; }
+  .site-theme .business-page__poster {
+    padding-top: 120px; }
+  .site-theme .business-page__how-it-works-content {
+    padding-left: 600px; }
+  .site-theme .business-page__how-it-works-left-item {
+    position: relative; } }
+
+@media (max-width: 480px) {
+  .site-theme .business-page__poster {
+    background: url("../../img/themes/vietnam/business/poster-mobile.jpg") no-repeat center top #F5F5F6;
+    background-size: cover;
+    padding-bottom: 45px; }
+  .site-theme .business-page .company-advantages {
+    background: #F4F4F5;
+    padding: 45px 0 0; }
+  .site-theme .business-page .square-cards {
+    padding: 0 20px 84px;
+    box-sizing: border-box;
+    width: 100%; }
+    .site-theme .business-page .square-cards::after {
+      display: none; }
+  .site-theme .business-page .square-card {
+    text-align: center;
+    width: 100%; }
+  .site-theme .business-page__company-adv-description {
+    margin-bottom: 28px; }
+  .site-theme .business-page__company-adv-icons {
+    margin-bottom: 35px;
+    padding: 0 20px;
+    box-sizing: border-box; }
+  .site-theme .business-page__company-adv-heading {
+    margin-bottom: 25px;
+    font-weight: normal;
+    font-size: 22px;
+    line-height: 30px; }
+  .site-theme .business-page__how-it-works-content {
+    padding-bottom: 385px;
+    background: url("../../img/themes/vietnam/business/hw-iw-bg-320.png") no-repeat center bottom 39px;
+    background-size: 282px 331px; }
+    .site-theme .business-page__how-it-works-content::before {
+      display: none; } }
+
+@media (min-width: 481px) and (max-width: 1199px) {
+  .site-theme .business-page__poster {
+    background: url("../../img/themes/vietnam/business/poster-tablet.jpg") no-repeat center top;
+    background-size: cover; }
+  .site-theme .business-page .company-advantages .content {
+    padding: 0; }
+  .site-theme .business-page .square-cards {
+    width: 100%; }
+    .site-theme .business-page .square-cards::after {
+      content: '';
+      display: inline-block;
+      width: 30px;
+      right: 0;
+      top: 0;
+      position: relative;
+      flex-shrink: 0; }
+    .site-theme .business-page .square-cards::before {
+      content: '';
+      display: inline-block;
+      width: 30px;
+      left: 0;
+      top: 0;
+      position: relative;
+      flex-shrink: 0; }
+  .site-theme .business-page .square-card {
+    margin-right: 30px; }
+  .site-theme .business-page__company-adv-description {
+    margin-bottom: 30px; }
+  .site-theme .business-page__company-adv-icons {
+    margin-bottom: 30px; }
+  .site-theme .business-page__company-adv-heading {
+    margin-bottom: 25px;
+    font-size: 30px;
+    line-height: 38px; }
+  .site-theme .business-page .how-it-works {
+    padding-top: 150px; }
+    .site-theme .business-page .how-it-works .content {
+      padding: 0; }
+  .site-theme .business-page__how-it-works-content {
+    background: #fff;
+    padding-bottom: 33px; }
+    .site-theme .business-page__how-it-works-content::before {
+      display: none; } }
+
+.site-theme .e-commerce-page__poster {
+  background: url("../../img/themes/vietnam/e-commerce/poster.jpg") no-repeat center top;
+  margin-bottom: 0;
+  z-index: 2; }
+
+.site-theme .e-commerce-page .company-advantages {
+  margin-bottom: 0; }
+
+.site-theme .e-commerce-page__company-adv-description {
+  margin-bottom: 40px; }
+
+.site-theme .e-commerce-page__company-adv-icons {
+  margin-bottom: 40px; }
+
+.site-theme .e-commerce-page__company-adv-heading {
+  margin-bottom: 30px; }
+
+.site-theme .e-commerce-page .square-cards {
+  width: 1103px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1; }
+  .site-theme .e-commerce-page .square-cards::after {
+    position: absolute;
+    content: url("../../img/themes/vietnam/business/company-advantages.png");
+    right: -409px;
+    top: -526px; }
+
+.site-theme .e-commerce-page .square-card {
+  margin-right: 101px; }
+  .site-theme .e-commerce-page .square-card:last-child {
+    margin-right: 0; }
+
+.site-theme .e-commerce-page .primary-button {
+  border-radius: 0; }
+
+@media (min-width: 1200px) {
+  .site-theme .e-commerce-page__heading {
+    width: 770px; }
+  .site-theme .e-commerce-page__poster {
+    padding-top: 110px; } }
+
+@media (max-width: 480px) {
+  .site-theme .e-commerce-page__poster {
+    background: url("../../img/themes/vietnam/e-commerce/poster-mobile.jpg") no-repeat center bottom #F5F5F6;
+    background-size: cover;
+    padding-bottom: 0;
+    min-height: 440px; }
+  .site-theme .e-commerce-page .company-advantages {
+    background: #F4F4F5;
+    padding: 45px 0 0; }
+  .site-theme .e-commerce-page .square-cards {
+    padding: 0 20px 84px;
+    box-sizing: border-box;
+    width: 100%; }
+    .site-theme .e-commerce-page .square-cards::after {
+      display: none; }
+  .site-theme .e-commerce-page .square-card {
+    text-align: center;
+    width: 100%; }
+  .site-theme .e-commerce-page__company-adv-description {
+    margin-bottom: 28px; }
+  .site-theme .e-commerce-page__company-adv-icons {
+    margin-bottom: 35px;
+    padding: 0 20px;
+    box-sizing: border-box; }
+  .site-theme .e-commerce-page__company-adv-heading {
+    margin-bottom: 25px;
+    font-weight: normal;
+    font-size: 22px;
+    line-height: 30px; } }
+
+@media (min-width: 481px) and (max-width: 1199px) {
+  .site-theme .e-commerce-page__poster {
+    background: url("../../img/themes/vietnam/e-commerce/poster-tablet.jpg") no-repeat right top #F5F5F6;
+    padding-top: 50px;
+    background-size: cover; }
+  .site-theme .e-commerce-page .company-advantages .content {
+    padding: 0; }
+  .site-theme .e-commerce-page .square-cards {
+    width: 100%; }
+    .site-theme .e-commerce-page .square-cards::after {
+      content: '';
+      display: inline-block;
+      width: 30px;
+      right: 0;
+      top: 0;
+      position: relative;
+      flex-shrink: 0; }
+    .site-theme .e-commerce-page .square-cards::before {
+      content: '';
+      display: inline-block;
+      width: 30px;
+      left: 0;
+      top: 0;
+      position: relative;
+      flex-shrink: 0; }
+  .site-theme .e-commerce-page .square-card {
+    margin-right: 30px; }
+  .site-theme .e-commerce-page__company-adv-description {
+    margin-bottom: 30px; }
+  .site-theme .e-commerce-page__company-adv-icons {
+    margin-bottom: 30px; }
+  .site-theme .e-commerce-page__company-adv-heading {
+    margin-bottom: 25px;
+    font-size: 30px;
+    line-height: 38px; }
+  .site-theme .e-commerce-page .how-it-works {
+    padding-top: 150px; } }
+
+.site-theme .ecom-solution .content {
+  width: 100%; }
+
+.site-theme .ecom-solution__content {
+  padding-top: 120px;
+  padding-left: 0;
+  width: 1200px;
+  margin: 0 auto;
+  padding-right: 600px;
+  box-sizing: border-box;
+  margin: 0 auto;
+  height: 928px; }
+  @media (max-width: 1199px) {
+    .site-theme .ecom-solution__content {
+      width: 100%;
+      box-sizing: border-box; } }
+  @media (max-width: 480px) {
+    .site-theme .ecom-solution__content {
+      padding: 0 20px; } }
+  @media (min-width: 481px) and (max-width: 1199px) {
+    .site-theme .ecom-solution__content {
+      padding: 0 30px; } }
+  .site-theme .ecom-solution__content::before {
+    display: none; }
+  .site-theme .ecom-solution__content::after {
+    top: 0;
+    right: calc(50% - 962px);
+    left: unset;
+    background: url("../../img/themes/vietnam/e-commerce/girl.jpg") no-repeat right top;
+    width: 962px;
+    height: 928px;
+    content: '';
+    position: absolute; }
+
+.site-theme .ecom-solution__desc {
+  font-size: 18px;
+  line-height: 25px; }
+
+.site-theme .ecom-solution__list {
+  margin-bottom: 0; }
+
+.site-theme .ecom-solution__item {
+  width: 260px; }
+  .site-theme .ecom-solution__item:nth-child(2n+1) {
+    margin-right: 30px; }
+
+.site-theme .ecom-solution__promo {
+  background: #F5F5F6;
+  box-shadow: unset;
+  border-radius: 0;
+  width: 100%;
+  margin-top: 0;
+  padding: 100px 0 120px;
+  height: 870px; }
+  .site-theme .ecom-solution__promo::before {
+    content: url("../../img/themes/vietnam/e-commerce/solution-left.png");
+    position: absolute;
+    left: 50%;
+    bottom: -4px;
+    margin-left: -960px; }
+
+.site-theme .ecom-solution__promo-title {
+  font-weight: normal;
+  font-size: 45px;
+  line-height: 53px;
+  margin-bottom: 42px; }
+
+.site-theme .ecom-solution__promo-list {
+  width: 892px;
+  margin: 0 auto 125px;
+  position: relative; }
+  .site-theme .ecom-solution__promo-list::after {
+    content: url("../../img/themes/vietnam/e-commerce/solution-right.png");
+    position: absolute;
+    right: -513px;
+    bottom: -117px; }
+
+.site-theme .ecom-solution__promo-list-item {
+  width: 247px;
+  padding-top: 260px; }
+  .site-theme .ecom-solution__promo-list-item_icon_heart {
+    background-image: url("../../img/themes/vietnam/e-commerce/icon-heart.svg"); }
+  .site-theme .ecom-solution__promo-list-item_icon_eye {
+    background-image: url("../../img/themes/vietnam/e-commerce/icon-eye.svg"); }
+  .site-theme .ecom-solution__promo-list-item_icon_mail {
+    background-image: url("../../img/themes/vietnam/e-commerce/icon-mail.svg"); }
+
+.site-theme .ecom-solution__promo-list-num {
+  margin-bottom: 12px;
+  font-size: 45px;
+  line-height: 53px;
+  position: relative; }
+  .site-theme .ecom-solution__promo-list-num::before {
+    content: '';
+    position: absolute;
+    width: 203px;
+    left: 50%;
+    height: 2px;
+    background: #1AB248;
+    top: -23px;
+    transform: translateX(-50%); }
+
+.site-theme .ecom-solution__link {
+  color: #333333;
+  text-decoration: none;
+  font-weight: bold;
+  border-bottom: 2px solid #333;
+  position: relative; }
+  .site-theme .ecom-solution__link::before {
+    content: url("../../img/themes/vietnam/e-commerce/arrow.svg");
+    position: absolute;
+    top: -35px;
+    left: 50%;
+    transform: translateX(-50%); }
+
+@media (max-width: 480px) {
+  .site-theme .ecom-solution {
+    padding-top: 45px; }
+    .site-theme .ecom-solution .content {
+      padding: 0; }
+    .site-theme .ecom-solution__content {
+      padding: 0 20px;
+      box-sizing: border-box;
+      height: unset;
+      margin-bottom: 46px; }
+      .site-theme .ecom-solution__content::after {
+        top: 0;
+        right: 0;
+        left: unset;
+        background: url("../../img/themes/vietnam/e-commerce/girl-mobile.jpg") no-repeat center top;
+        width: 100%;
+        height: unset;
+        position: static;
+        background-size: cover;
+        display: block;
+        min-height: 270px; }
+    .site-theme .ecom-solution__title {
+      font-weight: normal;
+      text-align: center;
+      font-size: 22px;
+      line-height: 30px;
+      margin-bottom: 24px; }
+    .site-theme .ecom-solution__desc {
+      text-align: center;
+      font-size: 15px;
+      line-height: 22px;
+      margin-bottom: 30px; }
+    .site-theme .ecom-solution__item {
+      width: 100%;
+      box-sizing: border-box;
+      margin-bottom: 25px;
+      background-position: center left; }
+      .site-theme .ecom-solution__item:nth-child(2n+1) {
+        margin-right: 0; }
+      .site-theme .ecom-solution__item:last-child {
+        margin-bottom: 0; }
+    .site-theme .ecom-solution__list {
+      margin-bottom: 40px; }
+    .site-theme .ecom-solution__promo-title {
+      font-size: 22px;
+      line-height: 30px;
+      margin-bottom: 20px; }
+    .site-theme .ecom-solution__promo-list {
+      width: 100%;
+      margin-bottom: 40px; }
+      .site-theme .ecom-solution__promo-list::after {
+        display: none; }
+    .site-theme .ecom-solution__promo-list-item {
+      width: 100%;
+      padding-top: 75px;
+      margin-bottom: 36px; }
+      .site-theme .ecom-solution__promo-list-item_icon_heart {
+        background-image: url("../../img/e-commerce/icon-heart.svg"); }
+      .site-theme .ecom-solution__promo-list-item_icon_eye {
+        background-image: url("../../img/e-commerce/icon-eye.svg"); }
+      .site-theme .ecom-solution__promo-list-item_icon_mail {
+        background-image: url("../../img/e-commerce/icon-mail.svg"); }
+    .site-theme .ecom-solution__promo-list-num {
+      font-size: 35px;
+      line-height: 35px; }
+      .site-theme .ecom-solution__promo-list-num::before {
+        display: none; }
+    .site-theme .ecom-solution__promo-list-text {
+      font-size: 16px;
+      line-height: 21px;
+      width: unset; }
+    .site-theme .ecom-solution__link {
+      font-size: 20px;
+      line-height: 26px; }
+      .site-theme .ecom-solution__link::before {
+        display: none; }
+    .site-theme .ecom-solution__promo {
+      padding: 40px 20px 45px;
+      box-sizing: border-box;
+      height: unset; } }
+
+@media (min-width: 481px) and (max-width: 1199px) {
+  .site-theme .ecom-solution {
+    padding-top: 70px; }
+    .site-theme .ecom-solution .content {
+      padding: 0; }
+    .site-theme .ecom-solution__content {
+      padding: 0 380px 0 30px;
+      box-sizing: border-box;
+      height: 613px;
+      margin-bottom: 70px; }
+      .site-theme .ecom-solution__content::before {
+        display: none; }
+      .site-theme .ecom-solution__content::after {
+        top: 0;
+        right: 30px;
+        left: unset;
+        background: url("../../img/themes/vietnam/e-commerce/girl-tablet.jpg") no-repeat right top;
+        background-size: 352px 613px;
+        width: 352px;
+        height: 613px; }
+    .site-theme .ecom-solution__title {
+      font-size: 30px;
+      line-height: 38px;
+      font-weight: normal;
+      margin-bottom: 25px; }
+    .site-theme .ecom-solution__desc {
+      line-height: 22px;
+      margin-bottom: 25px; }
+    .site-theme .ecom-solution__item {
+      font-size: 15px;
+      line-height: 22px;
+      width: 87.7095%;
+      box-sizing: border-box;
+      padding-left: 74px;
+      margin-right: 0; }
+      .site-theme .ecom-solution__item:nth-child(2n+1) {
+        margin-right: 0; }
+    .site-theme .ecom-solution__promo {
+      padding: 60px 20px 70px;
+      height: unset; }
+    .site-theme .ecom-solution__promo-title {
+      font-size: 30px;
+      line-height: 38px;
+      margin-bottom: 36px; }
+    .site-theme .ecom-solution__promo-list {
+      width: 100%;
+      margin-bottom: 49px; }
+      .site-theme .ecom-solution__promo-list::after {
+        display: none; }
+    .site-theme .ecom-solution__promo-list-item {
+      width: 100%;
+      padding-top: 75px; }
+      .site-theme .ecom-solution__promo-list-item_icon_heart {
+        background-image: url("../../img/e-commerce/icon-heart.svg"); }
+      .site-theme .ecom-solution__promo-list-item_icon_eye {
+        background-image: url("../../img/e-commerce/icon-eye.svg"); }
+      .site-theme .ecom-solution__promo-list-item_icon_mail {
+        background-image: url("../../img/e-commerce/icon-mail.svg"); }
+    .site-theme .ecom-solution__promo-list-num {
+      font-size: 35px;
+      line-height: 35px; }
+      .site-theme .ecom-solution__promo-list-num::before {
+        display: none; }
+    .site-theme .ecom-solution__promo-list-text {
+      font-size: 16px;
+      line-height: 21px;
+      width: unset; }
+    .site-theme .ecom-solution__link {
+      font-size: 20px;
+      line-height: 26px; }
+      .site-theme .ecom-solution__link::before {
+        display: none; } }
+
+.site-theme .company-poster {
+  padding: 112px 0 113px;
+  background: url("../../img/themes/vietnam/company/poster.jpg") no-repeat calc(50% + 480px) center, url("../../img/themes/vietnam/company/poster-circle.svg") no-repeat calc(50% - 842px) bottom, #1AB248;
+  height: auto;
+  min-height: 502px; }
+  .site-theme .company-poster__content {
+    width: 570px; }
+  .site-theme .company-poster__heading {
+    font-weight: normal;
+    font-size: 45px;
+    line-height: 55px; }
+  .site-theme .company-poster__divider {
+    display: none; }
+
+@media (max-width: 480px) {
+  .site-theme .company-poster {
+    padding-top: 342px;
+    padding-bottom: 43px;
+    background: url("../../img/themes/vietnam/company/poster-mobile.png") no-repeat center top #1AB248;
+    background-size: 100% 308px; }
+    .site-theme .company-poster__content {
+      width: 100%; }
+    .site-theme .company-poster__heading {
+      font-size: 22px;
+      line-height: 30px; }
+    .site-theme .company-poster__text {
+      font-size: 15px;
+      line-height: 22px; } }
+
+@media (min-width: 481px) and (max-width: 1199px) {
+  .site-theme .company-poster {
+    min-height: 391px;
+    padding-top: 50px;
+    padding-bottom: 70px;
+    padding-right: 390px;
+    background: url("../../img/themes/vietnam/company/poster-tablet.jpg") no-repeat right center #1AB248;
+    box-sizing: border-box; }
+    .site-theme .company-poster__content {
+      width: auto; }
+    .site-theme .company-poster__heading {
+      font-size: 30px;
+      line-height: 38px; }
+    .site-theme .company-poster__text {
+      font-size: 15px;
+      line-height: 22px; } }
+
+.site-theme .company-grow {
+  background: url("../../img/themes/vietnam/company/bg-right.png") no-repeat calc(50% + 870px) 185px;
+  padding-top: 120px; }
+  .site-theme .company-grow__content {
+    background: unset;
+    padding-bottom: 120px;
+    min-height: unset; }
+  .site-theme .company-grow__inner-content {
+    width: 100%;
+    padding-left: 601px;
+    padding-right: 68px;
+    box-sizing: border-box;
+    position: relative; }
+  .site-theme .company-grow__title {
+    text-align: center;
+    margin-bottom: 50px; }
+  .site-theme .company-grow__text {
+    display: none; }
+  .site-theme .company-grow__cards {
+    position: absolute;
+    left: 3px;
+    width: 517px; }
+  .site-theme .company-grow__card {
+    border-radius: 0;
+    font-size: 18px;
+    line-height: 24px; }
+  .site-theme .company-grow__card-shadow {
+    border-top-left-radius: 0; }
+  .site-theme .company-grow__numbers {
+    width: 1200px;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 0 785px 0 0;
+    background-position: right 16px bottom 16px; }
+  .site-theme .company-grow__numbers-title {
+    font-weight: normal;
+    margin-bottom: 40px; }
+
+@media (max-width: 1199px) {
+  .site-theme .company-grow {
+    background: none; }
+    .site-theme .company-grow__content {
+      background: none;
+      padding-bottom: 0;
+      min-height: auto; }
+    .site-theme .company-grow__inner-content {
+      width: 100%;
+      padding: 0;
+      position: static; }
+    .site-theme .company-grow__text {
+      line-height: 22px; }
+    .site-theme .company-grow__cards {
+      position: relative; }
+    .site-theme .company-grow__card {
+      font-size: 16px;
+      line-height: 24px; }
+    .site-theme .company-grow__card-shadow {
+      display: none; }
+    .site-theme .company-grow__card-num {
+      margin-bottom: 12px; }
+    .site-theme .company-grow__numbers-item {
+      font-size: 15px;
+      line-height: 20px; } }
+
+@media (max-width: 480px) {
+  .site-theme .company-grow {
+    padding-top: 45px; }
+    .site-theme .company-grow__title {
+      font-size: 22px;
+      line-height: 30px;
+      margin-bottom: 25px;
+      font-weight: normal; }
+    .site-theme .company-grow__cards {
+      width: 280px; }
+    .site-theme .company-grow__countries {
+      font-size: 15px;
+      line-height: 22px; }
+    .site-theme .company-grow__numbers {
+      width: 100%;
+      background: url("../../img/company/company-world-mobile.svg") no-repeat center bottom;
+      padding: 45px 20px 216px; }
+    .site-theme .company-grow__numbers-title {
+      font-size: 22px;
+      line-height: 30px;
+      margin-bottom: 25px;
+      text-align: center; } }
+
+@media (min-width: 481px) and (max-width: 1199px) {
+  .site-theme .company-grow {
+    padding-top: 52px; }
+    .site-theme .company-grow__title {
+      font-size: 30px;
+      line-height: 38px;
+      margin-bottom: 25px; }
+    .site-theme .company-grow__numbers {
+      background: url("../../img/company/company-world-tablet.svg") no-repeat center bottom;
+      padding: 60px 30px 505px;
+      width: 100%; }
+    .site-theme .company-grow__cards {
+      width: 440px; }
+    .site-theme .company-grow__numbers-title {
+      font-size: 30px;
+      line-height: 38px;
+      margin-bottom: 26px;
+      text-align: center; }
+    .site-theme .company-grow__numbers-item-num {
+      font-size: 30px;
+      line-height: 30px;
+      margin-bottom: 10px; }
+    .site-theme .company-grow__numbers-item {
+      margin-bottom: 41px; } }
+
+.site-theme .company-page .company-advantages {
+  margin-bottom: 0; }
+
+@media (max-width: 480px) {
+  .site-theme .company-page .company-advantages {
+    background: #F4F4F5;
+    padding: 45px 0 0; }
+  .site-theme .company-page .square-cards {
+    padding: 0 20px 84px;
+    box-sizing: border-box;
+    width: 100%; }
+    .site-theme .company-page .square-cards::after {
+      display: none; }
+  .site-theme .company-page .square-card {
+    text-align: center;
+    width: 100%; }
+  .site-theme .company-page__company-adv-description {
+    margin-bottom: 28px; }
+  .site-theme .company-page__company-adv-icons {
+    margin-bottom: 35px;
+    padding: 0 20px;
+    box-sizing: border-box; }
+  .site-theme .company-page__company-adv-heading {
+    margin-bottom: 25px;
+    font-weight: normal;
+    font-size: 22px;
+    line-height: 30px; } }

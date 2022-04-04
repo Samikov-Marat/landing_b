@@ -1,0 +1,61 @@
+.site-theme .index-page__poster {
+  background: url("../../img/themes/singapore/index/poster-right.jpg") no-repeat calc(50% + 513px) 0, #F5F5F6; }
+
+.site-theme .index-page__how-it-works-content {
+  background: url("../../img/themes/singapore/hw-iw-man.jpg") no-repeat right bottom; }
+
+@media (min-width: 1650px) {
+  .site-theme .index-page__poster {
+    background: url("../../img/index/poster-left.svg") no-repeat calc(50% - 807px) 0, url("../../img/themes/singapore/index/poster-right.jpg") no-repeat calc(50% + 513px) 0, #F5F5F6; } }
+
+@media (max-width: 480px) {
+  .site-theme .index-page__poster {
+    background: #F5F5F6; }
+  .site-theme .index-page__how-it-works-content {
+    background: url("../../img/themes/singapore/hw-iw-man-2x.jpg") no-repeat center bottom;
+    background-size: 290px 390px;
+    padding-bottom: 393px; } }
+
+@media (min-width: 481px) and (max-width: 1199px) {
+  .site-theme .index-page__poster {
+    background: url("../../img/themes/singapore/index/poster-tablet.jpg") no-repeat right top #F5F5F6; }
+  .site-theme .index-page__how-it-works-content {
+    background: url("../../img/themes/singapore/hw-iw-man-2x.jpg") no-repeat right 49px bottom -55px;
+    background-size: 290px 390px; } }
+
+.site-theme .calculator {
+  background: url("../../img/themes/singapore/calculator-bg.jpg") no-repeat calc(50% + 24px) 84px; }
+
+@media (max-width: 480px) {
+  .site-theme .calculator {
+    background: none; } }
+
+@media (min-width: 481px) and (max-width: 1199px) {
+  .site-theme .calculator {
+    background: url("../../img/themes/singapore/calculator-bg-tablet.jpg") no-repeat calc(50% - 4px) 61px; } }
+
+.site-theme .faq__content {
+  background: url("../../img/themes/singapore/faq-girl.png") no-repeat left top; }
+
+@media (max-width: 480px) {
+  .site-theme .faq__content {
+    background: none; } }
+
+@media (min-width: 481px) and (max-width: 1199px) {
+  .site-theme .faq__content {
+    background: url("../../img/themes/singapore/faq-girl-2x.png") no-repeat left top;
+    background-size: 286px 376px; } }
+
+.site-theme .business-page__how-it-works-content {
+  background: url("../../img/themes/singapore/hw-iw-man.jpg") no-repeat right bottom; }
+
+@media (max-width: 480px) {
+  .site-theme .business-page__how-it-works-content {
+    background: url("../../img/themes/singapore/hw-iw-man-2x.jpg") no-repeat center bottom;
+    background-size: 290px 390px;
+    padding-bottom: 393px; } }
+
+@media (min-width: 481px) and (max-width: 1199px) {
+  .site-theme .business-page__how-it-works-content {
+    background: url("../../img/themes/singapore/hw-iw-man-2x.jpg") no-repeat right 49px bottom -55px;
+    background-size: 290px 390px; } }
