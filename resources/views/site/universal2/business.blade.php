@@ -27,7 +27,12 @@
             @include('site.universal2.international_express_block')
         @endif
 
+        <div class="calculator-neutral-bg">
         @include('site.universal2.calculator_block')
+        </div>
+
+
+        @include('site.universal2.order_block')
 
         @include('site.universal2.how_it_works_block')
 

@@ -6,6 +6,7 @@
             <div class="submenu faq__submenu">
                 <div class="submenu__content">
                     <div class="submenu__item submenu__item_active js-faq-tab" data-for="#faq_shop" data-for2="#faq_button_shop">@d('faq_subheader_shop')</div>
+                    <div class="submenu__item js-faq-tab" data-for="#faq_documents" data-for2="#faq_button_shop">@d('faq_subheader_documents')</div>
                     <div class="submenu__item js-faq-tab" data-for="#faq_business" data-for2="#faq_button_business">@d('faq_subheader_business')</div>
                 </div>
             </div>
@@ -33,6 +34,17 @@
                 <div class="faq-list__faq">
                     <div class="faq-list__faq-question">@d('faq_shop_question_6')</div>
                     <div class="faq-list__faq-answer">@d('faq_shop_answer_6')</div>
+                </div>
+            </div>
+
+            <div class="faq-list faq__faq-list" id="faq_documents">
+                <div class="faq-list__faq faq-list__faq_opened">
+                    <div class="faq-list__faq-question">@d('faq_documents_question_1')</div>
+                    <div class="faq-list__faq-answer">@d('faq_documents_answer_1')</div>
+                </div>
+                <div class="faq-list__faq">
+                    <div class="faq-list__faq-question">@d('faq_documents_question_2')</div>
+                    <div class="faq-list__faq-answer">@d('faq_documents_answer_2')</div>
                 </div>
             </div>
 

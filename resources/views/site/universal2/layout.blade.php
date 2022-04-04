@@ -26,17 +26,58 @@
     <link rel="stylesheet" href="{{ mix('universal2/custom.css') }}">
 </head>
 <body class="site-theme">
+
+@php
+
+    $templateHref = [
+        'universal2.index' => '#calculator',
+        'universal2.e_commerce' => '#calculator',
+        'universal2.business' => '#calculator',
+        'universal2.contacts' => '/#calculator',
+        ];
+    $calculatorHeaderAnchorHref = $templateHref[$page->template] ?? '/#calculator';
+
+
+    $templateGtm = [
+        'universal2.index' => 'rassitat_header',
+        'universal2.e_commerce' => 'rassitat_header_im',
+        'universal2.business' => 'rassitat_header_b2b',
+        ];
+    $calculatorHeaderAnchorGtm = $templateGtm[$page->template] ?? '';
+@endphp
+
+
+<div class="fixed-buttons">
+    <a href="{!! $calculatorHeaderAnchorHref !!}" class="fixed-button fixed-button_calc fixed-buttons__button">Рассчитать</a>
+    <a href="#" class="fixed-button fixed-button_track fixed-buttons__button">Отследить</a>
+</div>
+
 <div class="body-wrapper js-body_wrapper ">
     <div class="fullscreen-modal-background js-fade_background "></div>
     <header class="header-shadow">
-        <div class="header">
+        <div class="header header_menu_size_l">
             <div class="header__content">
                 <a href="{!! route('site.show_page', ['languageUrl' => $language->uri]) !!}" class="logo-cdek header__logo"></a>
                 <div class="main-menu header__menu">
                     <ul class="main-menu__list">
+
+                        {{-- Главная --}}
                         <li class="main-menu__item">
                             <a class="main-menu__link current" href="{!! route('site.show_page', ['languageUrl' => $language->uri]) !!}">@d('menu_delivery')</a>
                         </li>
+                        {{-- Интернет-Магазинам --}}
+                        <li class="main-menu__item">
+                            <a class="main-menu__link" href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'e-commerce']) !!}">@d('menu_e_commerce')</a>
+                        </li>
+                        {{-- Документы --}}
+                        <li class="main-menu__item">
+                            <a class="main-menu__link" href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'documents']) !!}">@d('menu_documents')</a>
+                        </li>
+                        {{-- Бизнесу --}}
+                        <li class="main-menu__item">
+                            <a class="main-menu__link" href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'business']) !!}">@d('menu_business')</a>
+                        </li>
+                        {{-- Контакты --}}
                         <li class="main-menu__item">
                             <a class="main-menu__link" href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'contacts']) !!}">@d('menu_contects')</a>
                         </li>
@@ -46,24 +87,6 @@
                     </ul>
                 </div>
                 <div class="header__right">
-                    @php
-
-                        $templateHref = [
-                            'universal2.index' => '#calculator',
-                            'universal2.e_commerce' => '#calculator',
-                            'universal2.business' => '#calculator',
-                            'universal2.contacts' => '/#calculator',
-                            ];
-                        $calculatorHeaderAnchorHref = $templateHref[$page->template] ?? '/#calculator';
-
-
-                        $templateGtm = [
-                            'universal2.index' => 'rassitat_header',
-                            'universal2.e_commerce' => 'rassitat_header_im',
-                            'universal2.business' => 'rassitat_header_b2b',
-                            ];
-                        $calculatorHeaderAnchorGtm = $templateGtm[$page->template] ?? '';
-                    @endphp
                     <a href="{{ $calculatorHeaderAnchorHref }}" class="header__button gtm-click"
                        data-click="{{ $calculatorHeaderAnchorGtm }}">@d('header_button')</a>
                     @foreach($site->languages as $languageItem)
@@ -93,8 +116,22 @@
                             <a class="main-menu__link current" href="{!! route('site.show_page', ['languageUrl' => $language->uri]) !!}">@d('menu_delivery')</a>
                         </li>
                         <li class="main-menu__item">
+                            <a class="main-menu__link" href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'e-commerce']) !!}">@d('menu_e_commerce')</a>
+                        </li>
+                        <li class="main-menu__item">
+                            <a class="main-menu__link" href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'documents']) !!}">@d('menu_documents')</a>
+                        </li>
+                        <li class="main-menu__item">
+                            <a class="main-menu__link" href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'business']) !!}">@d('menu_business')</a>
+                        </li>
+                        <li class="main-menu__item">
                             <a class="main-menu__link" href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'contacts']) !!}">@d('menu_contects')</a>
                         </li>
+                        @if (isset($dictionary['menu_to_kazakhstan']))
+                        <li class="main-menu__item">
+                            <a class="main-menu__link" href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'to-kazakhstan']) !!}">@d('menu_to_kazakhstan')</a>
+                        </li>
+                        @endif
                     </ul>
                 </div>
             </div>
