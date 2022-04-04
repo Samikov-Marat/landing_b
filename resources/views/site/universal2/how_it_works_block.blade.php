@@ -7,7 +7,9 @@
     <div class="submenu submenu_centered how-it-works__submenu">
         <div class="submenu__content">
             <div class="submenu__item @if('shop' == $howItWorksActiveTab)submenu__item_active @endif js-how-it-works-tab" data-for="commerce">@d('how_tab_shop')</div>
+            @if(isset($dictionary['new_version']))
             <div class="submenu__item @if('documents' == $howItWorksActiveTab)submenu__item_active @endif js-how-it-works-tab" data-for="documents">@d('how_tab_documents')</div>
+            @endif
             <div class="submenu__item @if('business' == $howItWorksActiveTab)submenu__item_active @endif js-how-it-works-tab" data-for="business">@d('how_tab_business')</div>
         </div>
     </div>
@@ -51,6 +53,7 @@
             </div>
         </div>
 
+        @if(isset($dictionary['new_version']))
         <div class="how-it-works__content index-page__how-it-works-content @if('documents' != $howItWorksActiveTab)hidden @endif js-how-it-works-content"  data-for="documents">
             <div class="index-page__how-it-works-dots background-dots"></div>
             <div class="how-it-works__item">
@@ -89,7 +92,7 @@
                 <div class="how-it-works__item-text">@d('how_text_d5')</div>
             </div>
         </div>
-
+        @endif
 
         <div class="how-it-works__content business-page__how-it-works-content @if('business' != $howItWorksActiveTab)hidden @endif js-how-it-works-content" data-for="business">
             <div class="business-page__how-it-works-dots background-dots"></div>
