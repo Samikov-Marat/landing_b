@@ -69,10 +69,12 @@
                         <li class="main-menu__item">
                             <a class="main-menu__link" href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'e-commerce']) !!}">@d('menu_e_commerce')</a>
                         </li>
+                        @if(isset($dictionary['new_version']))
                         {{-- Документы --}}
                         <li class="main-menu__item">
                             <a class="main-menu__link" href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'documents']) !!}">@d('menu_documents')</a>
                         </li>
+                        @endif
                         {{-- Бизнесу --}}
                         <li class="main-menu__item">
                             <a class="main-menu__link" href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'business']) !!}">@d('menu_business')</a>
