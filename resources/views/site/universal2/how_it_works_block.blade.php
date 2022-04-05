@@ -54,9 +54,9 @@
         </div>
 
         @if(isset($dictionary['new_version']))
-        <div class="how-it-works__content index-page__how-it-works-content @if('documents' != $howItWorksActiveTab)hidden @endif js-how-it-works-content"  data-for="documents">
-            <div class="index-page__how-it-works-dots background-dots"></div>
-            <div class="how-it-works__item">
+        <div class="how-it-works__content business-page__how-it-works-content @if('documents' != $howItWorksActiveTab)hidden @endif js-how-it-works-content"  data-for="documents">
+            <div class="business-page__how-it-works-dots background-dots"></div>
+            <div class="how-it-works__item business-page__how-it-works-left-item">
                 <div class="how-it-works__item-icon-container">
                     <div class="how-it-works__item-icon how-it-works__item-icon_icon_contract"></div>
                 </div>
@@ -70,27 +70,29 @@
                 <div class="how-it-works__item-num">2.</div>
                 <div class="how-it-works__item-text">@d('how_text_d2')</div>
             </div>
-            <div class="how-it-works__item how-it-works__item_no-margin">
-                <div class="how-it-works__item-icon-container">
-                    <div class="how-it-works__item-icon how-it-works__item-icon_icon_stock"></div>
-                </div>
-                <div class="how-it-works__item-num">3.</div>
-                <div class="how-it-works__item-text">@d('how_text_d3')</div>
-            </div>
-            <div class="how-it-works__item">
-                <div class="how-it-works__item-icon-container">
-                    <div class="how-it-works__item-icon how-it-works__item-icon_icon_phone"></div>
-                </div>
-                <div class="how-it-works__item-num">4.</div>
-                <div class="how-it-works__item-text">@d('how_text_d4')</div>
-            </div>
             <div class="how-it-works__item">
                 <div class="how-it-works__item-icon-container">
                     <div class="how-it-works__item-icon how-it-works__item-icon_icon_got"></div>
                 </div>
-                <div class="how-it-works__item-num">5.</div>
+                <div class="how-it-works__item-num">3.</div>
                 <div class="how-it-works__item-text">@d('how_text_d5')</div>
             </div>
+
+            <div class="how-it-works__item how-it-works__item_no-margin" style="visibility: hidden;">
+                <div class="how-it-works__item-icon-container">
+                    <div class="how-it-works__item-icon how-it-works__item-icon_icon_stock"></div>
+                </div>
+                <div class="how-it-works__item-num">0.</div>
+                <div class="how-it-works__item-text"> - </div>
+            </div>
+            <div class="how-it-works__item" style="visibility: hidden;">
+                <div class="how-it-works__item-icon-container">
+                    <div class="how-it-works__item-icon how-it-works__item-icon_icon_phone"></div>
+                </div>
+                <div class="how-it-works__item-num">0.</div>
+                <div class="how-it-works__item-text"> - </div>
+            </div>
+
         </div>
         @endif
 

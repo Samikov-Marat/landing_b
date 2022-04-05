@@ -49,6 +49,18 @@
                     <div class="faq-list__faq-question">@d('faq_documents_question_2')</div>
                     <div class="faq-list__faq-answer">@d('faq_documents_answer_2')</div>
                 </div>
+                <div class="faq-list__faq">
+                    <div class="faq-list__faq-question">@d('faq_documents_question_3')</div>
+                    <div class="faq-list__faq-answer">@d('faq_documents_answer_3') <a href="#calculator">@d('faq_documents_answer_3_link')</a></div>
+                </div>
+                <div class="faq-list__faq">
+                    <div class="faq-list__faq-question">@d('faq_documents_question_4')</div>
+                    <div class="faq-list__faq-answer">@d('faq_documents_answer_4')</div>
+                </div>
+                <div class="faq-list__faq">
+                    <div class="faq-list__faq-question">@d('faq_documents_question_5')</div>
+                    <div class="faq-list__faq-answer">@d('faq_documents_answer_5')</div>
+                </div>
             </div>
             @endif
 
