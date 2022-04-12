@@ -92,7 +92,9 @@
         </div>
 
         @if(isset($dictionary['personal_tracking_2']))
-            @include('site.personal.tracking')
+            <div id="tracking" style="padding-bottom: 80px;">
+                @include('site.personal.tracking')
+            </div>
         @endif
 
         @include('site.universal2.how_it_works_block')

@@ -48,8 +48,8 @@
 
 
 <div class="fixed-buttons">
-    <a href="{!! $calculatorHeaderAnchorHref !!}" class="fixed-button fixed-button_calc fixed-buttons__button">Рассчитать</a>
-    <a href="#" class="fixed-button fixed-button_track fixed-buttons__button">Отследить</a>
+    <a href="{!! $calculatorHeaderAnchorHref !!}" class="fixed-button fixed-button_calc fixed-buttons__button">@d('header_fixbutton_calculator')</a>
+    <a href="/#tracking" class="fixed-button fixed-button_track fixed-buttons__button">@d('header_fixbutton_tracking')</a>
 </div>
 
 <div class="body-wrapper js-body_wrapper ">
