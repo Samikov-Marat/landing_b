@@ -15,7 +15,7 @@ use Symfony\Component\HttpFoundation\IpUtils;
 */
 
 Route::middleware(['http.secure', 'start.session', 'share.errors.from.session'])->group(function(){
-    Auth::routes();
+    Auth::routes(['register' => false]);
 });
 
 Route::prefix('admin')->middleware(['auth', 'user.route.access', 'http.secure', 'verify.csrf.token', 'start.session', 'share.errors.from.session'])->group(
