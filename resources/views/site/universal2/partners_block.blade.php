@@ -1,3 +1,4 @@
+@if(false)
 <div class="partner">
     <div class="content">
         <h2 class="typo-h2 partner__title">@d('partners_header')</h2>
@@ -40,3 +41,4 @@
 {{--        </div>--}}
     </div>
 </div>
+@endif
