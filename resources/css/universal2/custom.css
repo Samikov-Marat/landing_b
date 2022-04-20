@@ -600,3 +600,8 @@
 .calculator_currency_sign{
     font-family: 'Inter', sans-serif;
 }
+
+
+.order-form {
+    position: relative;
+}

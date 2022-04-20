@@ -2,6 +2,7 @@
 
 namespace App\Classes\Site\ApiMarketing;
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 
 class ApiMarketingRequestBase
@@ -11,7 +12,7 @@ class ApiMarketingRequestBase
     var $apiMarketingCategory = '';
     var $receiverTimezone;
 
-    function __construct($request, $domain, $apiMarketingCategory, $receiverTimezone)
+    function __construct(Request $request, $domain, $apiMarketingCategory, $receiverTimezone)
     {
         $this->request = $request;
         $this->domain = $domain;

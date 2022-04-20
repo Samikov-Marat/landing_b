@@ -341,6 +341,8 @@ Route::post('/request/send', 'site\RequestController@send')
     ->name('request.send')->middleware(['verify.recaptcha.token']);
 Route::post('/request/feedback', 'site\RequestController@feedback')
     ->name('request.feedback')->middleware(['verify.recaptcha.token']);
+Route::post('/request/order', 'site\RequestController@order')
+    ->name('request.order')->middleware(['verify.recaptcha.token']);
 Route::post('/request/presentation', 'site\RequestController@presentation')
     ->name('request.presentation');
 Route::get('/request/get-office-list', 'site\RequestController@getOfficeList')

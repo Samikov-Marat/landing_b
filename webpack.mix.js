@@ -6,6 +6,7 @@ mix.combine([
     'public/universal2/assets/vendor/jquery.autocomplete.js',
     'resources/js/universal2/recaptcha_ext.js',
     'resources/js/universal2/feedback.js',
+    'resources/js/universal2/order_form.js',
     'resources/js/universal2/app.js',
     'resources/js/universal2/tariffs.js',
     'resources/js/universal2/calculator.js',

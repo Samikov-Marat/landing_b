@@ -76,7 +76,7 @@
 
 
 
-        @include('site.universal2.order_block')
+        @include('site.universal2.order_block', ['orderFormType' => 'documents_order'])
 
 
         @include('site.universal2.how_it_works_block')

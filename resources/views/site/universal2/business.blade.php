@@ -34,7 +34,7 @@
         @include('site.universal2.order_block')
         @endif
 
-        @include('site.universal2.how_it_works_block')
+        @include('site.universal2.how_it_works_block', ['orderFormType' => 'documents_order'])
 
         @include('site.universal2.package_russia_block')
 

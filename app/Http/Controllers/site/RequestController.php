@@ -41,6 +41,16 @@ class RequestController extends Controller
         }
     }
 
+    public function order(Request $request)
+    {
+        try {
+            return ApiMarketing::getInstance($request)->sendOrderRequest();
+        } catch (\Exception $e) {
+            Log::error($e);
+            abort(HttpResponse::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
     public function presentation(Request $request)
     {
         try {

@@ -5,15 +5,18 @@
                 <div class="form-order-docs__title">
                     @d('order_form_header')
                 </div>
-                <div class="form">
+                <form method="post" action="{!! route('request.order') !!}" class="form order-form js-order-form">
+                    <input type="hidden" name="type" value="{{ $orderFormType }}">
                     <div class="form__row">
                         <div class="form-field">
-                            <input type="text" name="name" class="form-field__input" placeholder="{{ $dictionary['order_form_field_1'] }}" />
+                            <input type="text" name="name" class="form-field__input" placeholder="{{ $dictionary['order_form_field_1'] }}"/>
+                            <div class="form-field__error-message">@d('order_form_required')</div>
                         </div>
                     </div>
                     <div class="form__row">
                         <div class="form-field">
-                            <input type="text" name="phone" class="form-field__input" placeholder="{{ $dictionary['order_form_field_2'] }}" />
+                            <input type="text" name="phone" class="form-field__input" placeholder="{{ $dictionary['order_form_field_2'] }}"/>
+                            <div class="form-field__error-message">@d('order_form_required')</div>
                         </div>
                     </div>
                     <div class="form__row">
@@ -38,7 +41,7 @@
                     </div>
                     <div class="form__row">
                         <div class="form-field">
-                            <input type="text" name="country_to" class="form-field__input" placeholder="{{ $dictionary['order_form_field_7'] }}" />
+                            <input type="text" name="country_to_string" class="form-field__input" placeholder="{{ $dictionary['order_form_field_7'] }}" />
                         </div>
                     </div>
                     <div class="form__row">
@@ -58,13 +61,13 @@
                     </div>
                     <div class="form__row form__row_no-input">
                         <div class="checkbox-widget">
-                            <input type="checkbox" name="agree" id="modal-agree" /><label for="modal-agree"><span>@d('order_form_field_agree_1') <a class="checkbox-widget__link" href="#">@d('order_form_field_agree_2')</a></span></label>
+                            <input type="checkbox" name="agree" id="order-agree" /><label for="order-agree"><span>@d('order_form_field_agree_1') <a class="checkbox-widget__link" href="#">@d('order_form_field_agree_2')</a></span></label>
                         </div>
                     </div>
                     <div class="form-field">
                         <input type="submit" value="{{ $dictionary['order_form_field_submit'] }}" class="primary-button primary-button_wide primary-button_submit" />
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>

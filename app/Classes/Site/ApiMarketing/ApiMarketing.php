@@ -54,6 +54,17 @@ class ApiMarketing
         return ApiMarketingSender::send($apiMarketingRequestFeedback->get());
     }
 
+    public function sendOrderRequest()
+    {
+        $apiMarketingRequestOrder = new ApiMarketingRequestOrder(
+            $this->request,
+            $this->domain,
+            $this->apiMarketingCategory,
+            $this->timezone
+        );
+        return ApiMarketingSender::send($apiMarketingRequestOrder->get());
+    }
+
     public function sendPresentationRequest()
     {
         $apiMarketingRequestPresentation = new ApiMarketingRequestPresentation(
