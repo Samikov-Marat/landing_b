@@ -37,11 +37,11 @@ function universal2OrderForm($form) {
         //     $formElement.closest('.form-field').addClass('form-field_error');
         //     hasError = true;
         // }
-        // $formElement = this.$form.find('input[name=agree]');
-        // if (!$formElement.prop('checked')) {
-        //     $formElement.closest('.form__row').addClass('form-field_error');
-        //     hasError = true;
-        // }
+        $formElement = this.$form.find('input[name=agree]');
+        if (!$formElement.prop('checked')) {
+            $formElement.closest('.form__row').addClass('form-field_error');
+            hasError = true;
+        }
         return hasError;
     }
 

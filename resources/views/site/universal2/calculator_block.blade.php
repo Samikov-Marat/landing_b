@@ -197,7 +197,8 @@
                         <div class="checkbox-widget">
                             <input type="checkbox" name="agree" value="да" id="agree"/><label for="agree"><span>@d('calculator_contacts_confirm_1') <a
                                         class="checkbox-widget__link"
-                                        href="#">@d('calculator_contacts_confirm_2')</a></span></label>
+                                        href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'privacy-policy']) !!}"
+                                        target="_blank">@d('calculator_contacts_confirm_2')</a></span></label>
                         </div>
                         <div class="form-field__error-message">@d('calculator_contacts_agree_error')</div>
                     </div>

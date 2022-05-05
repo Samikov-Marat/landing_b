@@ -22,26 +22,31 @@
                     <div class="form__row">
                         <div class="form-field">
                             <input type="text" name="email" class="form-field__input" placeholder="{{ $dictionary['order_form_field_3'] }}" />
+                            <div class="form-field__error-message">@d('order_form_required')</div>
                         </div>
                     </div>
                     <div class="form__row">
                         <div class="form-field">
                             <input type="text" name="org" class="form-field__input" placeholder="{{ $dictionary['order_form_field_4'] }}" />
+                            <div class="form-field__error-message">@d('order_form_required')</div>
                         </div>
                     </div>
                     <div class="form__row">
                         <div class="form-field">
                             <input type="text" name="country_from" class="form-field__input" placeholder="{{ $dictionary['order_form_field_5'] }}" />
+                            <div class="form-field__error-message">@d('order_form_required')</div>
                         </div>
                     </div>
                     <div class="form__row">
                         <div class="form-field">
                             <input type="text" name="country_to" class="form-field__input" placeholder="{{ $dictionary['order_form_field_6'] }}" />
+                            <div class="form-field__error-message">@d('order_form_required')</div>
                         </div>
                     </div>
                     <div class="form__row">
                         <div class="form-field">
                             <input type="text" name="country_to_string" class="form-field__input" placeholder="{{ $dictionary['order_form_field_7'] }}" />
+                            <div class="form-field__error-message">@d('order_form_required')</div>
                         </div>
                     </div>
                     <div class="form__row">
@@ -52,16 +57,19 @@
                     <div class="form__row">
                         <div class="form-field">
                             <input type="text" name="items_link" class="form-field__input" placeholder="{{ $dictionary['order_form_field_9'] }}" />
+                            <div class="form-field__error-message">@d('order_form_required')</div>
                         </div>
                     </div>
                     <div class="form__row">
                         <div class="form-field">
                             <input type="text" name="items_cost" class="form-field__input" placeholder="{{ $dictionary['order_form_field_10'] }}" />
+                            <div class="form-field__error-message">@d('order_form_required')</div>
                         </div>
                     </div>
                     <div class="form__row form__row_no-input">
                         <div class="checkbox-widget">
-                            <input type="checkbox" name="agree" id="order-agree" /><label for="order-agree"><span>@d('order_form_field_agree_1') <a class="checkbox-widget__link" href="#">@d('order_form_field_agree_2')</a></span></label>
+                            <input type="checkbox" name="agree" id="order-agree" /><label for="order-agree"><span>@d('order_form_field_agree_1') <a class="checkbox-widget__link" href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'privacy-policy']) !!}" target="_blank">@d('order_form_field_agree_2')</a></span></label>
+                            <div class="form-field__error-message">@d('order_form_required')</div>
                         </div>
                     </div>
                     <div class="form-field">
