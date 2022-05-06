@@ -65,6 +65,7 @@ class Kernel extends HttpKernel
         'user.route.access' => \App\Http\Middleware\UserRouteAccess::class,
         'clear.get' => \App\Http\Middleware\ClearGet::class,
         'save.utm.to.cookies' => \App\Http\Middleware\SaveUtmToCookies::class,
+        'antifraud' => \App\Http\Middleware\Antifraud::class,
         'http.secure' => \App\Http\Middleware\HttpSecure::class,
         'verify.csrf.token' => \App\Http\Middleware\VerifyCsrfToken::class,
         'verify.recaptcha.token' => \App\Http\Middleware\VerifyRecaptchaToken::class,

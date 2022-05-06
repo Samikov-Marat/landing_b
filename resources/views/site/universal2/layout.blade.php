@@ -53,6 +53,9 @@
 </div>
 
 <div class="body-wrapper js-body_wrapper ">
+    @if(isset($dictionary['antifraud_phone_1_value']))
+        @include('site.universal2.antifraud_block')
+    @endif
     <div class="fullscreen-modal-background js-fade_background "></div>
     <header class="header-shadow">
         <div class="header header_menu_size_l">
@@ -202,6 +205,7 @@
     </footer>
 
     @include('site.universal2.feedback_block')
+
 
 </div>
 <script id="recaptcha_script" data-key="{{ config('app.recapcha3_key') }}" src="https://www.google.com/recaptcha/api.js?render={{ config('app.recapcha3_key') }}"></script>

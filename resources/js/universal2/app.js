@@ -73,6 +73,12 @@ $(document).ready(function () {
 
 });
 
+$(function (){
+    if ($('#antifraud').length > 0) {
+        modalOpen($('#antifraud'));
+    }
+});
+
 
 (function (window, $) {
 
