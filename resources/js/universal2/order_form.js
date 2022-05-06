@@ -13,6 +13,8 @@ function universal2OrderForm($form) {
         let recaptchaExt = new RecaptchaExt();
         recaptchaExt.setRecaptchaAction('universal2/feedback');
 
+
+        this.setState('loading');
         let thisForCallback = this;
         recaptchaExt.execute(function (token) {
             thisForCallback.setRecaptchaToken(token).send();
@@ -32,11 +34,11 @@ function universal2OrderForm($form) {
             $formElement.closest('.form-field').addClass('form-field_error');
             hasError = true;
         }
-        // $formElement = this.$form.find('input[name=email]');
-        // if ($formElement.val() === '') {
-        //     $formElement.closest('.form-field').addClass('form-field_error');
-        //     hasError = true;
-        // }
+        $formElement = this.$form.find('input[name=email]');
+        if ($formElement.val() === '') {
+            $formElement.closest('.form-field').addClass('form-field_error');
+            hasError = true;
+        }
         $formElement = this.$form.find('input[name=agree]');
         if (!$formElement.prop('checked')) {
             $formElement.closest('.form__row').addClass('form-field_error');
@@ -103,7 +105,7 @@ $(function () {
         return false;
     });
 
-    $('.js-order-form').on('focus', '.form-field_error input', function (){
+    $('.js-order-form').on('focus click', '.form-field_error input', function (){
         $(this).closest('.form-field_error').removeClass('form-field_error');
     });
 
