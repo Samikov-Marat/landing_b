@@ -2,16 +2,16 @@
 
 namespace App\Classes;
 
-use App\Office;
-
 class OfficeRepository
 {
     var $buffer = [];
     var $bufferSize;
+    var $officeModelClass;
 
-    function __construct($bufferSize = 100)
+    function __construct($officeModelClass, $bufferSize = 100)
     {
         $this->bufferSize = $bufferSize;
+        $this->officeModelClass = $officeModelClass;
     }
 
     function __destruct()
@@ -21,12 +21,12 @@ class OfficeRepository
 
     public function clear()
     {
-        Office::whereColumn('id', 'id')->delete();
+        $this->officeModelClass::whereColumn('id', 'id')->delete();
     }
 
     public function save($attributes)
     {
-        $office = new Office();
+        $office = new $this->officeModelClass;
         $office->code = $attributes['Code'];
         $office->name = $attributes['Name'];
         $office->country_code_iso = $attributes['countryCodeIso'];
@@ -48,7 +48,7 @@ class OfficeRepository
             }
         }
         //  MBR - minimum bounding rectangle
-        return Office::select('*')->fixCoordinates()
+        return $this->officeModelClass::select('*')->fixCoordinates()
             ->withinRectangle($x, $y, $x2, $y2)
             ->get();
     }
@@ -63,7 +63,7 @@ class OfficeRepository
 
     public function flush()
     {
-        Office::query()->insert($this->buffer);
+        $this->officeModelClass::query()->insert($this->buffer);
         $this->buffer = [];
     }
 }

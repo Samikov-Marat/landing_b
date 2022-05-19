@@ -9,14 +9,14 @@ class OfficeLoader
 {
     var $url;
 
-    public function __construct()
+    public function __construct($url)
     {
-        $this->url = env('OFFICES_GEO_XML');
+        $this->url = $url;
     }
 
-    public static function getInstance()
+    public static function getInstance($url)
     {
-        return new static();
+        return new static($url);
     }
 
     public function loadTo($filename)

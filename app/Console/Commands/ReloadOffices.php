@@ -3,6 +3,8 @@
 namespace App\Console\Commands;
 
 use App\Classes\OfficeUpdater;
+use App\EngOffice;
+use App\Office;
 use Illuminate\Console\Command;
 
 class ReloadOffices extends Command
@@ -38,8 +40,17 @@ class ReloadOffices extends Command
      */
     public function handle()
     {
-        OfficeUpdater::getInstance()
+        OfficeUpdater::getInstance(Office::class)
+            ->setSource(env('OFFICES_GEO_XML') . '?lang=rus')
+            ->setFilename('geo_rus.xml')
             ->update();
+
+        OfficeUpdater::getInstance(EngOffice::class)
+            ->setSource(env('OFFICES_GEO_XML') . '?lang=eng')
+            ->setFilename('geo_eng.xml')
+            ->update();
+
+
         return 0;
     }
 }

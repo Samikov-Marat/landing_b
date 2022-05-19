@@ -48,15 +48,15 @@ class OfficeReader
     var $reader;
     var $repository;
 
-    public function __construct()
+    public function __construct($officeModelClass)
     {
         $this->reader = new \XMLReader();
-        $this->repository = new OfficeRepository();
+        $this->repository = new OfficeRepository($officeModelClass);
     }
 
-    public static function getInstance()
+    public static function getInstance($officeModelClass)
     {
-        return new static();
+        return new static($officeModelClass);
     }
 
     public function read($filename)
@@ -85,14 +85,12 @@ class OfficeReader
     private function parseList()
     {
         $this->repository->clear();
-        $t = microtime(true);
         while ($this->reader->read()) {
             if ($this->isPvz()) {
                 $this->repository->save($this->getOffice());
             }
         }
         $this->repository->flush();
-        dump(microtime(true) - $t);
     }
 
     private function isPvz()

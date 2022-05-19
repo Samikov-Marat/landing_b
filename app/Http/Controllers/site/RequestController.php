@@ -8,9 +8,11 @@ use App\Classes\MapJsonCallback;
 use App\Classes\OfficeRepository;
 use App\Classes\Site\AllowCookie;
 use App\Classes\Site\ApiMarketing\ApiMarketing;
+use App\EngOffice;
 use App\Feedback;
 use App\Http\Controllers\Controller;
 use App\Language;
+use App\Office;
 use App\Site;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -112,7 +114,13 @@ class RequestController extends Controller
                 abort(HttpResponse::HTTP_BAD_REQUEST);
             }
         }
-        $repository = new OfficeRepository();
+        if($request->has('lang') && $request->input('lang') == 'eng'){
+            $repository = new OfficeRepository(EngOffice::class);
+        }
+        else{
+            $repository = new OfficeRepository(Office::class);
+        }
+
         $offices = $repository->find($coordinates[1], $coordinates[0], $coordinates[3], $coordinates[2]);
 
         $responseGenerator = new MapJsonCallback();
