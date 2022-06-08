@@ -329,6 +329,22 @@ Route::prefix('admin')->middleware(['auth', 'user.route.access', 'http.secure', 
         Route::post('tariff-types-translation/save', 'admin\TariffTypeTranslationController@save')
             ->name('admin.tariff_types_translation.save');
 
+
+        // Категории вопросов страницы поддержки
+        Route::get('support-categories', 'admin\SupportCategoryController@index')
+            ->name('admin.support_categories.index');
+        Route::get('support-categories/add', 'admin\SupportCategoryController@edit')
+            ->name('admin.support_categories.add');
+        Route::get('support-categories/edit', 'admin\SupportCategoryController@edit')
+            ->name('admin.support_categories.edit');
+        Route::post('support-categories/save', 'admin\SupportCategoryController@save')
+            ->name('admin.support_categories.save');
+        Route::post('support-categories/delete', 'admin\SupportCategoryController@delete')
+            ->name('admin.support_categories.delete');
+        Route::post('support-categories/delete', 'admin\SupportCategoryController@delete')
+            ->name('admin.support_categories.delete');
+        Route::post('support-categories/move', 'admin\SupportCategoryController@move')
+            ->name('admin.support_categories.move');
     }
 
 );

@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Site extends Model
 {
@@ -44,6 +45,12 @@ class Site extends Model
     public function certificateChecks()
     {
         return $this->hasOne(CertificateChecks::class, 'site_id', 'id');
+    }
+
+
+    public function supportCategories(): HasMany
+    {
+        return $this->hasMany(SupportCategory::class, 'site_id', 'id');
     }
 
 }
