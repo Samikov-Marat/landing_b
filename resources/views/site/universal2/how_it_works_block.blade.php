@@ -75,7 +75,7 @@
                     <div class="how-it-works__item-icon how-it-works__item-icon_icon_got"></div>
                 </div>
                 <div class="how-it-works__item-num">3.</div>
-                <div class="how-it-works__item-text">@d('how_text_d5')</div>
+                <div class="how-it-works__item-text">@d('how_text_d3')</div>
             </div>
 
             <div class="how-it-works__item how-it-works__item_no-margin" style="visibility: hidden;">
