@@ -10,11 +10,6 @@ class SupportRepository
     {
         return Site::select(['id', 'name'])
             ->with([
-                       'supportCategories' => function ($q) {
-                           $q->orderBy('sort');
-                       }
-                   ])
-            ->with([
                        'languages' => function ($query) {
                            $query->select(['id', 'site_id', 'shortname', 'name'])
                                ->orderBy('sort');
@@ -23,12 +18,15 @@ class SupportRepository
             ->find($site_id);
     }
 
-    public static function loadTexts($siteWithLanguages)
+    public static function loadCategoriesTo($siteWithLanguages)
     {
         if ($siteWithLanguages->languages->isEmpty()) {
             throw new \Exception('На сайте должен быть хоть один язык');
         }
         $siteWithLanguages->load([
+                                     'supportCategories' => function ($q) {
+                                         $q->orderBy('sort');
+                                     },
                                      'supportCategories.supportCategoryTexts' =>
                                          function ($q) use ($siteWithLanguages) {
                                              $q->where('language_id', $siteWithLanguages->languages[0]->id);

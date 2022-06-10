@@ -345,6 +345,19 @@ Route::prefix('admin')->middleware(['auth', 'user.route.access', 'http.secure', 
             ->name('admin.support_categories.delete');
         Route::post('support-categories/move', 'admin\SupportCategoryController@move')
             ->name('admin.support_categories.move');
+
+        Route::get('support-questions', 'admin\SupportQuestionController@index')
+            ->name('admin.support_questions.index');
+        Route::get('support-questions/add', 'admin\SupportQuestionController@edit')
+            ->name('admin.support_questions.add');
+        Route::get('support-questions/edit', 'admin\SupportQuestionController@edit')
+            ->name('admin.support_questions.edit');
+        Route::post('support-questions/save', 'admin\SupportQuestionController@save')
+            ->name('admin.support_questions.save');
+        Route::post('support-questions/delete', 'admin\SupportQuestionController@delete')
+            ->name('admin.support_questions.delete');
+        Route::post('support-questions/move', 'admin\SupportQuestionController@move')
+            ->name('admin.support_questions.move');
     }
 
 );

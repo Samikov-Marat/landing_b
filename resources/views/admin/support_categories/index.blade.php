@@ -13,12 +13,14 @@
 @endcan
 
 @section('content')
-
     @if($tree->isNotEmpty())
         <table class="table table-hover table-bordered">
             <tr>
                 <th>
                     Название
+                </th>
+                <th>
+                    Вопросы
                 </th>
                 <th>
                     Сортировка
@@ -27,7 +29,7 @@
 
                 </th>
             </tr>
-            @include('admin.support_categories.branch', ['site' => $site, 'tree' => $tree, 'level' => 0])
+            @include('admin.support_categories.branch', ['site' => $site, 'tree' => $tree, 'level' => 0, 'ruler' => [1]])
         </table>
     @else
         <span class="alert alert-info">Список пуст.</span>

@@ -11,4 +11,9 @@ class SupportCategory extends Model
     {
         return $this->hasMany(SupportCategoryText::class, 'category_id', 'id');
     }
+
+    public function supportQuestions(): HasMany
+    {
+        return $this->hasMany(SupportQuestion::class, 'category_id', 'id');
+    }
 }

@@ -16,6 +16,7 @@ class CreateSupportQuestionsTable extends Migration
         Schema::create('support_questions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('category_id');
+            $table->bigInteger('sort');
             $table->timestamps();
         });
     }

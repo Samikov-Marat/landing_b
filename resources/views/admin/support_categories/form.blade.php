@@ -11,7 +11,9 @@
 @section('breadcrumbs')
     @include('admin.breadcrumbs', ['breadcrumbs' => [
         ['href' => route('admin.sites.index'), 'text' => 'Сайты'],
-        ['text' => isset($site)?'Редактирование':'Добавление'],
+        ['text' => $site->name],
+        ['href' => route('admin.support_categories.index', ['site_id' => $site->id]), 'text' => 'Техподдержка. Категории'],
+        ['text' => $supportCategory->exists ? 'Редактирование' : 'Добавление'],
     ]])
 @endsection
 
@@ -33,6 +35,16 @@
         @if($supportCategory->exists)
             <input type="hidden" name="id" value="{{ $supportCategory->id }}">
         @endif
+
+        <div class="form-group">
+            <label for="id_name">Родительская категория</label>
+            <select class="form-select form-control" name="parent_id">
+                <option value="root" title="Воображаемый корневой узел, к которому относятся категории 1 уровня">Корень</option>
+                @include('admin.support_categories.select', ['tree' => $tree, 'level' => 0])
+            </select>
+        </div>
+
+
         <div class="form-group">
             <label for="id_name">Название</label>
             <input type="text" class="form-control" name="name" id="id_name"
