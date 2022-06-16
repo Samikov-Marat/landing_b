@@ -605,3 +605,12 @@
 .order-form {
     position: relative;
 }
+
+
+.support-page__support a{
+    text-decoration: none;
+}
+
+.contact-page__support a{
+    text-decoration: none;
+}

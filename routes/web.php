@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Symfony\Component\HttpFoundation\IpUtils;
 
 /*
 |--------------------------------------------------------------------------
@@ -329,6 +328,35 @@ Route::prefix('admin')->middleware(['auth', 'user.route.access', 'http.secure', 
         Route::post('tariff-types-translation/save', 'admin\TariffTypeTranslationController@save')
             ->name('admin.tariff_types_translation.save');
 
+
+        // Категории вопросов страницы поддержки
+        Route::get('support-categories', 'admin\SupportCategoryController@index')
+            ->name('admin.support_categories.index');
+        Route::get('support-categories/add', 'admin\SupportCategoryController@edit')
+            ->name('admin.support_categories.add');
+        Route::get('support-categories/edit', 'admin\SupportCategoryController@edit')
+            ->name('admin.support_categories.edit');
+        Route::post('support-categories/save', 'admin\SupportCategoryController@save')
+            ->name('admin.support_categories.save');
+        Route::post('support-categories/delete', 'admin\SupportCategoryController@delete')
+            ->name('admin.support_categories.delete');
+        Route::post('support-categories/delete', 'admin\SupportCategoryController@delete')
+            ->name('admin.support_categories.delete');
+        Route::post('support-categories/move', 'admin\SupportCategoryController@move')
+            ->name('admin.support_categories.move');
+
+        Route::get('support-questions', 'admin\SupportQuestionController@index')
+            ->name('admin.support_questions.index');
+        Route::get('support-questions/add', 'admin\SupportQuestionController@edit')
+            ->name('admin.support_questions.add');
+        Route::get('support-questions/edit', 'admin\SupportQuestionController@edit')
+            ->name('admin.support_questions.edit');
+        Route::post('support-questions/save', 'admin\SupportQuestionController@save')
+            ->name('admin.support_questions.save');
+        Route::post('support-questions/delete', 'admin\SupportQuestionController@delete')
+            ->name('admin.support_questions.delete');
+        Route::post('support-questions/move', 'admin\SupportQuestionController@move')
+            ->name('admin.support_questions.move');
     }
 
 );
@@ -355,6 +383,12 @@ Route::post('/request/allow-cookies', 'site\RequestController@allowCookies')
 Route::get('/request/images/{imageUrl}', 'site\RequestController@images')
     ->where('imageUrl', '.*')
     ->name('request.images');
+
+Route::get('/{languageUrl}/{pageUrl?}/{category?}/{question?}', 'site\PageController@showPage')
+    ->middleware(['clear.get', 'save.utm.to.cookies', 'antifraud'])
+    ->where('category', '\d+')
+    ->where('item', '\d+')
+    ->name('site.support');
 
 Route::get('/{languageUrl}/{pageUrl?}', 'site\PageController@showPage')
     ->middleware(['clear.get', 'save.utm.to.cookies', 'antifraud'])

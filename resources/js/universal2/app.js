@@ -133,6 +133,109 @@ $(function (){
         // sliderDiv.find('.owl-stage-outer').children(':eq(0)').unwrap();
     }
 
+
+    let restoreAnswerState = function () {
+        $('.js-feedback-post-control').show();
+        $('.js-feedback-glad-to-help').hide();
+        $('.js-feedback-form-container').hide();
+        $('.js-feedback-form-wrapper').show();
+        $('.js-feedback-result-ok-wrapper').hide();
+    }
+
+    let loadWithPreloader = function (self, load, timeout = 1000) {
+        let $preloader = $('.preloader').has(self);
+        $preloader.addClass('preloader_loading');
+        setTimeout(function () {
+            load();
+            $preloader.removeClass('preloader_loading');
+        }, timeout);
+    }
+
+    $('.support-page .js-answer-button-yes').click(function (){
+        $('.js-feedback-post-control').hide();
+        $('.js-feedback-glad-to-help').show();
+        return false;
+    });
+
+    $('.support-page .js-answer-button-no').click(function (){
+        $('.js-feedback-post-control').hide();
+        $('.js-feedback-form-container').show();
+        return false;
+    });
+
+    $('.support-page .js-feedback-form-container .primary-button_submit').click(function () {
+        loadWithPreloader(this, function (){
+            $('.js-feedback-form-wrapper').hide();
+            $('.js-feedback-result-error-wrapper').show();
+        });
+        return false;
+    });
+
+    // $('.support-page .bm-breadcrumbs__item').click(function (){
+    //     restoreAnswerState();
+    // });
+
+    // $('.support-page__content_step4 .feedback__back-link').click(function (){
+    //     restoreAnswerState();
+    //     loadWithPreloader(this, function (){
+    //         $('.support-page__content_step4').hide();
+    //         $('.support-page__content_step3').show();
+    //     });
+    //     return false;
+    // });
+
+    // $('.support-page__content_step3 .feedback__back-link').click(function (){
+    //     restoreAnswerState();
+    //     loadWithPreloader(this, function (){
+    //         $('.support-page__content_step3').hide();
+    //         $('.support-page__content_step2').show();
+    //     });
+    //     return false;
+    // });
+
+    // $('.support-page__content_step2 .feedback__back-link').click(function (){
+    //     restoreAnswerState();
+    //     loadWithPreloader(this, function (){
+    //         $('.support-page__content_step2').hide();
+    //         $('.support-page__content_step1').show();
+    //     });
+    //     return false;
+    // });
+
+    // $('.support-page .support-page__content_step1 .feedback__category_root').click(function (){
+    //     loadWithPreloader(this, function (){
+    //         $('.support-page__content_step1').hide();
+    //         $('.support-page__content_step2').show();
+    //     });
+    //     return false;
+    // });
+    //
+    // $('.support-page .support-page__content_step2 .feedback__category').click(function () {
+    //     loadWithPreloader(this, function (){
+    //         $('.support-page__content_step2').hide();
+    //         $('.support-page__content_step3').show();
+    //     });
+    //     return false;
+    // });
+
+    // $('.feedback__question-outer').click(function (){
+    //     loadWithPreloader(this, function (){
+    //         $('.support-page__content_step3').hide();
+    //         $('.support-page__content_step4').show();
+    //     });
+    //     return false;
+    // });
+
+    // $('.bm-breadcrumbs__item').click(function (){
+    //     $('.support-page__content').hide();
+    //     $('.support-page__content_step1').show();
+    //     return false;
+    // });
+    //
+    if ($('#warningScamModal').length > 0) {
+        modalOpen('#warningScamModal');
+    }
+
 })(window, jQuery);
 
 
