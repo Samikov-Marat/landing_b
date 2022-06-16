@@ -53,4 +53,11 @@ class Site extends Model
         return $this->hasMany(SupportCategory::class, 'site_id', 'id');
     }
 
+    public function getEnabledLanguagesAttribute(){
+        // TODO: поискать другой способ
+        return $this->languages->filter(function ($language, $key) {
+            return !$language->disabled;
+        });
+    }
+
 }

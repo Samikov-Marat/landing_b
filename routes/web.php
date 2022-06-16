@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Symfony\Component\HttpFoundation\IpUtils;
 
 /*
 |--------------------------------------------------------------------------
@@ -384,6 +383,12 @@ Route::post('/request/allow-cookies', 'site\RequestController@allowCookies')
 Route::get('/request/images/{imageUrl}', 'site\RequestController@images')
     ->where('imageUrl', '.*')
     ->name('request.images');
+
+Route::get('/{languageUrl}/{pageUrl?}/{category?}/{question?}', 'site\PageController@showPage')
+    ->middleware(['clear.get', 'save.utm.to.cookies', 'antifraud'])
+    ->where('category', '\d+')
+    ->where('item', '\d+')
+    ->name('site.support');
 
 Route::get('/{languageUrl}/{pageUrl?}', 'site\PageController@showPage')
     ->middleware(['clear.get', 'save.utm.to.cookies', 'antifraud'])

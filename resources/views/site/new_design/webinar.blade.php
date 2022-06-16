@@ -69,7 +69,7 @@
                         class="js-open-language-list">{{ \Str::upper($language->shortname) }}</span>
 
                     <div class="header-container__language-list" style="display: none;">
-                        @foreach ($site->languages as $availableLanguage)
+                        @foreach ($site->enabledLanguages as $availableLanguage)
                             @if($availableLanguage->id != $language->id)
                                 <div class="header-container__language-item"><a
                                         href="/{{ \Str::lower($availableLanguage->shortname) }}">{{ \Str::upper($availableLanguage->shortname) }}</a>

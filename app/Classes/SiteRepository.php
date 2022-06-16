@@ -185,25 +185,20 @@ class SiteRepository
                 },
                 'localOffices.localOfficePhotos' => function ($query) {
                     $query->select([
-                        'id',
-                        'local_office_id',
-                        'sample',
-                        'sample2',
-                        'mobile',
-                        'mobile2',
-                        'tablet',
-                        'tablet2',
-                    ])
+                                       'id',
+                                       'local_office_id',
+                                       'sample',
+                                       'sample2',
+                                       'mobile',
+                                       'mobile2',
+                                       'tablet',
+                                       'tablet2',
+                                   ])
                         ->orderBy('sort');
                 },
             ]
         );
     }
 
-    public function deleteDisabledLanguages()
-    {
-        $this->site->languages = $this->site->languages->filter(function ($language, $key) {
-            return !$language->disabled;
-        });
-    }
+
 }
