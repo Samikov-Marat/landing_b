@@ -29,7 +29,6 @@
                 </div>
                 <div>
                     &nbsp;&nbsp;&nbsp;{{ $node->supportCategoryTexts ? $node->supportCategoryTexts[0]->name : $node->id }}
-                    [ {{ $node->sort }} ]
                 </div>
             </div>
         </td>

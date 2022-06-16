@@ -53,6 +53,7 @@ class SupportContainer
 
         if (isset($this->category)) {
             $this->supportCategories = SupportCategory::select(['id', 'parent_id'])
+                ->where('site_id', $this->site->id)
                 ->where('parent_id', $this->category)
                 ->get();
 
@@ -65,6 +66,7 @@ class SupportContainer
             );
         } else {
             $this->supportCategories = SupportCategory::select(['id', 'parent_id'])
+                ->where('site_id', $this->site->id)
                 ->whereNull('parent_id')
                 ->get();
         }
