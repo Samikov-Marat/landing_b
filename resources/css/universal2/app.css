@@ -2726,6 +2726,33 @@ body {
     font-weight: 500;
     text-decoration: none; }
 
+.attention-line {
+  background: url("img/for-green-line.svg") no-repeat bottom center, #1AB248;
+  padding: 18px 0; }
+  .attention-line__content {
+    margin: 0 auto;
+    width: 1200px;
+    display: flex;
+    justify-content: center; }
+  .attention-line__image {
+    background: url("img/attention-green-line.svg") no-repeat top left;
+    width: 21px;
+    height: 24px;
+    margin-right: 10px;
+    flex-shrink: 0; }
+  .attention-line__text {
+    padding-top: 4px;
+    font-size: 16px;
+    line-height: 19px;
+    color: #fff;
+    text-align: center;
+    font-weight: 400; }
+    .attention-line__text_bold {
+      font-weight: 500;
+      white-space: nowrap; }
+    .attention-line__text br {
+      display: none; }
+
 @media (max-width: 480px) {
     .yellow-line {
         background: url("img/yellow-line.svg") no-repeat bottom center #FFDA44;
@@ -2739,14 +2766,34 @@ body {
         line-height: 18px;
         margin-bottom: 10px; }
     .yellow-line__text:last-child {
-        margin-bottom: 0; } }
+        margin-bottom: 0; }
+  .attention-line {
+    background: url("img/for-green-line-320.svg") no-repeat bottom center, #1AB248;
+    padding: 20px 20px 20px 28px; }
+    .attention-line__content {
+      width: 100%; }
+    .attention-line__text {
+      padding-top: 0;
+      font-size: 14px;
+      line-height: 20px;
+      text-align: left; }
+      .attention-line__text br {
+        display: block; } }
 
 @media (min-width: 481px) and (max-width: 1199px) {
     .yellow-line {
         padding: 20px 27px; }
     .yellow-line__content {
-        width: 100%; } }
-
+      width: 100%; }
+  .attention-line {
+    background: url("img/for-green-line-768.svg") no-repeat bottom center, #1AB248; }
+    .attention-line__content {
+      width: 100%; }
+    .attention-line__text {
+      padding-top: 0;
+      line-height: 22px; }
+      .attention-line__text br {
+        display: block; } }
 
 .index-page__poster {
   background: url("/request/images/index/poster-right.jpg") no-repeat calc(50% + 515px) 0, #F5F5F6; }
@@ -4009,39 +4056,75 @@ body {
 
 .feedback__list {
     display: flex;
-    width: 764px;
+  width: 820px;
     flex-wrap: wrap;
     justify-content: space-between; }
 
 .feedback__category {
     display: inline-block;
-    padding: 15px 40px 15px 20px;
-    border: 1px solid #E5E5E5;
+  padding: 17px 40px 17px 20px;
     box-sizing: border-box;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.07);
-    border-radius: 8px;
-    font-weight: 500;
-    font-size: 17px;
-    line-height: 22px;
-    color: #222222;
+  border-radius: 5px;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  color: #fff;
     cursor: pointer;
-    position: relative; }
+  position: relative;
+  background-color: #1AB248;
+  margin-bottom: 20px; }
+  .feedback__category:nth-last-child(-n+2) {
+    margin-bottom: 0; }
 .feedback__category_root {
     display: block;
     width: 48.5%;
     padding: 16px 20px 16px 50px;
     background: url("img/feedback/default.svg") no-repeat left 20px center #FFFFFF;
     margin-bottom: 20px; }
+  .feedback__category_problem {
+    background: url("img/feedback/problem.svg") no-repeat left 20px center #1AB248;
+    padding-left: 59px;
+    width: 400px; }
+  .feedback__category_claims {
+    background: url("img/feedback/claims.svg") no-repeat left 20px center #1AB248;
+    padding-left: 59px;
+    width: 400px; }
+  .feedback__category_possibility {
+    background: url("img/feedback/possibility.svg") no-repeat left 20px center #1AB248;
+    padding-left: 59px;
+    width: 400px; }
+  .feedback__category_price {
+    background: url("img/feedback/price.svg") no-repeat left 20px center #1AB248;
+    padding-left: 59px;
+    width: 400px; }
+  .feedback__category_customs {
+    background: url("img/feedback/customs.svg") no-repeat left 20px center #1AB248;
+    padding-left: 59px;
+    width: 400px; }
+  .feedback__category_faq {
+    background: url("img/feedback/faq.svg") no-repeat left 20px center #1AB248;
+    padding-left: 59px;
+    width: 400px; }
+  .feedback__category_wishes {
+    background: url("img/feedback/wishes.svg") no-repeat left 20px center #1AB248;
+    padding-left: 59px;
+    width: 400px; }
+  .feedback__category_other {
+    background: url("img/feedback/other.svg") no-repeat left 20px center #1AB248;
+    padding-left: 59px;
+    width: 400px; }
 .feedback__category::after {
-    content: url("img/feedback/arrow.svg");
-    height: 10px;
+    content: '';
+    background: url("img/feedback/arrow-white.svg") no-repeat;
+    width: 7px;
+    height: 12px;
     position: absolute;
     right: 20px;
     top: 50%;
-    margin-top: -10px; }
+    margin-top: -7px; }
 
 .feedback__category-outer {
-    margin-bottom: 20px; }
+  margin-bottom: 10px; }
 .feedback__category-outer:last-child {
     margin-bottom: 0; }
 
@@ -4137,9 +4220,6 @@ body {
     background: url("img/feedback/error.svg") no-repeat left center; }
 
 @media (min-width: 1200px) {
-    .feedback__category:hover {
-        border: 1px solid #BBBBBB;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.07); }
     .feedback__question:hover {
         color: #1AB248; } }
 
@@ -4165,20 +4245,71 @@ body {
         width: auto;
         justify-content: flex-start; }
     .feedback__category {
-        padding: 13px 35px 13px 15px;
-        border: 1px solid #E5E5E5;
-        font-size: 16px;
-        line-height: 22px;
-        display: block; }
+    padding: 13px 35px 13px 10px;
+    font-size: 14px;
+    line-height: 19px;
+    margin-bottom: 10px; }
+    .feedback__category:nth-last-child(-n+2) {
+      margin-bottom: 10px; }
+    .feedback__category:last-child {
+      margin-bottom: 0; }
     .feedback__category_root {
         width: 100%;
         padding: 13px 15px 13px 45px;
-        background: url("../../img/feedback/default.svg") no-repeat left 15px center #FFFFFF;
+        background: url("img/feedback/default.svg") no-repeat left 15px center #FFFFFF;
         margin-bottom: 12px; }
+    .feedback__category_problem {
+      background: url("img/feedback/problem.svg") no-repeat left 10px center #1AB248;
+      padding-left: 37px;
+      width: 100%;
+      background-size: 16px 16px; }
+    .feedback__category_claims {
+      background: url("img/feedback/claims.svg") no-repeat left 10px center #1AB248;
+      padding-left: 37px;
+      width: 100%;
+      background-size: 16px 16px; }
+    .feedback__category_possibility {
+      background: url("img/feedback/possibility.svg") no-repeat left 10px center #1AB248;
+      padding-left: 37px;
+      width: 100%;
+      background-size: 16px 16px; }
+    .feedback__category_price {
+      background: url("img/feedback/price.svg") no-repeat left 10px center #1AB248;
+      padding-left: 37px;
+      width: 100%;
+      background-size: 16px 16px; }
+    .feedback__category_customs {
+      background: url("img/feedback/customs.svg") no-repeat left 10px center #1AB248;
+      padding-left: 37px;
+      width: 100%;
+      background-size: 16px 16px; }
+    .feedback__category_faq {
+      background: url("img/feedback/faq.svg") no-repeat left 10px center #1AB248;
+      padding-left: 37px;
+      width: 100%;
+      background-size: 16px 16px; }
+    .feedback__category_wishes {
+      background: url("img/feedback/wishes.svg") no-repeat left 10px center #1AB248;
+      padding-left: 37px;
+      width: 100%;
+      background-size: 16px 16px; }
+    .feedback__category_other {
+      background: url("img/feedback/other.svg") no-repeat left 10px center #1AB248;
+      padding-left: 37px;
+      width: 100%;
+      background-size: 16px 16px; }
+    .feedback__category_claims {
+      background-size: 13px 16px; }
+    .feedback__category_wishes {
+      background-size: 16px 14px; }
+    .feedback__category_other {
+      background-size: 15px 16px; }
     .feedback__category::after {
-        right: 15px; }
-    .feedback__category-outer {
-        margin-bottom: 15px; }
+      width: 5px;
+      height: 9px;
+      background-size: 5px 9px;
+      right: 9px;
+      margin-top: -5px; }
     .feedback__question-outer {
         margin-bottom: 16px; }
     .feedback__question {
