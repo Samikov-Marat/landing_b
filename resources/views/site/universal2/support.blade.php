@@ -22,7 +22,7 @@
                     <div class="feedback__list preloader js-feedback-preloader">
 
                         @foreach($supportContainer->supportCategories as $supportCategory)
-                            <a class="feedback__category feedback__category_root"
+                            <a class="feedback__category {{ $supportCategory->icon_class }}"
                                  href="{!! route('site.support', ['languageUrl' => \Str::lower($language->shortname), 'pageUrl' => $page->url, 'category' => $supportCategory->id]) !!}">
                                 {{ $supportCategory->supportCategoryTexts[0]->name ?? '' }}
                             </a>

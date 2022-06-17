@@ -29,7 +29,7 @@ class SupportContainer
     {
         $language = $this->language;
         if (isset($this->category)) {
-            $this->currentSupportCategory = SupportCategory::select(['id', 'parent_id'])
+            $this->currentSupportCategory = SupportCategory::select(['id', 'parent_id', 'icon_class',])
                 ->findOrFail($this->category);
 
 
@@ -52,7 +52,8 @@ class SupportContainer
         }
 
         if (isset($this->category)) {
-            $this->supportCategories = SupportCategory::select(['id', 'parent_id'])
+            $this->supportCategories = SupportCategory::select(['id', 'parent_id', 'icon_class',])
+                ->where('site_id', $this->site->id)
                 ->where('parent_id', $this->category)
                 ->get();
 
@@ -64,7 +65,8 @@ class SupportContainer
                 ]
             );
         } else {
-            $this->supportCategories = SupportCategory::select(['id', 'parent_id'])
+            $this->supportCategories = SupportCategory::select(['id', 'parent_id', 'icon_class',])
+                ->where('site_id', $this->site->id)
                 ->whereNull('parent_id')
                 ->get();
         }
