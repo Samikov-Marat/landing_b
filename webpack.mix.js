@@ -1,12 +1,16 @@
 const mix = require('laravel-mix');
 
+
+
 mix.combine([
     'public/universal2/assets/vendor/jquery.min.js',
     'public/universal2/assets/vendor/owl.carousel.min.js',
     'public/universal2/assets/vendor/jquery.autocomplete.js',
+    'node_modules/select2/dist/js/select2.full.js',
     'resources/js/universal2/recaptcha_ext.js',
     'resources/js/universal2/feedback.js',
     'resources/js/universal2/order_form.js',
+    'resources/js/universal2/support.js',
     'resources/js/universal2/app.js',
     'resources/js/universal2/tariffs.js',
     'resources/js/universal2/calculator.js',
@@ -21,7 +25,6 @@ mix.combine([
     "resources/js/personal/tracking_result_item.js",
     'resources/js/universal2/contacts.js',
 ], 'public/universal2/new.js').version();
-
 
 mix.combine([
     'public/personal/assets/vendor/jquery.min.js',
@@ -42,7 +45,7 @@ mix.combine([
     'resources/js/universal2/calculator.js',
 ], 'public/personal/new.js').version();
 
-
+mix.copy('node_modules/select2/dist/css/select2.min.css', 'public/universal2/select2').version();
 mix.copy('resources/css/universal2/app.css', 'public/universal2/app.css').version();
 mix.copy('resources/css/universal2/info.css', 'public/universal2/info.css').version();
 mix.copy('resources/css/universal2/custom.css', 'public/universal2/custom.css').version();
@@ -53,6 +56,9 @@ mix.copy('node_modules/leaflet.markercluster/dist/MarkerCluster.Default.css', 'p
 mix.copy('resources/css/universal2/custom.css', 'public/universal2/custom.css').version();
 
 mix.copy('node_modules/leaflet.markercluster/dist/leaflet.markercluster.js', 'public/universal2/leaflet.markercluster.js').version();
+
+
+
 
 mix.copy('vendor/almasaeed2010/adminlte/plugins/select2/', 'public/admin_files/select2').version();
 

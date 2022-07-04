@@ -3,6 +3,7 @@
 namespace App\Classes\Admin;
 
 use App\Site;
+use App\SupportCategory;
 
 class SupportRepository
 {
@@ -32,6 +33,14 @@ class SupportRepository
                                              $q->where('language_id', $siteWithLanguages->languages[0]->id);
                                          }
                                  ]);
+    }
+
+    public static function getCategoryWithTexts($id){
+        return SupportCategory::select(['id', 'parent_id', 'site_id', 'icon_class'])
+            ->with('supportCategoryTexts')
+            ->find($id);
+
+
     }
 
 }

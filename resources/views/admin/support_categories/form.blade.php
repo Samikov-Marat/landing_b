@@ -44,14 +44,29 @@
             </select>
         </div>
 
+        <h5>Название на разных языках</h5>
+        @php
+            if($supportCategory->exists){
+                $names = $supportCategory->supportCategoryTexts->pluck('name', 'language_id');
+            }
+            else{
+                $names=collect();
+            }
+        @endphp
 
-        <div class="form-group">
-            <label for="id_name">Название</label>
-            <input type="text" class="form-control" name="name" id="id_name"
-                   value="{{ ($supportCategory->exists && $supportCategory->supportCategoryTexts->isNotEmpty()) ? $supportCategory->supportCategoryTexts[0]->name : '' }}"
-                   placeholder="название" autocomplete="off">
-            <small id="id_name_help" class="form-text text-muted">Понятное название</small>
+        <div class="row">
+            @foreach($site->languages as $language)
+                <div class="form-group col">
+                    <label>{{ $language->name }}</label>
+                    <input type="text" class="form-control" name="name[{{ $language->id }}]"
+                           value="{{  $names->has($language->id) ? $names[$language->id] : '' }}"
+                           placeholder="Название" autocomplete="off">
+                </div>
+            @endforeach
         </div>
+
+
+
         <button type="submit" class="btn btn-primary">Сохранить</button>
     </form>
 

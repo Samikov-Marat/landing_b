@@ -25,7 +25,13 @@ class SupportRepository
                 'supportCategories.supportCategoryTexts' =>
                     function ($q) use ($language) {
                         $q->where('language_id', $language->id);
-                    }
+                    },
+                'supportCategories.supportQuestions' => function ($q) {
+                    $q->orderBy('sort');
+                },
+                'supportCategories.supportQuestions.supportQuestionTexts' => function ($q) use ($language) {
+                    $q->where('language_id', $language->id);
+                },
             ]
         );
     }

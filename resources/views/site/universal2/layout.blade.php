@@ -20,6 +20,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
     <link href="/universal2/assets/vendor/owl.carousel.min.css" rel="stylesheet" type="text/css"/>
 
+    <link href="/universal2/select2/css/select2.css" rel="stylesheet" type="text/css"/>
+
     <link rel="stylesheet" href="{{ mix('universal2/app.css') }}">
     <link rel="stylesheet" href="{{ mix('universal2/info.css') }}">
     <link rel="stylesheet" href="/request/images/theme.css">
@@ -212,9 +214,12 @@
 
 
 </div>
+
+
 <script id="recaptcha_script" data-key="{{ config('app.recapcha3_key') }}" src="https://www.google.com/recaptcha/api.js?render={{ config('app.recapcha3_key') }}"></script>
 
 <script src="{{ mix('universal2/new.js') }}" defer></script>
+
 @include('site.universal2.binotel')
 @include('site.universal2.jivosite')
 @include('site.universal2.tawk_block')

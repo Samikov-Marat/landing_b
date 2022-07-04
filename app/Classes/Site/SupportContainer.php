@@ -3,6 +3,7 @@
 namespace App\Classes\Site;
 
 use App\SupportCategory;
+use Illuminate\Support\Collection;
 
 class SupportContainer
 {
@@ -23,6 +24,11 @@ class SupportContainer
         $this->category = $category;
         $this->question = $question;
         $this->path = collect();
+        $this->tree = collect();
+
+        $supportRepository = new SupportRepository($this->site, $this->language);
+        $supportRepository->loadCategories();
+        $this->prepareTree();
     }
 
     public function prepare()
@@ -73,7 +79,7 @@ class SupportContainer
 
         if (isset($this->question)) {
             $this->supportQuestion = $this->currentSupportCategory->supportQuestions()
-                ->select(['id', 'category_id'])
+                ->select(['id', 'category_id', 'show_form'])
                 ->findOrFail($this->question);
 
             $this->supportQuestion->load(
@@ -88,8 +94,6 @@ class SupportContainer
 
     private function preparePath()
     {
-        $supportRepository = new SupportRepository($this->site, $this->language);
-        $supportRepository->loadCategories();
         $supportCategoryInPath = $this->currentSupportCategory->id;
 
         while (!is_null($supportCategoryInPath)) {
@@ -103,4 +107,24 @@ class SupportContainer
         }
     }
 
+
+    private function prepareTree($parent_id = null)
+    {
+        $this->tree = $this->getBranch($parent_id);
+    }
+
+    private function getBranch($parent_id = null, $level = 0): Collection
+    {
+        if ($level > 16) {
+            abort(500);
+        }
+        $children = collect();
+        foreach ($this->site->supportCategories as $category) {
+            if ($parent_id == $category->parent_id) {
+                $category->subCategories = $this->getBranch($category->id, $level + 1);
+                $children[] = $category;
+            }
+        }
+        return $children;
+    }
 }

@@ -56,6 +56,16 @@
             @endforeach
         </div>
 
+        <div class="form-group">
+            <div class="form-check">
+                <input type="checkbox" name="show_form" value="1"
+                       id="check_show_form" {{ ($supportQuestion->exists && $supportQuestion->show_form)?'checked':'' }}
+                       class="form-check-input">
+                <label for="check_show_form" class="form-check-label">
+                    Показать в конце вопроса форму ввода вместо кнопок Да/Нет
+                </label>
+            </div>
+        </div>
 
         <button type="submit" class="btn btn-primary">Сохранить</button>
     </form>

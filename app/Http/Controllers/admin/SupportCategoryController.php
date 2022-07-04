@@ -30,8 +30,7 @@ class SupportCategoryController extends Controller
     public function edit(Request $request)
     {
         if ($request->has('id')) {
-            $supportCategory = SupportCategory::select('*')
-                ->find($request->input('id'));
+            $supportCategory = SupportRepository::getCategoryWithTexts($request->input('id'));
         } else {
             $supportCategory = new SupportCategory();
         }
@@ -91,11 +90,9 @@ class SupportCategoryController extends Controller
 
         if ($request->has('parent_id') && $request->input('parent_id') !== 'root') {
             $parent_id = $request->input('parent_id');
-        }
-        elseif($supportCategory->exists){
+        } elseif ($supportCategory->exists) {
             $parent_id = $supportCategory->parent_id;
-        }
-        else {
+        } else {
             $parent_id = null;
         }
         $supportCategory->parent_id = $parent_id;
@@ -106,10 +103,23 @@ class SupportCategoryController extends Controller
         }
         $supportCategory->save();
         $supportCategory->load('supportCategoryTexts');
-        $supportCategoryText = $supportCategory->supportCategoryTexts()
-            ->firstOrNew(['language_id' => $site->languages[0]->id]);
-        $supportCategoryText->name = $request->input('name');
-        $supportCategoryText->save();
+
+        if($request->has('name')){
+            $names = collect($request->input('name'));
+        }
+        else{
+            $names = collect();
+        }
+
+        foreach ($site->languages as $language){
+            if($names->has($language->id)){
+                $supportCategoryText = $supportCategory->supportCategoryTexts()
+                    ->firstOrNew(['language_id' => $language->id]);
+                $supportCategoryText->name = $names[$language->id];
+                $supportCategoryText->save();
+            }
+        }
+
         return response()
             ->redirectToRoute('admin.support_categories.index', ['site_id' => $site->id]);
     }

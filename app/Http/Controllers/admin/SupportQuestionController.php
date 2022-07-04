@@ -29,7 +29,6 @@ class SupportQuestionController extends Controller
             ->getPath($supportCategory->id);
 
 
-
         return view('admin.support_questions.index')
             ->with('supportCategory', $supportCategory)
             ->with('site', $site)
@@ -39,7 +38,7 @@ class SupportQuestionController extends Controller
     public function edit(Request $request)
     {
         if ($request->has('id')) {
-            $supportQuestion = SupportQuestion::select('id', 'category_id')
+            $supportQuestion = SupportQuestion::select('id', 'category_id', 'show_form')
                 ->find($request->input('id'));
         } else {
             $supportQuestion = new SupportQuestion();
@@ -65,6 +64,12 @@ class SupportQuestionController extends Controller
                 ->find($request->input('id'));
         } else {
             $supportQuestion = new SupportQuestion();
+        }
+
+        if ($request->has('show_form')) {
+            $supportQuestion->show_form = $request->input('show_form');
+        } else {
+            $supportQuestion->show_form = false;
         }
 
         $supportCategory = SupportCategory::find($request->input('category_id'));

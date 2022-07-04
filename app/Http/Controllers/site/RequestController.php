@@ -8,6 +8,7 @@ use App\Classes\MapJsonCallback;
 use App\Classes\OfficeRepository;
 use App\Classes\Site\AllowCookie;
 use App\Classes\Site\ApiMarketing\ApiMarketing;
+use App\Classes\Site\Jira\JiraSender;
 use App\EngOffice;
 use App\Feedback;
 use App\Http\Controllers\Controller;
@@ -38,6 +39,16 @@ class RequestController extends Controller
     {
         try {
             return ApiMarketing::getInstance($request)->sendFeedbackRequest();
+        } catch (\Exception $e) {
+            Log::error($e);
+            abort(HttpResponse::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    public function support(Request $request)
+    {
+        try {
+            JiraSender::send($request);
         } catch (\Exception $e) {
             Log::error($e);
             abort(HttpResponse::HTTP_INTERNAL_SERVER_ERROR);
