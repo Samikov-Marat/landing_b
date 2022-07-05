@@ -75,12 +75,11 @@
                                     </div>
                                 </div>
 
-
                                 <div class="form__row">
                                     <div class="form-field">
                                         <input type="text" name="invoice_number" class="form-field__input"
-                                               placeholder="Номер накладной"/>
-                                        <div class="form-field__error-message">Номер накладной состоит из 10 цифр</div>
+                                               placeholder="{{ $dictionary['support_invoice_number'] }}"/>
+                                        <div class="form-field__error-message">@d('support_invoice_number_error')</div>
                                     </div>
                                 </div>
 
@@ -88,7 +87,7 @@
 
                                 <div class="form__row">
                                     <div class="form-field">
-                                        <select class="form-field__input js-support-select2" name="summary" placeholder="Тема вопроса">
+                                        <select class="form-field__input js-support-select2" name="summary" placeholder="{{ $dictionary['support_form_theme'] }}">
                                             <option></option>
                                             @foreach($supportContainer->tree as $category)
                                                 @include('site.universal2.support_optgroup', ['category' => $category, 'level' => 0])
