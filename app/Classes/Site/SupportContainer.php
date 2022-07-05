@@ -38,7 +38,6 @@ class SupportContainer
             $this->currentSupportCategory = SupportCategory::select(['id', 'parent_id', 'icon_class',])
                 ->findOrFail($this->category);
 
-
             $this->currentSupportCategory->load(
                 [
                     'supportCategoryTexts' => function ($q) use ($language) {
@@ -53,7 +52,6 @@ class SupportContainer
 
                 ]
             );
-
             $this->preparePath();
         }
 
@@ -63,19 +61,19 @@ class SupportContainer
                 ->where('parent_id', $this->category)
                 ->get();
 
-            $this->supportCategories->load(
-                [
-                    'supportCategoryTexts' => function ($q) use ($language) {
-                        $q->where('language_id', $language->id);
-                    },
-                ]
-            );
         } else {
             $this->supportCategories = SupportCategory::select(['id', 'parent_id', 'icon_class',])
                 ->where('site_id', $this->site->id)
                 ->whereNull('parent_id')
                 ->get();
         }
+        $this->supportCategories->load(
+            [
+                'supportCategoryTexts' => function ($q) use ($language) {
+                    $q->where('language_id', $language->id);
+                },
+            ]
+        );
 
         if (isset($this->question)) {
             $this->supportQuestion = $this->currentSupportCategory->supportQuestions()
