@@ -6,5 +6,5 @@
 @endforeach
 
 @foreach($category->supportQuestions as $question)
-    <option>{!! str_repeat('&nbsp;&nbsp;&nbsp;', $level + 1) !!}{{ $question->supportQuestionTexts[0]->question }}</option>
+    <option @if($supportContainer->supportQuestion->id == $question->id) selected @endif>{!! str_repeat('&nbsp;&nbsp;&nbsp;', $level + 1) !!}{{ $question->supportQuestionTexts[0]->question }}</option>
 @endforeach

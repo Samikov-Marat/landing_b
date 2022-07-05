@@ -52,7 +52,9 @@
 <div class="fixed-buttons">
     <a href="{!! $calculatorHeaderAnchorHref !!}" class="fixed-button fixed-button_calc fixed-buttons__button">@d('header_fixbutton_calculator')</a>
     <a href="/#tracking" class="fixed-button fixed-button_track fixed-buttons__button">@d('header_fixbutton_tracking')</a>
-    <a href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'support']) !!}" class="fixed-button fixed-button_support fixed-buttons__button">@d('header_fixbutton_support')</a>
+    @if(isset($dictionary['support_1']))
+        <a href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'support']) !!}" class="fixed-button fixed-button_support fixed-buttons__button">@d('header_fixbutton_support')</a>
+    @endif
 
 </div>
 
