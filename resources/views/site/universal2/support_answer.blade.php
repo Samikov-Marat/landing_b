@@ -54,7 +54,7 @@
             @endif
 
                 <div class="feedback__form-container js-feedback-form-container @if(!$supportContainer->supportQuestion->show_form) hidden @endif">
-                    <div class="feedback__form-wrapper js-feedback-form-wrapper">
+                    <div class="feedback__form-wrapper js-support-form-wrapper">
                         <div class="feedback__form-heading">@d('support_form_header')</div>
                         <div class="feedback__form">
                             <form class="form js-support-form" method="post" action="{{ route('request.support') }}">
@@ -112,7 +112,7 @@
                             </form>
                         </div>
                     </div>
-                    <div class="hidden feedback__result-container js-feedback-result-ok-wrapper" style="display: none;">
+                    <div class="hidden feedback__result-container js-support-result-ok-wrapper" style="display: none;">
                         <div class="feedback__result-title">@d('support_success_header')</div>
                         <div class="feedback__result feedback__result_success">
                             @d('support_success_text')

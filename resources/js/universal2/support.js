@@ -67,32 +67,25 @@ function universal2SupportForm($form) {
     }
 
     this.setState = function (state) {
-        if ('open' == state) {
-            $('.js-modal-result-ok').hide();
-            $('.js-modal-result-error').hide();
-            this.$modalContent.removeClass('modal__content_loading').show();
-            this.$modalContent.find('textarea[name=message]').val('');
-            return;
-        }
-
 
         if ('loading' == state) {
-            let $preloader = $('.preloader').has(this.$form);
+            let $preloader = this.$form.closest('.preloader')
             $preloader.addClass('preloader_loading');
             return;
         }
         if ('success' == state) {
-            let $preloader = $('.preloader').has(this.$form);
+            let $preloader = this.$form.closest('.preloader');
             $preloader.removeClass('preloader_loading');
+            $('.js-support-form-wrapper').hide();
+            $('.js-support-result-ok-wrapper').show();
             return;
         }
 
         if ('error' == state) {
-            this.$modalContent.hide();
-            $('.js-modal-result-error')
-                .css('height', this.$modalContent.css('height'))
-                .removeClass('modal__content_loading')
-                .show();
+            let $preloader = this.$form.closest('.preloader');
+            $preloader.removeClass('preloader_loading');
+            $('.js-support-form-wrapper').hide();
+            $('.js-feedback-result-error-wrapper').show();
             return;
         }
     }

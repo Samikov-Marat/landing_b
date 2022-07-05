@@ -76,8 +76,10 @@ $(document).ready(function () {
             placeholder: $(this).attr('placeholder'),
             allowClear: true,
             dropdownCssClass: 'support-select2-dropdown',
-            selectionCssClass: 'support-select2-selection'
+            selectionCssClass: 'support-select2-selection',
+            width: '100%'
         });
+
     });
 
 });
