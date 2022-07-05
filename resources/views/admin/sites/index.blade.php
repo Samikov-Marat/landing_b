@@ -38,31 +38,54 @@
                     </th>
                 @endcan
 
-
+                @can('admin.languages.index')
                 <th>
                     Языки
                 </th>
+                @endcan
+
+                @can('admin.texts.index')
                 <th>
                     Тексты
                 </th>
+                @endcan
+
+                @can('admin.images.index')
                 <th>
                     Картинки
                 </th>
+                @endcan
+
+                @can('admin.tariffs.site_tariffs')
                 <th>
                     Тарифы
                 </th>
+                @endcan
+                @can('admin.local_offices.index')
                 <th>
                     Местные офисы
                 </th>
+                @endcan
+                @can('admin.news_articles.index')
                 <th>
                     Новости
                 </th>
+                @endcan
+                @can('admin.our_workers.index')
                 <th>
                     Сотрудники
                 </th>
+                @endcan
+                @can('admin.feedbacks.index')
                 <th>
                     Отзывы
                 </th>
+                @endcan
+                @can('admin.support_categories.index')
+                    <th>
+                        Поддержка
+                    </th>
+                @endcan
                 @canany(['admin.sites.edit', 'admin.sites.delete'])
                     <th>
 
@@ -89,48 +112,73 @@
                             </a>
                         </td>
                     @endcan
+                    @can('admin.languages.index')
                     <td>
                         <a href="{!! route('admin.languages.index', ['site_id' => $site->id]) !!}">
                             {{ $site->languages->count() }} шт.
                         </a>
                     </td>
+                    @endcan
+                    @can('admin.texts.index')
                     <td>
                         <a href="{!! route('admin.texts.index', ['site_id' => $site->id]) !!}">
                             Тексты
                         </a>
                     </td>
+                    @endcan
+
+                    @can('admin.images.index')
                     <td>
                         <a href="{!! route('admin.images.index', ['site_id' => $site->id]) !!}">
                             Картинки
                         </a>
                     </td>
+                    @endcan
+
+                    @can('admin.tariffs.site_tariffs')
                     <td>
                         <a href="{!! route('admin.tariffs.site_tariffs', ['site_id' => $site->id]) !!}">
                             Тарифы
                         </a>
                     </td>
+                    @endcan
+
+                    @can('admin.local_offices.index')
                     <td>
                         <a href="{!! route('admin.local_offices.index', ['site_id' => $site->id]) !!}">
                             {{ $site->localOffices->count() }} шт.
                         </a>
                     </td>
+                    @endcan
+
+                    @can('admin.news_articles.index')
                     <td>
                         <a href="{!! route('admin.news_articles.index', ['site_id' => $site->id]) !!}">
                             Новости
                         </a>
                     </td>
-
+                    @endcan
+                    @can('admin.our_workers.index')
                     <td>
                         <a href="{!! route('admin.our_workers.index', ['site_id' => $site->id]) !!}">
                             Сотрудники
                         </a>
                     </td>
-
+                    @endcan
+                    @can('admin.feedbacks.index')
                     <td>
                         <a href="{!! route('admin.feedbacks.index', ['site_id' => $site->id]) !!}">
                             Отзывы
                         </a>
                     </td>
+                    @endcan
+                    @can('admin.support_categories.index')
+                        <td>
+                            <a href="{!! route('admin.support_categories.index', ['site_id' => $site->id]) !!}">
+                                Поддержка
+                            </a>
+                        </td>
+                    @endcan
 
                     @canany(['admin.sites.edit', 'admin.sites.delete'])
                         <td class="text-nowrap">
