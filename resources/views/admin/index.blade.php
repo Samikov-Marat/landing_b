@@ -2,8 +2,10 @@
 
 @section('content')
 
-    Главная страница админки.
+    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+    Меню слева.
 
+    @can('admin.index.errors')
     @foreach($problems['absentOffice'] as $site)
         <div class="alert alert-danger">
             <h4 class="alert-heading">На сайте нет ни одного офиса</h4>
@@ -71,5 +73,5 @@
         </tr>
     @endforeach
     </table>
-
+@endcan
 @endsection

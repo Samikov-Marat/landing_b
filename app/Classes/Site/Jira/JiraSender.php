@@ -4,6 +4,7 @@ namespace App\Classes\Site\Jira;
 
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class JiraSender
 {
@@ -16,6 +17,7 @@ class JiraSender
         $fields = [
             'project' => ['id' => 12300],
             'issuetype' => ['id' => 15807],
+            'priority' => ['name' => 'Высокий'],
             'summary' => trim($request->input('summary', 'Не указано')),
             'customfield_10043' => $request->input('invoice_number', 'Не указано'),
             'customfield_13724' => $request->input('email', 'Не указано'),
@@ -24,8 +26,9 @@ class JiraSender
                 $request->input('question', 'Не указано'),
         ];
 
+
         $client = new Client();
-        $client->request(
+        $response = $client->request(
             'POST', self::JIRA_URL,
             [
                 'auth' => [self::JIRA_LOGIN, self::JIRA_PASSWORD],
@@ -33,18 +36,8 @@ class JiraSender
                 'json' => ['fields' => $fields],
             ]
         );
+
+        Log::info($response->getBody());
         return true;
-//        if ($this->curl->curl_error) {
-//            throw new \Exception($this->curl->curl_error_message . PHP_EOL . $this->curl->response);
-//        }
-//        if ($this->curl->http_error) {
-//            throw new \Exception($this->curl->http_error_message . PHP_EOL . $this->curl->response);
-//        }
-//        $result = $this->curl->response;
-//        if ($form instanceof JiraFormHasFile) {
-//            $issueId = $this->parseResponse($this->curl->response)->id;
-//            $this->attachFiles($issueId, $form->getFiles());
-//        }
-//        return $result;
     }
 }
