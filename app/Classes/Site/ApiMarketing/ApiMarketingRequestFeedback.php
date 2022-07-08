@@ -11,7 +11,9 @@ class ApiMarketingRequestFeedback extends ApiMarketingRequestBase
             'name' => $this->input('name'),
             'email' => $this->input('email'),
             'project_name' => $this->domain,
-            'message' => $this->input('message') . PHP_EOL . $this->getRequestDatetime(),
+            'message' => 'Телефон: ' . $this->input('phone') . PHP_EOL .
+                $this->input('message') . PHP_EOL .
+                $this->getRequestDatetime(),
             'country_id' => $this->apiMarketingCategory,
             'url' => $this->input('url', $this->domain),
         ];
