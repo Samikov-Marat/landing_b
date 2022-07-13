@@ -224,5 +224,6 @@
 @include('site.universal2.jivosite')
 @include('site.universal2.tawk_block')
 @include('site.universal2.allow_cookies')
+@include('site.universal2.tiktok')
 </body>
 </html>
