@@ -13,9 +13,20 @@
                 $formGtm = $templateGtm[$page->template] ?? '';
             @endphp
 
+            @php
+                $pageFormPlace = [
+                    'universal2.index' => 'Главная',
+                    'universal2.e_commerce' => 'B2C',
+                    'universal2.business' => 'B2B',
+                    'universal2.documents' => 'Документы',
+                    ];
+                $formPlace = $pageFormPlace[$page->template] ?? 'Неизвестно';
+            @endphp
+
             <form method="post" action="{!! route('request.feedback') !!}"
                   class="form calculator_form js-feedback-form"
                   data-send-form-event="{{ $formGtm }}">
+                <input type="hidden" name="form_place" value="{{ $formPlace }}">
                 <div class="form__row">
                     <div class="form-field">
                         <input type="text" name="name" class="form-field__input"
