@@ -1,15 +1,13 @@
-$('.js-office-name').click(function(){
+$('.js-office-name').click(function () {
     let clickedId = $(this).data('id');
 
-    $('.js-office-name').toggleClass('submenu__item_active', function (){
-        return $(this).data('id') == clickedId;
+    $('.js-office-name').each(function () {
+        $(this).toggleClass('submenu__item_active', $(this).data('id') == clickedId);
     });
 
-
-
-    $('.js-office-body').toggleClass('hidden', function (){
-        return $(this).data('id') != clickedId;
-    });
+    $('.js-office-body').each(function () {
+        $(this).toggleClass('hidden', $(this).data('id') != clickedId);
+    })
 
     return false;
 });

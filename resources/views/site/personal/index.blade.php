@@ -24,7 +24,7 @@
                 f.parentNode.insertBefore(j, f);
             })(window, document, 'script', 'dataLayer', 'GTM-T5FMSQB');</script>
         <!-- End Google Tag Manager -->
-    @endif
+@endif
 
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
