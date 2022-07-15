@@ -64,6 +64,7 @@ function universal2OrderForm($form) {
 
         let thisForCallback = this;
         thisForCallback.setState('loading');
+
         $.post(request).done(function () {
             thisForCallback.setState('success');
         }).fail(function () {
@@ -72,12 +73,6 @@ function universal2OrderForm($form) {
     }
 
     this.setState = function (state) {
-        if ('open' == state) {
-            $('.js-modal-result-ok').hide();
-            $('.js-modal-result-error').hide();
-            return;
-        }
-
 
         if ('loading' == state) {
             this.$form.addClass('calculator__content_loading');
@@ -85,11 +80,26 @@ function universal2OrderForm($form) {
         }
         if ('success' == state) {
             this.$form.removeClass('calculator__content_loading');
+
+            var vscroll = (document.all ? document.scrollTop : window.pageYOffset);
+            $('#order-message-modal').closest('.modal-container').css('display', 'flex').css('padding-top', vscroll + 'px');
+            $('#order-message-modal').addClass('modal-opened').css('display','block');
+            $('#order-message-modal').find('.js-modal-result-ok').show();
+            $('#order-message-modal').find('.js-modal-result-error').hide();
+
             this.$form[0].reset();
             return;
         }
         if ('error' == state) {
             this.$form.removeClass('calculator__content_loading');
+
+            var vscroll = (document.all ? document.scrollTop : window.pageYOffset);
+            $('#order-message-modal').closest('.modal-container').css('display', 'flex').css('padding-top', vscroll + 'px');
+            $('#order-message-modal').addClass('modal-opened').css('display','block');
+            $('#order-message-modal').find('.js-modal-result-ok').hide();
+            $('#order-message-modal').find('.js-modal-result-error').show();
+
+
             return;
         }
     }
