@@ -387,12 +387,12 @@ Route::get('/request/images/{imageUrl}', 'site\RequestController@images')
     ->name('request.images');
 
 Route::get('/{languageUrl}/{pageUrl?}/{category?}/{question?}', 'site\PageController@showPage')
-    ->middleware(['clear.get', 'save.utm.to.cookies', 'antifraud'])
+    ->middleware(['clear.get', 'save.utm.to.cookies', 'antifraud', 'save.statistics',])
     ->where('category', '\d+')
     ->where('item', '\d+')
     ->name('site.support');
 
 Route::get('/{languageUrl}/{pageUrl?}', 'site\PageController@showPage')
-    ->middleware(['clear.get', 'save.utm.to.cookies', 'antifraud'])
+    ->middleware(['clear.get', 'save.utm.to.cookies', 'antifraud', 'save.statistics',])
     ->where('pageUrl', '.*')
     ->name('site.show_page');
