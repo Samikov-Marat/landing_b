@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\Admin;
 
 use App\Classes\Admin\YandexMetricaCountersRepository;
 use App\Classes\Admin\YandexMetricaGoalRepository;
