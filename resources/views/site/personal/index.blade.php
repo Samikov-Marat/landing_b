@@ -620,7 +620,7 @@
                             <a href="#" class="footer-new__link">@d('personal_163')</a>
                         </div>
                     </div>
-                    <a href="https://cdek.ru" target="_blank" class="footer-new__link footer-new__link_bold">@d('personal_164')</a>
+                    <a href="https://cdek-express.com/" target="_blank" class="footer-new__link footer-new__link_bold">@d('personal_164')</a>
                 </div>
             </div>
             <div class="footer-new__right">
