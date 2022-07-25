@@ -1,6 +1,7 @@
 {
     "/universal2/new.js": "/universal2/new.js?id=a76fc08eab1249f2f5ccfbfe93a9f6c7",
     "/personal/new.js": "/personal/new.js?id=ffae820b8bd1451d9923c4eec8db7fe4",
+    "/personal/info.css": "/personal/info.css?id=b4f297b382a8ac383044fb32a53a6c37",
     "/universal2/select2/select2.min.css": "/universal2/select2/select2.min.css?id=9f54e6414f87e0d14b9e966f19a174f9",
     "/universal2/app.css": "/universal2/app.css?id=5a4890ad8e5a474c17c1eeca605c13a6",
     "/universal2/info.css": "/universal2/info.css?id=b4f297b382a8ac383044fb32a53a6c37",
@@ -74,5 +75,5 @@
     "/admin_files/select2/js/select2.full.min.js": "/admin_files/select2/js/select2.full.min.js?id=c28f3322ee526ec1325de41413b84e39",
     "/admin_files/select2/js/select2.js": "/admin_files/select2/js/select2.js?id=8b9e61ffc46edc5610a2020a60d331f6",
     "/admin_files/select2/js/select2.min.js": "/admin_files/select2/js/select2.min.js?id=0f64f3a3a0c620a6756d36abaff1b4a6",
-    "/admin_files/new_admin.js": "/admin_files/new_admin.js?id=e19e6eedcba2e9c19f808f912d6c3d9a"
+    "/admin_files/new_admin.js": "/admin_files/new_admin.js?id=e106865ca3016ed0fa873179fd4431d1"
 }

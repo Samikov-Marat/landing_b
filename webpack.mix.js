@@ -45,6 +45,9 @@ mix.combine([
     'resources/js/universal2/calculator.js',
 ], 'public/personal/new.js').version();
 
+mix.copy('resources/css/personal/info.css', 'public/personal/info.css').version();
+
+
 mix.copy('node_modules/select2/dist/css/select2.min.css', 'public/universal2/select2').version();
 mix.copy('resources/css/universal2/app.css', 'public/universal2/app.css').version();
 mix.copy('resources/css/universal2/info.css', 'public/universal2/info.css').version();
@@ -72,5 +75,6 @@ mix.combine([
     "resources/js/admin_files/world_languages.js",
     "resources/js/admin_files/languages.js",
     "resources/js/admin_files/images.js",
+    "resources/js/admin_files/statistics_sites.js",
 ], 'public/admin_files/new_admin.js').version();
 

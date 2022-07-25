@@ -1,0 +1,105 @@
+
+.info-page-markdown {
+    padding-top: 50px;
+    padding-bottom: 95px;
+    color: #222222;
+}
+
+.info-page-markdown ul, .info-page-markdown ol{
+    padding-left: 30px;
+}
+
+.info-page-markdown a, .info-page-markdown a:hover, .info-page-markdown a:active{
+    color: #1ab248;
+}
+
+.info-page-markdown h1 {
+    font-weight: 900;
+    font-size: 55px;
+    line-height: 65px;
+    margin-bottom: 15px;
+}
+
+.info-page-markdown hr {
+    width: 50px;
+    height: 4px;
+    background: #FFCB07;
+    border-radius: 5px;
+    margin-bottom: 35px;
+    border: none;
+}
+
+.info-page-markdown p, .info-page-markdown li {
+    font-weight: normal;
+    font-size: 17px;
+    line-height: 23px;
+    margin-bottom: 25px;
+}
+
+.info-page-markdown h2 {
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 23px;
+    margin-top: 35px;
+    margin-bottom: 25px;
+}
+
+.info-page-markdown ul {
+    margin-bottom: 30px;
+}
+
+.info-page-markdown li {
+    margin-bottom: 20px;
+}
+
+@media (max-width: 480px) {
+    .info-page-markdown {
+        padding-bottom: 50px;
+    }
+
+    .info-page-markdown h1 {
+        font-size: 28px;
+        line-height: 35px;
+    }
+
+    .info-page-markdown hr {
+        margin-bottom: 25px;
+    }
+}
+
+@media (max-width: 1199px) {
+    .info-page-markdown {
+        padding-top: 30px;
+    }
+
+    .info-page-markdown p {
+        font-size: 15px;
+        line-height: 22px;
+        margin-bottom: 20px;
+    }
+
+    .info-page-markdown h2 {
+        font-size: 24px;
+        line-height: 32px;
+        margin-bottom: 20px;
+    }
+
+    .info-page-markdown li {
+        padding-left: 7px;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 1199px) {
+    .info-page-markdown {
+        padding-bottom: 70px;
+    }
+
+    .info-page-markdown h1 {
+        font-size: 45px;
+        line-height: 52px;
+    }
+
+    .info-page-markdown hr {
+        margin-bottom: 30px;
+    }
+}
