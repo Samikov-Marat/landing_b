@@ -59,12 +59,14 @@ class SupportContainer
             $this->supportCategories = SupportCategory::select(['id', 'parent_id', 'icon_class',])
                 ->where('site_id', $this->site->id)
                 ->where('parent_id', $this->category)
+                ->orderBy('sort')
                 ->get();
 
         } else {
             $this->supportCategories = SupportCategory::select(['id', 'parent_id', 'icon_class',])
                 ->where('site_id', $this->site->id)
                 ->whereNull('parent_id')
+                ->orderBy('sort')
                 ->get();
         }
         $this->supportCategories->load(
