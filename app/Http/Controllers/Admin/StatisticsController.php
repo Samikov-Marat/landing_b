@@ -11,6 +11,7 @@ use App\Classes\StatisticsUtmSourceSearcher;
 use App\Classes\StatisticsUtmTermSearcher;
 use App\Http\Controllers\Controller;
 use App\Statistics;
+use Carbon\CarbonImmutable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -26,15 +27,19 @@ class StatisticsController extends Controller
             ->orderBy('site');
         $filter = [];
 
+        $filter['date_from'] = new CarbonImmutable('first day of previous month');
         if ($request->has('filter.date_from')) {
-            $statisticsModel->where('created_at', '>=', $request->input('filter.date_from') . ' 00:00:00');
-            $filter['date_from'] = $request->input('filter.date_from');
+            $filter['date_from'] = CarbonImmutable::createFromFormat('Y-m-d', $request->input('filter.date_from'));
         }
+        $filter['date_from']->setTime(0, 0, 0);
+        $statisticsModel->where('created_at', '>=', $filter['date_from']->format('Y-m-d H:i:s'));
 
+        $filter['date_to'] = new  CarbonImmutable('last day of previous month');
         if ($request->has('filter.date_to')) {
-            $statisticsModel->where('created_at', '<=', $request->input('filter.date_to') . ' 23:59:59');
-            $filter['date_to'] = $request->input('filter.date_to');
+            $filter['date_to'] = CarbonImmutable::createFromFormat('Y-m-d', $request->input('filter.date_to'));
         }
+        $filter['date_to']->setTime(23, 59, 59);
+        $statisticsModel->where('created_at', '<=', $filter['date_to']->format('Y-m-d H:i:s'));
 
         if ($request->has('filter.site')) {
             $statisticsModel->where('site', $request->input('filter.site'));

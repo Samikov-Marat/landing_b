@@ -10,15 +10,16 @@
         <div class="form-row">
             <div class="form-group col-md-2">
                 <label>От</label>
-                <input type="date" class="form-field js-statistics-send-form" name="filter[date_from]" value="{{ $filter['date_from'] ?? date('Y-m-d', strtotime('first day of previous month')) }}">
+                <input type="date" class="form-field js-statistics-send-form" name="filter[date_from]"
+                       value="{{ $filter['date_from']->format('Y-m-d') }}">
             </div>
             <div class="form-group col-md-2">
                 <label>До</label>
-                <input type="date" class="form-field js-statistics-send-form" name="filter[date_to]" value="{{ $filter['date_to'] ?? date('Y-m-d', strtotime('last day of previous month')) }}">
+                <input type="date" class="form-field js-statistics-send-form" name="filter[date_to]"
+                       value="{{ $filter['date_to']->format('Y-m-d') }}">
             </div>
 
         </div>
-
 
 
         <div class="form-group">
