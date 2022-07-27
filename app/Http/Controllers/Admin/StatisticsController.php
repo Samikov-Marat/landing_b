@@ -27,16 +27,16 @@ class StatisticsController extends Controller
             ->orderBy('site');
         $filter = [];
 
-        $filter['date_from'] = new CarbonImmutable('first day of previous month');
+        $filter['date_from'] = new Carbon('first day of previous month');
         if ($request->has('filter.date_from')) {
-            $filter['date_from'] = CarbonImmutable::createFromFormat('Y-m-d', $request->input('filter.date_from'));
+            $filter['date_from'] = Carbon::createFromFormat('Y-m-d', $request->input('filter.date_from'));
         }
         $filter['date_from']->setTime(0, 0, 0);
         $statisticsModel->where('created_at', '>=', $filter['date_from']->format('Y-m-d H:i:s'));
 
-        $filter['date_to'] = new  CarbonImmutable('last day of previous month');
+        $filter['date_to'] = new  Carbon('last day of previous month');
         if ($request->has('filter.date_to')) {
-            $filter['date_to'] = CarbonImmutable::createFromFormat('Y-m-d', $request->input('filter.date_to'));
+            $filter['date_to'] = Carbon::createFromFormat('Y-m-d', $request->input('filter.date_to'));
         }
         $filter['date_to']->setTime(23, 59, 59);
         $statisticsModel->where('created_at', '<=', $filter['date_to']->format('Y-m-d H:i:s'));

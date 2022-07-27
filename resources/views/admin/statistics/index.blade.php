@@ -102,9 +102,9 @@
                 </td>
 
                 <td>
-                    @if(isset($stat->utm_term))
-                        {{ Str::limit($stat->utm_term ?? '', 30) }}
-                    @elseif(isset($detail['utm_term']))
+                    @if(isset($stat->utm_content))
+                        {{ Str::limit($stat->utm_content ?? '', 30) }}
+                    @elseif(isset($detail['utm_content']))
                         <span class="text-secondary">отсутствовал</span>
                     @else
                         <span class="text-secondary">все</span>
