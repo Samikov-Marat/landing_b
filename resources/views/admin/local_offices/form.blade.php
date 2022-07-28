@@ -25,6 +25,13 @@
         @endif
         <input type="hidden" name="site_id" value="{{ $site->id }}">
 
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="disabled" value="1" id="disabled_checkbox" {{ isset($localOffice) && $localOffice->disabled ? 'checked' : '' }}>
+            <label class="form-check-label" for="disabled_checkbox">
+                Скрыть
+            </label>
+        </div>
+
         <div class="form-group">
             <label for="id_code">Код офиса</label>
             <input type="text" class="form-control" name="code" id="id_code"

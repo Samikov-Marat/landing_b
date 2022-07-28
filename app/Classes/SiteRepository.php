@@ -172,6 +172,7 @@ class SiteRepository
             [
                 'localOffices' => function ($query) {
                     $query->select('id', 'site_id')
+                        ->where('disabled', false)
                         ->orderBy('sort');
                 },
                 'localOffices.localOfficeTexts' => function ($query) use ($language_id) {

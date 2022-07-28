@@ -28,6 +28,7 @@ class LocalOfficeController extends Controller
                             'utm_tag',
                             'utm_value',
                             'category',
+                            'disabled',
                             'sort'
                         )
                             ->orderBy('sort');
@@ -46,7 +47,7 @@ class LocalOfficeController extends Controller
     public function edit($id = null, Request $request)
     {
         if (isset($id)) {
-            $localOffice = LocalOffice::select('id', 'code', 'utm_tag', 'utm_value', 'category', 'site_id')
+            $localOffice = LocalOffice::select(['id', 'code', 'utm_tag', 'utm_value', 'category', 'site_id', 'disabled',])
                 ->with(
                     [
                         'localOfficeTexts' => function ($query) {
@@ -106,6 +107,7 @@ class LocalOfficeController extends Controller
         $localOffice->utm_tag = $request->input('utm_tag') ?? '';
         $localOffice->utm_value = $request->input('utm_value') ?? '';
         $localOffice->category = $request->input('category') ?? '';
+        $localOffice->disabled = $request->has('disabled');
         if (!$isEditMode) {
             $localOffice->sort = LocalOffice::where('site_id', $localOffice->site_id)->max('sort') + self::SORT_STEP;
         }
