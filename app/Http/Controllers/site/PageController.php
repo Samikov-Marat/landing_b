@@ -31,7 +31,18 @@ class PageController extends Controller
                 ->get();
             $siteRepository = new SiteRepository($domain);
             $site = $siteRepository->getSite();
-            $language = LanguageDetector::getInstance($request->server('HTTP_ACCEPT_LANGUAGE', ''))
+
+            $site->load('defaultLanguages');
+            if($site->defaultLanguages->isNotEmpty()){
+                $language = $site->defaultLanguages->first();
+                $languageShortName = Str::lower($language->shortname);
+                $requestCleaner = new RequestCleaner($request);
+                $params = array_merge(['languageUrl' => $languageShortName], $requestCleaner->getCleared());
+                return response()->redirectToRoute('site.show_page', $params);
+            }
+
+
+                $language = LanguageDetector::getInstance($request->server('HTTP_ACCEPT_LANGUAGE', ''))
                 ->chooseFrom(
                     $site->languages->filter(function ($language, $key) {
                         return !$language->disabled;

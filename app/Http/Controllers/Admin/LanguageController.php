@@ -38,6 +38,7 @@ class LanguageController extends Controller
             )
                 ->with('languageIso')
                 ->with('worldLanguage')
+                ->with('defaultLanguageSites')
                 ->find($id);
             $siteId = $language->site_id;
         } else {
@@ -83,6 +84,13 @@ class LanguageController extends Controller
         }
 
         $language->save();
+
+        if($request->has('default')){
+            $language->site->defaultLanguages()->sync([$language->id]);
+        }
+        else{
+            $language->site->defaultLanguages()->detach([$language->id]);
+        }
 
         return response()->redirectToRoute('admin.languages.index', ['site_id' => $language->site_id]);
     }

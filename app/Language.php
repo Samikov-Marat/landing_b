@@ -31,4 +31,10 @@ class Language extends Model
     {
         return $this->hasOne(WorldLanguage::class, 'id','world_language_id');
     }
+
+    public function defaultLanguageSites()
+    {
+        return $this->belongsToMany(Site::class, DefaultLanguage::class);
+    }
+
 }

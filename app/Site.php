@@ -60,4 +60,9 @@ class Site extends Model
         });
     }
 
+    public function defaultLanguages()
+    {
+        return $this->belongsToMany(Language::class, DefaultLanguage::class);
+    }
+
 }

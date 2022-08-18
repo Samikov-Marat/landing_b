@@ -92,6 +92,18 @@
             </select>
         </div>
 
+        <div class="form-group">
+            <div class="form-check">
+                <input type="checkbox" name="default" value="1"
+                       id="check_default" {{ (isset($language) && $language->defaultLanguageSites->isNotEmpty())?'checked':'' }}
+                       class="form-check-input">
+                <label for="check_default" class="form-check-label">
+                    Язык по-умолчанию (отключить автоопределение языка при открытии главной страницы без указания языка)
+                </label>
+            </div>
+        </div>
+
+
         <button type="submit" class="btn btn-primary">Сохранить</button>
     </form>
 
