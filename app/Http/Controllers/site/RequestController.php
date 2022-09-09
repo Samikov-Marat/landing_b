@@ -46,6 +46,10 @@ class RequestController extends Controller
 
     public function support(Request $request)
     {
+        if($request->input('email') === 'error'){
+            sleep(5);
+            abort(HttpResponse::HTTP_INTERNAL_SERVER_ERROR);
+        }
         try {
             JiraSender::send($request);
             return 'success';

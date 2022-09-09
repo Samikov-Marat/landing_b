@@ -53,7 +53,7 @@
                 </div>
             @endif
 
-                <div class="feedback__form-container js-feedback-form-container @if(!$supportContainer->supportQuestion->show_form) hidden @endif">
+                <div class="js-feedback-form-container @if(!$supportContainer->supportQuestion->show_form) hidden @endif">
                     <div class="feedback__form-wrapper js-support-form-wrapper">
                         <div class="feedback__form-heading">@d('support_form_header')</div>
                         <div class="feedback__form">

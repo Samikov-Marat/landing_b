@@ -74,10 +74,11 @@ $(document).ready(function () {
     $('.js-support-select2').each(function (){
         $(this).select2({
             placeholder: $(this).attr('placeholder'),
-            allowClear: true,
+            allowClear: false,
             dropdownCssClass: 'support-select2-dropdown',
             selectionCssClass: 'support-select2-selection',
-            width: '100%'
+            width: '100%',
+            minimumResultsForSearch: 20
         });
 
     });

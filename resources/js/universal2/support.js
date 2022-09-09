@@ -35,8 +35,24 @@ function universal2SupportForm($form) {
             $formElement.closest('.form-field').addClass('form-field_error');
             hasError = true;
         }
+        $formElement = this.$form.find('input[name=have_invoice]');
+        if ($formElement.length && $formElement.filter(':checked').length == 0) {
+            $formElement.closest('.form-field').addClass('form-field_error');
+            hasError = true;
+        }
         $formElement = this.$form.find('input[name=invoice_number]');
-        if (! /\d{10}/.test($formElement.val())) {
+        let $hasInvoice = this.$form.find('.js-support-have-invoice:checked');
+        if ($hasInvoice.length && ($hasInvoice.val() == '1') && !/\d{10}/.test($formElement.val())) {
+            $formElement.closest('.form-field').addClass('form-field_error');
+            hasError = true;
+        }
+        $formElement = this.$form.find('select[name=summary]');
+        if ($formElement.val() === '') {
+            $formElement.closest('.form-field').addClass('form-field_error');
+            hasError = true;
+        }
+        $formElement = this.$form.find('textarea[name=question]');
+        if ($formElement.val() === '') {
             $formElement.closest('.form-field').addClass('form-field_error');
             hasError = true;
         }
@@ -68,6 +84,26 @@ function universal2SupportForm($form) {
 
     this.setState = function (state) {
 
+        if ('new' == state) {
+            this.$form[0].reset();
+            let $preloader = this.$form.closest('.preloader');
+            $preloader.removeClass('preloader_loading');
+            $('.js-support-form-wrapper').show();
+            $('.js-support-result-ok-wrapper').hide();
+            $('.js-feedback-result-error-wrapper').hide();
+            $('.js-support-invoice-number-row').hide();
+            $('.js-support-have-invoice').prop('checked', false);
+            return;
+        }
+        if ('retry' == state) {
+            let $preloader = this.$form.closest('.preloader');
+            $preloader.removeClass('preloader_loading');
+            $('.js-support-form-wrapper').show();
+            $('.js-support-result-ok-wrapper').hide();
+            $('.js-feedback-result-error-wrapper').hide();
+            return;
+        }
+
         if ('loading' == state) {
             let $preloader = this.$form.closest('.preloader')
             $preloader.addClass('preloader_loading');
@@ -98,5 +134,42 @@ $(function () {
         let feedbackForm = new universal2SupportForm($form);
         feedbackForm.submit();
         return false;
+    });
+});
+
+
+$(function (){
+    $('.js-support-have-invoice').on('change', function (){
+        if($(this).prop('checked') && ($(this).val() == '1')){
+            $('.js-support-invoice-number-row').show();
+        }
+        else{
+            $('.js-support-invoice-number-row').hide();
+        }
+    });
+});
+
+
+$(function (){
+    $('.js-support-new-answer').click(function (){
+        let $form = $('.js-support-form');
+        let feedbackForm = new universal2SupportForm($form);
+        feedbackForm.setState('new');
+        return false;
+    });
+});
+
+$(function (){
+    $('.js-support-retry').click(function (){
+        let $form = $('.js-support-form');
+        let feedbackForm = new universal2SupportForm($form);
+        feedbackForm.setState('retry');
+        return false;
+    });
+});
+
+$(function (){
+    $('.support-focus-reset-error').on('focus select2:opening click', function (){
+        $(this).closest('.form-field').removeClass('form-field_error');
     });
 });

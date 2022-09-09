@@ -893,23 +893,32 @@
     text-decoration: none;
 }
 
+.select2-container--default{
+    height: 42px;
+}
+
 .select2-container--default .select2-selection--single .select2-selection__rendered{
-    width: 100%;
-    display: block;
+    color: #000000;
+    font-size: 15px;
+    line-height: 25px;
+    border: 1px solid #E1E1E1;
+    border-radius: 5px;
+    background: #FFFFFF;
+    padding: 8px 15px 9px;
     box-sizing: border-box;
-    border: none;
-    border-bottom: 2px solid #DDDDDD;
-    font-family: "Roboto", sans-serif;
-    font-size: 20px;
-    color: #334045;
-    padding: 0px 0 17px;
 }
 
 .select2-container--default .select2-selection--single .select2-selection__placeholder {
     font-family: "Roboto", sans-serif;
-    font-size: 20px;
+    font-size: 15px;
     color: #334045;
-    font-weight: 300; }
+    font-weight: 300;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow{
+    height: 42px;
+    width: 42px;
+}
 
 @media (max-width: 1199px) {
     .select2-container--default .select2-selection--single .select2-selection__placeholder{
@@ -923,4 +932,27 @@
 
 .select2-container--default .select2-selection--single .select2-selection__clear{
     margin-right: 30px;
+}
+
+
+
+.form-order-docs .form-field_error input[type=text], .form-order-docs .form-field_error textarea{
+    border-bottom: 1px solid #D80027;
+}
+
+.form__row.form__row_support_radio{
+    margin-bottom: 10px;
+}
+.form-field__choices{
+    padding-bottom: 10px;
+}
+
+.form-field_error .form-field__choices{
+    border-bottom: 1px solid #D80027;
+    padding-bottom: 9px;
+}
+
+
+.form-order-docs .form-field_error .select2-container--default .select2-selection--single .select2-selection__rendered{
+    border-bottom: 1px solid #D80027;
 }
