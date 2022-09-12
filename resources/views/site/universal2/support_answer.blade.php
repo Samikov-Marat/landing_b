@@ -54,76 +54,80 @@
             @endif
 
                 <div class="js-feedback-form-container @if(!$supportContainer->supportQuestion->show_form) hidden @endif">
-                    <div class="feedback__form-wrapper js-support-form-wrapper">
+                    <div class="feedback__form-wrapper">
                         <div class="feedback__form-heading">@d('support_form_header')</div>
                         <div class="feedback__form">
-                            <form class="form js-support-form" method="post" action="{{ route('request.support') }}">
+                            <form class="form js-support-form js-support-form-wrapper"  method="post" action="{{ route('request.support') }}">
                                 <div class="form__row">
                                     <div class="form-field">
-                                        <input type="text" name="name" class="form-field__input" placeholder="{{ $dictionary['support_name'] }}"/>
+                                        <input type="text" name="name" class="form-field__input support-focus-reset-error" placeholder="{{ $dictionary['support_name'] }}" />
                                     </div>
                                 </div>
                                 <div class="form__row">
                                     <div class="form-field">
-                                        <input type="text" name="phone" class="form-field__input"
-                                               placeholder="{{ $dictionary['support_phone'] }}"/>
+                                        <input type="text" name="email" class="form-field__input support-focus-reset-error" placeholder="{{ $dictionary['support_email'] }}" />
+                                    </div>
+                                </div>
+                                <div class="form__row form__row_support_radio">
+                                    <div class="form-field">
+                                        <div class="form-field__label">@d('support_new_have_invoice')</div>
+                                        <div class="form-field__choices">
+                                            <div class="choice-widget form-field__choices-choice">
+                                                <input type="radio" name="have_invoice" value="1" id="invoice-1" class="js-support-have-invoice support-focus-reset-error" /><label for="invoice-1">@d('support_new_have_invoice_yes')</label>
+                                            </div>
+                                            <div class="choice-widget form-field__choices-choice">
+                                                <input type="radio" name="have_invoice" value="0" id="invoice-0" class="js-support-have-invoice support-focus-reset-error" /><label for="invoice-0">@d('support_new_have_invoice_no')</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form__row js-support-invoice-number-row" style="display: none;">
+                                    <div class="form-field">
+                                        <input type="text" name="invoice_number" class="form-field__input support-focus-reset-error" placeholder="{{ $dictionary['support_invoice_number'] }}" />
                                     </div>
                                 </div>
                                 <div class="form__row">
                                     <div class="form-field">
-                                        <input type="text" name="email" class="form-field__input" placeholder="{{ $dictionary['support_email'] }}"/>
-                                    </div>
-                                </div>
-
-                                <div class="form__row">
-                                    <div class="form-field">
-                                        <input type="text" name="invoice_number" class="form-field__input"
-                                               placeholder="{{ $dictionary['support_invoice_number'] }}"/>
-                                        <div class="form-field__error-message">@d('support_invoice_number_error')</div>
-                                    </div>
-                                </div>
-
-
-
-                                <div class="form__row">
-                                    <div class="form-field">
-                                        <select class="form-field__input js-support-select2" name="summary" placeholder="{{ $dictionary['support_form_theme'] }}">
+                                        <select class="form-field__input js-support-select2 support-focus-reset-error" name="summary" placeholder="{{ $dictionary['support_form_theme'] }}">
                                             <option></option>
                                             @foreach($supportContainer->tree as $category)
-                                                @include('site.universal2.support_optgroup', ['category' => $category, 'level' => 0])
+                                                <option @if($supportContainer->path[0]->id == $category->id) selected @endif>{{ $category->supportCategoryTexts[0]->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                 </div>
-
-
-
                                 <div class="form__row">
                                     <div class="form-field">
-                                        <textarea name="question" class="form-field__input"
-                                                  placeholder="{{ $dictionary['support_custom_question'] }}"></textarea>
+                                        <textarea name="question" class="form-field__input support-focus-reset-error" placeholder="{{ $dictionary['support_custom_question'] }}"></textarea>
                                     </div>
                                 </div>
                                 <div class="form-field">
-                                    <input type="submit" value="{{ $dictionary['support_send'] }}"
-                                           class="primary-button primary-button_wide primary-button_submit"/>
+                                    <input type="submit" value="{{ $dictionary['support_send'] }}" class="primary-button primary-button_submit" />
                                 </div>
                             </form>
+
+                            <div class="form-order-docs__result js-support-result-ok-wrapper" style="display: none;">
+                                <div class="form-order-docs__result-icon form-order-docs__result-icon_ok"></div>
+                                <div class="feedback__heading">
+                                    @d('support_success_header')
+                                </div>
+                                <div class="form-order-docs__result-text form-order-docs__result-text_small-bottom">@d('support_success_text')</div>
+                                <a href="#" class="alternative-button js-support-new-answer">@d('support_new_more')</a>
+                            </div>
+
+                            <div class="form-order-docs__result js-feedback-result-error-wrapper" style="display: none;">
+                                <div class="form-order-docs__result-icon form-order-docs__result-icon_error"></div>
+                                <div class="feedback__heading">
+                                    @d('support_error_header')
+                                </div>
+                                <div class="form-order-docs__result-text form-order-docs__result-text_small-bottom">
+                                    @d('support_error_text')
+                                </div>
+                                <a href="#" class="alternative-button js-support-retry">@d('support_new_retry')</a>
+                            </div>
                         </div>
                     </div>
-                    <div class="hidden feedback__result-container js-support-result-ok-wrapper" style="display: none;">
-                        <div class="feedback__result-title">@d('support_success_header')</div>
-                        <div class="feedback__result feedback__result_success">
-                            @d('support_success_text')
-                        </div>
-                    </div>
-                    <div class="hidden feedback__result-container js-feedback-result-error-wrapper"
-                         style="display: none;">
-                        <div class="feedback__result-title">@d('support_error_header')</div>
-                        <div class="feedback__result feedback__result_error">
-                            @d('support_error_text')
-                        </div>
-                    </div>
+
                 </div>
 
 
