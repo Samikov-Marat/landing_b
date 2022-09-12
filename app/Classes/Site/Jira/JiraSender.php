@@ -19,6 +19,7 @@ class JiraSender
             'issuetype' => ['id' => 15807],
             'priority' => ['name' => 'Высокий'],
             'summary' => trim($request->input('summary', 'Не указано')),
+            'customfield_15747' => $request->input('name', 'Не указано'),
             'customfield_10043' => $request->input('invoice_number', 'Не указано'),
             'customfield_13724' => $request->input('email', 'Не указано'),
             'description' => 'Телефон: ' . $request->input('phone', 'Не указано') .
