@@ -40,9 +40,11 @@
         'universal2.index' => '#calculator',
         'universal2.e_commerce' => '#calculator',
         'universal2.business' => '#calculator',
-        'universal2.contacts' => '/#calculator',
+        'universal2.contacts' => route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => '/']) . '#calculator',
         ];
     $calculatorHeaderAnchorHref = $templateHref[$page->template] ?? '/#calculator';
+
+    $trackinghref = route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => '/']) . '#tracking';
 
 
     $templateGtm = [
@@ -56,7 +58,7 @@
 
 <div class="fixed-buttons">
     <a href="{!! $calculatorHeaderAnchorHref !!}" class="fixed-button fixed-button_calc fixed-buttons__button">@d('header_fixbutton_calculator')</a>
-    <a href="/#tracking" class="fixed-button fixed-button_track fixed-buttons__button">@d('header_fixbutton_tracking')</a>
+    <a href="{!! $trackinghref !!}" class="fixed-button fixed-button_track fixed-buttons__button">@d('header_fixbutton_tracking')</a>
     @if(isset($dictionary['support_1']))
         <a href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'support']) !!}" class="fixed-button fixed-button_support fixed-buttons__button">@d('header_fixbutton_support')</a>
     @endif
