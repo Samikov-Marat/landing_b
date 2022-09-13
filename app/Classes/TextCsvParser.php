@@ -5,6 +5,8 @@ namespace App\Classes;
 use App\LocalOfficeText;
 use App\NewsArticleText;
 use App\Site;
+use App\SupportCategoryText;
+use App\SupportQuestionText;
 use App\Text;
 use Exception;
 use Illuminate\Support\Facades\Storage;
@@ -104,6 +106,12 @@ class TextCsvParser
         if('news' == $compositeId['table']){
             $this->loadNewsAttribute($compositeId['id'], $compositeId['attribute'], $line);
         }
+        if('support_category_texts' == $compositeId['table']){
+            $this->loadSupportCategoryAttribute($compositeId['id'], $compositeId['attribute'], $line);
+        }
+        if('support_question_texts' == $compositeId['table']){
+            $this->loadSupportQuestionAttribute($compositeId['id'], $compositeId['attribute'], $line);
+        }
     }
 
     public function loadOfficeAttribute($id, $attribute, $line){
@@ -156,6 +164,68 @@ class TextCsvParser
                 ->where('language_id', $language)
                 ->firstOrNew();
             $text->news_article_id = $id;
+            $text->language_id = $language;
+
+            foreach ($dynamicAttributes as $dynamicAttribute) {
+                if(is_null($text->getAttribute($dynamicAttribute))){
+                    $text->setAttribute($dynamicAttribute, '');
+                }
+            }
+            $text->setAttribute($attribute, $value);
+            $text->save();
+        }
+    }
+
+    public function loadSupportCategoryAttribute($id, $attribute, $line){
+        $dynamicAttributes = ['name'];
+        if(!in_array($attribute, $dynamicAttributes)){
+            throw new Exception('Это поле нельзя загрузить');
+        }
+
+        array_shift($line);
+        foreach ($this->languages as $language) {
+            if (empty($line)) {
+                throw new \Exception('Недостаточно данных');
+            }
+            $value = array_shift($line);
+
+            $attributes = array_merge(['id', 'category_id', 'language_id'], $dynamicAttributes);
+            $text = SupportCategoryText::select($attributes)
+                ->where('category_id', $id)
+                ->where('language_id', $language)
+                ->firstOrNew();
+            $text->category_id = $id;
+            $text->language_id = $language;
+
+            foreach ($dynamicAttributes as $dynamicAttribute) {
+                if(is_null($text->getAttribute($dynamicAttribute))){
+                    $text->setAttribute($dynamicAttribute, '');
+                }
+            }
+            $text->setAttribute($attribute, $value);
+            $text->save();
+        }
+    }
+
+    public function loadSupportQuestionAttribute($id, $attribute, $line){
+        $dynamicAttributes = ['question', 'answer'];
+        if(!in_array($attribute, $dynamicAttributes)){
+            throw new Exception('Это поле нельзя загрузить');
+        }
+
+        array_shift($line);
+        foreach ($this->languages as $language) {
+            if (empty($line)) {
+                throw new \Exception('Недостаточно данных');
+            }
+            $value = array_shift($line);
+
+            $attributes = array_merge(['id', 'question_id', 'language_id'], $dynamicAttributes);
+            $text = SupportQuestionText::select($attributes)
+                ->where('question_id', $id)
+                ->where('language_id', $language)
+                ->firstOrNew();
+            $text->question_id = $id;
             $text->language_id = $language;
 
             foreach ($dynamicAttributes as $dynamicAttribute) {
