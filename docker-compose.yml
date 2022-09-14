@@ -10,7 +10,7 @@ services:
       - ./storage:/app/storage
       - ./docker/nginx/cert:/etc/nginx/conf.d/cert
     ports:
-      - ${NGINX_PORT?:80}:80
+      - ${NGINX_PORT:?80}:80
       - ${NGINX_HTTPS_PORT:?443}:443
     networks:
       - landing
@@ -20,8 +20,8 @@ services:
       context:
         ./docker/php
       args:
-        USER_ID: ${USER_ID}
-        GROUP_ID: ${GROUP_ID}
+        USER_ID: ${USER_ID:?err}
+        GROUP_ID: ${GROUP_ID:?err}
     volumes:
       - .:/app
     networks:
