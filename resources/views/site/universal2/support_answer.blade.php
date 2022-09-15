@@ -58,6 +58,7 @@
                         <div class="feedback__form-heading">@d('support_form_header')</div>
                         <div class="feedback__form">
                             <form class="form js-support-form js-support-form-wrapper"  method="post" action="{{ route('request.support') }}">
+                                <input type="hidden" name="language_code_iso" value="{{ $language->language_code_iso }}">
                                 <div class="form__row">
                                     <div class="form-field">
                                         <input type="text" name="name" class="form-field__input support-focus-reset-error" placeholder="{{ $dictionary['support_name'] }}" />
