@@ -373,6 +373,13 @@ Route::prefix('admin')->middleware(['auth', 'user.route.access', 'http.secure', 
         Route::get('statistics/search-utm-content', 'Admin\StatisticsController@searchUtmContent')
             ->name('admin.statistics.search_utm_content');
 
+        Route::get('amo', 'Admin\AmoController@index')
+            ->name('admin.amo.index');
+        Route::get('amo/auth-form', 'Admin\AmoController@authForm')
+            ->name('admin.amo.auth_form');
+        Route::post('amo/auth-save', 'Admin\AmoController@authSave')
+            ->name('admin.amo.auth_save');
+
     }
 
 );
@@ -397,6 +404,8 @@ Route::post('/request/feedback-review', 'site\RequestController@feedbackReview')
     ->name('request.feedback_review')->middleware(['verify.recaptcha.token']);
 Route::post('/request/allow-cookies', 'site\RequestController@allowCookies')
     ->name('request.allow_cookies');
+Route::post('/request/franchise', 'site\RequestController@franchise')
+    ->name('request.franchise');
 
 Route::get('/request/images/{imageUrl}', 'site\RequestController@images')
     ->where('imageUrl', '.*')

@@ -30,6 +30,7 @@ class MenuBuilder
             ['route' => 'admin.tariff_translation.index', 'text' => 'Переводы тарифов', 'icon' => 'fas fa-language',],
             ['route' => 'admin.tariff_types.index', 'text' => 'Типы тарифов', 'icon' => 'fas fa-arrow-circle-right',],
             ['route' => 'admin.tariff_types_translation.index', 'text' => 'Переводы типов тарифов', 'icon' => 'fas fa-book-open',],
+            ['route' => 'admin.amo.index', 'text' => 'AMOcrm', 'icon' => 'fa fa-font',],
             ['route' => 'admin.statistics.index', 'text' => 'Статистика UTM', 'icon' => 'fas fa-book-open',],
             ['route' => 'admin.permissions.index', 'text' => 'Разрешения', 'icon' => 'fas fa-map-signs',],
             ['route' => 'admin.roles.index', 'text' => 'Роли', 'icon' => 'far fa-address-card',],

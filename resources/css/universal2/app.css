@@ -4571,6 +4571,642 @@ body {
     background: url("img/hw-iw-man2-2x.jpg") no-repeat right 90px bottom;
     background-size: 307px 350px; } }
 
+.franchise-world__content {
+  display: flex;
+  justify-content: space-between; }
+
+.franchise-world__content-text {
+  width: 384px;
+  padding-top: 2px; }
+
+.franchise-world__circle-icon {
+  margin-bottom: 24px; }
+
+.franchise-world__title {
+  font-size: 32px;
+  line-height: 39px;
+  margin-bottom: 25px;
+  font-weight: 400; }
+
+.franchise-world__text {
+  font-size: 32px;
+  line-height: 39px; }
+
+@media (max-width: 480px) {
+  .franchise-world {
+    padding: 0; }
+    .franchise-world__typo-h2 {
+      padding: 0 20px;
+      box-sizing: border-box; }
+    .franchise-world__content-text {
+      padding: 0 20px;
+      box-sizing: border-box; }
+    .franchise-world__title {
+      font-size: 15px;
+      line-height: 20px;
+      margin-bottom: 10px; }
+    .franchise-world__text {
+      font-size: 15px;
+      line-height: 20px;
+      margin-bottom: 20px; } }
+
+@media (max-width: 1199px) {
+  .franchise-world__content {
+    flex-direction: column; }
+  .franchise-world__content-text {
+    width: 100%;
+    text-align: center; }
+  .franchise-world__circle-icon {
+    display: none; }
+  .franchise-world__image-wrapper {
+    width: 100%; }
+  .franchise-world__image {
+    display: block;
+    width: 100%; } }
+
+@media (min-width: 481px) and (max-width: 1199px) {
+  .franchise-world__title {
+    font-size: 18px;
+    line-height: 22px;
+    margin-bottom: 12px; }
+  .franchise-world__text {
+    font-size: 18px;
+    line-height: 22px;
+    margin-bottom: 20px; } }
+
+.franchise-earnings__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 47px; }
+  .franchise-earnings__item:last-child {
+    margin-bottom: 0; }
+
+.franchise-earnings__item-text-content {
+  width: 580px; }
+
+.franchise-earnings__item-title {
+  font-size: 32px;
+  line-height: 39px;
+  margin-bottom: 30px; }
+
+.franchise-earnings__item-text {
+  font-size: 20px;
+  line-height: 25px;
+  margin-bottom: 20px; }
+  .franchise-earnings__item-text_bold {
+    font-weight: 500;
+    margin-bottom: 15px; }
+  .franchise-earnings__item-text:last-child {
+    margin-bottom: 0; }
+
+@media (max-width: 480px) {
+  .franchise-earnings {
+    text-align: center; }
+    .franchise-earnings__item {
+      flex-direction: column;
+      margin-bottom: 30px; }
+      .franchise-earnings__item:last-child {
+        margin-bottom: 0; }
+      .franchise-earnings__item_left {
+        flex-direction: column-reverse; }
+    .franchise-earnings__image-wrapper {
+      margin-bottom: 20px;
+      width: 100%; }
+    .franchise-earnings__image {
+      display: block;
+      width: 100%; }
+    .franchise-earnings__item-text-content {
+      width: 100%; }
+    .franchise-earnings__item-title {
+      font-size: 16px;
+      line-height: 22px;
+      margin-bottom: 12px; }
+    .franchise-earnings__item-text {
+      font-size: 14px;
+      line-height: 21px;
+      margin-bottom: 12px; }
+      .franchise-earnings__item-text_bold {
+        margin-bottom: 12px; } }
+
+@media (min-width: 481px) and (max-width: 1199px) {
+  .franchise-earnings__item {
+    margin-bottom: 33px; }
+  .franchise-earnings__item-text-content {
+    width: 49.85876%; }
+  .franchise-earnings__item-title {
+    font-size: 18px;
+    line-height: 22px;
+    margin-bottom: 20px; }
+  .franchise-earnings__item-text {
+    font-size: 14px;
+    line-height: 21px;
+    margin-bottom: 12px; }
+    .franchise-earnings__item-text_bold {
+      margin-bottom: 5px; }
+  .franchise-earnings__image-wrapper {
+    display: block;
+    width: 45.19774%; }
+  .franchise-earnings__image {
+    display: block;
+    width: 100%; } }
+
+.franchise-presentation__content {
+  background: url("img/franchise/presentation-left.svg") no-repeat left bottom, url("img/franchise/presentation-right.svg") no-repeat right bottom, #FFFFFF;
+  box-shadow: 0 0 70px rgba(0, 0, 0, 0.06), 0 10px 20px rgba(0, 0, 0, 0.05), 0 35px 50px rgba(0, 0, 0, 0.05);
+  border-radius: 25px 25px 0 25px;
+  padding: 90px 0;
+  box-sizing: border-box;
+  text-align: center;
+  min-height: 366px; }
+
+.franchise-presentation__title {
+  font-size: 32px;
+  line-height: 39px;
+  margin-bottom: 50px; }
+
+@media (max-width: 480px) {
+  .franchise-presentation {
+    padding: 0; }
+    .franchise-presentation__content {
+      background: url("img/franchise/presentation-left-mobile.svg") no-repeat left top, url("img/franchise/presentation-right-mobile.svg") no-repeat right bottom, #FFFFFF;
+      border-radius: 10px;
+      padding: 40px 35px;
+      min-height: 304px; }
+    .franchise-presentation__title {
+      font-size: 21px;
+      line-height: 26px;
+      margin-bottom: 25px; }
+    .franchise-presentation__primary-button {
+      width: 100%; } }
+
+@media (min-width: 481px) and (max-width: 1199px) {
+  .franchise-presentation__content {
+    background: url("img/franchise/presentation-left-tablet.svg") no-repeat left bottom, url("img/franchise/presentation-right-tablet.svg") no-repeat right bottom, #FFFFFF;
+    border-radius: 25px;
+    padding: 55px 0;
+    min-height: 25px; }
+  .franchise-presentation__title {
+    font-size: 25px;
+    line-height: 33px;
+    margin-bottom: 30px; } }
+
+.franchise-format {
+  position: relative; }
+  .franchise-format__content {
+    position: relative;
+    z-index: 2; }
+  .franchise-format__content-bg {
+    position: absolute;
+    background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%), #F4F4F5;
+    opacity: 0.5;
+    z-index: 1;
+    width: 100%;
+    height: 663px;
+    bottom: 0; }
+  .franchise-format__submenu {
+    margin-bottom: 57px; }
+  .franchise-format__typo-h2 {
+    margin-bottom: 22px;
+    text-align: center; }
+  .franchise-format__item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 77px 0 90px; }
+  .franchise-format__item-text-content {
+    width: 580px;
+    padding-top: 22px; }
+  .franchise-format__item-title {
+    font-size: 32px;
+    line-height: 39px;
+    font-weight: 400;
+    margin-bottom: 20px; }
+  .franchise-format__item-text {
+    font-size: 20px;
+    line-height: 25px;
+    margin-bottom: 40px; }
+  .franchise-format__list {
+    margin-bottom: 40px; }
+  .franchise-format__list-item {
+    list-style-type: none;
+    font-size: 20px;
+    line-height: 25px;
+    margin-bottom: 15px;
+    padding-left: 26px;
+    position: relative; }
+    .franchise-format__list-item:last-child {
+      margin-bottom: 0; }
+    .franchise-format__list-item::before {
+      content: '';
+      display: block;
+      background: url("img/franchise/list.svg") no-repeat;
+      width: 16px;
+      height: 12px;
+      position: absolute;
+      top: 8px;
+      left: 0; }
+  .franchise-format__tariff {
+    display: flex; }
+  .franchise-format__tariff-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center; }
+    .franchise-format__tariff-item:first-child {
+      margin-right: 125px; }
+    .franchise-format__tariff-item:nth-child(2) {
+      margin-right: 96px; }
+    .franchise-format__tariff-item:last-child {
+      margin-right: 0; }
+  .franchise-format__tariff-icon {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background-color: #1AB248;
+    background-repeat: no-repeat;
+    background-position: center center;
+    margin-bottom: 15px; }
+    .franchise-format__tariff-icon_contribution {
+      background-image: url("img/franchise/contribution.svg"); }
+    .franchise-format__tariff-icon_without-royalties {
+      background-image: url("img/franchise/without-royalties.svg"); }
+    .franchise-format__tariff-icon_royalties {
+      background-image: url("img/franchise/royalties.svg"); }
+    .franchise-format__tariff-icon_nooffice {
+      background-image: url("img/franchise/nooffice.svg"); }
+  .franchise-format__tariff-value {
+    font-weight: 500;
+    font-size: 19px;
+    line-height: 24px;
+    margin-bottom: 5px; }
+  .franchise-format__tariff-text {
+    font-size: 15px;
+    line-height: 22px;
+    text-align: center; }
+
+@media (max-width: 480px) {
+  .franchise-format .content {
+    padding: 0; }
+  .franchise-format__content-bg {
+    background: linear-gradient(180deg, #FFFFFF 2.07%, rgba(255, 255, 255, 0) 100%), #F4F4F5;
+    height: 462px; }
+  .franchise-format__submenu {
+    margin-bottom: 29px; }
+  .franchise-format__typo-h2 {
+    margin-bottom: 12px;
+    padding: 0 20px;
+    box-sizing: border-box; }
+  .franchise-format__item {
+    flex-direction: column;
+    padding: 0 20px;
+    box-sizing: border-box; }
+  .franchise-format__item-text-content {
+    width: 100%;
+    padding-top: 0;
+    margin-bottom: 25px; }
+  .franchise-format__item-title {
+    font-size: 14px;
+    line-height: 21px;
+    margin-bottom: 12px; }
+  .franchise-format__item-text {
+    font-size: 14px;
+    line-height: 21px;
+    margin-bottom: 15px; }
+  .franchise-format__tariff-item:first-child {
+    margin-right: 36px; }
+  .franchise-format__tariff-item:nth-child(2) {
+    margin-right: 13px; }
+  .franchise-format__tariff {
+    justify-content: space-between; }
+  .franchise-format__tariff-value {
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 3px; }
+  .franchise-format__tariff-text {
+    font-size: 12px;
+    line-height: 16px; }
+  .franchise-format__image-wrapper {
+    text-align: center; } }
+
+@media (max-width: 1199px) {
+  .franchise-format__list {
+    margin-bottom: 20px; }
+  .franchise-format__list-item {
+    font-size: 14px;
+    line-height: 21px;
+    margin-bottom: 8px;
+    padding-left: 22px; }
+    .franchise-format__list-item::before {
+      width: 12px;
+      height: 9px;
+      background-size: 12px 9px;
+      top: 6px; }
+  .franchise-format__tariff-icon {
+    width: 54px;
+    height: 54px;
+    margin-bottom: 9px;
+    background-size: 24px 24px; }
+    .franchise-format__tariff-icon_contribution {
+      background-image: url("img/franchise/contribution.svg"); }
+    .franchise-format__tariff-icon_without-royalties {
+      background-image: url("img/franchise/without-royalties.svg"); }
+    .franchise-format__tariff-icon_royalties {
+      background-image: url("img/franchise/royalties.svg"); } }
+
+@media (min-width: 481px) and (max-width: 1199px) {
+  .franchise-format__content-bg {
+    background: linear-gradient(180deg, #FFFFFF 2.07%, rgba(255, 255, 255, 0) 100%), #F4F4F5;
+    height: 462px; }
+  .franchise-format__submenu {
+    margin-bottom: 32px; }
+  .franchise-format__typo-h2 {
+    margin-bottom: 23px; }
+  .franchise-format__item {
+    padding: 0 32px 0 0; }
+  .franchise-format__item-text-content {
+    width: 52.95858%;
+    padding-top: 2px;
+    flex-shrink: 0; }
+  .franchise-format__item-title {
+    font-size: 18px;
+    line-height: 22px;
+    margin-bottom: 20px; }
+  .franchise-format__item-text {
+    font-size: 14px;
+    line-height: 21px;
+    margin-bottom: 12px; }
+  .franchise-format__tariff-item:first-child {
+    margin-right: 69px; }
+  .franchise-format__tariff-item:nth-child(2) {
+    margin-right: 35px; }
+  .franchise-format__tariff-value {
+    font-size: 16px;
+    line-height: 20px;
+    margin-bottom: 5px; }
+  .franchise-format__tariff-text {
+    font-size: 14px;
+    line-height: 21px; } }
+
+.franchise-start-a-business {
+  position: relative; }
+  .franchise-start-a-business__typo-h2 {
+    margin-bottom: 78px;
+    text-align: center; }
+  .franchise-start-a-business__content {
+    display: flex;
+    flex-wrap: wrap; }
+  .franchise-start-a-business__item {
+    margin-right: 40px;
+    width: 270px;
+    flex-shrink: 0;
+    margin-bottom: 35px; }
+    .franchise-start-a-business__item:nth-child(4n) {
+      margin-right: 0; }
+    .franchise-start-a-business__item:nth-last-child(-n+4) {
+      margin-bottom: 0; }
+  .franchise-start-a-business__item-icon-container {
+    width: 100%;
+    display: flex;
+    margin-bottom: 19px; }
+  .franchise-start-a-business__item-icon {
+    background-repeat: no-repeat;
+    margin-right: 10px;
+    background-position: left top 19px;
+    height: 91px; }
+    .franchise-start-a-business__item-icon_img-i1 {
+      background-image: url("img/franchise/item-icon-img-i1.svg");
+      width: 50px; }
+    .franchise-start-a-business__item-icon_img-i2 {
+      background-image: url("img/franchise/item-icon-img-i2.svg");
+      width: 65px; }
+    .franchise-start-a-business__item-icon_img-i3 {
+      background-image: url("img/franchise/item-icon-img-i3.svg");
+      width: 53px; }
+    .franchise-start-a-business__item-icon_img-i4 {
+      background-image: url("img/franchise/item-icon-img-i4.svg");
+      width: 54px; }
+    .franchise-start-a-business__item-icon_img-i5 {
+      background-image: url("img/franchise/item-icon-img-i5.svg");
+      width: 72px; }
+    .franchise-start-a-business__item-icon_img-i6 {
+      background-image: url("img/franchise/item-icon-img-i6.svg");
+      width: 72px; }
+    .franchise-start-a-business__item-icon_img-i7 {
+      background-image: url("img/franchise/item-icon-img-i7.svg");
+      width: 72px; }
+    .franchise-start-a-business__item-icon_img-i8 {
+      background-image: url("img/franchise/item-icon-img-i8.svg");
+      width: 72px; }
+  .franchise-start-a-business__item-num {
+    font-size: 35px; }
+    .franchise-start-a-business__item-num_mobile {
+      display: none; }
+  .franchise-start-a-business__item-text {
+    font-size: 15px;
+    line-height: 21px; }
+    .franchise-start-a-business__item-text_bold {
+      font-weight: 500; }
+
+@media (max-width: 480px) {
+  .franchise-start-a-business__typo-h2 {
+    margin-bottom: 30px; }
+  .franchise-start-a-business__item {
+    margin-right: 0;
+    width: 100%;
+    margin-bottom: 21px;
+    display: flex; }
+    .franchise-start-a-business__item:nth-last-child(-n+4) {
+      margin-bottom: 21px; }
+    .franchise-start-a-business__item:last-child {
+      margin-bottom: 0; } }
+
+@media (max-width: 1199px) {
+  .franchise-start-a-business__item-icon-container {
+    width: 70px;
+    height: 70px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: #F4F4F5;
+    margin-bottom: 0;
+    margin-right: 15px;
+    justify-content: center;
+    align-items: center; }
+  .franchise-start-a-business__item-icon {
+    background-repeat: no-repeat;
+    margin-right: 0;
+    background-position: left top; }
+    .franchise-start-a-business__item-icon_img-i1 {
+      background-image: url("img/franchise/item-icon-img-i1-320.svg");
+      width: 28px;
+      height: 44px; }
+    .franchise-start-a-business__item-icon_img-i2 {
+      width: 38px;
+      height: 42px;
+      background-size: 38px 42px; }
+    .franchise-start-a-business__item-icon_img-i3 {
+      width: 31px;
+      height: 44px;
+      background-size: 31px 42px; }
+    .franchise-start-a-business__item-icon_img-i4 {
+      width: 31px;
+      height: 44px;
+      background-size: 31px 42px; }
+    .franchise-start-a-business__item-icon_img-i5 {
+      width: 42px;
+      height: 42px;
+      background-size: 42px 42px; }
+    .franchise-start-a-business__item-icon_img-i6 {
+      width: 42px;
+      height: 42px;
+      background-size: 42px 42px; }
+    .franchise-start-a-business__item-icon_img-i7 {
+      width: 42px;
+      height: 42px;
+      background-size: 42px 42px; }
+    .franchise-start-a-business__item-icon_img-i8 {
+      width: 42px;
+      height: 42px;
+      background-size: 42px 42px; }
+  .franchise-start-a-business__item-num {
+    font-size: 30px;
+    margin-bottom: 6px; }
+    .franchise-start-a-business__item-num_desktop {
+      display: none; }
+    .franchise-start-a-business__item-num_mobile {
+      display: block; }
+  .franchise-start-a-business__item-text {
+    font-size: 14px;
+    line-height: 18px; }
+    .franchise-start-a-business__item-text br {
+      display: none; } }
+
+@media (min-width: 481px) and (max-width: 1199px) {
+  .franchise-start-a-business__typo-h2 {
+    margin-bottom: 31px; }
+  .franchise-start-a-business__item {
+    margin-right: 66px;
+    width: 44.20904%;
+    margin-bottom: 22px;
+    display: flex; }
+    .franchise-start-a-business__item:nth-child(4n) {
+      margin-right: 66px; }
+    .franchise-start-a-business__item:nth-child(2n) {
+      margin-right: 0; }
+    .franchise-start-a-business__item:nth-last-child(-n+4) {
+      margin-bottom: 22px; }
+    .franchise-start-a-business__item:nth-last-child(-n+2) {
+      margin-bottom: 0; } }
+
+.franchise-form {
+  background: url("../../img/question-bg.svg") no-repeat center bottom; }
+  .franchise-form__content {
+    padding-bottom: 100px;
+    padding-left: 655px;
+    padding-top: 34px;
+    background: url("img/franchise/franchise-form.jpg") top left 111px no-repeat;
+    min-height: 627px; }
+  .franchise-form__form-title {
+    font-size: 32px;
+    line-height: 39px;
+    margin-bottom: 20px; }
+  .franchise-form__form-text {
+    font-size: 20px;
+    line-height: 25px;
+    margin-bottom: 36px; }
+
+@media (max-width: 480px) {
+  .franchise-form {
+    background: #fff; }
+    .franchise-form .content {
+      padding: 0; }
+    .franchise-form__content {
+      background: url("img/franchise/franchise-form-mobile-2x.jpg") bottom center no-repeat;
+      background-size: 320px 235px;
+      min-height: unset;
+      padding: 0 20px 260px; }
+    .franchise-form__form-title {
+      font-size: 18px;
+      line-height: 22px;
+      margin-bottom: 10px;
+      text-align: center; }
+    .franchise-form__form-text {
+      font-size: 14px;
+      line-height: 21px;
+      margin-bottom: 20px;
+      text-align: center; }
+    .franchise-form__form {
+      min-height: 411px; } }
+
+@media (min-width: 481px) and (max-width: 1199px) {
+  .franchise-form {
+    background: #fff; }
+    .franchise-form__content {
+      padding-bottom: 60px;
+      padding-left: 380px;
+      padding-top: 0;
+      background: url("img/franchise/franchise-form-tablet.jpg") top 78px left no-repeat;
+      min-height: 513px;
+      box-sizing: border-box; }
+    .franchise-form__form-title {
+      font-size: 25px;
+      line-height: 33px;
+      margin-bottom: 12px; }
+    .franchise-form__form-text {
+      font-size: 14px;
+      line-height: 21px;
+      margin-bottom: 28px; } }
+
+.franchise-page__typo-h2 {
+  text-align: center;
+  margin-bottom: 50px; }
+
+.franchise-page__poster {
+  background: url("img/franchise/poster-right.jpg") no-repeat calc(50% + 473px) 0, #F5F5F6;
+  padding-top: 149px; }
+
+.franchise-page__poster-heading {
+  width: 575px;
+  margin-bottom: 31px; }
+
+@media (min-width: 1650px) {
+  .franchise-page__poster {
+    background: url("../../img/index/poster-left.svg") no-repeat calc(50% - 807px) 0, url("img/franchise/poster-right.jpg") no-repeat calc(50% + 473px) 0, #F5F5F6; } }
+
+@media (max-width: 480px) {
+  .franchise-page__poster {
+    padding-top: 25px;
+    background: #F5F5F6; }
+    .franchise-page__poster br {
+      display: none; }
+  .franchise-page__poster-heading {
+    width: 100%;
+    margin-bottom: 20px; }
+  .franchise-page__typo-h2 {
+    text-align: center;
+    margin-bottom: 25px; }
+  .franchise-page__poster-image-wrapper {
+    margin-top: 50px; } }
+
+@media (min-width: 481px) and (max-width: 1199px) {
+  .franchise-page__poster {
+    padding-top: 94px;
+    background: url("img/franchise/poster-tablet.jpg") no-repeat right top #F5F5F6; }
+  .franchise-page__poster-heading {
+    width: 46.46893%;
+    margin-bottom: 20px; }
+  .franchise-page__typo-h1 {
+    font-size: 26px;
+    line-height: 33px; }
+  .franchise-page__typo-h2 {
+    margin-bottom: 32px; }
+  .franchise-page__poster-text {
+    width: 46.46893%; }
+    .franchise-page__poster-text br {
+      display: none; }
+  .franchise-page__franchise-earnings {
+    margin-bottom: 86px; }
+  .franchise-page__franchise-presentation {
+    margin-bottom: 90px; } }
+
 .form-order-docs {
   position: relative; }
   .form-order-docs__bg {

@@ -24,6 +24,7 @@ mix.combine([
     "resources/js/personal/tracking_result.js",
     "resources/js/personal/tracking_result_item.js",
     'resources/js/universal2/contacts.js',
+    'resources/js/universal2/franchise.js',
 ], 'public/universal2/new.js').version();
 
 mix.combine([

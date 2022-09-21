@@ -7,6 +7,8 @@ use App\Classes\ImageResponse;
 use App\Classes\MapJsonCallback;
 use App\Classes\OfficeRepository;
 use App\Classes\Site\AllowCookie;
+use App\Classes\Site\Amo\AmoCRMApiClientBuilder;
+use App\Classes\Site\Amo\AmoSender;
 use App\Classes\Site\ApiMarketing\ApiMarketing;
 use App\Classes\Site\Jira\JiraSender;
 use App\EngOffice;
@@ -46,12 +48,35 @@ class RequestController extends Controller
 
     public function support(Request $request)
     {
-        if($request->input('email') === 'error'){
+        if ($request->input('email') === 'error') {
             sleep(5);
             abort(HttpResponse::HTTP_INTERNAL_SERVER_ERROR);
         }
         try {
             JiraSender::send($request);
+            return 'success';
+        } catch (\Exception $e) {
+            Log::error($e);
+            abort(HttpResponse::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    public function franchise(Request $request)
+    {
+        if ($request->input('email') === 'error') {
+            sleep(5);
+            abort(HttpResponse::HTTP_INTERNAL_SERVER_ERROR);
+        }
+        try {
+            $client = AmoCRMApiClientBuilder::getInstance()->getClient();
+            AmoSender::getInstance($client)
+                ->send($request->input('url'), [
+                           '2114857' => $request->input('name'),
+                           '2114859' => $request->input('phone'),
+                           '2114861' => $request->input('whatsapp'),
+                           '2114863' => $request->input('email'),
+                           '2114865' => $request->input('city'),
+                       ]);
             return 'success';
         } catch (\Exception $e) {
             Log::error($e);
@@ -129,10 +154,9 @@ class RequestController extends Controller
                 abort(HttpResponse::HTTP_BAD_REQUEST);
             }
         }
-        if($request->has('lang') && $request->input('lang') == 'eng'){
+        if ($request->has('lang') && $request->input('lang') == 'eng') {
             $repository = new OfficeRepository(EngOffice::class);
-        }
-        else{
+        } else {
             $repository = new OfficeRepository(Office::class);
         }
 

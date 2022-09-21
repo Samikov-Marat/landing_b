@@ -117,6 +117,7 @@ class PageController extends Controller
             ->with('page', $page)
             ->with('dictionary', $dictionary)
             ->with('pageUrl', $pageUrl)
+            ->with('url', url())
             ->with('topOffices', $topOffices)
             ->with('allowCookies', AllowCookie::getInstance($request)->isAllow());
     }
