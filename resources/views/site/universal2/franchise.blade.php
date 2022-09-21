@@ -320,37 +320,37 @@
                             <input type="hidden" name="url" value="{{ $url->full() }}">
                             <div class="form__row">
                                 <div class="form-field">
-                                    <input type="text" name="name" class="form-field__input franchise-focus-reset-error" placeholder="Имя" />
+                                    <input type="text" name="name" class="form-field__input franchise-focus-reset-error" placeholder="{{ $dictionary['franchise_form_name'] }}" />
                                 </div>
                             </div>
                             <div class="form__row">
                                 <div class="form-field">
-                                    <input type="text" name="phone" class="form-field__input franchise-focus-reset-error" placeholder="Телефон" />
+                                    <input type="text" name="phone" class="form-field__input franchise-focus-reset-error" placeholder="{{ $dictionary['franchise_form_phone'] }}" />
                                 </div>
                             </div>
                             <div class="form__row">
                                 <div class="form-field">
-                                    <input type="text" name="whatsapp" class="form-field__input franchise-focus-reset-error" placeholder="Телефон (WhatsApp)" />
+                                    <input type="text" name="whatsapp" class="form-field__input franchise-focus-reset-error" placeholder="{{ $dictionary['franchise_form_whatsapp'] }}" />
                                 </div>
                             </div>
                             <div class="form__row">
                                 <div class="form-field">
-                                    <input type="text" name="email" class="form-field__input franchise-focus-reset-error" placeholder="E-mail" />
+                                    <input type="text" name="email" class="form-field__input franchise-focus-reset-error" placeholder="{{ $dictionary['franchise_form_email'] }}" />
                                 </div>
                             </div>
                             <div class="form__row">
                                 <div class="form-field">
-                                    <input type="text" name="city" class="form-field__input franchise-focus-reset-error" placeholder="Город" />
+                                    <input type="text" name="city" class="form-field__input franchise-focus-reset-error" placeholder="{{ $dictionary['franchise_form_city'] }}" />
                                 </div>
                             </div>
                             <div class="form__row form__row_no-input">
                                 <div class="checkbox-widget">
                                     <input type="checkbox" name="agree" id="modal-agree" class="franchise-focus-reset-error" /><label for="modal-agree"><span>@d('franchise_108') <a class="checkbox-widget__link" href="#">@d('franchise_109')</a></span></label>
-                                    <div class="form-field__error-message">Обязательно для заполнения</div>
+                                    <div class="form-field__error-message">@d('franchise_form_required')</div>
                                 </div>
                             </div>
                             <div class="form-field">
-                                <input type="submit" value="Отправить заявку" class="primary-button primary-button_wide primary-button_submit" />
+                                <input type="submit" value="{{ $dictionary['franchise_form_submit'] }}" class="primary-button primary-button_wide primary-button_submit" />
                             </div>
                         </form>
                         <div class="form-order-docs__result js-franchise-success" style="display: none;">
