@@ -62,10 +62,10 @@
                         @endif
                     @endforeach
 
-                    <a href="#calculator"
+                    <a href="{{ route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => '/']) . '#calculator' }}"
                        class="office-page-button office-page-header__button_fc office-page-button_type_calculate office-page-header__button gtm-click"
                        data-click="rassitat_header">@d('personal_5')</a>
-                    <a href="#tracking"
+                    <a href="{{ route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => '/']) . '#tracking' }}"
                        class="office-page-button office-page-button_type_search office-page-header__button gtm-click"
                        data-click="track_header">@d('personal_6')</a>
                 </div>
@@ -75,7 +75,7 @@
                             <a class="header-contact__phone" href="tel:{{ $dictionary['personal_phone_value'] }}">@d('personal_7')</a>
                         </div>
                     </div>
-                    <a href="#feedback" class="office-page-header__contact">@d('personal_8')</a>
+                    <a href="{{ route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => '/']) . '#feedback' }}" class="office-page-header__contact">@d('personal_8')</a>
                 </div>
                 <div class="menu-mobile js-menu-open-button"></div>
             </div>
