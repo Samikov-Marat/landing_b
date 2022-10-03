@@ -14,7 +14,7 @@
                     @d('franchise_12') <br />
                     @d('franchise_13')
                 </div>
-                <a href="#" class="primary-button primary-button_with_arrow franchise-page__primary-button">@d('franchise_14')</a>
+                <a href="#join" class="primary-button primary-button_with_arrow franchise-page__primary-button gtm-click" data-click="join_franchise_start" >@d('franchise_14')</a>
                 <div class="background-dots main-poster__dots-left"></div>
                 <div class="main-poster__wave-right"></div>
             </div>
@@ -105,7 +105,7 @@
                     @d('franchise_35') <br />
                     @d('franchise_36')
                 </div>
-                <a href="#" class="primary-button franchise-presentation__primary-button">@d('franchise_37')</a>
+                <a href="#join" class="primary-button franchise-presentation__primary-button gtm-click" data-click="join_franchise_presentation">@d('franchise_37')</a>
             </div>
         </div>
         <div class="franchise-format screen">
@@ -307,7 +307,7 @@
                 </div>
             </div>
         </div>
-        <div class="franchise-form">
+        <div class="franchise-form" id="join">
             <div class="content">
                 <div class="franchise-form__content">
                     <div class="franchise-form__form-title">
@@ -316,7 +316,7 @@
                     </div>
                     <div class="franchise-form__form-text">@d('franchise_107')</div>
                     <div class="franchise-form__form form-order-docs form-order-docs_feedback js-franchise-form-wrapper preloader">
-                        <form method="post" action="{{ route('request.franchise') }}" class="form js-franchise-form">
+                        <form method="post" action="{{ route('request.franchise') }}" class="form js-franchise-form" data-send-form-event="send_franchise">
                             <input type="hidden" name="url" value="{{ $url->full() }}">
                             <div class="form__row">
                                 <div class="form-field">

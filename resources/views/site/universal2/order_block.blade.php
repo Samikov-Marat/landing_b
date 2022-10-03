@@ -5,7 +5,7 @@
                 <div class="form-order-docs__title">
                     @d('order_form_header')
                 </div>
-                <form method="post" action="{!! route('request.order') !!}" class="form order-form js-order-form">
+                <form method="post" action="{!! route('request.order') !!}" class="form order-form js-order-form"  data-send-form-event="send_order">
                     <input type="hidden" name="type" value="{{ $orderFormType }}">
                     <div class="form__row">
                         <div class="form-field">

@@ -40,9 +40,11 @@
         'universal2.index' => '#calculator',
         'universal2.e_commerce' => '#calculator',
         'universal2.business' => '#calculator',
+        'universal2.documents' => route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => '/']) . '#calculator',
+        'universal2.franchise' => route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => '/']) . '#calculator',
         'universal2.contacts' => route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => '/']) . '#calculator',
         ];
-    $calculatorHeaderAnchorHref = $templateHref[$page->template] ?? '/#calculator';
+    $calculatorHeaderAnchorHref = $templateHref[$page->template] ?? '/#error';
 
     $trackinghref = route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => '/']) . '#tracking';
 

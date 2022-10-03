@@ -8,6 +8,8 @@ function universal2FranchiseForm($form) {
             return;
         }
 
+        $('body').trigger('gtm:event', [$form.data('sendFormEvent')]);
+
         let recaptchaExt = new RecaptchaExt();
         recaptchaExt.setRecaptchaAction('universal2/franchise');
 
