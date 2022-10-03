@@ -128,7 +128,7 @@
                             @d('personal_162')
                         </div>
                         <div class="footer-new__links-item">
-                            <a href="#" class="footer-new__link">@d('personal_163')</a>
+                            <a href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'privacy-policy']) !!}" class="footer-new__link">@d('personal_163')</a>
                         </div>
                     </div>
                     <a href="https://cdek-express.com/" target="_blank" class="footer-new__link footer-new__link_bold">@d('personal_164')</a>
@@ -280,7 +280,7 @@
         <div id="review-add-modal" class="review-add-modal">
             <div class="review-add-modal__close"></div>
             <div class="review-add-modal__content js-modal-result-hide">
-                <div class="review-add-modal__title">Добавить отзыв</div>
+                <div class="review-add-modal__title">@d('personal_review_header')</div>
                 <form method="post" action="{!! route('request.feedback_review') !!}"
                       class="form calculator_form js-feedback-review-form"
                       data-feedback-review-submit-event="feedback_form">
@@ -289,33 +289,33 @@
                         <div class="form__row review-add-modal__two-fields-item">
                             <div class="form-field">
                                 <input type="text" name="name" class="form-field__input js-feedback-review-name"
-                                       placeholder="Ваше имя"/>
-                                <div class="form-field__error-message">Поле обязательно для заполнения</div>
+                                       placeholder="{{ $dictionary['personal_review_form_name'] }}"/>
+                                <div class="form-field__error-message">@d('personal_review_form_required')</div>
                             </div>
                         </div>
                         <div class="form__row review-add-modal__two-fields-item">
                             <div class="form-field">
                                 <input type="text" name="email" class="form-field__input js-feedback-review-email"
-                                       placeholder="E-mail"/>
+                                       placeholder="{{ $dictionary['personal_review_form_email'] }}"/>
                             </div>
                         </div>
                     </div>
                     <div class="form__row">
                         <div class="form-field">
                             <textarea name="text" class="form-field__input js-feedback-review-text"
-                                      placeholder="Текст отзыва"></textarea>
+                                      placeholder="{{ $dictionary['personal_review_form_text'] }}"></textarea>
                         </div>
                     </div>
                     <div class="form__row form__row_no-input">
                         <div class="checkbox-widget">
                             <input type="checkbox" name="agree" id="modal-agree_review"
-                                   class="js-feedback-review-checkbox"/><label for="modal-agree_review"><span>Я соглашаюсь с <a
+                                   class="js-feedback-review-checkbox"/><label for="modal-agree_review"><span>@d('personal_review_form_agree')<a
                                         class="checkbox-widget__link"
-                                        href="#">условиями обработки персональных данных</a></span></label>
+                                        href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'privacy-policy']) !!}">@d('personal_review_form_agree_2')</a></span></label>
                         </div>
                     </div>
                     <div class="form-field">
-                        <input type="submit" value="Отправить"
+                        <input type="submit" value="{{ $dictionary['personal_review_form_submit'] }}"
                                class="primary-button primary-button_wide primary-button_submit"/>
                         <div class="calculator__description" style="margin-top: 25px;">
                             This site is protected by reCAPTCHA and the Google<br>
@@ -328,17 +328,16 @@
             <div class="review-add-modal__result js-modal-result-ok" style="display: none;">
                 <div>
                     <div class="review-add-modal__result-icon review-add-modal__result-icon_ok"></div>
-                    <div class="review-add-modal__result-title">Сообщение<br/>успешно отправлено!</div>
-                    <div class="review-add-modal__result-text">Постаремся ответить на ваш запрос, как можно скорее.
+                    <div class="review-add-modal__result-title">@d('personal_review_form_success_header')</div>
+                    <div class="review-add-modal__result-text">@d('personal_review_form_success_text')
                     </div>
                 </div>
             </div>
             <div class="review-add-modal__result js-modal-result-error" style="display: none;">
                 <div>
                     <div class="review-add-modal__result-icon review-add-modal__result-icon_error"></div>
-                    <div class="review-add-modal__result-title">Сообщение не отправлено!</div>
-                    <div class="review-add-modal__result-text">Что-то пошло не так, попробуйте отправить еще раз
-                        позднее.
+                    <div class="review-add-modal__result-title">@d('personal_review_form_error_header')</div>
+                    <div class="review-add-modal__result-text">@d('personal_review_form_error_text')
                     </div>
                 </div>
             </div>
