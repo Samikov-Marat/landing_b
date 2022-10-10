@@ -185,8 +185,6 @@ $(document).ready(function() {
 
 })(window, jQuery);
 
-
-
 (function(window, $) {
 
     var activatedClass = 'activated';
@@ -219,7 +217,6 @@ $(document).ready(function() {
 (function(window, $) {
 
     window.sliders = function() {
-
         var companyAdvantagesSlider = $('.js-company-advantages');
         var companyAdvantagesOptions  = {};
 
@@ -287,17 +284,20 @@ $(document).ready(function() {
             autoWidth: true,
         };
 
-        activateSlider($('.office-page-offices__photos'), {
-            nav: true,
-            dots: false,
-            loop: true,
-            autoplay: false,
-            autoplayTimeout: 5000,
-            autoplayHoverPause: true,
-            margin: 24,
-            autoHeight: true,
-            autoWidth: true,
-        });
+        if ($(".office-page-offices__photos > .office-page-poster__image").length){
+            activateSlider($('.office-page-offices__photos'), {
+                nav: true,
+                dots: false,
+                loop: true,
+                autoplay: false,
+                autoplayTimeout: 5000,
+                autoplayHoverPause: true,
+                margin: 24,
+                autoHeight: true,
+                autoWidth: true,
+            });
+        }
+
 
         $(window).resize(function() {
             processOnResize()
