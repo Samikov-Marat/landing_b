@@ -31,7 +31,7 @@ class Domain
 
         try {
             $alias = $this->getAlias($domain);
-            $this->checkAliasAccess();
+            $this->checkAliasAccess($alias);
             return $alias->site->domain;
         } catch (ModelNotFoundException $e) {
             return $domain;
@@ -57,8 +57,12 @@ class Domain
      * Поэтому сделана вторизация по cookies для запрета доступа поисковикам.
      * @throws AliasNeedAuthentication
      */
-    private function checkAliasAccess()
+    private function checkAliasAccess(Alias $alias)
     {
+        if ($alias->public) {
+            return;
+        }
+
         if (Auth::guest() &&
             !$this->request->hasCookie(AliasHttpCookie::NAME)) {
             throw new AliasNeedAuthentication(
