@@ -5246,7 +5246,7 @@ body {
     font-size: 32px;
     line-height: 39px;
     margin-bottom: 36px; }
-  .form-order-docs input[type=text], .form-order-docs textarea {
+  .form-order-docs input[type=text], .form-order-docs textarea , .form-order-docs select {
     font-size: 15px;
     line-height: 25px;
     border: 1px solid #E1E1E1;

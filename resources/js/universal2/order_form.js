@@ -39,6 +39,12 @@ function universal2OrderForm($form) {
             $formElement.closest('.form-field').addClass('form-field_error');
             hasError = true;
         }
+        $formElement = this.$form.find('input[name=customer_type]');
+        if ($formElement.filter(':checked').length === 0) {
+            $formElement.closest('.form-field').addClass('form-field_error');
+            hasError = true;
+        }
+
         $formElement = this.$form.find('input[name=agree]');
         if (!$formElement.prop('checked')) {
             $formElement.closest('.form__row').addClass('form-field_error');
@@ -83,7 +89,7 @@ function universal2OrderForm($form) {
 
             var vscroll = (document.all ? document.scrollTop : window.pageYOffset);
             $('#order-message-modal').closest('.modal-container').css('display', 'flex').css('padding-top', vscroll + 'px');
-            $('#order-message-modal').addClass('modal-opened').css('display','block');
+            $('#order-message-modal').addClass('modal-opened').css('display', 'block');
             $('#order-message-modal').find('.js-modal-result-ok').show();
             $('#order-message-modal').find('.js-modal-result-error').hide();
 
@@ -95,7 +101,7 @@ function universal2OrderForm($form) {
 
             var vscroll = (document.all ? document.scrollTop : window.pageYOffset);
             $('#order-message-modal').closest('.modal-container').css('display', 'flex').css('padding-top', vscroll + 'px');
-            $('#order-message-modal').addClass('modal-opened').css('display','block');
+            $('#order-message-modal').addClass('modal-opened').css('display', 'block');
             $('#order-message-modal').find('.js-modal-result-ok').hide();
             $('#order-message-modal').find('.js-modal-result-error').show();
 
@@ -115,8 +121,15 @@ $(function () {
         return false;
     });
 
-    $('.js-order-form').on('focus click', '.form-field_error input', function (){
+    $('.js-order-form').on('focus click', '.form-field_error input', function () {
         $(this).closest('.form-field_error').removeClass('form-field_error');
     });
 
+    $('.js-form-order-customer-type').on('change', function () {
+        if ($(this).val() == 'legal_entity') {
+            $('.js-form-order-org').removeClass('hidden');
+        } else {
+            $('.js-form-order-org').addClass('hidden');
+        }
+    });
 });

@@ -83,6 +83,18 @@ $(document).ready(function () {
 
     });
 
+    $('.js-order-select2').each(function (){
+        $(this).select2({
+            placeholder: $(this).attr('placeholder'),
+            allowClear: false,
+            dropdownCssClass: 'support-select2-dropdown',
+            selectionCssClass: 'support-select2-selection',
+            width: '100%',
+            minimumResultsForSearch: 20
+        });
+
+    });
+
 });
 
 $(function (){

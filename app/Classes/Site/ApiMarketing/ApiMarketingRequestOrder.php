@@ -24,6 +24,7 @@ class ApiMarketingRequestOrder extends ApiMarketingRequestBase
         $m['name'] = 'Имя';
         $m['phone'] = 'Телефон';
         $m['email'] = 'E-mail';
+        $m['customer_type'] = 'Отправитель';
         $m['org'] = 'Наименование организации';
         $m['country_from'] = 'Страна отправителя';
         $m['country_to'] = 'Страна получателя';

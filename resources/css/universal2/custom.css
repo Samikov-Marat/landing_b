@@ -956,3 +956,20 @@
 .form-order-docs .form-field_error .select2-container--default .select2-selection--single .select2-selection__rendered{
     border-bottom: 1px solid #D80027;
 }
+
+
+
+.form-order-customer-type-wrapper {
+    line-height: 26px;
+    margin-right: 15px;
+    display: inline-block;
+    font-family: "Roboto", sans-serif;
+}
+
+.form-order-customer-header {
+    line-height: 26px;
+    margin-right: 15px;
+    display: inline-block;
+    font-family: "Roboto", sans-serif;
+}
+
