@@ -23,7 +23,7 @@
 
     @if($site->images->isNotEmpty())
         <table class="table table-hover table-bordered">
-            <tr>
+            <tr class="text-center">
                 <th>
                     id
                 </th>
@@ -48,9 +48,18 @@
                     <td>
                         {{ $image->url }}
                     </td>
-                    <td>
+                    <td class="d-flex justify-content-center text-center">
 
-                        <img src="{!! url(Storage::disk('images')->url($image->path)) !!}" style="max-width: 200px; max-height: 200px;">
+                        <div class="card" style="width: 18rem;">
+                            <div class="card-body">
+                                @if ($image->isImage)
+                                <img src="{!! url(Storage::disk('images')->url($image->path)) !!}" style="max-width: 200px; max-height: 200px;" class="js-admin-hide-preview">
+                                @else
+                                <span class="text-secondary">Предпросмотр недоступен</span>
+                                @endif
+                            </div>
+                        </div>
+
                     </td>
                     <td class="text-center">
                         <form method="post" action="{!! route('admin.images.move') !!}">
@@ -72,7 +81,7 @@
 
                         </form>
                     </td>
-                    <td class="text-nowrap">
+                    <td class="text-nowrap text-center">
                         <a href="{!! route('admin.images.edit', ['id' => $image->id]) !!}"
                            class="btn btn-primary btn-sm"><i class="fas fa-edit"></i> Редактировать</a>
                         <button type="button" data-text="Удалить {{ $image->url }} сайта {{ $site->domain }}?"

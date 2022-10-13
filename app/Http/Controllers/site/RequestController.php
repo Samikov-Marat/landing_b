@@ -71,12 +71,12 @@ class RequestController extends Controller
             $client = AmoCRMApiClientBuilder::getInstance()->getClient();
             AmoSender::getInstance($client)
                 ->send($request->input('url'), [
-                           '2114857' => $request->input('name'),
-                           '2114859' => $request->input('phone'),
-                           '2114861' => $request->input('whatsapp'),
-                           '2114863' => $request->input('email'),
-                           '2114865' => $request->input('city'),
-                       ]);
+                    '2114857' => $request->input('name'),
+                    '2114859' => $request->input('phone'),
+                    '2114861' => $request->input('whatsapp'),
+                    '2114863' => $request->input('email'),
+                    '2114865' => $request->input('city'),
+                ]);
             return 'success';
         } catch (\Exception $e) {
             Log::error($e);
@@ -149,7 +149,8 @@ class RequestController extends Controller
         foreach ($coordinates as $value) {
             if (!is_numeric($value)) {
                 Log::error(
-                    'Формат координат в запросе неверный. Не число в одной из координат' . var_export($value, true)
+                    'Формат координат в запросе неверный. Не число в одной из координат' . var_export($value,
+                        true)
                 );
                 abort(HttpResponse::HTTP_BAD_REQUEST);
             }
@@ -160,7 +161,8 @@ class RequestController extends Controller
             $repository = new OfficeRepository(Office::class);
         }
 
-        $offices = $repository->find($coordinates[1], $coordinates[0], $coordinates[3], $coordinates[2]);
+        $offices = $repository->find($coordinates[1], $coordinates[0], $coordinates[3],
+            $coordinates[2]);
 
         $responseGenerator = new MapJsonCallback();
         $responseGenerator->setCallbackName($request->input('callback'));
@@ -182,7 +184,7 @@ class RequestController extends Controller
         }
         try {
             $image = $site->images()
-                ->select('id', 'site_id', 'url', 'path', 'updated_at')
+                ->select('id', 'site_id', 'url', 'path', 'name', 'is_download', 'updated_at')
                 ->where('url', '/' . $imageUrl)
                 ->firstOrFail();
         } catch (ModelNotFoundException $exception) {
@@ -194,12 +196,17 @@ class RequestController extends Controller
         if ($request->header('If-None-Match') == $hash) {
             abort(HttpResponse::HTTP_NOT_MODIFIED);
         }
+
+        $headers = [
+            'Content-Type' => $imageResponse->getMimeTypeByUrl($image->url),
+            'ETag' => $hash,
+        ];
+        if ($image->is_download) {
+            $headers['Content-Disposition'] = 'attachment; filename=' . $image->name . ';';
+        }
+
         return response()->file(
-            $imageResponse->getPath(),
-            [
-                'Content-Type' => $imageResponse->getMimeTypeByUrl($image->url),
-                'ETag' => $hash,
-            ]
+            $imageResponse->getPath(), $headers
         );
     }
 }

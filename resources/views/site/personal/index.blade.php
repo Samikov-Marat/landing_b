@@ -2,7 +2,6 @@
 
 @section('content')
 
-
     <div class="office-page-poster">
         <div class="office-page-poster__container">
             <picture class="office-page-poster__image">
@@ -496,6 +495,5 @@
             </picture>
         </div>
     </div>
-
 
 @endsection

@@ -109,7 +109,6 @@ class PageController extends Controller
         } else {
             $templateBuilder->setNormalTemplate($page->template);
         }
-
         return view($templateBuilder->getName())
             ->with('site', $siteRepository->getSite())
             ->with('supportContainer', $supportContainer)
