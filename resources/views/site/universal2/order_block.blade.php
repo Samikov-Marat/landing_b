@@ -26,6 +26,23 @@
                         </div>
                     </div>
                     <div class="form__row">
+                        <div class="form-order-customer-header">@d('order_form_field_customer_type')</div>
+                        <div class="form-field">
+
+                            <div class="form-order-customer-type-wrapper">
+                                <div class="choice-widget">
+                                    <input type="radio" name="customer_type" value="legal_entity" id="id_legal_entity" class="js-form-order-customer-type"><label for="id_legal_entity">@d('order_form_field_customer_type_legal_entity')</label>
+                                </div>
+                            </div>
+                            <div class="form-order-customer-type-wrapper">
+                                <div class="choice-widget">
+                                    <input type="radio" name="customer_type" value="private_individual" id="id_private_individual" class="js-form-order-customer-type"><label for="id_private_individual">@d('order_form_field_customer_type_private_individual')</label>
+                                </div>
+                            </div>
+                            <div class="form-field__error-message">@d('order_form_required')</div>
+                        </div>
+                    </div>
+                    <div class="form__row hidden js-form-order-org">
                         <div class="form-field">
                             <input type="text" name="org" class="form-field__input" placeholder="{{ $dictionary['order_form_field_4'] }}" />
                             <div class="form-field__error-message">@d('order_form_required')</div>
@@ -33,13 +50,23 @@
                     </div>
                     <div class="form__row">
                         <div class="form-field">
-                            <input type="text" name="country_from" class="form-field__input" placeholder="{{ $dictionary['order_form_field_5'] }}" />
+                            <select  name="country_from" class="form-field__input js-order-select2" placeholder="{{ $dictionary['order_form_field_5'] }}" >
+                                <option></option>
+                                @foreach($countriesFrom as $country)
+                                    <option value="{{ $country->jira_code }}">{{ $country->value ?? $country->jira_code }}</option>
+                                @endforeach
+                            </select>
                             <div class="form-field__error-message">@d('order_form_required')</div>
                         </div>
                     </div>
                     <div class="form__row">
                         <div class="form-field">
-                            <input type="text" name="country_to" class="form-field__input" placeholder="{{ $dictionary['order_form_field_6'] }}" />
+                            <select  name="country_to" class="form-field__input js-order-select2" placeholder="{{ $dictionary['order_form_field_6'] }}" >
+                                <option></option>
+                            @foreach($countriesTo as $country)
+                                <option value="{{ $country->jira_code }}">{{ $country->value ?? $country->jira_code }}</option>
+                            @endforeach
+                            </select>
                             <div class="form-field__error-message">@d('order_form_required')</div>
                         </div>
                     </div>

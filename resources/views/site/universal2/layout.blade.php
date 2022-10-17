@@ -147,6 +147,11 @@
                         <li class="main-menu__item">
                             <a class="main-menu__link" href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'business']) !!}">@d('menu_business')</a>
                         </li>
+                        @if (isset($dictionary['menu_franchise']))
+                            <li class="main-menu__item">
+                                <a class="main-menu__link" href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'franchise']) !!}">@d('menu_franchise')</a>
+                            </li>
+                        @endif
                         <li class="main-menu__item">
                             <a class="main-menu__link" href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'contacts']) !!}">@d('menu_contects')</a>
                         </li>

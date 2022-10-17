@@ -7,6 +7,7 @@ use App\Classes\Domain;
 use App\Classes\FragmentRepository;
 use App\Classes\LanguageDetector;
 use App\Classes\Site\AllowCookie;
+use App\Classes\Site\CountryRepository;
 use App\Classes\Site\CustomRouting;
 use App\Classes\Site\RequestCleaner;
 use App\Classes\Site\SupportContainer;
@@ -93,6 +94,8 @@ class PageController extends Controller
         $siteRepository->loadOurWorkers($language);
         $siteRepository->loadFeedbacks($language);
         $topOffices = $siteRepository->getTopOffices($language);
+        $countriesFrom = CountryRepository::getInstance($language)->getStartCountries();
+        $countriesTo = CountryRepository::getInstance($language)->getFinishCounties();
 
         $customRouting = CustomRouting::getInstance($request);
 
@@ -119,6 +122,8 @@ class PageController extends Controller
             ->with('pageUrl', $pageUrl)
             ->with('url', url())
             ->with('topOffices', $topOffices)
+            ->with('countriesFrom', $countriesFrom)
+            ->with('countriesTo', $countriesTo)
             ->with('allowCookies', AllowCookie::getInstance($request)->isAllow());
     }
 }
