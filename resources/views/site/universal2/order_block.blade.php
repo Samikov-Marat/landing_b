@@ -48,28 +48,28 @@
                             <div class="form-field__error-message">@d('order_form_required')</div>
                         </div>
                     </div>
-                    <div class="form__row">
-                        <div class="form-field">
-                            <select  name="country_from" class="form-field__input js-order-select2" placeholder="{{ $dictionary['order_form_field_5'] }}" >
-                                <option></option>
-                                @foreach($countriesFrom as $country)
-                                    <option value="{{ $country->jira_code }}">{{ $country->value ?? $country->jira_code }}</option>
-                                @endforeach
-                            </select>
-                            <div class="form-field__error-message">@d('order_form_required')</div>
-                        </div>
-                    </div>
-                    <div class="form__row">
-                        <div class="form-field">
-                            <select  name="country_to" class="form-field__input js-order-select2" placeholder="{{ $dictionary['order_form_field_6'] }}" >
-                                <option></option>
-                            @foreach($countriesTo as $country)
-                                <option value="{{ $country->jira_code }}">{{ $country->value ?? $country->jira_code }}</option>
-                            @endforeach
-                            </select>
-                            <div class="form-field__error-message">@d('order_form_required')</div>
-                        </div>
-                    </div>
+{{--                    <div class="form__row">--}}
+{{--                        <div class="form-field">--}}
+{{--                            <select  name="country_from" class="form-field__input js-order-select2" placeholder="{{ $dictionary['order_form_field_5'] }}" >--}}
+{{--                                <option></option>--}}
+{{--                                @foreach($countriesFrom as $country)--}}
+{{--                                    <option value="{{ $country->jira_code }}">{{ $country->value ?? $country->jira_code }}</option>--}}
+{{--                                @endforeach--}}
+{{--                            </select>--}}
+{{--                            <div class="form-field__error-message">@d('order_form_required')</div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="form__row">--}}
+{{--                        <div class="form-field">--}}
+{{--                            <select  name="country_to" class="form-field__input js-order-select2" placeholder="{{ $dictionary['order_form_field_6'] }}" >--}}
+{{--                                <option></option>--}}
+{{--                            @foreach($countriesTo as $country)--}}
+{{--                                <option value="{{ $country->jira_code }}">{{ $country->value ?? $country->jira_code }}</option>--}}
+{{--                            @endforeach--}}
+{{--                            </select>--}}
+{{--                            <div class="form-field__error-message">@d('order_form_required')</div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
                     <div class="form__row">
                         <div class="form-field">
                             <input type="text" name="country_to_string" class="form-field__input" placeholder="{{ $dictionary['order_form_field_7'] }}" />
