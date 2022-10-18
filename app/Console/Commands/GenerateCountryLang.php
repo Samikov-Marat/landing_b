@@ -10,14 +10,14 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
-class GetLang extends Command
+class GenerateCountryLang extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'get:lang';
+    protected $signature = 'country:generate';
 
     /**
      * The console command description.
