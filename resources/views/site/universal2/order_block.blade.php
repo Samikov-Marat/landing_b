@@ -25,10 +25,11 @@
                             <div class="form-field__error-message">@d('order_form_required')</div>
                         </div>
                     </div>
+
+                    @if('business_order' != $orderFormType)
                     <div class="form__row">
                         <div class="form-order-customer-header">@d('order_form_field_customer_type')</div>
                         <div class="form-field">
-
                             <div class="form-order-customer-type-wrapper">
                                 <div class="choice-widget">
                                     <input type="radio" name="customer_type" value="legal_entity" id="id_legal_entity" class="js-form-order-customer-type"><label for="id_legal_entity">@d('order_form_field_customer_type_legal_entity')</label>
@@ -42,6 +43,9 @@
                             <div class="form-field__error-message">@d('order_form_required')</div>
                         </div>
                     </div>
+                    @endif
+
+
                     <div class="form__row hidden js-form-order-org">
                         <div class="form-field">
                             <input type="text" name="org" class="form-field__input" placeholder="{{ $dictionary['order_form_field_4'] }}" />

@@ -40,7 +40,7 @@ function universal2OrderForm($form) {
             hasError = true;
         }
         $formElement = this.$form.find('input[name=customer_type]');
-        if ($formElement.filter(':checked').length === 0) {
+        if ($formElement.length && ($formElement.filter(':checked').length === 0)) {
             $formElement.closest('.form-field').addClass('form-field_error');
             hasError = true;
         }

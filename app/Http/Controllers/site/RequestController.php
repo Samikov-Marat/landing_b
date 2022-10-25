@@ -10,6 +10,7 @@ use App\Classes\Site\AllowCookie;
 use App\Classes\Site\Amo\AmoCRMApiClientBuilder;
 use App\Classes\Site\Amo\AmoSender;
 use App\Classes\Site\ApiMarketing\ApiMarketing;
+use App\Classes\Site\FormRequestRepository;
 use App\Classes\Site\Jira\JiraSender;
 use App\EngOffice;
 use App\Feedback;
@@ -29,6 +30,8 @@ class RequestController extends Controller
     public function send(Request $request)
     {
         try {
+            FormRequestRepository::getInstance('send')
+                ->save($request);
             return ApiMarketing::getInstance($request)->sendCalculatorRequest();
         } catch (\Exception $e) {
             Log::error($e);
@@ -39,6 +42,8 @@ class RequestController extends Controller
     public function feedback(Request $request)
     {
         try {
+            FormRequestRepository::getInstance('feedback')
+                ->save($request);
             return ApiMarketing::getInstance($request)->sendFeedbackRequest();
         } catch (\Exception $e) {
             Log::error($e);
@@ -53,6 +58,8 @@ class RequestController extends Controller
             abort(HttpResponse::HTTP_INTERNAL_SERVER_ERROR);
         }
         try {
+            FormRequestRepository::getInstance('support')
+                ->save($request);
             JiraSender::send($request);
             return 'success';
         } catch (\Exception $e) {
@@ -68,6 +75,9 @@ class RequestController extends Controller
             abort(HttpResponse::HTTP_INTERNAL_SERVER_ERROR);
         }
         try {
+            FormRequestRepository::getInstance('franchise')
+                ->save($request);
+
             $client = AmoCRMApiClientBuilder::getInstance()->getClient();
             AmoSender::getInstance($client)
                 ->send($request->input('url'), [
@@ -87,6 +97,8 @@ class RequestController extends Controller
     public function order(Request $request)
     {
         try {
+            FormRequestRepository::getInstance('order')
+                ->save($request);
             return ApiMarketing::getInstance($request)->sendOrderRequest();
         } catch (\Exception $e) {
             Log::error($e);
@@ -97,6 +109,9 @@ class RequestController extends Controller
     public function presentation(Request $request)
     {
         try {
+            FormRequestRepository::getInstance('presentation')
+                ->save($request);
+
             return ApiMarketing::getInstance($request)->sendPresentationRequest();
         } catch (\Exception $e) {
             Log::error($e);
@@ -115,6 +130,9 @@ class RequestController extends Controller
     {
         $domain = Domain::getInstance($request)->get();
         try {
+            FormRequestRepository::getInstance('feedbackReview')
+                ->save($request);
+
             $site = Site::where('domain', $domain)
                 ->firstOrFail();
         } catch (ModelNotFoundException $exception) {

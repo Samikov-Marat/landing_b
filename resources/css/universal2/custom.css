@@ -973,3 +973,54 @@
     font-family: "Roboto", sans-serif;
 }
 
+
+
+
+.choice-widget-2 {
+    position: relative;
+    display: inline-flex;
+    align-items: center; }
+.choice-widget-2 input[type=radio] {
+    display: none; }
+.choice-widget-2 label {
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+.choice-widget-2 label::before {
+    background: #fff;
+    content: "";
+    box-sizing: border-box;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #232323;
+    flex-shrink: 0;
+    border-radius: 50%;
+    margin-right: 12px; }
+.choice-widget-2 input[type=radio]:checked + label::before {
+    background: url("img/checked.svg") no-repeat center center;
+    border: 1px solid #1AB248; }
+
+
+.choice-widget-3 {
+    position: relative;
+    display: inline-flex;
+    align-items: center; }
+.choice-widget-3 input[type=radio] {
+    display: none; }
+.choice-widget-3 label {
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+.choice-widget-3 label::before {
+    background: #fff;
+    content: "";
+    box-sizing: border-box;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #232323;
+    flex-shrink: 0;
+    border-radius: 50%;
+    margin-right: 12px; }
+.choice-widget-3 input[type=radio]:checked + label::before {
+    background: url("img/checked.svg") no-repeat center center;
+    border: 1px solid #1AB248; }

@@ -31,7 +31,7 @@
         <div class="calculator-neutral-bg">
         @include('site.universal2.calculator_block')
         </div>
-        @include('site.universal2.order_block', ['orderFormType' => 'documents_order'])
+        @include('site.universal2.order_block', ['orderFormType' => 'business_order'])
         @endif
 
         @include('site.universal2.how_it_works_block')
