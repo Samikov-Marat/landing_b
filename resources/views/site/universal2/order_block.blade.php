@@ -43,6 +43,8 @@
                             <div class="form-field__error-message">@d('order_form_required')</div>
                         </div>
                     </div>
+                    @else
+                        <input type="hidden" name="customer_type" value="legal_entity" class="js-form-order-customer-type-hidden">
                     @endif
 
 

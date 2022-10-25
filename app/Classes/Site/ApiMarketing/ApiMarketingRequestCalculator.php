@@ -13,6 +13,7 @@ class ApiMarketingRequestCalculator extends ApiMarketingRequestBase
             'email' => $this->input('email'),
             'project_name' => $this->domain,
             'message' => $this->getMessage(),
+            'customer_type' => $this->input('customer_type'),
             'country_id' => $this->apiMarketingCategory,
             'url' => $this->input('url', $this->domain),
         ];

@@ -349,6 +349,12 @@ $(function () {
             hasError = true;
         }
 
+        $formElement = $form.find('input[name=customer_type]');
+        if ((!$formElement.hasClass('js-form-order-customer-type-hidden')) && ($formElement.filter(':checked').length === 0)) {
+            $formElement.closest('.form-field').addClass('form-field_error');
+            hasError = true;
+        }
+
         $formElement = $form.find('input[name=agree]');
         if (!$formElement.prop('checked')) {
             $formElement.closest('.form__row').addClass('form-field_error');

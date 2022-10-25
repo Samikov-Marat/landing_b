@@ -43,6 +43,13 @@ function universal2FeedbackForm($form) {
             $formElement.closest('.form__row').addClass('form-field_error');
             hasError = true;
         }
+
+        $formElement = this.$form.find('input[name=customer_type]');
+        if ((!$formElement.hasClass('js-form-order-customer-type-hidden')) && ($formElement.filter(':checked').length === 0)) {
+            $formElement.closest('.form-field').addClass('form-field_error');
+            hasError = true;
+        }
+
         return hasError;
     }
 

@@ -40,7 +40,7 @@ function universal2OrderForm($form) {
             hasError = true;
         }
         $formElement = this.$form.find('input[name=customer_type]');
-        if ($formElement.length && ($formElement.filter(':checked').length === 0)) {
+        if ((!$formElement.hasClass('js-form-order-customer-type-hidden')) && ($formElement.filter(':checked').length === 0)) {
             $formElement.closest('.form-field').addClass('form-field_error');
             hasError = true;
         }
