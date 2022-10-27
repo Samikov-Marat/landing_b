@@ -144,7 +144,12 @@
 
                     @foreach($site->localOffices as $localOffice)
                         @foreach($localOffice->localOfficePhones as $localOfficePhone)
-                            <div class="footer-new__phone">{{$localOfficePhone->phone_text}}</div>
+                            <div class="footer-new__phone">
+                                <a class="footer__phone"
+                                   href="tel:{{ $localOfficePhone->phone_value }}">
+                                    {{ $localOfficePhone->phone_text }}
+                                </a>
+                            </div>
                         @endforeach
                         @foreach($localOffice->localOfficeEmails as $localOfficeEmail)
                             <a href="mailto:{{ $localOfficeEmail->email }}"
