@@ -196,6 +196,13 @@
                     @if($dictionary['footer_has_impressum'] != '-')
                         <a class="footer__link footer__link-mr-policy" href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'impressum']) !!}">@d('footer_impressum_text')</a>
                     @endif
+                    @if(isset($dictionary['contractdocs_button_title']))
+                        <a href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'contractdocs']) !!}"
+                           class="footer__link footer__link-mr-policy"
+                           target="_blank">
+                            {{ $dictionary['contractdocs_button_title'] }}
+                        </a>
+                    @endif
                 </div>
             </div>
             <div class="footer__right">

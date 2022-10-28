@@ -18,12 +18,13 @@ class ImageController extends Controller
             ->with(
                 [
                     'images' => function ($query) {
-                        $query->select('id', 'site_id', 'url', 'path', 'sort')
+                        $query->select('id', 'site_id', 'url', 'path', 'sort', 'is_download')
                             ->orderBy('sort');
                     },
                 ]
             )
             ->find($request->input('site_id'));
+
         return view('admin.images.index')
             ->with('site', $site);
     }
@@ -31,7 +32,7 @@ class ImageController extends Controller
     public function edit($id = null, Request $request)
     {
         if (isset($id)) {
-            $image = Image::select('id', 'url', 'path', 'page_id', 'site_id')
+            $image = Image::select('id', 'url', 'path', 'page_id', 'site_id', 'is_download')
                 ->find($id);
             $siteId = $image->site_id;
         } else {
@@ -58,6 +59,7 @@ class ImageController extends Controller
         $image->site_id = $request->input('site_id');
         $image->page_id = $request->input('page_id');
         $image->url = $request->input('url');
+        $image->is_download = $request->boolean('download');
 
         if (!$isEditMode) {
             $image->sort = Image::where('site_id', $image->site_id)->max('sort') + self::SORT_STEP;
@@ -67,7 +69,9 @@ class ImageController extends Controller
             if ($isEditMode && Storage::disk('public')->exists($image->path)) {
                 Storage::disk('public')->delete($image->path);
             }
-            $image->path = $request->file('file')->store('/images/' . $image->page_id, ['disk' => 'public']);
+            $image->path = $request->file('file')
+                ->store('/images/' . $image->page_id, ['disk' => 'public']);
+            $image->name = $request->file('file')->getClientOriginalName();
         }
         $image->save();
 
@@ -111,5 +115,4 @@ class ImageController extends Controller
 
         return response()->redirectToRoute('admin.images.index', ['site_id' => $image->site_id]);
     }
-
 }

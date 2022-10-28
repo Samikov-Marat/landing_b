@@ -78,4 +78,3 @@ mix.combine([
     "resources/js/admin_files/images.js",
     "resources/js/admin_files/statistics_sites.js",
 ], 'public/admin_files/new_admin.js').version();
-
