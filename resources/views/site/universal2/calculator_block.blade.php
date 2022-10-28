@@ -195,20 +195,20 @@
                     </div>
 
                     <div class="form__row">
-                        <div class="form-order-customer-header">@d('order_form_field_customer_type')</div>
+                        <div class="form-order-customer-header">@d('calculator_form_field_customer_type')</div>
                         <div class="form-field">
 
                             <div class="form-order-customer-type-wrapper">
                                 <div class="choice-widget">
-                                    <input type="radio" required name="customer_type" value="legal_entity" id="id_calculator_legal_entity" class="js-form-order-customer-type"><label for="id_calculator_legal_entity">@d('order_form_field_customer_type_legal_entity')</label>
+                                    <input type="radio" required name="customer_type" value="legal_entity" id="id_calculator_legal_entity" class="js-form-order-customer-type"><label for="id_calculator_legal_entity">@d('calculator_form_field_customer_type_legal_entity')</label>
                                 </div>
                             </div>
                             <div class="form-order-customer-type-wrapper">
                                 <div class="choice-widget">
-                                    <input type="radio" name="customer_type" value="private_individual" id="id_calculator_private_individual" class="js-form-order-customer-type"><label for="id_calculator_private_individual">@d('order_form_field_customer_type_private_individual')</label>
+                                    <input type="radio" name="customer_type" value="private_individual" id="id_calculator_private_individual" class="js-form-order-customer-type"><label for="id_calculator_private_individual">@d('calculator_form_field_customer_type_private_individual')</label>
                                 </div>
                             </div>
-                            <div class="form-field__error-message">@d('order_form_required')</div>
+                            <div class="form-field__error-message">@d('calculator_form_customer_type_required')</div>
                         </div>
                     </div>
 
