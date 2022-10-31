@@ -53,7 +53,7 @@
         </div>
 
         <div class="form-check mb-5">
-            <input class="form-check-input" type="checkbox" value="true" name="download" id="download" {{ $image->is_download ? 'checked' : '' }}>
+            <input class="form-check-input" type="checkbox" value="true" name="download" id="download" {{ ($image && $image->is_download) ? 'checked' : '' }}>
             <label class="form-check-label" for="download">
                 Файл для скачивания
             </label>
