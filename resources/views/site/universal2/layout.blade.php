@@ -58,7 +58,7 @@
 @endphp
 
 
-<div class="fixed-buttons {{$language->id == 21 ? 'fixed-buttons_rightside' : ''}}">
+<div class="fixed-buttons @if($language->rtl) fixed-buttons_rightside @endif">
     <a href="{!! $calculatorHeaderAnchorHref !!}" class="fixed-button fixed-button_calc fixed-buttons__button">@d('header_fixbutton_calculator')</a>
     <a href="{!! $trackinghref !!}" class="fixed-button fixed-button_track fixed-buttons__button">@d('header_fixbutton_tracking')</a>
     @if('' != $dictionary['header_fixbutton_support'])
