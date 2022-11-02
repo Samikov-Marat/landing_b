@@ -83,7 +83,6 @@
                         <li class="main-menu__item">
                             <a class="main-menu__link current" href="{!! route('site.show_page', ['languageUrl' => $language->uri]) !!}">@d('menu_delivery')</a>
                         </li>
-                        @if(isset($dictionary['new_version']))
                         {{-- Интернет-Магазинам --}}
                         <li class="main-menu__item">
                             <a class="main-menu__link" href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'e-commerce']) !!}">@d('menu_e_commerce')</a>
@@ -96,11 +95,12 @@
                         <li class="main-menu__item">
                             <a class="main-menu__link" href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'business']) !!}">@d('menu_business')</a>
                         </li>
-                        @endif
                         @if (isset($dictionary['menu_to_kazakhstan']))
+                            {{-- Доставка в Казахстан (из Германии) --}}
                             @include('site.universal2.to_kazakhstan')
                         @endif
                         @if (isset($dictionary['menu_franchise']))
+                            {{-- Страница франшизы --}}
                             @include('site.universal2.menu_item_franchise')
                         @endif
                         {{-- Контакты --}}
@@ -115,7 +115,6 @@
                     @foreach($site->enabledLanguages as $languageItem)
                         @if($language->id != $languageItem->id)
                             <div><a class="header__language-selector" href="{!! route('site.show_page', ['languageUrl' => $languageItem->uri, 'pageUrl' => $page->url]) !!}">{{ \Str::upper($languageItem->shortname) }}</a></div>
-
                         @endif
                     @endforeach
                     <div class="header-contact">
@@ -147,19 +146,33 @@
                         <li class="main-menu__item">
                             <a class="main-menu__link" href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'business']) !!}">@d('menu_business')</a>
                         </li>
+                        @if (isset($dictionary['menu_to_kazakhstan']))
+                            <li class="main-menu__item">
+                                <a class="main-menu__link" href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'to-kazakhstan']) !!}">@d('menu_to_kazakhstan')</a>
+                            </li>
+                        @endif
                         @if (isset($dictionary['menu_franchise']))
                             <li class="main-menu__item">
                                 <a class="main-menu__link" href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'franchise']) !!}">@d('menu_franchise')</a>
                             </li>
                         @endif
+
+                        <li class="main-menu__item">
+                            <a class="main-menu__link" href="{!! $calculatorHeaderAnchorHref !!}">@d('header_fixbutton_calculator')</a>
+                        </li>
+                        <li class="main-menu__item">
+                            <a class="main-menu__link" href="{!! $trackinghref !!}">@d('header_fixbutton_tracking')</a>
+                        </li>
+                        @if('' != $dictionary['header_fixbutton_support'])
+                            <li class="main-menu__item">
+                                <a class="main-menu__link" href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'support']) !!}">@d('header_fixbutton_support')</a>
+                            </li>
+                        @endif
+
+
                         <li class="main-menu__item">
                             <a class="main-menu__link" href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'contacts']) !!}">@d('menu_contects')</a>
                         </li>
-                        @if (isset($dictionary['menu_to_kazakhstan']))
-                        <li class="main-menu__item">
-                            <a class="main-menu__link" href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'to-kazakhstan']) !!}">@d('menu_to_kazakhstan')</a>
-                        </li>
-                        @endif
                     </ul>
                 </div>
             </div>

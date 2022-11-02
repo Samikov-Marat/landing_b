@@ -6,9 +6,7 @@
             <div class="submenu faq__submenu">
                 <div class="submenu__content">
                     <div class="submenu__item submenu__item_active js-faq-tab" data-for="#faq_shop" data-for2="#faq_button_shop">@d('faq_subheader_shop')</div>
-                    @if(isset($dictionary['new_version']))
                     <div class="submenu__item js-faq-tab" data-for="#faq_documents" data-for2="#faq_button_shop">@d('faq_subheader_documents')</div>
-                    @endif
                     <div class="submenu__item js-faq-tab" data-for="#faq_business" data-for2="#faq_button_business">@d('faq_subheader_business')</div>
                 </div>
             </div>
@@ -39,7 +37,7 @@
                 </div>
             </div>
 
-            @if(isset($dictionary['new_version']))
+
             <div class="faq-list faq__faq-list" id="faq_documents">
                 <div class="faq-list__faq">
                     <div class="faq-list__faq-question">@d('faq_documents_question_1')</div>
@@ -62,7 +60,7 @@
                     <div class="faq-list__faq-answer">@d('faq_documents_answer_5')</div>
                 </div>
             </div>
-            @endif
+
 
             <div class="faq-list faq__faq-list hidden" id="faq_business">
                 <div class="faq-list__faq faq-list__faq_opened">

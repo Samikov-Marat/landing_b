@@ -27,12 +27,11 @@
             @include('site.universal2.international_express_block')
         @endif
 
-        @if(isset($dictionary['new_version']))
+
         <div class="calculator-neutral-bg">
         @include('site.universal2.calculator_block')
         </div>
         @include('site.universal2.order_block', ['orderFormType' => 'business_order'])
-        @endif
 
         @include('site.universal2.how_it_works_block')
 
