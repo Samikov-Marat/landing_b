@@ -113,6 +113,9 @@
                     <a href="{{ $calculatorHeaderAnchorHref }}" class="header__button gtm-click"
                        data-click="{{ $calculatorHeaderAnchorGtm }}">@d('header_button')</a>
                     @foreach($site->enabledLanguages as $languageItem)
+                        @if('support' == $page->url && in_array($language->language_code_iso, ['en', 'ru']) )
+                            @break
+                        @endif
                         @if($language->id != $languageItem->id)
                             <div><a class="header__language-selector" href="{!! route('site.show_page', ['languageUrl' => $languageItem->uri, 'pageUrl' => $page->url]) !!}">{{ \Str::upper($languageItem->shortname) }}</a></div>
                         @endif
