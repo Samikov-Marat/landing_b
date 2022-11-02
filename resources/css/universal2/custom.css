@@ -1024,3 +1024,9 @@
 .choice-widget-3 input[type=radio]:checked + label::before {
     background: url("img/checked.svg") no-repeat center center;
     border: 1px solid #1AB248; }
+
+
+@media (min-width: 1199px) {
+    .site-theme .form-order-docs__content .form-order-docs__content__vietnam {
+        padding: 40px; }
+}
