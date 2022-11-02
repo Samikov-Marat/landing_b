@@ -1,4 +1,4 @@
-<div class="form-order-docs form-order-docs_feedback support-page__form">
+<div class="form-order-docs form-order-docs_feedback support-page__form" style="padding-left: 0px;">
     <div class="form-order-docs__content form-order-docs__content_feedback preloader">
         <div class="feedback__heading feedback__heading_mb40">@d('support_new_form_header')</div>
         <form class="form js-support-form js-support-form-wrapper"  method="post" action="{{ route('request.support') }}">
