@@ -112,6 +112,12 @@ function universal2FeedbackForm($form) {
 
 $(function () {
     $('.js-feedback-open').click(function () {
+
+        let eventAttr = $(this).data('send-form-event');
+        if ((eventAttr !== undefined) && (eventAttr !== '')) {
+            $('.js-feedback-form').attr('data-send-form-event', eventAttr);
+        }
+
         let feedbackForm = new universal2FeedbackForm($('.js-feedback-form'));
         feedbackForm.setState('open');
         modalOpen($('#feedback-modal'));
@@ -128,12 +134,6 @@ $(function () {
 
 $(function () {
     $('.js-feedback-open').click(function () {
-        let classList = $(this).prop('classList');
 
-        if ($.inArray('feedback-bottom', classList) !== -1) {
-            $('.js-feedback-form').attr('data-send-form-event', 'document_send_form_bottom');
-        } else {
-            $('.js-feedback-form').attr('data-send-form-event', 'document_send_form');
-        }
     });
 });

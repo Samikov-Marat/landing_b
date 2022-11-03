@@ -1,9 +1,14 @@
 <div class="package-russia screen">
     @php
         $templateGtm = [
-            'universal2.documents' => 'document_contact_us'
+            'universal2.documents' => 'document_contact_us',
             ];
         $buttonGtm = $templateGtm[$page->template] ?? '';
+
+        $templateGtmForm = [
+            'universal2.documents' => 'document_send_form',
+            ];
+        $buttonGtmForm = $templateGtmForm[$page->template] ?? '';
     @endphp
     <div class="package-russia__content content">
         <div class="package-russia__text">
@@ -21,6 +26,7 @@
             <div class="divider package-russia__divider"></div>
             <div class="package-russia__know-more">@d('receive_more')</div>
             <a href="#" class="primary-button js-feedback-open gtm-click"
+               data-send-form-event="{{$buttonGtmForm}}"
                data-click="{{$buttonGtm}}"
             >@d('receive_button')</a>
         </div>
