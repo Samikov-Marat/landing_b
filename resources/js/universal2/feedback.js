@@ -115,7 +115,7 @@ $(function () {
 
         let eventAttr = $(this).data('send-form-event');
         if ((eventAttr !== undefined) && (eventAttr !== '')) {
-            $('.js-feedback-form').attr('data-send-form-event', eventAttr);
+            $('.js-feedback-form').data('data-send-form-event', eventAttr);
         }
 
         let feedbackForm = new universal2FeedbackForm($('.js-feedback-form'));
