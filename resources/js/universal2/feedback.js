@@ -131,9 +131,3 @@ $(function () {
         return false;
     });
 });
-
-$(function () {
-    $('.js-feedback-open').click(function () {
-
-    });
-});
