@@ -14,11 +14,18 @@
                 'universal2.index' => 'open_form',
                 'universal2.e_commerce' => 'open_form_im',
                 'universal2.business' => 'open_form_b2b',
+                'universal2.documents' => 'document_open_form'
                 ];
             $buttonGtm = $templateGtm[$page->template] ?? '';
+
+            $templateGtmForm = [
+                'universal2.documents' => 'document_send_form_bottom'
+                ];
+            $buttonGtmForm = $templateGtmForm[$page->template] ?? '';
         @endphp
 
         <a href="#" class="primary-button js-feedback-open gtm-click"
-           data-click="{{ $buttonGtm }}">@d('any_question_text_4')</a>
+           data-send-form-event="{{ $buttonGtmForm }}"
+           data-click="{{$buttonGtm}}">@d('any_question_text_4')</a>
     </div>
 </div>

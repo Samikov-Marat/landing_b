@@ -18,7 +18,7 @@
                     @d('documents_onpagetext_4')<br />
                     @d('documents_onpagetext_5')
                 </div>
-                <a href="#calculator" class="primary-button primary-button_with_arrow">@d('documents_onpagetext_6')</a>
+                <a href="#calculator" class="primary-button primary-button_with_arrow gtm-click" data-click="document_rassitat">@d('documents_onpagetext_6')</a>
                 <div class="background-dots main-poster__dots-left"></div>
                 <div class="main-poster__wave-right"></div>
             </div>

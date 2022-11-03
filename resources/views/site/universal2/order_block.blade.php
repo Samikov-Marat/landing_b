@@ -65,6 +65,12 @@
                             <div class="form-field__error-message">@d('order_form_required')</div>
                         </div>
                     </div>
+                    @php
+                        $templateGtm = [
+                            'universal2.documents' => 'document_order_done'
+                            ];
+                        $buttonGtm = $templateGtm[$page->template] ?? '';
+                    @endphp
                     <div class="form__row">
                         <div class="form-field">
                             <select  name="country_to" class="form-field__input js-order-select2" placeholder="{{ $dictionary['order_form_field_6'] }}" >
@@ -106,7 +112,8 @@
                         </div>
                     </div>
                     <div class="form-field">
-                        <input type="submit" value="{{ $dictionary['order_form_field_submit'] }}" class="primary-button primary-button_wide primary-button_submit" />
+                        <input type="submit" value="{{ $dictionary['order_form_field_submit'] }}" class="primary-button primary-button_wide primary-button_submit gtm-click"
+                               data-click="{{$buttonGtm}}"/>
                     </div>
                 </form>
             </div>

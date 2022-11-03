@@ -22,7 +22,6 @@
                     ];
                 $formPlace = $pageFormPlace[$page->template] ?? 'Неизвестно';
             @endphp
-
             <form method="post" action="{!! route('request.feedback') !!}"
                   class="form calculator_form js-feedback-form"
                   data-send-form-event="{{ $formGtm }}">

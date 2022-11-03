@@ -112,6 +112,12 @@ function universal2FeedbackForm($form) {
 
 $(function () {
     $('.js-feedback-open').click(function () {
+
+        let eventAttr = $(this).data('send-form-event');
+        if ((eventAttr !== undefined) && (eventAttr !== '')) {
+            $('.js-feedback-form').data('data-send-form-event', eventAttr);
+        }
+
         let feedbackForm = new universal2FeedbackForm($('.js-feedback-form'));
         feedbackForm.setState('open');
         modalOpen($('#feedback-modal'));
