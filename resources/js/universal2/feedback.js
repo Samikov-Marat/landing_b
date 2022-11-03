@@ -125,3 +125,15 @@ $(function () {
         return false;
     });
 });
+
+$(function () {
+    $('.js-feedback-open').click(function () {
+        let classList = $(this).prop('classList');
+
+        if ($.inArray('feedback-bottom', classList) !== -1) {
+            $('.js-feedback-form').attr('data-send-form-event', 'document_send_form_bottom');
+        } else {
+            $('.js-feedback-form').attr('data-send-form-event', 'document_send_form');
+        }
+    });
+});

@@ -9,6 +9,7 @@
                     'universal2.index' => 'send_form',
                     'universal2.e_commerce' => 'send_form_im',
                     'universal2.business' => 'send_form_b2b',
+                    'universal2.documents' => 'document_send_form'
                     ];
                 $formGtm = $templateGtm[$page->template] ?? '';
             @endphp
@@ -22,7 +23,6 @@
                     ];
                 $formPlace = $pageFormPlace[$page->template] ?? 'Неизвестно';
             @endphp
-
             <form method="post" action="{!! route('request.feedback') !!}"
                   class="form calculator_form js-feedback-form"
                   data-send-form-event="{{ $formGtm }}">
