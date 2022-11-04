@@ -383,28 +383,25 @@ $(function () {
             noCache: true,
             minChars: 1,
             deferRequestBy: 0,
-            serviceUrl: 'http://production.locality.service.cdek.tech:8909/api/locality/international/autocomplete/city',
+            serviceUrl: '/request/city',
             type: 'POST',
             dataType: 'json',
             autoSelectFirst: true,
             ajaxSettings: {
                 contentType: "application/json; charset=utf-8",
                 processData: false,
-                headers: {
-                    "X-User-Lang": calculator.getLanguage()
-                },
                 beforeSend: function (jqXHR, settings) {
                     settings.data = JSON.stringify(settings.data);
                 }
             },
             onSearchStart: function (params) {
-                params['limit'] = 5;
+                params['lang'] = calculator.getLanguage();
                 params['query'] = $.trim(params['query']);
             },
 
             transformResult: function (response) {
                 return {
-                    suggestions: $.map(response.items, function (dataItem) {
+                    suggestions: $.map(response, function (dataItem) {
                         return {value: dataItem.name, data: dataItem.code};
                     })
                 };
