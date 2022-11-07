@@ -406,6 +406,8 @@ Route::post('/request/allow-cookies', 'site\RequestController@allowCookies')
     ->name('request.allow_cookies');
 Route::post('/request/franchise', 'site\RequestController@franchise')
     ->name('request.franchise');
+Route::post('/request/city', 'site\RequestController@city')
+    ->name('request.city');
 
 Route::get('/request/images/{imageUrl}', 'site\RequestController@images')
     ->where('imageUrl', '.*')

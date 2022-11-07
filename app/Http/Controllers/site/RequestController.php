@@ -19,6 +19,7 @@ use App\Language;
 use App\Office;
 use App\Site;
 use Carbon\Carbon;
+use GuzzleHttp\Client;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -226,5 +227,18 @@ class RequestController extends Controller
         return response()->file(
             $imageResponse->getPath(), $headers
         );
+    }
+
+    public function city(Request $request)
+    {
+        $client = new Client();
+        $response = $client->request(
+            'POST', 'http://production.locality.service.cdek.tech:8909/api/locality/international/autocomplete/city',
+            [
+                'headers' => ['Content-Type', 'application/json', 'X-User-Lang' => $request->input('lang')],
+                'json' => ['limit' => 5, 'query' => $request->input('query')],
+            ]
+        );
+        return $response->getBody();
     }
 }

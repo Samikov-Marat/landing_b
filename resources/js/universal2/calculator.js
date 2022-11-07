@@ -383,7 +383,7 @@ $(function () {
             noCache: true,
             minChars: 1,
             deferRequestBy: 0,
-            serviceUrl: 'https://webproxy.cdek.ru/city',
+            serviceUrl: '/request/city',
             type: 'POST',
             dataType: 'json',
             autoSelectFirst: true,
@@ -395,15 +395,13 @@ $(function () {
                 }
             },
             onSearchStart: function (params) {
-                params['limit'] = 5;
-                params['field'] = 'term';
-                params['value'] = $.trim(params['query']) + '%';
                 params['lang'] = calculator.getLanguage();
+                params['query'] = $.trim(params['query']);
             },
 
             transformResult: function (response) {
                 return {
-                    suggestions: $.map(response.items, function (dataItem) {
+                    suggestions: $.map(response, function (dataItem) {
                         return {value: dataItem.name, data: dataItem.code};
                     })
                 };
