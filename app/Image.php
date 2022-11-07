@@ -32,9 +32,8 @@ class Image extends Model
         $path = Storage::disk('images')->path($this->path);
         if(File::isFile($path)){
             $mimeType = \Illuminate\Support\Facades\File::mimeType($path);
-            if (strpos($mimeType, 'image') !== false) {
-                return true;
-            }
+
+            return Str::startsWith('image');
         }
         return false;
     }
