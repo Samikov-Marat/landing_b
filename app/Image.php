@@ -35,7 +35,7 @@ class Image extends Model
             return false;
         }
 
-        $mimeType = \Illuminate\Support\Facades\File::mimeType($path);
+        $mimeType = File::mimeType($path);
         return Str::startsWith($mimeType, 'image');
     }
 }
