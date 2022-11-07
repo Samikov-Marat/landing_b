@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 /**
  * @property int $id
@@ -30,12 +31,11 @@ class Image extends Model
     public function getIsImageAttribute(): bool
     {
         $path = Storage::disk('images')->path($this->path);
-        if(File::isFile($path)){
-            $mimeType = \Illuminate\Support\Facades\File::mimeType($path);
-            if (strpos($mimeType, 'image') !== false) {
-                return true;
-            }
+        if (!File::isFile($path)) {
+            return false;
         }
-        return false;
+
+        $mimeType = File::mimeType($path);
+        return Str::startsWith($mimeType, 'image');
     }
 }
