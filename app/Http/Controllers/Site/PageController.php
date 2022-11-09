@@ -17,7 +17,6 @@ use App\Exceptions\CurrentPageNotFound;
 use App\Exceptions\PageController\LanguageListIsEmpty;
 use App\Exceptions\PageController\SiteNotFound;
 use App\Http\Controllers\Controller;
-use App\SupportCategory;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
