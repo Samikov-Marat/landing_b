@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\site;
+namespace App\Http\Controllers\Site;
 
 use App\Classes\Domain;
 use App\Classes\ImageResponse;

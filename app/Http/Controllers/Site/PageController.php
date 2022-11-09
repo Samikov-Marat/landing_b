@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\site;
+namespace App\Http\Controllers\Site;
 
 use App\Classes\DictionaryBuilder;
 use App\Classes\Domain;

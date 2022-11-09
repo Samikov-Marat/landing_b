@@ -384,42 +384,42 @@ Route::prefix('admin')->middleware(['auth', 'user.route.access', 'http.secure', 
 
 );
 
-Route::get('/', 'site\PageController@selectDefaultLanguage')
+Route::get('/', 'Site\PageController@selectDefaultLanguage')
     ->middleware(['clear.get', 'save.utm.to.cookies', 'antifraud'])
     ->name('site.select_default_language');
 
-Route::post('/request/send', 'site\RequestController@send')
+Route::post('/request/send', 'Site\RequestController@send')
     ->name('request.send')->middleware(['verify.recaptcha.token']);
-Route::post('/request/feedback', 'site\RequestController@feedback')
+Route::post('/request/feedback', 'Site\RequestController@feedback')
     ->name('request.feedback')->middleware(['verify.recaptcha.token']);
-Route::post('/request/support', 'site\RequestController@support')
+Route::post('/request/support', 'Site\RequestController@support')
     ->name('request.support')->middleware(['verify.recaptcha.token']);
-Route::post('/request/order', 'site\RequestController@order')
+Route::post('/request/order', 'Site\RequestController@order')
     ->name('request.order')->middleware(['verify.recaptcha.token']);
-Route::post('/request/presentation', 'site\RequestController@presentation')
+Route::post('/request/presentation', 'Site\RequestController@presentation')
     ->name('request.presentation');
-Route::get('/request/get-office-list', 'site\RequestController@getOfficeList')
+Route::get('/request/get-office-list', 'Site\RequestController@getOfficeList')
     ->name('request.get_office_list');
-Route::post('/request/feedback-review', 'site\RequestController@feedbackReview')
+Route::post('/request/feedback-review', 'Site\RequestController@feedbackReview')
     ->name('request.feedback_review')->middleware(['verify.recaptcha.token']);
-Route::post('/request/allow-cookies', 'site\RequestController@allowCookies')
+Route::post('/request/allow-cookies', 'Site\RequestController@allowCookies')
     ->name('request.allow_cookies');
-Route::post('/request/franchise', 'site\RequestController@franchise')
+Route::post('/request/franchise', 'Site\RequestController@franchise')
     ->name('request.franchise');
-Route::post('/request/city', 'site\RequestController@city')
+Route::post('/request/city', 'Site\RequestController@city')
     ->name('request.city');
 
-Route::get('/request/images/{imageUrl}', 'site\RequestController@images')
+Route::get('/request/images/{imageUrl}', 'Site\RequestController@images')
     ->where('imageUrl', '.*')
     ->name('request.images');
 
-Route::get('/{languageUrl}/{pageUrl?}/{category?}/{question?}', 'site\PageController@showPage')
+Route::get('/{languageUrl}/{pageUrl?}/{category?}/{question?}', 'Site\PageController@showPage')
     ->middleware(['clear.get', 'save.utm.to.cookies', 'antifraud', 'save.statistics',])
     ->where('category', '\d+')
     ->where('item', '\d+')
     ->name('site.support');
 
-Route::get('/{languageUrl}/{pageUrl?}', 'site\PageController@showPage')
+Route::get('/{languageUrl}/{pageUrl?}', 'Site\PageController@showPage')
     ->middleware(['clear.get', 'save.utm.to.cookies', 'antifraud', 'save.statistics',])
     ->where('pageUrl', '.*')
     ->name('site.show_page');
