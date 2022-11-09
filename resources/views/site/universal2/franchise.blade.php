@@ -316,7 +316,7 @@
                     </div>
                     <div class="franchise-form__form-text">@d('franchise_107')</div>
                     <div class="franchise-form__form form-order-docs form-order-docs_feedback js-franchise-form-wrapper preloader">
-                        <form method="post" action="{{ route('request.franchise') }}" class="form js-franchise-form" data-send-form-event="send_franchise">
+                        <form method="post" action="{{ route('request.franchise') }}" class="form js-franchise-form" data-send-form-event="send_franchise" data-send-form-success-event="send_success_franchise">
                             <input type="hidden" name="url" value="{{ $url->full() }}">
                             <div class="form__row">
                                 <div class="form-field">

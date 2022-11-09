@@ -62,6 +62,7 @@ function universal2FranchiseForm($form) {
         let thisForCallback = this;
         thisForCallback.setState('loading');
         $.post(request).done(function () {
+            $('body').trigger('gtm:event', [$form.data('sendFormSuccessEvent')]);
             thisForCallback.setState('success');
         }).fail(function () {
             thisForCallback.setState('error');
