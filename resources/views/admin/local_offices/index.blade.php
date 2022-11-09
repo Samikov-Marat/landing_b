@@ -31,6 +31,9 @@
                     Обозначение
                 </th>
                 <th>
+                    Поддомен
+                </th>
+                <th>
                     Название
                 </th>
                 <th>
@@ -56,6 +59,14 @@
                     </td>
                     <td>
                         {{ $localOffice->code }}
+                    </td>
+                    <td>
+                        @if($localOffice->subdomain !== '')
+                            {{ $localOffice->subdomain }}<br>
+                            https://{{ $localOffice->subdomain }}.{{ $site->domain }}
+                        @else
+                            <span class="disabled">нет</span>
+                        @endif
                     </td>
                     <td>
                         @foreach($localOffice->localOfficeTexts as $text)

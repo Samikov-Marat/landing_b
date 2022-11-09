@@ -40,6 +40,14 @@
             <small id="id_code_help" class="form-text text-muted">4 буквы из справочника офисов</small>
         </div>
 
+        <div class="form-group">
+            <label for="id_subdomain">Поддомен</label>
+            <input type="text" class="form-control" name="subdomain" id="id_subdomain"
+                   value="{{ isset($localOffice) ? $localOffice->subdomain : '' }}"
+                   placeholder="Поддомен" autocomplete="off">
+            <small id="id_subdomain_help" class="form-text text-muted">Как правило, код офиса в нижнем регистре</small>
+        </div>
+
         {{-- форму разбил на несколько файлов для группировки по вкладкам --}}
         @include('admin.local_offices.form_utm')
         @include('admin.local_offices.form_texts')
