@@ -71,6 +71,11 @@
     @if(isset($dictionary['antifraud_phone_1_value']))
         @include('site.universal2.antifraud_block')
     @endif
+
+    @if(isset($dictionary['fast_answer_content']) and $pageUrl !== 'contacts')
+        @include('site.universal2.fast_answer')
+    @endif
+
     <div class="fullscreen-modal-background js-fade_background "></div>
     <header class="header-shadow">
         <div class="header header_menu_size_l">

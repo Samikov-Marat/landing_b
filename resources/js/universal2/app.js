@@ -307,3 +307,16 @@ $(function (){
 
 })(window, jQuery);
 
+$(document).ready(function () {
+  const hiddenFastAnswer = sessionStorage.getItem('fast_answer');
+
+  if (hiddenFastAnswer !== 'hidden'){
+      $('.js-auto-hidden').removeClass('hidden');
+  }
+})
+
+$(document).ready(function () {
+    $('.js-fast-answer').click(function (){
+        sessionStorage.setItem('fast_answer', 'hidden');
+    })
+})
