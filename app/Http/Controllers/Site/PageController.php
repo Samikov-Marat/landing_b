@@ -10,6 +10,7 @@ use App\Classes\Site\AllowCookie;
 use App\Classes\Site\CountryRepository;
 use App\Classes\Site\CustomRouting;
 use App\Classes\Site\RequestCleaner;
+use App\Classes\Site\Subdomain;
 use App\Classes\Site\SupportContainer;
 use App\Classes\Site\TemplateBuilder;
 use App\Classes\SiteRepository;
@@ -21,14 +22,14 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Str;
+use Symfony\Component\HttpFoundation\Response as HttpFoundationResponse;
 
 class PageController extends Controller
 {
     public function selectDefaultLanguage(Request $request)
     {
         try {
-            $domain = Domain::getInstance($request)
-                ->get();
+            $domain = Domain::getInstance($request);
             $siteRepository = new SiteRepository($domain);
             $site = $siteRepository->getSite();
 
@@ -62,12 +63,15 @@ class PageController extends Controller
 
     public function showPage(Request $request, $languageUrl, $pageUrl = '/', $category = null, $question = null)
     {
-        $domain = Domain::getInstance($request)->get();
+        $domain = Domain::getInstance($request);
         try {
             $siteRepository = new SiteRepository($domain);
         } catch (ModelNotFoundException $exception) {
-            abort(Response::HTTP_NOT_FOUND);
+            abort(HttpFoundationResponse::HTTP_NOT_FOUND);
         }
+
+        $subdomain = new Subdomain($siteRepository->getSite(), $domain->getSubdomain());
+
         $languageShortname = Str::upper($languageUrl);
         if (!$siteRepository->containsLanguage($languageShortname)) {
             abort(Response::HTTP_NOT_FOUND);
@@ -88,7 +92,7 @@ class PageController extends Controller
         $fragments->push($page);
         $fragmentRepository = new FragmentRepository($fragments);
         $dictionary = DictionaryBuilder::get($fragmentRepository->getWithTexts($language));
-        $siteRepository->loadLocalOffices($language);
+        $siteRepository->loadLocalOffices($language, $subdomain);
         $siteRepository->loadNewsArticles($language);
         $siteRepository->loadOurWorkers($language);
         $siteRepository->loadFeedbacks($language);
@@ -113,6 +117,7 @@ class PageController extends Controller
         }
         return view($templateBuilder->getName())
             ->with('site', $siteRepository->getSite())
+            ->with('subdomain', $subdomain)
             ->with('supportContainer', $supportContainer)
             ->with('language', $language)
             ->with('page', $page)

@@ -23,7 +23,7 @@ class ApiMarketing
     public function __construct(Request $request)
     {
         $this->request = $request;
-        $this->domain = Domain::getInstance($this->request)->get();
+        $this->domain = Domain::getInstance($this->request);
         $this->prepareCategoryAndTimezone($this->domain);
     }
 
@@ -77,14 +77,22 @@ class ApiMarketing
     }
 
 
-    public function prepareCategoryAndTimezone($domain)
+    public function prepareCategoryAndTimezone(Domain $domain)
     {
         try {
-            $localOfficeRepository = new UtmSiteRepository($domain);
+            $localOfficeRepository = new UtmSiteRepository($domain->get());
         } catch (ModelNotFoundException $exception) {
             Log::error($exception->getMessage());
             return;
         }
+
+        if($domain->hasSubdomain()){
+            $localOffice = $localOfficeRepository->getLocalOfficeWithoutCookies($domain->getSubdomain());
+            $this->apiMarketingCategory = $localOffice->category;
+            $this->timezone = $localOffice->request_timezone;
+            return;
+        }
+
         $old = Cookie::get(UtmCookie::COOKIE_NAME);
         if (!is_null($old)) {
             try {
@@ -100,7 +108,7 @@ class ApiMarketing
             }
         }
         try {
-            $localOffice = CategoryInTurn::getInstance($localOfficeRepository->site->localOffices)
+            $localOffice = CategoryInTurn::getInstance($localOfficeRepository->getSite()->localOffices)
                 ->getNextNew();
             $this->apiMarketingCategory = $localOffice->category;
             $this->timezone = $localOffice->request_timezone;

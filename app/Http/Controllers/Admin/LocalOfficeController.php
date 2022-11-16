@@ -48,7 +48,7 @@ class LocalOfficeController extends Controller
     public function edit($id = null, Request $request)
     {
         if (isset($id)) {
-            $localOffice = LocalOffice::select(['id', 'code', 'subdomain', 'utm_tag', 'utm_value', 'category', 'site_id', 'disabled',])
+            $localOffice = LocalOffice::select(['id', 'code', 'subdomain', 'map_preset', 'utm_tag', 'utm_value', 'category', 'site_id', 'disabled',])
                 ->with(
                     [
                         'localOfficeTexts' => function ($query) {
@@ -106,6 +106,7 @@ class LocalOfficeController extends Controller
         $localOffice->site_id = $request->input('site_id');
         $localOffice->code = $request->input('code') ?? '';
         $localOffice->subdomain = trim($request->input('subdomain', ''));
+        $localOffice->map_preset = trim($request->input('map_preset', ''));
         $localOffice->utm_tag = $request->input('utm_tag') ?? '';
         $localOffice->utm_value = $request->input('utm_value') ?? '';
         $localOffice->category = $request->input('category') ?? '';

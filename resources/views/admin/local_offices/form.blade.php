@@ -48,6 +48,13 @@
             <small id="id_subdomain_help" class="form-text text-muted">Как правило, код офиса в нижнем регистре</small>
         </div>
 
+        <div class="form-group">
+            <label for="id_map_preset">Настройки карты поддомена</label>
+            <textarea type="text" class="form-control" name="map_preset" id="id_map_preset"
+                      placeholder="Настройки карты поддомена" autocomplete="off">{{ isset($localOffice) ? $localOffice->map_preset : '' }}</textarea>
+            <small id="id_map_preset_help" class="form-text text-muted">JSON для Yandex-карты</small>
+        </div>
+
         {{-- форму разбил на несколько файлов для группировки по вкладкам --}}
         @include('admin.local_offices.form_utm')
         @include('admin.local_offices.form_texts')

@@ -9,36 +9,55 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response;
 
 class Domain
 {
-    var $request;
+    private $request;
+
+    private $subdomain;
+
+    private $originalDomain;
+
+    private $cookieDomain = '';
 
     public function __construct(Request $request)
     {
         $this->request = $request;
+        $this->originalDomain = $this->request->server('HTTP_HOST');
+        $this->cookieDomain = $this->originalDomain;
+        $this->subdomain = '';
     }
 
-    public static function getInstance(Request $request)
+    public static function getInstance(Request $request): self
     {
         return new static($request);
     }
 
-    public function get()
+    public function get(): string
     {
-        $domain = $this->request->server('HTTP_HOST');
-
         try {
-            $alias = $this->getAlias($domain);
-            $this->checkAliasAccess();
-            return $alias->site->domain;
-        } catch (ModelNotFoundException $e) {
-            return $domain;
+            try {
+                $alias = $this->getAlias($this->originalDomain);
+                $this->checkAliasAccess();
+                return $alias->site->domain;
+            } catch (ModelNotFoundException $e) {
+            }
+            try {
+                $baseDomain = $this->reduce($this->originalDomain);
+                $this->cookieDomain = $baseDomain;
+                $alias = $this->getAlias($baseDomain);
+                $this->checkAliasAccess();
+                $this->makeSubdomain();
+                return $alias->site->domain;
+            } catch (ModelNotFoundException $e) {
+            }
         } catch (Exception $e) {
             Log::error($e->getMessage());
             abort(Response::HTTP_NOT_FOUND);
         }
+        return $this->originalDomain;
     }
 
     private function getAlias($domain)
@@ -50,6 +69,26 @@ class Domain
             throw new Exception('Не найден сайт');
         }
         return $alias;
+    }
+
+    private function reduce(string $domain): string
+    {
+        return Str::after($domain, '.');
+    }
+
+    private function makeSubdomain()
+    {
+        $this->subdomain = Str::before($this->originalDomain, '.');
+    }
+
+    public function getSubdomain(): string
+    {
+        return $this->subdomain;
+    }
+
+    public function hasSubdomain(): bool
+    {
+        return $this->subdomain !== '';
     }
 
     /**
@@ -66,5 +105,9 @@ class Domain
                 $this->request->fullUrl()
             );
         }
+    }
+
+    public function getCookieDomain(){
+        return $this->cookieDomain;
     }
 }

@@ -4,7 +4,12 @@
      @else
      data-url-template="{!! route('request.get_office_list') . '?bbox=%b&lang='.$dictionary['contacts_office_lang'] !!}"
      @endif
-     data-map-state="{{ $dictionary['contacts_map_state'] }}">
+         @if($subdomain->hasSubdomain() && isset($subdomain->getLocalOffice()->map_preset) && ($subdomain->getLocalOffice()->map_preset !== ''))
+             data-map-state="{{ $subdomain->getLocalOffice()->map_preset }}"
+         @else
+             data-map-state="{{ $dictionary['contacts_map_state'] }}"
+        @endif
+            >
 </div>
 @php
     $yandexParameters = [

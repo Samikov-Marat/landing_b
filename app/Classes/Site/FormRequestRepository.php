@@ -27,8 +27,7 @@ class FormRequestRepository
 
     public function save(Request $request)
     {
-        $domain = Domain::getInstance($request)
-            ->get();
+        $domain = Domain::getInstance($request);
         $siteRepository = new SiteRepository($domain);
         $site = $siteRepository->getSite();
 

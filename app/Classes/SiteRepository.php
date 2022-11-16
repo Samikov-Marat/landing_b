@@ -3,6 +3,7 @@
 
 namespace App\Classes;
 
+use App\Classes\Site\Subdomain;
 use App\Classes\Site\TopOfficeRepository;
 use App\Exceptions\CurrentPageNotFound;
 use App\Exceptions\PageController\LanguageListIsEmpty;
@@ -16,15 +17,15 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class SiteRepository
 {
-    var $site;
-    var $newsLimit = 4;
-    var $ourWorkersLimit = 3;
-    var $feedbacksLimit = 10;
+    private $site;
+    private $newsLimit = 4;
+    private $ourWorkersLimit = 3;
+    private $feedbacksLimit = 10;
 
-    public function __construct($domain)
+    public function __construct(Domain $domain)
     {
         try {
-            $this->site = Site::where('domain', $domain)
+            $this->site = Site::where('domain', $domain->get())
                 ->with(
                     [
                         'languages' => function ($query) {
@@ -165,15 +166,18 @@ class SiteRepository
         );
     }
 
-    public function loadLocalOffices($language)
+    public function loadLocalOffices($language, Subdomain $subdomain)
     {
         $language_id = $language->id;
         $this->site->load(
             [
-                'localOffices' => function ($query) {
-                    $query->select('id', 'site_id')
+                'localOffices' => function ($query) use ($subdomain){
+                    $query->select('id', 'site_id', 'map_preset')
                         ->where('disabled', false)
                         ->orderBy('sort');
+                    if($subdomain->hasSubdomain()){
+                        $query->where('id', $subdomain->getLocalOffice()->id);
+                    }
                 },
                 'localOffices.localOfficeTexts' => function ($query) use ($language_id) {
                     $query->where('language_id', $language_id);
