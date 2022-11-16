@@ -4,7 +4,7 @@ namespace App\Classes\Site;
 
 use App\Site;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Http\Response;
+use Symfony\Component\HttpFoundation\Response as HttpFoundationResponse;
 
 class Subdomain
 {
@@ -22,7 +22,7 @@ class Subdomain
                 ->where('subdomain', $subdomain)
                 ->firstOrFail();
         } catch (ModelNotFoundException $e) {
-            abort(Response::HTTP_NOT_FOUND);
+            abort(HttpFoundationResponse::HTTP_NOT_FOUND);
         }
     }
 

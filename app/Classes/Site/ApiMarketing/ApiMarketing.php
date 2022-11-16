@@ -23,8 +23,9 @@ class ApiMarketing
     public function __construct(Request $request)
     {
         $this->request = $request;
-        $this->domain = Domain::getInstance($this->request);
-        $this->prepareCategoryAndTimezone($this->domain);
+        $domain = Domain::getInstance($this->request);
+        $this->domain = $domain->get();
+        $this->prepareCategoryAndTimezone($domain);
     }
 
     public static function getInstance(Request $request): self

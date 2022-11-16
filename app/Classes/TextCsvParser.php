@@ -75,7 +75,6 @@ class TextCsvParser
             }
             if(preg_match(static::REGULAR, $line[0], $compositeId)){
                 $this->loadSpecial($line, $compositeId);
-                continue;
             }
         }
     }
@@ -241,6 +240,6 @@ class TextCsvParser
 
     public function parseLine()
     {
-        return fgetcsv($this->handle, 0, static::DELIMITER);;
+        return fgetcsv($this->handle, 0, static::DELIMITER);
     }
 }

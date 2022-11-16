@@ -44,7 +44,7 @@ class LanguageDetector
         $blocks = explode(',', $this->header);
         $weightLanguages = collect();
         foreach ($blocks as $block) {
-            preg_match_all('#^(?P<language>\\w{2})(-([\\w\\d]*))*(;q=(?P<weight>.*))*#us', trim($block), $m);
+            preg_match_all('#^(?P<language>\\w{2})(-([\\w]*))*(;q=(?P<weight>.*))*#us', trim($block), $m);
             if (Arr::exists($m['language'], 0)) {
                 $weightLanguages->push(
                     [

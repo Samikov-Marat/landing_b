@@ -16,32 +16,17 @@ class CategoryInTurn
         return new static($localOffices);
     }
 
-    public function getNext()
-    {
-        try {
-            $localOffice = $this->getNextLocalOffice();
-            HistoryCategoryRepository::getInstance()->saveForHistory($localOffice);
-            return $localOffice->category;
-        } catch (\Exception $e) {
-            throw $e;
-        }
-    }
-
     public function getNextNew()
     {
-        try {
-            $localOffice = $this->getNextLocalOffice();
-            HistoryCategoryRepository::getInstance()->saveForHistory($localOffice);
-            return $localOffice;
-        } catch (\Exception $e) {
-            throw $e;
-        }
+        $localOffice = $this->getNextLocalOffice();
+        HistoryCategoryRepository::getInstance()->saveForHistory($localOffice);
+        return $localOffice;
     }
 
     private function getNextLocalOffice()
     {
         if ($this->localOffices->isEmpty()) {
-            throw new \Exception('Нет офисов. Должна быть выбрана категория по-умолчанию.');
+            throw new Exception('Нет офисов. Должна быть выбрана категория по-умолчанию.');
         }
         if ($this->localOffices->count() == 1) {
             return $this->localOffices[0];

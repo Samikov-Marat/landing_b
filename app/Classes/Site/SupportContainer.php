@@ -108,9 +108,9 @@ class SupportContainer
     }
 
 
-    private function prepareTree($parent_id = null)
+    private function prepareTree()
     {
-        $this->tree = $this->getBranch($parent_id);
+        $this->tree = $this->getBranch();
     }
 
     private function getBranch($parent_id = null, $level = 0): Collection

@@ -2,8 +2,9 @@
 
 namespace App\Classes\Site\ApiMarketing;
 
+use Exception;
 use GuzzleHttp\Client;
-use Illuminate\Http\Response;
+use Symfony\Component\HttpFoundation\Response as HttpFoundationResponse;
 
 class ApiMarketingSender
 {
@@ -24,12 +25,12 @@ class ApiMarketingSender
                 self::API_URI,
                 ['headers' => $headers, 'json' => $apiMarketingRequest]
             );
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             throw new \Exception('Ошибка API markerting. При отправке запроса.');
         }
 
-        if ($response->getStatusCode() != Response::HTTP_OK) {
-            throw new \Exception('Ошибка API markerting. HTTP-код' . $response->getStatusCode());
+        if ($response->getStatusCode() != HttpFoundationResponse::HTTP_OK) {
+            throw new Exception('Ошибка API markerting. HTTP-код' . $response->getStatusCode());
         }
         $responseDecoded = json_decode($response->getBody()->getContents(), true);
         self::checkResponse($responseDecoded);
@@ -39,14 +40,14 @@ class ApiMarketingSender
     private static function checkResponse($responseDecoded)
     {
         if (!array_key_exists('success', $responseDecoded)) {
-            throw new \Exception('Неправильный ответ сервера (нет поля success)');
+            throw new Exception('Неправильный ответ сервера (нет поля success)');
         }
         if ($responseDecoded['success']) {
             return;
         }
         if (!array_key_exists('error', $responseDecoded)) {
-            throw new \Exception('Неправильный ответ сервера (нет поля error)');
+            throw new Exception('Неправильный ответ сервера (нет поля error)');
         }
-        throw new \Exception('Ошибка параметров ' . $responseDecoded['error']);
+        throw new Exception('Ошибка параметров ' . $responseDecoded['error']);
     }
 }

@@ -2,20 +2,20 @@
 
 namespace App\Classes;
 
+use Carbon\CarbonInterface;
 use Exception;
-use Illuminate\Support\Carbon;
 
 class UtmCookie
 {
     const COOKIE_NAME = 'utm_cookie';
     const UTM_COOKIE_LIFETIME_MINUTES = 10 *
-    Carbon::DAYS_PER_YEAR *
-    Carbon::HOURS_PER_DAY *
-    Carbon::MINUTES_PER_HOUR;
+    CarbonInterface::DAYS_PER_YEAR *
+    CarbonInterface::HOURS_PER_DAY *
+    CarbonInterface::MINUTES_PER_HOUR;
 
     const SUBDOMAIN_COOKIE_LIFETIME_MINUTES = 30 *
-    Carbon::HOURS_PER_DAY *
-    Carbon::MINUTES_PER_HOUR;
+    CarbonInterface::HOURS_PER_DAY *
+    CarbonInterface::MINUTES_PER_HOUR;
 
     var $attributes = [];
 

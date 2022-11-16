@@ -7,7 +7,6 @@ use Illuminate\Support\Collection;
 class SupportCategoryTree
 {
     private $categories;
-    private $tree;
 
     public function __construct(Collection $categories)
     {
@@ -21,8 +20,7 @@ class SupportCategoryTree
 
     public function getTree($parent_id = null)
     {
-        $this->tree = $this->getBranch($parent_id);
-        return $this->tree;
+        return $this->getBranch($parent_id);
     }
 
     private function getBranch($parent_id = null, $level = 0): Collection
@@ -47,9 +45,7 @@ class SupportCategoryTree
             $ids[] = $parent_id;
         }
 
-        $ids = $ids->merge($this->getBranchIdsFlatChildren($parent_id)->toArray());
-
-        return $ids;
+        return $ids->merge($this->getBranchIdsFlatChildren($parent_id)->toArray());
     }
 
     private function getBranchIdsFlatChildren($parent_id = null, $level = 0): Collection

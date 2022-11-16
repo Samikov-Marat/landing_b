@@ -19,7 +19,7 @@ class MapJsonCallback
 
     public function setCallbackName($callbackName)
     {
-        $this->callbackName = preg_replace('#[^\w\d]+#u', '_', $callbackName);
+        $this->callbackName = preg_replace('#[^\w]+#u', '_', $callbackName);
     }
 
     public function start()

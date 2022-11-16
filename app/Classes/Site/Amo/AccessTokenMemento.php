@@ -2,6 +2,7 @@
 
 namespace App\Classes\Site\Amo;
 
+use Exception;
 use Illuminate\Support\Facades\Storage;
 
 class AccessTokenMemento
@@ -35,7 +36,7 @@ class AccessTokenMemento
     public function load(): self
     {
         if (!$this->exists()) {
-            throw new \Exception('Access token file not found');
+            throw new Exception('Access token file not found');
         }
         $accessTokenOptions = json_decode(Storage::get($this->file), true);
         $this->fromArray($accessTokenOptions);
@@ -68,7 +69,7 @@ class AccessTokenMemento
     public function getAccessToken(): string
     {
         if (!isset($this->accessToken)) {
-            throw new \Exception('accessToken не определён');
+            throw new Exception('accessToken не определён');
         }
         return $this->accessToken;
     }
@@ -82,7 +83,7 @@ class AccessTokenMemento
     public function getClientSecret(): string
     {
         if (!isset($this->clientSecret)) {
-            throw new \Exception('clientSecret не определён');
+            throw new Exception('clientSecret не определён');
         }
 
         return $this->clientSecret;
@@ -97,7 +98,7 @@ class AccessTokenMemento
     public function getRefreshToken(): string
     {
         if (!isset($this->refreshToken)) {
-            throw new \Exception('refreshToken не определён');
+            throw new Exception('refreshToken не определён');
         }
         return $this->refreshToken;
     }
@@ -111,7 +112,7 @@ class AccessTokenMemento
     public function getExpires(): string
     {
         if (!isset($this->expires)) {
-            throw new \Exception('expires не определён');
+            throw new Exception('expires не определён');
         }
         return $this->expires;
     }
