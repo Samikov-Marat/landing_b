@@ -5,6 +5,7 @@ namespace App\Classes;
 
 use App\Alias;
 use App\Exceptions\AliasNeedAuthentication;
+use App\Site;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -44,13 +45,29 @@ class Domain
                 return $alias->site->domain;
             } catch (ModelNotFoundException $e) {
             }
+
+            try {
+                $site = Site::where('domain', $this->originalDomain)->firstOrFail();
+                return $site->domain;
+            } catch (ModelNotFoundException $e) {
+            }
+
             try {
                 $baseDomain = $this->reduce($this->originalDomain);
-                $this->cookieDomain = $baseDomain;
                 $alias = $this->getAlias($baseDomain);
                 $this->checkAliasAccess();
+                $this->cookieDomain = $baseDomain;
                 $this->makeSubdomain();
                 return $alias->site->domain;
+            } catch (ModelNotFoundException $e) {
+            }
+
+            try {
+                $baseDomain = $this->reduce($this->originalDomain);
+                $site = Site::where('domain', $baseDomain)->firstOrFail();
+                $this->cookieDomain = $baseDomain;
+                $this->makeSubdomain();
+                return $site->domain;
             } catch (ModelNotFoundException $e) {
             }
         } catch (Exception $e) {
