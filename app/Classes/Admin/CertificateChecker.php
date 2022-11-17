@@ -2,6 +2,8 @@
 
 namespace App\Classes\Admin;
 
+use Exception;
+
 class CertificateChecker
 {
     var $domain;
@@ -20,15 +22,15 @@ class CertificateChecker
     {
         try {
             $params = $this->getParams();
-        } catch (\Exception $e) {
-            throw new \Exception('Не удалось получить сертификат');
+        } catch (Exception $e) {
+            throw new Exception('Не удалось получить сертификат');
         }
         if (!isset($params['options']['ssl']['peer_certificate'])) {
-            throw new \Exception('Неверный формат параметров подключения');
+            throw new Exception('Неверный формат параметров подключения');
         }
         $certificate = openssl_x509_parse($params['options']['ssl']['peer_certificate']);
         if (!isset($certificate['validTo_time_t'])) {
-            throw new \Exception('В сертификате нет даты');
+            throw new Exception('В сертификате нет даты');
         }
         return $certificate['validTo_time_t'];
     }

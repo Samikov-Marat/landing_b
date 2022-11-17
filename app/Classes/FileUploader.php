@@ -5,6 +5,7 @@ namespace App\Classes;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Exception;
 
 class FileUploader
 {
@@ -70,7 +71,7 @@ class FileUploader
             'tablet2' =>  $this->modelInstance->id .'/tablet2.' . $this->request->file($this->requestField)->extension(),
         ];
         if (!Arr::exists($filenameByRequestField, $this->requestField)) {
-            throw new \Exception('Не удалось найти путь для сохранения файла');
+            throw new Exception('Не удалось найти путь для сохранения файла');
         }
         return $filenameByRequestField[$this->requestField];
     }
