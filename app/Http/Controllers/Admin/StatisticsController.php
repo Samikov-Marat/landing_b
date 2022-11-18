@@ -132,7 +132,6 @@ class StatisticsController extends Controller
         $term = $request->input('term', '');
         $page = $request->input('page', 1);
         $languageIsoSearchResult = StatisticsSitesSearcher::getInstance()->search($term, $page);
-        \Debugbar::disable();
         return response()->json($languageIsoSearchResult->asArray());
     }
 
@@ -141,8 +140,6 @@ class StatisticsController extends Controller
         $term = $request->input('term', '');
         $page = $request->input('page', 1);
         $languageIsoSearchResult = StatisticsUtmSourceSearcher::getInstance()->search($term, $page);
-
-        \Debugbar::disable();
         return response()->json($languageIsoSearchResult->asArray());
     }
 
@@ -151,8 +148,6 @@ class StatisticsController extends Controller
         $term = $request->input('term', '');
         $page = $request->input('page', 1);
         $languageIsoSearchResult = StatisticsUtmMediumSearcher::getInstance()->search($term, $page);
-
-        \Debugbar::disable();
         return response()->json($languageIsoSearchResult->asArray());
     }
 
@@ -161,8 +156,6 @@ class StatisticsController extends Controller
         $term = $request->input('term', '');
         $page = $request->input('page', 1);
         $languageIsoSearchResult = StatisticsUtmCampaignSearcher::getInstance()->search($term, $page);
-
-        \Debugbar::disable();
         return response()->json($languageIsoSearchResult->asArray());
     }
 
@@ -171,8 +164,6 @@ class StatisticsController extends Controller
         $term = $request->input('term', '');
         $page = $request->input('page', 1);
         $languageIsoSearchResult = StatisticsUtmTermSearcher::getInstance()->search($term, $page);
-
-        \Debugbar::disable();
         return response()->json($languageIsoSearchResult->asArray());
     }
 
@@ -181,8 +172,6 @@ class StatisticsController extends Controller
         $term = $request->input('term', '');
         $page = $request->input('page', 1);
         $languageIsoSearchResult = StatisticsUtmContentSearcher::getInstance()->search($term, $page);
-
-        \Debugbar::disable();
         return response()->json($languageIsoSearchResult->asArray());
     }
 

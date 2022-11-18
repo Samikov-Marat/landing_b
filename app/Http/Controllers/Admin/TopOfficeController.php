@@ -78,7 +78,6 @@ class TopOfficeController extends Controller
         $term = $request->input('term', '');
         $page = $request->input('page', 1);
         $topOfficeSearchResult = TopOfficeSearcher::getInstance()->search($term, $page);
-        \Debugbar::disable();
         return response()->json($topOfficeSearchResult->asArray());
     }
 

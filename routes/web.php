@@ -13,11 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware(['http.secure', 'start.session', 'share.errors.from.session'])->group(function(){
+Route::middleware(['http.secure', 'start.session', 'share.errors.from.session'])->group(function () {
     Auth::routes(['register' => false]);
 });
 
-Route::prefix('admin')->middleware(['auth', 'user.route.access', 'http.secure', 'verify.csrf.token', 'start.session', 'share.errors.from.session'])->group(
+Route::prefix('admin')->middleware(
+    ['auth', 'user.route.access', 'http.secure', 'verify.csrf.token', 'start.session', 'share.errors.from.session']
+)->group(
     function () {
         Route::get('/', 'Admin\IndexController@index')
             ->name('admin.index');
@@ -55,7 +57,8 @@ Route::prefix('admin')->middleware(['auth', 'user.route.access', 'http.secure', 
         Route::post('languages/move', 'Admin\LanguageController@move')
             ->name('admin.languages.move');
         Route::get('languages/search-iso', 'Admin\LanguageController@searchIso')
-            ->name('admin.languages.search_iso');
+            ->name('admin.languages.search_iso')
+            ->middleware('debugbar.disable');
 
 
         Route::get('feedbacks', 'Admin\FeedbackController@index')
@@ -236,7 +239,8 @@ Route::prefix('admin')->middleware(['auth', 'user.route.access', 'http.secure', 
         Route::post('top-offices/delete', 'Admin\TopOfficeController@delete')
             ->name('admin.top_offices.delete');
         Route::get('top-offices/search', 'Admin\TopOfficeController@search')
-            ->name('admin.top_offices.search');
+            ->name('admin.top_offices.search')
+            ->middleware('debugbar.disable');
         Route::post('top-offices/move', 'Admin\TopOfficeController@move')
             ->name('admin.top_offices.move');
 
@@ -254,7 +258,8 @@ Route::prefix('admin')->middleware(['auth', 'user.route.access', 'http.secure', 
         Route::post('world-languages/move', 'Admin\WorldLanguageController@move')
             ->name('admin.world_languages.move');
         Route::get('world-languages/search-iso', 'Admin\WorldLanguageController@searchIso')
-            ->name('admin.world_languages.search_iso');
+            ->name('admin.world_languages.search_iso')
+            ->middleware('debugbar.disable');
 
         Route::get('top-office-world-languages', 'Admin\TopOfficeWorldLanguageController@index')
             ->name('admin.top_office_world_languages.index');
@@ -279,7 +284,10 @@ Route::prefix('admin')->middleware(['auth', 'user.route.access', 'http.secure', 
             ->name('admin.yandex_metrica_goals.save_yandex_auth');
         Route::get('yandex-metrica-goals/yandex-form', 'Admin\YandexMetricaGoalController@yandexForm')
             ->name('admin.yandex_metrica_goals.yandex_form');
-        Route::post('yandex-metrica-goals/clone-goals-to-yandex', 'Admin\YandexMetricaGoalController@cloneGoalsToYandex')
+        Route::post(
+            'yandex-metrica-goals/clone-goals-to-yandex',
+            'Admin\YandexMetricaGoalController@cloneGoalsToYandex'
+        )
             ->name('admin.yandex_metrica_goals.clone_goals_to_yandex');
 
         //тарифы
@@ -361,17 +369,23 @@ Route::prefix('admin')->middleware(['auth', 'user.route.access', 'http.secure', 
         Route::get('statistics', 'Admin\StatisticsController@index')
             ->name('admin.statistics.index');
         Route::get('statistics/search-sites', 'Admin\StatisticsController@searchSites')
-            ->name('admin.statistics.search_sites');
+            ->name('admin.statistics.search_sites')
+            ->middleware('debugbar.disable');
         Route::get('statistics/search-utm-source', 'Admin\StatisticsController@searchUtmSource')
-            ->name('admin.statistics.search_utm_source');
+            ->name('admin.statistics.search_utm_source')
+            ->middleware('debugbar.disable');
         Route::get('statistics/search-utm-medium', 'Admin\StatisticsController@searchUtmMedium')
-            ->name('admin.statistics.search_utm_medium');
+            ->name('admin.statistics.search_utm_medium')
+            ->middleware('debugbar.disable');
         Route::get('statistics/search-utm-campaign', 'Admin\StatisticsController@searchUtmCampaign')
-            ->name('admin.statistics.search_utm_campaign');
+            ->name('admin.statistics.search_utm_campaign')
+            ->middleware('debugbar.disable');
         Route::get('statistics/search-utm-term', 'Admin\StatisticsController@searchUtmTerm')
-            ->name('admin.statistics.search_utm_term');
+            ->name('admin.statistics.search_utm_term')
+            ->middleware('debugbar.disable');
         Route::get('statistics/search-utm-content', 'Admin\StatisticsController@searchUtmContent')
-            ->name('admin.statistics.search_utm_content');
+            ->name('admin.statistics.search_utm_content')
+            ->middleware('debugbar.disable');
 
         Route::get('amo', 'Admin\AmoController@index')
             ->name('admin.amo.index');
@@ -379,7 +393,6 @@ Route::prefix('admin')->middleware(['auth', 'user.route.access', 'http.secure', 
             ->name('admin.amo.auth_form');
         Route::post('amo/auth-save', 'Admin\AmoController@authSave')
             ->name('admin.amo.auth_save');
-
     }
 
 );
@@ -388,30 +401,32 @@ Route::get('/', 'Site\PageController@selectDefaultLanguage')
     ->middleware(['clear.get', 'save.utm.to.cookies', 'antifraud'])
     ->name('site.select_default_language');
 
-Route::post('/request/send', 'Site\RequestController@send')
-    ->name('request.send')->middleware(['verify.recaptcha.token']);
-Route::post('/request/feedback', 'Site\RequestController@feedback')
-    ->name('request.feedback')->middleware(['verify.recaptcha.token']);
-Route::post('/request/support', 'Site\RequestController@support')
-    ->name('request.support')->middleware(['verify.recaptcha.token']);
-Route::post('/request/order', 'Site\RequestController@order')
-    ->name('request.order')->middleware(['verify.recaptcha.token']);
-Route::post('/request/presentation', 'Site\RequestController@presentation')
-    ->name('request.presentation');
-Route::get('/request/get-office-list', 'Site\RequestController@getOfficeList')
-    ->name('request.get_office_list');
-Route::post('/request/feedback-review', 'Site\RequestController@feedbackReview')
-    ->name('request.feedback_review')->middleware(['verify.recaptcha.token']);
-Route::post('/request/allow-cookies', 'Site\RequestController@allowCookies')
-    ->name('request.allow_cookies');
-Route::post('/request/franchise', 'Site\RequestController@franchise')
-    ->name('request.franchise');
-Route::post('/request/city', 'Site\RequestController@city')
-    ->name('request.city');
+Route::middleware('debugbar.disable')->group(function () {
+    Route::post('/request/send', 'Site\RequestController@send')
+        ->name('request.send')->middleware(['verify.recaptcha.token']);
+    Route::post('/request/feedback', 'Site\RequestController@feedback')
+        ->name('request.feedback')->middleware(['verify.recaptcha.token']);
+    Route::post('/request/support', 'Site\RequestController@support')
+        ->name('request.support')->middleware(['verify.recaptcha.token']);
+    Route::post('/request/order', 'Site\RequestController@order')
+        ->name('request.order')->middleware(['verify.recaptcha.token']);
+    Route::post('/request/presentation', 'Site\RequestController@presentation')
+        ->name('request.presentation');
+    Route::get('/request/get-office-list', 'Site\RequestController@getOfficeList')
+        ->name('request.get_office_list');
+    Route::post('/request/feedback-review', 'Site\RequestController@feedbackReview')
+        ->name('request.feedback_review')->middleware(['verify.recaptcha.token']);
+    Route::post('/request/allow-cookies', 'Site\RequestController@allowCookies')
+        ->name('request.allow_cookies');
+    Route::post('/request/franchise', 'Site\RequestController@franchise')
+        ->name('request.franchise');
+    Route::post('/request/city', 'Site\RequestController@city')
+        ->name('request.city');
 
-Route::get('/request/images/{imageUrl}', 'Site\RequestController@images')
-    ->where('imageUrl', '.*')
-    ->name('request.images');
+    Route::get('/request/images/{imageUrl}', 'Site\RequestController@images')
+        ->where('imageUrl', '.*')
+        ->name('request.images');
+});
 
 Route::get('/{languageUrl}/{pageUrl?}/{category?}/{question?}', 'Site\PageController@showPage')
     ->middleware(['clear.get', 'save.utm.to.cookies', 'antifraud', 'save.statistics',])
@@ -420,6 +435,6 @@ Route::get('/{languageUrl}/{pageUrl?}/{category?}/{question?}', 'Site\PageContro
     ->name('site.support');
 
 Route::get('/{languageUrl}/{pageUrl?}', 'Site\PageController@showPage')
-    ->middleware(['clear.get', 'save.utm.to.cookies', 'antifraud', 'save.statistics',])
+    ->middleware(['clear.get', 'save.utm.to.cookies', 'antifraud', 'save.statistics'])
     ->where('pageUrl', '.*')
     ->name('site.show_page');

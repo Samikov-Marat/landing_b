@@ -138,7 +138,6 @@ class LanguageController extends Controller
         $term = $request->input('term', '');
         $page = $request->input('page', 1);
         $languageIsoSearchResult = LanguageIsoSearcher::getInstance()->search($term, $page);
-        \Debugbar::disable();
         return response()->json($languageIsoSearchResult->asArray());
     }
 

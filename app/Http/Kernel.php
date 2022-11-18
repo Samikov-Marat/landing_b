@@ -72,6 +72,7 @@ class Kernel extends HttpKernel
         'save.statistics' => \App\Http\Middleware\SaveStatistics::class,
         'start.session' => \Illuminate\Session\Middleware\StartSession::class,
         'share.errors.from.session' => \Illuminate\View\Middleware\ShareErrorsFromSession::class,
+        'debugbar.disable' => \App\Http\Middleware\DebugbarDisable::class,
 //        \Illuminate\Session\Middleware\AuthenticateSession::class,
     ];
 
