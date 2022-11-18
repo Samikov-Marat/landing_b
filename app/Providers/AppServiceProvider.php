@@ -38,8 +38,5 @@ class AppServiceProvider extends ServiceProvider
         );
 
         URL::forceScheme('https');
-        if(config('app.env') === 'production') {
-            \Debugbar::disable();
-        }
     }
 }
