@@ -12,6 +12,7 @@ use App\Classes\Site\Amo\AmoSender;
 use App\Classes\Site\ApiMarketing\ApiMarketing;
 use App\Classes\Site\FormRequestRepository;
 use App\Classes\Site\Jira\JiraSender;
+use App\Classes\Site\ReferralCookiesHelper;
 use App\EngOffice;
 use App\Feedback;
 use App\Http\Controllers\Controller;
@@ -124,6 +125,9 @@ class RequestController extends Controller
     {
         AllowCookie::getInstance($request)
             ->setAllow();
+        ReferralCookiesHelper::getInstance()
+            ->setForce(true)
+            ->save($request);
         return view('site.universal2.gtm_block');
     }
 
@@ -168,8 +172,8 @@ class RequestController extends Controller
         foreach ($coordinates as $value) {
             if (!is_numeric($value)) {
                 Log::error(
-                    'Формат координат в запросе неверный. Не число в одной из координат' . var_export($value,
-                        true)
+                    'Формат координат в запросе неверный. Не число в одной из координат' .
+                    var_export($value, true)
                 );
                 abort(HttpResponse::HTTP_BAD_REQUEST);
             }
