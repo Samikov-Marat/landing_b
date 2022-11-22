@@ -16,7 +16,12 @@ class SaveStatistics
      */
     public function handle($request, Closure $next)
     {
+        if (!$request->isMethod('GET')) {
+            return $next($request);
+        }
+
         $statistics = new Statistics();
+        $statistics->full_url = $request->fullUrl();
         $statistics->site = $request->server('HTTP_HOST');
         $statistics->page = $request->path();
         $statistics->utm_source = $request->input('utm_source');

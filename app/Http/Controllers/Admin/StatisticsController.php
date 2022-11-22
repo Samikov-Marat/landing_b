@@ -20,8 +20,6 @@ class StatisticsController extends Controller
 {
     public function index(Request $request)
     {
-        $columns = ['site'];
-
         $statisticsModel = Statistics::select(['site', DB::raw('count(*) as count')])
             ->groupBy('site')
             ->orderBy('site');
@@ -48,14 +46,12 @@ class StatisticsController extends Controller
         if ($request->has('filter.utm_source')) {
             $statisticsModel->where('utm_source', $request->input('filter.utm_source'));
             $filter['utm_source'] = $request->input('filter.utm_source');
-            $columns[] = Utm::SOURCE;
             $statisticsModel->addSelect(Utm::SOURCE)
                 ->groupBy(Utm::SOURCE);
         }
         if ($request->has('filter.utm_medium')) {
             $statisticsModel->where('utm_medium', $request->input('filter.utm_medium'));
             $filter['utm_medium'] = $request->input('filter.utm_medium');
-            $columns[] = Utm::MEDIUM;
             $statisticsModel->addSelect(Utm::MEDIUM)
                 ->groupBy(Utm::MEDIUM);
         }
@@ -63,7 +59,6 @@ class StatisticsController extends Controller
         if ($request->has('filter.utm_campaign')) {
             $statisticsModel->where('utm_campaign', $request->input('filter.utm_campaign'));
             $filter['utm_campaign'] = $request->input('filter.utm_campaign');
-            $columns[] = Utm::CAMPAIGN;
             $statisticsModel->addSelect(Utm::CAMPAIGN)
                 ->groupBy(Utm::CAMPAIGN);
         }
@@ -71,7 +66,6 @@ class StatisticsController extends Controller
         if ($request->has('filter.utm_term')) {
             $statisticsModel->where('utm_term', $request->input('filter.utm_term'));
             $filter['utm_term'] = $request->input('filter.utm_term');
-            $columns[] = Utm::TERM;
             $statisticsModel->addSelect(Utm::TERM)
                 ->groupBy(Utm::TERM);
         }
@@ -79,7 +73,6 @@ class StatisticsController extends Controller
         if ($request->has('filter.utm_content')) {
             $statisticsModel->where('utm_content', $request->input('filter.utm_content'));
             $filter['utm_content'] = $request->input('filter.utm_content');
-            $columns[] = Utm::CONTENT;
             $statisticsModel->addSelect(Utm::CONTENT)
                 ->groupBy(Utm::CONTENT);
         }
@@ -87,36 +80,30 @@ class StatisticsController extends Controller
 
         $detail = [];
         if ($request->has('detail.utm_source')) {
-            $columns[] = Utm::SOURCE;
             $statisticsModel->addSelect(Utm::SOURCE)
                 ->groupBy(Utm::SOURCE);
             $detail[Utm::SOURCE] = 1;
         }
         if ($request->has('detail.utm_medium')) {
-            $columns[] = Utm::MEDIUM;
             $statisticsModel->addSelect(Utm::MEDIUM)
                 ->groupBy(Utm::MEDIUM);
             $detail[Utm::MEDIUM] = 1;
         }
         if ($request->has('detail.utm_campaign')) {
-            $columns[] = Utm::CAMPAIGN;
             $statisticsModel->addSelect(Utm::CAMPAIGN)
                 ->groupBy(Utm::CAMPAIGN);
             $detail[Utm::CAMPAIGN] = 1;
         }
         if ($request->has('detail.utm_term')) {
-            $columns[] = Utm::TERM;
             $statisticsModel->addSelect(Utm::TERM)
                 ->groupBy(Utm::TERM);
             $detail[Utm::TERM] = 1;
         }
         if ($request->has('detail.utm_content')) {
-            $columns[] = Utm::CONTENT;
             $statisticsModel->addSelect(Utm::CONTENT)
                 ->groupBy(Utm::CONTENT);
             $detail[Utm::CONTENT] = 1;
         }
-
 
         $statistics = $statisticsModel->get();
 
