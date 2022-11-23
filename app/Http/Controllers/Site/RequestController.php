@@ -34,11 +34,12 @@ class RequestController extends Controller
         try {
             FormRequestRepository::getInstance('send')
                 ->save($request);
-            return ApiMarketing::getInstance($request)->sendCalculatorRequest();
+            ApiMarketing::getInstance($request)->sendCalculatorRequest();
         } catch (\Exception $e) {
             Log::error($e);
             abort(HttpResponse::HTTP_INTERNAL_SERVER_ERROR);
         }
+        return response()->noContent();
     }
 
     public function feedback(Request $request)
@@ -46,36 +47,29 @@ class RequestController extends Controller
         try {
             FormRequestRepository::getInstance('feedback')
                 ->save($request);
-            return ApiMarketing::getInstance($request)->sendFeedbackRequest();
+            ApiMarketing::getInstance($request)->sendFeedbackRequest();
         } catch (\Exception $e) {
             Log::error($e);
             abort(HttpResponse::HTTP_INTERNAL_SERVER_ERROR);
         }
+        return response()->noContent();
     }
 
     public function support(Request $request)
     {
-        if ($request->input('email') === 'error') {
-            sleep(5);
-            abort(HttpResponse::HTTP_INTERNAL_SERVER_ERROR);
-        }
         try {
             FormRequestRepository::getInstance('support')
                 ->save($request);
             JiraSender::send($request);
-            return 'success';
         } catch (\Exception $e) {
             Log::error($e);
             abort(HttpResponse::HTTP_INTERNAL_SERVER_ERROR);
         }
+        return response()->noContent();
     }
 
     public function franchise(Request $request)
     {
-        if ($request->input('email') === 'error') {
-            sleep(5);
-            abort(HttpResponse::HTTP_INTERNAL_SERVER_ERROR);
-        }
         try {
             FormRequestRepository::getInstance('franchise')
                 ->save($request);
@@ -89,11 +83,11 @@ class RequestController extends Controller
                     '2114863' => $request->input('email'),
                     '2114865' => $request->input('city'),
                 ]);
-            return 'success';
         } catch (\Exception $e) {
             Log::error($e);
             abort(HttpResponse::HTTP_INTERNAL_SERVER_ERROR);
         }
+        return response()->noContent();
     }
 
     public function order(Request $request)
@@ -101,11 +95,12 @@ class RequestController extends Controller
         try {
             FormRequestRepository::getInstance('order')
                 ->save($request);
-            return ApiMarketing::getInstance($request)->sendOrderRequest();
+            ApiMarketing::getInstance($request)->sendOrderRequest();
         } catch (\Exception $e) {
             Log::error($e);
             abort(HttpResponse::HTTP_INTERNAL_SERVER_ERROR);
         }
+        return response()->noContent();
     }
 
     public function presentation(Request $request)
@@ -114,11 +109,12 @@ class RequestController extends Controller
             FormRequestRepository::getInstance('presentation')
                 ->save($request);
 
-            return ApiMarketing::getInstance($request)->sendPresentationRequest();
+            ApiMarketing::getInstance($request)->sendPresentationRequest();
         } catch (\Exception $e) {
             Log::error($e);
             abort(HttpResponse::HTTP_INTERNAL_SERVER_ERROR);
         }
+        return response()->noContent();
     }
 
     public function allowCookies(Request $request)
@@ -142,7 +138,7 @@ class RequestController extends Controller
                 ->firstOrFail();
         } catch (ModelNotFoundException $exception) {
             Log::error($exception);
-            abort(Response::HTTP_NOT_FOUND);
+            abort(HttpResponse::HTTP_NOT_FOUND);
         }
         $language = Language::select('id')
             ->findOrFail($request->input('language_id'));
@@ -158,12 +154,13 @@ class RequestController extends Controller
             $feedback->published = false;
             $feedback->save();
 
-            return response('saved', 200)
+            response('saved', 200)
                 ->header('Content-Type', 'text/plain');
         } catch (\Exception $e) {
             Log::error($e);
             abort(HttpResponse::HTTP_INTERNAL_SERVER_ERROR);
         }
+        return response()->noContent();
     }
 
     public function getOfficeList(Request $request)
@@ -203,7 +200,7 @@ class RequestController extends Controller
             $site = Site::where('domain', $domain)
                 ->firstOrFail();
         } catch (ModelNotFoundException $exception) {
-            abort(Response::HTTP_NOT_FOUND);
+            abort(HttpResponse::HTTP_NOT_FOUND);
         }
         try {
             $image = $site->images()
@@ -212,7 +209,7 @@ class RequestController extends Controller
                 ->firstOrFail();
         } catch (ModelNotFoundException $exception) {
             Log::error(new \Exception('Не найдена ' . $imageUrl));
-            abort(Response::HTTP_NOT_FOUND);
+            abort(HttpResponse::HTTP_NOT_FOUND);
         }
         $imageResponse = ImageResponse::getInstance()->setPath($image->path);
         $hash = $image->updated_at->format('Y-m-d H:i:s');

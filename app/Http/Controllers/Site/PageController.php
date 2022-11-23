@@ -15,10 +15,12 @@ use App\Classes\Site\SupportContainer;
 use App\Classes\Site\TemplateBuilder;
 use App\Classes\SiteRepository;
 use App\Exceptions\CurrentPageNotFound;
+use App\Exceptions\LanguageDetector\LanguagesIsEmpty;
 use App\Exceptions\PageController\LanguageListIsEmpty;
 use App\Exceptions\PageController\SiteNotFound;
 use App\Http\Controllers\Controller;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Str;
@@ -53,10 +55,8 @@ class PageController extends Controller
             $requestCleaner = new RequestCleaner($request);
             $params = array_merge(['languageUrl' => $languageShortName], $requestCleaner->getCleared());
             return response()->redirectToRoute('site.show_page', $params);
-        } catch (SiteNotFound $e) {
-            abort(Response::HTTP_NOT_FOUND);
-        } catch (LanguageListIsEmpty $e) {
-            abort(Response::HTTP_NOT_FOUND);
+        } catch (SiteNotFound|LanguageListIsEmpty $e) {
+            abort(HttpFoundationResponse::HTTP_NOT_FOUND);
         }
     }
 
@@ -74,7 +74,7 @@ class PageController extends Controller
 
         $languageShortname = Str::upper($languageUrl);
         if (!$siteRepository->containsLanguage($languageShortname)) {
-            abort(Response::HTTP_NOT_FOUND);
+            abort(HttpFoundationResponse::HTTP_NOT_FOUND);
         }
         $language = $siteRepository->getLanguage($languageShortname);
         if ($language->disabled) {
@@ -86,7 +86,7 @@ class PageController extends Controller
         try {
             $page = $siteRepository->getCurrentPage($pageUrl);
         } catch (CurrentPageNotFound $e) {
-            abort(Response::HTTP_NOT_FOUND);
+            abort(HttpFoundationResponse::HTTP_NOT_FOUND);
         }
         $fragments = $siteRepository->getLayoutFragments();
         $fragments->push($page);

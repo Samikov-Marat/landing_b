@@ -62,5 +62,6 @@ class LoginController extends Controller
         if (AuthLoginReturn::exists()) {
             return redirect(AuthLoginReturn::getAndClear());
         }
+        return false;
     }
 }

@@ -2,7 +2,6 @@
 
 namespace App\Listeners;
 
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
 use JeroenNoten\LaravelAdminLte\Events\BuildingMenu;
@@ -49,9 +48,9 @@ class MenuBuilder
      * Handle the event.
      *
      * @param BuildingMenu $event
-     * @return
+     * @return void
      */
-    public function handle(BuildingMenu $event)
+    public function handle(BuildingMenu $event):void
     {
         $event->menu->add('Администрирование');
         foreach ($this->menu as $item) {
@@ -59,6 +58,7 @@ class MenuBuilder
                 $event->menu->add($item);
             }
         }
+        return;
     }
 
     private function prepareMenu()
