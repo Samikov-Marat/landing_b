@@ -33,7 +33,9 @@
     <link rel="stylesheet" href="{{ mix('universal2/custom.css') }}">
 </head>
 <body class="site-theme">
-
+@if($allowCookies)
+    @include('site.universal2.gtm_block_noscript')
+@endif
 @php
 
     $templateHref = [
