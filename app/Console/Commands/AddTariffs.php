@@ -62,7 +62,7 @@ class AddTariffs extends Command
 $sort = 1200;
         $m = preg_split('#[\n]#', $t);
         foreach ($m as $tariffString) {
-            $tariffArray =  preg_split('#,#', $tariffString);
+            $tariffArray =  explode(',', $tariffString);
 
             $t1 = TextType::select('*')
                 ->where('shortname' , '_tariff_name_' . $tariffArray[0])

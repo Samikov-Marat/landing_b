@@ -26,6 +26,7 @@ class GenerateCountryLang extends Command
      */
     protected $description = 'генерируем ланг-файлы для всех сайтов, где есть форма заказа';
 
+    const SEPARATOR = ',';
     /**
      * Create a new command instance.
      *
@@ -74,19 +75,19 @@ class GenerateCountryLang extends Command
         foreach ($site->languages as $language) {
             $line[] = $language->id;
         }
-        fputcsv($file, $line, ',');
+        fputcsv($file, $line, self::SEPARATOR);
 
         $line = [];
         $line[] = 'Первый столбец менять нельзя';
         foreach ($site->languages as $language) {
             $line[] = $language->name;
         }
-        fputcsv($file, $line, ',');
+        fputcsv($file, $line, self::SEPARATOR);
 
 
         foreach ($countries as $country) {
             $line = $this->getLine($site, $country);
-            fputcsv($file, $line, ',');
+            fputcsv($file, $line, self::SEPARATOR);
         }
         fclose($file);
     }

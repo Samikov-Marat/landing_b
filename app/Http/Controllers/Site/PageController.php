@@ -57,7 +57,9 @@ class PageController extends Controller
             return response()->redirectToRoute('site.show_page', $params);
         } catch (SiteNotFound|LanguageListIsEmpty $e) {
             abort(HttpFoundationResponse::HTTP_NOT_FOUND);
+            return response()->noContent();
         }
+
     }
 
 

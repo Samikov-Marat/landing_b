@@ -27,6 +27,8 @@ class CheckRedirects extends Command
      */
     protected $description = 'Command description';
 
+
+    const DELIM = ',';
     /**
      * Create a new command instance.
      *
@@ -123,7 +125,7 @@ class CheckRedirects extends Command
         } catch (\Exception $e) {
             $currentString[3] = $e->getMessage();
         }
-        fputcsv($this->fileOutput, $currentString, ',');
+        fputcsv($this->fileOutput, $currentString, self::DELIM);
     }
 
     private static function isEqual(UriInterface $uri, string $must){
