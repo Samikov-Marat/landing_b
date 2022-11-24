@@ -113,8 +113,12 @@ class Domain
      * Поэтому сделана вторизация по cookies для запрета доступа поисковикам.
      * @throws AliasNeedAuthentication
      */
-    private function checkAliasAccess()
+    private function checkAliasAccess(Alias $alias)
     {
+        if ($alias->public) {
+            return;
+        }
+
         if (Auth::guest() &&
             !$this->request->hasCookie(AliasHttpCookie::NAME)) {
             throw new AliasNeedAuthentication(
