@@ -1,4 +1,4 @@
-FROM mysql/mysql-server:8.0.23
+FROM mysql/mysql-server:8.0.28
 
 RUN chown mysql:mysql /var/lib/mysql -R
 # Удаление файла блокировки после начала работы.
