@@ -41,7 +41,7 @@ class Domain
         try {
             try {
                 $alias = $this->getAlias($this->originalDomain);
-                $this->checkAliasAccess();
+                $this->checkAliasAccess($alias);
                 return $alias->site->domain;
             } catch (ModelNotFoundException $e) {
             }
@@ -55,7 +55,7 @@ class Domain
             try {
                 $baseDomain = $this->reduce($this->originalDomain);
                 $alias = $this->getAlias($baseDomain);
-                $this->checkAliasAccess();
+                $this->checkAliasAccess($alias);
                 $this->cookieDomain = $baseDomain;
                 $this->makeSubdomain();
                 return $alias->site->domain;
