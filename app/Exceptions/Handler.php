@@ -27,15 +27,15 @@ class Handler extends ExceptionHandler
         'password_confirmation',
     ];
 
-    public function render($request, Throwable $exception)
+    public function render($request, Throwable $e)
     {
-        if ($exception instanceof AliasNeedAuthentication) {
-            AuthLoginReturn::set($exception->url);
+        if ($e instanceof AliasNeedAuthentication) {
+            AuthLoginReturn::set($e->url);
 //            if(!$request->isSecure()){
 //                return redirect(env('ALIAS_REDIRECT'));
 //            }
             return redirect()->route('login');
         }
-        return parent::render($request, $exception);
+        return parent::render($request, $e);
     }
 }
