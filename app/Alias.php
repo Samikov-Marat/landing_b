@@ -3,11 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Alias extends Model
 {
-    public function site()
+    public function site(): HasOne
     {
-        return $this->hasOne('App\Site', 'id', 'site_id');
+        return $this->hasOne(Site::class, 'id', 'site_id');
     }
 }

@@ -5,11 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Classes\LocalOfficeRepository;
 use App\Http\Controllers\Controller;
 use App\LocalOffice;
-use App\LocalOfficeText;
 use App\Site;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Arr;
+
 
 class LocalOfficeController extends Controller
 {
@@ -48,7 +47,9 @@ class LocalOfficeController extends Controller
     public function edit(Request $request, $id = null)
     {
         if (isset($id)) {
-            $localOffice = LocalOffice::select(['id', 'code', 'subdomain', 'map_preset', 'utm_tag', 'utm_value', 'category', 'site_id', 'disabled',])
+            $localOffice = LocalOffice::select(
+                ['id', 'code', 'subdomain', 'map_preset', 'utm_tag', 'utm_value', 'category', 'site_id', 'disabled',]
+            )
                 ->with(
                     [
                         'localOfficeTexts' => function ($query) {
@@ -95,7 +96,7 @@ class LocalOfficeController extends Controller
             ->with('localOffice', $localOffice);
     }
 
-    public function save(Request $request)
+    public function save(Request $request): RedirectResponse
     {
         $isEditMode = $request->has('id');
         if ($isEditMode) {
@@ -155,7 +156,6 @@ class LocalOfficeController extends Controller
         }
 
 
-
         $oldEmails = [];
         if ($request->has('email_old')) {
             $oldEmails = $request->input('email_old');
@@ -180,7 +180,7 @@ class LocalOfficeController extends Controller
         return response()->redirectToRoute('admin.local_offices.index', ['site_id' => $localOffice->site_id]);
     }
 
-    public function delete(Request $request)
+    public function delete(Request $request): RedirectResponse
     {
         $localOffice = LocalOffice::select('id', 'site_id')
             ->find($request->input('id'));
@@ -189,7 +189,7 @@ class LocalOfficeController extends Controller
         return response()->redirectToRoute('admin.local_offices.index', ['site_id' => $site_id]);
     }
 
-    public function move(Request $request)
+    public function move(Request $request): RedirectResponse
     {
         $localOffice = LocalOffice::select('id', 'site_id', 'sort')
             ->find($request->input('id'));

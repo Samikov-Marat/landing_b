@@ -12,7 +12,7 @@ class JiraSender
     const JIRA_LOGIN = 'marketing_cdek';
     const JIRA_PASSWORD = 'OWZWnffNI7LP';
 
-    public static function send(Request $request)
+    public static function send(Request $request): bool
     {
         $fields = [
             'project' => ['id' => 12300],

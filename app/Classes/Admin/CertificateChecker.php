@@ -35,7 +35,7 @@ class CertificateChecker
         return $certificate['validTo_time_t'];
     }
 
-    private function getParams()
+    private function getParams(): array
     {
         $context = stream_context_create(['ssl' => ['verify_peer' => false, 'capture_peer_cert' => true,],]);
         $file = fopen($this->getUrl(), 'rb', false, $context);
@@ -44,7 +44,7 @@ class CertificateChecker
         return $params;
     }
 
-    private function getUrl()
+    private function getUrl(): string
     {
         return 'https://' . $this->domain;
     }

@@ -29,11 +29,7 @@ class CheckRedirects extends Command
 
 
     const DELIM = ',';
-    /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
+
     public function __construct()
     {
         parent::__construct();
@@ -41,12 +37,7 @@ class CheckRedirects extends Command
 
     var $fileOutput;
 
-    /**
-     * Execute the console command.
-     *
-     * @return int
-     */
-    public function handle()
+    public function handle(): int
     {
         $path = storage_path('app/admin/chek_redirect.txt');
 
@@ -63,7 +54,7 @@ class CheckRedirects extends Command
         return 0;
     }
 
-    private static function getDomains()
+    private static function getDomains(): array
     {
         return [
             'bak3.cdek-az.com',
@@ -121,14 +112,14 @@ class CheckRedirects extends Command
                     ],
                 ]
             )->get($checkedUri);
-
         } catch (Exception $e) {
             $currentString[3] = $e->getMessage();
         }
         fputcsv($this->fileOutput, $currentString, self::DELIM);
     }
 
-    private static function isEqual(UriInterface $uri, string $must){
+    private static function isEqual(UriInterface $uri, string $must): bool
+    {
         return ($uri->getScheme() == 'https') &&
             ($uri->getHost() == $must);
     }

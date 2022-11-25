@@ -3,23 +3,27 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class LocalOffice extends Model
 {
-    public function localOfficeTexts()
+    public function localOfficeTexts(): HasMany
     {
-        return $this->hasMany('App\LocalOfficeText', 'local_office_id', 'id');
+        return $this->hasMany(LocalOfficeText::class, 'local_office_id', 'id');
     }
-    public function localOfficePhones()
+
+    public function localOfficePhones(): HasMany
     {
-        return $this->hasMany('App\LocalOfficePhone', 'local_office_id', 'id');
+        return $this->hasMany(LocalOfficePhone::class, 'local_office_id', 'id');
     }
-    public function localOfficeEmails()
+
+    public function localOfficeEmails(): HasMany
     {
-        return $this->hasMany('App\LocalOfficeEmail', 'local_office_id', 'id');
+        return $this->hasMany(LocalOfficeEmail::class, 'local_office_id', 'id');
     }
-    public function localOfficePhotos()
+
+    public function localOfficePhotos(): HasMany
     {
-        return $this->hasMany('App\LocalOfficePhoto', 'local_office_id', 'id');
+        return $this->hasMany(LocalOfficePhoto::class, 'local_office_id', 'id');
     }
 }

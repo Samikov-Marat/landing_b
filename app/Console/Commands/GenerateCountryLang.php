@@ -42,7 +42,7 @@ class GenerateCountryLang extends Command
      *
      * @return int
      */
-    public function handle()
+    public function handle(): int
     {
         $sites = Site::select(['id', 'domain'])
             ->whereHas('pages', function (Builder $query) {

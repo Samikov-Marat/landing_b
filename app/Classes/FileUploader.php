@@ -52,7 +52,7 @@ class FileUploader
         }
     }
 
-    public function getPath()
+    public function getPath(): string
     {
         $filenameByRequestField = [
             'preview' =>

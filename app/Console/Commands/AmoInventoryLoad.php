@@ -33,7 +33,7 @@ class AmoInventoryLoad extends Command
         parent::__construct();
     }
 
-    public function handle()
+    public function handle(): int
     {
         $client = AmoCRMApiClientBuilder::getInstance()->getClient();
 

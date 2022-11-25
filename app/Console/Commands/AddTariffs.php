@@ -36,7 +36,7 @@ class AddTariffs extends Command
      *
      * @return int
      */
-    public function handle()
+    public function handle(): int
     {
         $t = '499,B2B Express,door to door
 500,B2B Express,door to warehouse
@@ -59,15 +59,15 @@ class AddTariffs extends Command
 733,B2B Express 200+,постамат-дверь
 734,B2B Express 200+,постамат-склад
 735,B2B Express 200+,постамат-постамат';
-$sort = 1200;
+        $sort = 1200;
         $m = preg_split('#[\n]#', $t);
         foreach ($m as $tariffString) {
-            $tariffArray =  explode(',', $tariffString);
+            $tariffArray = explode(',', $tariffString);
 
             $t1 = TextType::select('*')
-                ->where('shortname' , '_tariff_name_' . $tariffArray[0])
+                ->where('shortname', '_tariff_name_' . $tariffArray[0])
                 ->first();
-            $t1 =$t1??new TextType();
+            $t1 = $t1 ?? new TextType();
             $t1->page_id = 16;
             $t1->shortname = '_tariff_name_' . $tariffArray[0];
             $t1->name = 'Новый тариф 2022';
@@ -77,9 +77,9 @@ $sort = 1200;
             $sort += 10;
 
             $t2 = TextType::select('*')
-                    ->where('shortname' , '_tariff_description_' . $tariffArray[0])
-                    ->first();
-            $t2 =$t2??new TextType();
+                ->where('shortname', '_tariff_description_' . $tariffArray[0])
+                ->first();
+            $t2 = $t2 ?? new TextType();
             $t2->page_id = 16;
             $t2->shortname = '_tariff_description_' . $tariffArray[0];
             $t2->name = 'Новый тариф 2022';
@@ -89,9 +89,9 @@ $sort = 1200;
             $sort += 10;
 
             $t3 = TextType::select('*')
-                    ->where('shortname' , '_tariff_type_' . $tariffArray[0])
-                    ->first();
-            $t3 =$t3??new TextType();
+                ->where('shortname', '_tariff_type_' . $tariffArray[0])
+                ->first();
+            $t3 = $t3 ?? new TextType();
             $t3->page_id = 16;
             $t3->shortname = '_tariff_type_' . $tariffArray[0];
             $t3->default_value = $tariffArray[2];
@@ -103,7 +103,7 @@ $sort = 1200;
 //'_tariff_description_' . $tariffArray[0]
 //'_tariff_type_' . $tariffArray[0]
 
-            }
+        }
         return 0;
     }
 }

@@ -7,6 +7,7 @@ use App\Classes\AuthLoginReturn;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 
@@ -51,7 +52,7 @@ class LoginController extends Controller
             ->with('aliasReturn', $aliasReturn);
     }
 
-    protected function loggedOut(Request $request)
+    protected function loggedOut(Request $request): RedirectResponse
     {
         return response()->redirectToRoute('admin.index');
     }

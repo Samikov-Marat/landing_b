@@ -25,7 +25,7 @@ class ApiMarketingRequestBase
         return $this->request->input($key, $default);
     }
 
-    protected function getRequestDatetime()
+    protected function getRequestDatetime(): string
     {
         return Carbon::now()
             ->setTimezone($this->receiverTimezone)

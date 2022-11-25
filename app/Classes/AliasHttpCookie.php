@@ -8,7 +8,7 @@ class AliasHttpCookie
     const NAME = 'allow_test_access';
     const MINUTES = 60 * 24 * 365;
 
-    public static function getInstance()
+    public static function getInstance(): self
     {
         return new static();
     }

@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Admin;
 use AmoCRM\OAuth2\Client\Provider\AmoCRM;
 use App\Classes\Site\Amo\AccessTokenMemento;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use League\OAuth2\Client\Grant\AuthorizationCode;
+
 
 class AmoController extends Controller
 {
@@ -28,7 +30,7 @@ class AmoController extends Controller
             ->with('clientId', config('amo.client_id'));
     }
 
-    public function authSave(Request $request)
+    public function authSave(Request $request): RedirectResponse
     {
         $clientSecret = $request->input('client_secret');
         $amoCrm = new AmoCRM([

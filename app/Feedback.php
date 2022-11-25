@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Feedback extends Model
 {
@@ -12,7 +13,7 @@ class Feedback extends Model
         'writing_date',
     ];
 
-    public function language()
+    public function language(): HasOne
     {
         return $this->hasOne('App\Language', 'id', 'language_id');
     }

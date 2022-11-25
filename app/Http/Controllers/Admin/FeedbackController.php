@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Feedback;
 use App\Site;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class FeedbackController extends Controller
@@ -17,7 +18,16 @@ class FeedbackController extends Controller
             ->with(
                 [
                     'feedbacks' => function ($query) {
-                        $query->select('id', 'site_id', 'language_id', 'name', 'email', 'text', 'published', 'writing_date')
+                        $query->select(
+                            'id',
+                            'site_id',
+                            'language_id',
+                            'name',
+                            'email',
+                            'text',
+                            'published',
+                            'writing_date'
+                        )
                             ->orderBy('published', 'desc')
                             ->orderBy('writing_date', 'desc');
                     },
@@ -32,7 +42,16 @@ class FeedbackController extends Controller
     public function edit(Request $request, $id = null)
     {
         if (isset($id)) {
-            $feedback = Feedback::select('id', 'site_id', 'language_id', 'name', 'email', 'text', 'published', 'writing_date')
+            $feedback = Feedback::select(
+                'id',
+                'site_id',
+                'language_id',
+                'name',
+                'email',
+                'text',
+                'published',
+                'writing_date'
+            )
                 ->find($id);
             $siteId = $feedback->site_id;
         } else {
@@ -40,10 +59,12 @@ class FeedbackController extends Controller
             $siteId = $request->input('site_id');
         }
         $site = Site::select('id', 'name', 'domain')
-            ->with(['languages'=>function($query){
-                $query->select(['id', 'site_id', 'shortname', 'name'])
-                    ->orderBy('sort');
-            }])
+            ->with([
+                       'languages' => function ($query) {
+                           $query->select(['id', 'site_id', 'shortname', 'name'])
+                               ->orderBy('sort');
+                       }
+                   ])
             ->find($siteId);
 
         return view('admin.feedbacks.form')
@@ -51,7 +72,7 @@ class FeedbackController extends Controller
             ->with('feedback', $feedback);
     }
 
-    public function save(Request $request)
+    public function save(Request $request): RedirectResponse
     {
         $isEditMode = $request->has('id');
         if ($isEditMode) {
@@ -80,7 +101,7 @@ class FeedbackController extends Controller
         return response()->redirectToRoute('admin.feedbacks.index', ['site_id' => $feedback->site_id]);
     }
 
-    public function delete(Request $request)
+    public function delete(Request $request): RedirectResponse
     {
         $feedback = Feedback::select('id', 'site_id')
             ->find($request->input('id'));

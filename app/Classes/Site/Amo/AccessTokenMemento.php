@@ -28,7 +28,7 @@ class AccessTokenMemento
         return new static();
     }
 
-    public function exists()
+    public function exists(): bool
     {
         return Storage::exists($this->file);
     }
@@ -48,7 +48,7 @@ class AccessTokenMemento
         Storage::put($this->file, json_encode($this->toArray()));
     }
 
-    private function toArray()
+    private function toArray(): array
     {
         return [
             'access_token' => $this->getAccessToken(),

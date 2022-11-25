@@ -12,7 +12,7 @@ class HistoryCategoryRepository
     /**
      * @return static
      */
-    public static function getInstance()
+    public static function getInstance(): self
     {
         return new static();
     }

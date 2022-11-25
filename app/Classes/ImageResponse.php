@@ -20,13 +20,13 @@ class ImageResponse
         return new static();
     }
 
-    public function setPath($path)
+    public function setPath($path): self
     {
         $this->path = $path;
         return $this;
     }
 
-    public function getPath()
+    public function getPath(): string
     {
         return $this->disk->path($this->path);
     }
@@ -40,7 +40,7 @@ class ImageResponse
         return $mimeType;
     }
 
-    public function getMimeTypeByUrl($url)
+    public function getMimeTypeByUrl($url): string
     {
         $extension = Str::lower(pathinfo($url, PATHINFO_EXTENSION));
         if ('svg' == $extension) {

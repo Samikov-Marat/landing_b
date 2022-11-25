@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class LanguageIsoAdapter
 {
-    public function convert(Model $item)
+    public function convert(Model $item): array
     {
         return [
             'id' => $item->code_iso,

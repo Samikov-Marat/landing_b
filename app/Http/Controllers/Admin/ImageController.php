@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Image;
 use App\Site;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -47,7 +48,7 @@ class ImageController extends Controller
             ->with('image', $image);
     }
 
-    public function save(Request $request)
+    public function save(Request $request): RedirectResponse
     {
         $isEditMode = $request->has('id');
         if ($isEditMode) {
@@ -78,7 +79,7 @@ class ImageController extends Controller
         return response()->redirectToRoute('admin.images.index', ['site_id' => $image->site_id]);
     }
 
-    public function delete(Request $request)
+    public function delete(Request $request): RedirectResponse
     {
         $image = Image::select('id', 'site_id')
             ->find($request->input('id'));
@@ -87,7 +88,7 @@ class ImageController extends Controller
         return response()->redirectToRoute('admin.images.index', ['site_id' => $site_id]);
     }
 
-    public function move(Request $request)
+    public function move(Request $request): RedirectResponse
     {
         $image = Image::select('id', 'site_id', 'sort')
             ->find($request->input('id'));

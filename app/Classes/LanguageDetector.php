@@ -15,17 +15,17 @@ class LanguageDetector
         $this->header = $httpAcceptLanguage;
     }
 
-    public static function getInstance($httpAcceptLanguage)
+    public static function getInstance($httpAcceptLanguage): self
     {
         return new static($httpAcceptLanguage);
     }
 
     public function chooseFrom(Collection $languages)
     {
-        if ($languages->isEmpty()){
+        if ($languages->isEmpty()) {
             throw new LanguagesIsEmpty();
         }
-        if($languages->count() == 1){
+        if ($languages->count() == 1) {
             return $languages->first();
         }
         $wishfulLanguages = $this->getRating();

@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Language;
 use App\Site;
 use App\WorldLanguage;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class LanguageController extends Controller
@@ -19,7 +21,9 @@ class LanguageController extends Controller
             ->with(
                 [
                     'languages' => function ($query) {
-                        $query->select(['id', 'site_id', 'shortname', 'name', 'rtl', 'sort', 'world_language_id', 'disabled'])
+                        $query->select(
+                            ['id', 'site_id', 'shortname', 'name', 'rtl', 'sort', 'world_language_id', 'disabled']
+                        )
                             ->orderBy('sort');
                     },
                 ]
@@ -57,7 +61,7 @@ class LanguageController extends Controller
             ->with('language', $language);
     }
 
-    public function save(Request $request)
+    public function save(Request $request): RedirectResponse
     {
         $isEditMode = $request->has('id');
         if ($isEditMode) {
@@ -85,17 +89,16 @@ class LanguageController extends Controller
 
         $language->save();
 
-        if($request->has('default')){
+        if ($request->has('default')) {
             $language->site->defaultLanguages()->sync([$language->id]);
-        }
-        else{
+        } else {
             $language->site->defaultLanguages()->detach([$language->id]);
         }
 
         return response()->redirectToRoute('admin.languages.index', ['site_id' => $language->site_id]);
     }
 
-    public function delete(Request $request)
+    public function delete(Request $request): RedirectResponse
     {
         $language = Language::select('id', 'site_id')
             ->find($request->input('id'));
@@ -104,7 +107,7 @@ class LanguageController extends Controller
         return response()->redirectToRoute('admin.languages.index', ['site_id' => $site_id]);
     }
 
-    public function move(Request $request)
+    public function move(Request $request): RedirectResponse
     {
         $language = Language::select('id', 'site_id', 'sort')
             ->find($request->input('id'));
@@ -133,7 +136,7 @@ class LanguageController extends Controller
         return response()->redirectToRoute('admin.languages.index', ['site_id' => $language->site_id]);
     }
 
-    public function searchIso(Request $request)
+    public function searchIso(Request $request): JsonResponse
     {
         $term = $request->input('term', '');
         $page = $request->input('page', 1);

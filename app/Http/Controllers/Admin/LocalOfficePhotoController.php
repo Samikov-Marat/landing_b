@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\LocalOfficePhoto;
 use App\LocalOffice;
 use App\Site;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class LocalOfficePhotoController extends Controller
@@ -31,7 +32,7 @@ class LocalOfficePhotoController extends Controller
             ->with(
                 [
                     'localOfficePhotos' => function ($query) {
-                        $query->select( self::FIElDS)
+                        $query->select(self::FIElDS)
                             ->orderBy('sort');
                     },
                 ]
@@ -62,7 +63,7 @@ class LocalOfficePhotoController extends Controller
             ->with('site', $site);
     }
 
-    public function save(Request $request)
+    public function save(Request $request): RedirectResponse
     {
         $isEditMode = $request->has('id');
         if ($isEditMode) {
@@ -110,7 +111,7 @@ class LocalOfficePhotoController extends Controller
         );
     }
 
-    public function delete(Request $request)
+    public function delete(Request $request): RedirectResponse
     {
         $localOfficePhoto = LocalOfficePhoto::select(self::FIElDS)
             ->find($request->input('id'));
@@ -119,7 +120,7 @@ class LocalOfficePhotoController extends Controller
         return response()->redirectToRoute('admin.local_office_photos.index', ['local_office_id' => $localOfficeId]);
     }
 
-    public function move(Request $request)
+    public function move(Request $request): RedirectResponse
     {
         $localOfficePhoto = LocalOfficePhoto::select('id', 'local_office_id', 'sort')
             ->find($request->input('id'));

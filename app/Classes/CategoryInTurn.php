@@ -11,7 +11,7 @@ class CategoryInTurn
         $this->localOffices = $localOffices;
     }
 
-    public static function getInstance($localOffices)
+    public static function getInstance($localOffices): self
     {
         return new static($localOffices);
     }

@@ -5,6 +5,8 @@ namespace App\Classes;
 
 
 use App\LocalOffice;
+use App\LocalOfficeEmail;
+use App\LocalOfficePhone;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class LocalOfficeRepository
@@ -15,7 +17,7 @@ class LocalOfficeRepository
      */
     var $localOffice;
 
-    public static function getInstance(LocalOffice $localOffice)
+    public static function getInstance(LocalOffice $localOffice):self
     {
         return new static($localOffice);
     }
@@ -51,7 +53,7 @@ class LocalOfficeRepository
             ->find($id);
     }
 
-    public function makePhone()
+    public function makePhone(): LocalOfficePhone
     {
         return $this->localOffice->localOfficePhones()
             ->make();
@@ -82,7 +84,7 @@ class LocalOfficeRepository
             ->find($id);
     }
 
-    public function makeEmail()
+    public function makeEmail(): LocalOfficeEmail
     {
         return $this->localOffice->localOfficeEmails()
             ->make();

@@ -19,7 +19,7 @@ class ApiMarketingRequestOrder extends ApiMarketingRequestBase
         ];
     }
 
-    private function getMessage()
+    private function getMessage(): string
     {
         $m = [];
         $m['name'] = 'Имя';

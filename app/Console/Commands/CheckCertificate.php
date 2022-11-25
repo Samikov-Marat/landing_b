@@ -18,7 +18,7 @@ class CheckCertificate extends Command
         parent::__construct();
     }
 
-    public function handle()
+    public function handle(): int
     {
         $sites = Site::select('id', 'domain')->get();
         $needSleep = false;
