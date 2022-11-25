@@ -26,7 +26,7 @@ class ApiMarketingSender
                 ['headers' => $headers, 'json' => $apiMarketingRequest]
             );
         } catch (Exception $e) {
-            throw new \Exception('Ошибка API markerting. При отправке запроса.');
+            throw new Exception('Ошибка API markerting. При отправке запроса.');
         }
 
         if ($response->getStatusCode() != HttpFoundationResponse::HTTP_OK) {

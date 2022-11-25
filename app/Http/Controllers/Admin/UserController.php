@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
     const PER_PAGE = 10;
+    const PERMISSION_ATTRIBUTE = 'allPermissions';
 
     public function index()
     {
@@ -99,7 +100,7 @@ class UserController extends Controller
             ->with('roles.permissions:text_id')
             ->get();
 
-        UserRepository::attachPermissions($users, 'allPermissions');
+        UserRepository::attachPermissions($users, self::PERMISSION_ATTRIBUTE);
 
         return view('admin.users.permission_tree')
             ->with('users', $users);

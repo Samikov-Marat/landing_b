@@ -113,7 +113,7 @@ class SupportPageCopy extends Command
     {
         $textType->load('texts')
             ->load('texts.language');
-        foreach ($textType->texts as &$text) {
+        foreach ($textType->texts as $text) {
             if (isset($this->dataTexts[$text->language->language_code_iso][$textType->shortname])) {
                 $text->value = $this->dataTexts[$text->language->language_code_iso][$textType->shortname];
                 $text->save();

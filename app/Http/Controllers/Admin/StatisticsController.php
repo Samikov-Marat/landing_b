@@ -29,14 +29,14 @@ class StatisticsController extends Controller
         if ($request->has('filter.date_from')) {
             $filter['date_from'] = Carbon::createFromFormat('Y-m-d', $request->input('filter.date_from'));
         }
-        $filter['date_from']->setTime(0, 0, 0);
+        $filter['date_from']->startOfDay();
         $statisticsModel->where('created_at', '>=', $filter['date_from']->format('Y-m-d H:i:s'));
 
         $filter['date_to'] = new  Carbon('last day of previous month');
         if ($request->has('filter.date_to')) {
             $filter['date_to'] = Carbon::createFromFormat('Y-m-d', $request->input('filter.date_to'));
         }
-        $filter['date_to']->setTime(23, 59, 59);
+        $filter['date_to']->endOfDay();
         $statisticsModel->where('created_at', '<=', $filter['date_to']->format('Y-m-d H:i:s'));
 
         if ($request->has('filter.site')) {

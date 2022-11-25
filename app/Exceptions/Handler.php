@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use App\Classes\AuthLoginReturn;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\Request;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -27,29 +28,12 @@ class Handler extends ExceptionHandler
         'password_confirmation',
     ];
 
-    /**
-     * Report or log an exception.
-     *
-     * @param  \Throwable  $exception
-     * @return void
-     *
-     * @throws \Exception
-     */
     public function report(Throwable $exception)
     {
         parent::report($exception);
     }
 
-    /**
-     * Render an exception into an HTTP response.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Throwable  $exception
-     * @return \Symfony\Component\HttpFoundation\Response
-     *
-     * @throws \Throwable
-     */
-    public function render($request, Throwable $exception)
+    public function render(Request $request, Throwable $exception)
     {
         if ($exception instanceof AliasNeedAuthentication) {
             AuthLoginReturn::set($exception->url);

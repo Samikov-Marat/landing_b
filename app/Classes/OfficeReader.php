@@ -3,6 +3,7 @@
 
 namespace App\Classes;
 
+use XMLReader;
 
 class OfficeReader
 {
@@ -50,7 +51,7 @@ class OfficeReader
 
     public function __construct($officeModelClass)
     {
-        $this->reader = new \XMLReader();
+        $this->reader = new XMLReader();
         $this->repository = new OfficeRepository($officeModelClass);
     }
 
@@ -78,7 +79,7 @@ class OfficeReader
 
     private function isPvzList()
     {
-        return ($this->reader->nodeType == \XMLReader::ELEMENT) &&
+        return ($this->reader->nodeType == XMLReader::ELEMENT) &&
             ($this->reader->localName == static::PVZ_LIST);
     }
 
@@ -95,7 +96,7 @@ class OfficeReader
 
     private function isPvz()
     {
-        return ($this->reader->nodeType == \XMLReader::ELEMENT) &&
+        return ($this->reader->nodeType == XMLReader::ELEMENT) &&
             ($this->reader->localName == static::PVZ);
     }
 

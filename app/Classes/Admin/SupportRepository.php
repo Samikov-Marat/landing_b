@@ -4,6 +4,7 @@ namespace App\Classes\Admin;
 
 use App\Site;
 use App\SupportCategory;
+use Exception;
 
 class SupportRepository
 {
@@ -22,7 +23,7 @@ class SupportRepository
     public static function loadCategoriesTo($siteWithLanguages)
     {
         if ($siteWithLanguages->languages->isEmpty()) {
-            throw new \Exception('На сайте должен быть хоть один язык');
+            throw new Exception('На сайте должен быть хоть один язык');
         }
         $siteWithLanguages->load([
                                      'supportCategories' => function ($q) {

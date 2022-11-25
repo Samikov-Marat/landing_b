@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Site;
 use App\Text;
 use App\TextType;
+use Exception;
 use Illuminate\Http\Request;
 
 class TextController extends Controller
@@ -80,7 +81,7 @@ class TextController extends Controller
 
         foreach ($values as $languageId => $value) {
             if (!$avaiableLanguages->has($languageId)) {
-                throw new \Exception('На этом сайте нет такого языка');
+                throw new Exception('На этом сайте нет такого языка');
             }
 
             if ($textsByLanguage->has($languageId)) {
@@ -127,7 +128,7 @@ class TextController extends Controller
                 ->store('admin/texts/upload');
             $parser = new TextCsvParser($site);
             $parser->parse($path);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             abort(400, $e->getMessage());
         }
         return response()->redirectToRoute('admin.texts.index', ['site_id' => $site->id]);

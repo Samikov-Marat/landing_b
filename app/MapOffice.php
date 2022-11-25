@@ -6,7 +6,7 @@ use App\Classes\PointCast;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
-abstract class MapOffice extends \Illuminate\Database\Eloquent\Model
+abstract class MapOffice extends Model
 {
     protected $casts = ['coordinates' => PointCast::class];
 

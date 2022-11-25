@@ -2,14 +2,14 @@
 
 namespace App\Console\Commands;
 
-use App\Site;
+use Exception;
 use GuzzleHttp\RequestOptions;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\UriInterface;
-use Symfony\Component\HttpFoundation\Response;
+
 
 class CheckRedirects extends Command
 {
@@ -122,7 +122,7 @@ class CheckRedirects extends Command
                 ]
             )->get($checkedUri);
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $currentString[3] = $e->getMessage();
         }
         fputcsv($this->fileOutput, $currentString, self::DELIM);

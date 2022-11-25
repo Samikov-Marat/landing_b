@@ -2,6 +2,8 @@
 
 namespace App\Classes;
 
+use Exception;
+
 class OfficeRepository
 {
     var $buffer = [];
@@ -44,7 +46,7 @@ class OfficeRepository
     {
         foreach ([$x, $y, $x2, $y2] as $value) {
             if (!is_numeric($value)) {
-                throw new \Exception('Неверные координаты');
+                throw new Exception('Неверные координаты');
             }
         }
         //  MBR - minimum bounding rectangle

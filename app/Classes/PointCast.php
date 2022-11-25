@@ -2,6 +2,7 @@
 
 namespace App\Classes;
 
+use Exception;
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 use Illuminate\Support\Facades\DB;
 
@@ -12,7 +13,7 @@ class PointCast implements CastsAttributes
         $m = [];
         $count = preg_match('#POINT\((?<x>.*?) (?<y>.*?)\)#', $value, $m);
         if (!$count) {
-            throw new \Exception('Неверный формат');
+            throw new Exception('Неверный формат');
         }
         return new Point($m['x'], $m['y']);
     }
@@ -23,10 +24,10 @@ class PointCast implements CastsAttributes
             return $value;
         }
         if (!is_numeric($value->x)) {
-            throw new \Exception('Неверное значение X');
+            throw new Exception('Неверное значение X');
         }
         if (!is_numeric($value->y)) {
-            throw new \Exception('Неверное значение Y');
+            throw new Exception('Неверное значение Y');
         }
         return DB::raw('Point(' . $value->x . ', ' . $value->y . ')');
     }

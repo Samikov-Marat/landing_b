@@ -7,6 +7,7 @@ use App\Classes\Admin\SupportRepository;
 use App\Http\Controllers\Controller;
 use App\SupportCategory;
 use App\SupportQuestion;
+use Exception;
 use Illuminate\Http\Request;
 
 class SupportQuestionController extends Controller
@@ -113,7 +114,7 @@ class SupportQuestionController extends Controller
             $sign = '>';
             $orderByDirection = 'asc';
         } else {
-            throw new \Exception('Непонятное направление');
+            throw new Exception('Непонятное направление');
         }
         $otherSupportQuestion = SupportQuestion::select('id', 'sort')
             ->where('sort', $sign, $supportQuestion->sort)

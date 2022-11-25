@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use Exception;
 use App\CertificateChecks;
 use App\Classes\Admin\CertificateChecker;
 use App\Site;
@@ -30,7 +31,7 @@ class CheckCertificate extends Command
             try {
                 $check->valid_to = CertificateChecker::getInstance($site->domain)->getTimestamp();
                 $check->error = '';
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 $check->valid_to = null;
                 $check->error = $e->getMessage();
             }

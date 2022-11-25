@@ -32,7 +32,7 @@ class TextCsvParser
         $this->handle = fopen($fullPath, 'r');
         try {
             $this->loadLanguages();
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             fclose($this->handle);
             throw $e;
         }
@@ -56,7 +56,7 @@ class TextCsvParser
         $siteLanguages = $this->site->languages->pluck('id');
         foreach ($languages as $language) {
             if (!$siteLanguages->contains($language)) {
-                throw new \Exception('Идентификатор этого языка не относится к этому сайту');
+                throw new Exception('Идентификатор этого языка не относится к этому сайту');
             }
         }
     }
@@ -84,7 +84,7 @@ class TextCsvParser
         $text_type_id = array_shift($line);
         foreach ($this->languages as $language) {
             if (empty($line)) {
-                throw new \Exception('Недостаточно данных');
+                throw new Exception('Недостаточно данных');
             }
             $value = array_shift($line);
             $text = Text::select('id', 'text_type_id', 'language_id', 'value')
@@ -122,7 +122,7 @@ class TextCsvParser
         array_shift($line);
         foreach ($this->languages as $language) {
             if (empty($line)) {
-                throw new \Exception('Недостаточно данных');
+                throw new Exception('Недостаточно данных');
             }
             $value = array_shift($line);
 
@@ -153,7 +153,7 @@ class TextCsvParser
         array_shift($line);
         foreach ($this->languages as $language) {
             if (empty($line)) {
-                throw new \Exception('Недостаточно данных');
+                throw new Exception('Недостаточно данных');
             }
             $value = array_shift($line);
 
@@ -184,7 +184,7 @@ class TextCsvParser
         array_shift($line);
         foreach ($this->languages as $language) {
             if (empty($line)) {
-                throw new \Exception('Недостаточно данных');
+                throw new Exception('Недостаточно данных');
             }
             $value = array_shift($line);
 
@@ -215,7 +215,7 @@ class TextCsvParser
         array_shift($line);
         foreach ($this->languages as $language) {
             if (empty($line)) {
-                throw new \Exception('Недостаточно данных');
+                throw new Exception('Недостаточно данных');
             }
             $value = array_shift($line);
 

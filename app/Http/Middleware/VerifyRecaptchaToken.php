@@ -4,20 +4,14 @@ namespace App\Http\Middleware;
 
 use App\Classes\Site\Recaptcha;
 use Closure;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpFoundation\Response as HttpFoundationResponse;
 
 
 class VerifyRecaptchaToken
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @return mixed
-     */
-    public function handle($request, Closure $next)
+    public function handle(Request $request, Closure $next)
     {
         if(!$request->input('recaptcha_token')){
             return response('Отсутствует recaptcha_token', HttpFoundationResponse::HTTP_BAD_REQUEST);

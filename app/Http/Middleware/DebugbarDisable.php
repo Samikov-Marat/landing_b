@@ -4,21 +4,15 @@ namespace App\Http\Middleware;
 
 use Closure;
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 
 class DebugbarDisable
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @return mixed
-     */
-    public function handle($request, Closure $next)
+    public function handle(Request $request, Closure $next)
     {
         $providers = App::getProviders('Barryvdh\Debugbar\ServiceProvider');
-        if(!empty($providers)){
+        if (!empty($providers)) {
             debugbar()->disable();
         }
         return $next($request);

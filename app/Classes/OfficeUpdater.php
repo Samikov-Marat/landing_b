@@ -2,6 +2,7 @@
 
 namespace App\Classes;
 
+use Exception;
 use Illuminate\Support\Facades\Storage;
 
 class OfficeUpdater
@@ -23,7 +24,7 @@ class OfficeUpdater
     public function setSource($source)
     {
         if (is_null($source)) {
-            throw new \Exception('Source должен быть не null');
+            throw new Exception('Source должен быть не null');
         }
         $this->source = $source;
         return $this;
@@ -32,7 +33,7 @@ class OfficeUpdater
     public function setFilename($filename)
     {
         if (is_null($filename)) {
-            throw new \Exception('Filename должен быть не null');
+            throw new Exception('Filename должен быть не null');
         }
         $this->filename = $filename;
         return $this;
@@ -41,12 +42,12 @@ class OfficeUpdater
     public function update()
     {
         if(!isset($this->filename)){
-            throw new \Exception('Не установлен filename');
+            throw new Exception('Не установлен filename');
         }
         $fullFilename = static::prepareFile($this->filename);
 
         if(!isset($this->source)){
-            throw new \Exception('Не установлен source');
+            throw new Exception('Не установлен source');
         }
         OfficeLoader::getInstance($this->source)->loadTo($fullFilename);
 

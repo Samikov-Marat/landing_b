@@ -6,6 +6,7 @@ namespace App\Classes;
 
 use App\Language;
 use App\Site;
+use Exception;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -114,7 +115,7 @@ class SiteCloner
         );
         foreach ($oldPage->textTypes as $textType) {
             if ($textType->texts->isEmpty()) {
-                throw new \Exception('Нет текста Страница ' . $oldPage->id . ' Язык ' . $oldLanguage->id);
+                throw new Exception('Нет текста Страница ' . $oldPage->id . ' Язык ' . $oldLanguage->id);
             }
             $textType->texts[0]->replicate()
                 ->setAttribute('language_id', $newLanguage->id)

@@ -1,8 +1,8 @@
 <?php
 
-
 namespace App\Classes;
 
+use Exception;
 
 class UserPasswordGenerator
 {
@@ -13,7 +13,7 @@ class UserPasswordGenerator
     {
         $symbolsCount = strlen(self::UNDERSTANDABLE_SYMBOLS);
         if (!$symbolsCount) {
-            throw new \Exception('Нет словаря символов');
+            throw new Exception('Нет словаря символов');
         }
         $password = '';
         for ($i = 0; $i < self::PASSWORD_LENGTH; $i++) {

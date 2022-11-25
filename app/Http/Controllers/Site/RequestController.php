@@ -20,10 +20,10 @@ use App\Language;
 use App\Office;
 use App\Site;
 use Carbon\Carbon;
+use Exception;
 use GuzzleHttp\Client;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpFoundation\Response as HttpResponse;
 
@@ -35,7 +35,7 @@ class RequestController extends Controller
             FormRequestRepository::getInstance('send')
                 ->save($request);
             ApiMarketing::getInstance($request)->sendCalculatorRequest();
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             Log::error($e);
             abort(HttpResponse::HTTP_INTERNAL_SERVER_ERROR);
         }
@@ -48,7 +48,7 @@ class RequestController extends Controller
             FormRequestRepository::getInstance('feedback')
                 ->save($request);
             ApiMarketing::getInstance($request)->sendFeedbackRequest();
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             Log::error($e);
             abort(HttpResponse::HTTP_INTERNAL_SERVER_ERROR);
         }
@@ -61,7 +61,7 @@ class RequestController extends Controller
             FormRequestRepository::getInstance('support')
                 ->save($request);
             JiraSender::send($request);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             Log::error($e);
             abort(HttpResponse::HTTP_INTERNAL_SERVER_ERROR);
         }
@@ -83,7 +83,7 @@ class RequestController extends Controller
                     '2114863' => $request->input('email'),
                     '2114865' => $request->input('city'),
                 ]);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             Log::error($e);
             abort(HttpResponse::HTTP_INTERNAL_SERVER_ERROR);
         }
@@ -96,7 +96,7 @@ class RequestController extends Controller
             FormRequestRepository::getInstance('order')
                 ->save($request);
             ApiMarketing::getInstance($request)->sendOrderRequest();
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             Log::error($e);
             abort(HttpResponse::HTTP_INTERNAL_SERVER_ERROR);
         }
@@ -110,7 +110,7 @@ class RequestController extends Controller
                 ->save($request);
 
             ApiMarketing::getInstance($request)->sendPresentationRequest();
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             Log::error($e);
             abort(HttpResponse::HTTP_INTERNAL_SERVER_ERROR);
         }
@@ -156,7 +156,7 @@ class RequestController extends Controller
 
             response('saved', 200)
                 ->header('Content-Type', 'text/plain');
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             Log::error($e);
             abort(HttpResponse::HTTP_INTERNAL_SERVER_ERROR);
         }
@@ -208,7 +208,7 @@ class RequestController extends Controller
                 ->where('url', '/' . $imageUrl)
                 ->firstOrFail();
         } catch (ModelNotFoundException $exception) {
-            Log::error(new \Exception('Не найдена ' . $imageUrl));
+            Log::error(new Exception('Не найдена ' . $imageUrl));
             abort(HttpResponse::HTTP_NOT_FOUND);
         }
         $imageResponse = ImageResponse::getInstance()->setPath($image->path);

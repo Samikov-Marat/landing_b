@@ -58,7 +58,6 @@ class MenuBuilder
                 $event->menu->add($item);
             }
         }
-        return;
     }
 
     private function prepareMenu()

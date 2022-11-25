@@ -2,6 +2,7 @@
 
 namespace App\Classes;
 
+use Exception;
 
 class Point
 {
@@ -17,7 +18,7 @@ class Point
     public static function createFromWkt($wkt){
         $count = preg_match('#POINT\(.*? .*?\)#');
         if(!$count){
-            throw new \Exception('Неверный формат');
+            throw new Exception('Неверный формат');
         }
         return new static();
     }
