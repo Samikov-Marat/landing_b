@@ -52,7 +52,7 @@ class ParseNewTemplate extends Command
         $textTypes = [];
 
         $translated = preg_replace_callback(
-            '#(?<=>)[^<]*?(?=<)#ums',
+            '#(?<=>)[^<]*?(?=<)#um',
             function ($matches) use (&$textTypes) {
                 static $id = 1;
                 if ('' === trim($matches[0])) {
