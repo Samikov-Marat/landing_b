@@ -1,2 +1,3 @@
 User-agent: *
 Disallow:
+Clean-param:utm_source&utm_medium&utm_term&utm_content&utm_campaign&yclid&gclid
