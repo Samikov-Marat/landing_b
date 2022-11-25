@@ -55,18 +55,4 @@ class AmoSender
             die;
         }
     }
-
-    public function sendForm(Request $request)
-    {
-        $form = [
-            '2114857' => $request->input('name'),
-            '2114859' => $request->input('phone'),
-            '2114861' => $request->input('whatsapp'),
-            '2114863' => $request->input('email'),
-            '2114865' => $request->input('city'),
-        ];
-        $this->send($form);
-    }
-
-
 }
