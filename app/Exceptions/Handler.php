@@ -4,7 +4,6 @@ namespace App\Exceptions;
 
 use App\Classes\AuthLoginReturn;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Illuminate\Http\Request;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -28,12 +27,7 @@ class Handler extends ExceptionHandler
         'password_confirmation',
     ];
 
-    public function report(Throwable $exception)
-    {
-        parent::report($exception);
-    }
-
-    public function render(Request $request, Throwable $exception)
+    public function render($request, Throwable $exception)
     {
         if ($exception instanceof AliasNeedAuthentication) {
             AuthLoginReturn::set($exception->url);

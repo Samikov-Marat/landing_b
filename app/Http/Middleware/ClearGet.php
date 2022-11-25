@@ -10,11 +10,6 @@ use Symfony\Component\HttpFoundation\Request as HttpFoundationRequest;
 
 class ClearGet
 {
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \Closure $next
-     * @return mixed
-     */
     public function handle(Request $request, Closure $next)
     {
         if ($request->isMethod(HttpFoundationRequest::METHOD_GET)) {
