@@ -13,7 +13,7 @@ class UserRouteAccess
     {
         $routeName = Route::current()->getName();
         if (Gate::denies($routeName)) {
-            return abort(HttpFoundationResponse::HTTP_FORBIDDEN, 'У вас недостаточно прав для посещения этой страницы');
+            abort(HttpFoundationResponse::HTTP_FORBIDDEN, 'У вас недостаточно прав для посещения этой страницы');
         }
         return $next($request);
     }

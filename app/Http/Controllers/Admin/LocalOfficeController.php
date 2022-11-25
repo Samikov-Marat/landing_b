@@ -45,7 +45,7 @@ class LocalOfficeController extends Controller
             ->with('site', $site);
     }
 
-    public function edit($id = null, Request $request)
+    public function edit(Request $request, $id = null)
     {
         if (isset($id)) {
             $localOffice = LocalOffice::select(['id', 'code', 'subdomain', 'map_preset', 'utm_tag', 'utm_value', 'category', 'site_id', 'disabled',])

@@ -29,7 +29,7 @@ class FeedbackController extends Controller
             ->with('site', $site);
     }
 
-    public function edit($id = null, Request $request)
+    public function edit(Request $request, $id = null)
     {
         if (isset($id)) {
             $feedback = Feedback::select('id', 'site_id', 'language_id', 'name', 'email', 'text', 'published', 'writing_date')

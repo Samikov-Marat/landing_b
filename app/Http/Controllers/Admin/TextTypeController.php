@@ -28,7 +28,7 @@ class TextTypeController extends Controller
             ->with('page', $page);
     }
 
-    public function edit($id = null, Request $request)
+    public function edit(Request $request, $id = null)
     {
         if (isset($id)) {
             $textType = TextType::select('id', 'shortname', 'name', 'default_value', 'page_id')

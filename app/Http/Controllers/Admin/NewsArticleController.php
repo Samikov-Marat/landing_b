@@ -24,7 +24,7 @@ class NewsArticleController extends Controller
             ->with('site', $site);
     }
 
-    public function edit($id = null, Request $request)
+    public function edit(Request $request, $id = null)
     {
         if (isset($id)) {
             $newsArticle = NewsArticle::select(
