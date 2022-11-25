@@ -17,12 +17,6 @@ class LoginListener
         //
     }
 
-    /**
-     * Handle the event.
-     *
-     * @param IlluminateAuthEventsLogin $event
-     * @return void
-     */
     public function handle(Login $event)
     {
         UserPermissionsLoader::load($event->user);

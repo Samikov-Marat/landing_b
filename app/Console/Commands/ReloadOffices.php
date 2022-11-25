@@ -33,11 +33,6 @@ class ReloadOffices extends Command
         parent::__construct();
     }
 
-    /**
-     * Execute the console command.
-     *
-     * @return int
-     */
     public function handle()
     {
         OfficeUpdater::getInstance(Office::class)
