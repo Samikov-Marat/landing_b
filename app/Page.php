@@ -3,11 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Page extends Model
 {
-    public function textTypes()
+    public function textTypes(): HasMany
     {
-        return $this->hasMany('App\TextType', 'page_id', 'id');
+        return $this->hasMany(TextType::class, 'page_id', 'id');
     }
 }
