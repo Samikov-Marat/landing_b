@@ -62,13 +62,11 @@ $(function () {
 
         this.step = 1;
 
+        this.getCalculateUrl = function () {
+            return $('.js-calculator-form').data('calculate-url');
+        }
         this.getTariffCodes = function () {
-            return [
-                291, 294, 293, 7, 8, 178, 179, 180, 181, 182, 183,
-                499, 500, 501, 502, 503,
-                647, 648, 649, 650, 651, 652, 653, 654, 655, 656,
-                730, 731, 732, 733, 734, 735
-            ];
+            return $('.js-calculator-form').data('tariff-ids');
         }
 
         this.getUsedCurrency = function () {
@@ -155,7 +153,7 @@ $(function () {
     let calculator = new calculatorClass($('div.calculator form'));
 
     let tariffApiClass = function () {
-        this.url = 'https://webproxy.cdek.ru/calculator';
+        this.url = calculator.getCalculateUrl();
         this.getSettings = function (serviceParameters) {
             return {
                 method: 'post',
@@ -180,21 +178,22 @@ $(function () {
     function getTariffs() {
         let finishedRequest = {count: 0};
         let tariffCodes = calculator.getTariffCodes();
-        let serviceParameters = {
-            "orderType": 1,
-            "senderCity": {"id": calculator.getCityCodeFrom()},
-            "receiverCity": {"id": calculator.getCityCodeTo()},
-            "idCurrency": calculator.getUsedCurrency(),
-            "idInterface": 3,
-            "idServiceType": 291,
-            "goodsList": [{
-                weight: calculator.getMass(),
-                height: calculator.getHeight(),
-                width: calculator.getWidth(),
-                length: calculator.getLength()
-            }],
-            "lang": calculator.getLanguage(),
-        };
+
+        $.post(calculator.getCalculateUrl(), {
+           "sender_city_uuid": calculator.getCityCodeFrom(),
+           "receiver_city_uuid": calculator.getCityCodeTo(),
+           "mass": calculator.getMass(),
+           "height": calculator.getHeight(),
+           "width": calculator.getWidth(),
+           "length": calculator.getLength(),
+           "language": calculator.getLanguage(),
+        }).done(function(tariffs){
+            showTariffs(tariffs);
+        });
+
+        return;
+
+
         let tariffs = [];
         for (let position in tariffCodes) {
             tariffs[position] = null;
@@ -232,14 +231,14 @@ $(function () {
                 let $tariffDiv = $template.clone();
                 let tariffDescriptionParameters = calculator.getTariffDescriptionParameters(tariff.id)
 
-                $tariffDiv.find('.calculator__tariff-item-input').attr('id', tariff.id).prop('id', tariff.id);
-                $tariffDiv.find('.calculator__tariff-item-input').val(tariff.id + ' (' + tariffDescriptionParameters.name + ') ' + tariff.price + calculator.getUsedCurrencyName());
-                $tariffDiv.find('.calculator__tariff-item-input').data('price', tariff.price);
+                $tariffDiv.find('.calculator__tariff-item-input').attr('id', tariff.tariffEc4Id).prop('id', tariff.tariffEc4Id);
+                $tariffDiv.find('.calculator__tariff-item-input').val(tariff.tariffEc4Id + ' (' + tariffDescriptionParameters.name + ') ' + tariff.price + calculator.getUsedCurrencyName());
+                $tariffDiv.find('.calculator__tariff-item-input').data('price', tariff.priceString);
 
-                $tariffDiv.find('.calculator__tariff-item-label').html(tariffDescriptionParameters.name).attr('for', tariff.id).prop('for', tariff.id);
+                $tariffDiv.find('.calculator__tariff-item-label').html(tariffDescriptionParameters.name).attr('for', tariff.tariffEc4Id).prop('for', tariff.tariffEc4Id);
                 $tariffDiv.find('.calculator__tariff-item-description').html(tariffDescriptionParameters.description);
                 $tariffDiv.find('.calculator__tariff-item-type').html(tariffDescriptionParameters.type);
-                $tariffDiv.find('.calculator__tariff-item-price').html('' + tariff.price + ' ' + calculator.getUsedCurrencyName());
+                $tariffDiv.find('.calculator__tariff-item-price').html('' + tariff.priceString + ' ' + calculator.getUsedCurrencyName());
                 $list.append($tariffDiv);
             }
         });
@@ -402,7 +401,7 @@ $(function () {
             transformResult: function (response) {
                 return {
                     suggestions: $.map(response, function (dataItem) {
-                        return {value: dataItem.name, data: dataItem.code};
+                        return {value: dataItem.name, data: dataItem.uuid};
                     })
                 };
             },

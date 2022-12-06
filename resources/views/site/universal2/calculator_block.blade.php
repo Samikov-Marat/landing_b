@@ -1,31 +1,19 @@
 @php
 
-    $tariffs = [];
-
-    $detect = [
-        'name' => ['textStart' => '_tariff_name_'],
-        'description' => ['textStart' => '_tariff_description_'],
-        'type' => ['textStart' => '_tariff_type_'],
-    ];
-
-    foreach ($detect as $k => $v){
-        $detect[$k]['length'] = strlen($detect[$k]['textStart']);
+    $tariffsLow = [];
+    $ids = [];
+    foreach ($tariffs as $tariff) {
+        $id = (int) $tariff->ek_id;
+        $tariffsLow[$id] = [];
+        $tariffsLow[$id]['aaa'] = 1;
+        $tariffsLow[$id]['name'] = $tariff->tariffTexts[0]->name;
+        $tariffsLow[$id]['description'] = $tariff->tariffTexts[0]->description;
+        $tariffsLow[$id]['type'] = $tariff->tariffType->tariffTypeTexts[0]->name;
+        $ids[] = $id;
     }
 
-    foreach ($dictionary as $dictionaryKey => $text){
-        foreach ($detect as $parameterName => $detectParameter){
-            if(substr($dictionaryKey, 0, $detectParameter['length']) == $detectParameter['textStart']){
-                $tariffCode = substr($dictionaryKey, $detectParameter['length']);
-                if(!array_key_exists($tariffCode, $tariffs)){
-                    $tariffs[$tariffCode] = [];
-                }
-                $tariffs[$tariffCode]['aaa'] = 1;
-                $tariffs[$tariffCode][$parameterName] = $text;
-            }
-        }
-    }
-
-    $tariffCollection = new \Illuminate\Support\Collection($tariffs);
+    $tariffCollection = collect($tariffsLow);
+    $tariffIdsCollection = collect($ids);
 
 @endphp
 
@@ -43,10 +31,12 @@
     @endphp
 
     <form action="{!! route('request.send') !!}" method="post" class="js-calculator-form"
+          data-calculate-url="{!! route('request.calculate') !!}"
           data-language="{{ $dictionary['calculator_language'] }}"
           data-currency-code="{{ $dictionary['calculator_currency_code'] }}"
           data-currency-name="{{ $dictionary['calculator_currency_name'] }}"
           data-tariffs="{{ $tariffCollection }}"
+          data-tariff-ids="{{ $tariffIdsCollection }}"
           data-show-tariffs-event="{{ $showTariffGtm }}">
         {!! csrf_field() !!}
         <div class="screen-content">
@@ -166,7 +156,9 @@
                         @d('calculator_parcel_kg'), <span class="js-calculator-header-volume">объём</span>
                         @d('calculator_parcel_m')<sup>3</sup>
                     </div>
-                    <div class="calculator__tariff-used-price js-calculator-header-price calculator_currency_sign">0.00 ₽</div>
+                    <div class="calculator__tariff-used-price js-calculator-header-price calculator_currency_sign">0.00
+                        ₽
+                    </div>
                 </div>
                 <div class="calculator__contact-title">@d('calculator_contacts_title')</div>
                 <div class="calculator__contact-description">
@@ -201,12 +193,17 @@
 
                             <div class="form-order-customer-type-wrapper">
                                 <div class="choice-widget">
-                                    <input type="radio" required name="customer_type" value="legal_entity" id="id_calculator_legal_entity" class="js-form-order-customer-type"><label for="id_calculator_legal_entity">@d('calculator_form_field_customer_type_legal_entity')</label>
+                                    <input type="radio" required name="customer_type" value="legal_entity"
+                                           id="id_calculator_legal_entity" class="js-form-order-customer-type"><label
+                                        for="id_calculator_legal_entity">@d('calculator_form_field_customer_type_legal_entity')</label>
                                 </div>
                             </div>
                             <div class="form-order-customer-type-wrapper">
                                 <div class="choice-widget">
-                                    <input type="radio" name="customer_type" value="private_individual" id="id_calculator_private_individual" class="js-form-order-customer-type"><label for="id_calculator_private_individual">@d('calculator_form_field_customer_type_private_individual')</label>
+                                    <input type="radio" name="customer_type" value="private_individual"
+                                           id="id_calculator_private_individual"
+                                           class="js-form-order-customer-type"><label
+                                        for="id_calculator_private_individual">@d('calculator_form_field_customer_type_private_individual')</label>
                                 </div>
                             </div>
                             <div class="form-field__error-message">@d('calculator_form_customer_type_required')</div>

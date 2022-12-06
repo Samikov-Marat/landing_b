@@ -7,6 +7,7 @@ use App\Classes\SiteCloner;
 use App\Http\Controllers\Controller;
 use App\Page;
 use App\Site;
+use App\Tariff;
 use Illuminate\Http\Request;
 
 class SiteController extends Controller
@@ -18,6 +19,7 @@ class SiteController extends Controller
             ->orderBy('id')
             ->with('languages')
             ->with('pages')
+            ->with('tariffs')
             ->with('localOffices')
             ->get();
 
@@ -91,6 +93,28 @@ class SiteController extends Controller
         SitePageStarter::getInstance($site->languages)
             ->createTextsForPages($pages);
 
+        return response()->redirectToRoute('admin.sites.index');
+    }
+    public function editTariffList(Request $request)
+    {
+        $site = Site::select('id', 'name', 'domain')
+            ->with('tariffs')
+            ->find($request->input('id'));
+        $tariffs = Tariff::select('id', 'ek_id', 'tariff_type_id')
+            ->with('tariffTexts')
+            ->get();
+
+        return view('admin.sites.tariff_list')
+            ->with('site', $site)
+            ->with('tariffs', $tariffs);
+    }
+
+    public function saveTariffList(Request $request)
+    {
+        $site = Site::select('id')
+            ->find($request->input('id'));
+        $site->tariffs()
+            ->sync($request->input('tariff_id') ?? []);
         return response()->redirectToRoute('admin.sites.index');
     }
 

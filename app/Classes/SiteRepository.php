@@ -13,6 +13,7 @@ use App\Page;
 use App\Site;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\DB;
 
 
 class SiteRepository
@@ -166,16 +167,44 @@ class SiteRepository
         );
     }
 
+    public function loadTariffs($language)
+    {
+        if ('ru' == $language->language_code_iso) {
+            $preferredLanguage = 'rus';
+        } elseif ('en' == $language->language_code_iso) {
+            $preferredLanguage = 'eng';
+        } elseif ('tr' == $language->language_code_iso) {
+            $preferredLanguage = 'tur';
+        } elseif ('zh' == $language->language_code_iso) {
+            $preferredLanguage = 'zho';
+        } else {
+            $preferredLanguage = 'eng';
+        }
+
+        $this->site->load(
+            [
+                'tariffs.tariffTexts' => function ($query) use ($preferredLanguage) {
+                    $query->orderBy(DB::raw('language_code_iso <> ' . $preferredLanguage))
+                        ->orderBy(DB::raw('language_code_iso <> "eng"'));
+                },
+                'tariffs.tariffType.tariffTypeTexts' => function ($query) use ($preferredLanguage) {
+                    $query->orderBy(DB::raw('language_code_iso <> ' . $preferredLanguage))
+                        ->orderBy(DB::raw('language_code_iso <> "eng"'));
+                }
+            ]
+        );
+    }
+
     public function loadLocalOffices($language, Subdomain $subdomain)
     {
         $language_id = $language->id;
         $this->site->load(
             [
-                'localOffices' => function ($query) use ($subdomain){
+                'localOffices' => function ($query) use ($subdomain) {
                     $query->select('id', 'site_id', 'map_preset')
                         ->where('disabled', false)
                         ->orderBy('sort');
-                    if($subdomain->hasSubdomain()){
+                    if ($subdomain->hasSubdomain()) {
                         $query->where('id', $subdomain->getLocalOffice()->id);
                     }
                 },
