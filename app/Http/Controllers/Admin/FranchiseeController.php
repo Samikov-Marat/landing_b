@@ -24,7 +24,6 @@ class FranchiseeController extends Controller
         } else {
             $franchisee = new Franchisee();
         }
-
         return view('admin.franchisees.form')
             ->with('franchisee', $franchisee);
     }
