@@ -31,8 +31,8 @@
         </div>
 
         <div class="form-group">
-            <label for="id_text">Описание, заметки</label>
-            <textarea class="form-control" id="id_text" name="text"
+            <label for="id_description">Описание, заметки</label>
+            <textarea class="form-control" id="id_description" name="description"
                       rows="7">{{ $franchisee->exists ? $franchisee->description : '' }}</textarea>
         </div>
         <button type="submit" class="btn btn-primary">Сохранить</button>
