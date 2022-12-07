@@ -37,4 +37,11 @@ $(function () {
     $('.js-local-office-email-block').on('click', '.js-local-office-email-delete', function () {
         $(this).closest('.js-local-office-email-item').remove();
     });
+
+
+    let target = $('.js-select2-local-office-franchisee');
+    target.select2({
+        language: 'ru'
+    });
+
 });

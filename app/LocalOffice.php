@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class LocalOffice extends Model
@@ -25,5 +26,10 @@ class LocalOffice extends Model
     public function localOfficePhotos(): HasMany
     {
         return $this->hasMany(LocalOfficePhoto::class, 'local_office_id', 'id');
+    }
+
+    public function franchisee(): BelongsTo
+    {
+        return $this->belongsTo(Franchisee::class);
     }
 }

@@ -26,7 +26,8 @@
         <input type="hidden" name="site_id" value="{{ $site->id }}">
 
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" name="disabled" value="1" id="disabled_checkbox" {{ isset($localOffice) && $localOffice->disabled ? 'checked' : '' }}>
+            <input class="form-check-input" type="checkbox" name="disabled" value="1"
+                   id="disabled_checkbox" {{ isset($localOffice) && $localOffice->disabled ? 'checked' : '' }}>
             <label class="form-check-label" for="disabled_checkbox">
                 Скрыть
             </label>
@@ -51,7 +52,8 @@
         <div class="form-group">
             <label for="id_map_preset">Настройки карты поддомена</label>
             <textarea type="text" class="form-control" name="map_preset" id="id_map_preset"
-                      placeholder="Настройки карты поддомена" autocomplete="off">{{ isset($localOffice) ? $localOffice->map_preset : '' }}</textarea>
+                      placeholder="Настройки карты поддомена"
+                      autocomplete="off">{{ isset($localOffice) ? $localOffice->map_preset : '' }}</textarea>
             <small id="id_map_preset_help" class="form-text text-muted">JSON для Yandex-карты</small>
         </div>
 
@@ -60,6 +62,25 @@
         @include('admin.local_offices.form_texts')
         @include('admin.local_offices.form_phones')
         @include('admin.local_offices.form_emails')
+
+        <div class="form-group col-md-6">
+            <label for="id_franchisee_id">Франчайзи</label>
+            <select class="form-select form-control js-select2-local-office-franchisee" name="franchisee_id"
+                    id="id_franchisee_id">
+                @php
+                    $selected = (isset($localOffice) && !is_null($localOffice->franchisee_id))?'':'selected';
+                @endphp
+                <option value="null" {{ $selected }}>Нет</option>
+                @foreach($franchisees as $franchisee)
+                    @php
+                        $selected = (isset($localOffice) && ($franchisee->id == $localOffice->franchisee_id))?'selected':'';
+                    @endphp
+                    <option value="{{ $franchisee->id }}" {{ $selected }}>
+                        {{ $franchisee->name }}
+                    </option>
+                @endforeach
+            </select>
+        </div>
 
 
         <button type="submit" class="btn btn-primary">Сохранить</button>
@@ -72,6 +93,5 @@
     <div class="d-none js-local-office-email-template">
         @include('admin.local_offices.form_emails_item', ['email'=>null, 'name' => 'email_new'])
     </div>
-
 
 @endsection

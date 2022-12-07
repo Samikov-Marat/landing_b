@@ -154,6 +154,17 @@ Route::prefix('admin')->middleware(
         Route::post('pages/move', 'Admin\PageController@move')
             ->name('admin.pages.move');
 
+        Route::get('franchisees', 'Admin\FranchiseeController@index')
+            ->name('admin.franchisees.index');
+        Route::get('franchisees/add', 'Admin\FranchiseeController@edit')
+            ->name('admin.franchisees.add');
+        Route::get('franchisees/edit/{id}', 'Admin\FranchiseeController@edit')
+            ->name('admin.franchisees.edit');
+        Route::post('franchisees/save', 'Admin\FranchiseeController@save')
+            ->name('admin.franchisees.save');
+        Route::post('franchisees/delete', 'Admin\FranchiseeController@delete')
+            ->name('admin.franchisees.delete');
+
 
         Route::get('text-type', 'Admin\TextTypeController@index')
             ->name('admin.text_types.index');

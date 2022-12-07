@@ -43,6 +43,9 @@
                     Категория api-marketing
                 </th>
                 <th>
+                    Франчайзи
+                </th>
+                <th>
                     Фотографии
                 </th>
                 <th>
@@ -81,6 +84,14 @@
                     <td>
                         {{ $localOffice->category }}
                     </td>
+
+                    <td>
+                        @if(isset($localOffice->franchisee_id))
+                            {{ $localOffice->franchisee->name }}
+                        @endif
+                    </td>
+
+
                     <td>
                         <a href="{!! route('admin.local_office_photos.index', ['local_office_id'=>$localOffice->id]) !!}">Фотографии</a>
                     </td>

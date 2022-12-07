@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Classes\LocalOfficeRepository;
+use App\Franchisee;
 use App\Http\Controllers\Controller;
 use App\LocalOffice;
 use App\Site;
@@ -20,35 +21,43 @@ class LocalOfficeController extends Controller
             ->with(
                 [
                     'localOffices' => function ($query) {
-                        $query->select(
-                            'id',
-                            'site_id',
-                            'code',
-                            'subdomain',
-                            'utm_tag',
-                            'utm_value',
-                            'category',
-                            'disabled',
-                            'sort'
-                        )
+                        $query->select([
+                                           'id',
+                                           'site_id',
+                                           'code',
+                                           'subdomain',
+                                           'utm_tag',
+                                           'utm_value',
+                                           'category',
+                                           'disabled',
+                                           'franchisee_id',
+                                           'sort'
+                                       ])
                             ->orderBy('sort');
                     },
                     'localOffices.localOfficeTexts' => function ($query) {
-                        $query->select('id', 'local_office_id', 'name');
+                        $query->select(['id', 'local_office_id', 'name']);
+                    },
+                    'localOffices.franchisee' => function ($query) {
+                        $query->select(['id', 'name', 'description']);
                     },
 
                 ]
             )
             ->find($request->input('site_id'));
+        $franchisees = Franchisee::select(['id', 'name', 'description'])
+            ->orderBy('name')
+            ->get();
         return view('admin.local_offices.index')
-            ->with('site', $site);
+            ->with('site', $site)
+            ->with('franchisees', $franchisees);
     }
 
     public function edit(Request $request, $id = null)
     {
         if (isset($id)) {
             $localOffice = LocalOffice::select(
-                ['id', 'code', 'subdomain', 'map_preset', 'utm_tag', 'utm_value', 'category', 'site_id', 'disabled',]
+                ['id', 'code', 'subdomain', 'map_preset', 'utm_tag', 'utm_value', 'category', 'site_id', 'disabled','franchisee_id',]
             )
                 ->with(
                     [
@@ -90,10 +99,14 @@ class LocalOfficeController extends Controller
             ->with('languages')
             ->find($siteId);
 
+        $franchisees = Franchisee::select(['id', 'name', 'description'])
+            ->orderBy('name')
+            ->get();
 
         return view('admin.local_offices.form')
             ->with('site', $site)
-            ->with('localOffice', $localOffice);
+            ->with('localOffice', $localOffice)
+            ->with('franchisees', $franchisees);
     }
 
     public function save(Request $request): RedirectResponse
@@ -115,8 +128,12 @@ class LocalOfficeController extends Controller
         if (!$isEditMode) {
             $localOffice->sort = LocalOffice::where('site_id', $localOffice->site_id)->max('sort') + self::SORT_STEP;
         }
+        if ($request->has('franchisee_id') && ($request->input('franchisee_id') === 'null')) {
+            $localOffice->franchisee_id = null;
+        } elseif ($request->has('franchisee_id')) {
+            $localOffice->franchisee_id = $request->input('franchisee_id');
+        }
         $localOffice->save();
-
 
         $site = Site::select('id', 'name', 'domain')
             ->with('languages')
@@ -217,5 +234,4 @@ class LocalOfficeController extends Controller
 
         return response()->redirectToRoute('admin.local_offices.index', ['site_id' => $localOffice->site_id]);
     }
-
 }

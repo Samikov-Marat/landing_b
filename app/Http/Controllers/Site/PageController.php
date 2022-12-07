@@ -70,6 +70,7 @@ class PageController extends Controller
             $siteRepository = new SiteRepository($domain);
         } catch (ModelNotFoundException $exception) {
             abort(HttpFoundationResponse::HTTP_NOT_FOUND);
+            return response()->noContent(HttpFoundationResponse::HTTP_NOT_FOUND);
         }
 
         $subdomain = new Subdomain($siteRepository->getSite(), $domain->getSubdomain());

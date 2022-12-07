@@ -168,19 +168,25 @@ class SiteRepository
 
     public function loadLocalOffices($language, Subdomain $subdomain)
     {
-        $language_id = $language->id;
+        $sameFranchiseeLocalOffices = $this->getSameFranchiseeLocalOffices($subdomain);
+
         $this->site->load(
             [
-                'localOffices' => function ($query) use ($subdomain){
+                'localOffices' => function ($query) use ($subdomain, $sameFranchiseeLocalOffices) {
                     $query->select('id', 'site_id', 'map_preset')
                         ->where('disabled', false)
                         ->orderBy('sort');
-                    if($subdomain->hasSubdomain()){
+                    if (!$subdomain->hasSubdomain()) {
+                        return;
+                    }
+                    if ($sameFranchiseeLocalOffices->isNotEmpty()) {
+                        $query->whereIn('id', $sameFranchiseeLocalOffices->pluck('id'));
+                    } else {
                         $query->where('id', $subdomain->getLocalOffice()->id);
                     }
                 },
-                'localOffices.localOfficeTexts' => function ($query) use ($language_id) {
-                    $query->where('language_id', $language_id);
+                'localOffices.localOfficeTexts' => function ($query) use ($language) {
+                    $query->where('language_id', $language->id);
                 },
                 'localOffices.localOfficePhones' => function ($query) {
                     $query->orderBy('sort');
@@ -205,5 +211,18 @@ class SiteRepository
         );
     }
 
+    private function getSameFranchiseeLocalOffices($subdomain): Collection
+    {
+        if (!$subdomain->hasSubdomain()) {
+            return new Collection();
+        }
 
+        $domainLocalOffice = $subdomain->getLocalOffice();
+        if (is_null($domainLocalOffice->franchisee)) {
+            return new Collection();
+        }
+
+        $domainLocalOffice->load('franchisee.localOffices');
+        return $domainLocalOffice->franchisee->localOffices;
+    }
 }
