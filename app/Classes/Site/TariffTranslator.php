@@ -9,7 +9,6 @@ class TariffTranslator
     private $tariffIndexed;
     public function __construct($tariffIds, $language)
     {
-        dd($tariffIds);
         $tariffs = Tariff::select(['id', 'ek_id'])
             ->whereIn('ek_id', $tariffIds)
             ->with([
@@ -19,7 +18,6 @@ class TariffTranslator
                    ])
             ->get();
         $this->tariffIndexed = $tariffs->pluck('tariffTexts.0', 'id');
-        dd($this->tariffIndexed);
     }
 
     public function get($id){
