@@ -15,14 +15,12 @@ use App\Classes\Site\SupportContainer;
 use App\Classes\Site\TemplateBuilder;
 use App\Classes\SiteRepository;
 use App\Exceptions\CurrentPageNotFound;
-use App\Exceptions\LanguageDetector\LanguagesIsEmpty;
 use App\Exceptions\PageController\LanguageListIsEmpty;
 use App\Exceptions\PageController\SiteNotFound;
 use App\Http\Controllers\Controller;
+use App\Tariff;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response as HttpFoundationResponse;
 
@@ -36,7 +34,7 @@ class PageController extends Controller
             $site = $siteRepository->getSite();
 
             $site->load('defaultLanguages');
-            if($site->defaultLanguages->isNotEmpty()){
+            if ($site->defaultLanguages->isNotEmpty()) {
                 $language = $site->defaultLanguages->first();
                 $languageShortName = Str::lower($language->shortname);
                 $requestCleaner = new RequestCleaner($request);
@@ -45,7 +43,7 @@ class PageController extends Controller
             }
 
 
-                $language = LanguageDetector::getInstance($request->server('HTTP_ACCEPT_LANGUAGE', ''))
+            $language = LanguageDetector::getInstance($request->server('HTTP_ACCEPT_LANGUAGE', ''))
                 ->chooseFrom(
                     $site->languages->filter(function ($language, $key) {
                         return !$language->disabled;
@@ -59,7 +57,6 @@ class PageController extends Controller
             abort(HttpFoundationResponse::HTTP_NOT_FOUND);
             return response()->noContent();
         }
-
     }
 
 
@@ -118,6 +115,20 @@ class PageController extends Controller
         } else {
             $templateBuilder->setNormalTemplate($page->template);
         }
+
+        $siteRepository->loadTariffs($language);
+
+        $tariffs = Tariff::whereIn('ek_id', [480, 485, 481, 482, 486, 483, 523, 62])
+            ->with([
+                       'tariffTexts' => function ($query) {
+                           $query->where('language_code_iso', 'rus');
+                       }
+                   ])
+            ->with(['tariffType.tariffTypeTexts' => function ($query) {
+                $query->where('language_code_iso', 'rus');
+            }])
+            ->get();
+
         return view($templateBuilder->getName())
             ->with('site', $siteRepository->getSite())
             ->with('subdomain', $subdomain)
@@ -130,6 +141,7 @@ class PageController extends Controller
             ->with('topOffices', $topOffices)
             ->with('countriesFrom', $countriesFrom)
             ->with('countriesTo', $countriesTo)
+            ->with('tariffs', $tariffs)
             ->with('allowCookies', AllowCookie::getInstance($request)->isAllow());
     }
 }

@@ -23,6 +23,8 @@ Route::prefix('admin')->middleware(
     function () {
         Route::get('/', 'Admin\IndexController@index')
             ->name('admin.index');
+        Route::get('/', 'Admin\IndexController@index')
+            ->name('admin.index');
         Route::get('sites', 'Admin\SiteController@index')
             ->name('admin.sites.index');
         Route::get('sites/add', 'Admin\SiteController@edit')
@@ -37,6 +39,10 @@ Route::prefix('admin')->middleware(
             ->name('admin.sites.edit_page_list');
         Route::post('sites/save-page-list', 'Admin\SiteController@savePageList')
             ->name('admin.sites.save_page_list');
+        Route::get('sites/edit-tariff-list', 'Admin\SiteController@editTariffList')
+            ->name('admin.sites.edit_tariff_list');
+        Route::post('sites/save-tariff-list', 'Admin\SiteController@saveTariffList')
+            ->name('admin.sites.save_tariff_list');
 
         Route::get('sites/clone-form/{id}', 'Admin\SiteController@cloneForm')
             ->name('admin.sites.clone_form');
@@ -433,6 +439,8 @@ Route::middleware('debugbar.disable')->group(function () {
         ->name('request.franchise');
     Route::post('/request/city', 'Site\RequestController@city')
         ->name('request.city');
+    Route::post('/request/calculate', 'Site\RequestController@calculate')
+        ->name('request.calculate');
 
     Route::get('/request/images/{imageUrl}', 'Site\RequestController@images')
         ->where('imageUrl', '.*')

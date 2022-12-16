@@ -38,6 +38,12 @@
                     </th>
                 @endcan
 
+                @can('admin.sites.edit_tariff_list')
+                    <th>
+                        Тарифы калькулятора
+                    </th>
+                @endcan
+
                 @can('admin.languages.index')
                 <th>
                     Языки
@@ -109,6 +115,13 @@
                         <td>
                             <a href="{!! route('admin.sites.edit_page_list', ['id' => $site->id]) !!}">
                                 {{ $site->pages->count() }} шт.
+                            </a>
+                        </td>
+                    @endcan
+                    @can('admin.sites.edit_tariff_list')
+                        <td>
+                            <a href="{!! route('admin.sites.edit_tariff_list', ['id' => $site->id]) !!}">
+                                {{ $site->tariffs->count() }} шт.
                             </a>
                         </td>
                     @endcan

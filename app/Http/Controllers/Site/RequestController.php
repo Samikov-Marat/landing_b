@@ -10,6 +10,7 @@ use App\Classes\Site\AllowCookie;
 use App\Classes\Site\Amo\AmoCRMApiClientBuilder;
 use App\Classes\Site\Amo\AmoSender;
 use App\Classes\Site\ApiMarketing\ApiMarketing;
+use App\Classes\Site\CalculatorJson;
 use App\Classes\Site\FormRequestRepository;
 use App\Classes\Site\Jira\JiraSender;
 use App\Classes\Site\ReferralCookiesHelper;
@@ -24,7 +25,9 @@ use Exception;
 use GuzzleHttp\Client;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response as HttpResponse;
 
 class RequestController extends Controller
@@ -181,8 +184,12 @@ class RequestController extends Controller
             $repository = new OfficeRepository(Office::class);
         }
 
-        $offices = $repository->find($coordinates[1], $coordinates[0], $coordinates[3],
-            $coordinates[2]);
+        $offices = $repository->find(
+            $coordinates[1],
+            $coordinates[0],
+            $coordinates[3],
+            $coordinates[2]
+        );
 
         $responseGenerator = new MapJsonCallback();
         $responseGenerator->setCallbackName($request->input('callback'));
@@ -226,7 +233,8 @@ class RequestController extends Controller
         }
 
         return response()->file(
-            $imageResponse->getPath(), $headers
+            $imageResponse->getPath(),
+            $headers
         );
     }
 
@@ -241,5 +249,24 @@ class RequestController extends Controller
             ]
         );
         return $response->getBody();
+    }
+
+    public function calculate(Request $request)
+    {
+        try {
+            $responseBody = Http::withHeaders(['X-User-Lang' => $request->input('language')])
+                ->asJson()
+                ->withBody(
+                    CalculatorJson::getJson($request),
+                    'application/json'
+                )
+                ->post('http://172.16.184.153:8024/api/calculator/getServices')
+                ->throw()
+                ->body();
+
+            return CalculatorJson::transformResponseBody($responseBody);
+        } catch (Exception $exception) {
+            abort(HttpResponse::HTTP_INTERNAL_SERVER_ERROR);
+        }
     }
 }
