@@ -40,9 +40,9 @@ class CalculatorJson
                            ]);
     }
 
-    public static function transformResponseBody($responseBody)
+    public static function transformResponseBody($responseBody, $language)
     {
-        $language = 'eng';
+
         $tariffTypes = TariffType::select(['id', 'ek_id',])
             ->with([
                        'tariffTypeTexts' => function ($query) use ($language) {

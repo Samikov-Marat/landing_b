@@ -264,7 +264,7 @@ class RequestController extends Controller
                 ->throw()
                 ->body();
 
-            return CalculatorJson::transformResponseBody($responseBody);
+            return CalculatorJson::transformResponseBody($responseBody, $request->input('language'));
         } catch (Exception $exception) {
             abort(HttpResponse::HTTP_INTERNAL_SERVER_ERROR);
         }
