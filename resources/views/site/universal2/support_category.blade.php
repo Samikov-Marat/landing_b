@@ -44,12 +44,14 @@
                     <div class="feedback__sheet preloader">
                         <div class="feedback__sheet-categories">
                             @foreach($supportContainer->supportCategories as $supportCategory)
+                                @if($supportCategory->supportCategoryTexts->isNotEmpty())
                                 <div class="feedback__category-outer">
                                     <a class="feedback__category"
                                        href="{!! route('site.support', ['languageUrl' => \Str::lower($language->shortname), 'pageUrl' => $page->url, 'category' => $supportCategory->id]) !!}">
                                         {{ $supportCategory->supportCategoryTexts[0]->name ?? '' }}
                                     </a>
                                 </div>
+                                @endif
                             @endforeach
                         </div>
                     </div>

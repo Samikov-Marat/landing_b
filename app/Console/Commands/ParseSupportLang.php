@@ -47,6 +47,10 @@ class ParseSupportLang extends Command
         $this->textTypes = Page::select(['id'])
             ->find(40)
             ->textTypes()
+            ->orderBy('id')
+            ->with(['texts' => function($q){
+                $q->where('language_id', 30);
+            }])
             ->get();
 
         $this->supportCategories = SupportCategory::select(['id',])
@@ -55,12 +59,11 @@ class ParseSupportLang extends Command
         $this->supportQuestions = SupportQuestion::select(['id',])
             ->get();
 
-        $this->languages = Language::select(['id', 'name'])
+        $this->languages = Language::select(['id', 'site_id', 'name'])
             ->whereHas('site.pages', function (Builder $query) {
                 $query->where('id', 40);
             })
             ->get();
-
 
         $fileName = Storage::path('support_lang.csv');
         $this->parseFile($fileName);
@@ -72,7 +75,6 @@ class ParseSupportLang extends Command
     {
         $file = fopen($fileName, 'r');
         $header = fgetcsv($file);
-        fgetcsv($file);
         while (($line = fgetcsv($file)) !== false) {
             $this->processLine($header, $line);
         }
@@ -92,52 +94,23 @@ class ParseSupportLang extends Command
 
     private function getSaver($value): FastSaver
     {
-        foreach ($this->textTypes as $textType) {
-            if ($textType->texts()
-                ->where('value', $value)
-                ->count()) {
-                return new FastSaverTexts($textType->id);
-            }
+        if(preg_match('#^(\d+)$#', $value, $m)){
+            return new FastSaverTexts($m[1]);
         }
 
-        foreach ($this->supportCategories as $supportCategory) {
-            if ($supportCategory->supportCategoryTexts()
-                ->where('name', $value)
-                ->count()) {
-                return new FastSaverSupportCategoryText($supportCategory->sort);
-            }
+        if(preg_match('#^support_category_texts\.(\d+)\.name$#', $value, $m)){
+            return new FastSaverSupportCategoryText($m[1]);
         }
 
-        foreach ($this->supportQuestions as $supportQuestion) {
-            if ($supportQuestion->supportQuestionTexts()
-                ->where('question', $value)
-                ->count()) {
-                return new FastSaverSupportQuestionTextQuestion($supportQuestion->id);
-            }
-        }
-        foreach ($this->supportQuestions as $supportQuestion) {
-            if ($supportQuestion->supportQuestionTexts()
-                ->where('answer', $value)
-                ->count()) {
-                return new FastSaverSupportQuestionTextAnswer($supportQuestion->id);
-            }
+        if(preg_match('#^support_question_texts\.(\d+)\.question$#', $value, $m)){
+            return new FastSaverSupportQuestionTextQuestion($m[1]);
         }
 
-        foreach ($this->supportQuestions as $supportQuestion) {
-            if ($supportQuestion->supportQuestionTexts()
-                ->where('question', 'LIKE', str_replace(' ', '%', $value))
-                ->count()) {
-                return new FastSaverSupportQuestionTextQuestion($supportQuestion->id);
-            }
+        if(preg_match('#^support_question_texts\.(\d+)\.answer$#', $value, $m)){
+            return new FastSaverSupportQuestionTextAnswer($m[1]);
         }
 
-        foreach ($this->supportQuestions as $supportQuestion) {
-            if ($supportQuestion->supportQuestionTexts()
-                ->where('answer', 'LIKE', str_replace(' ', '%', $value))
-                ->count()) {
-                return new FastSaverSupportQuestionTextAnswer($supportQuestion->id);
-            }
-        }
+
         throw new Exception('Не найден текст для "' . $value . '"');
     }
 

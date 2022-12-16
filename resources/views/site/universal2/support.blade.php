@@ -14,10 +14,12 @@
                     <div class="feedback__text">@d('support_new_list_header_2')</div>
                     <div class="feedback__list preloader js-feedback-preloader">
                         @foreach($supportContainer->supportCategories as $supportCategory)
-                            <a class="feedback__category feedback__category_root {{ $supportCategory->icon_class }}"
-                               href="{!! route('site.support', ['languageUrl' => \Str::lower($language->shortname), 'pageUrl' => $page->url, 'category' => $supportCategory->id]) !!}">
-                                {{ $supportCategory->supportCategoryTexts[0]->name ?? '' }}
-                            </a>
+                            @if($supportCategory->supportCategoryTexts->isNotEmpty())
+                                <a class="feedback__category feedback__category_root {{ $supportCategory->icon_class }}"
+                                   href="{!! route('site.support', ['languageUrl' => \Str::lower($language->shortname), 'pageUrl' => $page->url, 'category' => $supportCategory->id]) !!}">
+                                    {{ $supportCategory->supportCategoryTexts[0]->name ?? '' }}
+                                </a>
+                            @endif
                         @endforeach
                     </div>
                 </div>

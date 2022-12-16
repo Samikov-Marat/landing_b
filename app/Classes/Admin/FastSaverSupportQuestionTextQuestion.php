@@ -2,28 +2,51 @@
 
 namespace App\Classes\Admin;
 
+use App\SupportCategory;
+use App\SupportQuestion;
 use App\SupportQuestionText;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class FastSaverSupportQuestionTextQuestion implements FastSaver
 {
-    private $question_id;
+    private $icon_class;
+    private $sort;
 
-    public function __construct($question_id)
+    public function __construct($templateId)
     {
-        $this->question_id = $question_id;
+        $templateQuestion = SupportQuestion::find($templateId);
+        $this->sort = $templateQuestion->sort;
+        $templateCategory = SupportCategory::find($templateQuestion->category_id);
+        $this->icon_class = $templateCategory->icon_class;
     }
 
     public function save($value, $language)
     {
         try {
+            $supportCategory = SupportCategory::where('icon_class', $this->icon_class)
+                ->where('site_id', $language->site_id)
+                ->firstOrFail();
+        } catch (ModelNotFoundException $exception) {
+            dd($value, $language, $this->icon_class, $language->site_id);
+        }
+
+        try {
+            $supportQuestion = SupportQuestion::where('category_id', $supportCategory->id)
+                ->where('sort', $this->sort)
+                ->firstOrFail();
+        } catch (ModelNotFoundException $exception) {
+            dd($value, $language, $this->icon_class, $language->site_id);
+        }
+
+
+        try {
             $text = SupportQuestionText::select(['id', 'answer', 'question'])
-                ->where('question_id', $this->question_id)
+                ->where('question_id', $supportQuestion->id)
                 ->where('language_id', $language->id)
                 ->firstOrFail();
         } catch (ModelNotFoundException $exception) {
             $text = new SupportQuestionText();
-            $text->question_id = $this->question_id;
+            $text->question_id = $supportQuestion->id;
             $text->language_id = $language->id;
             $text->answer = '';
         }

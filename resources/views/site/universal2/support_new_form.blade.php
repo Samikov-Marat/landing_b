@@ -36,7 +36,7 @@
                     <select class="form-field__input js-support-select2 support-focus-reset-error" name="summary" placeholder="{{ $dictionary['support_form_theme'] }}">
                         <option></option>
                         @foreach($supportContainer->tree as $category)
-                            <option>{{ $category->supportCategoryTexts[0]->name }}</option>
+                            <option>{{ $category->supportCategoryTexts[0]->name ?? 'error' }}</option>
                         @endforeach
                     </select>
                 </div>

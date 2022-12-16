@@ -92,7 +92,9 @@
                                         <select class="form-field__input js-support-select2 support-focus-reset-error" name="summary" placeholder="{{ $dictionary['support_form_theme'] }}">
                                             <option></option>
                                             @foreach($supportContainer->tree as $category)
+                                                @if($category->supportCategoryTexts->isNotEmpty())
                                                 <option @if($supportContainer->path[0]->id == $category->id) selected @endif>{{ $category->supportCategoryTexts[0]->name }}</option>
+                                                @endif
                                             @endforeach
                                         </select>
                                     </div>
