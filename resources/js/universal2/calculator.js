@@ -113,10 +113,6 @@ $(function () {
             return this;
         }
 
-        this.getTariffDescriptionParameters = function (code) {
-            return tariffNames[code];
-        }
-
         this.sendForm = function(token){
 
             this.calculatorContent = this.form.find('.calculator__content');
@@ -230,7 +226,6 @@ $(function () {
         $.each(tariffs, function (index, tariff) {
             if (tariff !== null) {
                 let $tariffDiv = $template.clone();
-                let tariffDescriptionParameters = calculator.getTariffDescriptionParameters(tariff.id)
 
                 $tariffDiv.find('.calculator__tariff-item-input').attr('id', tariff.tariffEc4Id).prop('id', tariff.tariffEc4Id);
                 $tariffDiv.find('.calculator__tariff-item-input').val(tariff.tariffEc4Id + ' (' + tariff.nameLocalized + ') ' + tariff.priceString + calculator.getUsedCurrencyName());

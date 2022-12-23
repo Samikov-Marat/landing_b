@@ -1,22 +1,3 @@
-@php
-
-    $tariffsLow = [];
-    $ids = [];
-    foreach ($tariffs as $tariff) {
-        $id = (int) $tariff->ek_id;
-        $tariffsLow[$id] = [];
-        $tariffsLow[$id]['aaa'] = 1;
-        $tariffsLow[$id]['name'] = $tariff->tariffTexts[0]->name;
-        $tariffsLow[$id]['description'] = $tariff->tariffTexts[0]->description;
-        $tariffsLow[$id]['type'] = $tariff->tariffType->tariffTypeTexts[0]->name;
-        $ids[] = $id;
-    }
-
-    $tariffCollection = collect($tariffsLow);
-    $tariffIdsCollection = collect($ids);
-
-@endphp
-
 <div id="calculator" class="calculator">
 
     @php
@@ -35,8 +16,6 @@
           data-language="{{ $dictionary['calculator_language'] }}"
           data-currency-code="{{ $dictionary['calculator_currency_code'] }}"
           data-currency-name="{{ $dictionary['calculator_currency_name'] }}"
-          data-tariffs="{{ $tariffCollection }}"
-          data-tariff-ids="{{ $tariffIdsCollection }}"
           data-show-tariffs-event="{{ $showTariffGtm }}">
         {!! csrf_field() !!}
         <div class="screen-content">

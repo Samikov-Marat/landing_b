@@ -18,7 +18,6 @@ use App\Exceptions\CurrentPageNotFound;
 use App\Exceptions\PageController\LanguageListIsEmpty;
 use App\Exceptions\PageController\SiteNotFound;
 use App\Http\Controllers\Controller;
-use App\Tariff;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -118,17 +117,6 @@ class PageController extends Controller
 
         $siteRepository->loadTariffs($language);
 
-        $tariffs = Tariff::whereIn('ek_id', [480, 485, 481, 482, 486, 483, 523, 62])
-            ->with([
-                       'tariffTexts' => function ($query) {
-                           $query->where('language_code_iso', 'rus');
-                       }
-                   ])
-            ->with(['tariffType.tariffTypeTexts' => function ($query) {
-                $query->where('language_code_iso', 'rus');
-            }])
-            ->get();
-
         return view($templateBuilder->getName())
             ->with('site', $siteRepository->getSite())
             ->with('subdomain', $subdomain)
@@ -141,7 +129,6 @@ class PageController extends Controller
             ->with('topOffices', $topOffices)
             ->with('countriesFrom', $countriesFrom)
             ->with('countriesTo', $countriesTo)
-            ->with('tariffs', $tariffs)
             ->with('allowCookies', AllowCookie::getInstance($request)->isAllow());
     }
 }
