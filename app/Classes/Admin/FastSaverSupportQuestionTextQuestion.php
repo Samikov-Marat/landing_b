@@ -35,7 +35,10 @@ class FastSaverSupportQuestionTextQuestion implements FastSaver
                 ->where('sort', $this->sort)
                 ->firstOrFail();
         } catch (ModelNotFoundException $exception) {
-            dd($value, $language, $this->icon_class, $language->site_id);
+            $supportQuestion = new SupportQuestion();
+            $supportQuestion->category_id = $supportCategory->id;
+            $supportQuestion->sort = $this->sort;
+            $supportQuestion->save();
         }
 
 
