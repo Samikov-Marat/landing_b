@@ -7,15 +7,20 @@
         <div class="content support-page__content  support-page__content_step4">
             <div class="bm-breadcrumbs feedback__breadcrumbs">
                 <a class="bm-breadcrumbs__item" href="{!! route('site.support', ['languageUrl' => \Str::lower($language->shortname), 'pageUrl' => $page->url]) !!}">@d('support_1')</a>
-                @foreach($supportContainer->path as $supportCategoryInPath)
-                    <a class="bm-breadcrumbs__item" href="{!! route('site.support', ['languageUrl' => \Str::lower($language->shortname), 'pageUrl' => $page->url, 'category' => $supportCategoryInPath->id]) !!}">{{ $supportCategoryInPath->supportCategoryTexts[0]->name ?? '' }}</a>
-                @endforeach
+                @if(!$supportContainer->supportQuestion->icon_class)
+                    @foreach($supportContainer->path as $supportCategoryInPath)
+                        <a class="bm-breadcrumbs__item" href="{!! route('site.support', ['languageUrl' => \Str::lower($language->shortname), 'pageUrl' => $page->url, 'category' => $supportCategoryInPath->id]) !!}">{{ $supportCategoryInPath->supportCategoryTexts[0]->name ?? '' }}</a>
+                    @endforeach
+                @endif
                 <span class="bm-breadcrumbs__item">{{ $supportContainer->supportQuestion->supportQuestionTexts[0]->question }}</span>
             </div>
 
 
             @php
-                if($supportContainer->path->count() > 0){
+                if($supportContainer->supportQuestion->icon_class){
+                    $back = route('site.support', ['languageUrl' => \Str::lower($language->shortname), 'pageUrl' => $page->url]);
+                }
+                elseif($supportContainer->path->count() > 0){
                     $prev = $supportContainer->path->last();
                     $back = route('site.support', ['languageUrl' => \Str::lower($language->shortname), 'pageUrl' => $page->url, 'category' => $prev->id]);
                 }

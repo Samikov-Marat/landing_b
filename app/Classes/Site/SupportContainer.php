@@ -3,6 +3,7 @@
 namespace App\Classes\Site;
 
 use App\SupportCategory;
+use App\SupportQuestion;
 use Illuminate\Support\Collection;
 
 class SupportContainer
@@ -16,6 +17,8 @@ class SupportContainer
     var $supportCategories;
     var $supportQuestion;
     var $path;
+    public $tree;
+    public $specialSupportQuestions;
 
     public function __construct($site, $language, $category, $question)
     {
@@ -44,7 +47,8 @@ class SupportContainer
                         $q->where('language_id', $language->id);
                     },
                     'supportQuestions' => function ($q) {
-                        $q->orderBy('sort');
+                        $q->where('icon_class', '')
+                            ->orderBy('sort');
                     },
                     'supportQuestions.supportQuestionTexts' => function ($q) use ($language) {
                         $q->where('language_id', $language->id);
@@ -61,13 +65,26 @@ class SupportContainer
                 ->where('parent_id', $this->category)
                 ->orderBy('sort')
                 ->get();
-
+            $this->specialSupportQuestions = new \Illuminate\Database\Eloquent\Collection();
         } else {
             $this->supportCategories = SupportCategory::select(['id', 'parent_id', 'icon_class',])
                 ->where('site_id', $this->site->id)
                 ->whereNull('parent_id')
                 ->orderBy('sort')
                 ->get();
+            $this->specialSupportQuestions = SupportQuestion::whereIn(
+                'category_id',
+                $this->supportCategories->pluck('id')
+            )
+                ->where('icon_class', '<>', '')
+                ->orderBy('sort')
+                ->with([
+                           'supportQuestionTexts' => function ($q) use ($language) {
+                               $q->where('language_id', $language->id);
+                           },
+                       ])
+                ->get();
+
         }
         $this->supportCategories->load(
             [
@@ -79,7 +96,7 @@ class SupportContainer
 
         if (isset($this->question)) {
             $this->supportQuestion = $this->currentSupportCategory->supportQuestions()
-                ->select(['id', 'category_id', 'show_form'])
+                ->select(['id', 'category_id', 'show_form', 'icon_class'])
                 ->findOrFail($this->question);
 
             $this->supportQuestion->load(

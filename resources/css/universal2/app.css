@@ -4362,6 +4362,13 @@ body {
   .feedback__category_other {
     background: url("img/feedback/other.svg") no-repeat left 20px center #1AB248;
     padding-left: 59px; }
+  .feedback__category_box {
+    background: url("img/feedback/box.svg") no-repeat left 20px center #1AB248;
+    padding-left: 59px; }
+  .feedback__category_customer {
+    background: url("img/feedback/customer.svg") no-repeat left 20px center #1AB248;
+    padding-left: 59px; }
+
   .feedback__category::after {
     content: '';
     background: url("img/feedback/arrow-white.svg") no-repeat;
@@ -4549,6 +4556,17 @@ body {
       padding-left: 37px;
       width: 100%;
       background-size: 16px 16px; }
+    .feedback__category_box {
+        background: url("img/feedback/box.svg") no-repeat left 10px center #1AB248;
+        padding-left: 37px;
+        width: 100%;
+        background-size: 16px 16px; }
+    .feedback__category_customer {
+        background: url("img/feedback/customer.svg") no-repeat left 10px center #1AB248;
+        padding-left: 37px;
+        width: 100%;
+        background-size: 16px 16px; }
+
     .feedback__category_claims {
       background-size: 13px 16px; }
     .feedback__category_wishes {

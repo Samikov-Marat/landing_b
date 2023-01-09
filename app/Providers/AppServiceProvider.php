@@ -28,8 +28,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(Dispatcher $events)
     {
-        Builder::defaultStringLength(191);
-
         Blade::directive(
             'd',
             function ($expression) {
