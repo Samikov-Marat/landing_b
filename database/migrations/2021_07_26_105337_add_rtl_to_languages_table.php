@@ -13,7 +13,7 @@ class AddRtlToLanguagesTable extends Migration
             function (Blueprint $table) {
                 $table->boolean('rtl')
                     ->default(false)
-                    ->nullable(false);;
+                    ->nullable(false);
             }
         );
     }

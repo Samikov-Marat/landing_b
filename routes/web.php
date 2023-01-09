@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\TrimStrings;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -101,7 +102,7 @@ Route::prefix('admin')->middleware(
             ->name('admin.local_offices.edit');
         Route::post('local-offices/save', 'Admin\LocalOfficeController@save')
             ->name('admin.local_offices.save')
-            ->withoutMiddleware(\App\Http\Middleware\TrimStrings::class);
+            ->withoutMiddleware(TrimStrings::class);
         Route::post('local-offices/delete', 'Admin\LocalOfficeController@delete')
             ->name('admin.local_offices.delete');
         Route::post('local-offices/move', 'Admin\LocalOfficeController@move')
@@ -115,7 +116,7 @@ Route::prefix('admin')->middleware(
             ->name('admin.our_workers.edit');
         Route::post('our-workers/save', 'Admin\OurWorkerController@save')
             ->name('admin.our_workers.save')
-            ->withoutMiddleware(\App\Http\Middleware\TrimStrings::class);
+            ->withoutMiddleware(TrimStrings::class);
         Route::post('our-workers/delete', 'Admin\OurWorkerController@delete')
             ->name('admin.our_workers.delete');
         Route::post('our-workers/move', 'Admin\OurWorkerController@move')
@@ -129,7 +130,7 @@ Route::prefix('admin')->middleware(
             ->name('admin.news_articles.edit');
         Route::post('news-articles/save', 'Admin\NewsArticleController@save')
             ->name('admin.news_articles.save')
-            ->withoutMiddleware(\App\Http\Middleware\TrimStrings::class);
+            ->withoutMiddleware(TrimStrings::class);
         Route::post('news-articles/delete', 'Admin\NewsArticleController@delete')
             ->name('admin.news_articles.delete');
 
@@ -191,7 +192,7 @@ Route::prefix('admin')->middleware(
             ->name('admin.texts.edit');
         Route::post('texts/save', 'Admin\TextController@save')
             ->name('admin.texts.save')
-            ->withoutMiddleware(\App\Http\Middleware\TrimStrings::class);
+            ->withoutMiddleware(TrimStrings::class);
         Route::get('texts/download', 'Admin\TextController@download')
             ->name('admin.texts.download');
         Route::post('texts/upload', 'Admin\TextController@upload')

@@ -15,7 +15,7 @@ class ImageController extends Controller
 
     public function index(Request $request)
     {
-        $site = Site::select('id', 'name', 'domain')
+        $site = Site::select(['id', 'name', 'domain',])
             ->with(
                 [
                     'images' => function ($query) {
@@ -33,14 +33,14 @@ class ImageController extends Controller
     public function edit(Request $request, $id = null)
     {
         if (isset($id)) {
-            $image = Image::select('id', 'url', 'path', 'page_id', 'site_id', 'is_download')
+            $image = Image::select(['id', 'url', 'path', 'page_id', 'site_id', 'is_download',])
                 ->find($id);
             $siteId = $image->site_id;
         } else {
             $image = null;
             $siteId = $request->input('site_id');
         }
-        $site = Site::select('id', 'name', 'domain')
+        $site = Site::select(['id', 'name', 'domain',])
             ->find($siteId);
 
         return view('admin.images.form')
@@ -81,7 +81,7 @@ class ImageController extends Controller
 
     public function delete(Request $request): RedirectResponse
     {
-        $image = Image::select('id', 'site_id')
+        $image = Image::select(['id', 'site_id',])
             ->find($request->input('id'));
         $site_id = $image->site_id;
         $image->delete();
@@ -90,7 +90,7 @@ class ImageController extends Controller
 
     public function move(Request $request): RedirectResponse
     {
-        $image = Image::select('id', 'site_id', 'sort')
+        $image = Image::select(['id', 'site_id', 'sort'])
             ->find($request->input('id'));
 
         $direction = $request->input('direction');
@@ -102,7 +102,7 @@ class ImageController extends Controller
             $sign = '>';
             $orderByDirection = 'asc';
         }
-        $otherImage = Image::select('id', 'sort')
+        $otherImage = Image::select(['id', 'sort',])
             ->where('site_id', $image->site_id)
             ->where('sort', $sign, $image->sort)
             ->orderBy('sort', $orderByDirection)

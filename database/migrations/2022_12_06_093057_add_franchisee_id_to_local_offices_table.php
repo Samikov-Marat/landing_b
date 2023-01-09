@@ -10,7 +10,7 @@ class AddFranchiseeIdToLocalOfficesTable extends Migration
     {
         Schema::table('local_offices', function (Blueprint $table) {
             $table->foreignId('franchisee_id')
-                ->nullable(true)
+                ->nullable()
                 ->default(null);
         });
     }

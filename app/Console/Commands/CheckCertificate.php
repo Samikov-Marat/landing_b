@@ -20,7 +20,7 @@ class CheckCertificate extends Command
 
     public function handle(): int
     {
-        $sites = Site::select('id', 'domain')->get();
+        $sites = Site::select(['id', 'domain',])->get();
         $needSleep = false;
         foreach ($sites as $site) {
             if ($needSleep) {

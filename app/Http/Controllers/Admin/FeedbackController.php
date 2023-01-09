@@ -14,7 +14,7 @@ class FeedbackController extends Controller
 
     public function index(Request $request)
     {
-        $site = Site::select('id', 'name', 'domain')
+        $site = Site::select(['id', 'name', 'domain',])
             ->with(
                 [
                     'feedbacks' => function ($query) {
@@ -43,14 +43,16 @@ class FeedbackController extends Controller
     {
         if (isset($id)) {
             $feedback = Feedback::select(
-                'id',
-                'site_id',
-                'language_id',
-                'name',
-                'email',
-                'text',
-                'published',
-                'writing_date'
+                [
+                    'id',
+                    'site_id',
+                    'language_id',
+                    'name',
+                    'email',
+                    'text',
+                    'published',
+                    'writing_date',
+                ]
             )
                 ->find($id);
             $siteId = $feedback->site_id;
@@ -58,7 +60,7 @@ class FeedbackController extends Controller
             $feedback = null;
             $siteId = $request->input('site_id');
         }
-        $site = Site::select('id', 'name', 'domain')
+        $site = Site::select(['id', 'name', 'domain',])
             ->with([
                        'languages' => function ($query) {
                            $query->select(['id', 'site_id', 'shortname', 'name'])
@@ -103,7 +105,7 @@ class FeedbackController extends Controller
 
     public function delete(Request $request): RedirectResponse
     {
-        $feedback = Feedback::select('id', 'site_id')
+        $feedback = Feedback::select(['id', 'site_id',])
             ->find($request->input('id'));
         $site_id = $feedback->site_id;
         $feedback->delete();
