@@ -22,6 +22,7 @@ class ApiMarketingRequestOrder extends ApiMarketingRequestBase
     private function getMessage(): string
     {
         $m = [];
+        $m['form_url'] = 'URL';
         $m['name'] = 'Имя';
         $m['phone'] = 'Телефон';
         $m['email'] = 'E-mail';

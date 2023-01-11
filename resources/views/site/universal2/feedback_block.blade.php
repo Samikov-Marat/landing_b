@@ -26,6 +26,7 @@
                   class="form calculator_form js-feedback-form"
                   data-send-form-event="{{ $formGtm }}">
                 <input type="hidden" name="form_place" value="{{ $formPlace }}">
+                <input type="hidden" name="form_url" value="{{ $url->full() }}">
                 <div class="form__row">
                     <div class="form-field">
                         <input type="text" name="name" class="form-field__input"

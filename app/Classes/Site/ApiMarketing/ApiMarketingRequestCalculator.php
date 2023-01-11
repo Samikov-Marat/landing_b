@@ -38,6 +38,7 @@ class ApiMarketingRequestCalculator extends ApiMarketingRequestBase
             $messageParameters[$key] = $this->input($key);
         }
         $messageParameters['requestDatetime'] = $this->getRequestDatetime();
+        $messageParameters['URL'] = $this->input('url');
         return view('api_marketing.request_calculator', $messageParameters)->render();
     }
 

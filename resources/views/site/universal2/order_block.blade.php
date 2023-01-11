@@ -7,6 +7,7 @@
                 </div>
                 <form method="post" action="{!! route('request.order') !!}" class="form order-form js-order-form"  data-send-form-event="send_order">
                     <input type="hidden" name="type" value="{{ $orderFormType }}">
+                    <input type="hidden" name="form_url" value="{{ $url->full() }}">
                     <div class="form__row">
                         <div class="form-field">
                             <input type="text" name="name" class="form-field__input" placeholder="{{ $dictionary['order_form_field_1'] }}"/>
