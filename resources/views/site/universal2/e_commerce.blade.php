@@ -23,53 +23,55 @@
                 <div class="main-poster__wave-right"></div>
             </div>
         </div>
-        <div class="company-advantages screen-content">
-            <h2 class="typo-h2 company-advantages__heading e-commerce-page__company-adv-heading">@d('tariff_header_black') <span class="typo-colored_color_green">@d('tariff_header_green')</span></h2>
-            <div class="company-advantages__description e-commerce-page__company-adv-description">
-                @d('tariff_description')
-            </div>
-            <div class="two-icons e-commerce-page__company-adv-icons">
-                @if ($dictionary['tariff_min_mass_05'])
-                <div class="two-icons__item">
-                    <div class="two-icons__icon"></div>
-                    <div class="two-icons__text"><span class="two-icons__text-big">@d('tariff_min_mass_05')</span> @d('tariff_min_from_05') <span class="two-icons__text-big">@d('tariff_min_price_05')</span></div>
+        <div class="company-advantages screen">
+            <div class="content">
+                <h2 class="typo-h2 company-advantages__heading e-commerce-page__company-adv-heading">@d('tariff_header_black') <span class="typo-colored_color_green">@d('tariff_header_green')</span></h2>
+                <div class="company-advantages__description e-commerce-page__company-adv-description">
+                    @d('tariff_description')
                 </div>
-                @endif
+                <div class="two-icons e-commerce-page__company-adv-icons">
+                    @if ($dictionary['tariff_min_mass_05'])
+                        <div class="two-icons__item">
+                            <div class="two-icons__icon"></div>
+                            <div class="two-icons__text"><span class="two-icons__text-big">@d('tariff_min_mass_05')</span> @d('tariff_min_from_05') <span class="two-icons__text-big">@d('tariff_min_price_05')</span></div>
+                        </div>
+                    @endif
 
-                @if ($dictionary['tariff_min_mass_1'])
-                <div class="two-icons__item">
-                    <div class="two-icons__icon two-icons__icon_icon_second"></div>
-                    <div class="two-icons__text"><span class="two-icons__text-big">@d('tariff_min_mass_1')</span> @d('tariff_min_from_1') <span class="two-icons__text-big">@d('tariff_min_price_1')</span></div>
+                    @if ($dictionary['tariff_min_mass_1'])
+                        <div class="two-icons__item">
+                            <div class="two-icons__icon two-icons__icon_icon_second"></div>
+                            <div class="two-icons__text"><span class="two-icons__text-big">@d('tariff_min_mass_1')</span> @d('tariff_min_from_1') <span class="two-icons__text-big">@d('tariff_min_price_1')</span></div>
+                        </div>
+                    @endif
                 </div>
-                @endif
-            </div>
-            <div class="square-cards js-company-advantages owl-carousel">
-                <div class="square-card square-card_size_big square-card_big-icon_packages">
-                    <div class="square-card__bg"></div>
-                    <div class="square-card__title">@d('tariff_slider_header_1')</div>
-                    <div class="square-card__description">
-                        @d('tariff_slider_text_1')
+                <div class="square-cards js-company-advantages owl-carousel">
+                    <div class="square-card square-card_size_big square-card_big-icon_packages">
+                        <div class="square-card__bg"></div>
+                        <div class="square-card__title">@d('tariff_slider_header_1')</div>
+                        <div class="square-card__description">
+                            @d('tariff_slider_text_1')
+                        </div>
                     </div>
-                </div>
-                <div class="square-card square-card_size_big square-card_big-icon_contract">
-                    <div class="square-card__bg"></div>
-                    <div class="square-card__title">@d('tariff_slider_header_2')</div>
-                    <div class="square-card__description">
-                        @d('tariff_slider_text_2')
+                    <div class="square-card square-card_size_big square-card_big-icon_contract">
+                        <div class="square-card__bg"></div>
+                        <div class="square-card__title">@d('tariff_slider_header_2')</div>
+                        <div class="square-card__description">
+                            @d('tariff_slider_text_2')
+                        </div>
                     </div>
-                </div>
-                <div class="square-card square-card_size_big square-card_big-icon_mail">
-                    <div class="square-card__bg"></div>
-                    <div class="square-card__title">@d('tariff_slider_header_3')</div>
-                    <div class="square-card__description">
-                        @d('tariff_slider_text_3')
+                    <div class="square-card square-card_size_big square-card_big-icon_mail">
+                        <div class="square-card__bg"></div>
+                        <div class="square-card__title">@d('tariff_slider_header_3')</div>
+                        <div class="square-card__description">
+                            @d('tariff_slider_text_3')
+                        </div>
                     </div>
-                </div>
-                <div class="square-card square-card_size_big square-card_big-icon_integration">
-                    <div class="square-card__bg"></div>
-                    <div class="square-card__title">@d('tariff_slider_header_4')</div>
-                    <div class="square-card__description">
-                        @d('tariff_slider_text_4')
+                    <div class="square-card square-card_size_big square-card_big-icon_integration">
+                        <div class="square-card__bg"></div>
+                        <div class="square-card__title">@d('tariff_slider_header_4')</div>
+                        <div class="square-card__description">
+                            @d('tariff_slider_text_4')
+                        </div>
                     </div>
                 </div>
             </div>

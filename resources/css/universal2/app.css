@@ -370,12 +370,11 @@ body {
     color: #fff;
     padding-top: 1px; }
   .footer__footer-logo {
-    margin-bottom: 22px; }
+    margin-bottom: 74px; }
   .footer__link-social-item {
     display: flex;
-    margin-bottom: 40px;
-    font-weight: bold;
-    justify-content: flex-end; }
+    margin-bottom: 18px;
+    font-weight: bold; }
   .footer__link-policy-item {
     display: flex; }
   .footer__link {
@@ -393,8 +392,7 @@ body {
     .footer__link-mr-policy:last-child {
       margin-right: 0; }
   .footer__right {
-    display: flex;
-    flex-direction: column; }
+    display: flex; }
   .footer__right-img {
     background: url("img/iata.svg") no-repeat top left;
     margin-right: 50px;
@@ -403,7 +401,7 @@ body {
   .footer__right-text {
     text-align: right; }
   .footer__contacts {
-    margin-bottom: 0; }
+    margin-bottom: 69px; }
   .footer__phone-item {
     margin-bottom: 14px; }
     .footer__phone-item:last-child {
@@ -517,7 +515,7 @@ body {
       margin-right: auto;
       font-size: 13px; }
     .footer__footer-logo {
-      margin-bottom: 12px; }
+      margin-bottom: 62px; }
     .footer__link-social-item {
       margin-bottom: 17px;
       font-size: 14px; }
@@ -532,9 +530,6 @@ body {
         margin-bottom: 0; }
     .footer__right {
       padding-top: 2px; }
-    .footer__right-text {
-      font-size: 15px;
-      line-height: 20px; }
     .footer__right-img {
       margin-right: 27px;
       width: 68px;
@@ -542,7 +537,7 @@ body {
       background-size: 68px 44px;
       background-position: top 4px right; }
     .footer__contacts {
-      margin-bottom: 0; }
+      margin-bottom: 23px; }
     .footer__phone-item {
       margin-bottom: 18px; }
     .footer__phone {
@@ -576,37 +571,31 @@ body {
   .footer {
     padding: 37px 0 40px;
     box-sizing: border-box; }
-    .footer__content {
-      flex-direction: column; }
     .footer__left {
       margin-right: 0;
       font-size: 13px;
       width: 100%;
-      padding-top: 0;
-      text-align: center; }
+      padding-top: 0; }
     .footer__footer-logo {
-      margin: 0 auto 20px; }
+      margin-bottom: 126px; }
     .footer__link-social-item {
       margin-bottom: 17px;
       font-size: 14px;
-      justify-content: center;
-      flex-wrap: wrap; }
+      justify-content: center; }
     .footer__link-policy-item {
       flex-direction: column;
       align-items: center; }
     .footer__link-mr-social {
-      margin-right: 20px;
-      margin-bottom: 12px; }
-    .footer__right-text {
-      font-size: 14px;
-      line-height: 19px; }
+      margin-right: 20px; }
     .footer__link-mr-policy {
       margin-right: 0;
       margin-bottom: 11px; }
       .footer__link-mr-policy:last-child {
         margin-bottom: 0; }
     .footer__right-text {
-      text-align: center; }
+      position: absolute;
+      right: 20px;
+      top: 37px; }
     .footer__right-img {
       margin-right: 0;
       width: 68px;

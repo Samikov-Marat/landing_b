@@ -30,6 +30,7 @@
     <link rel="stylesheet" href="{{ mix('universal2/app.css') }}">
     <link rel="stylesheet" href="{{ mix('universal2/info.css') }}">
     <link rel="stylesheet" href="/request/images/theme.css">
+    <link rel="stylesheet" href="{{ url("/request/images/{$language->uri}.css") }}">
     <link rel="stylesheet" href="{{ mix('universal2/custom.css') }}">
 </head>
 <body class="site-theme">
