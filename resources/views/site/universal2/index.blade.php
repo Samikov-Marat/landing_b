@@ -24,48 +24,50 @@
                 <img src="/request/images/index/poster-mobile.jpg" alt="" class="index-page__poster-image">
             </picture>
         </div>
-        <div class="company-advantages screen-content">
-    <h2 class="typo-h2 company-advantages__heading">@d('why_header')</h2>
-    <div class="company-advantages__description">
-        @d('why_description')
-    </div>
-    <div class="square-cards js-company-advantages owl-carousel">
-        <div class="square-card square-card_icon_customs">
-            <div class="square-card__bg"></div>
-            <div class="square-card__title">@d('why_simple_header')</div>
-            <div class="square-card__description">
-                @d('why_simple_text1') <span class="typo-bold">@d('why_simple_text2')</span> @d('why_simple_text3');
+        <div class="company-advantages screen">
+            <div class="content">
+                <h2 class="typo-h2 company-advantages__heading">@d('why_header')</h2>
+                <div class="company-advantages__description">
+                    @d('why_description')
+            </div>
+            <div class="square-cards js-company-advantages owl-carousel">
+                <div class="square-card square-card_icon_customs">
+                    <div class="square-card__bg"></div>
+                    <div class="square-card__title">@d('why_simple_header')</div>
+                    <div class="square-card__description">
+                        @d('why_simple_text1') <span class="typo-bold">@d('why_simple_text2')</span> @d('why_simple_text3');
+                    </div>
+                </div>
+                <div class="square-card square-card_icon_settings">
+                    <div class="square-card__bg"></div>
+                    <div class="square-card__title">@d('why_profitably_header')</div>
+                    <div class="square-card__description">
+                        @d('why_profitably_text1') <span class="typo-bold">@d('why_profitably_text2')</span>@d('why_profitably_text3')
+                    </div>
+                </div>
+                <div class="square-card square-card_icon_protect">
+                    <div class="square-card__bg"></div>
+                    <div class="square-card__title">@d('why_trusty_header')</div>
+                    <div class="square-card__description">
+                        @d('why_trusty_text1') <span class="typo-bold">@d('why_trusty_text2')</span>
+                    </div>
+                </div>
+                <div class="square-card square-card_icon_lorry">
+                    <div class="square-card__bg"></div>
+                    <div class="square-card__title">@d('why_available_header')</div>
+                    <div class="square-card__description">
+                        @d('why_available_text1') <span class="typo-bold">@d('why_available_text2')</span>
+                    </div>
+                </div>
+                <div class="square-card square-card_icon_parcels">
+                    <div class="square-card__bg"></div>
+                    <div class="square-card__title">@d('why_comfortably_header')</div>
+                    <div class="square-card__description">
+                        @d('why_comfortably_text1') <span class="typo-bold">@d('why_comfortably_text2') </span>@d('why_comfortably_text3') <span class="typo-bold"> @d('why_comfortably_text4')</span>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="square-card square-card_icon_settings">
-            <div class="square-card__bg"></div>
-            <div class="square-card__title">@d('why_profitably_header')</div>
-            <div class="square-card__description">
-                @d('why_profitably_text1') <span class="typo-bold">@d('why_profitably_text2')</span>@d('why_profitably_text3')
-            </div>
-        </div>
-        <div class="square-card square-card_icon_protect">
-            <div class="square-card__bg"></div>
-            <div class="square-card__title">@d('why_trusty_header')</div>
-            <div class="square-card__description">
-                @d('why_trusty_text1') <span class="typo-bold">@d('why_trusty_text2')</span>
-            </div>
-        </div>
-        <div class="square-card square-card_icon_lorry">
-            <div class="square-card__bg"></div>
-            <div class="square-card__title">@d('why_available_header')</div>
-            <div class="square-card__description">
-                @d('why_available_text1') <span class="typo-bold">@d('why_available_text2')</span>
-            </div>
-        </div>
-        <div class="square-card square-card_icon_parcels">
-            <div class="square-card__bg"></div>
-            <div class="square-card__title">@d('why_comfortably_header')</div>
-            <div class="square-card__description">
-                @d('why_comfortably_text1') <span class="typo-bold">@d('why_comfortably_text2') </span>@d('why_comfortably_text3') <span class="typo-bold"> @d('why_comfortably_text4')</span>
-            </div>
-        </div>
-    </div>
 </div>
 
         @include('site.universal2.calculator_block')
