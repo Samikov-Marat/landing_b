@@ -103,8 +103,7 @@
                     @d('personal_12')<br/>
                     @d('personal_13')
                 </div>
-                @d('personal_14')
-                <a href="#" class="office-page-mobile-menu__phone">@d('personal_14')</a>
+                <a href="tel:{{ $localOfficePhone->phone_value }}" class="office-page-mobile-menu__phone">{{ $localOfficePhone->phone_text }}</a>
                 <div class="office-page-mobile-menu__email-container">
                     <a href="#" class="office-page-mobile-menu__email">@d('personal_15')</a>
                 </div>
