@@ -119,7 +119,7 @@
                     @endforeach
                 @endforeach
 
-                <a href="#" class="office-page-mobile-menu__contact">@d('personal_16')</a>
+                <a href="{{ route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => '/']) . '#feedback' }}" class="office-page-mobile-menu__contact">@d('personal_16')</a>
             </div>
         </div>
     </header>
