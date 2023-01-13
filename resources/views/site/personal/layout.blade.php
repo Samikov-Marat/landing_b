@@ -103,7 +103,14 @@
                     @d('personal_12')<br/>
                     @d('personal_13')
                 </div>
-                <a href="tel:{{ $localOfficePhone->phone_value }}" class="office-page-mobile-menu__phone">{{ $localOfficePhone->phone_text }}</a>
+
+                @foreach($site->localOffices as $localOffice)
+                    @foreach($localOffice->localOfficePhones as $localOfficePhone)
+                        <a href="tel:{{ $localOfficePhone->phone_value }}" class="office-page-mobile-menu__phone">{{ $localOfficePhone->phone_text }}</a>
+                        @break(2)
+                    @endforeach
+                @endforeach
+
                 <div class="office-page-mobile-menu__email-container">
                     <a href="#" class="office-page-mobile-menu__email">@d('personal_15')</a>
                 </div>
