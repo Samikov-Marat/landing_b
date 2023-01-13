@@ -84,7 +84,15 @@
         <div class="header-mobile-open-wrapper">
             <div class="header-mobile-open office-page-mobile-menu js-menu-container transition_slide-right ">
                 <div class="header-mobile-open__close js-menu-close-button"></div>
-                <div class="header__language-selector office-page-mobile-menu__lang">@d('personal_9')</div>
+                <div class="header__language-selector office-page-mobile-menu__lang">
+                    @foreach($site->enabledLanguages as $languageItem)
+                        @if($language->id != $languageItem->id)
+                            <div><a class="header__language-selector"
+                                    href="{!! route('site.show_page', ['languageUrl' => $languageItem->uri, 'pageUrl' => $page->url]) !!}">{{ \Str::upper($languageItem->shortname) }}</a>
+                            </div>
+                        @endif
+                    @endforeach
+                </div>
                 <div class="office-page-mobile-menu__buttons">
                     <a href="#calculator"
                        class="office-page-button office-page-button_type_calculate office-page-mobile-menu__button">@d('personal_10')</a>
@@ -95,10 +103,22 @@
                     @d('personal_12')<br/>
                     @d('personal_13')
                 </div>
-                <a href="#" class="office-page-mobile-menu__phone">@d('personal_14')</a>
-                <div class="office-page-mobile-menu__email-container">
-                    <a href="#" class="office-page-mobile-menu__email">@d('personal_15')</a>
-                </div>
+
+                @foreach($site->localOffices as $localOffice)
+                    @foreach($localOffice->localOfficePhones as $localOfficePhone)
+                        <a href="tel:{{ $localOfficePhone->phone_value }}" class="office-page-mobile-menu__phone">{{ $localOfficePhone->phone_text }}</a>
+                        @break(2)
+                    @endforeach
+                @endforeach
+                @foreach($site->localOffices as $localOffice)
+                    @foreach($localOffice->localOfficeEmails as $localOfficeEmail)
+                        <div class="office-page-mobile-menu__email-container">
+                            <a href="mailto:{{ $localOfficeEmail->email }}" class="office-page-mobile-menu__email">{{ $localOfficeEmail->email }}</a>
+                        </div>
+                        @break(2)
+                    @endforeach
+                @endforeach
+
                 <a href="#" class="office-page-mobile-menu__contact">@d('personal_16')</a>
             </div>
         </div>
@@ -144,7 +164,12 @@
 
                     @foreach($site->localOffices as $localOffice)
                         @foreach($localOffice->localOfficePhones as $localOfficePhone)
-                            <div class="footer-new__phone">{{$localOfficePhone->phone_text}}</div>
+                            <div class="footer-new__phone">
+                                <a class="footer__phone"
+                                   href="tel:{{ $localOfficePhone->phone_value }}">
+                                    {{ $localOfficePhone->phone_text }}
+                                </a>
+                            </div>
                         @endforeach
                         @foreach($localOffice->localOfficeEmails as $localOfficeEmail)
                             <a href="mailto:{{ $localOfficeEmail->email }}"

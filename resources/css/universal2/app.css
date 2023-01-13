@@ -4729,6 +4729,15 @@ body {
     background-image: url("img/fixed-support.svg");
     background-position: left 21px center; }
 
+.fixed-buttons_rightside {
+    right: auto;
+    left: 62px;
+    background-position: right 22px center; }
+  .fixed-buttons_rightside > A {
+    background-position: right 22px center;
+    padding: 18px 54px 18px 25px;
+  }
+
 @media (min-width: 481px) and (max-width: 1199px) {
   .fixed-buttons {
     display: none; } }
