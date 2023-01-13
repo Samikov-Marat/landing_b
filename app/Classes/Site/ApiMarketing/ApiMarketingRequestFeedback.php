@@ -12,6 +12,7 @@ class ApiMarketingRequestFeedback extends ApiMarketingRequestBase
             'email' => $this->input('email'),
             'project_name' => $this->domain,
             'message' =>
+                'URL: ' . $this->input('form_url') . PHP_EOL .
                 'Телефон: ' . $this->input('phone') . PHP_EOL .
                 'Со страницы: ' . $this->input('form_place') . PHP_EOL .
                 $this->input('message') . PHP_EOL .

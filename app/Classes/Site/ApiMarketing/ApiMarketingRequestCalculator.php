@@ -22,6 +22,7 @@ class ApiMarketingRequestCalculator extends ApiMarketingRequestBase
     function getMessage(): string
     {
         $simpleParametersKeys = [
+            'url',
             'from',
             'from_id',
             'to',

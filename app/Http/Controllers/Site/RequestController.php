@@ -25,6 +25,7 @@ use Exception;
 use GuzzleHttp\Client;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
@@ -45,7 +46,7 @@ class RequestController extends Controller
         return response()->noContent();
     }
 
-    public function feedback(Request $request)
+    public function feedback(Request $request): Response
     {
         try {
             FormRequestRepository::getInstance('feedback')
@@ -93,7 +94,7 @@ class RequestController extends Controller
         return response()->noContent();
     }
 
-    public function order(Request $request)
+    public function order(Request $request): Response
     {
         try {
             FormRequestRepository::getInstance('order')
