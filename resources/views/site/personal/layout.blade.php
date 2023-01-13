@@ -110,10 +110,15 @@
                         @break(2)
                     @endforeach
                 @endforeach
+                @foreach($site->localOffices as $localOffice)
+                    @foreach($localOffice->localOfficeEmails as $localOfficeEmail)
+                        <div class="office-page-mobile-menu__email-container">
+                            <a href="mailto:{{ $localOfficeEmail->email }}" class="office-page-mobile-menu__email">{{ $localOfficeEmail->email }}</a>
+                        </div>
+                        @break(2)
+                    @endforeach
+                @endforeach
 
-                <div class="office-page-mobile-menu__email-container">
-                    <a href="#" class="office-page-mobile-menu__email">@d('personal_15')</a>
-                </div>
                 <a href="#" class="office-page-mobile-menu__contact">@d('personal_16')</a>
             </div>
         </div>
