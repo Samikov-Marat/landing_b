@@ -46,6 +46,7 @@
                     <textarea name="question" class="form-field__input support-focus-reset-error" placeholder="{{ $dictionary['support_custom_question'] }}"></textarea>
                 </div>
             </div>
+            <input type="hidden" name="url" value="{{ $url->full() }}">
             <div class="form-field">
                 <input type="submit" value="{{ $dictionary['support_send'] }}" class="primary-button primary-button_submit" />
             </div>

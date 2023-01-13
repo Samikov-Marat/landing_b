@@ -18,7 +18,10 @@ class JiraSender
             'project' => ['id' => 12300],
             'issuetype' => ['id' => 15807],
             'priority' => ['name' => 'Высокий'],
-            'summary' => trim($request->input('summary', 'Не указано')),
+            'summary' => trim($request->input('summary', 'Не указано')) .
+                PHP_EOL .
+                PHP_EOL .
+                'Отправлено со страницы ' . trim($request->input('url', 'Не указано')),
             'customfield_15747' => $request->input('name', 'Не указано'),
             'customfield_10043' => $request->input('invoice_number', 'Не указано'),
             'customfield_13724' => $request->input('email', 'Не указано'),
