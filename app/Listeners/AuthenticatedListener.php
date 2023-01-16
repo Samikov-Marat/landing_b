@@ -5,7 +5,7 @@ namespace App\Listeners;
 use App\Classes\UserPermissionsLoader;
 use Illuminate\Auth\Events\Authenticated;
 
-class UserLoadPermissions
+class AuthenticatedListener
 {
     /**
      * Create the event listener.

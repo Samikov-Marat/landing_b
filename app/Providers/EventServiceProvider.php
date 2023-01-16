@@ -9,7 +9,7 @@ use Illuminate\Auth\Events\Login;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use App\Listeners\UserLoadPermissions;
+use App\Listeners\AuthenticatedListener;
 use JeroenNoten\LaravelAdminLte\Events\BuildingMenu;
 
 
@@ -25,7 +25,7 @@ class EventServiceProvider extends ServiceProvider
             SendEmailVerificationNotification::class,
         ],
         Authenticated::class => [
-            UserLoadPermissions::class,
+            AuthenticatedListener::class,
         ],
         Login::class => [
             LoginListener::class,
