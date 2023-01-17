@@ -15,7 +15,6 @@ use Illuminate\Http\RedirectResponse;
 class YandexMetricaGoalController extends Controller
 {
     const PER_PAGE = 10;
-    private $usedCounters = [];
 
     public function index()
     {
@@ -121,10 +120,12 @@ class YandexMetricaGoalController extends Controller
         if (!$request->has('counter_id')) {
             return response()->redirectToRoute('admin.yandex_metrica_goals.index');
         }
-        $token = YandexToken::query()->select(['id', 'access_token', 'refresh_token', 'login', 'received_at'])
+        $token = YandexToken::query()
+            ->select(['id', 'access_token', 'refresh_token', 'login', 'received_at'])
             ->findOrFail($request->input('token_id'));
 
-        $this->usedCounters = YandexMetricaCountersRepository::getInstance($token->access_token, true)
+        $usedCounters = YandexMetricaCountersRepository::getInstance($token->access_token,
+            true)
             ->getCounters();
 
         $goals = YandexMetricaGoal::query()->select(['id', 'name', 'description'])
@@ -133,7 +134,7 @@ class YandexMetricaGoalController extends Controller
 
         foreach ($request->input('counter_id') as $counterId) {
             foreach ($goals as $goal) {
-                if ($this->isDuplicateGoal($counterId, $goal)) {
+                if ($this->isDuplicateGoal($usedCounters, $counterId, $goal)) {
                     continue;
                 }
                 YandexMetricaGoalRepository::getInstance($token->access_token)
@@ -145,9 +146,10 @@ class YandexMetricaGoalController extends Controller
         return response()->redirectToRoute('admin.yandex_metrica_goals.index');
     }
 
-    private function isDuplicateGoal($counterId, $goal): bool
+    private function isDuplicateGoal(array $usedCounters, int $counterId, YandexMetricaGoal $goal): bool
     {
-        $counter = collect($this->usedCounters)->first(function ($value) use ($counterId) {
+
+        $counter = collect($usedCounters)->first(function ($value) use ($counterId) {
             return $value['id'] == $counterId;
         });
 
@@ -155,7 +157,7 @@ class YandexMetricaGoalController extends Controller
             return false;
         }
 
-        return !!collect($counter['goals'])->first(function ($value) use ($goal) {
+        return (bool) collect($counter['goals'])->first(function ($value) use ($goal) {
             return $value['name'] == $goal->description;
         });
     }
