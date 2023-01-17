@@ -148,12 +148,9 @@ class YandexMetricaGoalController extends Controller
 
     private function isDuplicateGoal(array $usedCounters, int $counterId, YandexMetricaGoal $goal): bool
     {
+        $counter = collect($usedCounters)->firstWhere('id', $counterId);
 
-        $counter = collect($usedCounters)->first(function ($value) use ($counterId) {
-            return $value['id'] == $counterId;
-        });
-
-        if (!$counter) {
+        if (!$counter || !array_key_exists('goals', $counter)) {
             return false;
         }
 
