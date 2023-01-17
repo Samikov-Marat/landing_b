@@ -154,9 +154,7 @@ class YandexMetricaGoalController extends Controller
             return false;
         }
 
-        return (bool) collect($counter['goals'])->first(function ($value) use ($goal) {
-            return $value['name'] == $goal->description;
-        });
+        return (bool) collect($counter['goals'])->firstWhere('name', $goal->description);
     }
 
 }
