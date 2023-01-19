@@ -22,6 +22,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response as HttpFoundationResponse;
+use App\Site;
 
 class PageController extends Controller
 {
@@ -58,6 +59,12 @@ class PageController extends Controller
         }
     }
 
+    private function hasLocalStylesheet (Site $site, string $landURI): bool
+    {
+        return $site->images()
+            ->where('url', '/' . $landURI . '.css')
+            ->exists();
+    }
 
     public function showPage(Request $request, $languageUrl, $pageUrl = '/', $category = null, $question = null)
     {
@@ -80,8 +87,6 @@ class PageController extends Controller
             $requestCleaner = new RequestCleaner($request);
             return response()->redirectToRoute('site.select_default_language', $requestCleaner->getCleared());
         }
-
-
         try {
             $page = $siteRepository->getCurrentPage($pageUrl);
         } catch (CurrentPageNotFound $e) {
@@ -129,6 +134,7 @@ class PageController extends Controller
             ->with('topOffices', $topOffices)
             ->with('countriesFrom', $countriesFrom)
             ->with('countriesTo', $countriesTo)
-            ->with('allowCookies', AllowCookie::getInstance($request)->isAllow());
+            ->with('allowCookies', AllowCookie::getInstance($request)->isAllow())
+            ->with('hasLocalStylesheet', $this->hasLocalStylesheet($siteRepository->getSite(), $languageShortname));
     }
 }
