@@ -76,7 +76,8 @@ class PageController extends Controller
             return response()->noContent(HttpFoundationResponse::HTTP_NOT_FOUND);
         }
 
-        $subdomain = new Subdomain($siteRepository->getSite(), $domain->getSubdomain());
+        $site = $siteRepository->getSite();
+        $subdomain = new Subdomain($site, $domain->getSubdomain());
 
         $languageShortname = Str::upper($languageUrl);
         if (!$siteRepository->containsLanguage($languageShortname)) {
@@ -106,7 +107,7 @@ class PageController extends Controller
 
         $customRouting = CustomRouting::getInstance($request);
 
-        $supportContainer = new SupportContainer($siteRepository->getSite(), $language, $category, $question);
+        $supportContainer = new SupportContainer($site, $language, $category, $question);
         if ($customRouting->isSupportPage()) {
             $supportContainer->prepare();
         }
@@ -135,6 +136,6 @@ class PageController extends Controller
             ->with('countriesFrom', $countriesFrom)
             ->with('countriesTo', $countriesTo)
             ->with('allowCookies', AllowCookie::getInstance($request)->isAllow())
-            ->with('hasLocalStylesheet', $this->hasLocalStylesheet($siteRepository->getSite(), $languageShortname));
+            ->with('hasLocalStylesheet', $this->hasLocalStylesheet($site, $languageShortname));
     }
 }
