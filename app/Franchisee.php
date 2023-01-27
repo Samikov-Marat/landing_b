@@ -11,4 +11,17 @@ class Franchisee extends Model
     {
         return $this->hasMany(LocalOffice::class, 'franchisee_id', 'id');
     }
+
+    public function users()
+    {
+        return $this->belongsToMany(
+            User::class,
+            FranchiseeUser::class,
+            'franchisee_id',
+            'user_id',
+            'id',
+            'id'
+        );
+    }
+
 }

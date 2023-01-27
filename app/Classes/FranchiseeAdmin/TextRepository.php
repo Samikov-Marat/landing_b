@@ -1,0 +1,66 @@
+<?php
+
+namespace App\Classes\FranchiseeAdmin;
+
+use App\Site;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
+
+
+class TextRepository
+{
+    private $site;
+
+    private $textTypeShortnames;
+
+    public function __construct(Site $site)
+    {
+        $this->site = $site;
+
+        $this->textTypeShortnames = [
+            'delivery_from',
+            'delivery_from_price',
+            'delivery_list',
+            'delivery_calculate',
+            'delivery_header',
+            'delivery_list',
+            'delivery_button',
+            'documents_onpagetext_1',
+            'documents_onpagetext_2',
+            'documents_onpagetext_3',
+            'documents_onpagetext_4',
+            'documents_onpagetext_5',
+            'documents_onpagetext_6',
+            'poster_header',
+            'poster_list',
+            'poster_button',
+        ];
+    }
+
+    public static function getInstance(Site $site): self
+    {
+        return new static($site);
+    }
+
+    public function getPages(): Collection
+    {
+        $textTypeShortnames = $this->textTypeShortnames;
+
+        $languageIds = $this->site->languages->pluck('id');
+
+        return $this->site->pages()->whereHas('textTypes', function (Builder $query) use ($textTypeShortnames) {
+            $query->whereIn('shortname', $textTypeShortnames);
+        })->with([
+                     'textTypes' => function ($query) use ($textTypeShortnames) {
+                         $query->whereIn('shortname', $textTypeShortnames);
+                     },
+                     'textTypes.texts' => function ($query) use ($languageIds) {
+                         $query->whereIn('language_id', $languageIds);
+                     },
+                     'textTypes.franchiseeTexts' => function ($query) use ($languageIds) {
+                         $query->whereIn('language_id', $languageIds);
+                     },
+                 ])
+            ->get();
+    }
+}

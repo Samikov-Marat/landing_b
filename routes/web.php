@@ -172,6 +172,16 @@ Route::prefix('admin')->middleware(
         Route::post('franchisees/delete', 'Admin\FranchiseeController@delete')
             ->name('admin.franchisees.delete');
 
+        Route::get('franchisee-admin/texts', 'FranchiseeAdmin\TextController@index')
+            ->name('admin.franchisee_admin.texts.index');
+        Route::get('franchisee-admin/texts/edit', 'FranchiseeAdmin\TextController@edit')
+            ->name('admin.franchisee_admin.texts.edit');
+        Route::post('franchisee-admin/texts/save', 'FranchiseeAdmin\TextController@save')
+            ->name('admin.franchisee_admin.texts.save');
+//        Route::post('franchisees/delete', 'Admin\FranchiseeController@delete')
+//            ->name('admin.franchisees.delete');
+
+
 
         Route::get('text-type', 'Admin\TextTypeController@index')
             ->name('admin.text_types.index');
@@ -239,6 +249,12 @@ Route::prefix('admin')->middleware(
             ->name('admin.users.save');
         Route::post('users/delete', 'Admin\UserController@delete')
             ->name('admin.users.delete');
+        Route::get('users/edit/{id}', 'Admin\UserController@edit')
+            ->name('admin.users.edit');
+        Route::get('users/reset-password-form/{id}', 'Admin\UserController@resetPasswordForm')
+            ->name('admin.users.reset_password_form');
+        Route::post('users/reset-password', 'Admin\UserController@resetPassword')
+            ->name('admin.users.reset_password');
         Route::get('users/edit-role-list', 'Admin\UserController@editRoleList')
             ->name('admin.users.edit_role_list');
         Route::post('users/save-role-list', 'Admin\UserController@saveRoleList')

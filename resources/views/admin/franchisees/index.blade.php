@@ -25,6 +25,9 @@
                     Описание
                 </th>
                 <th>
+                    Пользователи-редакторы
+                </th>
+                <th>
 
                 </th>
             </tr>
@@ -38,6 +41,9 @@
                     </td>
                     <td>
                         {{ $franchisee->description }}
+                    </td>
+                    <td>
+                        {{ $franchisee->users_count }} шт.
                     </td>
 
                     <td class="text-nowrap">

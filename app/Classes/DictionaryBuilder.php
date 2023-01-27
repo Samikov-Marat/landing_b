@@ -22,7 +22,7 @@ class DictionaryBuilder
     {
         return $page->textTypes->mapWithKeys(
             function ($item) {
-                return [$item->shortname => $item->texts->first()->value ?? null];
+                return [$item->shortname => $item->franchiseeTexts->first()->value ?? $item->texts->first()->value ?? null];
             }
         )->toArray();
     }

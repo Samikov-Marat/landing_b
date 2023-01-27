@@ -28,6 +28,13 @@ class FragmentRepository
                         ->where('language_id', $language->id);
                 }
             ]
+        )->load(
+            [
+                'textTypes.franchiseeTexts' => function ($query) use ($language) {
+                    $query->select('id', 'text_type_id', 'value')
+                        ->where('language_id', $language->id);
+                }
+            ]
         );
     }
 

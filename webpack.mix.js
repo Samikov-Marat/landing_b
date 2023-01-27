@@ -77,4 +77,5 @@ mix.combine([
     "resources/js/admin_files/languages.js",
     "resources/js/admin_files/images.js",
     "resources/js/admin_files/statistics_sites.js",
+    "resources/js/admin_files/franchisees.js",
 ], 'public/admin_files/new_admin.js').version();
