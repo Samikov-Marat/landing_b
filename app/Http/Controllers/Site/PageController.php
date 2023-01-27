@@ -22,6 +22,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response as HttpFoundationResponse;
+use Illuminate\Support\Facades\Cookie;
 
 class PageController extends Controller
 {
@@ -129,6 +130,21 @@ class PageController extends Controller
             ->with('topOffices', $topOffices)
             ->with('countriesFrom', $countriesFrom)
             ->with('countriesTo', $countriesTo)
+            ->with('showFastAnswer', $this->isShowFastAnswer($request, $pageUrl))
             ->with('allowCookies', AllowCookie::getInstance($request)->isAllow());
+    }
+
+    private function isShowFastAnswer (Request $request, string $pageUrl): bool
+    {
+        if (!AllowCookie::getInstance($request)->isAllow()) {
+            return true;
+        }
+
+        if ($pageUrl == 'contacts') {
+            Cookie::queue('fastAnswer', true);
+            return false;
+        }
+
+        return !$request->cookie('fastAnswer', false);
     }
 }
