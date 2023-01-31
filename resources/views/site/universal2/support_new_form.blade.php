@@ -48,7 +48,7 @@
             </div>
             <input type="hidden" name="url" value="{{ $url->full() }}">
             <div class="form-field">
-                <input type="submit" value="{{ $dictionary['support_send'] }}" class="primary-button primary-button_submit" />
+                <input type="submit" value="{{ $dictionary['support_send'] }}" class="primary-button primary-button_submit gtm-click" data-click="new_question_support"/>
             </div>
         </form>
 
