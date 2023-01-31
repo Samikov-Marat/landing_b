@@ -28,6 +28,9 @@
                     email
                 </th>
                 <th>
+                    Франчайзи
+                </th>
+                <th>
                     Статус
                 </th>
                 <th>
@@ -44,6 +47,13 @@
                     </td>
                     <td>
                         {{ $user->email }}
+                    </td>
+                    <td>
+                        @if($user->franchisees->count())
+                            @foreach($user->franchisees as $franchisee)
+                                <div>{{ $franchisee->name }}</div>
+                            @endforeach
+                        @endif
                     </td>
                     <td>
                         @if($user->disabled)

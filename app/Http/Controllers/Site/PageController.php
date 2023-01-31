@@ -81,7 +81,6 @@ class PageController extends Controller
             return response()->redirectToRoute('site.select_default_language', $requestCleaner->getCleared());
         }
 
-
         try {
             $page = $siteRepository->getCurrentPage($pageUrl);
         } catch (CurrentPageNotFound $e) {
@@ -90,7 +89,8 @@ class PageController extends Controller
         $fragments = $siteRepository->getLayoutFragments();
         $fragments->push($page);
         $fragmentRepository = new FragmentRepository($fragments);
-        $dictionary = DictionaryBuilder::get($fragmentRepository->getWithTexts($language));
+        $dictionaryBuilder = new DictionaryBuilder($subdomain->hasSubdomain());
+        $dictionary = $dictionaryBuilder->get($fragmentRepository->forSubdomain($subdomain)->getWithTexts($language));
         $siteRepository->loadLocalOffices($language, $subdomain);
         $siteRepository->loadNewsArticles($language);
         $siteRepository->loadOurWorkers($language);

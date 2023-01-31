@@ -21,7 +21,7 @@ class UserController extends Controller
         $users = User::select('id', 'name', 'email', 'disabled')
             ->orderBy('name')
             ->orderBy('id')
-            ->with('roles')
+            ->with('roles', 'franchisees')
             ->get();
 
         return view('admin.users.index')
@@ -86,6 +86,8 @@ class UserController extends Controller
     public function delete(Request $request)
     {
         $user = User::find($request->input('id'));
+        $user->roles()->detach();
+        $user->franchisees()->detach();
         $user->delete();
         return response()->redirectToRoute('admin.users.index');
     }

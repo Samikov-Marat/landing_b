@@ -45,7 +45,7 @@ class FranchiseeController extends Controller
         $franchisee->description = $request->input('description');
         $franchisee->save();
 
-        if($request->input('add_user', 0)){
+        if ($request->input('add_user', 0)) {
             $notification = new UserPasswordNotification();
             $user = new User();
             $password = UserPasswordGenerator::getPassword();
@@ -66,6 +66,8 @@ class FranchiseeController extends Controller
     public function delete(Request $request)
     {
         $franchisee = Franchisee::find($request->input('id'));
+        $franchisee->users()->detach();
+        $franchisee->localOffices()->update(['franchisee_id' => null]);
         $franchisee->delete();
         return response()->redirectToRoute('admin.franchisees.index');
     }
