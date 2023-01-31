@@ -24,7 +24,6 @@ Route::prefix('admin')->middleware(
     function () {
         Route::get('/', 'Admin\IndexController@index')
             ->name('admin.index');
-        Route::get('500', function (){abort(500);});
         Route::get('sites', 'Admin\SiteController@index')
             ->name('admin.sites.index');
         Route::get('sites/add', 'Admin\SiteController@edit')
@@ -446,7 +445,7 @@ Route::middleware('debugbar.disable')->group(function () {
         ->where('imageUrl', '.*')
         ->name('request.images');
 });
-
+Route::get('500', function (){abort(500);});
 Route::get('/{languageUrl}/{pageUrl?}/{category?}/{question?}', 'Site\PageController@showPage')
     ->middleware(['clear.get', 'save.utm.to.cookies', 'antifraud', 'save.statistics',])
     ->where('category', '\d+')
