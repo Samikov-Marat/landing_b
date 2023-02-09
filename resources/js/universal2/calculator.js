@@ -222,14 +222,8 @@ $(function () {
     function showTariffs(tariffs) {
         let $template = $('.js-calculator-tariff-template').find('.calculator__tariff-item');
         let $list = $('.calculator__tariff-list');
-        const tariffsNotFoundDiv = $('.calculator__tariff-notfound');
-
-        tariffsNotFoundDiv.hide();
         $list.empty();
 
-        if (!tariffs.length) {
-            tariffsNotFoundDiv.show();
-        }
         $.each(tariffs, function (index, tariff) {
             if (tariff !== null) {
                 let $tariffDiv = $template.clone();
@@ -247,6 +241,12 @@ $(function () {
         });
 
         $('.calculator__content_step1').hide();
+
+        if (!tariffs.length) {
+            SelectTariff(false, $list);
+            return;
+        }
+
         $('.calculator__content_step2')
             .removeClass('calculator__content_loading')
             .show();
@@ -266,27 +266,31 @@ $(function () {
     });
 
 
-    function SelectTariff(option) {
-        $('.calculator__content').has(option).addClass('calculator__content_loading');
-        $('.calculator__content_step2').hide();
+    function SelectTariff(haveOption, optionOrList) {
+        $('.calculator__content').has(optionOrList).addClass('calculator__content_loading');
 
-        $('.js-calculator-header-price').html('' + $(option).data('price') + ' ' + calculator.getUsedCurrencyName());
+        if(haveOption) {
+            $('.calculator__content_step2').hide();
+            $('.js-calculator-header-price').html('' + $(optionOrList).data('price') + ' ' + calculator.getUsedCurrencyName());
+        }
+        else{
+            $('.calculator__content_step1').hide();
+            $('.js-calculator-header-price').html('');
+        }
 
         $('.calculator__content_step3')
             .removeClass('calculator__content_loading')
             .show();
         calculator.setStep(3);
-
     }
 
-
     $('.calculator__content_step2').on('change', '.calculator__tariff-item-input', function () {
-        SelectTariff(this);
+        SelectTariff(true, this);
         return false;
     });
 
     $('.calculator__content_step2').on('click', '.calculator__tariff-item-input:checked', function () {
-        SelectTariff(this);
+        SelectTariff(true, this);
     });
 
 

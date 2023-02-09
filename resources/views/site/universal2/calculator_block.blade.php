@@ -118,9 +118,6 @@
                 </div>
 
                 <div class="calculator__tariff-list"></div>
-                <div class="calculator__tariff-notfound">
-                    @d('calculator_tariff_notfound')
-                </div>
             </div>
             <div class="calculator__content calculator__content_step3" style="display: none;">
                 <div class="calculator__step-container">
