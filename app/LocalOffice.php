@@ -32,4 +32,11 @@ class LocalOffice extends Model
     {
         return $this->belongsTo(Franchisee::class);
     }
+
+    public function site(): BelongsTo
+    {
+
+        return $this->belongsTo(Site::class);
+    }
+
 }

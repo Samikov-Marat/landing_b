@@ -24,4 +24,9 @@ class Franchisee extends Model
         );
     }
 
+    public function franchiseeNewsArticles()
+    {
+        return $this->hasMany(FranchiseeNewsArticle::class, 'franchisee_id', 'id');
+    }
+
 }

@@ -78,6 +78,12 @@ return [
             'url' => '/storage/news_images',
             'visibility' => 'public',
         ],
+        'franchisee_news_images' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/franchisee_news_images'),
+            'url' => '/storage/franchisee_news_images',
+            'visibility' => 'public',
+        ],
 
         'our_worker_photos' => [
             'driver' => 'local',

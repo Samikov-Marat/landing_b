@@ -40,6 +40,7 @@ class MenuBuilder
             ['route' => 'admin.roles.index', 'text' => 'Роли', 'icon' => 'far fa-address-card',],
             ['route' => 'admin.users.index', 'text' => 'Пользователи', 'icon' => 'fas fa-user',],
             ['route' => 'admin.franchisee_admin.texts.index', 'text' => 'Тексты', 'icon' => 'far fa-file',],
+            ['route' => 'admin.franchisee_admin.news_articles.index', 'text' => 'Новости', 'icon' => 'fas fa-newspaper',],
         ];
         $this->routeRoots = [
             'admin.languages.index' => 'admin.sites.index',

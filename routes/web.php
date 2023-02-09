@@ -181,6 +181,17 @@ Route::prefix('admin')->middleware(
 //        Route::post('franchisees/delete', 'Admin\FranchiseeController@delete')
 //            ->name('admin.franchisees.delete');
 
+        Route::get('franchisee-admin/news-articles', 'FranchiseeAdmin\NewsArticleController@index')
+            ->name('admin.franchisee_admin.news_articles.index');
+        Route::get('franchisee-admin/news-articles/add', 'FranchiseeAdmin\NewsArticleController@edit')
+            ->name('admin.franchisee_admin.news_articles.add');
+        Route::get('franchisee-admin/news-articles/edit/{id}', 'FranchiseeAdmin\NewsArticleController@edit')
+            ->name('admin.franchisee_admin.news_articles.edit');
+        Route::post('franchisee-admin/news-articles/save', 'FranchiseeAdmin\NewsArticleController@save')
+            ->name('admin.franchisee_admin.news_articles.save')
+            ->withoutMiddleware(TrimStrings::class);
+        Route::post('franchisee-admin/news-articles/delete', 'FranchiseeAdmin\NewsArticleController@delete')
+            ->name('admin.franchisee_admin.news_articles.delete');
 
 
         Route::get('text-type', 'Admin\TextTypeController@index')
