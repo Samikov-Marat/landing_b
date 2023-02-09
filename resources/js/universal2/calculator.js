@@ -222,7 +222,14 @@ $(function () {
     function showTariffs(tariffs) {
         let $template = $('.js-calculator-tariff-template').find('.calculator__tariff-item');
         let $list = $('.calculator__tariff-list');
+        const tariffsNotFoundDiv = $('.calculator__tariff-notfound');
+
+        tariffsNotFoundDiv.hide();
         $list.empty();
+
+        if (!tariffs.length) {
+            tariffsNotFoundDiv.show();
+        }
         $.each(tariffs, function (index, tariff) {
             if (tariff !== null) {
                 let $tariffDiv = $template.clone();
