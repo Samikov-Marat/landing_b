@@ -70,6 +70,14 @@ class TextRepository
                     }
                 ]
             )
+            ->with(
+                [
+                    'supportCategories' => function ($query) {
+                        $query->select('id', 'site_id')
+                            ->orderBy('sort');
+                    }
+                ]
+            )
             ->find($site_id);
     }
 }
