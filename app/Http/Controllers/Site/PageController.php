@@ -6,6 +6,7 @@ use App\Classes\DictionaryBuilder;
 use App\Classes\Domain;
 use App\Classes\FragmentRepository;
 use App\Classes\LanguageDetector;
+use App\Classes\LocalStylesheet;
 use App\Classes\Site\AllowCookie;
 use App\Classes\Site\CountryRepository;
 use App\Classes\Site\CustomRouting;
@@ -136,6 +137,6 @@ class PageController extends Controller
             ->with('countriesFrom', $countriesFrom)
             ->with('countriesTo', $countriesTo)
             ->with('allowCookies', AllowCookie::getInstance($request)->isAllow())
-            ->with('hasLocalStylesheet', $this->hasLocalStylesheet($site, $languageShortname));
+            ->with('hasLocalStylesheet', LocalStylesheet::hasLocalStylesheet($site, $languageShortname));
     }
 }
