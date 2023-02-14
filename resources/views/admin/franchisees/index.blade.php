@@ -43,11 +43,14 @@
                         {{ $franchisee->description }}
                     </td>
                     <td>
-                        {{ $franchisee->users_count }} шт.
+                        @foreach($franchisee->users as $user)
+                            <div>{{ $user->email }} {{ $user->name }}</div>
+                        @endforeach
                     </td>
 
                     <td class="text-nowrap">
                         <a href="{!! route('admin.franchisees.edit', ['id' => $franchisee->id]) !!}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i> Редактировать</a>
+                        <a href="{!! route('admin.franchisees.add_user', ['franchisee_id' => $franchisee->id]) !!}" class="btn btn-primary btn-sm"><i class="fas fa-user"></i> Добавить сотрудника-редактора</a>
                         <button type="button" data-text="Удалить {{ $franchisee->name }}?"
                                 data-action="{!! route('admin.franchisees.delete') !!}" data-id="{{ $franchisee->id }}"
                                 class="btn btn-danger btn-sm js-delete-confirm"><i class="fas fa-trash"></i> Удалить

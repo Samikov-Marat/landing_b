@@ -171,6 +171,12 @@ Route::prefix('admin')->middleware(
             ->name('admin.franchisees.save');
         Route::post('franchisees/delete', 'Admin\FranchiseeController@delete')
             ->name('admin.franchisees.delete');
+        Route::get('franchisees/add-user', 'Admin\FranchiseeController@addUser')
+            ->name('admin.franchisees.add_user');
+        Route::post('franchisees/save-user', 'Admin\FranchiseeController@saveUser')
+            ->name('admin.franchisees.save_user');
+
+
 
         Route::get('franchisee-admin/texts', 'FranchiseeAdmin\TextController@index')
             ->name('admin.franchisee_admin.texts.index');

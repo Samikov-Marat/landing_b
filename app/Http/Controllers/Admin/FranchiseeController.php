@@ -16,7 +16,7 @@ class FranchiseeController extends Controller
     {
         $franchisees = Franchisee::select(['id', 'name', 'description',])
             ->orderBy('name')
-            ->withCount('users')
+            ->with('users')
             ->get();
         return view('admin.franchisees.index')
             ->with('franchisees', $franchisees);
@@ -72,5 +72,33 @@ class FranchiseeController extends Controller
         return response()->redirectToRoute('admin.franchisees.index');
     }
 
+
+    public function addUser(Request $request)
+    {
+        $franchisee = Franchisee::find($request->input('franchisee_id'));
+
+        return view('admin.franchisees.add_user_form')
+            ->with('franchisee', $franchisee);
+    }
+
+
+    public function saveUser(Request $request)
+    {
+        $franchisee = Franchisee::find($request->input('franchisee_id'));
+
+        $notification = new UserPasswordNotification();
+        $user = new User();
+        $password = UserPasswordGenerator::getPassword();
+        $notification->setPassword($password);
+        $user->password = Hash::make($password);
+        $user->name = $request->input('user_name');
+        $user->email = $request->input('user_email');
+        $user->disabled = 0;
+        $user->save();
+        $franchisee->users()->attach($user->id);
+        $notification->sendTo($user);
+
+        return response()->redirectToRoute('admin.franchisees.index');
+    }
 
 }
