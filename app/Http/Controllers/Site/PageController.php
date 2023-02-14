@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Site;
 
 use App\Classes\DictionaryBuilder;
 use App\Classes\Domain;
+use App\Classes\FastAnswer;
 use App\Classes\FragmentRepository;
 use App\Classes\LanguageDetector;
 use App\Classes\Site\AllowCookie;
@@ -130,21 +131,7 @@ class PageController extends Controller
             ->with('topOffices', $topOffices)
             ->with('countriesFrom', $countriesFrom)
             ->with('countriesTo', $countriesTo)
-            ->with('showFastAnswer', $this->isShowFastAnswer($request, $pageUrl))
+            ->with('showFastAnswer', FastAnswer::setShowFastAnswer($request, $pageUrl))
             ->with('allowCookies', AllowCookie::getInstance($request)->isAllow());
-    }
-
-    private function isShowFastAnswer (Request $request, string $pageUrl): bool
-    {
-        if (!AllowCookie::getInstance($request)->isAllow()) {
-            return true;
-        }
-
-        if ($pageUrl == 'contacts') {
-            Cookie::queue('fastAnswer', true);
-            return false;
-        }
-
-        return !$request->cookie('fastAnswer', false);
     }
 }
