@@ -16,6 +16,8 @@ class TextCsv
     const MESSAGE_2 = 'Первый столбец менять нельзя';
     const PAGE_PREFIX = 'страница ';
     const PREFIX_OFFICE = 'офис ';
+    const PREFIX_SUPPORT_CATEGORY = 'категория ';
+    const PREFIX_SUPPORT_QUESTION = 'вопрос ';
     const PREFIX_NEWS_ARTICLE = 'новость ';
 
 
@@ -47,6 +49,16 @@ class TextCsv
     private static function getOfficePrefix($page)
     {
         return static::PREFIX_OFFICE . $page->code;
+    }
+
+    private static function getSupportCategoryPrefix($category)
+    {
+        return static::PREFIX_SUPPORT_CATEGORY . $category->id;
+    }
+
+    private static function getSupportQuestionPrefix($question)
+    {
+        return static::PREFIX_SUPPORT_QUESTION . $question->id;
     }
 
     private static function getNewsArticlePrefix($newsArticle)
@@ -102,6 +114,35 @@ class TextCsv
                 $this->put($line);
             }
         }
+        foreach ($site->supportCategories as $category) {
+            $categoryHeader = [static::getSupportCategoryPrefix($category),];
+            foreach ($site->languages as $language) {
+                $categoryHeader[] = '';
+            }
+            $this->put($categoryHeader);
+
+            $textsByLanguage = $category->supportCategoryTexts->keyBy('language_id');
+            foreach (['name',] as $attribute) {
+                $line = $this->getSupportCategoiesTextAttribute($site, $category, $textsByLanguage, $attribute);
+                $this->put($line);
+            }
+        }
+
+        foreach ($site->supportCategories as $category) {
+            foreach ($category->supportQuestions as $question){
+                $questionHeader = [static::getSupportQuestionPrefix($question),];
+                foreach ($site->languages as $language) {
+                    $questionHeader[] = '';
+                }
+                $this->put($questionHeader);
+
+                $textsByLanguage = $question->supportQuestionTexts->keyBy('language_id');
+                foreach (['question', 'answer',] as $attribute) {
+                    $line = $this->getSupportQuestionTextAttribute($site, $question, $textsByLanguage, $attribute);
+                    $this->put($line);
+                }
+            }
+        }
 
         foreach ($site->newsArticles as $newsArticle) {
             $newsArticleHeader = static::getModuleHeaderLine(static::getNewsArticlePrefix($newsArticle), $site->languages);
@@ -127,6 +168,33 @@ class TextCsv
     public function getLocalOfficeTextAttribute($site, $office, $textsByLanguage, $attribute)
     {
         $superId = implode('.', ['office', $office->id, $attribute]);
+        $line = [$superId,];
+        foreach ($site->languages as $language) {
+            if ($textsByLanguage->has($language->id)) {
+                $line[] = $textsByLanguage->get($language->id)->getAttribute($attribute);
+            } else {
+                $line[] = '';
+            }
+        }
+        return $line;
+    }
+    public function getSupportCategoiesTextAttribute($site, $category, $textsByLanguage, $attribute)
+    {
+        $superId = implode('.', ['support_category', $category->id, $attribute]);
+        $line = [$superId,];
+        foreach ($site->languages as $language) {
+            if ($textsByLanguage->has($language->id)) {
+                $line[] = $textsByLanguage->get($language->id)->getAttribute($attribute);
+            } else {
+                $line[] = '';
+            }
+        }
+        return $line;
+    }
+
+    public function getSupportQuestionTextAttribute($site, $question, $textsByLanguage, $attribute)
+    {
+        $superId = implode('.', ['support_question', $question->id, $attribute]);
         $line = [$superId,];
         foreach ($site->languages as $language) {
             if ($textsByLanguage->has($language->id)) {
