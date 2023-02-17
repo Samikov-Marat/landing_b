@@ -1,6 +1,6 @@
 <li class="main-menu__item">
     @if (!empty($dictionary['menu_franchise_link']))
-        <a class="main-menu__link" href="{!! $dictionary['menu_franchise_link'] !!}" target="_blank">
+        <a class="main-menu__link" href="{{ $dictionary['menu_franchise_link'] }}" target="_blank">
             {{ $dictionary['menu_franchise'] }}
         </a>
     @else
