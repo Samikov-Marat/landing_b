@@ -10,7 +10,7 @@ use App\Project;
 use App\YandexMetricaGoal;
 use App\YandexToken;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Http\RedirectResponse;
 
 class YandexMetricaGoalController extends Controller
 {
@@ -108,26 +108,35 @@ class YandexMetricaGoalController extends Controller
 
         $counters = YandexMetricaCountersRepository::getInstance($token->access_token)
             ->getCounters();
+
         return view('admin.yandex_metrica_goals.yandex_form')
             ->with('token', $token)
             ->with('projects', $projects)
             ->with('counters', $counters);
     }
 
-    public function cloneGoalsToYandex(Request $request)
+    public function cloneGoalsToYandex(Request $request): RedirectResponse
     {
         if (!$request->has('counter_id')) {
             return response()->redirectToRoute('admin.yandex_metrica_goals.index');
         }
-        $token = YandexToken::select(['id', 'access_token', 'refresh_token', 'login', 'received_at'])
+        $token = YandexToken::query()
+            ->select(['id', 'access_token', 'refresh_token', 'login', 'received_at'])
             ->findOrFail($request->input('token_id'));
 
-        $goals = YandexMetricaGoal::select(['id', 'name', 'description'])
+        $usedCounters = YandexMetricaCountersRepository::getInstance($token->access_token,
+            true)
+            ->getCounters();
+
+        $goals = YandexMetricaGoal::query()->select(['id', 'name', 'description'])
             ->where('project_id', $request->input('project_id'))
             ->get();
 
         foreach ($request->input('counter_id') as $counterId) {
             foreach ($goals as $goal) {
+                if ($this->isDuplicateGoal($usedCounters, $counterId, $goal)) {
+                    continue;
+                }
                 YandexMetricaGoalRepository::getInstance($token->access_token)
                     ->setCounter($counterId)
                     ->create($goal);
@@ -135,6 +144,17 @@ class YandexMetricaGoalController extends Controller
         }
 
         return response()->redirectToRoute('admin.yandex_metrica_goals.index');
+    }
+
+    private function isDuplicateGoal(array $usedCounters, int $counterId, YandexMetricaGoal $goal): bool
+    {
+        $counter = collect($usedCounters)->firstWhere('id', $counterId);
+
+        if (!$counter || !array_key_exists('goals', $counter)) {
+            return false;
+        }
+
+        return (bool) collect($counter['goals'])->firstWhere('name', $goal->description);
     }
 
 }
