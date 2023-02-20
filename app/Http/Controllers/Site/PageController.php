@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Site;
 
 use App\Classes\DictionaryBuilder;
 use App\Classes\Domain;
+use App\Classes\FastAnswer;
 use App\Classes\FragmentRepository;
 use App\Classes\LanguageDetector;
 use App\Classes\Site\AllowCookie;
@@ -22,6 +23,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response as HttpFoundationResponse;
+use Illuminate\Support\Facades\Cookie;
 
 class PageController extends Controller
 {
@@ -129,6 +131,7 @@ class PageController extends Controller
             ->with('topOffices', $topOffices)
             ->with('countriesFrom', $countriesFrom)
             ->with('countriesTo', $countriesTo)
+            ->with('showFastAnswer', FastAnswer::setShowFastAnswer($request, $pageUrl))
             ->with('allowCookies', AllowCookie::getInstance($request)->isAllow());
     }
 }

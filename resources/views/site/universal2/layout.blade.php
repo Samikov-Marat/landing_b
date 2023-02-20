@@ -75,7 +75,7 @@
         @include('site.universal2.antifraud_block')
     @endif
 
-    @if(isset($dictionary['fast_answer_content']) && $pageUrl !== 'contacts')
+    @if($showFastAnswer && isset($dictionary['fast_answer_content']))
         @include('site.universal2.fast_answer')
     @endif
 
