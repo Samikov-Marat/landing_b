@@ -13,4 +13,9 @@ class FranchiseeNewsArticle extends Model
     public function franchiseeNewsArticleTexts(){
         return $this->hasMany('App\FranchiseeNewsArticleText', 'franchisee_news_article_id', 'id');
     }
+
+    public function franchisee(){
+        return $this->belongsTo(Franchisee::class);
+    }
+
 }

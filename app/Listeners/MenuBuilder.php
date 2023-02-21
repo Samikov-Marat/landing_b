@@ -39,9 +39,13 @@ class MenuBuilder
             ['route' => 'admin.permissions.index', 'text' => 'Разрешения', 'icon' => 'fas fa-map-signs',],
             ['route' => 'admin.roles.index', 'text' => 'Роли', 'icon' => 'far fa-address-card',],
             ['route' => 'admin.users.index', 'text' => 'Пользователи', 'icon' => 'fas fa-user',],
+        ];
+
+        $this->menuFranchisee =[
             ['route' => 'admin.franchisee_admin.texts.index', 'text' => 'Тексты', 'icon' => 'far fa-file',],
             ['route' => 'admin.franchisee_admin.news_articles.index', 'text' => 'Новости', 'icon' => 'fas fa-newspaper',],
         ];
+
         $this->routeRoots = [
             'admin.languages.index' => 'admin.sites.index',
             'admin.texts.index' => 'admin.sites.index',
@@ -61,6 +65,11 @@ class MenuBuilder
         $event->menu->add('Администрирование');
         foreach ($this->menu as $item) {
             if (Gate::allows($item['route'])) {
+                $event->menu->add($item);
+            }
+        }
+        foreach ($this->menuFranchisee as $item) {
+            if (Gate::allows('is_franchisee')) {
                 $event->menu->add($item);
             }
         }

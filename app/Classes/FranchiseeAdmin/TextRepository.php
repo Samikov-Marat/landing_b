@@ -3,6 +3,7 @@
 namespace App\Classes\FranchiseeAdmin;
 
 use App\Site;
+use App\TextType;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 
@@ -62,5 +63,30 @@ class TextRepository
                      },
                  ])
             ->get();
+    }
+
+
+    public function getTextType($textTypeId, $franchisee): TextType
+    {
+        $textTypeShortnames = $this->textTypeShortnames;
+
+        $languageIds = $this->site->languages->pluck('id');
+
+        return TextType::select('id', 'page_id', 'shortname', 'name', 'default_value')
+            ->with(
+                [
+                    'texts' => function ($query) use ($languageIds) {
+                        $query->whereIn('language_id', $languageIds);
+                    }
+                ]
+            )
+            ->with([
+                       'franchiseeTexts' => function ($query) use ($franchisee, $languageIds) {
+                           $query->where('franchisee_id', $franchisee->id)
+                               ->whereIn('language_id', $languageIds);;
+                       },
+                   ])
+            ->whereIn('shortname', $textTypeShortnames)
+            ->findOrFail($textTypeId);
     }
 }

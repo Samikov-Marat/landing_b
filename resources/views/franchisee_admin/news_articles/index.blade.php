@@ -64,10 +64,10 @@
                         @endforeach
                     </td>
                     <td class="text-nowrap">
-                        <a href="{!! route('admin.news_articles.edit', ['id' => $newsArticle->id]) !!}"
+                        <a href="{!! route('admin.franchisee_admin.news_articles.edit', ['id' => $newsArticle->id]) !!}"
                            class="btn btn-primary btn-sm"><i class="fas fa-edit"></i> Редактировать</a>
                         <button type="button" data-text="Удалить {{ $newsArticle->code }} сайта {{ $site->domain }}?"
-                                data-action="{!! route('admin.news_articles.delete') !!}" data-id="{{ $newsArticle->id }}"
+                                data-action="{!! route('admin.franchisee_admin.news_articles.delete') !!}" data-id="{{ $newsArticle->id }}"
                                 class="btn btn-danger btn-sm js-delete-confirm"><i class="fas fa-trash"></i> Удалить
                         </button>
                     </td>

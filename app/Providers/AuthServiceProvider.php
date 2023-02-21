@@ -37,5 +37,19 @@ class AuthServiceProvider extends ServiceProvider
                 }
             );
         }
+        Gate::define(
+            'is_franchisee',
+            function ($user) {
+                return $user->franchisees->isNotEmpty();
+            }
+        );
+        Gate::define(
+            'franchisee',
+            function ($user, $franchisee) {
+                return $user->franchisees->contains(function($userFranchisee, $key) use($franchisee){
+                    return $userFranchisee->is($franchisee) ;
+                });
+            }
+        );
     }
 }

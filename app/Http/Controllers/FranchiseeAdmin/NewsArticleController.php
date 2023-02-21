@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\FranchiseeAdmin;
 
+use App\Classes\FranchiseeAdmin\FranchiseeAccess;
 use App\Classes\FranchiseeAdmin\NewsArticleTextHelper;
 use App\Classes\FileUploader;
-use App\Classes\FranchiseeAdmin\NewsArticleRepository;
+use App\Classes\FranchiseeAdmin\FranchiseeNewsArticleRepository;
 use App\FranchiseeNewsArticle;
 use App\Http\Controllers\Controller;
 use App\Site;
-use App\User;
+
 use Illuminate\Http\Request;
 
 class NewsArticleController extends Controller
@@ -17,20 +18,16 @@ class NewsArticleController extends Controller
 
     public function index(Request $request)
     {
-        $user = User::select('id', 'name', 'email')
-            ->findOrFail(auth()->id());
+        $franchiseeAccess = new FranchiseeAccess();
+        $franchisee = $franchiseeAccess->getFranchisee();
 
-        $franchisee = NewsArticleRepository::getInstance()
-            ->withFranchiseeNewsArticles()
-            ->getFranchisee($user);
+        FranchiseeNewsArticleRepository::getInstance($franchisee)->load();
 
         $localOffice = $franchisee->localOffices()
             ->firstOrFail();
         $localOffice->load('site');
         $site = $localOffice->site;
-
-
-
+        $franchiseeAccess->checkSite($site);
 
         return view('franchisee_admin.news_articles.index')
             ->with('site', $site)
@@ -40,63 +37,23 @@ class NewsArticleController extends Controller
 
     public function edit(Request $request, $id = null)
     {
-        $user = User::select('id', 'name', 'email')
-            ->findOrFail(auth()->id());
-
-        $franchisee = $user->franchisees()->firstOrFail();
-
-        $localOffice = $franchisee->localOffices()
-            ->firstOrFail();
-
-
+        $franchiseeAccess = new FranchiseeAccess();
+        $franchisee = $franchiseeAccess->getFranchisee();
         if (isset($id)) {
-            $newsArticle = NewsArticle::select(
-                [
-                    'id',
-                    'franchisee_id',
-                    'language_id',
-                    'publication_date_text',
-                    'publication_date',
-                    'header',
-                    'note',
-                    'text',
-                    'preview',
-                    'image',
-                    'image2',
-                    'mobile',
-                    'mobile2',
-                ]
-            )
-                ->with([
-                           'newsArticleTexts' => function ($query) {
-                               $query->select(
-                                   [
-                                       'id',
-                                       'language_id',
-                                       'news_article_id',
-                                       'publication_date_text',
-                                       'header',
-                                       'note',
-                                       'text'
-                                   ]
-                               );
-                           },
-                       ])
-                ->find($id);
+            $newsArticle = FranchiseeNewsArticle::with(['franchiseeNewsArticleTexts',])
+                ->findOrFail($id)
+                ->load('franchisee');
+            $franchiseeAccess->checkAllow($newsArticle->franchisee);
         } else {
-            $newsArticle = null;
+            $newsArticle = new FranchiseeNewsArticle();
+            $newsArticle->franchisee_id = $franchisee->id;
         }
-        $user = User::select('id', 'name', 'email')
-            ->findOrFail(auth()->id());
-
-        $franchisee = NewsArticleRepository::getInstance()
-            ->withFranchiseeNewsArticles()
-            ->getFranchisee($user);
 
         $localOffice = $franchisee->localOffices()
             ->firstOrFail();
         $localOffice->load('site');
         $site = $localOffice->site;
+        $franchiseeAccess->checkSite($site);
 
         return view('franchisee_admin.news_articles.form')
             ->with('site', $site)
@@ -106,21 +63,18 @@ class NewsArticleController extends Controller
 
     public function save(Request $request)
     {
-        $user = User::select('id', 'name', 'email')
-            ->findOrFail(auth()->id());
-
-        $franchisee = $user->franchisees()->firstOrFail();
-
-        $localOffice = $franchisee->localOffices()
-            ->firstOrFail();
+        $franchiseeAccess = new FranchiseeAccess();
+        $franchisee = $franchiseeAccess->getFranchisee();
 
         $isEditMode = $request->has('id');
         if ($isEditMode) {
-            $franchiseeNewsArticle = FranchiseeNewsArticle::find($request->input('id'));
+            $franchiseeNewsArticle = FranchiseeNewsArticle::findOrFail($request->input('id'));
+            $franchiseeNewsArticle->load('franchisee');
+            $franchiseeAccess->checkAllow($franchiseeNewsArticle->franchisee);
         } else {
             $franchiseeNewsArticle = new FranchiseeNewsArticle();
+            $franchiseeNewsArticle->franchisee_id =$franchisee->id;
         }
-        $franchiseeNewsArticle->franchisee_id = $request->input('franchisee_id');
         $franchiseeNewsArticle->publication_date = $request->input('publication_date') .
             ' ' .
             $request->input('publication_date_time');
@@ -153,6 +107,9 @@ class NewsArticleController extends Controller
 
         $franchiseeNewsArticle->save();
 
+        $localOffice = $franchisee->localOffices()
+            ->firstOrFail();
+
         $site = Site::select('id', 'name', 'domain')
             ->with('languages')
             ->find($localOffice->site_id);
@@ -178,12 +135,11 @@ class NewsArticleController extends Controller
 
     public function delete(Request $request)
     {
-        $newsArticle = NewsArticle::select('id', 'site_id')
-            ->find($request->input('id'));
-        $site_id = $newsArticle->site_id;
+        $franchiseeAccess = new FranchiseeAccess();
+        $newsArticle = FranchiseeNewsArticle::find($request->input('id'));
+        $newsArticle->load('franchisee');
+        $franchiseeAccess->checkAllow($newsArticle->franchisee);
         $newsArticle->delete();
-        return response()->redirectToRoute('admin.franchisee_admin.news_articles.index', ['site_id' => $site_id]);
+        return response()->redirectToRoute('admin.franchisee_admin.news_articles.index');
     }
-
-
 }
