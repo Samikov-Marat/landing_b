@@ -9,6 +9,7 @@ use App\Classes\LanguageDetector;
 use App\Classes\Site\AllowCookie;
 use App\Classes\Site\CountryRepository;
 use App\Classes\Site\CustomRouting;
+use App\Classes\Site\FranchiseeContainer;
 use App\Classes\Site\RequestCleaner;
 use App\Classes\Site\Subdomain;
 use App\Classes\Site\SupportContainer;
@@ -121,6 +122,7 @@ class PageController extends Controller
             ->with('site', $siteRepository->getSite())
             ->with('subdomain', $subdomain)
             ->with('supportContainer', $supportContainer)
+            ->with('franchiseeContainer', new FranchiseeContainer($language, $subdomain))
             ->with('language', $language)
             ->with('page', $page)
             ->with('dictionary', $dictionary)

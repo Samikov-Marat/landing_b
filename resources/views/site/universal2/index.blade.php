@@ -4,6 +4,7 @@
     <div class="index-page">
 
         @include('site.universal2.index_poster_block')
+        @include('site.universal2.franchisee_news')
 
 
         <div class="company-advantages screen">

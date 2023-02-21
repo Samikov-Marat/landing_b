@@ -28,6 +28,9 @@
                     Пользователи-редакторы
                 </th>
                 <th>
+                    Сайт
+                </th>
+                <th>
 
                 </th>
             </tr>
@@ -45,6 +48,11 @@
                     <td>
                         @foreach($franchisee->users as $user)
                             <div>{{ $user->email }} {{ $user->name }}</div>
+                        @endforeach
+                    </td>
+                    <td>
+                        @foreach($franchisee->localOffices as $localOffice)
+                            <div>{{ $localOffice->code }} {{ $localOffice->site->domain }}</div>
                         @endforeach
                     </td>
 

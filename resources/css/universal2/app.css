@@ -6226,7 +6226,7 @@ body {
     position: absolute;
     right: 20px;
     top: 20px;
-    background: url("/img-op/news-close.svg") no-repeat left top;
+    background: url("img-op/news-close.svg") no-repeat left top;
     background-size: 20px 20px;
     cursor: pointer; }
   .presentation-modal__title {
@@ -7346,7 +7346,7 @@ body {
     position: absolute;
     right: 20px;
     top: 20px;
-    background: url("/img-op/news-close.svg") no-repeat left top;
+    background: url("img-op/news-close.svg") no-repeat left top;
     background-size: 20px 20px;
     cursor: pointer; }
   .review-modal__title {
@@ -7389,7 +7389,7 @@ body {
     position: absolute;
     right: 20px;
     top: 20px;
-    background: url("/img-op/news-close.svg") no-repeat left top;
+    background: url("img-op/news-close.svg") no-repeat left top;
     background-size: 20px 20px;
     cursor: pointer; }
   .review-add-modal__title {
@@ -7747,7 +7747,7 @@ body {
     border-radius: 50%;
     right: 11px;
     top: 11px;
-    background: url("/img-op/news-close.svg") no-repeat center center #FFFFFF;
+    background: url("img-op/news-close.svg") no-repeat center center #FFFFFF;
     cursor: pointer; }
   .news-modal__title-container {
     background: #1AB248;

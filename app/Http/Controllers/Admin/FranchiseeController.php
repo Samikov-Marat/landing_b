@@ -17,6 +17,7 @@ class FranchiseeController extends Controller
         $franchisees = Franchisee::select(['id', 'name', 'description',])
             ->orderBy('name')
             ->with('users')
+            ->with('localOffices.site')
             ->get();
         return view('admin.franchisees.index')
             ->with('franchisees', $franchisees);
