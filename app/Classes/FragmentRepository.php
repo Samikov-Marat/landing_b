@@ -29,8 +29,7 @@ class FragmentRepository
     public function getWithTexts($language)
     {
         if ($this->subdomain->hasSubdomain()) {
-            $franchisee = $this->subdomain->getLocalOffice()
-                ->franchisee()
+            $franchisee = $this->subdomain->getFranchisee()
                 ->firstOrFail();
             $this->fragment->load(
                 [

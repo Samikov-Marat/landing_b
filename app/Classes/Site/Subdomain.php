@@ -2,42 +2,56 @@
 
 namespace App\Classes\Site;
 
-use App\LocalOffice;
+use App\Franchisee;
 use App\Site;
-use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpFoundation\Response as HttpFoundationResponse;
 
 class Subdomain
 {
-    private $localOffice;
+    private $franchisee;
+    private $subdomain;
 
     public function __construct(Site $site, string $subdomain)
     {
+        $this->subdomain = $subdomain;
         if ('' === $subdomain) {
-            $this->localOffice = null;
+            $this->franchisee = null;
             return;
         }
 
         try {
-            $this->localOffice = $site->localOffices()
-                ->where('subdomain', $subdomain)
+            $this->franchisee = Franchisee::where('subdomain', $subdomain)
                 ->firstOrFail();
+            $this->franchisee->load('localOffices');
         } catch (ModelNotFoundException $e) {
             abort(HttpFoundationResponse::HTTP_NOT_FOUND);
         }
-    }
 
-    public function hasSubdomain()
-    {
-        return isset($this->localOffice);
-    }
-
-    public function getLocalOffice(): LocalOffice
-    {
-        if(!isset($this->localOffice)){
-            throw new Exception('Нет поддомена');
+        foreach ($this->franchisee->localOffices as $localOffice) {
+            if ($localOffice->site_id != $site->id) {
+                Log::error(
+                    'Неправильно прикреплены офисы к франчайзи',
+                    [
+                        'franchisee' => $this->franchisee->id,
+                        'localOffice' => $localOffice->id,
+                        'site' => $site->id
+                    ]
+                );
+                abort(HttpFoundationResponse::HTTP_INTERNAL_SERVER_ERROR);
+            }
         }
-        return $this->localOffice;
     }
+
+    public function hasSubdomain(): bool
+    {
+        return $this->subdomain != '';
+    }
+
+    public function getFranchisee()
+    {
+        return $this->franchisee;
+    }
+
 }

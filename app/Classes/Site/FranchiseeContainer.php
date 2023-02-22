@@ -11,9 +11,9 @@ class FranchiseeContainer
     public function __construct(Language $language, Subdomain $subdomain)
     {
         if ($subdomain->hasSubdomain()) {
-            $localOffice = $subdomain->getLocalOffice();
-            $localOffice->load('franchisee');
-            $localOffice->franchisee->load(
+
+            $franchisee = $subdomain->getFranchisee();
+            $franchisee->load(
                 [
                     'franchiseeNewsArticles.franchiseeNewsArticleTexts' => function ($query) use ($language) {
                         $query->select([
@@ -42,7 +42,7 @@ class FranchiseeContainer
                     },
                 ]
             );
-            $this->franchiseeNewsArticles = $localOffice->franchisee->franchiseeNewsArticles;
+            $this->franchiseeNewsArticles = $franchisee->franchiseeNewsArticles;
         }
     }
 }

@@ -23,6 +23,14 @@
             <input type="hidden" name="id" value="{{ $franchisee->id }}">
         @endif
         <div class="form-group">
+            <label for="id_subdomain">Поддомен (нужно выбрать один из кодов офисов)</label>
+            <input type="text" class="form-control" name="subdomain" id="id_subdomain"
+                   value="{{ $franchisee->exists ? $franchisee->subdomain : '' }}"
+                   placeholder="поддомен" autocomplete="off">
+            <small id="id_subdomain_help" class="form-text text-muted">Поддомен</small>
+        </div>
+
+        <div class="form-group">
             <label for="id_name">Название</label>
             <input type="text" class="form-control" name="name" id="id_name"
                    value="{{ $franchisee->exists ? $franchisee->name : '' }}"

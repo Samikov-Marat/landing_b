@@ -4,8 +4,8 @@
      @else
      data-url-template="{!! route('request.get_office_list') . '?bbox=%b&lang='.$dictionary['contacts_office_lang'] !!}"
      @endif
-         @if($subdomain->hasSubdomain() && isset($subdomain->getLocalOffice()->map_preset) && ($subdomain->getLocalOffice()->map_preset !== ''))
-             data-map-state="{{ $subdomain->getLocalOffice()->map_preset }}"
+         @if($subdomain->hasSubdomain() && isset($subdomain->getFranchisee()->localOffices->first()->map_preset) && ($subdomain->getFranchisee()->localOffices->first()->map_preset !== ''))
+             data-map-state="{{ $subdomain->getFranchisee()->localOffices->first()->map_preset }}"
          @else
              data-map-state="{{ $dictionary['contacts_map_state'] }}"
         @endif

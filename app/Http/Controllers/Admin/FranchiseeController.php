@@ -14,7 +14,7 @@ class FranchiseeController extends Controller
 {
     public function index()
     {
-        $franchisees = Franchisee::select(['id', 'name', 'description',])
+        $franchisees = Franchisee::select(['id', 'name', 'description', 'subdomain'])
             ->orderBy('name')
             ->with('users')
             ->with('localOffices.site')
@@ -42,6 +42,7 @@ class FranchiseeController extends Controller
         } else {
             $franchisee = new Franchisee();
         }
+        $franchisee->subdomain = $request->input('subdomain');
         $franchisee->name = $request->input('name');
         $franchisee->description = $request->input('description');
         $franchisee->save();

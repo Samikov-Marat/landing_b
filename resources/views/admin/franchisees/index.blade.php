@@ -19,6 +19,9 @@
                     id
                 </th>
                 <th>
+                    Поддомен
+                </th>
+                <th>
                     Имя
                 </th>
                 <th>
@@ -38,6 +41,9 @@
                 <tr>
                     <td>
                         {{ $franchisee->id }}
+                    </td>
+                    <td>
+                        {{ $franchisee->subdomain }}
                     </td>
                     <td>
                         {{ $franchisee->name }}
