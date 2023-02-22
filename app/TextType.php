@@ -11,4 +11,9 @@ class TextType extends Model
     {
         return $this->hasMany(Text::class, 'text_type_id', 'id');
     }
+
+    public function franchiseeTexts(): HasMany
+    {
+        return $this->hasMany(FranchiseeText::class, 'text_type_id', 'id');
+    }
 }

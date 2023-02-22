@@ -12,7 +12,7 @@ class UserRouteAccess
     public function handle($request, Closure $next)
     {
         $routeName = Route::current()->getName();
-        if (Gate::denies($routeName)) {
+        if (Gate::none([$routeName, 'is_franchisee'])) {
             abort(HttpFoundationResponse::HTTP_FORBIDDEN, 'У вас недостаточно прав для посещения этой страницы');
         }
         return $next($request);

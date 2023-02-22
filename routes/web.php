@@ -18,6 +18,34 @@ Route::middleware(['http.secure', 'start.session', 'share.errors.from.session'])
     Auth::routes(['register' => false]);
 });
 
+
+Route::prefix('admin')->middleware(
+    ['auth', 'http.secure', 'verify.csrf.token', 'start.session', 'share.errors.from.session']
+)->group(
+    function () {
+        Route::get('franchisee-admin/welcome', 'FranchiseeAdmin\WelcomeController@index')
+            ->name('admin.franchisee_admin.welcome');
+        Route::get('franchisee-admin/texts', 'FranchiseeAdmin\TextController@index')
+            ->name('admin.franchisee_admin.texts.index');
+        Route::get('franchisee-admin/texts/edit', 'FranchiseeAdmin\TextController@edit')
+            ->name('admin.franchisee_admin.texts.edit');
+        Route::post('franchisee-admin/texts/save', 'FranchiseeAdmin\TextController@save')
+            ->name('admin.franchisee_admin.texts.save');
+
+        Route::get('franchisee-admin/news-articles', 'FranchiseeAdmin\NewsArticleController@index')
+            ->name('admin.franchisee_admin.news_articles.index');
+        Route::get('franchisee-admin/news-articles/add', 'FranchiseeAdmin\NewsArticleController@edit')
+            ->name('admin.franchisee_admin.news_articles.add');
+        Route::get('franchisee-admin/news-articles/edit/{id}', 'FranchiseeAdmin\NewsArticleController@edit')
+            ->name('admin.franchisee_admin.news_articles.edit');
+        Route::post('franchisee-admin/news-articles/save', 'FranchiseeAdmin\NewsArticleController@save')
+            ->name('admin.franchisee_admin.news_articles.save')
+            ->withoutMiddleware(TrimStrings::class);
+        Route::post('franchisee-admin/news-articles/delete', 'FranchiseeAdmin\NewsArticleController@delete')
+            ->name('admin.franchisee_admin.news_articles.delete');
+    }
+);
+
 Route::prefix('admin')->middleware(
     ['auth', 'user.route.access', 'http.secure', 'verify.csrf.token', 'start.session', 'share.errors.from.session']
 )->group(
@@ -169,7 +197,10 @@ Route::prefix('admin')->middleware(
             ->name('admin.franchisees.save');
         Route::post('franchisees/delete', 'Admin\FranchiseeController@delete')
             ->name('admin.franchisees.delete');
-
+        Route::get('franchisees/add-user', 'Admin\FranchiseeController@addUser')
+            ->name('admin.franchisees.add_user');
+        Route::post('franchisees/save-user', 'Admin\FranchiseeController@saveUser')
+            ->name('admin.franchisees.save_user');
 
         Route::get('text-type', 'Admin\TextTypeController@index')
             ->name('admin.text_types.index');
@@ -237,6 +268,12 @@ Route::prefix('admin')->middleware(
             ->name('admin.users.save');
         Route::post('users/delete', 'Admin\UserController@delete')
             ->name('admin.users.delete');
+        Route::get('users/edit/{id}', 'Admin\UserController@edit')
+            ->name('admin.users.edit');
+        Route::get('users/reset-password-form/{id}', 'Admin\UserController@resetPasswordForm')
+            ->name('admin.users.reset_password_form');
+        Route::post('users/reset-password', 'Admin\UserController@resetPassword')
+            ->name('admin.users.reset_password');
         Route::get('users/edit-role-list', 'Admin\UserController@editRoleList')
             ->name('admin.users.edit_role_list');
         Route::post('users/save-role-list', 'Admin\UserController@saveRoleList')

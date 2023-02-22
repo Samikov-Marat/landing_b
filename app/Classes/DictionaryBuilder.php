@@ -8,22 +8,37 @@ use Illuminate\Database\Eloquent\Collection;
 
 class DictionaryBuilder
 {
-    public static function get($pages)
+    private $textSelector;
+
+    public function __construct($hasSubdomain)
+    {
+        if($hasSubdomain){
+            $this->textSelector = function ($item){
+                return [$item->shortname => $item->franchiseeTexts->first()->value ?? $item->texts->first()->value ?? null];
+            };
+        }
+        else{
+            $this->textSelector = function ($item){
+                return [$item->shortname => $item->texts->first()->value ?? null];
+            };
+        }
+
+    }
+
+    public function get($pages)
     {
         $dictionary = [];
         foreach ($pages as $page) {
-            $dictionary += static::getFromPage($page);
+            $dictionary += $this->getFromPage($page);
         }
 
         return $dictionary;
     }
 
-    private static function getFromPage($page)
+    private function getFromPage($page)
     {
         return $page->textTypes->mapWithKeys(
-            function ($item) {
-                return [$item->shortname => $item->texts->first()->value ?? null];
-            }
+            $this->textSelector
         )->toArray();
     }
 }

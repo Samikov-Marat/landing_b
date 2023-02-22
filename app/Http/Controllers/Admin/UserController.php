@@ -21,7 +21,7 @@ class UserController extends Controller
         $users = User::select('id', 'name', 'email', 'disabled')
             ->orderBy('name')
             ->orderBy('id')
-            ->with('roles')
+            ->with('roles', 'franchisees')
             ->get();
 
         return view('admin.users.index')
@@ -61,9 +61,33 @@ class UserController extends Controller
         return response()->redirectToRoute('admin.users.index');
     }
 
+
+
+    public function resetPasswordForm($id)
+    {
+        $user = User::select('id', 'name', 'email', 'disabled')->find($id);
+
+        return view('admin.users.reset_password_form')
+            ->with('user', $user);
+    }
+
+    public function resetPassword(Request $request)
+    {
+        $notification = new UserPasswordNotification();
+        $user = User::find($request->input('id'));
+        $password = UserPasswordGenerator::getPassword();
+        $notification->setPassword($password);
+        $user->password = Hash::make($password);
+        $user->save();
+        $notification->sendTo($user);
+        return response()->redirectToRoute('admin.users.index');
+    }
+
     public function delete(Request $request)
     {
         $user = User::find($request->input('id'));
+        $user->roles()->detach();
+        $user->franchisees()->detach();
         $user->delete();
         return response()->redirectToRoute('admin.users.index');
     }

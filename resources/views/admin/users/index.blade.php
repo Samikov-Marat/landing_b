@@ -28,6 +28,9 @@
                     email
                 </th>
                 <th>
+                    Франчайзи
+                </th>
+                <th>
                     Статус
                 </th>
                 <th>
@@ -46,6 +49,13 @@
                         {{ $user->email }}
                     </td>
                     <td>
+                        @if($user->franchisees->count())
+                            @foreach($user->franchisees as $franchisee)
+                                <div>{{ $franchisee->name }}</div>
+                            @endforeach
+                        @endif
+                    </td>
+                    <td>
                         @if($user->disabled)
                             <i class="fas fa-user-slash"></i> заблокирован
                         @endif
@@ -56,8 +66,10 @@
                         </a>
                     </td>
                     <td class="text-nowrap">
+                        <a href="{!! route('admin.users.reset_password_form', ['id' => $user->id]) !!}" class="btn btn-primary btn-sm"><i class="fa fa-key"></i> Обновить пароль</a>
+
                         <a href="{!! route('admin.users.edit', ['id' => $user->id]) !!}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i> Редактировать</a>
-                        <button type="button" data-text="Удалить {{ $user->domain }}?"
+                        <button type="button" data-text="Удалить  {{ $user->name }}({{ $user->email }})?"
                                 data-action="{!! route('admin.users.delete') !!}" data-id="{{ $user->id }}"
                                 class="btn btn-danger btn-sm js-delete-confirm"><i class="fas fa-trash"></i> Удалить
                         </button>

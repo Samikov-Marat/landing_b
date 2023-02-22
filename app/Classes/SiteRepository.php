@@ -197,7 +197,7 @@ class SiteRepository
 
     public function loadLocalOffices($language, Subdomain $subdomain)
     {
-        $sameFranchiseeLocalOffices = $this->getSameFranchiseeLocalOffices($subdomain);
+        $sameFranchiseeLocalOffices = $subdomain->getFranchisee()->localOffices;
 
         $this->site->load(
             [
@@ -205,14 +205,10 @@ class SiteRepository
                     $query->select('id', 'site_id', 'map_preset')
                         ->where('disabled', false)
                         ->orderBy('sort');
-                    if (!$subdomain->hasSubdomain()) {
-                        return;
-                    }
-                    if ($sameFranchiseeLocalOffices->isNotEmpty()) {
+                    if ($subdomain->hasSubdomain()) {
                         $query->whereIn('id', $sameFranchiseeLocalOffices->pluck('id'));
-                    } else {
-                        $query->where('id', $subdomain->getLocalOffice()->id);
                     }
+
                 },
                 'localOffices.localOfficeTexts' => function ($query) use ($language) {
                     $query->where('language_id', $language->id);

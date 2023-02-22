@@ -6,7 +6,7 @@ use App\Site;
 
 class NewsArticleRepository
 {
-    var $relations = [];
+    private $relations = [];
 
     public static function getInstance()
     {

@@ -49,7 +49,7 @@ $(document).ready(function () {
     });
 
     $('.modal-container').click(function () {
-        modalClose($(this).find('.modal'));
+        modalClose($('.modal-opened'));
     })
     $('.modal').click(function (e) {
         e.stopPropagation();

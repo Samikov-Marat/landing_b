@@ -10,6 +10,7 @@ use App\Classes\LanguageDetector;
 use App\Classes\Site\AllowCookie;
 use App\Classes\Site\CountryRepository;
 use App\Classes\Site\CustomRouting;
+use App\Classes\Site\FranchiseeContainer;
 use App\Classes\Site\RequestCleaner;
 use App\Classes\Site\Subdomain;
 use App\Classes\Site\SupportContainer;
@@ -83,7 +84,6 @@ class PageController extends Controller
             return response()->redirectToRoute('site.select_default_language', $requestCleaner->getCleared());
         }
 
-
         try {
             $page = $siteRepository->getCurrentPage($pageUrl);
         } catch (CurrentPageNotFound $e) {
@@ -92,7 +92,8 @@ class PageController extends Controller
         $fragments = $siteRepository->getLayoutFragments();
         $fragments->push($page);
         $fragmentRepository = new FragmentRepository($fragments);
-        $dictionary = DictionaryBuilder::get($fragmentRepository->getWithTexts($language));
+        $dictionaryBuilder = new DictionaryBuilder($subdomain->hasSubdomain());
+        $dictionary = $dictionaryBuilder->get($fragmentRepository->forSubdomain($subdomain)->getWithTexts($language));
         $siteRepository->loadLocalOffices($language, $subdomain);
         $siteRepository->loadNewsArticles($language);
         $siteRepository->loadOurWorkers($language);
@@ -123,6 +124,7 @@ class PageController extends Controller
             ->with('site', $siteRepository->getSite())
             ->with('subdomain', $subdomain)
             ->with('supportContainer', $supportContainer)
+            ->with('franchiseeContainer', new FranchiseeContainer($language, $subdomain))
             ->with('language', $language)
             ->with('page', $page)
             ->with('dictionary', $dictionary)
