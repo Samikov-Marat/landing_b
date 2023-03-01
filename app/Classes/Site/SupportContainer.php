@@ -60,14 +60,14 @@ class SupportContainer
         }
 
         if (isset($this->category)) {
-            $this->supportCategories = SupportCategory::select(['id', 'parent_id', 'icon_class',])
+            $this->supportCategories = SupportCategory::select(['id', 'parent_id', 'icon_class', 'gtm',])
                 ->where('site_id', $this->site->id)
                 ->where('parent_id', $this->category)
                 ->orderBy('sort')
                 ->get();
             $this->specialSupportQuestions = new \Illuminate\Database\Eloquent\Collection();
         } else {
-            $this->supportCategories = SupportCategory::select(['id', 'parent_id', 'icon_class',])
+            $this->supportCategories = SupportCategory::select(['id', 'parent_id', 'icon_class', 'gtm',])
                 ->where('site_id', $this->site->id)
                 ->whereNull('parent_id')
                 ->orderBy('sort')
