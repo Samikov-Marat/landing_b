@@ -243,7 +243,7 @@ class RequestController extends Controller
     {
         $client = new Client();
         $response = $client->request(
-            'POST', 'http://production.locality.service.cdek.tech:8909/api/locality/international/autocomplete/city',
+            'POST', config('calculator.city_url'),
             [
                 'headers' => ['Content-Type', 'application/json', 'X-User-Lang' => $request->input('lang')],
                 'json' => ['limit' => 5, 'query' => $request->input('query')],
@@ -261,7 +261,7 @@ class RequestController extends Controller
                     CalculatorJson::getJson($request),
                     'application/json'
                 )
-                ->post('http://172.16.184.153:8024/api/calculator/getServices')
+                ->post(config('calculator.url'))
                 ->throw()
                 ->body();
 
