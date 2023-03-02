@@ -37,7 +37,7 @@ class ParseNewTemplate extends Command
      */
     public function handle()
     {
-        $contents = file_get_contents(base_path('resources/views/site/personal/tracking.html'));
+        $contents = file_get_contents(base_path('resources/views/site/universal2/it_solutions_block.html'));
 //        $matches = [];
 //        preg_match_all('#>\s*(.*?)\s*<#ums', $contents, $matches);
 //        $cleared = [];
@@ -58,12 +58,12 @@ class ParseNewTemplate extends Command
                 if ('' === trim($matches[0])) {
                     return $matches[0];
                 }
-                $shortname = 'personal_tracking_' . $id;
+                $shortname = 'it_solutions_' . $id;
 
                 $replaceRegularExpression = '#^(\s*)(.*?)(\s*)$#ums';
 
                 $textTypes[] = [
-                    'page_id' => 24,
+                    'page_id' => 48,
                     'shortname' => $shortname,
                     'name' => '',
                     'default_value' => preg_replace($replaceRegularExpression, '$2', $matches[0]),
@@ -81,9 +81,9 @@ class ParseNewTemplate extends Command
             },
             $contents
         );
-        file_put_contents(base_path('resources/views/site/personal/tracking.blade.php'), $translated);
+        file_put_contents(base_path('resources/views/site/universal2/it_solutions_block.blade.php'), $translated);
 
-        $csvHandler = fopen(base_path('resources/views/site/personal/text_types.csv'), 'w');
+        $csvHandler = fopen(base_path('resources/views/site/universal2/it_solutions_block.csv'), 'w');
         fputcsv($csvHandler, array_keys($textTypes[0]));
         foreach ($textTypes as $textType){
             fputcsv($csvHandler, $textType);
