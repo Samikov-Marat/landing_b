@@ -22,9 +22,10 @@ use App\Exceptions\PageController\SiteNotFound;
 use App\Http\Controllers\Controller;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response as HttpFoundationResponse;
-use Illuminate\Support\Facades\Cookie;
+
 
 class PageController extends Controller
 {
@@ -68,6 +69,7 @@ class PageController extends Controller
         try {
             $siteRepository = new SiteRepository($domain);
         } catch (ModelNotFoundException $exception) {
+            Log::error('Не найден домен');
             abort(HttpFoundationResponse::HTTP_NOT_FOUND);
             return response()->noContent(HttpFoundationResponse::HTTP_NOT_FOUND);
         }
@@ -76,6 +78,7 @@ class PageController extends Controller
 
         $languageShortname = Str::upper($languageUrl);
         if (!$siteRepository->containsLanguage($languageShortname)) {
+            Log::error('Не найден язык');
             abort(HttpFoundationResponse::HTTP_NOT_FOUND);
         }
         $language = $siteRepository->getLanguage($languageShortname);
@@ -87,6 +90,7 @@ class PageController extends Controller
         try {
             $page = $siteRepository->getCurrentPage($pageUrl);
         } catch (CurrentPageNotFound $e) {
+            Log::error('Не найдена страница');
             abort(HttpFoundationResponse::HTTP_NOT_FOUND);
         }
         $fragments = $siteRepository->getLayoutFragments();
