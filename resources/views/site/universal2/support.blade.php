@@ -15,12 +15,14 @@
                     <div class="feedback__list preloader js-feedback-preloader">
                         @if(isset($supportContainer->specialSupportQuestions[0]))
                             <a class="feedback__category feedback__category_root feedback__category_customer i18n-h"
+                               data-click="support_spec-question-sender_client"
                                  href="{!! route('site.support', ['languageUrl' => \Str::lower($language->shortname), 'pageUrl' => $page->url, 'category' => $supportContainer->specialSupportQuestions[0]->category_id, 'question' => $supportContainer->specialSupportQuestions[0]->id]) !!}">
                                 {{ $supportContainer->specialSupportQuestions[0]->supportQuestionTexts[0]->question }}
                             </a>
                         @endif
                         @if(isset($supportContainer->specialSupportQuestions[1]))
                             <a class="feedback__category feedback__category_root feedback__category_box i18n-h"
+                               data-click="support_spec-question-sender_business"
                                  href="{!! route('site.support', ['languageUrl' => \Str::lower($language->shortname), 'pageUrl' => $page->url, 'category' => $supportContainer->specialSupportQuestions[1]->category_id, 'question' => $supportContainer->specialSupportQuestions[1]->id]) !!}">
                                 {{ $supportContainer->specialSupportQuestions[1]->supportQuestionTexts[0]->question }}
                             </a>
@@ -30,7 +32,7 @@
                         @foreach($supportContainer->supportCategories as $supportCategory)
                             @if($supportCategory->supportCategoryTexts->isNotEmpty())
                                 <a class="feedback__category feedback__category_root {{ $supportCategory->icon_class }} gtm-click"
-                                   data-click="support_category-{{$supportCategory->id}}"
+                                   data-click="support_category-{{$supportCategory->gtm}}"
                                    href="{!! route('site.support', ['languageUrl' => \Str::lower($language->shortname), 'pageUrl' => $page->url, 'category' => $supportCategory->id]) !!}">
                                     {{ $supportCategory->supportCategoryTexts[0]->name ?? '' }}
                                 </a>
