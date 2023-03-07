@@ -80,11 +80,9 @@ class Domain
     private function getAlias($domain)
     {
         $alias = Alias::where('domain', $domain)
+            ->has('site')
             ->with('site')
             ->firstOrFail();
-        if (!$alias->site->count()) {
-            throw new Exception('Не найден сайт');
-        }
         return $alias;
     }
 
