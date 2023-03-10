@@ -60,13 +60,6 @@ class PageController extends Controller
         }
     }
 
-    private function hasLocalStylesheet (Site $site, string $landURI): bool
-    {
-        return $site->images()
-            ->where('url', '/' . $landURI . '.css')
-            ->exists();
-    }
-
     public function showPage(Request $request, $languageUrl, $pageUrl = '/', $category = null, $question = null)
     {
         $domain = Domain::getInstance($request);
