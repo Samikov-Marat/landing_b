@@ -109,7 +109,7 @@ class ApiMarketing
             }
         }
         try {
-            $localOffice = CategoryInTurn::getInstance($localOfficeRepository->getSite()->localOffices)
+            $localOffice = CategoryInTurn::getInstance($localOfficeRepository->getSite())
                 ->getNextNew();
             $this->apiMarketingCategory = $localOffice->category;
             $this->timezone = $localOffice->request_timezone;

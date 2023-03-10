@@ -2,28 +2,35 @@
 
 namespace App\Classes;
 
+use App\LocalOffice;
+use App\Site;
+
 class CategoryInTurn
 {
-    var $localOffices;
+    private $localOffices;
 
-    public function __construct($localOffices)
+    public function __construct(Site $site)
     {
-        $this->localOffices = $localOffices;
+        if ($site->equal_request_distribution) {
+            $this->localOffices = $site->localOffices->unique('category')->values();
+        } else {
+            $this->localOffices = $site->localOffices->values();
+        }
     }
 
-    public static function getInstance($localOffices): self
+    public static function getInstance($site): self
     {
-        return new static($localOffices);
+        return new static($site);
     }
 
-    public function getNextNew()
+    public function getNextNew(): LocalOffice
     {
         $localOffice = $this->getNextLocalOffice();
         HistoryCategoryRepository::getInstance()->saveForHistory($localOffice);
         return $localOffice;
     }
 
-    private function getNextLocalOffice()
+    private function getNextLocalOffice(): LocalOffice
     {
         if ($this->localOffices->isEmpty()) {
             throw new Exception('Нет офисов. Должна быть выбрана категория по-умолчанию.');
@@ -43,8 +50,8 @@ class CategoryInTurn
                 return $this->localOffices[$nextKey];
             }
         }
+
         Log::debug('Неизвестный utm в cookies');
         return $this->localOffices[0];
     }
-
 }
