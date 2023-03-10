@@ -1,6 +1,6 @@
 <div class="contact-page__list js-contacts-tab-content-1">
 
-    @foreach($site->localOffices as $localOffice)
+    @foreach($site->localOffices->shuffle() as $localOffice)
 
         <div class="contact-page__item">
             @if($localOffice->localOfficeTexts->count())
