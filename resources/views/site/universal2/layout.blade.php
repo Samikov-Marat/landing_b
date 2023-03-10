@@ -60,16 +60,6 @@
     $calculatorHeaderAnchorGtm = $templateGtm[$page->template] ?? '';
 @endphp
 
-
-<div class="fixed-buttons @if($language->rtl) fixed-buttons_rightside @endif">
-    <a href="{!! $calculatorHeaderAnchorHref !!}" class="fixed-button fixed-button_calc fixed-buttons__button">@d('header_fixbutton_calculator')</a>
-    <a href="{!! $trackinghref !!}" class="fixed-button fixed-button_track fixed-buttons__button">@d('header_fixbutton_tracking')</a>
-    @if('' != $dictionary['header_fixbutton_support'])
-        <a href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'support']) !!}" class="fixed-button fixed-button_support fixed-buttons__button">@d('header_fixbutton_support')</a>
-    @endif
-
-</div>
-
 <div class="body-wrapper js-body_wrapper ">
     @if(isset($dictionary['antifraud_phone_1_value']))
         @include('site.universal2.antifraud_block')
@@ -190,7 +180,22 @@
         </div>
     </header>
 
-    @yield('content')
+
+
+    <div class="container">
+        <div class="fixed-buttons_container">
+            <div class="fixed-buttons @if($language->rtl) fixed-buttons_rightside @endif">
+                <a href="{!! $calculatorHeaderAnchorHref !!}" class="fixed-button fixed-button_calc fixed-buttons__button">@d('header_fixbutton_calculator')</a>
+                <a href="{!! $trackinghref !!}" class="fixed-button fixed-button_track fixed-buttons__button">@d('header_fixbutton_tracking')</a>
+                @if('' != $dictionary['header_fixbutton_support'])
+                    <a href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'support']) !!}" class="fixed-button fixed-button_support fixed-buttons__button">@d('header_fixbutton_support')</a>
+                @endif
+            </div>
+        </div>
+        <div class="page-content">
+            @yield('content')
+        </div>
+    </div>
 
     <footer class="footer">
         <div class="footer__content">
