@@ -1,4 +1,4 @@
-@if($dictionary['it_solutions_header'] != '')
+@if(isset($dictionary['it_solutions_header']) && ($dictionary['it_solutions_header'] != ''))
 <div class="it-solutions screen">
     <div class="content">
         <div class="it-solutions__content">

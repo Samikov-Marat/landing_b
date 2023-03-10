@@ -7,6 +7,7 @@ use App\Classes\Domain;
 use App\Classes\FastAnswer;
 use App\Classes\FragmentRepository;
 use App\Classes\LanguageDetector;
+use App\Classes\LocalStylesheet;
 use App\Classes\Site\AllowCookie;
 use App\Classes\Site\CountryRepository;
 use App\Classes\Site\CustomRouting;
@@ -25,6 +26,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response as HttpFoundationResponse;
+use App\Site;
 
 
 class PageController extends Controller
@@ -62,7 +64,6 @@ class PageController extends Controller
         }
     }
 
-
     public function showPage(Request $request, $languageUrl, $pageUrl = '/', $category = null, $question = null)
     {
         $domain = Domain::getInstance($request);
@@ -74,7 +75,8 @@ class PageController extends Controller
             return response()->noContent(HttpFoundationResponse::HTTP_NOT_FOUND);
         }
 
-        $subdomain = new Subdomain($siteRepository->getSite(), $domain->getSubdomain());
+        $site = $siteRepository->getSite();
+        $subdomain = new Subdomain($site, $domain->getSubdomain());
 
         $languageShortname = Str::upper($languageUrl);
         if (!$siteRepository->containsLanguage($languageShortname)) {
@@ -86,7 +88,6 @@ class PageController extends Controller
             $requestCleaner = new RequestCleaner($request);
             return response()->redirectToRoute('site.select_default_language', $requestCleaner->getCleared());
         }
-
         try {
             $page = $siteRepository->getCurrentPage($pageUrl);
         } catch (CurrentPageNotFound $e) {
@@ -108,7 +109,7 @@ class PageController extends Controller
 
         $customRouting = CustomRouting::getInstance($request);
 
-        $supportContainer = new SupportContainer($siteRepository->getSite(), $language, $category, $question);
+        $supportContainer = new SupportContainer($site, $language, $category, $question);
         if ($customRouting->isSupportPage()) {
             $supportContainer->prepare();
         }
@@ -138,6 +139,7 @@ class PageController extends Controller
             ->with('countriesFrom', $countriesFrom)
             ->with('countriesTo', $countriesTo)
             ->with('showFastAnswer', FastAnswer::setShowFastAnswer($request, $pageUrl))
-            ->with('allowCookies', AllowCookie::getInstance($request)->isAllow());
+            ->with('allowCookies', AllowCookie::getInstance($request)->isAllow())
+            ->with('hasLocalStylesheet', LocalStylesheet::hasLocalStylesheet($site, $languageShortname));
     }
 }
