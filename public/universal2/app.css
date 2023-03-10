@@ -268,7 +268,7 @@ body {
   color: #222;
   font-family: "Roboto", sans-serif; }
 
-.body-wrapper {
+.page-content {
   overflow: hidden; }
 
 .screen-content {
@@ -343,6 +343,11 @@ body {
     height: 34px;
     background-size: 81px 34px; } }
 
+.fixed-buttons_container {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
 .footer {
   background: #232323;
   padding-top: 59px;
@@ -4695,10 +4700,10 @@ body {
         margin-bottom: 15px; } }
 
 .fixed-buttons {
-  position: fixed;
+  position: absolute;
   right: 62px;
-  top: 70px;
-  z-index: 5; }
+  top: 10px;
+  z-index: 5;}
   .fixed-buttons__button {
     margin-bottom: 10px;
     display: block; }
@@ -4718,7 +4723,13 @@ body {
     padding: 18px 25px 18px 54px;
   background-repeat: no-repeat;
   text-transform: uppercase;
-  text-decoration: none; }
+  text-decoration: none;
+  opacity: 60%;
+  transition: opacity 1s;}
+  .fixed-button:hover {
+    opacity: 100%;
+    transition: opacity 1s;
+  }
   .fixed-button_calc {
     background-image: url("img/fixed-calc.svg");
     background-position: left 22px center; }
