@@ -12,12 +12,21 @@
         $showTariffGtm = $templateGtm[$page->template] ?? '';
     @endphp
 
+    @php
+    if($dictionary['calculator_show_period'] == '+'){
+        $showPeriod = 1;
+    }
+    else{
+        $showPeriod = 0;
+    }
+    @endphp
     <form action="{!! route('request.send') !!}" method="post" class="js-calculator-form"
           data-calculate-url="{!! route('request.calculate') !!}"
           data-language="{{ $dictionary['calculator_language'] }}"
           data-currency-code="{{ $dictionary['calculator_currency_code'] }}"
           data-currency-name="{{ $dictionary['calculator_currency_name'] }}"
-          data-show-tariffs-event="{{ $showTariffGtm }}">
+          data-show-tariffs-event="{{ $showTariffGtm }}"
+          data-show-period="{{ $showPeriod }}">
         {!! csrf_field() !!}
         <div class="screen-content">
             <div class="calculator__content calculator__content_step1">
@@ -111,6 +120,8 @@
                                     Описание тарифа
                                 </div>
                                 <div class="calculator__tariff-item-type">Дверь-дверь</div>
+
+                                <div class="calculator__tariff-item-period-prefix" style="display: none;">@d('calculator_period_definition')</div>
                             </div>
                         </div>
                         <div class="calculator__tariff-item-price calculator_currency_sign">Цена ₽</div>

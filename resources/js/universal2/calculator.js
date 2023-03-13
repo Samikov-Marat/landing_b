@@ -104,6 +104,10 @@ $(function () {
             return this.form.data('language');
         }
 
+        this.isShowPeriod = function () {
+            return Boolean(this.form.data('showPeriod'));
+        }
+
         this.getStep = function () {
             return this.step;
         }
@@ -189,41 +193,13 @@ $(function () {
         });
 
         return;
-
-
-        let tariffs = [];
-        for (let position in tariffCodes) {
-            tariffs[position] = null;
-        }
-        for (let position in tariffCodes) {
-            serviceParameters.idServiceType = tariffCodes[position];
-            getTariff(position, serviceParameters, tariffs, finishedRequest);
-        }
     }
-
-    function getTariff(position, serviceParameters, tariffs, finishedRequest) {
-        let tariffCodes = calculator.getTariffCodes();
-        $.ajax(tariffApi.getSettings(serviceParameters)).done(function (responseData) {
-            if (!responseData.result.hasOwnProperty("error")) {
-                tariffs[position] = {
-                    id: tariffCodes[position],
-                    price: responseData.result.price
-                }
-            }
-        }).always(function () {
-            finishedRequest.count++;
-            if (finishedRequest.count == tariffCodes.length) {
-                showTariffs(tariffs);
-            }
-        });
-    }
-
 
     function showTariffs(tariffs) {
         let $template = $('.js-calculator-tariff-template').find('.calculator__tariff-item');
         let $list = $('.calculator__tariff-list');
         $list.empty();
-
+        let showPeriod = calculator.isShowPeriod();
         $.each(tariffs, function (index, tariff) {
             if (tariff !== null) {
                 let $tariffDiv = $template.clone();
@@ -233,7 +209,14 @@ $(function () {
                 $tariffDiv.find('.calculator__tariff-item-input').data('price', tariff.priceString);
 
                 $tariffDiv.find('.calculator__tariff-item-label').html(tariff.nameLocalized).attr('for', tariff.tariffEc4Id).prop('for', tariff.tariffEc4Id);
-                $tariffDiv.find('.calculator__tariff-item-description').html(tariff.descriptionLocalized);
+
+                if(showPeriod){
+                    $tariffDiv.find('.calculator__tariff-item-description').html($tariffDiv.find('.calculator__tariff-item-period-prefix').html()+ ' ' + tariff.durationMin);
+                }
+                else{
+                    $tariffDiv.find('.calculator__tariff-item-description').html(tariff.descriptionLocalized);
+                }
+
                 $tariffDiv.find('.calculator__tariff-item-type').html(tariff.tariffTypeLocalized);
                 $tariffDiv.find('.calculator__tariff-item-price').html('' + tariff.priceString + ' ' + calculator.getUsedCurrencyName());
                 $list.append($tariffDiv);
