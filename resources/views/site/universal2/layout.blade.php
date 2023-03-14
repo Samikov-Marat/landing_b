@@ -156,7 +156,7 @@
                         @endif
                         @if (isset($dictionary['menu_franchise']))
                             <li class="main-menu__item">
-                                <a class="main-menu__link" href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'franchise']) !!}">@d('menu_franchise')</a>
+                                @include('site.universal2.menu_item_franchise')
                             </li>
                         @endif
 
