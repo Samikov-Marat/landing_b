@@ -74,6 +74,8 @@
                     <td>
                         @foreach($localOffice->localOfficeTexts as $text)
                             <div>
+                                {{ $text->id }}
+                                {{ $text->language_id }}
                                 {{ $text->name }}
                             </div>
                         @endforeach

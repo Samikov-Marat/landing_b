@@ -35,6 +35,20 @@
         @endforeach
     @endforeach
 
+    @foreach($problems['textsDoubles'] as $textsDoubles)
+            <div class="alert alert-danger">
+                <h4 class="alert-heading">Дублирование текстов</h4>
+                <p>
+                    text_type_id {{ $textsDoubles->text_type_id }}<br>
+                    language_id {{ $textsDoubles->language_id }}
+                </p>
+                <hr>
+                <p class="mb-0">
+                    Могут быть не видны изменения текста.
+                </p>
+            </div>
+    @endforeach
+
     <h1>Проверка сертификатов</h1>
 
     <table class="table">

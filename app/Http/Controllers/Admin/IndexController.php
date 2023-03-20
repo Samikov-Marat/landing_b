@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\CertificateChecks;
+use App\Classes\Admin\ProblemCollector;
 use App\Http\Controllers\Controller;
 use App\LocalOffice;
 use App\Site;
@@ -12,36 +13,6 @@ class IndexController extends Controller
 {
     public function index()
     {
-        $columns = [
-            'innerKey' => LocalOffice::newModelInstance()->qualifyColumn('site_id'),
-            'outerKey' => Site::newModelInstance()->qualifyColumn('id'),
-            'category' => LocalOffice::newModelInstance()->qualifyColumn('category'),
-        ];
-
-        $localOfficeExistsQuery = LocalOffice::selectRaw('1')
-            ->whereColumn($columns['innerKey'], '=', $columns['outerKey'])
-            ->getQuery();
-
-        $localOfficeHaveEmptyCategoryQuery = LocalOffice::selectRaw('1')
-            ->whereColumn($columns['innerKey'], '=', $columns['outerKey'])
-            ->where($columns['category'], '')
-            ->getQuery();
-
-        $problems = [];
-
-        $problems['absentOffice'] = Site::select(['id', 'name', 'domain'])
-            ->addWhereExistsQuery($localOfficeExistsQuery, ' and', true)
-            ->get();
-
-        $problems['absentOfficeCategory'] = Site::select(['id', 'name', 'domain'])
-            ->addWhereExistsQuery($localOfficeHaveEmptyCategoryQuery)
-            ->with([
-                       'localOffices' => function ($q) {
-                           $q->where('category', '');
-                       }
-                   ])
-            ->get();
-
         $site = new Site();
         $certificateCheck = new CertificateChecks();
         $siteCertification = Site::select(['id', 'name', 'domain'])
@@ -53,7 +24,7 @@ class IndexController extends Controller
         $tooClose = new Carbon('+1 week');
 
         return view('admin.index')
-            ->with('problems', $problems)
+            ->with('problems', ProblemCollector::getInstance()->getProblems())
             ->with('siteCertification', $siteCertification)
             ->with('now', $now)
             ->with('tooClose', $tooClose);

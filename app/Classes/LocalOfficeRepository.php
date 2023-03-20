@@ -12,33 +12,30 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 class LocalOfficeRepository
 {
     const SORT_STEP = 10;
-    /**
-     * @var LocalOffice
-     */
-    var $localOffice;
+    private $localOffice;
 
-    public static function getInstance(LocalOffice $localOffice):self
+    public static function getInstance(LocalOffice $localOffice): self
     {
         return new static($localOffice);
     }
 
-    public function __construct($localOffice)
+    public function __construct(LocalOffice $localOffice)
     {
         $this->localOffice = $localOffice;
     }
 
-    public function getTextByLanguage($language_id)
+    public function getOrMake($language_id)
     {
         try {
             return $this->localOffice->localOfficeTexts()
-                ->select(
-                    'id',
-                    'local_office_id',
-                    'language_id',
-                    'name',
-                    'address',
-                    'path'
-                )
+                ->select([
+                             'id',
+                             'local_office_id',
+                             'language_id',
+                             'name',
+                             'address',
+                             'path',
+                         ])
                 ->where('language_id', $language_id)
                 ->firstOrFail();
         } catch (ModelNotFoundException $e) {
@@ -63,15 +60,16 @@ class LocalOfficeRepository
     {
         try {
             return $this->localOffice->localOfficePhones()
-                ->orderBy('sort', 'DESC')
-                ->firstOrFail()
-                ->sort + static::SORT_STEP;
+                    ->orderBy('sort', 'DESC')
+                    ->firstOrFail()
+                    ->sort + static::SORT_STEP;
         } catch (ModelNotFoundException $e) {
             return 0;
         }
     }
 
-    public function deleteOtherPhones($ids){
+    public function deleteOtherPhones($ids)
+    {
         $this->localOffice->localOfficePhones()
             ->whereNotIn('id', $ids)
             ->delete();
@@ -94,15 +92,16 @@ class LocalOfficeRepository
     {
         try {
             return $this->localOffice->localOfficeEmails()
-                ->orderBy('sort', 'DESC')
-                ->firstOrFail()
-                ->sort + static::SORT_STEP;
+                    ->orderBy('sort', 'DESC')
+                    ->firstOrFail()
+                    ->sort + static::SORT_STEP;
         } catch (ModelNotFoundException $e) {
             return 0;
         }
     }
 
-    public function deleteOtherEmails($ids){
+    public function deleteOtherEmails($ids)
+    {
         $this->localOffice->localOfficeEmails()
             ->whereNotIn('id', $ids)
             ->delete();

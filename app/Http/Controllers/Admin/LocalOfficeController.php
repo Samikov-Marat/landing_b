@@ -141,7 +141,7 @@ class LocalOfficeController extends Controller
 
         $localOfficeRepository = LocalOfficeRepository::getInstance($localOffice);
         foreach ($site->languages as $language) {
-            $localOfficeText = $localOfficeRepository->getTextByLanguage($language->id);
+            $localOfficeText = $localOfficeRepository->getOrMake($language->id);
             $localOfficeText->name = $request->input('name')[$language->id] ?? '';
             $localOfficeText->address = $request->input('address')[$language->id] ?? '';
             $localOfficeText->path = $request->input('path')[$language->id] ?? '';
