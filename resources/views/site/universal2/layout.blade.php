@@ -99,10 +99,12 @@
                             {{-- Доставка в Казахстан (из Германии) --}}
                             @include('site.universal2.to_kazakhstan')
                         @endif
-                        @if (isset($dictionary['menu_franchise']))
-                            {{-- Страница франшизы --}}
-                            @include('site.universal2.menu_item_franchise')
-                        @endif
+                        <li class="main-menu__item">
+                            @if (isset($dictionary['menu_franchise']))
+                                {{-- Страница франшизы --}}
+                                @include('site.universal2.menu_item_franchise')
+                            @endif
+                        </li>
                         {{-- Контакты --}}
                         <li class="main-menu__item">
                             <a class="main-menu__link" href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'contacts']) !!}">@d('menu_contects')</a>
