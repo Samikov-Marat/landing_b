@@ -2,6 +2,8 @@
 
 namespace App\Console\Commands;
 
+use AmoCRM\Exceptions\AmoCRMApiPageNotAvailableException;
+use AmoCRM\Filters\PagesFilter;
 use App\AmoPipeline;
 use App\AmoUser;
 use App\Classes\Site\Amo\AmoCRMApiClientBuilder;
@@ -47,16 +49,25 @@ class AmoInventoryLoad extends Command
             $pipelineModel->save();
         }
 
+        $filter = new PagesFilter();
+        $filter->setLimit(70);
         $users = $client->users()
-            ->get()
-            ->all();
+            ->get($filter);
 
-        foreach ($users as $user) {
-            $userModel = AmoUser::firstOrNew(['amo_id' => $user->id]);
-            $userModel->name = $user->name;
-            $userModel->save();
+        while (true) {
+            foreach ($users->all() as $user) {
+                $userModel = AmoUser::firstOrNew(['amo_id' => $user->id]);
+                $userModel->name = $user->name;
+                $userModel->save();
+            }
+
+            try {
+                $users = $client->users()
+                    ->nextPage($users);
+            } catch (AmoCRMApiPageNotAvailableException $e) {
+                break;
+            }
         }
-
         return 0;
     }
 }
