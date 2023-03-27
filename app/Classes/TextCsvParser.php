@@ -105,10 +105,10 @@ class TextCsvParser
         if('news' == $compositeId['table']){
             $this->loadNewsAttribute($compositeId['id'], $compositeId['attribute'], $line);
         }
-        if('support_category_texts' == $compositeId['table']){
+        if('support_category' == $compositeId['table']){
             $this->loadSupportCategoryAttribute($compositeId['id'], $compositeId['attribute'], $line);
         }
-        if('support_question_texts' == $compositeId['table']){
+        if('support_question' == $compositeId['table']){
             $this->loadSupportQuestionAttribute($compositeId['id'], $compositeId['attribute'], $line);
         }
     }
