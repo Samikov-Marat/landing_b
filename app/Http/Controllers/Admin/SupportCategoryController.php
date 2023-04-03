@@ -101,6 +101,8 @@ class SupportCategoryController extends Controller
         } elseif ($supportCategory->isDirty('parent_id')) {
             $supportCategory->sort = SupportCategory::where('parent_id', $parent_id)->max('sort') + self::SORT_STEP;
         }
+        $supportCategory->gtm = $request->input('gtm');
+
         $supportCategory->save();
         $supportCategory->load('supportCategoryTexts');
 

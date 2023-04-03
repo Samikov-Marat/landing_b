@@ -37,7 +37,7 @@ class SupportRepository
     }
 
     public static function getCategoryWithTexts($id){
-        return SupportCategory::select(['id', 'parent_id', 'site_id', 'icon_class'])
+        return SupportCategory::select(['id', 'parent_id', 'site_id', 'icon_class', 'gtm'])
             ->with('supportCategoryTexts')
             ->find($id);
 

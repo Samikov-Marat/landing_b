@@ -38,7 +38,7 @@ class SupportContainer
     {
         $language = $this->language;
         if (isset($this->category)) {
-            $this->currentSupportCategory = SupportCategory::select(['id', 'parent_id', 'icon_class',])
+            $this->currentSupportCategory = SupportCategory::select(['id', 'parent_id', 'icon_class', 'gtm',])
                 ->findOrFail($this->category);
 
             $this->currentSupportCategory->load(
