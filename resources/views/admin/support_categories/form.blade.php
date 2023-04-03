@@ -65,6 +65,15 @@
             @endforeach
         </div>
 
+        <div class="row">
+            <div class="form-group col">
+                <label>GTM</label>
+                <input type="text" class="form-control" name="gtm"
+                       value="{{  $supportCategory->gtm }}"
+                       placeholder="GTM метка" autocomplete="off">
+            </div>
+        </div>
+
 
 
         <button type="submit" class="btn btn-primary">Сохранить</button>
