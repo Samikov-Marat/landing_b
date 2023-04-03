@@ -1,7 +1,6 @@
 @extends('site.universal2.layout')
 
 @section('content')
-
     <div class="support-page screen">
 
         <div class="content support-page__content  support-page__content_step4">
@@ -111,7 +110,10 @@
                                 </div>
                                 <input type="hidden" name="url" value="{{ $url->full() }}">
                                 <div class="form-field">
-                                    <input type="submit" value="{{ $dictionary['support_send'] }}" class="primary-button primary-button_submit" />
+                                    <input type="submit"
+                                           value="{{ $dictionary['support_send'] }}"
+                                           class="primary-button primary-button_submit"
+                                           data-click="new_question_support_from_{{$supportContainer->currentSupportCategory->gtm}}"/>
                                 </div>
                             </form>
 
