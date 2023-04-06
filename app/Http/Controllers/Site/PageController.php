@@ -12,6 +12,7 @@ use App\Classes\Site\AllowCookie;
 use App\Classes\Site\CountryRepository;
 use App\Classes\Site\CustomRouting;
 use App\Classes\Site\FranchiseeContainer;
+use App\Classes\Site\Metrics;
 use App\Classes\Site\RequestCleaner;
 use App\Classes\Site\Subdomain;
 use App\Classes\Site\SupportContainer;
@@ -26,11 +27,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response as HttpFoundationResponse;
-use App\Site;
 
 
 class PageController extends Controller
 {
+    protected $metrics;
+    public function __construct(Metrics $metrics){
+        $this->metrics = $metrics;
+    }
+
     public function selectDefaultLanguage(Request $request)
     {
         try {
@@ -66,6 +71,7 @@ class PageController extends Controller
 
     public function showPage(Request $request, $languageUrl, $pageUrl = '/', $category = null, $question = null)
     {
+        $this->metrics->showPage();
         $domain = Domain::getInstance($request);
         try {
             $siteRepository = new SiteRepository($domain);

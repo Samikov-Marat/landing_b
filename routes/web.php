@@ -477,6 +477,9 @@ Route::middleware('debugbar.disable')->group(function () {
         ->name('request.city');
     Route::post('/request/calculate', 'Site\RequestController@calculate')
         ->name('request.calculate');
+    Route::get('/request/expose-metrics', 'Site\RequestController@exposeMetrics')
+        ->middleware(['metric.basic.auth'])
+        ->name('request.expose_metrics');
 
     Route::get('/request/images/{imageUrl}', 'Site\RequestController@images')
         ->where('imageUrl', '.*')
