@@ -70,6 +70,7 @@ class CalculatorJson
                                         'calendarPeriodMax' => $modeDetail->calendarPeriodMax ?? '',
                                         'price' => $modeDetail->price ?? '0',
                                         'tariffTypeId' => $modeDetail->modeCode,
+                                        'tariffTypeName' => $modeDetail->modeName,
                                     ]);
             }
         }
@@ -95,7 +96,7 @@ class CalculatorJson
             try {
                 $item['tariffTypeLocalized'] = $tariffTypesIndexed[$item['tariffTypeId']][0]->name;
             } catch (Exception $exception) {
-                $item['tariffTypeLocalized'] = '';
+                $item['tariffTypeLocalized'] = $item['tariffTypeName'];
             }
             return $item;
         });

@@ -11,6 +11,7 @@ use App\Classes\Site\Amo\AmoCRMApiClientBuilder;
 use App\Classes\Site\Amo\AmoSender;
 use App\Classes\Site\ApiMarketing\ApiMarketing;
 use App\Classes\Site\CalculatorJson;
+use App\Classes\Site\CalculatorLanguage;
 use App\Classes\Site\FormRequestRepository;
 use App\Classes\Site\Jira\JiraSender;
 use App\Classes\Site\ReferralCookiesHelper;
@@ -255,7 +256,7 @@ class RequestController extends Controller
     public function calculate(Request $request)
     {
         try {
-            $responseBody = Http::withHeaders(['X-User-Lang' => $request->input('language')])
+            $responseBody = Http::withHeaders(['X-User-Lang' => CalculatorLanguage::getLanguage($request->input('language'))])
                 ->asJson()
                 ->withBody(
                     CalculatorJson::getJson($request),
