@@ -12,7 +12,6 @@ use App\Classes\Site\AllowCookie;
 use App\Classes\Site\CountryRepository;
 use App\Classes\Site\CustomRouting;
 use App\Classes\Site\FranchiseeContainer;
-use App\Classes\Site\Metrics;
 use App\Classes\Site\RequestCleaner;
 use App\Classes\Site\Subdomain;
 use App\Classes\Site\SupportContainer;
@@ -21,6 +20,7 @@ use App\Classes\SiteRepository;
 use App\Exceptions\CurrentPageNotFound;
 use App\Exceptions\PageController\LanguageListIsEmpty;
 use App\Exceptions\PageController\SiteNotFound;
+use App\Facades\Metrics;
 use App\Http\Controllers\Controller;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
@@ -31,11 +31,6 @@ use Symfony\Component\HttpFoundation\Response as HttpFoundationResponse;
 
 class PageController extends Controller
 {
-    protected $metrics;
-    public function __construct(Metrics $metrics){
-        $this->metrics = $metrics;
-    }
-
     public function selectDefaultLanguage(Request $request)
     {
         try {
@@ -71,7 +66,7 @@ class PageController extends Controller
 
     public function showPage(Request $request, $languageUrl, $pageUrl = '/', $category = null, $question = null)
     {
-        $this->metrics->showPage();
+        Metrics::showPage();
         $domain = Domain::getInstance($request);
         try {
             $siteRepository = new SiteRepository($domain);

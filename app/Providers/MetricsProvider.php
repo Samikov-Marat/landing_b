@@ -15,7 +15,7 @@ class MetricsProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(Metrics::class, function (Application $app){
+        $this->app->singleton('metrics', function (Application $app){
             return new Metrics(config('database.redis.vmagent'));
         });
     }
