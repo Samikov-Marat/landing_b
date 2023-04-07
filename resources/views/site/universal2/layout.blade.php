@@ -45,11 +45,8 @@
         'universal2.index' => '#calculator',
         'universal2.e_commerce' => '#calculator',
         'universal2.business' => '#calculator',
-        'universal2.documents' => route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => '/']) . '#calculator',
-        'universal2.franchise' => route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => '/']) . '#calculator',
-        'universal2.contacts' => route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => '/']) . '#calculator',
         ];
-    $calculatorHeaderAnchorHref = $templateHref[$page->template] ?? '/#error';
+    $calculatorHeaderAnchorHref = $templateHref[$page->template] ?? (route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => '/']) . '#calculator');
 
     $trackinghref = route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => '/']) . '#tracking';
 
@@ -115,9 +112,6 @@
                     <a href="{{ $calculatorHeaderAnchorHref }}" class="header__button gtm-click"
                        data-click="{{ $calculatorHeaderAnchorGtm }}">@d('header_button')</a>
                     @foreach($site->enabledLanguages as $languageItem)
-                        @if('support' == $page->url && in_array($language->language_code_iso, ['en', 'ru']) )
-                            @break
-                        @endif
                         @if($language->id != $languageItem->id)
                             <div><a class="header__language-selector" href="{!! route('site.show_page', ['languageUrl' => $languageItem->uri, 'pageUrl' => $page->url]) !!}">{{ \Str::upper($languageItem->shortname) }}</a></div>
                         @endif
