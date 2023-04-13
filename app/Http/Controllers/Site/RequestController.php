@@ -10,8 +10,10 @@ use App\Classes\Site\AllowCookie;
 use App\Classes\Site\Amo\AmoCRMApiClientBuilder;
 use App\Classes\Site\Amo\AmoSender;
 use App\Classes\Site\ApiMarketing\ApiMarketing;
-use App\Classes\Site\CalculatorJson;
-use App\Classes\Site\CalculatorLanguage;
+use App\Classes\Site\Calculator;
+use App\Classes\Site\CalculatorJson\LegalPersonToLegalPerson;
+use App\Classes\Site\CalculatorJson\NaturalPersonToNaturalPerson;
+use App\Classes\Site\CalculatorResponse;
 use App\Classes\Site\FormRequestRepository;
 use App\Classes\Site\Jira\JiraSender;
 use App\Classes\Site\ReferralCookiesHelper;
@@ -27,9 +29,7 @@ use GuzzleHttp\Client;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response as HttpResponse;
 
 class RequestController extends Controller
@@ -255,19 +255,19 @@ class RequestController extends Controller
 
     public function calculate(Request $request)
     {
-        try {
-            $responseBody = Http::withHeaders(['X-User-Lang' => CalculatorLanguage::getLanguage($request->input('language'))])
-                ->asJson()
-                ->withBody(
-                    CalculatorJson::getJson($request),
-                    'application/json'
-                )
-                ->post(config('calculator.url'))
-                ->throw()
-                ->body();
+        $domain = Domain::getInstance($request)->get();
+        if ('cdek-bd.com' == $domain) {
+            $jsonGenerator = new LegalPersonToLegalPerson();
+        } else {
+            $jsonGenerator = new NaturalPersonToNaturalPerson();
+        }
 
-            return CalculatorJson::transformResponseBody($responseBody, $request->input('language'));
+        try {
+            $responseBody = Calculator::getInstance($jsonGenerator, config('calculator.url'))
+                ->getTariffs($request);
+            return CalculatorResponse::transformResponseBody($responseBody, $request->input('language'));
         } catch (Exception $exception) {
+            Log::error($exception);
             abort(HttpResponse::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
