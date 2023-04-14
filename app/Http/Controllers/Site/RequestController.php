@@ -11,7 +11,7 @@ use App\Classes\Site\Amo\AmoCRMApiClientBuilder;
 use App\Classes\Site\Amo\AmoSender;
 use App\Classes\Site\ApiMarketing\ApiMarketing;
 use App\Classes\Site\Calculator;
-use App\Classes\Site\CalculatorJson\LegalPersonToLegalPerson;
+use App\Classes\Site\CalculatorJson\LegalEntityToLegalEntity;
 use App\Classes\Site\CalculatorJson\NaturalPersonToNaturalPerson;
 use App\Classes\Site\CalculatorResponse;
 use App\Classes\Site\FormRequestRepository;
@@ -257,7 +257,7 @@ class RequestController extends Controller
     {
         $domain = Domain::getInstance($request)->get();
         if ('cdek-bd.com' == $domain) {
-            $jsonGenerator = new LegalPersonToLegalPerson();
+            $jsonGenerator = new LegalEntityToLegalEntity();
         } else {
             $jsonGenerator = new NaturalPersonToNaturalPerson();
         }

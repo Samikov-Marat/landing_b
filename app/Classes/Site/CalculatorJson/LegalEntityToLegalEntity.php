@@ -4,7 +4,7 @@ namespace App\Classes\Site\CalculatorJson;
 
 use Illuminate\Http\Request;
 
-class LegalPersonToLegalPerson implements JsonGeneratorRequestToApi
+class LegalEntityToLegalEntity implements JsonGeneratorRequestToApi
 {
     public function getJson(Request $request)
     {
