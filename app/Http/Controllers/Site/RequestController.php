@@ -129,7 +129,10 @@ class RequestController extends Controller
         ReferralCookiesHelper::getInstance()
             ->setForce(true)
             ->save($request);
-        return view('site.universal2.gtm_block');
+        if($request->input('preferred_response', 'html') === 'redirect'){
+            return view('site.universal2.gtm_block');
+        }
+        return response()->redirectTo($request->input('url'), \Symfony\Component\HttpFoundation\Response::HTTP_FOUND);
     }
 
     public function feedbackReview(Request $request)

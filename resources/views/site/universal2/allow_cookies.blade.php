@@ -15,7 +15,10 @@
                    class="cookie-confirm__link">@d('allow_cookies_196')</a>
             </div>
         </div>
-        <button type="button" data-url="{{ route('request.allow_cookies') }}" class="primary-button cookie-confirm__button js-cookies-confirm">@d('allow_cookies_197')</button>
+        <form method="post" action="{!! route('request.allow_cookies') !!}" class="js-cookies-confirm-form">
+            <input type="hidden" name="url" value="{{ $url->full() }}">
+            <button type="submit" class="primary-button cookie-confirm__button js-cookies-confirm">@d('allow_cookies_197')</button>
+        </form>
     </div>
 @endif
 

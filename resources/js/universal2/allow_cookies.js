@@ -1,11 +1,15 @@
 $(function () {
-    $('.js-cookies-confirm').click(function () {
+    $('.js-cookies-confirm-form').submit(function (){
+        let formSerializedArray = $(this).serializeArray();
+        formSerializedArray.push({"name":'preferred_response', "value": 'redirect' })
         $.post({
-            url: $(this).data('url')
+            url: $(this).prop('action'),
+            data: formSerializedArray
         }).done(function (gtmCode) {
             $('.cookie-confirm').hide();
-            $('body').append($(gtmCode));
+            $('head').append($(gtmCode));
         });
+        return false;
     });
 
     $('.cookie-confirm__close').click(function () {
