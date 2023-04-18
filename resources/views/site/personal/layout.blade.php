@@ -2,7 +2,8 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>@d('personal_1')</title>
+    <title>@yield('seo_title', 'CDEK')</title>
+    <meta name="description" content="@yield('seo_description', 'CDEK express delivery company')">
 
     <script>
         dataLayer = [];

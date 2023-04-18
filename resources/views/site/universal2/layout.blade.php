@@ -2,7 +2,8 @@
 <html @if($language->rtl) dir="rtl" @endif>
 <head>
     <meta charset="UTF-8">
-    <title>@d('title')</title>
+    <title>@yield('seo_title', 'CDEK')</title>
+    <meta name="description" content="@yield('seo_description', 'CDEK express delivery company')">
 
     <script>
         dataLayer = [];

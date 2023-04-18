@@ -2,6 +2,10 @@
 
 @section('content')
 
+    @section('seo_title', $dictionary['personal_index_seo_title'])
+    @section('seo_description', $dictionary['personal_index_seo_description'])
+
+
     <div class="office-page-poster">
         <div class="office-page-poster__container">
             <picture class="office-page-poster__image">
