@@ -24,6 +24,6 @@
     </style>
 
     <div class="info-page-markdown content">
-        {!! Markdown::parse($dictionary['legal_content']) !!}
+        {!! Markdown::parse($dictionary['archive_content']) !!}
     </div>
 @endsection
