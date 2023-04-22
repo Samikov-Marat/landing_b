@@ -78,7 +78,6 @@ class TranslateSupport extends Command
             if('support_form_order_type' == $textType->shortname){
                 foreach ($textType->texts as $text) {
                     $text->load('language');
-                    dump($text->language->language_code_iso);
                     if(array_key_exists($text->language->language_code_iso, $type)){
                         $text->value = $type[$text->language->language_code_iso];
                         $text->save();
