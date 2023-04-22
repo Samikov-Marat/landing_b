@@ -17,6 +17,7 @@ use App\Classes\Site\CalculatorResponse;
 use App\Classes\Site\FormRequestRepository;
 use App\Classes\Site\Jira\JiraSender;
 use App\Classes\Site\ReferralCookiesHelper;
+use App\Classes\Site\SupportEmail;
 use App\EngOffice;
 use App\Feedback;
 use App\Http\Controllers\Controller;
@@ -65,7 +66,13 @@ class RequestController extends Controller
         try {
             FormRequestRepository::getInstance('support')
                 ->save($request);
-            JiraSender::send($request);
+            if ('delivery' == $request->input('order_type')) {
+                JiraSender::send($request);
+            } elseif ('shopping' == $request->input('order_type')) {
+                SupportEmail::sendShopping($request);
+            } elseif ('forward' == $request->input('order_type')) {
+                SupportEmail::sendForward($request);
+            }
         } catch (Exception $e) {
             Log::error($e);
             abort(HttpResponse::HTTP_INTERNAL_SERVER_ERROR);
@@ -129,7 +136,7 @@ class RequestController extends Controller
         ReferralCookiesHelper::getInstance()
             ->setForce(true)
             ->save($request);
-        if($request->input('preferred_response', 'html') === 'redirect'){
+        if ($request->input('preferred_response', 'html') === 'redirect') {
             return view('site.universal2.gtm_block');
         }
         return response()->redirectTo($request->input('url'), \Symfony\Component\HttpFoundation\Response::HTTP_FOUND);
