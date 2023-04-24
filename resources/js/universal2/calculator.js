@@ -62,6 +62,8 @@ $(function () {
 
         this.step = 1;
 
+        this.tariffsNotFound = false;
+
         this.getCalculateUrl = function () {
             return $('.js-calculator-form').data('calculate-url');
         }
@@ -196,6 +198,13 @@ $(function () {
     }
 
     function showTariffs(tariffs) {
+        if (!tariffs.length) {
+            calculator.tariffsNotFound = true;
+            SelectTariff(false);
+            return;
+        }
+        calculator.tariffsNotFound = false;
+
         let $template = $('.js-calculator-tariff-template').find('.calculator__tariff-item');
         let $list = $('.calculator__tariff-list');
         $list.empty();
@@ -224,11 +233,6 @@ $(function () {
         });
 
         $('.calculator__content_step1').hide();
-
-        if (!tariffs.length) {
-            SelectTariff(false, $list);
-            return;
-        }
 
         $('.calculator__content_step2')
             .removeClass('calculator__content_loading')
@@ -279,6 +283,15 @@ $(function () {
 
     $('.calculator__content_step3 .calculator__step-link_back').click(function () {
         $('.calculator__content_step3').hide();
+
+        if (calculator.tariffsNotFound) {
+            $('.calculator__content_step1')
+                .removeClass('calculator__content_loading')
+                .show();
+            calculator.setStep(1);
+            return false;
+        }
+
         $('.calculator__content_step2')
             .removeClass('calculator__content_loading')
             .show();
