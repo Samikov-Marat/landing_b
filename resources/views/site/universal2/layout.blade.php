@@ -119,8 +119,10 @@
                     @endforeach
                     <div class="header-contact">
                         <div class="header-contact__content">
+                            @if($dictionary['header_phone'])
                             <a class="header-contact__phone"
-                               href="tel:@d('header_phone')">@d('header_phone_formatted')</a>
+                               href="tel:{{ $dictionary['header_phone'] }}">@d('header_phone_formatted')</a>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -257,6 +259,15 @@
                             @endforeach
                         @endforeach
                     @endif
+
+                    @if($dictionary['footer_email'])
+                        <br>
+                        @d('footer_support_text')
+                        <a class="footer__email footer-email" style="background:none; padding-left:1em;" href="tel:{{ $dictionary['footer_support_phone'] }}">@d('footer_support_phone')</a>
+                        <br>
+                        <a class="footer__email footer-email" href="mailto:{{ $dictionary['footer_email'] }}">@d('footer_email')</a>
+                    @endif
+
                 </div>
             </div>
         </div>
