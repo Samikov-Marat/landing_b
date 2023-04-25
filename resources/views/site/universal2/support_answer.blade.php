@@ -103,6 +103,18 @@
                                         </select>
                                     </div>
                                 </div>
+
+                                <div class="form__row">
+                                    <div class="form-field">
+                                        <select class="form-field__input js-support-select2 support-focus-reset-error" name="order_type" placeholder="{{ $dictionary['support_form_order_type'] }}">
+                                            <option></option>
+                                            <option value="shopping">@d('support_form_order_type_shopping')</option>
+                                            <option value="forward">@d('support_form_order_type_forward')</option>
+                                            <option value="delivery">@d('support_form_order_type_delivery')</option>
+                                        </select>
+                                    </div>
+                                </div>
+
                                 <div class="form__row">
                                     <div class="form-field">
                                         <textarea name="question" class="form-field__input support-focus-reset-error" placeholder="{{ $dictionary['support_custom_question'] }}"></textarea>
