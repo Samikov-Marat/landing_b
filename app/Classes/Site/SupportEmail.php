@@ -8,6 +8,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
+use Symfony\Component\HttpFoundation\Response;
 
 class SupportEmail
 {
@@ -19,6 +20,7 @@ class SupportEmail
 
         }catch (Exception $e){
             Log::error($e);
+            abort(Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 

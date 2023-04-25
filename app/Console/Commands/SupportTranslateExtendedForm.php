@@ -5,7 +5,7 @@ namespace App\Console\Commands;
 use App\TextType;
 use Illuminate\Console\Command;
 
-class TranslateSupport extends Command
+class SupportTranslateExtendedForm extends Command
 {
     /**
      * The name and signature of the console command.
@@ -38,7 +38,6 @@ class TranslateSupport extends Command
      */
     public function handle()
     {
-
         $t = '"иврит","he","סוג הזמנה","אחר"
 "тайский","th","ประเภทใบแจ้งหนี้","อื่นๆ"
 "абхазский","ab","Аҿаҵа атип","Иацу "
@@ -69,26 +68,47 @@ class TranslateSupport extends Command
         }
 
 
-
-        $textTypes = TextType::whereIn('shortname', ['support_form_order_type', 'support_form_order_type_delivery'])
+        $textTypes = TextType::whereIn('shortname',
+                                       [
+                                           'support_form_order_type',
+                                           'support_form_order_type_delivery',
+                                           'support_form_order_type_shopping',
+                                           'support_form_order_type_forward',
+                                       ]
+        )
             ->with('texts')
             ->get();
 
         foreach ($textTypes as $textType) {
-            if('support_form_order_type' == $textType->shortname){
+            if ('support_form_order_type' == $textType->shortname) {
                 foreach ($textType->texts as $text) {
                     $text->load('language');
-                    if(array_key_exists($text->language->language_code_iso, $type)){
+                    if (array_key_exists($text->language->language_code_iso, $type)) {
                         $text->value = $type[$text->language->language_code_iso];
                         $text->save();
                     }
                 }
-            }
-            elseif('support_form_order_type_delivery' == $textType->shortname){
+            } elseif ('support_form_order_type_delivery' == $textType->shortname) {
                 foreach ($textType->texts as $text) {
                     $text->load('language');
-                    if(array_key_exists($text->language->language_code_iso, $delivery)){
+                    if (array_key_exists($text->language->language_code_iso, $delivery)) {
                         $text->value = $delivery[$text->language->language_code_iso];
+                        $text->save();
+                    }
+                }
+            } elseif ('support_form_order_type_shopping' == $textType->shortname) {
+                foreach ($textType->texts as $text) {
+                    $text->load('language');
+                    if ('ru' == $text->language->language_code_iso) {
+                        $text->value = 'CDEK Shoppng';
+                        $text->save();
+                    }
+                }
+            }elseif ('support_form_order_type_forward' == $textType->shortname) {
+                foreach ($textType->texts as $text) {
+                    $text->load('language');
+                    if ('ru' == $text->language->language_code_iso) {
+                        $text->value = 'CDEK Forward';
                         $text->save();
                     }
                 }
