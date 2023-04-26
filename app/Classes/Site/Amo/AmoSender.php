@@ -14,10 +14,16 @@ use Symfony\Component\HttpFoundation\Request;
 class AmoSender
 {
     private $apiClient;
+    private $siteId;
 
-    public function __construct(AmoCRMApiClient $apiClient)
+    const responsibleUserIdBySiteId = [
+        14 => 8699149 // Видягина Карина
+    ];
+
+    public function __construct(AmoCRMApiClient $apiClient, int $siteId = 0)
     {
         $this->apiClient = $apiClient;
+        $this->siteId = $siteId;
     }
 
     public static function getInstance(AmoCRMApiClient $apiClient): self
@@ -45,8 +51,10 @@ class AmoSender
         $lead->setCustomFieldsValues($leadCustomFieldsValues);
         $lead->setName('Заявка на сотрудничество ' . $url);
         $lead->setPipelineId(5730658);
-        $lead->setResponsibleUserId(7123186);
-
+        $responsibleUserId = array_key_exists($this->siteId, self::responsibleUserIdBySiteId)
+            ? self::responsibleUserIdBySiteId[$this->siteId]
+            : 7123186;
+        $lead->setResponsibleUserId($responsibleUserId);
         try {
             $this->apiClient->leads()
                 ->addOne($lead);
