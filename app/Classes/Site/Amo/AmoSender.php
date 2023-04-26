@@ -26,9 +26,9 @@ class AmoSender
         $this->siteId = $siteId;
     }
 
-    public static function getInstance(AmoCRMApiClient $apiClient): self
+    public static function getInstance(AmoCRMApiClient $apiClient, int $siteId = 0): self
     {
-        return new self($apiClient);
+        return new self($apiClient, $siteId);
     }
 
     public function send($url, $form)

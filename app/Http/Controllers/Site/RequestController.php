@@ -87,7 +87,7 @@ class RequestController extends Controller
                 ->save($request);
 
             $client = AmoCRMApiClientBuilder::getInstance()->getClient();
-            $siteId = $request->input('siteId');
+            $siteId = $request->input('site_id');
             AmoSender::getInstance($client, $siteId)
                 ->send($request->input('url'), [
                     '2114857' => $request->input('name'),
