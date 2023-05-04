@@ -118,7 +118,7 @@
                     <div class="submenu submenu_centered franchise-format__submenu">
                         <div class="submenu__content">
                             <a href="#" class="submenu__item submenu__item_active js-franchise-format-handler" data-format="pvz">@d('franchise_40')</a>
-                            <a href="#" class="submenu__item js-franchise-format-handler" data-format="shop">@d('franchise_41')</a>
+                            <!--<a href="#" class="submenu__item js-franchise-format-handler" data-format="shop">@d('franchise_41')</a>-->
                         </div>
                     </div>
                     <div class="franchise-format__item js-franchise-format" data-format="pvz">
