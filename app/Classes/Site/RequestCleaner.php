@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class RequestCleaner
 {
     private $clearedParams;
-    private $allows = ['#^utm_.*#', '#^gclid$#', '#^yclid$#'];
+    private $allows = ['#^utm_.*#', '#^gclid$#', '#^yclid$#', '#^fbclid$#'];
 
     private $changed;
 
