@@ -60,7 +60,7 @@
                             <select  name="country_from" class="form-field__input js-order-select2" placeholder="{{ $dictionary['order_form_field_5'] }}" >
                                 <option></option>
                                 @foreach($countriesFrom as $country)
-                                    <option value="{{ $country->jira_code }}">{{ $country->value ?? $country->jira_code }}</option>
+                                    <option value="{{ $country->jira_code }}">{{ $country->country_text->value ?? $country->jira_code }}</option>
                                 @endforeach
                             </select>
                             <div class="form-field__error-message">@d('order_form_required')</div>
@@ -77,7 +77,7 @@
                             <select  name="country_to" class="form-field__input js-order-select2" placeholder="{{ $dictionary['order_form_field_6'] }}" >
                                 <option></option>
                             @foreach($countriesTo as $country)
-                                <option value="{{ $country->jira_code }}">{{ $country->value ?? $country->jira_code }}</option>
+                                <option value="{{ $country->jira_code }}">{{ $country->country_text->value ?? $country->jira_code }}</option>
                             @endforeach
                             </select>
                             <div class="form-field__error-message">@d('order_form_required')</div>

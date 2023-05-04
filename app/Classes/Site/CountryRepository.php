@@ -4,18 +4,16 @@ namespace App\Classes\Site;
 
 use App\Country;
 use App\CountryText;
+use App\Language;
+use PhpParser\Builder;
+use Illuminate\Database\Eloquent\Collection;
 
 class CountryRepository
 {
 
     private $query;
 
-    public static function getInstance($language): self
-    {
-        return new static($language);
-    }
-
-    public function __construct($language)
+    /*public function __construct($language)
     {
         $countryTable = Country::getTableStatically();
         $countryTextTable = CountryText::getTableStatically();
@@ -28,17 +26,29 @@ class CountryRepository
             })
             ->orderBy('value')
             ->orderBy('jira_code');
+    }*/
+
+    private function getCountries (): \Illuminate\Database\Eloquent\Builder {
+        return Country::query()->select(['id', 'jira_code']);
     }
 
-    public function getStartCountries()
+    public function getStartCountries(Language $language): Collection
     {
-        return $this->query->where('t_country.can_send', true)
-            ->get();
+        return $this->getCountries()
+            ->where('can_send', true)
+            ->get()
+            ->load(['country_text' => function ($query) use ($language) {
+                $query->where('language_id', $language->id);
+            }]);
     }
 
-    public function getFinishCounties()
+    public function getFinishCounties(Language $language): Collection
     {
-        return $this->query->where('t_country.can_receive', true)
-            ->get();
+        return $this->getCountries()
+            ->where('can_receive', true)
+            ->get()
+            ->load(['country_text' => function ($query) use ($language) {
+                $query->where('language_id', $language->id);
+            }]);
     }
 }

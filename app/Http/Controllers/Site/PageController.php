@@ -64,7 +64,14 @@ class PageController extends Controller
         }
     }
 
-    public function showPage(Request $request, $languageUrl, $pageUrl = '/', $category = null, $question = null)
+    public function showPage(
+        CountryRepository $countryRepository,
+        Request $request,
+        $languageUrl,
+        $pageUrl = '/',
+        $category = null,
+        $question = null
+    )
     {
         $domain = Domain::getInstance($request);
         try {
@@ -104,8 +111,8 @@ class PageController extends Controller
         $siteRepository->loadOurWorkers($language);
         $siteRepository->loadFeedbacks($language);
         $topOffices = $siteRepository->getTopOffices($language);
-        $countriesFrom = CountryRepository::getInstance($language)->getStartCountries();
-        $countriesTo = CountryRepository::getInstance($language)->getFinishCounties();
+        $countriesFrom = $countryRepository->getStartCountries($language);
+        $countriesTo = $countryRepository->getFinishCounties($language);
 
         $customRouting = CustomRouting::getInstance($request);
 
