@@ -57,7 +57,14 @@ services:
     tty: true
     networks:
       - landing
-
+  redis:
+    build:
+      context:
+        ./docker/redis
+    ports:
+      - ${REDIS_PORT}:6379
+    networks:
+      - landing
 networks:
   landing:
     driver: bridge
