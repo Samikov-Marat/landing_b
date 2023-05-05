@@ -43,7 +43,8 @@ class PageController extends Controller
                 $language = $site->defaultLanguages->first();
                 $languageShortName = Str::lower($language->shortname);
                 $requestCleaner = new RequestCleaner($request);
-                $params = array_merge(['languageUrl' => $languageShortName], $requestCleaner->getCleared());
+                $params = array_merge(['languageUrl' => $languageShortName],
+                    $requestCleaner->getCleared());
                 return response()->redirectToRoute('site.show_page', $params);
             }
 
@@ -56,7 +57,8 @@ class PageController extends Controller
                 );
             $languageShortName = Str::lower($language->shortname);
             $requestCleaner = new RequestCleaner($request);
-            $params = array_merge(['languageUrl' => $languageShortName], $requestCleaner->getCleared());
+            $params = array_merge(['languageUrl' => $languageShortName],
+                $requestCleaner->getCleared());
             return response()->redirectToRoute('site.show_page', $params);
         } catch (SiteNotFound|LanguageListIsEmpty $e) {
             abort(HttpFoundationResponse::HTTP_NOT_FOUND);
@@ -71,8 +73,7 @@ class PageController extends Controller
         $pageUrl = '/',
         $category = null,
         $question = null
-    )
-    {
+    ) {
         $domain = Domain::getInstance($request);
         try {
             $siteRepository = new SiteRepository($domain);
@@ -93,7 +94,8 @@ class PageController extends Controller
         $language = $siteRepository->getLanguage($languageShortname);
         if ($language->disabled) {
             $requestCleaner = new RequestCleaner($request);
-            return response()->redirectToRoute('site.select_default_language', $requestCleaner->getCleared());
+            return response()->redirectToRoute('site.select_default_language',
+                $requestCleaner->getCleared());
         }
         try {
             $page = $siteRepository->getCurrentPage($pageUrl);
@@ -105,7 +107,8 @@ class PageController extends Controller
         $fragments->push($page);
         $fragmentRepository = new FragmentRepository($fragments);
         $dictionaryBuilder = new DictionaryBuilder($subdomain->hasSubdomain());
-        $dictionary = $dictionaryBuilder->get($fragmentRepository->forSubdomain($subdomain)->getWithTexts($language));
+        $dictionary = $dictionaryBuilder->get($fragmentRepository->forSubdomain($subdomain)
+            ->getWithTexts($language));
         $siteRepository->loadLocalOffices($language, $subdomain);
         $siteRepository->loadNewsArticles($language);
         $siteRepository->loadOurWorkers($language);
@@ -147,6 +150,7 @@ class PageController extends Controller
             ->with('countriesTo', $countriesTo)
             ->with('showFastAnswer', FastAnswer::setShowFastAnswer($request, $pageUrl))
             ->with('allowCookies', AllowCookie::getInstance($request)->isAllow())
-            ->with('hasLocalStylesheet', LocalStylesheet::hasLocalStylesheet($site, $languageShortname));
+            ->with('hasLocalStylesheet',
+                LocalStylesheet::hasLocalStylesheet($site, $languageShortname));
     }
 }
