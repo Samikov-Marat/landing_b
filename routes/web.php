@@ -446,6 +446,9 @@ Route::prefix('admin')->middleware(
             ->name('admin.amo.auth_form');
         Route::post('amo/auth-save', 'Admin\AmoController@authSave')
             ->name('admin.amo.auth_save');
+
+        Route::resource('countries', 'Admin\CountryController', ['names' => 'countries']);
+        Route::resource('countries.lang', 'Admin\CountryLangController', ['names' => 'lang']);
     }
 
 );
