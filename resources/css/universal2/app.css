@@ -2479,7 +2479,9 @@ body {
   .two-icons__item {
     display: flex;
     align-items: center;
-    margin-right: 50px; }
+    margin-right: 50px;
+    flex-direction: column;
+    gap: 1rem; }
     .two-icons__item:last-child {
       margin-right: 0; }
   .two-icons__icon {
@@ -2502,6 +2504,11 @@ body {
   .two-icons__text-big {
     font-size: 21px;
     line-height: 30px;
+    font-weight: 400; }
+  .two-icons__details {
+    display: flex;
+    align-items: center; }
+  .two-icons__header {
     font-weight: 400; }
 
 @media (max-width: 1199px) {
