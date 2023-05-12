@@ -14,4 +14,6 @@ use Illuminate\Database\Eloquent\Model;
 class CountryText extends Model
 {
     use ModelStaticTable;
+
+    protected $fillable = ['country_id', 'language_id'];
 }

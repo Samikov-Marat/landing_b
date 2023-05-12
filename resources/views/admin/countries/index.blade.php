@@ -74,7 +74,7 @@
                     <button type="button" class="btn btn-danger">Удалить</button>
                 </div>
                 <div class="col-auto">
-                    <button type="button" class="btn btn-link">Переводы</button>
+                    <a href="{{ route('lang.index', ['country' => $country->id]) }}" class="btn btn-link">Переводы</a>
                 </div>
             </div>
         </form>

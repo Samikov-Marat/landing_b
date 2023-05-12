@@ -17,6 +17,6 @@ class Country extends Model
     //
 
     public function country_text() {
-        return $this->hasOne(CountryText::class);
+        return $this->hasMany(CountryText::class);
     }
 }

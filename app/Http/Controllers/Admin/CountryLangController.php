@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Country;
+use App\CountryText;
 use App\Http\Controllers\Controller;
+use App\Site;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -16,12 +18,25 @@ class CountryLangController extends Controller
      */
     public function index(int $countryId): View
     {
-        $lang = Country::query()
+        $sites = Site::all()->load('languages');
+
+        $country = Country::query()
             ->findOrFail($countryId)
             ->load('country_text');
-        dd($lang);
+
+        $countriesTexts = [];
+
+        $sites->each(static function($site) use (&$countriesTexts, $country) {
+            $site->languages->each(static function($language) use (&$countriesTexts, $country) {
+                $countryText = $country->country_text->firstWhere('language_id', $language->id);
+                $countriesTexts[$language->id] = $countryText->value ?? $countryText;
+            });
+        });
+
         return view('admin.countries.lang.index')
-            ->with('lang', $lang);
+            ->with('sites', $sites)
+            ->with('countriesTexts', $countriesTexts)
+            ->with('countryId', $countryId);
     }
 
     /**
@@ -72,11 +87,19 @@ class CountryLangController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $countryId, int $langId)
     {
-        //
+        $lang = CountryText::query()->firstOrNew([
+            'country_id' => $countryId,
+            'language_id' => $langId
+        ]);
+
+        $lang->value = $request->input('lang');
+        $lang->save();
+
+        return redirect(route('lang.index', ['country' => $countryId]));
     }
 
     /**
