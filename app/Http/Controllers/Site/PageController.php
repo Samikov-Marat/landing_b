@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\Site;
 
+use App\Classes\CdekMicroservice\ManageNotifications\EmailSender;
+use App\Classes\CdekMicroservice\SimpleAuthentication\SimpleAuthentication;
+use App\Classes\CdekMicroservice\TokenAuthorize\TokenAuthorize;
 use App\Classes\DictionaryBuilder;
 use App\Classes\Domain;
 use App\Classes\FastAnswer;
@@ -66,6 +69,10 @@ class PageController extends Controller
 
     public function showPage(Request $request, $languageUrl, $pageUrl = '/', $category = null, $question = null)
     {
+        dump((new SimpleAuthentication())->authorize()->getToken());
+        (new TokenAuthorize())->authorize();
+        (new EmailSender())->send();
+
         Metrics::showPage();
         $domain = Domain::getInstance($request);
         try {
