@@ -22,8 +22,8 @@ class CountryTextsController extends Controller
 
         $countriesTexts = [];
 
-        $sites->each(static function($site) use (&$countriesTexts, $country) {
-            $site->languages->each(static function($language) use (&$countriesTexts, $country) {
+        $sites->each(static function ($site) use (&$countriesTexts, $country) {
+            $site->languages->each(static function ($language) use (&$countriesTexts, $country) {
                 $countryText = $country->country_text->firstWhere('language_id', $language->id);
                 $countriesTexts[$language->id] = $countryText->value ?? $countryText;
             });
@@ -46,7 +46,7 @@ class CountryTextsController extends Controller
 
         $lang = CountryText::query()->firstOrNew([
             'country_id' => $country,
-            'language_id' => $text
+            'language_id' => $text,
         ]);
 
         $lang->value = $validated['text'];
@@ -55,7 +55,8 @@ class CountryTextsController extends Controller
         return redirect(route('admin.countryTexts.index', ['country' => $country]));
     }
 
-    public function destroy(int $country, int $text): void {
+    public function destroy(int $country, int $text): void
+    {
         CountryText::query()
             ->where('country_id', $country)
             ->where('language_id', $text)
