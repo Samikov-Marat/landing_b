@@ -21,7 +21,7 @@ class CountryRepository
             ->where('can_send', true)
             ->get()
             ->load([
-                'country_text' => function ($query) use ($language) {
+                'countryTexts' => function ($query) use ($language) {
                     $query->where('language_id', $language->id);
                 },
             ]);
@@ -33,7 +33,7 @@ class CountryRepository
             ->where('can_receive', true)
             ->get()
             ->load([
-                'country_text' => function ($query) use ($language) {
+                'countryTexts' => function ($query) use ($language) {
                     $query->where('language_id', $language->id);
                 },
             ]);
