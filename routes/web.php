@@ -446,6 +446,14 @@ Route::prefix('admin')->middleware(
             ->name('admin.amo.auth_form');
         Route::post('amo/auth-save', 'Admin\AmoController@authSave')
             ->name('admin.amo.auth_save');
+
+        Route::group([
+            'prefix' => 'map'
+        ], function () {
+            Route::get('/', 'Admin\MapController@index')->name('admin.map.index');
+            Route::get('{site}', 'Admin\MapController@show')->name('admin.map.show');
+            Route::put('{site}', 'Admin\MapController@update')->name('admin.map.update');
+        });
     }
 
 );
