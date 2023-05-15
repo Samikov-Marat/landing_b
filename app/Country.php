@@ -20,7 +20,7 @@ class Country extends Model
     use ModelStaticTable;
     //
 
-    public function countryText(): HasMany {
+    public function countryTexts(): HasMany {
         return $this->hasMany(CountryText::class);
     }
 }

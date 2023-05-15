@@ -25,29 +25,28 @@ class CountryController extends Controller
 
         $country = new Country();
         $country->jira_code = $validated['jira_code'];
-        $country->can_send = empty($validated['can_send']);
-        $country->can_receive = empty($validated['can_receive']);
+        $country->can_send = !empty($validated['can_send']);
+        $country->can_receive = !empty($validated['can_receive']);
 
         $country->save();
         return redirect(route('admin.countries.index'));
     }
 
-    public function update(CountryRequest $request, int $id): RedirectResponse
+    public function update(CountryRequest $request, Country $country): RedirectResponse
     {
         $validated = $request->validated();
-        $country = Country::query()->findOrFail($id);
 
         $country->jira_code = $validated['jira_code'];
-        $country->can_send = empty($validated['can_send']);
-        $country->can_receive = empty($validated['can_receive']);
+        $country->can_send = !empty($validated['can_send']);
+        $country->can_receive = !empty($validated['can_receive']);
 
         $country->save();
         return redirect(route('admin.countries.index'));
     }
 
-    public function destroy($id): RedirectResponse
+    public function destroy(Country $country): RedirectResponse
     {
-        Country::query()->findOrFail($id)->delete();
+        $country->delete();
         return redirect(route('admin.countries.index'));
     }
 }

@@ -19,7 +19,7 @@
 
             <div class="col-auto d-flex align-items-center">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckCheckedSend" name="can_send">
+                    <input class="form-check-input" type="checkbox" value="1" id="flexCheckCheckedSend" name="can_send">
                     <label class="form-check-label" for="flexCheckCheckedSend">
                         Страна отправитель
                     </label>
@@ -28,7 +28,7 @@
 
             <div class="col-auto d-flex align-items-center">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckCheckedReceive" name="can_receive">
+                    <input class="form-check-input" type="checkbox" value="1" id="flexCheckCheckedReceive" name="can_receive">
                     <label class="form-check-label" for="flexCheckCheckedReceive">
                         Страна получатель
                     </label>
@@ -51,7 +51,7 @@
 
                 <div class="col-auto d-flex align-items-center">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckCheckedSend{{$country->id}}" name="can_send" {{ $country->can_send ? 'checked' : '' }}>
+                        <input class="form-check-input" type="checkbox" value="1" id="flexCheckCheckedSend{{$country->id}}" name="can_send" {{ $country->can_send ? 'checked' : '' }}>
                         <label class="form-check-label" for="flexCheckCheckedSend{{$country->id}}">
                             Страна отправитель
                         </label>
@@ -60,7 +60,7 @@
 
                 <div class="col-auto d-flex align-items-center">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckCheckedReceive{{$country->id}}" name="can_receive" {{ $country->can_receive ? 'checked' : '' }}>
+                        <input class="form-check-input" type="checkbox" value="1" id="flexCheckCheckedReceive{{$country->id}}" name="can_receive" {{ $country->can_receive ? 'checked' : '' }}>
                         <label class="form-check-label" for="flexCheckCheckedReceive{{$country->id}}">
                             Страна получатель
                         </label>

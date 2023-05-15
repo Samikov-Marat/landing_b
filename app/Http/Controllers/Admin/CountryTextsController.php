@@ -12,19 +12,16 @@ use Illuminate\View\View;
 
 class CountryTextsController extends Controller
 {
-    public function index(int $countryId): View
+    public function index(Country $country): View
     {
+        $country->load('countryTexts');
         $sites = Site::all()->load('languages');
-
-        $country = Country::query()
-            ->findOrFail($countryId)
-            ->load('countryText');
 
         $countriesTexts = [];
 
         $sites->each(static function ($site) use (&$countriesTexts, $country) {
             $site->languages->each(static function ($language) use (&$countriesTexts, $country) {
-                $countryText = $country->countryText->firstWhere('language_id', $language->id);
+                $countryText = $country->countryTexts->firstWhere('language_id', $language->id);
                 $countriesTexts[$language->id] = $countryText->value ?? $countryText;
             });
         });
@@ -32,7 +29,7 @@ class CountryTextsController extends Controller
         return view('admin.countries.texts.index')
             ->with('sites', $sites)
             ->with('countriesTexts', $countriesTexts)
-            ->with('countryId', $countryId);
+            ->with('countryId', $country->id);
     }
 
     public function update(CountryTextRequest $request, int $country, int $text): RedirectResponse
