@@ -450,7 +450,7 @@ Route::prefix('admin')->middleware(
         // Страны
         Route::group([
             'prefix' => 'countries'
-        ], function () {
+        ], static function () {
             Route::get('/', 'Admin\CountryController@index')->name('admin.countries.index');
             Route::get('create', 'Admin\CountryController@create')->name('admin.countries.create');
             Route::put('{country}', 'Admin\CountryController@update')->name('admin.countries.update');
@@ -458,7 +458,7 @@ Route::prefix('admin')->middleware(
         });
         Route::group([
             'prefix' => 'countries/{country}/texts'
-        ], function () {
+        ], static function () {
             Route::get('/', 'Admin\CountryTextsController@index')->name('admin.countryTexts.index');
             Route::put('{countryText}', 'Admin\CountryTextsController@update')->name('admin.countryTexts.update');
         });
