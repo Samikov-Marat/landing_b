@@ -18,13 +18,13 @@ class CountryTextsController extends Controller
 
         $country = Country::query()
             ->findOrFail($countryId)
-            ->load('country_text');
+            ->load('countryText');
 
         $countriesTexts = [];
 
         $sites->each(static function ($site) use (&$countriesTexts, $country) {
             $site->languages->each(static function ($language) use (&$countriesTexts, $country) {
-                $countryText = $country->country_text->firstWhere('language_id', $language->id);
+                $countryText = $country->countryText->firstWhere('language_id', $language->id);
                 $countriesTexts[$language->id] = $countryText->value ?? $countryText;
             });
         });
