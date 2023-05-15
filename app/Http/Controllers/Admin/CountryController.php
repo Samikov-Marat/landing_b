@@ -25,8 +25,8 @@ class CountryController extends Controller
 
         $country = new Country();
         $country->jira_code = $validated['jira_code'];
-        $country->can_send = isset($validated['can_send']);
-        $country->can_receive = isset($validated['can_receive']);
+        $country->can_send = empty($validated['can_send']);
+        $country->can_receive = empty($validated['can_receive']);
 
         $country->save();
         return redirect(route('admin.countries.index'));
@@ -38,8 +38,8 @@ class CountryController extends Controller
         $country = Country::query()->findOrFail($id);
 
         $country->jira_code = $validated['jira_code'];
-        $country->can_send = isset($validated['can_send']);
-        $country->can_receive = isset($validated['can_receive']);
+        $country->can_send = empty($validated['can_send']);
+        $country->can_receive = empty($validated['can_receive']);
 
         $country->save();
         return redirect(route('admin.countries.index'));
