@@ -38,6 +38,7 @@ class CountryTextsController extends Controller
 
         if (!$validated['text']) {
             $this->destroy($country, $text);
+            return redirect(route('admin.countryTexts.index', ['country' => $country]));
         }
 
         $lang = CountryText::query()->firstOrNew([
