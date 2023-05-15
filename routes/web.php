@@ -447,8 +447,21 @@ Route::prefix('admin')->middleware(
         Route::post('amo/auth-save', 'Admin\AmoController@authSave')
             ->name('admin.amo.auth_save');
 
-        Route::resource('countries', 'Admin\CountryController', ['names' => 'countries']);
-        Route::resource('countries.lang', 'Admin\CountryLangController', ['names' => 'lang']);
+        // Страны
+        Route::group([
+            'prefix' => 'countries'
+        ], function () {
+            Route::get('/', 'Admin\CountryController@index')->name('admin.countries.index');
+            Route::get('create', 'Admin\CountryController@create')->name('admin.countries.create');
+            Route::put('{country}', 'Admin\CountryController@update')->name('admin.countries.update');
+            Route::delete('{country}', 'Admin\CountryController@destroy')->name('admin.countries.delete');
+        });
+        Route::group([
+            'prefix' => 'countries/{country}/texts'
+        ], function () {
+            Route::get('/', 'Admin\CountryTextsController@index')->name('admin.countryTexts.index');
+            Route::put('{countryText}', 'Admin\CountryTextsController@update')->name('admin.countryTexts.update');
+        });
     }
 
 );

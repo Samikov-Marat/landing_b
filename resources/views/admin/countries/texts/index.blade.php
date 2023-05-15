@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <a href="{{ route('countries.index') }}" class="mb-3 d-block"><< Назад</a>
+    <a href="{{ route('admin.countries.index') }}" class="mb-3 d-block"><< Назад</a>
     <div class="accordion" id="accordionExample">
         @foreach($sites as $site)
             <div class="card">
@@ -21,17 +21,17 @@
                     <div class="card-body">
                             @foreach($site->languages as $language)
                                 <div class="mb-3">
-                                    <form method="post" action="{{ route('lang.update', ['country' => $countryId, 'lang' => $language->id]) }}">
+                                    <form method="post" action="{{ route('admin.countryTexts.update', ['country' => $countryId, 'countryText' => $language->id]) }}">
                                         @csrf
-                                        @method('PATCH')
+                                        @method('PUT')
                                         <div class="row">
                                             <div class="col-10">
                                                 <label for="exampleFormControlInput1" class="form-label">{{ $language->shortname }} / {{ $language->name }}</label>
 
                                                 @if($countriesTexts[$language->id])
-                                                    <input type="text" class="form-control" id="exampleFormControlInput1" name="lang" value="{{$countriesTexts[$language->id]}}">
+                                                    <input type="text" class="form-control" id="exampleFormControlInput1" name="text" value="{{$countriesTexts[$language->id]}}">
                                                 @else
-                                                    <input type="text" class="form-control" id="exampleFormControlInput1" name="lang" value="">
+                                                    <input type="text" class="form-control" id="exampleFormControlInput1" name="text" value="">
                                                 @endif
                                             </div>
                                             <div class="col-2 mb-0 mt-auto">
