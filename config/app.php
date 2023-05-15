@@ -39,7 +39,7 @@ return [
     |
     */
 
-    'debug' => (bool) env('APP_DEBUG', false),
+    'debug' => (bool)env('APP_DEBUG', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -61,6 +61,12 @@ return [
     'recapcha3_key' => '6Le0bEEdAAAAABm69F3WypBbZTVPp3pLnvyqU6wz',
 
     'recapcha3_secret' => '6Le0bEEdAAAAAHeFSTmaaCWyEcN50FeCTf6GazIf',
+
+    'metric_basic_auth' => [
+        'user' => env('METRICS_USER'),
+        'password' => env('METRICS_PASSWORD'),
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Application Timezone
@@ -186,6 +192,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        \App\Providers\MetricsProvider::class,
     ],
 
     /*

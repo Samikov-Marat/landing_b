@@ -20,13 +20,13 @@ use App\Classes\SiteRepository;
 use App\Exceptions\CurrentPageNotFound;
 use App\Exceptions\PageController\LanguageListIsEmpty;
 use App\Exceptions\PageController\SiteNotFound;
+use App\Facades\Metrics;
 use App\Http\Controllers\Controller;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response as HttpFoundationResponse;
-use App\Site;
 
 
 class PageController extends Controller

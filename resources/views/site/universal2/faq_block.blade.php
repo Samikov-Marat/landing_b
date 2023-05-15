@@ -24,10 +24,6 @@
                     <div class="faq-list__faq-answer">@d('faq_shop_answer_3')<a href="{!!route('request.images','import_restrictions.pdf')!!}" target="_blank">@d('faq_shop_answer_3_link')</a></div>
                 </div>
                 <div class="faq-list__faq">
-                    <div class="faq-list__faq-question">@d('faq_shop_question_4')</div>
-                    <div class="faq-list__faq-answer">@d('faq_shop_answer_4')<a href="{!!route('request.images','prohibited.pdf')!!}" target="_blank">@d('faq_shop_answer_4_link')</a></div>
-                </div>
-                <div class="faq-list__faq">
                     <div class="faq-list__faq-question">@d('faq_shop_question_5')</div>
                     <div class="faq-list__faq-answer">@d('faq_shop_answer_5')</div>
                 </div>
@@ -39,10 +35,6 @@
 
 
             <div class="faq-list faq__faq-list" id="faq_documents">
-                <div class="faq-list__faq">
-                    <div class="faq-list__faq-question">@d('faq_documents_question_1')</div>
-                    <div class="faq-list__faq-answer">@d('faq_documents_answer_1')</div>
-                </div>
                 <div class="faq-list__faq">
                     <div class="faq-list__faq-question">@d('faq_documents_question_2')</div>
                     <div class="faq-list__faq-answer">@d('faq_documents_answer_2')</div>
@@ -74,10 +66,6 @@
                 <div class="faq-list__faq">
                     <div class="faq-list__faq-question">@d('faq_business_question_3')</div>
                     <div class="faq-list__faq-answer">@d('faq_business_answer_3')</div>
-                </div>
-                <div class="faq-list__faq">
-                    <div class="faq-list__faq-question">@d('faq_business_question_4')</div>
-                    <div class="faq-list__faq-answer">@d('faq_business_answer_4')<a href="{!!route('request.images','prohibited.pdf')!!}" target="_blank">@d('faq_business_answer_4_link')</a></div>
                 </div>
                 <div class="faq-list__faq">
                     <div class="faq-list__faq-question">@d('faq_business_question_5')</div>

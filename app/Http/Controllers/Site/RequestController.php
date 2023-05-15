@@ -16,9 +16,11 @@ use App\Classes\Site\CalculatorJson\NaturalPersonToNaturalPerson;
 use App\Classes\Site\CalculatorResponse;
 use App\Classes\Site\FormRequestRepository;
 use App\Classes\Site\Jira\JiraSender;
+
 use App\Classes\Site\ReferralCookiesHelper;
 use App\Classes\Site\SupportEmail;
 use App\EngOffice;
+use App\Facades\Metrics;
 use App\Feedback;
 use App\Http\Controllers\Controller;
 use App\Language;
@@ -31,10 +33,11 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
-use Symfony\Component\HttpFoundation\Response as HttpResponse;
+use Symfony\Component\HttpFoundation\Response as HttpFoundationResponse;
 
 class RequestController extends Controller
 {
+
     public function send(Request $request)
     {
         try {
@@ -43,7 +46,7 @@ class RequestController extends Controller
             ApiMarketing::getInstance($request)->sendCalculatorRequest();
         } catch (Exception $e) {
             Log::error($e);
-            abort(HttpResponse::HTTP_INTERNAL_SERVER_ERROR);
+            abort(HttpFoundationResponse::HTTP_INTERNAL_SERVER_ERROR);
         }
         return response()->noContent();
     }
@@ -56,7 +59,7 @@ class RequestController extends Controller
             ApiMarketing::getInstance($request)->sendFeedbackRequest();
         } catch (Exception $e) {
             Log::error($e);
-            abort(HttpResponse::HTTP_INTERNAL_SERVER_ERROR);
+            abort(HttpFoundationResponse::HTTP_INTERNAL_SERVER_ERROR);
         }
         return response()->noContent();
     }
@@ -75,7 +78,7 @@ class RequestController extends Controller
             }
         } catch (Exception $e) {
             Log::error($e);
-            abort(HttpResponse::HTTP_INTERNAL_SERVER_ERROR);
+            abort(HttpFoundationResponse::HTTP_INTERNAL_SERVER_ERROR);
         }
         return response()->noContent();
     }
@@ -98,7 +101,7 @@ class RequestController extends Controller
                 ]);
         } catch (Exception $e) {
             Log::error($e);
-            abort(HttpResponse::HTTP_INTERNAL_SERVER_ERROR);
+            abort(HttpFoundationResponse::HTTP_INTERNAL_SERVER_ERROR);
         }
         return response()->noContent();
     }
@@ -111,7 +114,7 @@ class RequestController extends Controller
             ApiMarketing::getInstance($request)->sendOrderRequest();
         } catch (Exception $e) {
             Log::error($e);
-            abort(HttpResponse::HTTP_INTERNAL_SERVER_ERROR);
+            abort(HttpFoundationResponse::HTTP_INTERNAL_SERVER_ERROR);
         }
         return response()->noContent();
     }
@@ -125,7 +128,7 @@ class RequestController extends Controller
             ApiMarketing::getInstance($request)->sendPresentationRequest();
         } catch (Exception $e) {
             Log::error($e);
-            abort(HttpResponse::HTTP_INTERNAL_SERVER_ERROR);
+            abort(HttpFoundationResponse::HTTP_INTERNAL_SERVER_ERROR);
         }
         return response()->noContent();
     }
@@ -154,7 +157,7 @@ class RequestController extends Controller
                 ->firstOrFail();
         } catch (ModelNotFoundException $exception) {
             Log::error($exception);
-            abort(HttpResponse::HTTP_NOT_FOUND);
+            abort(HttpFoundationResponse::HTTP_NOT_FOUND);
         }
         $language = Language::select('id')
             ->findOrFail($request->input('language_id'));
@@ -174,7 +177,7 @@ class RequestController extends Controller
                 ->header('Content-Type', 'text/plain');
         } catch (Exception $e) {
             Log::error($e);
-            abort(HttpResponse::HTTP_INTERNAL_SERVER_ERROR);
+            abort(HttpFoundationResponse::HTTP_INTERNAL_SERVER_ERROR);
         }
         return response()->noContent();
     }
@@ -188,7 +191,7 @@ class RequestController extends Controller
                     'Формат координат в запросе неверный. Не число в одной из координат' .
                     var_export($value, true)
                 );
-                abort(HttpResponse::HTTP_BAD_REQUEST);
+                abort(HttpFoundationResponse::HTTP_BAD_REQUEST);
             }
         }
         if ($request->has('lang') && $request->input('lang') == 'eng') {
@@ -220,7 +223,7 @@ class RequestController extends Controller
             $site = Site::where('domain', $domain)
                 ->firstOrFail();
         } catch (ModelNotFoundException $exception) {
-            abort(HttpResponse::HTTP_NOT_FOUND);
+            abort(HttpFoundationResponse::HTTP_NOT_FOUND);
         }
         try {
             $image = $site->images()
@@ -229,12 +232,12 @@ class RequestController extends Controller
                 ->firstOrFail();
         } catch (ModelNotFoundException $exception) {
             Log::error(new Exception('Не найдена ' . $imageUrl));
-            abort(HttpResponse::HTTP_NOT_FOUND);
+            abort(HttpFoundationResponse::HTTP_NOT_FOUND);
         }
         $imageResponse = ImageResponse::getInstance()->setPath($image->path);
         $hash = $image->updated_at->format('Y-m-d H:i:s');
         if ($request->header('If-None-Match') == $hash) {
-            abort(HttpResponse::HTTP_NOT_MODIFIED);
+            abort(HttpFoundationResponse::HTTP_NOT_MODIFIED);
         }
 
         $headers = [
@@ -279,7 +282,17 @@ class RequestController extends Controller
             return CalculatorResponse::transformResponseBody($responseBody, $request->input('language'));
         } catch (Exception $exception) {
             Log::error($exception);
-            abort(HttpResponse::HTTP_INTERNAL_SERVER_ERROR);
+            abort(HttpFoundationResponse::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
+
+    public function exposeMetrics()
+    {
+        return response(
+            Metrics::render(),
+            HttpFoundationResponse::HTTP_OK,
+            ['Content-type' => Metrics::getMimeType()]
+        );
+    }
+
 }

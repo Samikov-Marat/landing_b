@@ -9,6 +9,7 @@ use App\Http\Middleware\ClearGet;
 use App\Http\Middleware\DebugbarDisable;
 use App\Http\Middleware\EncryptCookies;
 use App\Http\Middleware\HttpSecure;
+use App\Http\Middleware\MetricBasicAuth;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Middleware\SaveStatistics;
 use App\Http\Middleware\SaveUtmToCookies;
@@ -82,6 +83,7 @@ class Kernel extends HttpKernel
     protected $routeMiddleware = [
         'auth' => Authenticate::class,
         'auth.basic' => AuthenticateWithBasicAuth::class,
+        'metric.basic.auth' => MetricBasicAuth::class,
         'bindings' => SubstituteBindings::class,
         'cache.headers' => SetCacheHeaders::class,
         'can' => Authorize::class,
