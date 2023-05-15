@@ -74,6 +74,7 @@ class PageController extends Controller
         $category = null,
         $question = null
     ) {
+        Metrics::showPage();
         $domain = Domain::getInstance($request);
         try {
             $siteRepository = new SiteRepository($domain);
