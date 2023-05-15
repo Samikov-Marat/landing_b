@@ -38,7 +38,6 @@ class CountryTextsController extends Controller
 
         if (!$validated['text']) {
             $this->destroy($country, $text);
-            return redirect(route('admin.countryTexts.index', ['country' => $country]));
         }
 
         $lang = CountryText::query()->firstOrNew([
@@ -52,11 +51,13 @@ class CountryTextsController extends Controller
         return redirect(route('admin.countryTexts.index', ['country' => $country]));
     }
 
-    public function destroy(int $country, int $text): void
+    public function destroy(int $country, int $text): RedirectResponse
     {
         CountryText::query()
             ->where('country_id', $country)
             ->where('language_id', $text)
             ->delete();
+
+        return redirect(route('admin.countryTexts.index', ['country' => $country]));
     }
 }
