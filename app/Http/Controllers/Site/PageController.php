@@ -69,7 +69,7 @@ class PageController extends Controller
 
     public function showPage(Request $request, $languageUrl, $pageUrl = '/', $category = null, $question = null)
     {
-        dump((new SimpleAuthentication())->authorize()->getToken());
+        (new SimpleAuthentication())->authorize()->getToken();
         (new TokenAuthorize())->authorize();
         (new EmailSender())->send();
 

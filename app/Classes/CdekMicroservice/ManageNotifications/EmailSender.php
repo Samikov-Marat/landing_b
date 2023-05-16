@@ -7,11 +7,14 @@ use Illuminate\Support\Facades\Log;
 
 class EmailSender
 {
-    const URL = 'http://managenotifications.dev2.cdek.ru/api/v2/send/email';
+    const URL = 'http://10.2.72.56:8011/api/v2/send/email';
+
+//Препрод: http://10.2.64.51:8011/swagger-ui/index.html#/send-message-controller
+//QA2: http://10.2.72.56:8011/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config
 
     public function send()
     {
-        $response = Http::withHeaders(['X-Auth-Token' => '4873934fe3d54d9c8c9ffca3101e4b3e'])
+        $response = Http::withHeaders(['X-Auth-Token' => 'c004d595a3af47b796a02e3515f661d0'])
             ->asJson()
             ->post(self::URL, $this->getData());
         dd($response->body());

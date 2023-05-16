@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Log;
 
 class SimpleAuthentication
 {
-    const URL = 'http://pdp.dev2.k8s-local.cdek.ru/web/simpleauth/authorize';
+    const URL = 'http://pdp.qa2.k8s-local.cdek.ru/web/simpleauth/authorize';
 
 
     public function authorize()
@@ -17,7 +17,8 @@ class SimpleAuthentication
             ->asJson()
             ->post(self::URL, [
                 'user' => 'landing',
-                'hashedPass' => md5('qwR@htf7'),
+                'hashedPass' => md5('e*iBryt5'),
+//                'hashedPass' => md5('qwR@htf7'),
             ]);
 
         if ($response->clientError()) {
@@ -28,6 +29,7 @@ class SimpleAuthentication
             Log::error('Не удалось получить токен. Возможно, сервер сломался.');
             throw new Exception('Не удалось получить токен');
         }
+        dump($response->body());
         return new SimpleAuthenticationResponse($response->json());
     }
 }
