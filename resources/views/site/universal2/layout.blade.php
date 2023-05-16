@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>@yield('seo_title', 'CDEK')</title>
     <meta name="description" content="@yield('seo_description', 'CDEK express delivery company')">
-
+    <meta name="yandex-verification" content="900be28146e13ba1" />
     <script>
         dataLayer = [];
     </script>
