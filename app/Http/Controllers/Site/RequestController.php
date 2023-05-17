@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Site;
 
 use App\Classes\Domain;
+use App\Classes\EmailNotification\EmailNotificationForward;
+use App\Classes\EmailNotification\EmailNotificationShopping;
 use App\Classes\ImageResponse;
 use App\Classes\MapJsonCallback;
 use App\Classes\OfficeRepository;
@@ -72,9 +74,21 @@ class RequestController extends Controller
             if ('delivery' == $request->input('order_type')) {
                 JiraSender::send($request);
             } elseif ('shopping' == $request->input('order_type')) {
-                SupportEmail::sendShopping($request);
+                $htmlContent = view('site.universal2.support_mail_shopping')
+                    ->with('request', $request)
+                    ->with('currentTime', date('d.m.Y H:i:s'))
+                    ->render();
+                EmailNotificationShopping::getInstance()
+                    ->setHtmlContent($htmlContent)
+                    ->send();
             } elseif ('forward' == $request->input('order_type')) {
-                SupportEmail::sendForward($request);
+                $htmlContent = view('site.universal2.support_mail_forward')
+                    ->with('request', $request)
+                    ->with('currentTime', date('d.m.Y H:i:s'))
+                    ->render();
+                EmailNotificationForward::getInstance()
+                    ->setHtmlContent($htmlContent)
+                    ->send();
             }
         } catch (Exception $e) {
             Log::error($e);
