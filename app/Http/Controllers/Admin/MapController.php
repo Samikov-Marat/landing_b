@@ -19,21 +19,15 @@ class MapController extends Controller
 
     public function show(Site $site): View
     {
-        $language = $site->languages()->get();
-        $mapState = $site->load([
-            'pages' => function ($query) {
-                $query->where('url', 'contacts');
-            },
-            'pages.textTypes' => function ($query) {
-                $query->where('shortname', 'contacts_map_state');
-            },
-            'pages.textTypes.texts' => function ($query) use ($language) {
-                $query->where('language_id', $language->first()->id);
-            },
-        ]);
+        $languages = $site->languages()->get();
+        $mapState = $site
+            ->getSpecificPage('contacts')
+            ->getSpecificTextType('contacts_map_state')
+            ->getSpecificText($languages->first()->id)
+            ->value;
 
         return view('admin.map.show')
-            ->with('contacts_map_state', $mapState->pages[0]->textTypes[0]->texts[0]->value)
+            ->with('contacts_map_state', $mapState)
             ->with('siteId', $site->id);
     }
 
@@ -42,22 +36,14 @@ class MapController extends Controller
         $validated = $request->validated();
 
         $languages = $site->languages()->get();
-        $mapState = $site->load([
-            'pages' => function ($query) {
-                $query->where('url', 'contacts');
-            },
-            'pages.textTypes' => function ($query) {
-                $query->where('shortname', 'contacts_map_state');
-            },
-        ]);
+        $mapStateTextType = $site
+            ->getSpecificPage('contacts')
+            ->getSpecificTextType('contacts_map_state');
+
         foreach ($languages as $language) {
-            $textState = $mapState->pages[0]->textTypes[0]->load([
-                'texts' => function ($query) use ($language) {
-                    $query->where('language_id', $language->id);
-                },
-            ]);
-            $textState->texts[0]->value = $validated['state'];
-            $textState->texts[0]->save();
+            $textState = $mapStateTextType->getSpecificText($language->id);
+            $textState->value = $validated['state'];
+            $textState->save();
         }
         return redirect(route('admin.map.show', ['site' => $site]));
     }
