@@ -19,7 +19,7 @@ class Site extends Model
 
     public function getSpecificPage(string $pageName): Page
     {
-        return $this->pages()->where('url', $pageName)->get()->shift();
+        return $this->pages()->where('url', $pageName)->first();
     }
 
     public function tariffs()

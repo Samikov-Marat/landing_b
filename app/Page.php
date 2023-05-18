@@ -12,8 +12,8 @@ class Page extends Model
         return $this->hasMany(TextType::class, 'page_id', 'id');
     }
 
-    public function getSpecificTextType(string $textTypeName): TextType
+    public function getSpecificTextType(string $textTypeName): Model
     {
-        return $this->textTypes()->where('shortname', $textTypeName)->get()->shift();
+        return $this->textTypes()->where('shortname', $textTypeName)->first();
     }
 }

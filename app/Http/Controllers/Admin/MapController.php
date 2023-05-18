@@ -10,6 +10,9 @@ use Illuminate\View\View;
 
 class MapController extends Controller
 {
+    private const CONTACTS_PAGE_NAME = 'contacts';
+    private const CONTACTS_MAP_STATE_TEXT_TYPE = 'contacts_map_state';
+
     public function index(): View
     {
         $sites = Site::all();
@@ -20,9 +23,10 @@ class MapController extends Controller
     public function show(Site $site): View
     {
         $languages = $site->languages()->get();
+
         $mapState = $site
-            ->getSpecificPage('contacts')
-            ->getSpecificTextType('contacts_map_state')
+            ->getSpecificPage(self::CONTACTS_PAGE_NAME)
+            ->getSpecificTextType(self::CONTACTS_MAP_STATE_TEXT_TYPE)
             ->getSpecificText($languages->first()->id)
             ->value;
 
@@ -37,8 +41,8 @@ class MapController extends Controller
 
         $languages = $site->languages()->get();
         $mapStateTextType = $site
-            ->getSpecificPage('contacts')
-            ->getSpecificTextType('contacts_map_state');
+            ->getSpecificPage(self::CONTACTS_PAGE_NAME)
+            ->getSpecificTextType(self::CONTACTS_MAP_STATE_TEXT_TYPE);
 
         foreach ($languages as $language) {
             $textState = $mapStateTextType->getSpecificText($language->id);

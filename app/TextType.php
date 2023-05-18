@@ -12,9 +12,9 @@ class TextType extends Model
         return $this->hasMany(Text::class, 'text_type_id', 'id');
     }
 
-    public function getSpecificText(int $language): Text
+    public function getSpecificText(int $language): Model
     {
-        return $this->texts()->where('language_id', $language)->get()->shift();
+        return $this->texts()->where('language_id', $language)->first();
     }
 
     public function franchiseeTexts(): HasMany
