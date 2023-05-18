@@ -12,8 +12,9 @@ class TextType extends Model
         return $this->hasMany(Text::class, 'text_type_id', 'id');
     }
 
-    public function getSpecificText(int $language): Model
+    public function getSpecificText(int $language): Text
     {
+        /** @noinspection PhpIncompatibleReturnTypeInspection */
         return $this->texts()->where('language_id', $language)->first();
     }
 
