@@ -14,6 +14,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property bool can_receive
  * @property Carbon $created_at
  * @property Carbon $updated_at
+ *
+ * @mixin \Eloquent
  */
 class Country extends Model
 {

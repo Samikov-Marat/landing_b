@@ -21,18 +21,14 @@
                     <div class="card-body">
                             @foreach($site->languages as $language)
                                 <div class="mb-3">
-                                    <form method="post" action="{{ route('admin.countryTexts.update', ['country' => $countryId, 'countryText' => $language->id]) }}">
+                                    <form method="post" action="{{ route('admin.countryTexts.update', ['country' => $country->id, 'countryText' => $language->id]) }}">
                                         @csrf
                                         @method('PUT')
                                         <div class="row">
                                             <div class="col-10">
                                                 <label for="exampleFormControlInput1" class="form-label">{{ $language->shortname }} / {{ $language->name }}</label>
 
-                                                @if($countriesTexts[$language->id])
-                                                    <input type="text" class="form-control" id="exampleFormControlInput1" name="text" value="{{$countriesTexts[$language->id]}}">
-                                                @else
-                                                    <input type="text" class="form-control" id="exampleFormControlInput1" name="text" value="">
-                                                @endif
+                                                <input type="text" class="form-control" id="exampleFormControlInput1" name="text" value="{{ $country->countryTexts->get($language->id)->value ?? null }}">
                                             </div>
                                             <div class="col-2 mb-0 mt-auto">
                                                 <button type="submit" class="btn btn-secondary">Обновить</button>

@@ -3,16 +3,16 @@
 namespace App\Classes\Site;
 
 use App\Country;
-use App\CountryText;
 use App\Language;
-use PhpParser\Builder;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Builder;
 
 class CountryRepository
 {
-    private function getCountries(): \Illuminate\Database\Eloquent\Builder
+    private function getCountries(): Builder
     {
-        return Country::query()->select(['id', 'jira_code']);
+        return Country::query()
+            ->select(['id', 'jira_code']);
     }
 
     public function getStartCountries(Language $language): Collection

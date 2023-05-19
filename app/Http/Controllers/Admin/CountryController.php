@@ -29,7 +29,7 @@ class CountryController extends Controller
         $country->can_receive = !empty($validated['can_receive']);
 
         $country->save();
-        return redirect(route('admin.countries.index'));
+        return response()->redirectToRoute('admin.countries.index');
     }
 
     public function update(CountryRequest $request, Country $country): RedirectResponse
@@ -41,12 +41,12 @@ class CountryController extends Controller
         $country->can_receive = !empty($validated['can_receive']);
 
         $country->save();
-        return redirect(route('admin.countries.index'));
+        return response()->redirectToRoute('admin.countries.index');
     }
 
     public function destroy(Country $country): RedirectResponse
     {
         $country->delete();
-        return redirect(route('admin.countries.index'));
+        return response()->redirectToRoute('admin.countries.index');
     }
 }
