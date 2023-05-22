@@ -14,12 +14,7 @@ class LocalOfficeRepository
     const SORT_STEP = 10;
     private $localOffice;
 
-    public static function getInstance(LocalOffice $localOffice): self
-    {
-        return new static($localOffice);
-    }
-
-    public function __construct(LocalOffice $localOffice)
+    public function setLocalOffice(LocalOffice $localOffice)
     {
         $this->localOffice = $localOffice;
     }
@@ -29,13 +24,13 @@ class LocalOfficeRepository
         try {
             return $this->localOffice->localOfficeTexts()
                 ->select([
-                             'id',
-                             'local_office_id',
-                             'language_id',
-                             'name',
-                             'address',
-                             'path',
-                         ])
+                    'id',
+                    'local_office_id',
+                    'language_id',
+                    'name',
+                    'address',
+                    'path',
+                ])
                 ->where('language_id', $language_id)
                 ->firstOrFail();
         } catch (ModelNotFoundException $e) {

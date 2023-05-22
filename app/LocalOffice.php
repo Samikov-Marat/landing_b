@@ -15,12 +15,14 @@ class LocalOffice extends Model
 
     public function localOfficePhones(): HasMany
     {
-        return $this->hasMany(LocalOfficePhone::class, 'local_office_id', 'id');
+        return $this->hasMany(LocalOfficePhone::class, 'local_office_id', 'id')
+            ->orderby('sort', 'ASC');
     }
 
     public function localOfficeEmails(): HasMany
     {
-        return $this->hasMany(LocalOfficeEmail::class, 'local_office_id', 'id');
+        return $this->hasMany(LocalOfficeEmail::class, 'local_office_id', 'id')
+            ->orderby('sort', 'ASC');
     }
 
     public function localOfficePhotos(): HasMany

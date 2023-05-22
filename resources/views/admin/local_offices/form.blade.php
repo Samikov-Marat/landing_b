@@ -18,8 +18,19 @@
 @endsection
 
 @section('content')
-    <form method="post" action="{!! route('admin.local_offices.save') !!}">
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+    <form method="post" action="{!! route('admin.local_offices.update', ['site' => $site, 'localOffice' => $localOffice]) !!}">
         @csrf
+        @method('put')
         @if(isset($localOffice))
             <input type="hidden" name="id" value="{{ $localOffice->id }}">
         @endif
@@ -70,7 +81,7 @@
                 @php
                     $selected = (isset($localOffice) && !is_null($localOffice->franchisee_id))?'':'selected';
                 @endphp
-                <option value="null" {{ $selected }}>Нет</option>
+                <option value="0" {{ $selected }}>Нет</option>
                 @foreach($franchisees as $franchisee)
                     @php
                         $selected = (isset($localOffice) && ($franchisee->id == $localOffice->franchisee_id))?'selected':'';

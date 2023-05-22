@@ -120,18 +120,18 @@ Route::prefix('admin')->middleware(
             ->name('admin.local_office_photos.move');
 
 
-        Route::get('local-offices', 'Admin\LocalOfficeController@index')
+        Route::get('{site}/local-offices', 'Admin\LocalOfficeController@index')
             ->name('admin.local_offices.index');
-        Route::get('local-offices/add', 'Admin\LocalOfficeController@edit')
-            ->name('admin.local_offices.add');
-        Route::get('local-offices/edit/{id}', 'Admin\LocalOfficeController@edit')
+        Route::get('{site}/local-offices/create', 'Admin\LocalOfficeController@edit')
+            ->name('admin.local_offices.create');
+        Route::get('{site}/local-offices/{localOffice}/edit', 'Admin\LocalOfficeController@edit')
             ->name('admin.local_offices.edit');
-        Route::post('local-offices/save', 'Admin\LocalOfficeController@save')
-            ->name('admin.local_offices.save')
+        Route::put('{site}/local-offices/{localOffice?}', 'Admin\LocalOfficeController@update')
+            ->name('admin.local_offices.update')
             ->withoutMiddleware(TrimStrings::class);
-        Route::post('local-offices/delete', 'Admin\LocalOfficeController@delete')
+        Route::delete('{site}/local-offices/{localOffice}', 'Admin\LocalOfficeController@delete')
             ->name('admin.local_offices.delete');
-        Route::post('local-offices/move', 'Admin\LocalOfficeController@move')
+        Route::post('{site}/local-offices/{localOffice}/move', 'Admin\LocalOfficeController@move')
             ->name('admin.local_offices.move');
 
         Route::get('our-workers', 'Admin\OurWorkerController@index')

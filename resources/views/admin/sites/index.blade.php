@@ -158,7 +158,7 @@
 
                     @can('admin.local_offices.index')
                     <td>
-                        <a href="{!! route('admin.local_offices.index', ['site_id' => $site->id]) !!}">
+                        <a href="{!! route('admin.local_offices.index', ['site' => $site->id]) !!}">
                             {{ $site->localOffices->count() }} шт.
                         </a>
                     </td>
