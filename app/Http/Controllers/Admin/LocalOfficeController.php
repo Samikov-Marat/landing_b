@@ -19,8 +19,7 @@ class LocalOfficeController extends Controller
 
     public function index(Site $site)
     {
-        $site->select('id', 'name', 'domain')
-            ->with(
+        $site->with(
                 [
                     'localOffices' => function ($query) {
                         $query->select([
@@ -57,21 +56,7 @@ class LocalOfficeController extends Controller
 
     public function edit(Site $site, LocalOffice $localOffice)
     {
-        $localOffice->select(
-            [
-                'id',
-                'code',
-                'subdomain',
-                'map_preset',
-                'utm_tag',
-                'utm_value',
-                'category',
-                'site_id',
-                'disabled',
-                'franchisee_id',
-            ]
-        )
-            ->with(
+        $localOffice->with(
                 [
                     'localOfficeTexts' => function ($query) {
                         $query->select(
@@ -104,8 +89,7 @@ class LocalOfficeController extends Controller
                 ]
             );
 
-        $site->select('id', 'name', 'domain')
-            ->with('languages');
+        $site->with('languages');
 
         $franchisees = Franchisee::select(['id', 'name', 'description'])
             ->orderBy('name')
@@ -142,8 +126,7 @@ class LocalOfficeController extends Controller
                 ->max('sort') + self::SORT_STEP;
         $localOffice->save();
 
-        $site->select('id', 'name', 'domain')
-            ->with('languages');
+        $site->with('languages');
 
         $localOfficeRepository->setLocalOffice($localOffice);
         foreach ($site->languages as $language) {
@@ -218,8 +201,6 @@ class LocalOfficeController extends Controller
         Site $site,
         LocalOffice $localOffice
     ): RedirectResponse {
-        $localOffice->select('id', 'site_id', 'sort');
-
         $validated = $request->validated();
         $direction = $validated['direction'];
         if ('up' == $direction) {
