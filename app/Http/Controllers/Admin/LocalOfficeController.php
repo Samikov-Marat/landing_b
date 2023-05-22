@@ -89,14 +89,16 @@ class LocalOfficeController extends Controller
                             'id',
                             'local_office_id',
                             'phone_text',
-                            'phone_value'
+                            'phone_value',
+                            'show_at_footer'
                         );
                     },
                     'localOfficeEmails' => function ($query) {
                         $query->select(
                             'id',
                             'local_office_id',
-                            'email'
+                            'email',
+                            'show_at_footer'
                         );
                     },
                 ]
@@ -158,8 +160,9 @@ class LocalOfficeController extends Controller
             $oldPhones = $validated['phone_old'];
             foreach ($oldPhones as $id => $phone) {
                 $localOfficePhone = $localOfficeRepository->getPhone($id);
-                $localOfficePhone->phone_text = $phone['phone_text'];
-                $localOfficePhone->phone_value = $phone['phone_value'];
+                $localOfficePhone->phone_text = $phone['phone_text'] ?? '';
+                $localOfficePhone->phone_value = $phone['phone_value'] ?? '';
+                $localOfficePhone->show_at_footer = $phone['show_at_footer'] ?? null;
                 $localOfficePhone->save();
             }
         }
@@ -169,8 +172,9 @@ class LocalOfficeController extends Controller
             $newPhones = $validated['phone_new'];
             foreach ($newPhones as $phone) {
                 $localOfficePhone = $localOfficeRepository->makePhone();
-                $localOfficePhone->phone_text = $phone['phone_text'];
-                $localOfficePhone->phone_value = $phone['phone_value'];
+                $localOfficePhone->phone_text = $phone['phone_text'] ?? '';
+                $localOfficePhone->phone_value = $phone['phone_value'] ?? '';
+                $localOfficePhone->show_at_footer = $phone['show_at_footer'] ?? null;
                 $localOfficePhone->sort = $localOfficeRepository->getNextPhoneSort();
                 $localOfficePhone->save();
             }
@@ -182,7 +186,8 @@ class LocalOfficeController extends Controller
             $oldEmails = $validated['email_old'];
             foreach ($oldEmails as $id => $email) {
                 $localOfficeEmail = $localOfficeRepository->getEmail($id);
-                $localOfficeEmail->email = $email['email'];
+                $localOfficeEmail->email = $email['email'] ?? '';
+                $localOfficeEmail->show_at_footer = $email['show_at_footer'] ?? null;
 
                 $localOfficeEmail->save();
             }
@@ -193,7 +198,8 @@ class LocalOfficeController extends Controller
             $newEmails = $validated['email_new'];
             foreach ($newEmails as $email) {
                 $localOfficeEmail = $localOfficeRepository->makeEmail();
-                $localOfficeEmail->email = $email['email'];
+                $localOfficeEmail->email = $email['email'] ?? '';
+                $localOfficeEmail->show_at_footer = $email['show_at_footer'] ?? null;
                 $localOfficeEmail->sort = $localOfficeRepository->getNextEmailSort();
                 $localOfficeEmail->save();
             }
@@ -207,8 +213,11 @@ class LocalOfficeController extends Controller
         return response()->redirectToRoute('admin.local_offices.index', ['site' => $site]);
     }
 
-    public function move(LocalOfficeMoveRequest $request, Site $site, LocalOffice $localOffice): RedirectResponse
-    {
+    public function move(
+        LocalOfficeMoveRequest $request,
+        Site $site,
+        LocalOffice $localOffice
+    ): RedirectResponse {
         $localOffice->select('id', 'site_id', 'sort');
 
         $validated = $request->validated();

@@ -35,7 +35,13 @@
 
     <div class="col-auto">
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="1" id="flexCheckDefaultEmail{{ $phone }}" name="show_phone_at_footer">
+            <input class="form-check-input js-local-office-phone-show_at_footer"
+                   type="checkbox"
+                   value="1"
+                   id="flexCheckDefaultEmail{{ $phone }}"
+                   name="{{ $name . '[show_at_footer]' }}"
+                    {{ isset($phone->show_at_footer) ? 'checked' : '' }}
+            >
             <label class="form-check-label" for="flexCheckDefaultEmail{{ $phone }}">
                 Показать в футере
             </label>
