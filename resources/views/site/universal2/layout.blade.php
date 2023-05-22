@@ -268,6 +268,9 @@
                         <a class="footer__email footer-email" href="mailto:{{ $dictionary['footer_email'] }}">@d('footer_email')</a>
                     @endif
 
+                    @if($site->localOffices->count() > 1)
+                        @include('site.universal2.layout.contacts_footer_component')
+                    @endif
                 </div>
             </div>
         </div>

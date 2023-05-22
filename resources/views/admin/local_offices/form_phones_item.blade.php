@@ -32,4 +32,13 @@
             <i class="fas fa-trash"></i> Удалить
         </button>
     </div>
+
+    <div class="col-auto">
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="1" id="flexCheckDefaultEmail{{ $phone }}" name="show_phone_at_footer">
+            <label class="form-check-label" for="flexCheckDefaultEmail{{ $phone }}">
+                Показать в футере
+            </label>
+        </div>
+    </div>
 </div>
