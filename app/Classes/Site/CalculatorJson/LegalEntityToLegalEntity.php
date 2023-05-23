@@ -18,7 +18,7 @@ class LegalEntityToLegalEntity implements JsonGeneratorRequestToApi
                                    'contragentType' => 'UR',
                                ],
                                'payer' => [
-                                   'contractId' => config('calculator.sender_contract_id'),
+                                   'contractId' => config('calculator.bangladesh_contract_id'),
                                    'payerType' => 'sender',
                                ],
                                'orderParam' => [
