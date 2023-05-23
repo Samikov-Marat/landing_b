@@ -1,5 +1,10 @@
 <!DOCTYPE html>
 <html @if($language->rtl) dir="rtl" @endif>
+
+@if(array_key_exists('html_lang_tag', $dictionary) && $dictionary['html_lang_tag'])
+    <html lang="{{ $dictionary['html_lang_tag'] }}">
+@endif
+
 <head>
     <meta charset="UTF-8">
     <title>@yield('seo_title', 'CDEK')</title>
@@ -35,6 +40,14 @@
         <link rel="stylesheet" href="/request/images/{{ $language->uri }}.css">
     @endif
     <link rel="stylesheet" href="{{ mix('universal2/custom.css') }}">
+
+    @if(array_key_exists('html_lang_tag', $dictionary) && $dictionary['html_lang_tag'] && array_key_exists('canonicals', $headTagsParams))
+        @include('site.universal2.head_tags.canonical', [
+            'params' => $headTagsParams['canonicals'],
+            'languages' => $site->languages,
+            'currentLanguage' => $language
+            ])
+    @endif
 </head>
 <body class="site-theme">
 @if($allowCookies)
