@@ -20,30 +20,30 @@ class LocalOfficeController extends Controller
     public function index(Site $site)
     {
         $site->with(
-                [
-                    'localOffices' => function ($query) {
-                        $query->select([
-                            'id',
-                            'site_id',
-                            'code',
-                            'subdomain',
-                            'utm_tag',
-                            'utm_value',
-                            'category',
-                            'disabled',
-                            'franchisee_id',
-                            'sort',
-                        ]);
-                    },
-                    'localOffices.localOfficeTexts' => function ($query) {
-                        $query->select(['id', 'local_office_id', 'name']);
-                    },
-                    'localOffices.franchisee' => function ($query) {
-                        $query->select(['id', 'name', 'description']);
-                    },
+            [
+                'localOffices' => function ($query) {
+                    $query->select([
+                        'id',
+                        'site_id',
+                        'code',
+                        'subdomain',
+                        'utm_tag',
+                        'utm_value',
+                        'category',
+                        'disabled',
+                        'franchisee_id',
+                        'sort',
+                    ]);
+                },
+                'localOffices.localOfficeTexts' => function ($query) {
+                    $query->select(['id', 'local_office_id', 'name']);
+                },
+                'localOffices.franchisee' => function ($query) {
+                    $query->select(['id', 'name', 'description']);
+                },
 
-                ]
-            );
+            ]
+        );
 
         $franchisees = Franchisee::select(['id', 'name', 'description'])
             ->orderBy('name')
@@ -57,37 +57,37 @@ class LocalOfficeController extends Controller
     public function edit(Site $site, LocalOffice $localOffice)
     {
         $localOffice->with(
-                [
-                    'localOfficeTexts' => function ($query) {
-                        $query->select(
-                            'id',
-                            'local_office_id',
-                            'name',
-                            'language_id',
-                            'address',
-                            'path',
-                            'worktime'
-                        );
-                    },
-                    'localOfficePhones' => function ($query) {
-                        $query->select(
-                            'id',
-                            'local_office_id',
-                            'phone_text',
-                            'phone_value',
-                            'show_at_footer'
-                        );
-                    },
-                    'localOfficeEmails' => function ($query) {
-                        $query->select(
-                            'id',
-                            'local_office_id',
-                            'email',
-                            'show_at_footer'
-                        );
-                    },
-                ]
-            );
+            [
+                'localOfficeTexts' => function ($query) {
+                    $query->select(
+                        'id',
+                        'local_office_id',
+                        'name',
+                        'language_id',
+                        'address',
+                        'path',
+                        'worktime'
+                    );
+                },
+                'localOfficePhones' => function ($query) {
+                    $query->select(
+                        'id',
+                        'local_office_id',
+                        'phone_text',
+                        'phone_value',
+                        'show_at_footer'
+                    );
+                },
+                'localOfficeEmails' => function ($query) {
+                    $query->select(
+                        'id',
+                        'local_office_id',
+                        'email',
+                        'show_at_footer'
+                    );
+                },
+            ]
+        );
 
         $site->with('languages');
 

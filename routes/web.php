@@ -14,7 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware(['http.secure', 'start.session', 'share.errors.from.session'])->group(function () {
+Route::middleware(['http.secure', 'start.session', 'share.errors.from.session'])->group(function (
+) {
     Auth::routes(['register' => false]);
 });
 
@@ -34,20 +35,31 @@ Route::prefix('admin')->middleware(
 
         Route::get('franchisee-admin/news-articles', 'FranchiseeAdmin\NewsArticleController@index')
             ->name('admin.franchisee_admin.news_articles.index');
-        Route::get('franchisee-admin/news-articles/add', 'FranchiseeAdmin\NewsArticleController@edit')
+        Route::get('franchisee-admin/news-articles/add',
+            'FranchiseeAdmin\NewsArticleController@edit')
             ->name('admin.franchisee_admin.news_articles.add');
-        Route::get('franchisee-admin/news-articles/edit/{id}', 'FranchiseeAdmin\NewsArticleController@edit')
+        Route::get('franchisee-admin/news-articles/edit/{id}',
+            'FranchiseeAdmin\NewsArticleController@edit')
             ->name('admin.franchisee_admin.news_articles.edit');
-        Route::post('franchisee-admin/news-articles/save', 'FranchiseeAdmin\NewsArticleController@save')
+        Route::post('franchisee-admin/news-articles/save',
+            'FranchiseeAdmin\NewsArticleController@save')
             ->name('admin.franchisee_admin.news_articles.save')
             ->withoutMiddleware(TrimStrings::class);
-        Route::post('franchisee-admin/news-articles/delete', 'FranchiseeAdmin\NewsArticleController@delete')
+        Route::post('franchisee-admin/news-articles/delete',
+            'FranchiseeAdmin\NewsArticleController@delete')
             ->name('admin.franchisee_admin.news_articles.delete');
     }
 );
 
 Route::prefix('admin')->middleware(
-    ['auth', 'user.route.access', 'http.secure', 'verify.csrf.token', 'start.session', 'share.errors.from.session']
+    [
+        'auth',
+        'user.route.access',
+        'http.secure',
+        'verify.csrf.token',
+        'start.session',
+        'share.errors.from.session',
+    ]
 )->group(
     function () {
         Route::get('/', 'Admin\IndexController@index')
@@ -322,7 +334,8 @@ Route::prefix('admin')->middleware(
             ->name('admin.top_office_world_languages.index');
         Route::get('top-office-world-languages/edit', 'Admin\TopOfficeWorldLanguageController@edit')
             ->name('admin.top_office_world_languages.edit');
-        Route::post('top-office-world-languages/save', 'Admin\TopOfficeWorldLanguageController@save')
+        Route::post('top-office-world-languages/save',
+            'Admin\TopOfficeWorldLanguageController@save')
             ->name('admin.top_office_world_languages.save');
 
         Route::get('yandex-metrica-goals', 'Admin\YandexMetricaGoalController@index')
@@ -335,11 +348,14 @@ Route::prefix('admin')->middleware(
             ->name('admin.yandex_metrica_goals.save');
         Route::post('yandex-metrica-goals/delete', 'Admin\YandexMetricaGoalController@delete')
             ->name('admin.yandex_metrica_goals.delete');
-        Route::get('yandex-metrica-goals/yandex-auth', 'Admin\YandexMetricaGoalController@yandexAuth')
+        Route::get('yandex-metrica-goals/yandex-auth',
+            'Admin\YandexMetricaGoalController@yandexAuth')
             ->name('admin.yandex_metrica_goals.yandex_auth');
-        Route::get('yandex-metrica-goals/save-yandex-auth', 'Admin\YandexMetricaGoalController@saveYandexAuth')
+        Route::get('yandex-metrica-goals/save-yandex-auth',
+            'Admin\YandexMetricaGoalController@saveYandexAuth')
             ->name('admin.yandex_metrica_goals.save_yandex_auth');
-        Route::get('yandex-metrica-goals/yandex-form', 'Admin\YandexMetricaGoalController@yandexForm')
+        Route::get('yandex-metrica-goals/yandex-form',
+            'Admin\YandexMetricaGoalController@yandexForm')
             ->name('admin.yandex_metrica_goals.yandex_form');
         Route::post(
             'yandex-metrica-goals/clone-goals-to-yandex',
@@ -362,7 +378,8 @@ Route::prefix('admin')->middleware(
         //тарифы переводы
         Route::get('tariff-translation', 'Admin\TariffTranslationController@index')
             ->name('admin.tariff_translation.index');
-        Route::get('tariff-translation/{language}', 'Admin\TariffTranslationController@translationList')
+        Route::get('tariff-translation/{language}',
+            'Admin\TariffTranslationController@translationList')
             ->name('admin.tariff_translation.translation_list');
         Route::get('tariff-translation/{language}/edit', 'Admin\TariffTranslationController@edit')
             ->name('admin.tariff_translation.edit');
@@ -386,9 +403,11 @@ Route::prefix('admin')->middleware(
         //переводы типов тарифов
         Route::get('tariff-types-translation', 'Admin\TariffTypeTranslationController@index')
             ->name('admin.tariff_types_translation.index');
-        Route::get('tariff-types-translation/{language}', 'Admin\TariffTypeTranslationController@translationList')
+        Route::get('tariff-types-translation/{language}',
+            'Admin\TariffTypeTranslationController@translationList')
             ->name('admin.tariff_types.translation_list');
-        Route::get('tariff-types-translation/{language}/edit', 'Admin\TariffTypeTranslationController@edit')
+        Route::get('tariff-types-translation/{language}/edit',
+            'Admin\TariffTypeTranslationController@edit')
             ->name('admin.tariff_types_translation.edit');
         Route::post('tariff-types-translation/save', 'Admin\TariffTypeTranslationController@save')
             ->name('admin.tariff_types_translation.save');
