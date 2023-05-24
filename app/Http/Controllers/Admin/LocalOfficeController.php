@@ -146,7 +146,7 @@ class LocalOfficeController extends Controller
                 $localOfficePhone = $localOfficeRepository->getPhone($id);
                 $localOfficePhone->phone_text = $phone['phone_text'] ?? '';
                 $localOfficePhone->phone_value = $phone['phone_value'] ?? '';
-                $localOfficePhone->show_at_footer = $phone['show_at_footer'] ?? false;
+                $localOfficePhone->show_at_footer = !empty($phone['show_at_footer']);
                 $localOfficePhone->save();
             }
         }
@@ -158,12 +158,11 @@ class LocalOfficeController extends Controller
                 $localOfficePhone = $localOfficeRepository->makePhone();
                 $localOfficePhone->phone_text = $phone['phone_text'] ?? '';
                 $localOfficePhone->phone_value = $phone['phone_value'] ?? '';
-                $localOfficePhone->show_at_footer = $phone['show_at_footer'] ?? false;
+                $localOfficePhone->show_at_footer = !empty($phone['show_at_footer']);
                 $localOfficePhone->sort = $localOfficeRepository->getNextPhoneSort();
                 $localOfficePhone->save();
             }
         }
-
 
         $oldEmails = [];
         if ($request->has('email_old')) {
@@ -171,7 +170,7 @@ class LocalOfficeController extends Controller
             foreach ($oldEmails as $id => $email) {
                 $localOfficeEmail = $localOfficeRepository->getEmail($id);
                 $localOfficeEmail->email = $email['email'] ?? '';
-                $localOfficeEmail->show_at_footer = $email['show_at_footer'] ?? false;
+                $localOfficeEmail->show_at_footer = !empty($email['show_at_footer']);
 
                 $localOfficeEmail->save();
             }
@@ -183,7 +182,7 @@ class LocalOfficeController extends Controller
             foreach ($newEmails as $email) {
                 $localOfficeEmail = $localOfficeRepository->makeEmail();
                 $localOfficeEmail->email = $email['email'] ?? '';
-                $localOfficeEmail->show_at_footer = $email['show_at_footer'] ?? false;
+                $localOfficeEmail->show_at_footer = !empty($email['show_at_footer']);
                 $localOfficeEmail->sort = $localOfficeRepository->getNextEmailSort();
                 $localOfficeEmail->save();
             }
