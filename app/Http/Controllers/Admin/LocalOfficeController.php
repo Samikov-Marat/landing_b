@@ -103,7 +103,6 @@ class LocalOfficeController extends Controller
 
     public function update(
         LocalOfficeRequest $request,
-        LocalOfficeRepository $localOfficeRepository,
         Site $site,
         LocalOffice $localOffice = null
     ): RedirectResponse {
@@ -128,7 +127,8 @@ class LocalOfficeController extends Controller
 
         $site->with('languages');
 
-        $localOfficeRepository->setLocalOffice($localOffice);
+        $localOfficeRepository = LocalOfficeRepository::getInstance($localOffice);
+
         foreach ($site->languages as $language) {
             $localOfficeText = $localOfficeRepository->getOrMake($language->id);
             $localOfficeText->name = $validated['name'][$language->id] ?? '';

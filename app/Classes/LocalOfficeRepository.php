@@ -14,7 +14,12 @@ class LocalOfficeRepository
     const SORT_STEP = 10;
     private $localOffice;
 
-    public function setLocalOffice(LocalOffice $localOffice)
+    public static function getInstance(LocalOffice $localOffice): self
+    {
+        return new static($localOffice);
+    }
+
+    public function __construct(LocalOffice $localOffice)
     {
         $this->localOffice = $localOffice;
     }
