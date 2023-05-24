@@ -14,7 +14,7 @@ class AddShowAtFooterToLocalOfficeEmails extends Migration
     public function up()
     {
         Schema::table('local_office_emails', function (Blueprint $table) {
-            $table->boolean('show_at_footer')->nullable()->default(null);
+            $table->boolean('show_at_footer')->default(false);
         });
     }
 

@@ -14,7 +14,7 @@ class AddShowAtFooterToLocalOfficePhones extends Migration
     public function up()
     {
         Schema::table('local_office_phones', function (Blueprint $table) {
-            $table->boolean('show_at_footer')->nullable()->default(null);
+            $table->boolean('show_at_footer')->default(false);
         });
     }
 

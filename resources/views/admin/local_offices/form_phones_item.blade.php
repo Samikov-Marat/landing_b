@@ -40,7 +40,7 @@
                    value="1"
                    id="flexCheckDefaultEmail{{ $phone }}"
                    name="{{ $name . '[show_at_footer]' }}"
-                    {{ isset($phone->show_at_footer) ? 'checked' : '' }}
+                    {{ empty($phone->show_at_footer) ?: 'checked' }}
             >
             <label class="form-check-label" for="flexCheckDefaultEmail{{ $phone }}">
                 Показать в футере
