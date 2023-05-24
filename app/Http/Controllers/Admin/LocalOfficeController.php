@@ -182,7 +182,7 @@ class LocalOfficeController extends Controller
             foreach ($newEmails as $email) {
                 $localOfficeEmail = $localOfficeRepository->makeEmail();
                 $localOfficeEmail->email = $email['email'] ?? '';
-                $localOfficeEmail->show_at_footer = array_key_exists('show_at_footer', $email);
+                $localOfficeEmail->show_at_footer = $email['show_at_footer'] ?? false;
                 $localOfficeEmail->sort = $localOfficeRepository->getNextEmailSort();
                 $localOfficeEmail->save();
             }
