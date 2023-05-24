@@ -56,6 +56,8 @@ class LocalOfficeController extends Controller
 
     public function edit(Site $site, LocalOffice $localOffice): View
     {
+        abort_if($localOffice->site_id !== $site->id, 404);
+
         $localOffice->with(
             [
                 'localOfficeTexts' => function ($query) {
@@ -106,6 +108,7 @@ class LocalOfficeController extends Controller
         Site $site,
         LocalOffice $localOffice = null
     ): RedirectResponse {
+        abort_if($localOffice->site_id !== $site->id, 404);
 
         if (!$localOffice) {
             $localOffice = new LocalOffice();
@@ -190,6 +193,8 @@ class LocalOfficeController extends Controller
 
     public function delete(Site $site, LocalOffice $localOffice): RedirectResponse
     {
+        abort_if($localOffice->site_id !== $site->id, 404);
+
         $localOffice->delete();
         return response()->redirectToRoute('admin.local_offices.index', ['site' => $site]);
     }
@@ -199,8 +204,9 @@ class LocalOfficeController extends Controller
         Site $site,
         LocalOffice $localOffice
     ): RedirectResponse {
-        $validated = $request->validated();
-        $direction = $validated['direction'];
+        abort_if($localOffice->site_id !== $site->id, 404);
+
+        $direction = $request->input('direction', '');
         if ('up' == $direction) {
             $sign = '<';
             $orderByDirection = 'desc';

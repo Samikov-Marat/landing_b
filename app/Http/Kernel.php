@@ -105,7 +105,6 @@ class Kernel extends HttpKernel
         'share.errors.from.session' => ShareErrorsFromSession::class,
         'debugbar.disable' => DebugbarDisable::class,
 //        \Illuminate\Session\Middleware\AuthenticateSession::class,
-        'local.office.belong.to.site' => LocalOfficeBelongToSite::class
     ];
 
     /**
