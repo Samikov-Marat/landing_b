@@ -106,41 +106,39 @@ class LocalOfficeController extends Controller
         Site $site,
         LocalOffice $localOffice = null
     ): RedirectResponse {
-        $validated = collect($request->validated());
 
         if (!$localOffice) {
             $localOffice = new LocalOffice();
         }
 
         $localOffice->site_id = $site->id;
-        $localOffice->code = $validated->get('code');
-        $localOffice->subdomain = $validated->get('subdomain');
-        $localOffice->map_preset = $validated->get('map_preset');
-        $localOffice->utm_tag = $validated->get('utm_tag');
-        $localOffice->utm_value = $validated->get('utm_value');
-        $localOffice->category = $validated->get('category');
-        $localOffice->disabled = $validated->has('disabled');
-        $localOffice->franchisee_id = (int)$validated->get('franchisee_id') ?: null;
+        $localOffice->code = $request->input('code', '');
+        $localOffice->subdomain = trim($request->input('subdomain', ''));
+        $localOffice->map_preset = trim($request->input('map_preset', ''));
+        $localOffice->utm_tag = $request->input('utm_tag', '');
+        $localOffice->utm_value = $request->input('utm_value', '');
+        $localOffice->category = $request->input('category', '');
+        $localOffice->disabled = $request->has('disabled');
+        $localOffice->franchisee_id = (int)$request->get('franchisee_id') ?: null;
         $localOffice->sort = LocalOffice::where('site_id', $site->id)
                 ->max('sort') + self::SORT_STEP;
         $localOffice->save();
 
         $site->load('languages');
-
         $localOfficeRepository = LocalOfficeRepository::getInstance($localOffice);
 
         foreach ($site->languages as $language) {
             $localOfficeText = $localOfficeRepository->getOrMake($language->id);
-            $localOfficeText->name = $validated['name'][$language->id] ?? '';
-            $localOfficeText->address = $validated['address'][$language->id] ?? '';
-            $localOfficeText->path = $validated['path'][$language->id] ?? '';
-            $localOfficeText->worktime = $validated['worktime'][$language->id] ?? '';
+            $localOfficeText->name = $request['name'][$language->id] ?? '';
+            $localOfficeText->address = $request['address'][$language->id] ?? '';
+            $localOfficeText->path = $request['path'][$language->id] ?? '';
+            $localOfficeText->worktime = $request['worktime'][$language->id] ?? '';
             $localOfficeText->save();
         }
 
         $oldPhones = [];
-        if ($validated->has('phone_old')) {
-            $oldPhones = $validated->get('phone_old');
+        if ($request->has('phone_old')) {
+            $oldPhones = $request->get('phone_old');
             foreach ($oldPhones as $id => $phone) {
                 $localOfficePhone = $localOfficeRepository->getPhone($id);
                 $localOfficePhone->phone_text = $phone['phone_text'] ?? '';
@@ -151,8 +149,8 @@ class LocalOfficeController extends Controller
         }
         $localOfficeRepository->deleteOtherPhones(array_keys($oldPhones));
 
-        if ($validated->has('phone_new')) {
-            $newPhones = $validated->get('phone_new');
+        if ($request->has('phone_new')) {
+            $newPhones = $request->get('phone_new');
             foreach ($newPhones as $phone) {
                 $localOfficePhone = $localOfficeRepository->makePhone();
                 $localOfficePhone->phone_text = $phone['phone_text'] ?? '';
@@ -165,8 +163,8 @@ class LocalOfficeController extends Controller
 
 
         $oldEmails = [];
-        if ($validated->has('email_old')) {
-            $oldEmails = $validated->get('email_old');
+        if ($request->has('email_old')) {
+            $oldEmails = $request->get('email_old');
             foreach ($oldEmails as $id => $email) {
                 $localOfficeEmail = $localOfficeRepository->getEmail($id);
                 $localOfficeEmail->email = $email['email'] ?? '';
@@ -177,8 +175,8 @@ class LocalOfficeController extends Controller
         }
         $localOfficeRepository->deleteOtherEmails(array_keys($oldEmails));
 
-        if ($validated->has('email_new')) {
-            $newEmails = $validated->get('email_new');
+        if ($request->has('email_new')) {
+            $newEmails = $request->get('email_new');
             foreach ($newEmails as $email) {
                 $localOfficeEmail = $localOfficeRepository->makeEmail();
                 $localOfficeEmail->email = $email['email'] ?? '';
