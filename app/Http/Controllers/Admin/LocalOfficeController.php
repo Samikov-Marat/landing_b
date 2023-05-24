@@ -10,14 +10,14 @@ use App\Http\Requests\LocalOfficeRequest;
 use App\LocalOffice;
 use App\Site;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 
 class LocalOfficeController extends Controller
 {
     const SORT_STEP = 10;
 
-    public function index(Site $site)
+    public function index(Site $site): View
     {
         $site->with(
             [
@@ -54,7 +54,7 @@ class LocalOfficeController extends Controller
             ->with('franchisees', $franchisees);
     }
 
-    public function edit(Site $site, LocalOffice $localOffice)
+    public function edit(Site $site, LocalOffice $localOffice): View
     {
         $localOffice->with(
             [
