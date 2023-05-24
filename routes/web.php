@@ -125,14 +125,18 @@ Route::prefix('admin')->middleware(
         Route::get('{site}/local-offices/create', 'Admin\LocalOfficeController@edit')
             ->name('admin.local_offices.create');
         Route::get('{site}/local-offices/{localOffice}/edit', 'Admin\LocalOfficeController@edit')
-            ->name('admin.local_offices.edit');
+            ->name('admin.local_offices.edit')
+            ->middleware('local.office.belong.to.site');
         Route::put('{site}/local-offices/{localOffice?}', 'Admin\LocalOfficeController@update')
             ->name('admin.local_offices.update')
+            ->middleware('local.office.belong.to.site')
             ->withoutMiddleware(TrimStrings::class);
         Route::delete('{site}/local-offices/{localOffice}', 'Admin\LocalOfficeController@delete')
-            ->name('admin.local_offices.delete');
+            ->name('admin.local_offices.delete')
+            ->middleware('local.office.belong.to.site');
         Route::post('{site}/local-offices/{localOffice}/move', 'Admin\LocalOfficeController@move')
-            ->name('admin.local_offices.move');
+            ->name('admin.local_offices.move')
+            ->middleware('local.office.belong.to.site');
 
         Route::get('our-workers', 'Admin\OurWorkerController@index')
             ->name('admin.our_workers.index');

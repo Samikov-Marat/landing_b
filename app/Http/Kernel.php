@@ -9,6 +9,7 @@ use App\Http\Middleware\ClearGet;
 use App\Http\Middleware\DebugbarDisable;
 use App\Http\Middleware\EncryptCookies;
 use App\Http\Middleware\HttpSecure;
+use App\Http\Middleware\LocalOfficeBelongToSite;
 use App\Http\Middleware\MetricBasicAuth;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Middleware\SaveStatistics;
@@ -104,6 +105,7 @@ class Kernel extends HttpKernel
         'share.errors.from.session' => ShareErrorsFromSession::class,
         'debugbar.disable' => DebugbarDisable::class,
 //        \Illuminate\Session\Middleware\AuthenticateSession::class,
+        'local.office.belong.to.site' => LocalOfficeBelongToSite::class
     ];
 
     /**
