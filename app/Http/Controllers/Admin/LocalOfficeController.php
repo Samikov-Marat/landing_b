@@ -125,7 +125,7 @@ class LocalOfficeController extends Controller
                 ->max('sort') + self::SORT_STEP;
         $localOffice->save();
 
-        $site->with('languages');
+        $site->load('languages');
 
         $localOfficeRepository = LocalOfficeRepository::getInstance($localOffice);
 
