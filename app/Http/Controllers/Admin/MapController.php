@@ -13,13 +13,6 @@ class MapController extends Controller
     private const CONTACTS_PAGE_NAME = 'contacts';
     private const CONTACTS_MAP_STATE_TEXT_TYPE = 'contacts_map_state';
 
-    public function index(): View
-    {
-        $sites = Site::all();
-        return view('admin.map.index')
-            ->with('sites', $sites);
-    }
-
     public function show(Site $site): View
     {
         $languages = $site->languages()->get();
@@ -49,6 +42,6 @@ class MapController extends Controller
             $textState->value = $validated['state'];
             $textState->save();
         }
-        return redirect(route('admin.map.show', ['site' => $site]));
+        return response()->redirectToRoute('admin.map.show', ['site' => $site]);
     }
 }

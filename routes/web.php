@@ -448,11 +448,10 @@ Route::prefix('admin')->middleware(
             ->name('admin.amo.auth_save');
 
         Route::group([
-            'prefix' => 'map'
+            'prefix' => '{site}/map'
         ], function () {
-            Route::get('/', 'Admin\MapController@index')->name('admin.map.index');
-            Route::get('{site}', 'Admin\MapController@show')->name('admin.map.show');
-            Route::put('{site}', 'Admin\MapController@update')->name('admin.map.update');
+            Route::get('/', 'Admin\MapController@show')->name('admin.map.show');
+            Route::put('/', 'Admin\MapController@update')->name('admin.map.update');
         });
     }
 
