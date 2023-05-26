@@ -6,9 +6,8 @@ function TrackingShort(response) {
         $('.js-tracking-from-date').html(this.getProperty(['orderDate']));
         $('.js-tracking-to-city').html(this.getProperty(['cityTo', 'name']));
 
-        const deliveryDate = this.getProperty(['trackingDetails']).find((el) => {
-            return el.statusCode === 'success';
-        });
+        const deliveryDate = this.getProperty(['trackingDetails'])
+            .find(el => el.statusCode === 'success');
 
         $('.js-tracking-to-date').html(this.cutDate(deliveryDate?.date || this.getProperty(['tariffDateEnd'])) || '-');
         $('.js-tracking-status').html(this.getProperty(['status', 'name']));
