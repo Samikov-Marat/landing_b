@@ -7,7 +7,7 @@ function TrackingShort(response) {
         $('.js-tracking-to-city').html(this.getProperty(['cityTo', 'name']));
 
         const deliveryDate = this.getProperty(['trackingDetails']).find((el) => {
-            return el.statusCode === 'success';
+            return el.statusCode === 'success' || el.statusCode === 'partialDelivered';
         });
 
         $('.js-tracking-to-date').html(this.cutDate(deliveryDate?.date || this.getProperty(['tariffDateEnd'])) || '-');
