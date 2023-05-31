@@ -4,7 +4,7 @@ namespace App\Classes\Site\CalculatorJson;
 
 use Illuminate\Http\Request;
 
-class LegalEntityToLegalEntity implements JsonGeneratorRequestToApi
+class LegalEntityToNaturalPerson implements JsonGeneratorRequestToApi
 {
     public function getJson(Request $request)
     {
@@ -15,10 +15,10 @@ class LegalEntityToLegalEntity implements JsonGeneratorRequestToApi
                                ],
                                'receiver' => [
                                    'cityId' => $request->input('receiver_city_uuid'),
-                                   'contragentType' => 'UR',
+                                   'contragentType' => 'FIZ',
                                ],
                                'payer' => [
-                                   'contractId' => config('calculator.bangladesh_contract_id'),
+                                   'contractId' => config('calculator.sender_contract_id'),
                                    'payerType' => 'sender',
                                ],
                                'orderParam' => [

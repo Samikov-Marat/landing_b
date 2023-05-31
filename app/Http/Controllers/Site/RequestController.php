@@ -14,7 +14,7 @@ use App\Classes\Site\Amo\AmoSender;
 use App\Classes\Site\ApiMarketing\ApiMarketing;
 use App\Classes\Site\Calculator;
 use App\Classes\Site\CalculatorJson\LegalEntityToLegalEntity;
-use App\Classes\Site\CalculatorJson\NaturalPersonToNaturalPerson;
+use App\Classes\Site\CalculatorJson\LegalEntityToNaturalPerson;
 use App\Classes\Site\CalculatorResponse;
 use App\Classes\Site\FormRequestRepository;
 use App\Classes\Site\Jira\JiraSender;
@@ -287,7 +287,7 @@ class RequestController extends Controller
         if ('cdek-bd.com' == $domain) {
             $jsonGenerator = new LegalEntityToLegalEntity();
         } else {
-            $jsonGenerator = new NaturalPersonToNaturalPerson();
+            $jsonGenerator = new LegalEntityToNaturalPerson();
         }
 
         try {
