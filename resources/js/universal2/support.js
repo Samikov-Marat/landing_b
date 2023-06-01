@@ -77,7 +77,8 @@ function universal2SupportForm($form) {
         thisForCallback.setState('loading');
         $.post(request).done(function () {
             thisForCallback.setState('success');
-        }).fail(function () {
+            this.clearForm();
+        }.bind(this)).fail(function () {
             thisForCallback.setState('error');
         });
     }
@@ -124,6 +125,15 @@ function universal2SupportForm($form) {
             $('.js-feedback-result-error-wrapper').show();
             return;
         }
+    }
+    this.clearForm = function () {
+        this.$form.find('input[name=name]').val('');
+        this.$form.find('input[name=phone]').val('');
+        this.$form.find('input[name=email]').val('');
+        this.$form.find('input[name=have_invoice]');
+        this.$form.find('select[name=summary]').val('').change();
+        this.$form.find('select[name=order_type]').val('').change();
+        this.$form.find('textarea[name=question]').val('');
     }
 }
 
