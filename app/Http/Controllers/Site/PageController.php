@@ -98,7 +98,7 @@ class PageController extends Controller
         $fragments = $siteRepository->getLayoutFragments();
         $fragments->push($page);
         $fragmentRepository = new FragmentRepository($fragments);
-        $dictionaryBuilder = new DictionaryBuilder($subdomain->hasSubdomain());
+        $dictionaryBuilder = new DictionaryBuilder(false);
         $dictionary = $dictionaryBuilder->get($fragmentRepository->forSubdomain($subdomain)->getWithTexts($language));
         $siteRepository->loadLocalOffices($language, $subdomain);
         $siteRepository->loadNewsArticles($language);
