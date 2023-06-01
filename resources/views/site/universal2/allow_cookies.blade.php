@@ -1,5 +1,4 @@
 @if(!$allowCookies)
-
     <div class="cookie-confirm">
         <div class="cookie-confirm__close"></div>
         <div class="cookie-confirm__container">
