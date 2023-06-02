@@ -181,7 +181,7 @@
 
                             <div class="form-order-customer-type-wrapper">
                                 <div class="choice-widget">
-                                    <input type="radio" required name="customer_type" value="legal_entity"
+                                    <input type="radio" name="customer_type" value="legal_entity"
                                            id="id_calculator_legal_entity" class="js-form-order-customer-type"><label
                                         for="id_calculator_legal_entity">@d('calculator_form_field_customer_type_legal_entity')</label>
                                 </div>
