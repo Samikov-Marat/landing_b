@@ -82,7 +82,13 @@ class RequestController extends Controller
                     ->setHtmlContent($htmlContent)
                     ->send();
             } elseif ('forward' == $request->input('order_type')) {
-                SupportEmail::sendForward($request);
+                $htmlContent = view('site.universal2.support_mail_forward')
+                    ->with('request', $request)
+                    ->with('currentTime', date('d.m.Y H:i:s'))
+                    ->render();
+                EmailNotificationForward::getInstance()
+                    ->setHtmlContent($htmlContent)
+                    ->send();
             }
         } catch (Exception $e) {
             Log::error($e);

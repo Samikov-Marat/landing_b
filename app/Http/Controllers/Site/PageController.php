@@ -106,7 +106,7 @@ class PageController extends Controller
         $fragments = $siteRepository->getLayoutFragments();
         $fragments->push($page);
         $fragmentRepository = new FragmentRepository($fragments);
-        $dictionaryBuilder = new DictionaryBuilder($subdomain->hasSubdomain());
+        $dictionaryBuilder = new DictionaryBuilder(false);
         $dictionary = $dictionaryBuilder->get($fragmentRepository->forSubdomain($subdomain)->getWithTexts($language));
         $siteRepository->loadLocalOffices($language, $subdomain);
         $siteRepository->loadNewsArticles($language);
@@ -134,6 +134,8 @@ class PageController extends Controller
 
         $siteRepository->loadTariffs($language);
 
+        $headTagsParams = $headTags->headParamsBuilder($fragments);
+
         return view($templateBuilder->getName())
             ->with('site', $siteRepository->getSite())
             ->with('subdomain', $subdomain)
@@ -149,6 +151,7 @@ class PageController extends Controller
             ->with('countriesTo', $countriesTo)
             ->with('showFastAnswer', FastAnswer::setShowFastAnswer($request, $pageUrl))
             ->with('allowCookies', AllowCookie::getInstance($request)->isAllow())
-            ->with('hasLocalStylesheet', LocalStylesheet::hasLocalStylesheet($site, $languageShortname));
+            ->with('hasLocalStylesheet', LocalStylesheet::hasLocalStylesheet($site, $languageShortname))
+            ->with('headTagsParams', $headTagsParams);
     }
 }
