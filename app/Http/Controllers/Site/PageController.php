@@ -65,7 +65,14 @@ class PageController extends Controller
         }
     }
 
-    public function showPage(Request $request, $languageUrl, $pageUrl = '/', $category = null, $question = null)
+    public function showPage(
+        HeadTags $headTags,
+        Request $request,
+        $languageUrl,
+        $pageUrl = '/',
+        $category = null,
+        $question = null
+    )
     {
         Metrics::showPage();
         $domain = Domain::getInstance($request);

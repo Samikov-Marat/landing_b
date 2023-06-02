@@ -74,7 +74,13 @@ class RequestController extends Controller
             if ('delivery' == $request->input('order_type')) {
                 JiraSender::send($request);
             } elseif ('shopping' == $request->input('order_type')) {
-                SupportEmail::sendShopping($request);
+                $htmlContent = view('site.universal2.support_mail_shopping')
+                    ->with('request', $request)
+                    ->with('currentTime', date('d.m.Y H:i:s'))
+                    ->render();
+                EmailNotificationShopping::getInstance()
+                    ->setHtmlContent($htmlContent)
+                    ->send();
             } elseif ('forward' == $request->input('order_type')) {
                 SupportEmail::sendForward($request);
             }

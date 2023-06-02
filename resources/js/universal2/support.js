@@ -126,6 +126,15 @@ function universal2SupportForm($form) {
             return;
         }
     }
+    this.clearForm = function () {
+        this.$form.find('input[name=name]').val('');
+        this.$form.find('input[name=phone]').val('');
+        this.$form.find('input[name=email]').val('');
+        this.$form.find('input[name=have_invoice]');
+        this.$form.find('select[name=summary]').val('').change();
+        this.$form.find('select[name=order_type]').val('').change();
+        this.$form.find('textarea[name=question]').val('');
+    }
 }
 
 
