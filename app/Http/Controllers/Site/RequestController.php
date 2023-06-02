@@ -287,7 +287,7 @@ class RequestController extends Controller
         if ('cdek-bd.com' == $domain) {
             $jsonGenerator = new LegalEntityToLegalEntity();
         } else {
-            $jsonGenerator = new NaturalPersonToNaturalPerson();
+            $jsonGenerator = new LegalEntityToNaturalPerson();
         }
 
         try {
