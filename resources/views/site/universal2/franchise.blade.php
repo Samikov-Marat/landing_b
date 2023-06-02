@@ -117,8 +117,12 @@
                     </h2>
                     <div class="submenu submenu_centered franchise-format__submenu">
                         <div class="submenu__content">
-                            <a href="#" class="submenu__item submenu__item_active js-franchise-format-handler" data-format="pvz">@d('franchise_40')</a>
-                            {{-- <a href="#" class="submenu__item js-franchise-format-handler" data-format="shop">@d('franchise_41')</a> --}}
+                            @if(empty($dictionary['franchise_40']))
+                                <a href="#" class="submenu__item submenu__item_active js-franchise-format-handler" data-format="pvz">@d('franchise_40')</a>
+                            @endif
+                            @if(empty($dictionary['franchise_41']))
+                                <a href="#" class="submenu__item js-franchise-format-handler" data-format="shop">@d('franchise_41')</a>
+                            @endif
                         </div>
                     </div>
                     <div class="franchise-format__item js-franchise-format" data-format="pvz">

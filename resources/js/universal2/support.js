@@ -77,7 +77,8 @@ function universal2SupportForm($form) {
         thisForCallback.setState('loading');
         $.post(request).done(function () {
             thisForCallback.setState('success');
-        }).fail(function () {
+            this.clearForm();
+        }.bind(this)).fail(function () {
             thisForCallback.setState('error');
         });
     }

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Site;
 
 use App\Classes\Domain;
+use App\Classes\EmailNotification\EmailNotificationForward;
+use App\Classes\EmailNotification\EmailNotificationShopping;
 use App\Classes\ImageResponse;
 use App\Classes\MapJsonCallback;
 use App\Classes\OfficeRepository;
@@ -12,7 +14,7 @@ use App\Classes\Site\Amo\AmoSender;
 use App\Classes\Site\ApiMarketing\ApiMarketing;
 use App\Classes\Site\Calculator;
 use App\Classes\Site\CalculatorJson\LegalEntityToLegalEntity;
-use App\Classes\Site\CalculatorJson\NaturalPersonToNaturalPerson;
+use App\Classes\Site\CalculatorJson\LegalEntityToNaturalPerson;
 use App\Classes\Site\CalculatorResponse;
 use App\Classes\Site\FormRequestRepository;
 use App\Classes\Site\Jira\JiraSender;

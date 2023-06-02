@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'shopping_email' => explode(',', env('SUPPORT_EMAIL_SHOPPING')),
-    'forward_email' => explode(',', env('SUPPORT_EMAIL_FORWARD')),
+    'shopping_emails' => explode(',', env('SUPPORT_EMAIL_SHOPPING')),
+    'forward_emails' => explode(',', env('SUPPORT_EMAIL_FORWARD')),
 ];

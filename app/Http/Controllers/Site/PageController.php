@@ -6,6 +6,7 @@ use App\Classes\DictionaryBuilder;
 use App\Classes\Domain;
 use App\Classes\FastAnswer;
 use App\Classes\FragmentRepository;
+use App\Classes\HeadTags;
 use App\Classes\LanguageDetector;
 use App\Classes\LocalStylesheet;
 use App\Classes\Site\AllowCookie;

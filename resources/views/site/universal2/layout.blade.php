@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html @if($language->rtl) dir="rtl" @endif>
+
+@if(array_key_exists('html_lang_tag', $dictionary) && $dictionary['html_lang_tag'])
+    <html lang="{{ $dictionary['html_lang_tag'] }}">
+@endif
+
 <head>
     <meta charset="UTF-8">
     <title>@yield('seo_title', 'CDEK')</title>
     <meta name="description" content="@yield('seo_description', 'CDEK express delivery company')">
-
+    <meta name="yandex-verification" content="900be28146e13ba1" />
     <script>
         dataLayer = [];
     </script>
