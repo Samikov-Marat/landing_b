@@ -41,9 +41,10 @@
     @endif
     <link rel="stylesheet" href="{{ mix('universal2/custom.css') }}">
 
-    @if(array_key_exists('html_lang_tag', $dictionary) && $dictionary['html_lang_tag'] && array_key_exists('canonicals', $headTagsParams))
+    @if(array_key_exists('html_lang_tag', $dictionary) && $dictionary['html_lang_tag'] && array_key_exists('canonical', $headTagsParams))
         @include('site.universal2.head_tags.canonical', [
-            'params' => $headTagsParams['canonicals'],
+            'languageUri' => $headTagsParams['canonical']['languageUri'],
+            'params' => $headTagsParams['canonical']['params'],
             'languages' => $site->languages,
             'currentLanguage' => $language
             ])
