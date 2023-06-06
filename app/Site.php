@@ -76,4 +76,8 @@ class Site extends Model
         return $this->belongsToMany(Language::class, DefaultLanguage::class);
     }
 
+    public function currency()
+    {
+        return $this->hasOne(Currency::class, 'code', 'currency_code');
+    }
 }
