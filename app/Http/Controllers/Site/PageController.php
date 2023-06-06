@@ -135,6 +135,7 @@ class PageController extends Controller
         $siteRepository->loadTariffs($language);
 
         $headTagsParams = $headTags->headParamsBuilder($fragments, $language);
+        $currency = $site->currency()->first();
 
         return view($templateBuilder->getName())
             ->with('site', $siteRepository->getSite())
@@ -152,6 +153,7 @@ class PageController extends Controller
             ->with('showFastAnswer', FastAnswer::setShowFastAnswer($request, $pageUrl))
             ->with('allowCookies', AllowCookie::getInstance($request)->isAllow())
             ->with('hasLocalStylesheet', LocalStylesheet::hasLocalStylesheet($site, $languageShortname))
-            ->with('headTagsParams', $headTagsParams);
+            ->with('headTagsParams', $headTagsParams)
+            ->with('currency', $currency);
     }
 }
