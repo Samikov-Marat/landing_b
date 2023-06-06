@@ -212,7 +212,11 @@
                     @can('admin.site.currency.index')
                         <td>
                             <a href="{!! route('admin.site.currency.index', ['site' => $site->id]) !!}">
-                                Валюта
+                                @if(!empty($site->currency->name))
+                                    {{ $site->currency->symbol }} / {{ $site->currency->name }}
+                                @else
+                                    Установить
+                                @endif
                             </a>
                         </td>
                     @endcan
