@@ -1,6 +1,8 @@
-<link rel="canonical"
-      href="{{ route('site.show_page', ['languageUrl' => $currentLanguage->uri, 'pageUrl' => $page->url]) }}"
-/>
+@if(!empty($languageUri))
+    <link rel="canonical"
+          href="{{ route('site.show_page', ['languageUrl' => $languageUri, 'pageUrl' => $page->url]) }}"
+    />
+@endif
 @foreach($languages as $language)
     @if($params->has($language->id))
         <link rel="alternate"
