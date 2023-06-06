@@ -17,6 +17,11 @@ class Site extends Model
         return $this->belongsToMany(Page::class, SitePage::class);
     }
 
+    public function getSpecificPage(string $pageName): Page
+    {
+        return $this->pages()->where('url', $pageName)->first();
+    }
+
     public function tariffs()
     {
         return $this->belongsToMany(Tariff::class, SiteTariff::class);

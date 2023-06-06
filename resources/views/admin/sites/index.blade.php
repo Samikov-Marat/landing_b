@@ -92,6 +92,11 @@
                         Поддержка
                     </th>
                 @endcan
+                @can('admin.map.index')
+                    <th>
+                        Карта
+                    </th>
+                @endcan
                 @canany(['admin.sites.edit', 'admin.sites.delete'])
                     <th>
 
@@ -189,6 +194,13 @@
                         <td>
                             <a href="{!! route('admin.support_categories.index', ['site_id' => $site->id]) !!}">
                                 Поддержка
+                            </a>
+                        </td>
+                    @endcan
+                    @can('admin.map.index')
+                        <td>
+                            <a href="{!! route('admin.map.show', ['site' => $site->id]) !!}">
+                                Карта
                             </a>
                         </td>
                     @endcan

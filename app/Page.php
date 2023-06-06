@@ -17,5 +17,4 @@ class Page extends Model
         /** @noinspection PhpIncompatibleReturnTypeInspection */
         return $this->textTypes()->where('shortname', $textTypeName)->first();
     }
-
 }
