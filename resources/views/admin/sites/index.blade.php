@@ -92,7 +92,7 @@
                         Поддержка
                     </th>
                 @endcan
-                @can('admin.map.index')
+                @can('admin.map.show')
                     <th>
                         Карта
                     </th>
@@ -197,7 +197,7 @@
                             </a>
                         </td>
                     @endcan
-                    @can('admin.map.index')
+                    @can('admin.map.show')
                         <td>
                             <a href="{!! route('admin.map.show', ['site' => $site->id]) !!}">
                                 Карта

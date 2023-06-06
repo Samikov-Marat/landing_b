@@ -453,6 +453,15 @@ Route::prefix('admin')->middleware(
             Route::get('/', 'Admin\MapController@show')->name('admin.map.show');
             Route::put('/', 'Admin\MapController@update')->name('admin.map.update');
         });
+
+        Route::group([
+            'prefix' => 'currencies'
+        ], static function () {
+            Route::get('/', 'Admin\CurrencyController@index')->name('admin.currency.index');
+            Route::post('/', 'Admin\CurrencyController@store')->name('admin.currency.store');
+            Route::put('/{currency}', 'Admin\CurrencyController@update')->name('admin.currency.update');
+            Route::delete('/{currency}', 'Admin\CurrencyController@destroy')->name('admin.currency.destroy');
+        });
     }
 
 );
