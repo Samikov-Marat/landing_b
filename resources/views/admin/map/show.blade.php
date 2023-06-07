@@ -17,7 +17,7 @@
          @if('local' == env('APP_ENV'))
              data-url-template="https://cdek.uk/request/get-office-list?bbox=%b"
          @else
-             data-url-template="{!! route('request.get_office_list') . '?bbox=%b&lang='.$dictionary['contacts_office_lang'] !!}"
+             data-url-template="{!! route('request.get_office_list') . '?bbox=%b&lang=rus' !!}"
          @endif
          data-map-state="{{ $contacts_map_state }}"
     >
