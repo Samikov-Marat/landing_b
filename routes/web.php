@@ -14,8 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware(['http.secure', 'start.session', 'share.errors.from.session'])->group(function (
-) {
+Route::middleware(['http.secure', 'start.session', 'share.errors.from.session'])->group(function () {
     Auth::routes(['register' => false]);
 });
 
