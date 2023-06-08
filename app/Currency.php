@@ -16,9 +16,8 @@ use Illuminate\Database\Eloquent\Model;
 class Currency extends Model
 {
     protected $primaryKey = 'code';
-    const COUNT_ALL_WORLD_CURRENCIES = 159;
 
-    public function scopeGetAllCurrencies($query): Builder
+    public function scopeGetAllCurrencies($query)
     {
         return $query
             ->select([
@@ -26,8 +25,8 @@ class Currency extends Model
                 'name',
                 'symbol',
             ])
-            ->limit(self::COUNT_ALL_WORLD_CURRENCIES)
-            ->orderBy('name');
+            ->orderBy('name')
+            ->paginate(30);
     }
 
     public function getRouteKeyName(): string

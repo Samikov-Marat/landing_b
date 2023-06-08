@@ -11,7 +11,7 @@
             @csrf
             @method('PUT')
 
-            <div class="row mt-3">
+            <div class="row mt-3 mb-3">
                 <div class="col">
                     <div class="input-group flex-nowrap">
                         <span class="input-group-text" id="addon-wrapping">Код валюты</span>
@@ -55,4 +55,5 @@
             </div>
         </form>
     @endforeach
+    {{ $currencies->links() }}
 @endsection

@@ -1,6 +1,6 @@
 <form method="post" action="{!! route('admin.currency.store') !!}">
     @csrf
-    <div class="row">
+    <div class="row mb-3">
         <div class="col">
             <div class="input-group flex-nowrap">
                 <span class="input-group-text" id="addon-wrapping">Код валюты</span>

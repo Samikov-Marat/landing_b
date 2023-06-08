@@ -13,8 +13,7 @@ class CurrencyController extends Controller
     public function index(): View
     {
         $currencies = Currency::query()
-            ->getAllCurrencies()
-            ->get();
+            ->getAllCurrencies();
         return view('admin.currency.index')
             ->with('currencies', $currencies);
     }
