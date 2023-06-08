@@ -5,7 +5,7 @@
         </div>
         <div class="circle-icon-list main-poster__icons">
             <div class="circle-icon circle-icon_icon_courier circle-icon-list__icon"></div>
-            <div class="circle-icon circle-icon_icon_ru circle-icon-list__icon"></div>
+            {{-- <div class="circle-icon circle-icon_icon_ru circle-icon-list__icon"></div> --}}
             <div class="circle-icon circle-icon_icon_calendar circle-icon-list__icon"></div>
         </div>
         <div class="main-poster__text">
