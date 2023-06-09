@@ -135,7 +135,7 @@ class PageController extends Controller
         $siteRepository->loadTariffs($language);
 
         $headTagsParams = $headTags->headParamsBuilder($fragments, $language);
-        $currency = $site->currency()->first();
+        $currency = $site->currency;
 
         return view($templateBuilder->getName())
             ->with('site', $siteRepository->getSite())
