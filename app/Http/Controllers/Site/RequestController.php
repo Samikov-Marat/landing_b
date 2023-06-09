@@ -25,6 +25,7 @@ use App\EngOffice;
 use App\Facades\Metrics;
 use App\Feedback;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CalculatorRequest;
 use App\Language;
 use App\Office;
 use App\Site;
@@ -281,7 +282,7 @@ class RequestController extends Controller
         return $response->getBody();
     }
 
-    public function calculate(Request $request)
+    public function calculate(CalculatorRequest $request)
     {
         $domain = Domain::getInstance($request)->get();
         if ('cdek-bd.com' == $domain) {
@@ -293,7 +294,7 @@ class RequestController extends Controller
         try {
             $responseBody = Calculator::getInstance($jsonGenerator, config('calculator.url'))
                 ->getTariffs($request);
-            return CalculatorResponse::transformResponseBody($responseBody, $request->input('language'));
+            return CalculatorResponse::transformResponseBody($responseBody, $request->language);
         } catch (Exception $exception) {
             Log::error($exception);
             abort(HttpFoundationResponse::HTTP_INTERNAL_SERVER_ERROR);
