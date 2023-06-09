@@ -106,10 +106,6 @@ $(function () {
             return this.form.data('language');
         }
 
-        this.getCustomerType = function () {
-            return $('.form-field__input[name=customer_type]:checked').val();
-        }
-
         this.isShowPeriod = function () {
             return Boolean(this.form.data('showPeriod'));
         }
@@ -186,15 +182,14 @@ $(function () {
         let tariffCodes = calculator.getTariffCodes();
 
         $.post(calculator.getCalculateUrl(), {
-            "sender_city_uuid": calculator.getCityCodeFrom(),
-            "receiver_city_uuid": calculator.getCityCodeTo(),
-            "mass": calculator.getMass(),
-            "height": calculator.getHeight(),
-            "width": calculator.getWidth(),
-            "length": calculator.getLength(),
-            "language": calculator.getLanguage(),
-            "idCurrency": calculator.getUsedCurrency(),
-            "customer_type": calculator.getCustomerType(),
+           "sender_city_uuid": calculator.getCityCodeFrom(),
+           "receiver_city_uuid": calculator.getCityCodeTo(),
+           "mass": calculator.getMass(),
+           "height": calculator.getHeight(),
+           "width": calculator.getWidth(),
+           "length": calculator.getLength(),
+           "language": calculator.getLanguage(),
+           "idCurrency": calculator.getUsedCurrency(),
         }).done(function(tariffs){
             showTariffs(tariffs);
         });

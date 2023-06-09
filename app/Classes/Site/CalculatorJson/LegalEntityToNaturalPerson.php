@@ -2,21 +2,19 @@
 
 namespace App\Classes\Site\CalculatorJson;
 
-use App\Http\Requests\CalculatorRequest;
 use Illuminate\Http\Request;
 
 class LegalEntityToNaturalPerson implements JsonGeneratorRequestToApi
 {
-    public function getJson(CalculatorRequest $request)
+    public function getJson(Request $request)
     {
-        \Log::info($request->sender_city_uuid);
         return json_encode([
                                'sender' => [
-                                   'cityId' => $request->sender_city_uuid,
-                                   'contragentType' => $request->customer_type ?: 'UR',
+                                   'cityId' => $request->input('sender_city_uuid'),
+                                   'contragentType' => 'UR',
                                ],
                                'receiver' => [
-                                   'cityId' => $request->receiver_city_uuid,
+                                   'cityId' => $request->input('receiver_city_uuid'),
                                    'contragentType' => 'FIZ',
                                ],
                                'payer' => [
@@ -28,16 +26,16 @@ class LegalEntityToNaturalPerson implements JsonGeneratorRequestToApi
                                    'calcMode' => 'RECALC'
                                ],
                                'interfaceCode' => 'ec5_front',
-                               'currencyMark' => static::getCurrencyMark($request->idCurrency),
+                               'currencyMark' => static::getCurrencyMark($request->input('idCurrency')),
                                'calcDate' => date('Y-m-d'),
                                'packages' => [
                                    [
-                                       'length' => $request->length,
-                                       'width' => $request->width,
-                                       'height' => $request->height,
-                                       'weight' => $request->mass,
+                                       'length' => $request->input('length'),
+                                       'width' => $request->input('width'),
+                                       'height' => $request->input('height'),
+                                       'weight' => $request->input('mass'),
                                    ]
-                               ],
+                               ]
                            ]);
     }
 
