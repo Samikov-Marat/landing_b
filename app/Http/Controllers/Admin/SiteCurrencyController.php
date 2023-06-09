@@ -13,10 +13,10 @@ class SiteCurrencyController extends Controller
     public function index(Site $site): View
     {
         $currencies = Currency::query()
-            ->getAllCurrencies()
+            ->basePropsSelect()
             ->get();
 
-        $currentCurrency = $site->currency()->first();
+        $currentCurrency = $site->currency;
 
         return view('admin.currency.site.index')
             ->with('site', $site)

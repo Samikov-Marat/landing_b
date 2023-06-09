@@ -10,10 +10,14 @@ use Illuminate\View\View;
 
 class CurrencyController extends Controller
 {
+    private const PAGINATE_STEP = 30;
+
     public function index(): View
     {
         $currencies = Currency::query()
-            ->getAllCurrencies();
+            ->basePropsSelect()
+            ->paginate(self::PAGINATE_STEP);
+
         return view('admin.currency.index')
             ->with('currencies', $currencies);
     }

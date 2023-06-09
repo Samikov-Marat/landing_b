@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property int $code // primary key
- * @property string $text
+ * @property string $name
  * @property string $symbol
  * @property Carbon $created_at
  * @property Carbon $updated_at
@@ -16,8 +16,9 @@ use Illuminate\Database\Eloquent\Model;
 class Currency extends Model
 {
     protected $primaryKey = 'code';
+    private const PAGINATE_COUNT = 30;
 
-    public function scopeGetAllCurrencies($query)
+    public function scopeBasePropsSelect($query)
     {
         return $query
             ->select([
@@ -25,8 +26,7 @@ class Currency extends Model
                 'name',
                 'symbol',
             ])
-            ->orderBy('name')
-            ->paginate(30);
+            ->orderBy('name');
     }
 
     public function getRouteKeyName(): string
