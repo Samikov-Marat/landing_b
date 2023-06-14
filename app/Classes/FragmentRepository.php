@@ -29,8 +29,7 @@ class FragmentRepository
     public function getWithTexts($language)
     {
         if ($this->subdomain->hasSubdomain()) {
-            $franchisee = $this->subdomain->getFranchisee()
-                ->firstOrFail();
+            $franchisee = $this->subdomain->getFranchisee();
             $this->fragment->load(
                 [
                     'textTypes.franchiseeTexts' => function ($query) use ($language, $franchisee) {

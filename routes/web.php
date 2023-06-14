@@ -465,6 +465,33 @@ Route::prefix('admin')->middleware(
             ->name('admin.amo.auth_form');
         Route::post('amo/auth-save', 'Admin\AmoController@authSave')
             ->name('admin.amo.auth_save');
+
+        Route::group([
+            'prefix' => '{site}/map',
+        ], function () {
+            Route::get('/', 'Admin\MapController@show')->name('admin.map.show');
+            Route::put('/', 'Admin\MapController@update')->name('admin.map.update');
+        });
+
+        Route::group([
+            'prefix' => 'currencies',
+        ], static function () {
+            Route::get('/', 'Admin\CurrencyController@index')->name('admin.currency.index');
+            Route::post('/', 'Admin\CurrencyController@store')->name('admin.currency.store');
+            Route::put('/{currency}', 'Admin\CurrencyController@update')
+                ->name('admin.currency.update');
+            Route::delete('/{currency}', 'Admin\CurrencyController@destroy')
+                ->name('admin.currency.destroy');
+        });
+
+        Route::group([
+            'prefix' => '{site}/currency',
+        ], static function () {
+            Route::get('/', 'Admin\SiteCurrencyController@index')
+                ->name('admin.site.currency.index');
+            Route::put('/', 'Admin\SiteCurrencyController@update')
+                ->name('admin.site.currency.update');
+        });
     }
 
 );

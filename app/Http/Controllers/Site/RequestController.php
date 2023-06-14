@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Site;
 
 use App\Classes\Domain;
+use App\Classes\EmailNotification\EmailNotificationForward;
+use App\Classes\EmailNotification\EmailNotificationShopping;
 use App\Classes\ImageResponse;
 use App\Classes\MapJsonCallback;
 use App\Classes\OfficeRepository;
@@ -12,7 +14,7 @@ use App\Classes\Site\Amo\AmoSender;
 use App\Classes\Site\ApiMarketing\ApiMarketing;
 use App\Classes\Site\Calculator;
 use App\Classes\Site\CalculatorJson\LegalEntityToLegalEntity;
-use App\Classes\Site\CalculatorJson\NaturalPersonToNaturalPerson;
+use App\Classes\Site\CalculatorJson\LegalEntityToNaturalPerson;
 use App\Classes\Site\CalculatorResponse;
 use App\Classes\Site\FormRequestRepository;
 use App\Classes\Site\Jira\JiraSender;
@@ -23,6 +25,7 @@ use App\EngOffice;
 use App\Facades\Metrics;
 use App\Feedback;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CalculatorRequest;
 use App\Language;
 use App\Office;
 use App\Site;
@@ -72,9 +75,21 @@ class RequestController extends Controller
             if ('delivery' == $request->input('order_type')) {
                 JiraSender::send($request);
             } elseif ('shopping' == $request->input('order_type')) {
-                SupportEmail::sendShopping($request);
+                $htmlContent = view('site.universal2.support_mail_shopping')
+                    ->with('request', $request)
+                    ->with('currentTime', date('d.m.Y H:i:s'))
+                    ->render();
+                EmailNotificationShopping::getInstance()
+                    ->setHtmlContent($htmlContent)
+                    ->send();
             } elseif ('forward' == $request->input('order_type')) {
-                SupportEmail::sendForward($request);
+                $htmlContent = view('site.universal2.support_mail_forward')
+                    ->with('request', $request)
+                    ->with('currentTime', date('d.m.Y H:i:s'))
+                    ->render();
+                EmailNotificationForward::getInstance()
+                    ->setHtmlContent($htmlContent)
+                    ->send();
             }
         } catch (Exception $e) {
             Log::error($e);
@@ -267,19 +282,19 @@ class RequestController extends Controller
         return $response->getBody();
     }
 
-    public function calculate(Request $request)
+    public function calculate(CalculatorRequest $request)
     {
         $domain = Domain::getInstance($request)->get();
         if ('cdek-bd.com' == $domain) {
             $jsonGenerator = new LegalEntityToLegalEntity();
         } else {
-            $jsonGenerator = new NaturalPersonToNaturalPerson();
+            $jsonGenerator = new LegalEntityToNaturalPerson();
         }
 
         try {
             $responseBody = Calculator::getInstance($jsonGenerator, config('calculator.url'))
                 ->getTariffs($request);
-            return CalculatorResponse::transformResponseBody($responseBody, $request->input('language'));
+            return CalculatorResponse::transformResponseBody($responseBody, $request->language);
         } catch (Exception $exception) {
             Log::error($exception);
             abort(HttpFoundationResponse::HTTP_INTERNAL_SERVER_ERROR);
