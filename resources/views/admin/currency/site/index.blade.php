@@ -15,7 +15,7 @@
                        name="currencyCode"
                        id="{{ $currency->code }}"
                        value="{{ $currency->code }}"
-                       {{ $currency->code === $currentCurrency->code ? 'checked' : '' }}
+                       {{ !empty($currentCurrency->code) && $currency->code === $currentCurrency->code ? 'checked' : '' }}
                 >
                 <label class="form-check-label" for="{{ $currency->code }}">
                     {{ $currency->symbol }} / {{ $currency->name }}
