@@ -32,4 +32,19 @@
             <i class="fas fa-trash"></i> Удалить
         </button>
     </div>
+
+    <div class="col-auto">
+        <div class="form-check">
+            <input class="form-check-input js-local-office-phone-show_at_footer"
+                   type="checkbox"
+                   value="1"
+                   id="flexCheckDefaultEmail{{ $phone }}"
+                   name="{{ $name . '[show_at_footer]' }}"
+                    {{ empty($phone->show_at_footer) ?: 'checked' }}
+            >
+            <label class="form-check-label" for="flexCheckDefaultEmail{{ $phone }}">
+                Показать в футере
+            </label>
+        </div>
+    </div>
 </div>

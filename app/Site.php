@@ -34,7 +34,8 @@ class Site extends Model
 
     public function localOffices()
     {
-        return $this->hasMany(LocalOffice::class, 'site_id', 'id');
+        return $this->hasMany(LocalOffice::class, 'site_id', 'id')
+            ->orderBy('sort');
     }
 
     public function newsArticles()

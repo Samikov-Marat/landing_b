@@ -14,7 +14,7 @@
 
 @can('admin.local_offices.add')
     @push('buttons2')
-        <a href="{!! route('admin.local_offices.add', ['site_id' => $site->id]) !!}" class="btn btn-primary"><i
+        <a href="{!! route('admin.local_offices.create', ['site' => $site->id]) !!}" class="btn btn-primary"><i
                 class="fas fa-plus"></i> Создать</a>
     @endpush
 @endcan
@@ -98,7 +98,7 @@
                         <a href="{!! route('admin.local_office_photos.index', ['local_office_id'=>$localOffice->id]) !!}">Фотографии</a>
                     </td>
                     <td class="text-center">
-                        <form method="post" action="{!! route('admin.local_offices.move') !!}">
+                        <form method="post" action="{!! route('admin.local_offices.move', ['site' => $site, 'localOffice' => $localOffice]) !!}">
                             @csrf
                             <input type="hidden" name="id" value="{{ $localOffice->id }}">
 
@@ -118,10 +118,10 @@
                         </form>
                     </td>
                     <td class="text-nowrap">
-                        <a href="{!! route('admin.local_offices.edit', ['id' => $localOffice->id]) !!}"
+                        <a href="{!! route('admin.local_offices.edit', ['site' => $site->id, 'localOffice' => $localOffice]) !!}"
                            class="btn btn-primary btn-sm"><i class="fas fa-edit"></i> Редактировать</a>
                         <button type="button" data-text="Удалить {{ $localOffice->code }} сайта {{ $site->domain }}?"
-                                data-action="{!! route('admin.local_offices.delete') !!}" data-id="{{ $localOffice->id }}"
+                                data-action="{!! route('admin.local_offices.delete', ['site' => $site, 'localOffice' => $localOffice]) !!}" data-id="{{ $localOffice->id }}"
                                 class="btn btn-danger btn-sm js-delete-confirm"><i class="fas fa-trash"></i> Удалить
                         </button>
                     </td>
