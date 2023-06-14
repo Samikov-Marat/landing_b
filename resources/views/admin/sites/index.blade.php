@@ -97,6 +97,11 @@
                         Карта
                     </th>
                 @endcan
+                @can('admin.site.currency.index')
+                    <th>
+                        Валюта
+                    </th>
+                @endcan
                 @canany(['admin.sites.edit', 'admin.sites.delete'])
                     <th>
 
@@ -201,6 +206,17 @@
                         <td>
                             <a href="{!! route('admin.map.show', ['site' => $site->id]) !!}">
                                 Карта
+                            </a>
+                        </td>
+                    @endcan
+                    @can('admin.site.currency.index')
+                        <td>
+                            <a href="{!! route('admin.site.currency.index', ['site' => $site->id]) !!}">
+                                @if(!empty($site->currency->name))
+                                    {{ $site->currency->symbol }} / {{ $site->currency->name }}
+                                @else
+                                    Установить
+                                @endif
                             </a>
                         </td>
                     @endcan
