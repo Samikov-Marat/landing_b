@@ -23,8 +23,8 @@
     <form action="{!! route('request.send') !!}" method="post" class="js-calculator-form"
           data-calculate-url="{!! route('request.calculate') !!}"
           data-language="{{ $dictionary['calculator_language'] }}"
-          data-currency-code="{{ $dictionary['calculator_currency_code'] }}"
-          data-currency-name="{{ $dictionary['calculator_currency_name'] }}"
+          data-currency-code="{{ $currency->code ?? null }}"
+          data-currency-name="{{ $currency->symbol ?? null }}"
           data-show-tariffs-event="{{ $showTariffGtm }}"
           data-show-period="{{ $showPeriod }}">
         {!! csrf_field() !!}
