@@ -25,4 +25,13 @@ class Country extends Model
     public function countryTexts(): HasMany {
         return $this->hasMany(CountryText::class);
     }
+
+    public function scopeGetBaseSelect($query) {
+        return $query->select([
+            'id',
+            'jira_code',
+            'can_send',
+            'can_receive'
+        ]);
+    }
 }

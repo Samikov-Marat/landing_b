@@ -14,7 +14,7 @@ class CountryController extends Controller
 {
     public function index(): View
     {
-        $countries = Country::all();
+        $countries = Country::getBaseSelect()->get();
         return view('admin.countries.index')
             ->with('countries', $countries);
     }

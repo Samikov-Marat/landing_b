@@ -9,15 +9,9 @@ use Illuminate\Database\Eloquent\Builder;
 
 class CountryRepository
 {
-    private function getCountries(): Builder
-    {
-        return Country::query()
-            ->select(['id', 'jira_code']);
-    }
-
     public function getStartCountries(Language $language): Collection
     {
-        return $this->getCountries()
+        return $this->getCountriesQuery()
             ->where('can_send', true)
             ->get()
             ->load([
@@ -29,7 +23,7 @@ class CountryRepository
 
     public function getFinishCounties(Language $language): Collection
     {
-        return $this->getCountries()
+        return $this->getCountriesQuery()
             ->where('can_receive', true)
             ->get()
             ->load([
@@ -37,5 +31,11 @@ class CountryRepository
                     $query->where('language_id', $language->id);
                 },
             ]);
+    }
+
+    private function getCountriesQuery(): Builder
+    {
+        return Country::query()
+            ->select(['id', 'jira_code']);
     }
 }
