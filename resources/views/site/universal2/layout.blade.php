@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html @if($language->rtl) dir="rtl" @endif>
 
-@if(array_key_exists('html_lang_tag', $dictionary) && $dictionary['html_lang_tag'])
-    <html lang="{{ $dictionary['html_lang_tag'] }}">
+@if(array_key_exists('lang', $headTags))
+    {!! $headTags['lang'] !!}
 @endif
 
 <head>
@@ -41,13 +41,14 @@
     @endif
     <link rel="stylesheet" href="{{ mix('universal2/custom.css') }}">
 
-    @if(array_key_exists('html_lang_tag', $dictionary) && $dictionary['html_lang_tag'] && array_key_exists('canonical', $headTagsParams))
-        @include('site.universal2.head_tags.canonical', [
-            'languageUri' => $headTagsParams['canonical']['languageUri'],
-            'params' => $headTagsParams['canonical']['params'],
-            'languages' => $site->languages,
-            'currentLanguage' => $language
-            ])
+    @if(array_key_exists('canonical', $headTags))
+        {!! $headTags['canonical'] !!}
+    @endif
+
+    @if(array_key_exists('alternate', $headTags))
+        @foreach($headTags['alternate'] as $alternateTag)
+            {!! $alternateTag !!}
+        @endforeach
     @endif
 </head>
 <body class="site-theme">

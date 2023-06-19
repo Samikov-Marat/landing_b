@@ -13,6 +13,7 @@ use App\Classes\Site\AllowCookie;
 use App\Classes\Site\CountryRepository;
 use App\Classes\Site\CustomRouting;
 use App\Classes\Site\FranchiseeContainer;
+use App\Classes\Site\HeadTags\HeadTagsBuilder;
 use App\Classes\Site\RequestCleaner;
 use App\Classes\Site\Subdomain;
 use App\Classes\Site\SupportContainer;
@@ -66,7 +67,7 @@ class PageController extends Controller
     }
 
     public function showPage(
-        HeadTags $headTags,
+        HeadTagsBuilder $headTagsBuilder,
         Request $request,
         $languageUrl,
         $pageUrl = '/',
@@ -134,7 +135,7 @@ class PageController extends Controller
 
         $siteRepository->loadTariffs($language);
 
-        $headTagsParams = $headTags->headParamsBuilder($fragments, $language);
+        $headTags = $headTagsBuilder->getTags($site, $page, $language);
         $currency = $site->currency;
 
         return view($templateBuilder->getName())
@@ -153,7 +154,7 @@ class PageController extends Controller
             ->with('showFastAnswer', FastAnswer::setShowFastAnswer($request, $pageUrl))
             ->with('allowCookies', AllowCookie::getInstance($request)->isAllow())
             ->with('hasLocalStylesheet', LocalStylesheet::hasLocalStylesheet($site, $languageShortname))
-            ->with('headTagsParams', $headTagsParams)
+            ->with('headTags', $headTags)
             ->with('currency', $currency);
     }
 }
