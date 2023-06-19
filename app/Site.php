@@ -17,6 +17,11 @@ class Site extends Model
         return $this->belongsToMany(Page::class, SitePage::class);
     }
 
+    public function getSpecificPage(string $pageName): Page
+    {
+        return $this->pages()->where('url', $pageName)->first();
+    }
+
     public function tariffs()
     {
         return $this->belongsToMany(Tariff::class, SiteTariff::class);
@@ -29,7 +34,8 @@ class Site extends Model
 
     public function localOffices()
     {
-        return $this->hasMany(LocalOffice::class, 'site_id', 'id');
+        return $this->hasMany(LocalOffice::class, 'site_id', 'id')
+            ->orderBy('sort');
     }
 
     public function newsArticles()
@@ -71,4 +77,8 @@ class Site extends Model
         return $this->belongsToMany(Language::class, DefaultLanguage::class);
     }
 
+    public function currency()
+    {
+        return $this->hasOne(Currency::class, 'code', 'currency_code');
+    }
 }

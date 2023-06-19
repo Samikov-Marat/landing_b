@@ -13,6 +13,7 @@ $(function () {
 
         $item.find('.js-local-office-phone-text').prop('name', nameStart + '[phone_text]');
         $item.find('.js-local-office-phone-value').prop('name', nameStart + '[phone_value]');
+        $item.find('.js-local-office-phone-show_at_footer').prop('name', nameStart + '[show_at_footer]');
 
         $('.js-local-office-phone-block').append($item);
         return false;
@@ -28,6 +29,7 @@ $(function () {
         let nameStart = $(this).data('name') + '[' + generateId() + ']';
 
         $item.find('.js-local-office-email-text').prop('name', nameStart + '[email]');
+        $item.find('.js-local-office-email-show_at_footer').prop('name', nameStart + '[show_at_footer]');
 
 
         $('.js-local-office-email-block').append($item);

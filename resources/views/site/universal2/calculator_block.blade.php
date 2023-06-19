@@ -23,8 +23,8 @@
     <form action="{!! route('request.send') !!}" method="post" class="js-calculator-form"
           data-calculate-url="{!! route('request.calculate') !!}"
           data-language="{{ $dictionary['calculator_language'] }}"
-          data-currency-code="{{ $dictionary['calculator_currency_code'] }}"
-          data-currency-name="{{ $dictionary['calculator_currency_name'] }}"
+          data-currency-code="{{ $currency->code ?? null }}"
+          data-currency-name="{{ $currency->symbol ?? null }}"
           data-show-tariffs-event="{{ $showTariffGtm }}"
           data-show-period="{{ $showPeriod }}">
         {!! csrf_field() !!}
@@ -32,6 +32,24 @@
             <div class="calculator__content calculator__content_step1">
                 <h2 class="typo-h2 calculator__title">@d('calculator_header')</h2>
                 <div class="form calculator_form">
+                    @if(!empty($dictionary['calculator_sender_type']))
+                        <div class="form__row">
+                            <div class="form-order-customer-header">@d('feedback_form_field_customer_type')</div>
+                            <div class="form-field">
+                                <div class="form-field form-order-customer-type-wrapper">
+                                    <div class="choice-widget">
+                                        <input type="radio" name="customer_type" value="UR" id="id_feedback_legal_entity" class="form-field__input"><label for="id_feedback_legal_entity">@d('feedback_form_field_customer_type_legal_entity')</label>
+                                    </div>
+                                </div>
+                                <div class="form-order-customer-type-wrapper">
+                                    <div class="choice-widget">
+                                        <input type="radio" name="customer_type" value="FIZ" id="id_feedback_private_individual" class="form-field__input"><label for="id_feedback_private_individual">@d('feedback_form_field_customer_type_private_individual')</label>
+                                    </div>
+                                </div>
+                                <div class="form-field__error-message">@d('feedback_form_customer_type_required')</div>
+                            </div>
+                        </div>
+                    @endif
                     <div class="form__row">
                         <div class="form-field form-field_has_icon form-field_icon_from">
                             <input type="hidden" name="from_id" value="" class="js-calculator-from-id">
@@ -80,10 +98,12 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="form-field">
                         <input type="button" value="{{ $dictionary['calculator_calculate'] }}"
                                class="primary-button primary-button_wide primary-button_submit js-calculator-step1-button"/>
                     </div>
+
                 </div>
                 <div class="calculator__description">
                     @d('calculator_description')
@@ -181,7 +201,7 @@
 
                             <div class="form-order-customer-type-wrapper">
                                 <div class="choice-widget">
-                                    <input type="radio" required name="customer_type" value="legal_entity"
+                                    <input type="radio" name="customer_type" value="legal_entity"
                                            id="id_calculator_legal_entity" class="js-form-order-customer-type"><label
                                         for="id_calculator_legal_entity">@d('calculator_form_field_customer_type_legal_entity')</label>
                                 </div>

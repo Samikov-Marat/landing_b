@@ -29,13 +29,13 @@ class LocalOfficeRepository
         try {
             return $this->localOffice->localOfficeTexts()
                 ->select([
-                             'id',
-                             'local_office_id',
-                             'language_id',
-                             'name',
-                             'address',
-                             'path',
-                         ])
+                    'id',
+                    'local_office_id',
+                    'language_id',
+                    'name',
+                    'address',
+                    'path',
+                ])
                 ->where('language_id', $language_id)
                 ->firstOrFail();
         } catch (ModelNotFoundException $e) {

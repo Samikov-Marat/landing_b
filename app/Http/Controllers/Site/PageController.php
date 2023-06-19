@@ -6,6 +6,7 @@ use App\Classes\DictionaryBuilder;
 use App\Classes\Domain;
 use App\Classes\FastAnswer;
 use App\Classes\FragmentRepository;
+use App\Classes\HeadTags;
 use App\Classes\LanguageDetector;
 use App\Classes\LocalStylesheet;
 use App\Classes\Site\AllowCookie;
@@ -68,6 +69,7 @@ class PageController extends Controller
 
     public function showPage(
         CountryRepository $countryRepository,
+        HeadTags $headTags,
         Request $request,
         $languageUrl,
         $pageUrl = '/',
@@ -107,9 +109,8 @@ class PageController extends Controller
         $fragments = $siteRepository->getLayoutFragments();
         $fragments->push($page);
         $fragmentRepository = new FragmentRepository($fragments);
-        $dictionaryBuilder = new DictionaryBuilder($subdomain->hasSubdomain());
-        $dictionary = $dictionaryBuilder->get($fragmentRepository->forSubdomain($subdomain)
-            ->getWithTexts($language));
+        $dictionaryBuilder = new DictionaryBuilder(false);
+        $dictionary = $dictionaryBuilder->get($fragmentRepository->forSubdomain($subdomain)->getWithTexts($language));
         $siteRepository->loadLocalOffices($language, $subdomain);
         $siteRepository->loadNewsArticles($language);
         $siteRepository->loadOurWorkers($language);
@@ -136,6 +137,9 @@ class PageController extends Controller
 
         $siteRepository->loadTariffs($language);
 
+        $headTagsParams = $headTags->headParamsBuilder($fragments, $language);
+        $currency = $site->currency;
+
         return view($templateBuilder->getName())
             ->with('site', $siteRepository->getSite())
             ->with('subdomain', $subdomain)
@@ -151,6 +155,9 @@ class PageController extends Controller
             ->with('countriesTo', $countriesTo)
             ->with('showFastAnswer', FastAnswer::setShowFastAnswer($request, $pageUrl))
             ->with('allowCookies', AllowCookie::getInstance($request)->isAllow())
+            ->with('hasLocalStylesheet', LocalStylesheet::hasLocalStylesheet($site, $languageShortname))
+            ->with('headTagsParams', $headTagsParams)
+            ->with('currency', $currency);
             ->with('hasLocalStylesheet',
                 LocalStylesheet::hasLocalStylesheet($site, $languageShortname));
     }

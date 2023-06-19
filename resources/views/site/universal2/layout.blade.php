@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html @if($language->rtl) dir="rtl" @endif>
+
+@if(array_key_exists('html_lang_tag', $dictionary) && $dictionary['html_lang_tag'])
+    <html lang="{{ $dictionary['html_lang_tag'] }}">
+@endif
+
 <head>
     <meta charset="UTF-8">
     <title>@yield('seo_title', 'CDEK')</title>
     <meta name="description" content="@yield('seo_description', 'CDEK express delivery company')">
-
+    <meta name="yandex-verification" content="900be28146e13ba1" />
     <script>
         dataLayer = [];
     </script>
@@ -35,6 +40,15 @@
         <link rel="stylesheet" href="/request/images/{{ $language->uri }}.css">
     @endif
     <link rel="stylesheet" href="{{ mix('universal2/custom.css') }}">
+
+    @if(array_key_exists('html_lang_tag', $dictionary) && $dictionary['html_lang_tag'] && array_key_exists('canonical', $headTagsParams))
+        @include('site.universal2.head_tags.canonical', [
+            'languageUri' => $headTagsParams['canonical']['languageUri'],
+            'params' => $headTagsParams['canonical']['params'],
+            'languages' => $site->languages,
+            'currentLanguage' => $language
+            ])
+    @endif
 </head>
 <body class="site-theme">
 @if($allowCookies)
@@ -268,6 +282,9 @@
                         <a class="footer__email footer-email" href="mailto:{{ $dictionary['footer_email'] }}">@d('footer_email')</a>
                     @endif
 
+                    @if($site->localOffices->count() > 1)
+                        @include('site.universal2.layout.contacts_footer_component')
+                    @endif
                 </div>
             </div>
         </div>
@@ -288,5 +305,6 @@
 @include('site.universal2.tawk_block')
 @include('site.universal2.allow_cookies')
 @include('site.universal2.tiktok')
+@include('site.universal2.amo_button')
 </body>
 </html>
