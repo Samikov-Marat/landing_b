@@ -3,42 +3,39 @@
 namespace App\Classes\Site;
 
 use App\Country;
-use App\CountryText;
+use App\Language;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Builder;
 
 class CountryRepository
 {
-
-    private $query;
-
-    public static function getInstance($language): self
+    public function getStartCountries(Language $language): Collection
     {
-        return new static($language);
+        return $this->getCountriesQuery()
+            ->where('can_send', true)
+            ->get()
+            ->load([
+                'countryTexts' => function ($query) use ($language) {
+                    $query->where('language_id', $language->id);
+                },
+            ]);
     }
 
-    public function __construct($language)
+    public function getFinishCounties(Language $language): Collection
     {
-        $countryTable = Country::getTableStatically();
-        $countryTextTable = CountryText::getTableStatically();
-        // TODO: переписать запрос на обычный join после добавления всех переводов
-        $this->query = Country::query()->select(['t_country.jira_code as jira_code', 't_text.value as value'])
-            ->from($countryTable, 't_country')
-            ->leftJoin($countryTextTable . ' as t_text', function ($join) use ($language) {
-                $join->on('t_country.id', 't_text.country_id')
-                    ->where('t_text.language_id', $language->id);
-            })
-            ->orderBy('value')
-            ->orderBy('jira_code');
+        return $this->getCountriesQuery()
+            ->where('can_receive', true)
+            ->get()
+            ->load([
+                'countryTexts' => function ($query) use ($language) {
+                    $query->where('language_id', $language->id);
+                },
+            ]);
     }
 
-    public function getStartCountries()
+    private function getCountriesQuery(): Builder
     {
-        return $this->query->where('t_country.can_send', true)
-            ->get();
-    }
-
-    public function getFinishCounties()
-    {
-        return $this->query->where('t_country.can_receive', true)
-            ->get();
+        return Country::query()
+            ->select(['id', 'jira_code']);
     }
 }

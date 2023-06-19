@@ -1,6 +1,7 @@
 <div class="modal js-delete-confirm-modal" tabindex="-1">
     <div class="modal-dialog">
         <form method="post" class="modal-content js-delete-confirm-form">
+            @method('post')
             @csrf
             <input type="hidden" class="js-delete-confirm-id" name="id">
             <div class="modal-header">
