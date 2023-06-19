@@ -280,7 +280,7 @@ $(function () {
     const specialTariff = (optionOrList) => {
         const uuid = $(optionOrList).data('uuid');
 
-        if ('80a60f0c-ce5d-41a9-91ac-8dd30bb32c6e' === uuid) {
+        if ('a84743b3-1b51-4b52-8922-ba31980b800e' === uuid) {
             const query_params = $.param({
                 from: calculator.getCityCodeFrom(),
                 to: calculator.getCityCodeTo(),

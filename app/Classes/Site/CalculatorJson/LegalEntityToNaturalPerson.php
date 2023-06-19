@@ -13,7 +13,7 @@ class LegalEntityToNaturalPerson implements JsonGeneratorRequestToApi
         return json_encode([
                                'sender' => [
                                    'cityId' => $request->sender_city_uuid,
-                                   'contragentType' => $request->customer_type ?: 'FIZ',
+                                   'contragentType' => $request->customer_type ?: 'UR',
                                ],
                                'receiver' => [
                                    'cityId' => $request->receiver_city_uuid,
