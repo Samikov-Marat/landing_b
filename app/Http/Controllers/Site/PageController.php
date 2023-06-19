@@ -157,7 +157,7 @@ class PageController extends Controller
             ->with('allowCookies', AllowCookie::getInstance($request)->isAllow())
             ->with('hasLocalStylesheet', LocalStylesheet::hasLocalStylesheet($site, $languageShortname))
             ->with('headTagsParams', $headTagsParams)
-            ->with('currency', $currency);
+            ->with('currency', $currency)
             ->with('hasLocalStylesheet',
                 LocalStylesheet::hasLocalStylesheet($site, $languageShortname));
     }
