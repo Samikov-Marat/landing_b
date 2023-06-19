@@ -149,6 +149,8 @@
                 </div>
 
                 <div class="calculator__tariff-list"></div>
+                <input type="button" value="{{ $dictionary['calculator_choose_tariff_button'] ?? 'Choose a tariff' }}"
+                       class="primary-button primary-button_wide primary-button_submit js-calculator-step2-button"/>
             </div>
             <div class="calculator__content calculator__content_step3" style="display: none;">
                 <div class="calculator__step-container">

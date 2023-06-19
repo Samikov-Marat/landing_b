@@ -221,6 +221,7 @@ $(function () {
                 $tariffDiv.find('.calculator__tariff-item-input').attr('id', tariff.tariffEc4Id).prop('id', tariff.tariffEc4Id);
                 $tariffDiv.find('.calculator__tariff-item-input').val(tariff.tariffEc4Id + ' (' + tariff.nameLocalized + ') ' + tariff.priceString + calculator.getUsedCurrencyName());
                 $tariffDiv.find('.calculator__tariff-item-input').data('price', tariff.priceString);
+                $tariffDiv.find('.calculator__tariff-item-input').data('uuid', tariff.tariffUuid);
 
                 $tariffDiv.find('.calculator__tariff-item-label').html(tariff.nameLocalized).attr('for', tariff.tariffEc4Id).prop('for', tariff.tariffEc4Id);
 
@@ -276,13 +277,31 @@ $(function () {
         calculator.setStep(3);
     }
 
-    $('.calculator__content_step2').on('change', '.calculator__tariff-item-input', function () {
-        SelectTariff(true, this);
-        return false;
-    });
+    const specialTariff = (optionOrList) => {
+        const uuid = $(optionOrList).data('uuid');
 
-    $('.calculator__content_step2').on('click', '.calculator__tariff-item-input:checked', function () {
-        SelectTariff(true, this);
+        if ('80a60f0c-ce5d-41a9-91ac-8dd30bb32c6e' === uuid) {
+            const query_params = $.param({
+                from: calculator.getCityCodeFrom(),
+                to: calculator.getCityCodeTo(),
+                weight: calculator.getMass(),
+                length: calculator.getLength(),
+                width: calculator.getWidth(),
+                height: calculator.getHeight()
+            });
+
+            window.location.href = `/order?${query_params}`;
+        }
+    }
+
+
+    $('.calculator__content_step2').on('click', '.js-calculator-step2-button', function () {
+        const selectedTariff = $('.calculator__tariff-item-input:checked');
+        if (!selectedTariff.val()) {
+            return;
+        }
+        specialTariff(selectedTariff)
+        SelectTariff(true, selectedTariff);
     });
 
 
