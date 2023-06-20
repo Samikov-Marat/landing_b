@@ -276,7 +276,11 @@ class RequestController extends Controller
             'POST', config('calculator.city_url'),
             [
                 'headers' => ['Content-Type', 'application/json', 'X-User-Lang' => $request->input('lang')],
-                'json' => ['limit' => 5, 'query' => $request->input('query')],
+                'json' => [
+                    'limit' => 5,
+                    'query' => $request->input('query'),
+                    'offset' => 0, 'defaultLang' => 'eng'
+                ],
             ]
         );
         return $response->getBody();
