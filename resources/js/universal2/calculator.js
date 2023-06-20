@@ -291,7 +291,9 @@ $(function () {
             });
 
             window.location.href = `/order?${query_params}`;
+            return true;
         }
+        return false;
     }
 
 
@@ -300,7 +302,9 @@ $(function () {
         if (!selectedTariff.val()) {
             return;
         }
-        specialTariff(selectedTariff)
+        if(specialTariff(selectedTariff)) {
+            return;
+        }
         SelectTariff(true, selectedTariff);
     });
 
