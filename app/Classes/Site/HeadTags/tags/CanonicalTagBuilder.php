@@ -33,12 +33,12 @@ class CanonicalTagBuilder implements TagBuilder
         ])->join(' ');
     }
 
-    private function createRel()
+    private function createRel(): string
     {
         return 'canonical';
     }
 
-    private function createHref(string $languageUri)
+    private function createHref(string $languageUri): string
     {
         return route('site.show_page', ['languageUrl' => $languageUri, 'pageUrl' => '/']);
     }

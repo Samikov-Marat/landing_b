@@ -28,18 +28,18 @@ class AlternateTagBuilder implements TagBuilder
         ])->join(' ');
     }
 
-    private function createRel()
+    private function createRel(): string
     {
         return "alternate";
     }
 
-    private function createHref(Language $language, Page $page)
+    private function createHref(Language $language, Page $page): string
     {
         return route('site.show_page',
             ['languageUrl' => \Str::lower($language->shortname), 'pageUrl' => $page->url]);
     }
 
-    private function createHreflang(Language $language, Language $currentLanguage)
+    private function createHreflang(Language $language, Language $currentLanguage): string
     {
         return $language->id === $currentLanguage->id ? 'x-default' : $language->shortname;
     }
