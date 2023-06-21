@@ -18,7 +18,7 @@ class LangTagBuilder implements TagBuilder
         ];
     }
 
-    private function createTag(Language $language)
+    private function createTag(Language $language): string
     {
         return collect([
             "html",

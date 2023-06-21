@@ -18,7 +18,7 @@ class AlternateTagBuilder implements TagBuilder
         })->toArray();
     }
 
-    private function createTag(Language $language, Language $currentLanguage, Page $page)
+    private function createTag(Language $language, Language $currentLanguage, Page $page): string
     {
         return collect([
             "link",

@@ -11,19 +11,20 @@ class CanonicalTagBuilder implements TagBuilder
 {
     public const TAG_NAME = 'canonical';
     private const AVAILABLE_DOMAINS_WITH_LANG = [
-        'cdek-de.com' => 'de'
+        'cdek-de.com' => 'de',
     ];
+
     public function create(Site $site, Page $page, Language $language): array
     {
         if (array_key_exists($site->domain, self::AVAILABLE_DOMAINS_WITH_LANG)) {
             return [
-                "<{$this->createTag(self::AVAILABLE_DOMAINS_WITH_LANG[$site->domain])}>"
+                "<{$this->createTag(self::AVAILABLE_DOMAINS_WITH_LANG[$site->domain])}>",
             ];
         }
         return [];
     }
 
-    private function createTag(string $languageUri)
+    private function createTag(string $languageUri): string
     {
         return collect([
             "link",
