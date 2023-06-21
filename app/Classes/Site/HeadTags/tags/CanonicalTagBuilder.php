@@ -9,10 +9,36 @@ use App\Site;
 
 class CanonicalTagBuilder implements TagBuilder
 {
-    public function create(Site $site, Page $page, Language $language, $languageUri = ''): string
+    public const TAG_NAME = 'canonical';
+    private const AVAILABLE_DOMAINS_WITH_LANG = [
+        'cdek-de.com' => 'de'
+    ];
+    public function create(Site $site, Page $page, Language $language): array
     {
-        $linkRel = 'canonical';
-        $route = route('site.show_page', ['languageUrl' => $languageUri, 'pageUrl' => '/']);
-        return "<link rel={$linkRel} href={$route}>";
+        if (array_key_exists($site->domain, self::AVAILABLE_DOMAINS_WITH_LANG)) {
+            return [
+                "<{$this->createTag(self::AVAILABLE_DOMAINS_WITH_LANG[$site->domain])}>"
+            ];
+        }
+        return [];
+    }
+
+    private function createTag(string $languageUri)
+    {
+        return collect([
+            "link",
+            "rel={$this->createRel()}",
+            "href={$this->createHref($languageUri)}",
+        ])->join(' ');
+    }
+
+    private function createRel()
+    {
+        return 'canonical';
+    }
+
+    private function createHref(string $languageUri)
+    {
+        return route('site.show_page', ['languageUrl' => $languageUri, 'pageUrl' => '/']);
     }
 }

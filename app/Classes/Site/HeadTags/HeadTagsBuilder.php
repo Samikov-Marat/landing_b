@@ -11,30 +11,28 @@ use App\Site;
 
 class HeadTagsBuilder
 {
-    private $canonical;
-    private $lang;
-    private $alternate;
+    private $tagsBuilders = [];
 
-    public function __construct (
+    public function __construct(
         CanonicalTagBuilder $canonical,
         LangTagBuilder $lang,
         AlternateTagBuilder $alternate
     ) {
-        $this->canonical = $canonical;
-        $this->lang = $lang;
-        $this->alternate = $alternate;
+        $this->tagsBuilders = [
+            $canonical,
+            $lang,
+            $alternate
+        ];
     }
 
-    public function getTags (Site $site, Page $page, Language $language): array {
+    public function getTags(Site $site, Page $page, Language $language): array
+    {
         $tags = [];
-        $tags['lang'] = $this->lang->create($site, $page, $language);
-
-        if ('cdek-de.com' === $site->domain) {
-            $tags['canonical'] = $this->canonical->create($site, $page, $language, 'de');
+        foreach ($this->tagsBuilders as $tagsBuilder) {
+            $tags[$tagsBuilder::TAG_NAME] = $tagsBuilder->create($site, $page, $language);
         }
-
-        $tags['alternate'] = $this->alternate->create($site, $page, $language);
 
         return $tags;
     }
+
 }

@@ -9,9 +9,21 @@ use App\Site;
 
 class LangTagBuilder implements TagBuilder
 {
-    public function create(Site $site, Page $page, Language $language): string
+    public const TAG_NAME = 'lang';
+
+    public function create(Site $site, Page $page, Language $language): array
     {
-        return "<html lang={$this->getTagLanguage($language)}>";
+        return [
+            "<{$this->createTag($language)}>",
+        ];
+    }
+
+    private function createTag(Language $language)
+    {
+        return collect([
+            "html",
+            "lang={$this->getTagLanguage($language)}",
+        ])->join(' ');
     }
 
     private function getTagLanguage(Language $language): string
