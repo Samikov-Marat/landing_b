@@ -9,7 +9,10 @@ use App\Site;
 
 class AlternateTagBuilder implements TagBuilder
 {
-    public const TAG_NAME = 'alternate';
+    public static function tagName(): string
+    {
+        return 'alternate';
+    }
 
     public function create(Site $site, Page $page, Language $language): array
     {

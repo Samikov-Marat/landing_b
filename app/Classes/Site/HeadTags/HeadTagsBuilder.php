@@ -29,7 +29,7 @@ class HeadTagsBuilder
     {
         $tags = [];
         foreach ($this->tagsBuilders as $tagsBuilder) {
-            $tags[$tagsBuilder::TAG_NAME] = $tagsBuilder->create($site, $page, $language);
+            $tags[$tagsBuilder::tagName()] = $tagsBuilder->create($site, $page, $language);
         }
 
         return $tags;

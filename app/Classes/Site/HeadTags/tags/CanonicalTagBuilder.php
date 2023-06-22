@@ -9,7 +9,11 @@ use App\Site;
 
 class CanonicalTagBuilder implements TagBuilder
 {
-    public const TAG_NAME = 'canonical';
+    public static function tagName(): string
+    {
+        return 'canonical';
+    }
+
     private const AVAILABLE_DOMAINS_WITH_LANG = [
         'cdek-de.com' => 'de',
     ];

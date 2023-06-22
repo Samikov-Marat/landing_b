@@ -9,5 +9,7 @@ use Illuminate\Support\Collection;
 
 interface TagBuilder
 {
-    public function create (Site $site, Page $page, Language $language): array;
+    public static function tagName(): string;
+
+    public function create(Site $site, Page $page, Language $language): array;
 }

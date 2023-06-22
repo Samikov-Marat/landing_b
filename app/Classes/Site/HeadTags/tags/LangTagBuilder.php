@@ -9,7 +9,10 @@ use App\Site;
 
 class LangTagBuilder implements TagBuilder
 {
-    public const TAG_NAME = 'lang';
+    public static function tagName(): string
+    {
+        return 'lang';
+    }
 
     public function create(Site $site, Page $page, Language $language): array
     {

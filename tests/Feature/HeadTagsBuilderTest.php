@@ -29,20 +29,20 @@ class HeadTagsBuilderTest extends TestCase
         $this->page = Mockery::mock(Page::class);
         $this->language = Mockery::mock(Language::class);
 
-        $this->canonicalTagBuilder = Mockery::mock(CanonicalTagBuilder::class);
+        $this->canonicalTagBuilder = Mockery::mock(CanonicalTagBuilder::class)->makePartial();
         $this->canonicalTagBuilder->shouldReceive('create')
             ->andReturn([
                 '<link rel="canonical" href="https://cdek-de.com/de">',
             ]);
 
-        $this->alternateTagBuilder = Mockery::mock(AlternateTagBuilder::class);
+        $this->alternateTagBuilder = Mockery::mock(AlternateTagBuilder::class)->makePartial();
         $this->alternateTagBuilder->shouldReceive('create')->once()->andReturn([
             '<link rel="alternate" hreflang="ru-RU" href="https://cdek-de.com/ru">',
             '<link rel="alternate" hreflang="de-DE" href="https://cdek-de.com/de">',
             '<link rel="alternate" hreflang="x-default" href="https://cdek-de.com/en">',
         ]);
 
-        $this->langTagBuilder = Mockery::mock(LangTagBuilder::class);
+        $this->langTagBuilder = Mockery::mock(LangTagBuilder::class)->makePartial();
         $this->langTagBuilder->shouldReceive('create')->once()->andReturn([
             '<html lang="EN_en">',
         ]);
