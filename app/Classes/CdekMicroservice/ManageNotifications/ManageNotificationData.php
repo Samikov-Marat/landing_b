@@ -36,6 +36,7 @@ class ManageNotificationData
     {
         return [
             'recipients' => $this->recipients,
+            'sender' => "noreplay.landing@cdek.ru",
             'templateGroupId' => $this->template,
             'templateParams' => [
                 [
