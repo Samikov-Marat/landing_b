@@ -39,6 +39,8 @@ class MenuBuilder
             ['route' => 'admin.permissions.index', 'text' => 'Разрешения', 'icon' => 'fas fa-map-signs',],
             ['route' => 'admin.roles.index', 'text' => 'Роли', 'icon' => 'far fa-address-card',],
             ['route' => 'admin.users.index', 'text' => 'Пользователи', 'icon' => 'fas fa-user',],
+            ['route' => 'admin.countries.index', 'text' => 'Страны', 'icon' => 'far fa-folder',],
+            ['route' => 'admin.currency.index', 'text' => 'Валюты', 'icon' => 'fas fa-money-bill',],
         ];
 
         $this->menuFranchisee =[

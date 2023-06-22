@@ -92,6 +92,16 @@
                         Поддержка
                     </th>
                 @endcan
+                @can('admin.map.show')
+                    <th>
+                        Карта
+                    </th>
+                @endcan
+                @can('admin.site.currency.index')
+                    <th>
+                        Валюта
+                    </th>
+                @endcan
                 @canany(['admin.sites.edit', 'admin.sites.delete'])
                     <th>
 
@@ -158,7 +168,7 @@
 
                     @can('admin.local_offices.index')
                     <td>
-                        <a href="{!! route('admin.local_offices.index', ['site_id' => $site->id]) !!}">
+                        <a href="{!! route('admin.local_offices.index', ['site' => $site->id]) !!}">
                             {{ $site->localOffices->count() }} шт.
                         </a>
                     </td>
@@ -189,6 +199,24 @@
                         <td>
                             <a href="{!! route('admin.support_categories.index', ['site_id' => $site->id]) !!}">
                                 Поддержка
+                            </a>
+                        </td>
+                    @endcan
+                    @can('admin.map.show')
+                        <td>
+                            <a href="{!! route('admin.map.show', ['site' => $site->id]) !!}">
+                                Карта
+                            </a>
+                        </td>
+                    @endcan
+                    @can('admin.site.currency.index')
+                        <td>
+                            <a href="{!! route('admin.site.currency.index', ['site' => $site->id]) !!}">
+                                @if(!empty($site->currency->name))
+                                    {{ $site->currency->symbol }} / {{ $site->currency->name }}
+                                @else
+                                    Установить
+                                @endif
                             </a>
                         </td>
                     @endcan

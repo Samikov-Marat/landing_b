@@ -41,9 +41,10 @@
     @endif
     <link rel="stylesheet" href="{{ mix('universal2/custom.css') }}">
 
-    @if(array_key_exists('html_lang_tag', $dictionary) && $dictionary['html_lang_tag'] && array_key_exists('canonicals', $headTagsParams))
+    @if(array_key_exists('html_lang_tag', $dictionary) && $dictionary['html_lang_tag'] && array_key_exists('canonical', $headTagsParams))
         @include('site.universal2.head_tags.canonical', [
-            'params' => $headTagsParams['canonicals'],
+            'languageUri' => $headTagsParams['canonical']['languageUri'],
+            'params' => $headTagsParams['canonical']['params'],
             'languages' => $site->languages,
             'currentLanguage' => $language
             ])
@@ -281,6 +282,9 @@
                         <a class="footer__email footer-email" href="mailto:{{ $dictionary['footer_email'] }}">@d('footer_email')</a>
                     @endif
 
+                    @if($site->localOffices->count() > 1)
+                        @include('site.universal2.layout.contacts_footer_component')
+                    @endif
                 </div>
             </div>
         </div>

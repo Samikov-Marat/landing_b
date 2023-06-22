@@ -12,3 +12,15 @@ $(function () {
     });
 
 });
+
+$(function () {
+    $('body').on('click', '.js-delete-country', function () {
+        let $modal = $('.js-delete-confirm-modal');
+
+        $modal.find('.js-delete-confirm-form').prop('action', $(this).find('.btn').data('action'));
+        $modal.find("input[name='_method']").val('delete');
+
+        $modal.find('.js-delete-confirm-text').html($(this).data('text'));
+        $modal.modal('show');
+    });
+})

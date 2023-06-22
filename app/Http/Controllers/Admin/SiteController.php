@@ -14,9 +14,10 @@ class SiteController extends Controller
 {
     public function index()
     {
-        $sites = Site::select('id', 'name', 'domain')
+        $sites = Site::select('id', 'name', 'domain', 'currency_code')
             ->orderBy('name')
             ->orderBy('id')
+            ->with('currency')
             ->with('languages')
             ->with('pages')
             ->with('tariffs')

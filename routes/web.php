@@ -34,20 +34,31 @@ Route::prefix('admin')->middleware(
 
         Route::get('franchisee-admin/news-articles', 'FranchiseeAdmin\NewsArticleController@index')
             ->name('admin.franchisee_admin.news_articles.index');
-        Route::get('franchisee-admin/news-articles/add', 'FranchiseeAdmin\NewsArticleController@edit')
+        Route::get('franchisee-admin/news-articles/add',
+            'FranchiseeAdmin\NewsArticleController@edit')
             ->name('admin.franchisee_admin.news_articles.add');
-        Route::get('franchisee-admin/news-articles/edit/{id}', 'FranchiseeAdmin\NewsArticleController@edit')
+        Route::get('franchisee-admin/news-articles/edit/{id}',
+            'FranchiseeAdmin\NewsArticleController@edit')
             ->name('admin.franchisee_admin.news_articles.edit');
-        Route::post('franchisee-admin/news-articles/save', 'FranchiseeAdmin\NewsArticleController@save')
+        Route::post('franchisee-admin/news-articles/save',
+            'FranchiseeAdmin\NewsArticleController@save')
             ->name('admin.franchisee_admin.news_articles.save')
             ->withoutMiddleware(TrimStrings::class);
-        Route::post('franchisee-admin/news-articles/delete', 'FranchiseeAdmin\NewsArticleController@delete')
+        Route::post('franchisee-admin/news-articles/delete',
+            'FranchiseeAdmin\NewsArticleController@delete')
             ->name('admin.franchisee_admin.news_articles.delete');
     }
 );
 
 Route::prefix('admin')->middleware(
-    ['auth', 'user.route.access', 'http.secure', 'verify.csrf.token', 'start.session', 'share.errors.from.session']
+    [
+        'auth',
+        'user.route.access',
+        'http.secure',
+        'verify.csrf.token',
+        'start.session',
+        'share.errors.from.session',
+    ]
 )->group(
     function () {
         Route::get('/', 'Admin\IndexController@index')
@@ -120,18 +131,18 @@ Route::prefix('admin')->middleware(
             ->name('admin.local_office_photos.move');
 
 
-        Route::get('local-offices', 'Admin\LocalOfficeController@index')
+        Route::get('{site}/local-offices', 'Admin\LocalOfficeController@index')
             ->name('admin.local_offices.index');
-        Route::get('local-offices/add', 'Admin\LocalOfficeController@edit')
-            ->name('admin.local_offices.add');
-        Route::get('local-offices/edit/{id}', 'Admin\LocalOfficeController@edit')
+        Route::get('{site}/local-offices/create', 'Admin\LocalOfficeController@edit')
+            ->name('admin.local_offices.create');
+        Route::get('{site}/local-offices/{localOffice}/edit', 'Admin\LocalOfficeController@edit')
             ->name('admin.local_offices.edit');
-        Route::post('local-offices/save', 'Admin\LocalOfficeController@save')
-            ->name('admin.local_offices.save')
+        Route::put('{site}/local-offices/{localOffice?}', 'Admin\LocalOfficeController@update')
+            ->name('admin.local_offices.update')
             ->withoutMiddleware(TrimStrings::class);
-        Route::post('local-offices/delete', 'Admin\LocalOfficeController@delete')
+        Route::delete('{site}/local-offices/{localOffice}', 'Admin\LocalOfficeController@delete')
             ->name('admin.local_offices.delete');
-        Route::post('local-offices/move', 'Admin\LocalOfficeController@move')
+        Route::post('{site}/local-offices/{localOffice}/move', 'Admin\LocalOfficeController@move')
             ->name('admin.local_offices.move');
 
         Route::get('our-workers', 'Admin\OurWorkerController@index')
@@ -318,7 +329,8 @@ Route::prefix('admin')->middleware(
             ->name('admin.top_office_world_languages.index');
         Route::get('top-office-world-languages/edit', 'Admin\TopOfficeWorldLanguageController@edit')
             ->name('admin.top_office_world_languages.edit');
-        Route::post('top-office-world-languages/save', 'Admin\TopOfficeWorldLanguageController@save')
+        Route::post('top-office-world-languages/save',
+            'Admin\TopOfficeWorldLanguageController@save')
             ->name('admin.top_office_world_languages.save');
 
         Route::get('yandex-metrica-goals', 'Admin\YandexMetricaGoalController@index')
@@ -331,11 +343,14 @@ Route::prefix('admin')->middleware(
             ->name('admin.yandex_metrica_goals.save');
         Route::post('yandex-metrica-goals/delete', 'Admin\YandexMetricaGoalController@delete')
             ->name('admin.yandex_metrica_goals.delete');
-        Route::get('yandex-metrica-goals/yandex-auth', 'Admin\YandexMetricaGoalController@yandexAuth')
+        Route::get('yandex-metrica-goals/yandex-auth',
+            'Admin\YandexMetricaGoalController@yandexAuth')
             ->name('admin.yandex_metrica_goals.yandex_auth');
-        Route::get('yandex-metrica-goals/save-yandex-auth', 'Admin\YandexMetricaGoalController@saveYandexAuth')
+        Route::get('yandex-metrica-goals/save-yandex-auth',
+            'Admin\YandexMetricaGoalController@saveYandexAuth')
             ->name('admin.yandex_metrica_goals.save_yandex_auth');
-        Route::get('yandex-metrica-goals/yandex-form', 'Admin\YandexMetricaGoalController@yandexForm')
+        Route::get('yandex-metrica-goals/yandex-form',
+            'Admin\YandexMetricaGoalController@yandexForm')
             ->name('admin.yandex_metrica_goals.yandex_form');
         Route::post(
             'yandex-metrica-goals/clone-goals-to-yandex',
@@ -358,7 +373,8 @@ Route::prefix('admin')->middleware(
         //тарифы переводы
         Route::get('tariff-translation', 'Admin\TariffTranslationController@index')
             ->name('admin.tariff_translation.index');
-        Route::get('tariff-translation/{language}', 'Admin\TariffTranslationController@translationList')
+        Route::get('tariff-translation/{language}',
+            'Admin\TariffTranslationController@translationList')
             ->name('admin.tariff_translation.translation_list');
         Route::get('tariff-translation/{language}/edit', 'Admin\TariffTranslationController@edit')
             ->name('admin.tariff_translation.edit');
@@ -382,9 +398,11 @@ Route::prefix('admin')->middleware(
         //переводы типов тарифов
         Route::get('tariff-types-translation', 'Admin\TariffTypeTranslationController@index')
             ->name('admin.tariff_types_translation.index');
-        Route::get('tariff-types-translation/{language}', 'Admin\TariffTypeTranslationController@translationList')
+        Route::get('tariff-types-translation/{language}',
+            'Admin\TariffTypeTranslationController@translationList')
             ->name('admin.tariff_types.translation_list');
-        Route::get('tariff-types-translation/{language}/edit', 'Admin\TariffTypeTranslationController@edit')
+        Route::get('tariff-types-translation/{language}/edit',
+            'Admin\TariffTypeTranslationController@edit')
             ->name('admin.tariff_types_translation.edit');
         Route::post('tariff-types-translation/save', 'Admin\TariffTypeTranslationController@save')
             ->name('admin.tariff_types_translation.save');
@@ -446,6 +464,49 @@ Route::prefix('admin')->middleware(
             ->name('admin.amo.auth_form');
         Route::post('amo/auth-save', 'Admin\AmoController@authSave')
             ->name('admin.amo.auth_save');
+
+        Route::group([
+            'prefix' => '{site}/map',
+        ], function () {
+            Route::get('/', 'Admin\MapController@show')->name('admin.map.show');
+            Route::put('/', 'Admin\MapController@update')->name('admin.map.update');
+        });
+
+        Route::group([
+            'prefix' => 'currencies',
+        ], static function () {
+            Route::get('/', 'Admin\CurrencyController@index')->name('admin.currency.index');
+            Route::post('/', 'Admin\CurrencyController@store')->name('admin.currency.store');
+            Route::put('/{currency}', 'Admin\CurrencyController@update')
+                ->name('admin.currency.update');
+            Route::delete('/{currency}', 'Admin\CurrencyController@destroy')
+                ->name('admin.currency.destroy');
+        });
+
+        Route::group([
+            'prefix' => '{site}/currency',
+        ], static function () {
+            Route::get('/', 'Admin\SiteCurrencyController@index')
+                ->name('admin.site.currency.index');
+            Route::put('/', 'Admin\SiteCurrencyController@update')
+                ->name('admin.site.currency.update');
+        });
+
+        // Страны
+        Route::group([
+            'prefix' => 'countries'
+        ], static function () {
+            Route::get('/', 'Admin\CountryController@index')->name('admin.countries.index');
+            Route::get('create', 'Admin\CountryController@create')->name('admin.countries.create');
+            Route::put('{country}', 'Admin\CountryController@update')->name('admin.countries.update');
+            Route::delete('{country}', 'Admin\CountryController@destroy')->name('admin.countries.delete');
+        });
+        Route::group([
+            'prefix' => 'countries/{country}/texts'
+        ], static function () {
+            Route::get('/', 'Admin\CountryTextsController@index')->name('admin.countryTexts.index');
+            Route::put('{countryText}', 'Admin\CountryTextsController@update')->name('admin.countryTexts.update');
+        });
     }
 
 );
