@@ -14,15 +14,17 @@ class LangTagBuilderTest extends TestCase
 {
     public function testCreate()
     {
-        $site = \Mockery::mock(Site::class);
-        $page = \Mockery::mock(Page::class);
-        $language = factory(Language::class)->make();
+        $site = factory(Site::class)->make();
+        $page = factory(Page::class)->make();
+        $language = factory(Language::class)->make([
+            'language_code_iso' => 'en'
+        ]);
 
         $langTagBuilder = new LangTagBuilder();
         $result = $langTagBuilder->create($site, $page, $language);
 
         $expected = [
-            '<html lang=' . $language->language_code_iso . '-' . \Str::upper($language->language_code_iso) . '>',
+            '<html lang=en-EN>',
         ];
 
         $this->assertEquals($expected, $result);
