@@ -18,6 +18,7 @@ class CalculatorRequest extends FormRequest
             'idCurrency' => 'required|integer',
             'language' => 'required|string',
             'customer_type' => 'string',
+            'receiver_type' => 'string'
         ];
     }
 }

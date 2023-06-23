@@ -9,7 +9,6 @@ class LegalEntityToNaturalPerson implements JsonGeneratorRequestToApi
 {
     public function getJson(CalculatorRequest $request)
     {
-        \Log::info($request->sender_city_uuid);
         return json_encode([
                                'sender' => [
                                    'cityId' => $request->sender_city_uuid,
@@ -17,7 +16,7 @@ class LegalEntityToNaturalPerson implements JsonGeneratorRequestToApi
                                ],
                                'receiver' => [
                                    'cityId' => $request->receiver_city_uuid,
-                                   'contragentType' => 'FIZ',
+                                   'contragentType' => $request->receiver_type ?: 'FIZ',
                                ],
                                'payer' => [
                                    'contractId' => config('calculator.sender_contract_id'),

@@ -98,7 +98,7 @@
 
         @include('site.universal2.it_solutions_block')
 
-        @include('site.universal2.calculator_block')
+        @include('site.universal2.calculator_block', ['customer_type' => 'UR', 'receiver_type' => 'FIZ'])
 
         @include('site.universal2.how_it_works_block')
 

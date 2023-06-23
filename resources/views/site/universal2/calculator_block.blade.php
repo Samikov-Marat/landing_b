@@ -28,6 +28,14 @@
           data-show-tariffs-event="{{ $showTariffGtm }}"
           data-show-period="{{ $showPeriod }}">
         {!! csrf_field() !!}
+
+        @if(!empty($customer_type))
+            <input type="hidden" name="customer_type" class="form-field__input" value="{{ $customer_type }}">
+        @endif
+        @if(!empty($receiver_type))
+            <input type="hidden" name="receiver_type" class="form-field__input" value="{{ $receiver_type }}">
+        @endif
+
         <div class="screen-content">
             <div class="calculator__content calculator__content_step1">
                 <h2 class="typo-h2 calculator__title">@d('calculator_header')</h2>

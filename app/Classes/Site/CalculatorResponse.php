@@ -8,16 +8,10 @@ use Illuminate\Support\Collection;
 
 class CalculatorResponse
 {
-    public static function transformResponseBody($responseBody, $language): Collection
+    public function transformResponseBody($responseBody, $language, string $clientsType): Collection
     {
-        $tariffTypes = TariffType::select(['id', 'ek_id',])
-            ->with([
-                       'tariffTypeTexts' => function ($query) use ($language) {
-                           $query->where('language_code_iso', $language);
-                       }
-                   ])
-            ->get();
-
+        $availabilityTariffs = $this->getAvailableTariffsForPage($clientsType);
+        $tariffTypes = $this->getTariffTypes($language);
 
         $tariffTypesIndexed = $tariffTypes->pluck('tariffTypeTexts', 'id');
 
@@ -25,24 +19,17 @@ class CalculatorResponse
         $services = $decoded->serviceList;
 
         $foundTariffs = collect();
+
         foreach ($services as $service) {
             foreach ($service->modeDetails as $modeDetail) {
-                $foundTariffs->push([
-                                        'name' => $service->serviceName ?? '',
-                                        'description' => $service->serviceDescription ?? '',
-                                        'tariffEc4Id' => $modeDetail->tariffEc4Id ?? '0',
-                                        'durationMin' => $modeDetail->durationMin ?? '',
-                                        'durationMax' => $modeDetail->durationMax ?? '',
-                                        'calendarPeriodMin' => $modeDetail->calendarPeriodMin ?? '',
-                                        'calendarPeriodMax' => $modeDetail->calendarPeriodMax ?? '',
-                                        'price' => $modeDetail->price ?? '0',
-                                        'tariffTypeId' => $modeDetail->modeCode,
-                                        'tariffTypeName' => $modeDetail->modeName,
-                                    ]);
+                if (in_array($service->serviceName ?? '', $availabilityTariffs)) {
+                    $foundTariffs->push($this->getTariffFromService($service, $modeDetail));
+                }
             }
         }
 
-        $tariffTranslator = new TariffTranslator($foundTariffs->pluck('tariffEc4Id', 'tariffEc4Id'), $language);
+        $tariffTranslator = new TariffTranslator($foundTariffs->pluck('tariffEc4Id', 'tariffEc4Id'),
+            $language);
 
 
         $foundTariffs = $foundTariffs->sort(function ($tariff, $tariffNext) {
@@ -69,6 +56,58 @@ class CalculatorResponse
         });
 
         return $foundTariffs;
+    }
+
+    private function getTariffTypes(string $language): Collection
+    {
+        return TariffType::select(['id', 'ek_id',])
+            ->with([
+                'tariffTypeTexts' => function ($query) use ($language) {
+                    $query->where('language_code_iso', $language);
+                },
+            ])
+            ->get();
+    }
+
+    private function getAvailableTariffsForPage (string $clientsType): array {
+        $availabilityTariffs = [
+            'B2B' => [
+                'Business Express',
+                'Business Cargo Express',
+                'Documents Express'
+            ],
+            'B2C' => [
+                'E-com Express',
+                'Documents Express'
+            ],
+            'C2C' => []
+        ];
+
+        if (array_key_exists($clientsType, $availabilityTariffs)) {
+            return $availabilityTariffs[$clientsType];
+        }
+        return [
+            'E-com Express',
+            'Parcel Express',
+            'Business Express',
+            'Business Cargo Express',
+            'Documents Express'
+        ];
+    }
+
+    private function getTariffFromService ($service, $modeDetail) {
+        return [
+            'name' => $service->serviceName ?? '',
+            'description' => $service->serviceDescription ?? '',
+            'tariffEc4Id' => $modeDetail->tariffEc4Id ?? '0',
+            'durationMin' => $modeDetail->durationMin ?? '',
+            'durationMax' => $modeDetail->durationMax ?? '',
+            'calendarPeriodMin' => $modeDetail->calendarPeriodMin ?? '',
+            'calendarPeriodMax' => $modeDetail->calendarPeriodMax ?? '',
+            'price' => $modeDetail->price ?? '0',
+            'tariffTypeId' => $modeDetail->modeCode,
+            'tariffTypeName' => $modeDetail->modeName,
+        ];
     }
 
 }
