@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Classes\Site\HeadTags\tags\AlternateTagBuilder;
+use App\Classes\Site\HeadTags\Tags\AlternateTagBuilder;
 use App\Language;
 use App\Page;
 use App\Site;

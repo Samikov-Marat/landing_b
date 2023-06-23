@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Classes\Site\HeadTags\tags\LangTagBuilder;
+use App\Classes\Site\HeadTags\Tags\LangTagBuilder;
 use App\Language;
 use App\Page;
 use App\Site;

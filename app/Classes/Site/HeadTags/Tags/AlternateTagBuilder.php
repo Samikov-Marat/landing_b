@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Classes\Site\HeadTags\tags;
+namespace App\Classes\Site\HeadTags\Tags;
 
-use App\Classes\Site\HeadTags\TagBuilder;
 use App\Language;
 use App\Page;
 use App\Site;

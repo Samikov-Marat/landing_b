@@ -3,9 +3,9 @@
 namespace Tests\Feature;
 
 use App\Classes\Site\HeadTags\HeadTagsBuilder;
-use App\Classes\Site\HeadTags\tags\AlternateTagBuilder;
-use App\Classes\Site\HeadTags\tags\CanonicalTagBuilder;
-use App\Classes\Site\HeadTags\tags\LangTagBuilder;
+use App\Classes\Site\HeadTags\Tags\AlternateTagBuilder;
+use App\Classes\Site\HeadTags\Tags\CanonicalTagBuilder;
+use App\Classes\Site\HeadTags\Tags\LangTagBuilder;
 use App\Language;
 use App\Page;
 use App\Site;

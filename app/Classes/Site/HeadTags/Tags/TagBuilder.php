@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Classes\Site\HeadTags;
+namespace App\Classes\Site\HeadTags\Tags;
 
 use App\Language;
 use App\Page;
 use App\Site;
-use Illuminate\Support\Collection;
 
 interface TagBuilder
 {
