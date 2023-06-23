@@ -9,6 +9,17 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Str;
 
+/**
+ * @property-read int $id
+ * @property int $site_id
+ * @property string $shortname
+ * @property string $language_code_iso
+ * @property string $name
+ * @property int $sort
+ * @property int $rtl
+ * @property int|null $world_language_id
+ * @property bool $disabled
+ */
 class Language extends Model
 {
     public function getUriAttribute(): string

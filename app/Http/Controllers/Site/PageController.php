@@ -45,7 +45,8 @@ class PageController extends Controller
                 $language = $site->defaultLanguages->first();
                 $languageShortName = Str::lower($language->shortname);
                 $requestCleaner = new RequestCleaner($request);
-                $params = array_merge(['languageUrl' => $languageShortName], $requestCleaner->getCleared());
+                $params = array_merge(['languageUrl' => $languageShortName],
+                    $requestCleaner->getCleared());
                 return response()->redirectToRoute('site.show_page', $params);
             }
 
@@ -58,7 +59,8 @@ class PageController extends Controller
                 );
             $languageShortName = Str::lower($language->shortname);
             $requestCleaner = new RequestCleaner($request);
-            $params = array_merge(['languageUrl' => $languageShortName], $requestCleaner->getCleared());
+            $params = array_merge(['languageUrl' => $languageShortName],
+                $requestCleaner->getCleared());
             return response()->redirectToRoute('site.show_page', $params);
         } catch (SiteNotFound|LanguageListIsEmpty $e) {
             abort(HttpFoundationResponse::HTTP_NOT_FOUND);
@@ -68,13 +70,13 @@ class PageController extends Controller
 
     public function showPage(
         HeadTagsBuilder $headTagsBuilder,
+        CountryRepository $countryRepository,
         Request $request,
         $languageUrl,
         $pageUrl = '/',
         $category = null,
         $question = null
-    )
-    {
+    ) {
         Metrics::showPage();
         $domain = Domain::getInstance($request);
         try {
@@ -96,7 +98,8 @@ class PageController extends Controller
         $language = $siteRepository->getLanguage($languageShortname);
         if ($language->disabled) {
             $requestCleaner = new RequestCleaner($request);
-            return response()->redirectToRoute('site.select_default_language', $requestCleaner->getCleared());
+            return response()->redirectToRoute('site.select_default_language',
+                $requestCleaner->getCleared());
         }
         try {
             $page = $siteRepository->getCurrentPage($pageUrl);
@@ -114,8 +117,8 @@ class PageController extends Controller
         $siteRepository->loadOurWorkers($language);
         $siteRepository->loadFeedbacks($language);
         $topOffices = $siteRepository->getTopOffices($language);
-        $countriesFrom = CountryRepository::getInstance($language)->getStartCountries();
-        $countriesTo = CountryRepository::getInstance($language)->getFinishCounties();
+        $countriesFrom = $countryRepository->getStartCountries($language);
+        $countriesTo = $countryRepository->getFinishCounties($language);
 
         $customRouting = CustomRouting::getInstance($request);
 
@@ -155,6 +158,8 @@ class PageController extends Controller
             ->with('allowCookies', AllowCookie::getInstance($request)->isAllow())
             ->with('hasLocalStylesheet', LocalStylesheet::hasLocalStylesheet($site, $languageShortname))
             ->with('headTags', $headTags)
-            ->with('currency', $currency);
+            ->with('currency', $currency)
+            ->with('hasLocalStylesheet',
+                LocalStylesheet::hasLocalStylesheet($site, $languageShortname));
     }
 }

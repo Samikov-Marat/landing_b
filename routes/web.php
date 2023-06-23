@@ -14,8 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware(['http.secure', 'start.session', 'share.errors.from.session'])->group(function (
-) {
+Route::middleware(['http.secure', 'start.session', 'share.errors.from.session'])->group(function () {
     Auth::routes(['register' => false]);
 });
 
@@ -491,6 +490,22 @@ Route::prefix('admin')->middleware(
                 ->name('admin.site.currency.index');
             Route::put('/', 'Admin\SiteCurrencyController@update')
                 ->name('admin.site.currency.update');
+        });
+
+        // Страны
+        Route::group([
+            'prefix' => 'countries'
+        ], static function () {
+            Route::get('/', 'Admin\CountryController@index')->name('admin.countries.index');
+            Route::get('create', 'Admin\CountryController@create')->name('admin.countries.create');
+            Route::put('{country}', 'Admin\CountryController@update')->name('admin.countries.update');
+            Route::delete('{country}', 'Admin\CountryController@destroy')->name('admin.countries.delete');
+        });
+        Route::group([
+            'prefix' => 'countries/{country}/texts'
+        ], static function () {
+            Route::get('/', 'Admin\CountryTextsController@index')->name('admin.countryTexts.index');
+            Route::put('{countryText}', 'Admin\CountryTextsController@update')->name('admin.countryTexts.update');
         });
     }
 
