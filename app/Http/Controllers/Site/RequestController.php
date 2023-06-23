@@ -303,7 +303,8 @@ class RequestController extends Controller
             $clientsType = $request->customer_type . 2 . $request->receiver_type;
             $responseBody = $calculator->getTariffs($request, $jsonGenerator,
                 config('calculator.url'));
-            return $calculatorResponse->transformResponseBody($responseBody, $request->language, $clientsType);
+            return $calculatorResponse->transformResponseBody($responseBody, $request->language,
+                $clientsType);
         } catch (Exception $exception) {
             Log::error($exception);
             abort(HttpFoundationResponse::HTTP_INTERNAL_SERVER_ERROR);

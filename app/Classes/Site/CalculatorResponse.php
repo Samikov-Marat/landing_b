@@ -69,18 +69,19 @@ class CalculatorResponse
             ->get();
     }
 
-    private function getAvailableTariffsForPage (string $clientsType): array {
+    private function getAvailableTariffsForPage(string $clientsType): array
+    {
         $availabilityTariffs = [
             'B2B' => [
                 'Business Express',
                 'Business Cargo Express',
-                'Documents Express'
+                'Documents Express',
             ],
             'B2C' => [
                 'E-com Express',
-                'Documents Express'
+                'Documents Express',
             ],
-            'C2C' => []
+            'C2C' => [],
         ];
 
         if (array_key_exists($clientsType, $availabilityTariffs)) {
@@ -91,11 +92,12 @@ class CalculatorResponse
             'Parcel Express',
             'Business Express',
             'Business Cargo Express',
-            'Documents Express'
+            'Documents Express',
         ];
     }
 
-    private function getTariffFromService ($service, $modeDetail) {
+    private function getTariffFromService($service, $modeDetail)
+    {
         return [
             'name' => $service->serviceName ?? '',
             'description' => $service->serviceDescription ?? '',
