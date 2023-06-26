@@ -28,11 +28,11 @@
         </div>
     @endif
 
-    <form method="post" action="{!! route('admin.local_offices.update', ['site' => $site, 'localOffice' => $localOffice]) !!}">
+    <form method="post" action="{!! route('admin.local_offices.update', ['site' => $site, 'localOffice' => null]) !!}">
         @csrf
         @method('put')
         @if(isset($localOffice))
-            <input type="hidden" name="id" value="{{ $localOffice->id }}">
+            <input type="hidden" name="id" value="{{ $localOffice->id ?? null }}">
         @endif
         <input type="hidden" name="site_id" value="{{ $site->id }}">
 

@@ -54,6 +54,17 @@ class LocalOfficeController extends Controller
             ->with('franchisees', $franchisees);
     }
 
+    public function create(Site $site): View
+    {
+        $franchisees = Franchisee::select(['id', 'name', 'description'])
+            ->orderBy('name')
+            ->get();
+
+        return view('admin.local_offices.form')
+            ->with('site', $site)
+            ->with('franchisees', $franchisees);
+    }
+
     public function edit(Site $site, LocalOffice $localOffice): View
     {
         abort_if($localOffice->site_id !== $site->id, 404);

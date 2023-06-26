@@ -133,7 +133,7 @@ Route::prefix('admin')->middleware(
 
         Route::get('{site}/local-offices', 'Admin\LocalOfficeController@index')
             ->name('admin.local_offices.index');
-        Route::get('{site}/local-offices/create', 'Admin\LocalOfficeController@edit')
+        Route::get('{site}/local-offices/create', 'Admin\LocalOfficeController@create')
             ->name('admin.local_offices.create');
         Route::get('{site}/local-offices/{localOffice}/edit', 'Admin\LocalOfficeController@edit')
             ->name('admin.local_offices.edit');
