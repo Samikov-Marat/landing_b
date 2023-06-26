@@ -17,14 +17,16 @@ class CalculatorJsonGenerator implements JsonGeneratorRequestToApi
     }
     public function getJson()
     {
+        $senderType = $this->request->customer_type === 'B' ? 'UR' : 'FIZ';
+        $receiverType = $this->request->receiver_type === 'B' ? 'UR' : 'FIZ';
         return json_encode([
             'sender' => [
                 'cityId' => $this->request->sender_city_uuid,
-                'contragentType' => $this->request->customer_type ?: 'UR',
+                'contragentType' => $senderType,
             ],
             'receiver' => [
                 'cityId' => $this->request->receiver_city_uuid,
-                'contragentType' => $this->request->receiver_type ?: 'FIZ',
+                'contragentType' => $receiverType,
             ],
             'payer' => [
                 'contractId' => $this->getContractId(),
