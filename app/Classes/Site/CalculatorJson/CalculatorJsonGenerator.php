@@ -4,7 +4,6 @@ namespace App\Classes\Site\CalculatorJson;
 
 use App\Classes\Domain;
 use App\Http\Requests\CalculatorRequest;
-use phpDocumentor\Reflection\Types\Integer;
 
 class CalculatorJsonGenerator implements JsonGeneratorRequestToApi
 {
