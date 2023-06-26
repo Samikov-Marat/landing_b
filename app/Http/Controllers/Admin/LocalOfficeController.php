@@ -119,7 +119,9 @@ class LocalOfficeController extends Controller
         Site $site,
         LocalOffice $localOffice = null
     ): RedirectResponse {
-        abort_if($localOffice->site_id !== $site->id, 404);
+        if (!empty($localOffice->site_id)) {
+            abort_if($localOffice->site_id !== $site->id, 404);
+        }
 
         if (!$localOffice) {
             $localOffice = new LocalOffice();
