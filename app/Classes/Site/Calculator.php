@@ -17,7 +17,7 @@ class Calculator
         return Http::withHeaders(['X-User-Lang' => CalculatorLanguage::getLanguage($request->input('language'))])
             ->asJson()
             ->withBody(
-                $jsonGenerator->getJson($request),
+                $jsonGenerator->getJson(),
                 'application/json'
             )
             ->post($url)

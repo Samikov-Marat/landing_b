@@ -13,8 +13,7 @@ use App\Classes\Site\Amo\AmoCRMApiClientBuilder;
 use App\Classes\Site\Amo\AmoSender;
 use App\Classes\Site\ApiMarketing\ApiMarketing;
 use App\Classes\Site\Calculator;
-use App\Classes\Site\CalculatorJson\LegalEntityToLegalEntity;
-use App\Classes\Site\CalculatorJson\LegalEntityToNaturalPerson;
+use App\Classes\Site\CalculatorJson\CalculatorJsonGenerator;
 use App\Classes\Site\CalculatorResponse;
 use App\Classes\Site\FormRequestRepository;
 use App\Classes\Site\Jira\JiraSender;
@@ -289,20 +288,16 @@ class RequestController extends Controller
 
     public function calculate(
         CalculatorRequest $request,
-        Domain $domain,
         Calculator $calculator,
-        CalculatorResponse $calculatorResponse,
-        LegalEntityToLegalEntity $legalEntityToLegalEntity,
-        LegalEntityToNaturalPerson $legalEntityToNaturalPerson
+        CalculatorJsonGenerator $calculatorJsonGenerator,
+        CalculatorResponse $calculatorResponse
     ) {
-        $domainName = $domain->get();
-
-        $jsonGenerator = 'cdek-bd.com' === $domainName ? $legalEntityToLegalEntity : $legalEntityToNaturalPerson;
-
         try {
-            $clientsType = $request->customer_type . 2 . $request->receiver_type;
-            $responseBody = $calculator->getTariffs($request, $jsonGenerator,
+            // B2B, B2C
+            $clientsType = ($request->customer_type ?? 'B') . 2 . ($request->receiver_type ?? 'C');
+            $responseBody = $calculator->getTariffs($request, $calculatorJsonGenerator,
                 config('calculator.url'));
+
             return $calculatorResponse->transformResponseBody($responseBody, $request->language,
                 $clientsType);
         } catch (Exception $exception) {
