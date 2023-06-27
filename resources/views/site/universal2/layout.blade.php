@@ -91,10 +91,19 @@
                 <div class="main-menu header__menu">
                     <ul class="main-menu__list">
 
-                        {{-- Главная --}}
-                        <li class="main-menu__item">
-                            <a class="main-menu__link current" href="{!! route('site.show_page', ['languageUrl' => $language->uri]) !!}">@d('menu_delivery')</a>
-                        </li>
+                        @if (!empty($dictionary['menu_delivery']))
+                            {{-- Главная --}}
+                            <li class="main-menu__item">
+                                <a class="main-menu__link current" href="{!! route('site.show_page', ['languageUrl' => $language->uri]) !!}">@d('menu_delivery')</a>
+                            </li>
+                        @endif
+                        @if (!empty($dictionary['menu_ff']))
+                            {{-- Фулфилмент --}}
+                            <li class="main-menu__item">
+                                <a class="main-menu__link" href="{!! $dictionary['menu_ff_link'] !!}">@d('menu_ff')</a>
+                            </li>
+                        @endif
+
                         {{-- Интернет-Магазинам --}}
                         <li class="main-menu__item">
                             <a class="main-menu__link" href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'e-commerce']) !!}">@d('menu_e_commerce')</a>
