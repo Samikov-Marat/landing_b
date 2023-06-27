@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html @if($language->rtl) dir="rtl" @endif>
 
-@if(array_key_exists('html_lang_tag', $dictionary) && $dictionary['html_lang_tag'])
-    <html lang="{{ $dictionary['html_lang_tag'] }}">
-@endif
+@include('site.universal2.head_tags', ['tags' => $headTags['lang'] ?? []])
 
 <head>
     <meta charset="UTF-8">
@@ -41,14 +39,8 @@
     @endif
     <link rel="stylesheet" href="{{ mix('universal2/custom.css') }}">
 
-    @if(array_key_exists('html_lang_tag', $dictionary) && $dictionary['html_lang_tag'] && array_key_exists('canonical', $headTagsParams))
-        @include('site.universal2.head_tags.canonical', [
-            'languageUri' => $headTagsParams['canonical']['languageUri'],
-            'params' => $headTagsParams['canonical']['params'],
-            'languages' => $site->languages,
-            'currentLanguage' => $language
-            ])
-    @endif
+    @include('site.universal2.head_tags', ['tags' => $headTags['canonical'] ?? []])
+    @include('site.universal2.head_tags', ['tags' => $headTags['alternate'] ?? []])
 </head>
 <body class="site-theme">
 @if($allowCookies)
