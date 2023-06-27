@@ -7,6 +7,7 @@ $(function () {
 
         $modal.find('.js-delete-confirm-id').val($(this).data('id'));
         $modal.find('.js-delete-confirm-text').html($(this).data('text'));
+        $modal.find('input[name="_method"]').val($(this).data('method') || 'post');
 
         $modal.modal('show');
     });

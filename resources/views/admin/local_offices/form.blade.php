@@ -28,7 +28,8 @@
         </div>
     @endif
 
-    <form method="post" action="{!! route('admin.local_offices.update', ['site' => $site, 'localOffice' => null]) !!}">
+    <form method="post"
+          action="{!! route('admin.local_offices.update', ['site' => $site, 'localOffice' => $localOffice ?? null]) !!}">
         @csrf
         @method('put')
         @if(isset($localOffice))

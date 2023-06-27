@@ -122,6 +122,7 @@
                            class="btn btn-primary btn-sm"><i class="fas fa-edit"></i> Редактировать</a>
                         <button type="button" data-text="Удалить {{ $localOffice->code }} сайта {{ $site->domain }}?"
                                 data-action="{!! route('admin.local_offices.delete', ['site' => $site, 'localOffice' => $localOffice]) !!}" data-id="{{ $localOffice->id }}"
+                                data-method="delete"
                                 class="btn btn-danger btn-sm js-delete-confirm"><i class="fas fa-trash"></i> Удалить
                         </button>
                     </td>
