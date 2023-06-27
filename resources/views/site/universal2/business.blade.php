@@ -12,7 +12,7 @@
 
 
         <div class="calculator-neutral-bg">
-        @include('site.universal2.calculator_block', ['customer_type' => 'UR', 'receiver_type' => 'UR'])
+        @include('site.universal2.calculator_block', ['customer_type' => 'B', 'receiver_type' => 'B'])
         </div>
         @include('site.universal2.order_block', ['orderFormType' => 'business_order'])
 
