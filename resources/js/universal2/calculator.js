@@ -107,7 +107,11 @@ $(function () {
         }
 
         this.getCustomerType = function () {
-            return $('.form-field__input[name=customer_type]:checked').val();
+            return $('.form-field__input[name=customer_type]:checked').val() || $('.form-field__input[name=customer_type]').val();
+        }
+
+        this.getReceiverType = function () {
+            return $('.form-field__input[name=receiver_type]').val();
         }
 
         this.isShowPeriod = function () {
@@ -195,6 +199,7 @@ $(function () {
             "language": calculator.getLanguage(),
             "idCurrency": calculator.getUsedCurrency(),
             "customer_type": calculator.getCustomerType(),
+            "receiver_type": calculator.getReceiverType()
         }).done(function(tariffs){
             showTariffs(tariffs);
         });

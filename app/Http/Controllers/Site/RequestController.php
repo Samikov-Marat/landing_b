@@ -13,8 +13,7 @@ use App\Classes\Site\Amo\AmoCRMApiClientBuilder;
 use App\Classes\Site\Amo\AmoSender;
 use App\Classes\Site\ApiMarketing\ApiMarketing;
 use App\Classes\Site\Calculator;
-use App\Classes\Site\CalculatorJson\LegalEntityToLegalEntity;
-use App\Classes\Site\CalculatorJson\LegalEntityToNaturalPerson;
+use App\Classes\Site\CalculatorJson\CalculatorJsonGenerator;
 use App\Classes\Site\CalculatorResponse;
 use App\Classes\Site\FormRequestRepository;
 use App\Classes\Site\Jira\JiraSender;
@@ -158,7 +157,8 @@ class RequestController extends Controller
         if ($request->input('preferred_response', 'html') === 'redirect') {
             return view('site.universal2.gtm_block');
         }
-        return response()->redirectTo($request->input('url'), \Symfony\Component\HttpFoundation\Response::HTTP_FOUND);
+        return response()->redirectTo($request->input('url'),
+            \Symfony\Component\HttpFoundation\Response::HTTP_FOUND);
     }
 
     public function feedbackReview(Request $request)
@@ -275,26 +275,31 @@ class RequestController extends Controller
         $response = $client->request(
             'POST', config('calculator.city_url'),
             [
-                'headers' => ['Content-Type', 'application/json', 'X-User-Lang' => $request->input('lang')],
+                'headers' => [
+                    'Content-Type',
+                    'application/json',
+                    'X-User-Lang' => $request->input('lang'),
+                ],
                 'json' => ['limit' => 5, 'query' => $request->input('query')],
             ]
         );
         return $response->getBody();
     }
 
-    public function calculate(CalculatorRequest $request)
-    {
-        $domain = Domain::getInstance($request)->get();
-        if ('cdek-bd.com' == $domain) {
-            $jsonGenerator = new LegalEntityToLegalEntity();
-        } else {
-            $jsonGenerator = new LegalEntityToNaturalPerson();
-        }
-
+    public function calculate(
+        CalculatorRequest $request,
+        Calculator $calculator,
+        CalculatorJsonGenerator $calculatorJsonGenerator,
+        CalculatorResponse $calculatorResponse
+    ) {
         try {
-            $responseBody = Calculator::getInstance($jsonGenerator, config('calculator.url'))
-                ->getTariffs($request);
-            return CalculatorResponse::transformResponseBody($responseBody, $request->language);
+            // B2B, B2C
+            $clientsType = ($request->customer_type ?? 'B') . 2 . ($request->receiver_type ?? 'C');
+            $responseBody = $calculator->getTariffs($request, $calculatorJsonGenerator,
+                config('calculator.url'));
+
+            return $calculatorResponse->transformResponseBody($responseBody, $request->language,
+                $clientsType);
         } catch (Exception $exception) {
             Log::error($exception);
             abort(HttpFoundationResponse::HTTP_INTERNAL_SERVER_ERROR);

@@ -8,29 +8,19 @@ use Illuminate\Support\Facades\Http;
 
 class Calculator
 {
-    private $jsonGenerator;
-    private $url;
 
-    function __construct(JsonGeneratorRequestToApi $jsonGenerator, string $url)
-    {
-        $this->jsonGenerator = $jsonGenerator;
-        $this->url = $url;
-    }
-
-    public static function getInstance(JsonGeneratorRequestToApi $jsonGenerator, string $url): self
-    {
-        return new static($jsonGenerator, $url);
-    }
-
-    public function getTariffs(Request $request): string
-    {
+    public function getTariffs(
+        Request $request,
+        JsonGeneratorRequestToApi $jsonGenerator,
+        string $url
+    ): string {
         return Http::withHeaders(['X-User-Lang' => CalculatorLanguage::getLanguage($request->input('language'))])
             ->asJson()
             ->withBody(
-                 $this->jsonGenerator->getJson($request),
+                $jsonGenerator->getJson(),
                 'application/json'
             )
-            ->post($this->url)
+            ->post($url)
             ->throw()
             ->body();
     }
