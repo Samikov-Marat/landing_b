@@ -76,10 +76,13 @@ class CalculatorResponse
                 'Business Express',
                 'Business Cargo Express',
                 'Documents Express',
+                'Documents Standart',
             ],
             'B2C' => [
                 'E-com Express',
+                'E-com Standart',
                 'Documents Express',
+                'Documents Standart',
             ],
             'C2C' => [],
         ];
@@ -89,10 +92,13 @@ class CalculatorResponse
         }
         return [
             'E-com Express',
+            'E-com Standart',
             'Parcel Express',
+            'Parcel Standart',
             'Business Express',
             'Business Cargo Express',
             'Documents Express',
+            'Documents Standart',
         ];
     }
 
