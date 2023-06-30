@@ -151,9 +151,16 @@
                 <div class="logo-cdek logo-cdek_size_s header-mobile-open__logo"></div>
                 <div class="main-menu">
                     <ul class="main-menu__list">
-                        <li class="main-menu__item">
-                            <a class="main-menu__link current" href="{!! route('site.show_page', ['languageUrl' => $language->uri]) !!}">@d('menu_delivery')</a>
-                        </li>
+                        @if (!empty($dictionary['menu_delivery']))
+                            <li class="main-menu__item">
+                                <a class="main-menu__link current" href="{!! route('site.show_page', ['languageUrl' => $language->uri]) !!}">@d('menu_delivery')</a>
+                            </li>
+                        @endif
+                        @if (!empty($dictionary['menu_ff']))
+                            <li class="main-menu__item">
+                                <a class="main-menu__link" href="{!! $dictionary['menu_ff_link'] !!}">@d('menu_ff')</a>
+                            </li>
+                        @endif
                         <li class="main-menu__item">
                             <a class="main-menu__link" href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'e-commerce']) !!}">@d('menu_e_commerce')</a>
                         </li>
