@@ -83,6 +83,8 @@ class CalculatorResponse
                 'E-com Standard',
                 'Documents Express',
                 'Documents Standard',
+                'Международный экспресс грузы',
+                'Международный экспресс документы'
             ],
             'C2C' => [],
         ];
@@ -99,6 +101,8 @@ class CalculatorResponse
             'Business Cargo Express',
             'Documents Express',
             'Documents Standard',
+            'Международный экспресс грузы',
+            'Международный экспресс документы'
         ];
     }
 
