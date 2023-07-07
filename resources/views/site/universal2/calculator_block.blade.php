@@ -29,6 +29,7 @@
           data-show-period="{{ $showPeriod }}">
         {!! csrf_field() !!}
 
+        <input type="hidden" class="form-field__input" name="page" value="{{ $page->url }}"
         @if(!empty($customer_type))
             <input type="hidden" name="customer_type" class="form-field__input" value="{{ $customer_type }}">
         @endif
@@ -46,12 +47,12 @@
                             <div class="form-field">
                                 <div class="form-field form-order-customer-type-wrapper">
                                     <div class="choice-widget">
-                                        <input type="radio" name="customer_type" value="UR" id="id_feedback_legal_entity" class="form-field__input"><label for="id_feedback_legal_entity">@d('feedback_form_field_customer_type_legal_entity')</label>
+                                        <input type="radio" name="customer_type" value="B" id="id_calculator_legal_entity" class="form-field__input"><label for="id_calculator_legal_entity">@d('feedback_form_field_customer_type_legal_entity')</label>
                                     </div>
                                 </div>
                                 <div class="form-order-customer-type-wrapper">
                                     <div class="choice-widget">
-                                        <input type="radio" name="customer_type" value="FIZ" id="id_feedback_private_individual" class="form-field__input"><label for="id_feedback_private_individual">@d('feedback_form_field_customer_type_private_individual')</label>
+                                        <input type="radio" name="customer_type" value="C" id="id_calculator_private_individual" class="form-field__input"><label for="id_calculator_private_individual">@d('feedback_form_field_customer_type_private_individual')</label>
                                     </div>
                                 </div>
                                 <div class="form-field__error-message">@d('feedback_form_customer_type_required')</div>

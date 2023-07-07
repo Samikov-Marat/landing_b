@@ -114,6 +114,10 @@ $(function () {
             return $('.form-field__input[name=receiver_type]').val();
         }
 
+        this.getPageUri = function () {
+            return $('.form-field__input[name=page]').val();
+        }
+
         this.isShowPeriod = function () {
             return Boolean(this.form.data('showPeriod'));
         }
@@ -199,7 +203,8 @@ $(function () {
             "language": calculator.getLanguage(),
             "idCurrency": calculator.getUsedCurrency(),
             "customer_type": calculator.getCustomerType(),
-            "receiver_type": calculator.getReceiverType()
+            "receiver_type": calculator.getReceiverType(),
+            "page": calculator.getPageUri()
         }).done(function(tariffs){
             showTariffs(tariffs);
         });

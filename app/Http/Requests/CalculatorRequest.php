@@ -27,7 +27,8 @@ class CalculatorRequest extends FormRequest
             'idCurrency' => 'required|integer',
             'language' => 'required|string',
             'customer_type' => Rule::in(['B', 'C']),
-            'receiver_type' => Rule::in(['B', 'C'])
+            'receiver_type' => Rule::in(['B', 'C']),
+            'page' => 'required|string'
         ];
     }
 }

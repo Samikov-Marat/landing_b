@@ -299,7 +299,7 @@ class RequestController extends Controller
                 config('calculator.url'));
 
             return $calculatorResponse->transformResponseBody($responseBody, $request->language,
-                $clientsType);
+                $clientsType, $request->page);
         } catch (Exception $exception) {
             Log::error($exception);
             abort(HttpFoundationResponse::HTTP_INTERNAL_SERVER_ERROR);
