@@ -8,9 +8,16 @@ use Illuminate\Support\Collection;
 
 class CalculatorResponse
 {
-    public function transformResponseBody($responseBody, $language, string $clientsType): Collection
-    {
-        $availabilityTariffs = $this->getAvailableTariffsForPage($clientsType);
+    public function transformResponseBody(
+        $responseBody,
+        $language,
+        string $clientsType,
+        string $page
+    ): Collection {
+        $availabilityTariffsByClientType = $this->getAvailableTariffsByClientType($clientsType);
+        $availabilityTariffsByPage = $this->getAvailableTariffsByPage($availabilityTariffsByClientType,
+            $page);
+
         $tariffTypes = $this->getTariffTypes($language);
 
         $tariffTypesIndexed = $tariffTypes->pluck('tariffTypeTexts', 'id');
@@ -22,7 +29,7 @@ class CalculatorResponse
 
         foreach ($services as $service) {
             foreach ($service->modeDetails as $modeDetail) {
-                if (in_array($service->serviceName ?? '', $availabilityTariffs)) {
+                if (in_array($service->serviceName ?? '', $availabilityTariffsByPage)) {
                     $foundTariffs->push($this->getTariffFromService($service, $modeDetail));
                 }
             }
@@ -69,7 +76,7 @@ class CalculatorResponse
             ->get();
     }
 
-    private function getAvailableTariffsForPage(string $clientsType): array
+    private function getAvailableTariffsByClientType(string $clientsType): array
     {
         $availabilityTariffs = [
             'B2B' => [
@@ -104,6 +111,22 @@ class CalculatorResponse
             'Международный экспресс грузы',
             'Международный экспресс документы'
         ];
+    }
+
+    private function getAvailableTariffsByPage(array $tariffs, string $page): array
+    {
+        $availabilityTariffs = [
+            'documents' => [
+                'Documents Express',
+                'Documents Standard',
+                'Documents Econom',
+            ],
+        ];
+
+        if (array_key_exists($page, $availabilityTariffs)) {
+            return $availabilityTariffs[$page];
+        }
+        return $tariffs;
     }
 
     private function getTariffFromService($service, $modeDetail)
