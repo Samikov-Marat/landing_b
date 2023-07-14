@@ -9289,3 +9289,31 @@ html[dir="rtl"] .it-solutions__dots-right {
   html[dir="rtl"] .it-solutions__dots-right {
     right: unset;
     left: -27px; } }
+
+.container {
+  position: relative;
+}
+.alert__container {
+  position: absolute;
+  z-index: 10;
+  top: 10px;
+  left: 62px;
+  width: 15rem;
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+}
+.alert {
+  padding: .3rem .5rem;
+  border-radius: 8px;
+  text-align: center;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-weight: 400;
+}
+.alert__personal-information {
+  background: linear-gradient(45deg, rgba(255, 191, 233, 0.75) 0%, rgba(255, 236, 186, 0.75) 100%);
+}
