@@ -202,7 +202,7 @@ class SiteRepository
         $this->site->load(
             [
                 'localOffices' => function ($query) use ($subdomain) {
-                    $query->select('id', 'site_id', 'map_preset')
+                    $query->select('id', 'code', 'site_id', 'map_preset')
                         ->where('disabled', false)
                         ->orderBy('sort');
                     if ($subdomain->hasSubdomain()) {
