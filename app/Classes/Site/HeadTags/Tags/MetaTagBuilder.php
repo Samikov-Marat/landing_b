@@ -73,10 +73,6 @@ class MetaTagBuilder implements TagBuilder
             'yandex-verification' => '76e6e011e74797b3',
             'google-site-verification' => 'FETZtrQHqP22gkqLXaJqKoSTioG8YbiOjp99ceLmngk',
         ],
-        'landing.local' => [
-            'yandex-verification' => '76e6e011e74797b3',
-            'google-site-verification' => 'FETZtrQHqP22gkqLXaJqKoSTioG8YbiOjp99ceLmngk',
-        ],
     ];
 
     public static function tagName(): string
