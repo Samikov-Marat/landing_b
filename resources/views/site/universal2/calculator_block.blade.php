@@ -23,8 +23,8 @@
     <form action="{!! route('request.send') !!}" method="post" class="js-calculator-form"
           data-calculate-url="{!! route('request.calculate') !!}"
           data-language="{{ $dictionary['calculator_language'] }}"
-          data-currency-code="{{ $currency->code ?? null }}"
-          data-currency-name="{{ $currency->symbol ?? null }}"
+          data-currency-code="{{ $currency->code ?? 3 }}"
+          data-currency-name="{{ $currency->symbol ?? '$' }}"
           data-show-tariffs-event="{{ $showTariffGtm }}"
           data-show-period="{{ $showPeriod }}">
         {!! csrf_field() !!}
@@ -158,6 +158,8 @@
                 </div>
 
                 <div class="calculator__tariff-list"></div>
+                <input type="button" value="{{ $dictionary['calculator_choose_tariff_button'] ?? 'Choose a tariff' }}"
+                       class="primary-button primary-button_wide primary-button_submit js-calculator-step2-button"/>
             </div>
             <div class="calculator__content calculator__content_step3" style="display: none;">
                 <div class="calculator__step-container">
