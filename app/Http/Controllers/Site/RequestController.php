@@ -301,7 +301,6 @@ class RequestController extends Controller
             $clientsType = ($request->customer_type ?? 'B') . 2 . ($request->receiver_type ?? 'C');
             $responseBody = $calculator->getTariffs($request, $calculatorJsonGenerator,
                 config('calculator.url'));
-            \Log::info($responseBody);
 
             return $calculatorResponse->transformResponseBody($responseBody, $request->language,
                 $clientsType, $request->page);
