@@ -92,17 +92,7 @@ class MetaTagBuilder implements TagBuilder
     {
         $tagContents = collect(self::AVAILABLE_DOMAIN_WITH_CONTENT[$domain]);
         return $tagContents->map(function (string $item, string $key) {
-            $tagContent = collect([
-                "meta",
-                "name=\"{$key}\"",
-                "content=\"{$item}\"",
-            ])->join(' ');
-            return $this->createTag($tagContent);
+            return "<meta name=\"{$key}\" content=\"{$item}\"/>";
         })->values()->toArray();
-    }
-
-    private function createTag(string $tagContent): string
-    {
-        return "<{$tagContent}/>";
     }
 }
