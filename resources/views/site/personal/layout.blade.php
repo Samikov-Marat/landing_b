@@ -41,7 +41,7 @@
     <link rel="stylesheet" href="/personal/assets/css/app.css?cssv7">
     <link rel="stylesheet" href="{{ mix('personal/info.css') }}">
     <link rel="stylesheet" href="/universal2/custom.css?v=2">
-
+    @include('site.universal2.head_tags', ['tags' => $headTags['meta'] ?? []])
 </head>
 <body class="site-theme">
 <div class="body-wrapper js-body_wrapper office-page-wrapper ">

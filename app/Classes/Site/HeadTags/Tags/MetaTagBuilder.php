@@ -9,7 +9,7 @@ use App\Site;
 class MetaTagBuilder implements TagBuilder
 {
     private const AVAILABLE_DOMAIN_WITH_CONTENT = [
-        'cdek-ge.com' => [
+        'cdek.ge' => [
             'yandex-verification' => '58db2ec13e1f05bf',
             'google-site-verification' => 'FETZtrQHqP22gkqLXaJqKoSTioG8YbiOjp99ceLmngk',
         ],
