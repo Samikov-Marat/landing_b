@@ -92,9 +92,11 @@ class CalculatorResponse
                 'Documents Standard',
                 'Международный экспресс грузы',
                 'Международный экспресс документы',
-                'My Express'
+                'Parcel Express'
             ],
-            'C2C' => [],
+            'C2C' => [
+                'Parcel Express'
+            ],
         ];
 
         if (array_key_exists($clientsType, $availabilityTariffs)) {
@@ -111,7 +113,7 @@ class CalculatorResponse
             'Documents Standard',
             'Международный экспресс грузы',
             'Международный экспресс документы',
-            'My Express'
+            'Parcel Express'
         ];
     }
 
