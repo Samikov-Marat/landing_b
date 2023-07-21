@@ -29,7 +29,8 @@
           data-show-period="{{ $showPeriod }}">
         {!! csrf_field() !!}
 
-        <input type="hidden" class="form-field__input" name="page" value="{{ $page->url }}"
+        <input type="hidden" class="form-field__input" name="page" value="{{ $page->url }}">
+
         @if(!empty($customer_type))
             <input type="hidden" name="customer_type" class="form-field__input" value="{{ $customer_type }}">
         @endif

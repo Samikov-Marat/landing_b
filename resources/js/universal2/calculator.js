@@ -159,9 +159,7 @@ $(function () {
                     .removeClass('calculator__content_loading')
                     .show();
             });
-
         }
-
     };
 
     let calculator = new calculatorClass($('div.calculator form'));
