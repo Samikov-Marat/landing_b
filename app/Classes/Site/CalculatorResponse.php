@@ -95,6 +95,16 @@ class CalculatorResponse
                 'Parcel Express'
             ],
             'C2C' => [
+                'E-com Express',
+                'E-com Standard',
+                'Parcel Express',
+                'Parcel Standard',
+                'Business Express',
+                'Business Cargo Express',
+                'Documents Express',
+                'Documents Standard',
+                'Международный экспресс грузы',
+                'Международный экспресс документы',
                 'Parcel Express'
             ],
         ];
