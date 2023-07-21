@@ -1368,7 +1368,15 @@ body {
       opacity: 0.8;
       border-radius: 10px; }
     .calculator__content_step2 {
-      padding: 90px 50px 60px; }
+      padding: 90px 50px 60px;
+    }
+    .calculator__tariff-list {
+      max-height: 40vh;
+      overflow: auto;
+    }
+    .js-calculator-step2-button {
+      margin-top: 2rem;
+    }
     .calculator__content_step-result {
       padding: 0 80px;
       display: flex;

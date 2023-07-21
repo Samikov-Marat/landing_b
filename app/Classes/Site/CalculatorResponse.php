@@ -91,9 +91,12 @@ class CalculatorResponse
                 'Documents Express',
                 'Documents Standard',
                 'Международный экспресс грузы',
-                'Международный экспресс документы'
+                'Международный экспресс документы',
+                'Parcel Express'
             ],
-            'C2C' => [],
+            'C2C' => [
+                'Parcel Express'
+            ],
         ];
 
         if (array_key_exists($clientsType, $availabilityTariffs)) {
@@ -109,7 +112,8 @@ class CalculatorResponse
             'Documents Express',
             'Documents Standard',
             'Международный экспресс грузы',
-            'Международный экспресс документы'
+            'Международный экспресс документы',
+            'Parcel Express'
         ];
     }
 
@@ -142,6 +146,7 @@ class CalculatorResponse
             'price' => $modeDetail->price ?? '0',
             'tariffTypeId' => $modeDetail->modeCode,
             'tariffTypeName' => $modeDetail->modeName,
+            'tariffUuid' => $service->generalServiceId ?? ''
         ];
     }
 

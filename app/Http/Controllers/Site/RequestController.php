@@ -280,7 +280,11 @@ class RequestController extends Controller
                     'application/json',
                     'X-User-Lang' => $request->input('lang'),
                 ],
-                'json' => ['limit' => 5, 'query' => $request->input('query')],
+                'json' => [
+                    'limit' => 5,
+                    'query' => $request->input('query'),
+                    'offset' => 0, 'defaultLang' => 'eng'
+                ],
             ]
         );
         return $response->getBody();
