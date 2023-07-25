@@ -135,7 +135,12 @@
                     @endforeach
                     <div class="header-contact">
                         <div class="header-contact__content">
-                            @if($dictionary['header_phone'])
+                            @if(isset($subdomain) && $subdomain->hasSubdomain())
+                                @if(($site->localOffices->count() > 0)&&($site->localOffices->first()->localOfficePhones->count() > 0))
+                                <a class="header-contact__phone"
+                                   href="tel:{{ $site->localOffices->first()->localOfficePhones[0]->phone_value }}">{{ $site->localOffices->first()->localOfficePhones[0]->phone_text }}</a>
+                                @endif
+                            @elseif($dictionary['header_phone'])
                             <a class="header-contact__phone"
                                href="tel:{{ $dictionary['header_phone'] }}">@d('header_phone_formatted')</a>
                             @endif
