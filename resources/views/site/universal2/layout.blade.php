@@ -5,8 +5,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>@yield('seo_title', 'CDEK')</title>
-    <meta name="description" content="@yield('seo_description', 'CDEK express delivery company')">
+    <title>{{ !empty($dictionary['seo_title']) ? $dictionary['seo_title'] : 'CDEK' }}</title>
+    <meta name="description" content="{{ !empty($dictionary['seo_description']) ? $dictionary['seo_description'] : 'CDEK express delivery company' }}">
     <script>
         dataLayer = [];
     </script>
