@@ -31,7 +31,10 @@ class FranchiseeAccess
     public function checkSite(Site $site): void
     {
         $site->load('localOffices.franchisee');
-        $franchisees = $site->localOffices->pluck('franchisee')
+        $franchisees = $site->localOffices->filter(function ($localOffice) {
+            return isset($localOffice->franchisee);
+        })
+            ->pluck('franchisee')
             ->unique();
 
         foreach ($franchisees as $franchisee) {
