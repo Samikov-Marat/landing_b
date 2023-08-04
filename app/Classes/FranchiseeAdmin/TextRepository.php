@@ -43,7 +43,7 @@ class TextRepository
         return new static($site);
     }
 
-    public function getPages(): Collection
+    public function getPages($franchisee): Collection
     {
         $textTypeShortnames = $this->textTypeShortnames;
 
@@ -58,8 +58,9 @@ class TextRepository
                      'textTypes.texts' => function ($query) use ($languageIds) {
                          $query->whereIn('language_id', $languageIds);
                      },
-                     'textTypes.franchiseeTexts' => function ($query) use ($languageIds) {
-                         $query->whereIn('language_id', $languageIds);
+                     'textTypes.franchiseeTexts' => function ($query) use ($franchisee, $languageIds) {
+                         $query->where('franchisee_id', $franchisee->id)
+                             ->whereIn('language_id', $languageIds);
                      },
                  ])
             ->get();

@@ -27,8 +27,7 @@ class TextController extends Controller
         $franchiseeAccess->checkSite($site);
         $site->load('languages');
         $pages = TextRepository::getInstance($site)
-            ->getPages();
-
+            ->getPages($franchiseeAccess->getFranchisee());
         return view('franchisee_admin.texts.index')
             ->with('site', $site)
             ->with('pages', $pages);
