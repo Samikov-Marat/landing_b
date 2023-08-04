@@ -5447,7 +5447,7 @@ body {
   margin-bottom: 50px; }
 
 .franchise-page__poster {
-  background: url("img/franchise/poster-right.jpg") no-repeat calc(50% + 473px) 0, #F5F5F6;
+  background: url("/request/images/franchise/poster-right.jpg") no-repeat calc(50% + 473px) 0, #F5F5F6;
   padding-top: 149px; }
 
 .franchise-page__poster-heading {
@@ -5456,7 +5456,7 @@ body {
 
 @media (min-width: 1650px) {
   .franchise-page__poster {
-    background: url("../../img/index/poster-left.svg") no-repeat calc(50% - 807px) 0, url("img/franchise/poster-right.jpg") no-repeat calc(50% + 473px) 0, #F5F5F6; } }
+    background: url("../../img/index/poster-left.svg") no-repeat calc(50% - 807px) 0, url("/request/images/franchise/poster-right.jpg") no-repeat calc(50% + 473px) 0, #F5F5F6; } }
 
 @media (max-width: 480px) {
   .franchise-page__poster {
