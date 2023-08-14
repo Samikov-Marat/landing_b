@@ -12,7 +12,7 @@
             </div>
             <div class="faq-list faq__faq-list" id="faq_shop">
                 @if(!empty($dictionary['faq_shop_question_alert']))
-                    <div class="faq-list__faq">
+                    <div class="faq-list__faq tab-alert__personal-information">
                         <div class="faq-list__faq-question">@d('faq_shop_question_alert')</div>
                         <div class="faq-list__faq-answer">@d('faq_shop_answer_alert')</div>
                     </div>

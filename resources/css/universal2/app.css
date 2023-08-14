@@ -9326,7 +9326,7 @@ html[dir="rtl"] .it-solutions__dots-right {
   z-index: 10;
   top: 10px;
   left: 62px;
-  width: 15rem;
+  max-width: 30rem;
   display: flex;
   gap: 1rem;
   flex-direction: column;
@@ -9335,7 +9335,6 @@ html[dir="rtl"] .it-solutions__dots-right {
   padding: .3rem .5rem;
   border-radius: 8px;
   text-align: center;
-  height: 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
