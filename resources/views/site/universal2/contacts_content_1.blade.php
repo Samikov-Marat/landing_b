@@ -5,6 +5,9 @@
         <div class="contact-page__item">
             @if($localOffice->localOfficeTexts->count())
                 <div class="contact-page__city">{{ $localOffice->localOfficeTexts[0]->name }}</div>
+                @if ($dictionary['contact_office_code'] != '')
+                    <div class="contact-page__code">@d('contact_office_code') {{ $localOffice->code }}</div>
+                @endif
                 <div class="contact-page__street">{{ $localOffice->localOfficeTexts[0]->address }}</div>
                 <div class="contact-page__metro">{{ $localOffice->localOfficeTexts[0]->path }}</div>
 

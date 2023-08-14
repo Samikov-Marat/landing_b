@@ -5,9 +5,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>@yield('seo_title', 'CDEK')</title>
-    <meta name="description" content="@yield('seo_description', 'CDEK express delivery company')">
-    <meta name="yandex-verification" content="900be28146e13ba1" />
+    <title>{{ !empty($dictionary['seo_title']) ? $dictionary['seo_title'] : 'CDEK' }}</title>
+    <meta name="description" content="{{ !empty($dictionary['seo_description']) ? $dictionary['seo_description'] : 'CDEK express delivery company' }}">
     <script>
         dataLayer = [];
     </script>
@@ -41,6 +40,7 @@
 
     @include('site.universal2.head_tags', ['tags' => $headTags['canonical'] ?? []])
     @include('site.universal2.head_tags', ['tags' => $headTags['alternate'] ?? []])
+    @include('site.universal2.head_tags', ['tags' => $headTags['meta'] ?? []])
 </head>
 <body class="site-theme">
 @if($allowCookies)
@@ -134,7 +134,12 @@
                     @endforeach
                     <div class="header-contact">
                         <div class="header-contact__content">
-                            @if($dictionary['header_phone'])
+                            @if(isset($subdomain) && $subdomain->hasSubdomain())
+                                @if(($site->localOffices->count() > 0)&&($site->localOffices->first()->localOfficePhones->count() > 0))
+                                <a class="header-contact__phone"
+                                   href="tel:{{ $site->localOffices->first()->localOfficePhones[0]->phone_value }}">{{ $site->localOffices->first()->localOfficePhones[0]->phone_text }}</a>
+                                @endif
+                            @elseif($dictionary['header_phone'])
                             <a class="header-contact__phone"
                                href="tel:{{ $dictionary['header_phone'] }}">@d('header_phone_formatted')</a>
                             @endif

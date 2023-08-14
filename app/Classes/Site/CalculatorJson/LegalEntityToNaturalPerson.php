@@ -19,7 +19,7 @@ class LegalEntityToNaturalPerson implements JsonGeneratorRequestToApi
                                    'contragentType' => $request->receiver_type ?: 'FIZ',
                                ],
                                'payer' => [
-                                   'contractId' => config('calculator.sender_contract_id'),
+                                   //'contractId' => config('calculator.sender_contract_id'),
                                    'payerType' => 'sender',
                                ],
                                'orderParam' => [

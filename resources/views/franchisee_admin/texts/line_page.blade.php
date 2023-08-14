@@ -24,15 +24,9 @@
                 }
 
             @endphp
-
-                @if($textsByLanguage->has($language->id))
                     <td>
                         {!! nl2br(e($value)) !!}
                     </td>
-                @else
-                    <td>
-                    </td>
-                @endif
         @endforeach
         <td>
             <a href="{{ route('admin.franchisee_admin.texts.edit', ['site_id' => $site->id, 'text_type_id' => $textType->id]) }}" class="btn btn-primary">Редактировать</a>

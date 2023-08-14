@@ -20,7 +20,7 @@ class CalculatorRequest extends FormRequest
         return [
             'sender_city_uuid' => 'required|uuid',
             'receiver_city_uuid' => 'required|uuid',
-            'mass' => 'required|integer',
+            'mass' => 'required|numeric',
             'height' => 'required|integer',
             'width' => 'required|integer',
             'length' => 'required|integer',

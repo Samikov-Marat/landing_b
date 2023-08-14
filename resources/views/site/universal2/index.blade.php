@@ -53,7 +53,7 @@
         </div>
 </div>
 
-        @include('site.universal2.calculator_block')
+        @include('site.universal2.calculator_block', ['customer_type' => 'C', 'receiver_type' => 'C'])
 
 
         <div class="index-special-conditions screen-content">

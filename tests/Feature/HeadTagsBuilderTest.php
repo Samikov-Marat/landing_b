@@ -6,6 +6,7 @@ use App\Classes\Site\HeadTags\HeadTagsBuilder;
 use App\Classes\Site\HeadTags\Tags\AlternateTagBuilder;
 use App\Classes\Site\HeadTags\Tags\CanonicalTagBuilder;
 use App\Classes\Site\HeadTags\Tags\LangTagBuilder;
+use App\Classes\Site\HeadTags\Tags\MetaTagBuilder;
 use App\Language;
 use App\Page;
 use App\Site;
@@ -20,6 +21,7 @@ class HeadTagsBuilderTest extends TestCase
     private $canonicalTagBuilder;
     private $alternateTagBuilder;
     private $langTagBuilder;
+    private $metaTagBuilder;
     private $tagsBuilders;
 
     public function setUp(): void
@@ -47,8 +49,14 @@ class HeadTagsBuilderTest extends TestCase
             '<html lang="EN_en">',
         ]);
 
+        $this->metaTagBuilder = Mockery::mock(MetaTagBuilder::class)->makePartial();
+        $this->metaTagBuilder->shouldReceive('create')->once()->andReturn([
+            '<meta name="yandex-verification" content="58db2ec13e1f05bf">',
+            '<meta name="google-site-verification" content="FETZtrQHqP22gkqLXaJqKoSTioG8YbiOjp99ceLmngk">'
+        ]);
+
         $this->tagsBuilders = new HeadTagsBuilder($this->canonicalTagBuilder, $this->langTagBuilder,
-            $this->alternateTagBuilder);
+            $this->alternateTagBuilder, $this->metaTagBuilder);
     }
 
     public function testGetTags()
@@ -67,6 +75,10 @@ class HeadTagsBuilderTest extends TestCase
                 '<link rel="alternate" hreflang="de-DE" href="https://cdek-de.com/de">',
                 '<link rel="alternate" hreflang="x-default" href="https://cdek-de.com/en">',
             ],
+            'meta' => [
+                '<meta name="yandex-verification" content="58db2ec13e1f05bf">',
+                '<meta name="google-site-verification" content="FETZtrQHqP22gkqLXaJqKoSTioG8YbiOjp99ceLmngk">'
+            ]
         ];
 
         $result = $this->tagsBuilders->getTags($site, $this->page, $this->language);

@@ -1368,7 +1368,15 @@ body {
       opacity: 0.8;
       border-radius: 10px; }
     .calculator__content_step2 {
-      padding: 90px 50px 60px; }
+      padding: 90px 50px 60px;
+    }
+    .calculator__tariff-list {
+      max-height: 40vh;
+      overflow: auto;
+    }
+    .js-calculator-step2-button {
+      margin-top: 2rem;
+    }
     .calculator__content_step-result {
       padding: 0 80px;
       display: flex;
@@ -3961,6 +3969,9 @@ body {
         margin-bottom: 15px;
         padding-bottom: 13px;
         border-bottom: 1px solid #DDDDDD; }
+      .contact-page__list_lots .contact-page__code {
+        font-size: 16px;
+        line-height: 25px; }
       .contact-page__list_lots .contact-page__street {
         font-size: 16px;
         line-height: 25px; }
@@ -4000,6 +4011,10 @@ body {
     font-size: 22px;
     line-height: 28px;
     margin-bottom: 20px; }
+  .contact-page__code {
+    font-size: 18px;
+    line-height: 23px;
+    font-weight: 400; }
   .contact-page__street {
     font-size: 18px;
     line-height: 23px;
@@ -4085,6 +4100,9 @@ body {
           margin-bottom: 10px;
           padding-bottom: 10px;
           border-bottom: 1px solid #DDDDDD; }
+        .contact-page__list_lots .contact-page__code {
+          font-size: 14px;
+          line-height: 21px; }
         .contact-page__list_lots .contact-page__street {
           font-size: 14px;
           line-height: 21px; }
@@ -4119,6 +4137,9 @@ body {
       font-size: 18px;
       line-height: 28px;
       margin-bottom: 10px; }
+    .contact-page__code {
+      font-size: 15px;
+      line-height: 20px; }
     .contact-page__street {
       font-size: 15px;
       line-height: 20px; }
@@ -4174,6 +4195,9 @@ body {
         margin-bottom: 10px;
         padding-bottom: 10px;
         border-bottom: 1px solid #DDDDDD; }
+      .contact-page__list_lots .contact-page__code {
+        font-size: 14px;
+        line-height: 21px; }
       .contact-page__list_lots .contact-page__street {
         font-size: 14px;
         line-height: 21px; }
@@ -4208,6 +4232,10 @@ body {
     font-size: 18px;
     line-height: 28px;
     margin-bottom: 10px; }
+  .contact-page__code {
+    font-size: 15px;
+    line-height: 20px;
+    font-weight: 400; }
   .contact-page__street {
     font-size: 15px;
     line-height: 20px;
@@ -5419,7 +5447,7 @@ body {
   margin-bottom: 50px; }
 
 .franchise-page__poster {
-  background: url("img/franchise/poster-right.jpg") no-repeat calc(50% + 473px) 0, #F5F5F6;
+  background: url("/request/images/franchise/poster-right.jpg") no-repeat calc(50% + 473px) 0, #F5F5F6;
   padding-top: 149px; }
 
 .franchise-page__poster-heading {
@@ -5428,7 +5456,7 @@ body {
 
 @media (min-width: 1650px) {
   .franchise-page__poster {
-    background: url("../../img/index/poster-left.svg") no-repeat calc(50% - 807px) 0, url("img/franchise/poster-right.jpg") no-repeat calc(50% + 473px) 0, #F5F5F6; } }
+    background: url("../../img/index/poster-left.svg") no-repeat calc(50% - 807px) 0, url("/request/images/franchise/poster-right.jpg") no-repeat calc(50% + 473px) 0, #F5F5F6; } }
 
 @media (max-width: 480px) {
   .franchise-page__poster {
