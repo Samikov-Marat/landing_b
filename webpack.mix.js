@@ -26,6 +26,7 @@ mix.combine([
     'resources/js/universal2/contacts.js',
     'resources/js/universal2/franchise.js',
     'resources/js/universal2/franchisee_news.js',
+    'resources/js/universal2/alerts.js',
 ], 'public/universal2/new.js').version();
 
 mix.combine([
