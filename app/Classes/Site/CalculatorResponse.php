@@ -156,7 +156,8 @@ class CalculatorResponse
             'price' => $modeDetail->price ?? '0',
             'tariffTypeId' => $modeDetail->modeCode,
             'tariffTypeName' => $modeDetail->modeName,
-            'tariffUuid' => $service->generalServiceId ?? ''
+            'tariffUuid' => $service->generalServiceId ?? '',
+            'tariffModeCode' => $modeDetail->modeCode ?? ''
         ];
     }
 
