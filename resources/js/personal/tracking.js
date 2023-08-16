@@ -7,13 +7,11 @@ $(function () {
                 method: 'post',
                 url: this.url,
                 headers: {
-                    'access-control-allow-origin': '*',
-                    'accept': 'application/json, text/plain, */*',
                     "content-type": "application/json;charset=UTF-8"
                 },
                 data: JSON.stringify(serviceParameters),
                 xhrFields: {
-                    withCredentials: true
+                    withCredentials: false
                 }
             }
         }
@@ -92,10 +90,9 @@ $(function () {
     }
 
     function showResult(response) {
-        (new TrackingShort(response)).show();
-
+        (new TrackingShort(response.result)).show();
         trackingResult.clear();
-        trackingResult.fill(response.trackingDetails);
+        trackingResult.fill(response.result.statuses);
     }
 
     $('.js-tracking-show-details').click(function () {

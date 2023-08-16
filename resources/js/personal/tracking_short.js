@@ -1,17 +1,27 @@
-function TrackingShort(response) {
-    this.response = response;
+function TrackingShort(result) {
+    this.result = result;
 
     this.show = function () {
-        $('.js-tracking-from-city').html(this.getProperty(['cityFrom', 'name']));
-        $('.js-tracking-from-date').html(this.getProperty(['orderDate']));
-        $('.js-tracking-to-city').html(this.getProperty(['cityTo', 'name']));
+        let startPoint = -1;
+        for(let i = 0; i < result.statuses.length; i++){
+            if(result.statuses[i].currentCity){
+                startPoint = result.statuses[i];
+                break;
+            }
+        }
+        $('.js-tracking-from-city').html(startPoint.currentCity.name);
+        $('.js-tracking-from-date').html(this.getDateString(startPoint.timestamp));
 
-        const deliveryDate = this.getProperty(['trackingDetails']).find((el) => {
-            return el.statusCode === 'success' || el.statusCode === 'partialDelivered' || el.statusCode === 'failed';
-        });
-
-        $('.js-tracking-to-date').html(this.cutDate(deliveryDate?.date || this.getProperty(['tariffDateEnd'])) || '-');
-        $('.js-tracking-status').html(this.getProperty(['status', 'name']));
+        let endPoint = result.statuses.length;
+        for(let i = result.statuses.length - 1; i >= 0; i--){
+            if(result.statuses[i].currentCity){
+                endPoint = result.statuses[i];
+                break;
+            }
+        }
+        $('.js-tracking-to-city').html(endPoint.currentCity.name);
+        $('.js-tracking-to-date').html(this.getDateString(endPoint.timestamp));
+        $('.js-tracking-status').html(endPoint.name);
         $('.js-tracking-result').removeClass('hidden');
     }
 
@@ -24,27 +34,16 @@ function TrackingShort(response) {
         $('.js-tracking-status').html('');
 
     }
-    this.cutDate = function (datetime) {
-        return datetime.replace(/\s.*/, '');
+
+    this.getDateString = function (timestamp) {
+        let date = new Date(timestamp);
+        return date.toLocaleString(undefined,
+            {
+                year: 'numeric',
+                month: 'numeric',
+                day: 'numeric'
+            })
     }
 
-    this.getProperty = function (path) {
-        return this.getPropertyExt(this.response, path);
-    }
-
-    this.getPropertyExt = function (from, path) {
-        if (0 == path.length) {
-            throw new Error('Путь имён свойтв пуст');
-        }
-        let name = path.shift();
-        if (!from.hasOwnProperty(name)) {
-            return '';
-        }
-        if (0 == path.length) {
-            return from[name];
-        } else {
-            return this.getPropertyExt(from[name], path);
-        }
-    }
 
 }
