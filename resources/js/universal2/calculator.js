@@ -242,6 +242,10 @@ $(function () {
 
                 $tariffDiv.find('.calculator__tariff-item-type').html(tariff.tariffTypeLocalized);
                 $tariffDiv.find('.calculator__tariff-item-price').html('' + tariff.priceString + ' ' + calculator.getUsedCurrencyName());
+
+                if (parcelTariffFilter(tariff.tariffUuid, tariff.tariffModeCode)) {
+                    return;
+                }
                 $list.append($tariffDiv);
             }
         });
@@ -479,3 +483,7 @@ $(function () {
         $(forId).val('');
     }
 });
+
+const parcelTariffFilter = (tariffId, modeCode) => {
+    return tariffId === '25052a3e-ee40-45b9-985b-259cf49f7947' && (modeCode === '1' || modeCode === '2');
+}
