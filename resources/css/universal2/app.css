@@ -1373,6 +1373,8 @@ body {
     .calculator__tariff-list {
       max-height: 40vh;
       overflow: auto;
+      overflow: scroll;
+      height: 50vh;
     }
     .js-calculator-step2-button {
       margin-top: 2rem;
