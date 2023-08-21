@@ -128,6 +128,11 @@ $(function () {
 
         this.setStep = function (step) {
             this.step = step;
+
+            $([document.documentElement, document.body]).animate({
+                scrollTop: $("#calculator").offset().top
+            }, 500);
+
             return this;
         }
 
