@@ -335,7 +335,7 @@
                     <div class="form__row form__row_no-input">
                         <div class="checkbox-widget">
                             <input type="checkbox" name="agree" id="modal-agree_review"
-                                   class="js-feedback-review-checkbox"/><label for="modal-agree_review"><span>@d('personal_review_form_agree')<a
+                                   class="js-feedback-review-checkbox"/><label for="modal-agree_review"><span>@d('personal_review_form_agree') <a
                                         class="checkbox-widget__link"
                                         href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'privacy-policy']) !!}">@d('personal_review_form_agree_2')</a></span></label>
                         </div>
