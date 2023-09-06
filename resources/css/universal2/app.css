@@ -4804,7 +4804,7 @@ body {
     display: none; } }
 
 .docs-page__poster {
-  background: url("img/docs/poster.jpg") no-repeat center top; }
+  background: url("/request/images/docs/poster.jpg") no-repeat center top; }
 
 .docs-page__company-adv-description {
   margin-bottom: 50px; }
@@ -4839,7 +4839,7 @@ body {
 
 @media (max-width: 480px) {
   .docs-page__poster {
-    background: url("img/docs/poster-mobile.jpg") no-repeat center bottom #F5F5F6;
+    background: url("/request/images/docs/poster-mobile.jpg") no-repeat center bottom #F5F5F6;
     background-size: contain;
     padding-bottom: 325px; }
   .docs-page__company-adv-description {
@@ -4855,7 +4855,7 @@ body {
 
 @media (min-width: 481px) and (max-width: 1199px) {
   .docs-page__poster {
-    background: url("img/docs/poster-tablet.jpg") no-repeat right top #F5F5F6; }
+    background: url("/request/images/docs/poster-tablet.jpg") no-repeat right top #F5F5F6; }
   .docs-page__heading {
     width: 350px; }
   .docs-page__company-adv-description {
