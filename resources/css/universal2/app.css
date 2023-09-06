@@ -4840,7 +4840,6 @@ body {
 @media (max-width: 480px) {
   .docs-page__poster {
     background: url("/request/images/docs/poster-mobile.jpg") no-repeat center bottom #F5F5F6;
-    background-size: contain;
     padding-bottom: 325px; }
   .docs-page__company-adv-description {
     margin-bottom: 33px; }
