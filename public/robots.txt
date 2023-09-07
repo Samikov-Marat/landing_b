@@ -1,3 +1,12 @@
-User-agent: *
-Disallow:
-Clean-param:utm_source&utm_medium&utm_term&utm_content&utm_campaign&yclid&gclid&fbclid
+User-Agent: *
+Disallow: /*?
+Allow: */upload/
+Allow: /bitrix/*.js
+Allow: /bitrix/*.css
+Allow: /local/*.js
+Allow: /local/*.css
+Allow: /local/*.jpg
+Allow: /local/*.jpeg
+Allow: /local/*.png
+Allow: /local/*.gif
+Clean-param: utm_source&utm_medium&utm_term&utm_content&utm_campaign&yclid&gclid&fbclid
