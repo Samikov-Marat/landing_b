@@ -246,7 +246,7 @@
                     @if($dictionary['footer_has_privacy_policy_page'] != '-')
                         <a class="footer__link footer__link-mr-policy" href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'privacy-policy']) !!}">@d('footer_policy')</a>
                     @else
-                        <a class="footer__link footer__link-mr-policy" target="_blank" href="/storage/Privacy_Policy.pdf">@d('footer_policy')</a>
+                        <a class="footer__link footer__link-mr-policy" target="_blank" href="{{ $dictionary['footer_policy_href'] }}">@d('footer_policy')</a>
                     @endif
                     @if($dictionary['footer_has_legal_page'] != '-')
                         <a class="footer__link footer__link-mr-policy" href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'legal']) !!}">@d('footer_legal_info')</a>
