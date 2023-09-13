@@ -541,16 +541,19 @@ Route::middleware('debugbar.disable')->group(function () {
     Route::get('/request/expose-metrics', 'Site\RequestController@exposeMetrics')
         ->middleware(['metric.basic.auth'])
         ->name('request.expose_metrics');
+    Route::get('/sitemap.xml', 'Site\Sitemap@get')
+        ->name('sitemap.get');
 
     Route::get('/request/images/{imageUrl}', 'Site\RequestController@images')
         ->where('imageUrl', '.*')
         ->name('request.images');
 });
 
-Route::get('/{languageUrl}/{pageUrl?}/{category?}/{question?}', 'Site\PageController@showPage')
+Route::get('/{languageUrl}/{pageUrl}/{category?}/{question?}', 'Site\PageController@showPage')
     ->middleware(['clear.get', 'save.utm.to.cookies', 'antifraud', 'save.statistics',])
+    ->where('pageUrl', '^support$')
     ->where('category', '\d+')
-    ->where('item', '\d+')
+    ->where('question', '\d+')
     ->name('site.support');
 
 Route::get('/{languageUrl}/{pageUrl?}', 'Site\PageController@showPage')

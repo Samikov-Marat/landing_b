@@ -8,12 +8,12 @@
             <div class="contact-page__support">
 
                 <div class="bm-breadcrumbs feedback__breadcrumbs">
-                    <a class="bm-breadcrumbs__item" href="{!! route('site.support', ['languageUrl' => \Str::lower($language->shortname), 'pageUrl' => $page->url]) !!}">@d('support_1')</a>
+                    <a class="bm-breadcrumbs__item" href="{!! route('site.support', ['languageUrl' => $language->uri, 'pageUrl' => $page->url]) !!}">@d('support_1')</a>
                     @foreach($supportContainer->path as $supportCategoryInPath)
                         @if ($loop->last)
                             <span class="bm-breadcrumbs__item">{{ $supportCategoryInPath->supportCategoryTexts[0]->name ?? '' }}</span>
                         @else
-                            <a class="bm-breadcrumbs__item" href="{!! route('site.support', ['languageUrl' => \Str::lower($language->shortname), 'pageUrl' => $page->url, 'category' => $supportCategoryInPath->id]) !!}">{{ $supportCategoryInPath->supportCategoryTexts[0]->name ?? '' }}</a>
+                            <a class="bm-breadcrumbs__item" href="{!! route('site.support', ['languageUrl' => $language->uri, 'pageUrl' => $page->url, 'category' => $supportCategoryInPath->id]) !!}">{{ $supportCategoryInPath->supportCategoryTexts[0]->name ?? '' }}</a>
                         @endif
                     @endforeach
 
@@ -22,10 +22,10 @@
                 @php
                     if($supportContainer->path->count() > 1){
                         $prev = $supportContainer->path[$supportContainer->path->count() - 2];
-                        $back = route('site.support', ['languageUrl' => \Str::lower($language->shortname), 'pageUrl' => $page->url, 'category' => $prev->id]);
+                        $back = route('site.support', ['languageUrl' => $language->uri, 'pageUrl' => $page->url, 'category' => $prev->id]);
                     }
                     else{
-                        $back = route('site.support', ['languageUrl' => \Str::lower($language->shortname), 'pageUrl' => $page->url]);
+                        $back = route('site.support', ['languageUrl' => $language->uri, 'pageUrl' => $page->url]);
                     }
                 @endphp
 
@@ -47,7 +47,7 @@
                                 @if($supportCategory->supportCategoryTexts->isNotEmpty())
                                 <div class="feedback__category-outer">
                                     <a class="feedback__category"
-                                       href="{!! route('site.support', ['languageUrl' => \Str::lower($language->shortname), 'pageUrl' => $page->url, 'category' => $supportCategory->id]) !!}">
+                                       href="{!! route('site.support', ['languageUrl' => $language->uri, 'pageUrl' => $page->url, 'category' => $supportCategory->id]) !!}">
                                         {{ $supportCategory->supportCategoryTexts[0]->name ?? '' }}
                                     </a>
                                 </div>
@@ -64,7 +64,7 @@
                             @foreach($supportContainer->currentSupportCategory->supportQuestions as $supportQuestion)
                                 <div class="feedback__question-outer">
                                     <a class="feedback__question"
-                                       href="{!! route('site.support', ['languageUrl' => \Str::lower($language->shortname), 'pageUrl' => $page->url, 'category' => $supportContainer->currentSupportCategory->id, 'question' => $supportQuestion->id]) !!}">
+                                       href="{!! route('site.support', ['languageUrl' => $language->uri, 'pageUrl' => $page->url, 'category' => $supportContainer->currentSupportCategory->id, 'question' => $supportQuestion->id]) !!}">
                                         {{ $supportQuestion->supportQuestionTexts[0]->question }}
                                     </a>
                                 </div>

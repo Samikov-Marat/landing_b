@@ -151,10 +151,17 @@ class SiteRepository
 
     public function getLayoutFragments(): Collection
     {
-        return $this->site->pages()->where('is_layout', true)
+        return $this->site->pages()
+            ->where('is_layout', true)
             ->get();
     }
 
+    public function getSeparatePages(): Collection
+    {
+        return $this->site->pages()
+            ->where('is_layout', false)
+            ->get();
+    }
 
     private function loadPages($pageUrl)
     {
@@ -197,8 +204,6 @@ class SiteRepository
 
     public function loadLocalOffices($language, Subdomain $subdomain)
     {
-
-
         $this->site->load(
             [
                 'localOffices' => function ($query) use ($subdomain) {
@@ -208,7 +213,6 @@ class SiteRepository
                     if ($subdomain->hasSubdomain()) {
                         $query->whereIn('id', $subdomain->getFranchisee()->localOffices->pluck('id'));
                     }
-
                 },
                 'localOffices.localOfficeTexts' => function ($query) use ($language) {
                     $query->where('language_id', $language->id);

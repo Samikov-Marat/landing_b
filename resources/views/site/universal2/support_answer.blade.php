@@ -5,10 +5,10 @@
 
         <div class="content support-page__content  support-page__content_step4">
             <div class="bm-breadcrumbs feedback__breadcrumbs">
-                <a class="bm-breadcrumbs__item" href="{!! route('site.support', ['languageUrl' => \Str::lower($language->shortname), 'pageUrl' => $page->url]) !!}">@d('support_1')</a>
+                <a class="bm-breadcrumbs__item" href="{!! route('site.support', ['languageUrl' => $language->uri, 'pageUrl' => $page->url]) !!}">@d('support_1')</a>
                 @if(!$supportContainer->supportQuestion->icon_class)
                     @foreach($supportContainer->path as $supportCategoryInPath)
-                        <a class="bm-breadcrumbs__item" href="{!! route('site.support', ['languageUrl' => \Str::lower($language->shortname), 'pageUrl' => $page->url, 'category' => $supportCategoryInPath->id]) !!}">{{ $supportCategoryInPath->supportCategoryTexts[0]->name ?? '' }}</a>
+                        <a class="bm-breadcrumbs__item" href="{!! route('site.support', ['languageUrl' => $language->uri, 'pageUrl' => $page->url, 'category' => $supportCategoryInPath->id]) !!}">{{ $supportCategoryInPath->supportCategoryTexts[0]->name ?? '' }}</a>
                     @endforeach
                 @endif
                 <span class="bm-breadcrumbs__item">{{ $supportContainer->supportQuestion->supportQuestionTexts[0]->question }}</span>
@@ -17,14 +17,14 @@
 
             @php
                 if($supportContainer->supportQuestion->icon_class){
-                    $back = route('site.support', ['languageUrl' => \Str::lower($language->shortname), 'pageUrl' => $page->url]);
+                    $back = route('site.support', ['languageUrl' => $language->uri, 'pageUrl' => $page->url]);
                 }
                 elseif($supportContainer->path->count() > 0){
                     $prev = $supportContainer->path->last();
-                    $back = route('site.support', ['languageUrl' => \Str::lower($language->shortname), 'pageUrl' => $page->url, 'category' => $prev->id]);
+                    $back = route('site.support', ['languageUrl' => $language->uri, 'pageUrl' => $page->url, 'category' => $prev->id]);
                 }
                 else{
-                    $back = route('site.support', ['languageUrl' => \Str::lower($language->shortname), 'pageUrl' => $page->url]);
+                    $back = route('site.support', ['languageUrl' => $language->uri, 'pageUrl' => $page->url]);
                 }
             @endphp
             <div class="feedback__back-holder">
