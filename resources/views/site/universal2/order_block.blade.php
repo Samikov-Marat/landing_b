@@ -3,7 +3,11 @@
         <div class="content">
             <div class="form-order-docs__content">
                 <div class="form-order-docs__title">
-                    @d('order_form_header')
+                    @if('documents_order' == $orderFormType)
+                        @d('order_form_header_documents')
+                    @elseif('business_order' == $orderFormType)
+                        @d('order_form_header_business')
+                    @endif
                 </div>
                 <form method="post" action="{!! route('request.order') !!}" class="form order-form js-order-form"  data-send-form-event="send_order">
                     <input type="hidden" name="type" value="{{ $orderFormType }}">

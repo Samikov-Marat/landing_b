@@ -232,10 +232,21 @@
 
                     <div class="form__row form__row_no-input">
                         <div class="checkbox-widget">
-                            <input type="checkbox" name="agree" value="да" id="agree"/><label for="agree"><span>@d('calculator_contacts_confirm_1') <a
-                                        class="checkbox-widget__link"
-                                        href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'privacy-policy']) !!}"
-                                        target="_blank">@d('calculator_contacts_confirm_2')</a></span></label>
+                            <input type="checkbox" name="agree" value="да" id="agree"/><label for="agree"><span>@d('calculator_contacts_confirm_1')
+
+                                    @if($dictionary['footer_has_privacy_policy_page'] != '-')
+                                        <a
+                                            class="checkbox-widget__link"
+                                            href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'privacy-policy']) !!}"
+                                            target="_blank">@d('calculator_contacts_confirm_2')</a>
+                                    @else
+                                        <a
+                                            class="checkbox-widget__link"
+                                            href="{!! $dictionary['footer_policy_href'] !!}"
+                                            target="_blank">@d('calculator_contacts_confirm_2')</a>
+                                    @endif
+
+                                </span></label>
                         </div>
                         <div class="form-field__error-message">@d('calculator_contacts_agree_error')</div>
                     </div>
