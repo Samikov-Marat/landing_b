@@ -2,6 +2,9 @@
 
 namespace App\Classes;
 
+use App\Language;
+use App\Page;
+use App\TextType;
 use XMLWriter;
 
 class SitemapXml
@@ -57,8 +60,77 @@ class SitemapXml
     private function showPages($language)
     {
         foreach ($this->pages as $page) {
-            $this->outputUrlPage($language, $page);
+            if ($this->needShowPage($language, $page)) {
+                $this->outputUrlPage($language, $page);
+            }
         }
+    }
+
+    private function needShowPage(Language $language, Page $page): bool
+    {
+        if ('privacy-policy' == $page->url) {
+            $textType = TextType::where('shortname', 'footer_has_privacy_policy_page')
+                ->first();
+            $textType->loadCount(
+                [
+                    'texts' => function ($q) use ($language) {
+                        $q->where('language_id', $language->id)
+                            ->where('value', '<>', '');
+                    }
+                ]
+            );
+            return $textType->texts_count > 0;
+        }
+        if ('legal' == $page->url) {
+            $textType = TextType::where('shortname', 'footer_has_legal_page')
+                ->first();
+            $textType->loadCount(
+                [
+                    'texts' => function ($q) use ($language) {
+                        $q->where('language_id', $language->id)
+                            ->where('value', '<>', '-');
+                    }
+                ]
+            );
+            return $textType->texts_count > 0;
+        }
+        if ('business' == $page->url) {
+            $textType = TextType::where('shortname', 'menu_business')
+                ->first();
+            $textType->loadCount(
+                [
+                    'texts' => function ($q) use ($language) {
+                        $q->where('language_id', $language->id)
+                            ->where('value', '<>', '');
+                    }
+                ]
+            );
+            return $textType->texts_count > 0;
+        }
+        if ('franchise' == $page->url) {
+            $textType = TextType::where('shortname', 'menu_franchise')
+                ->first();
+            $textType->loadCount(
+                [
+                    'texts' => function ($q) use ($language) {
+                        $q->where('language_id', $language->id)
+                            ->where('value', '<>', '');
+                    }
+                ]
+            );
+            $textType2 = TextType::where('shortname', 'menu_franchise_link')
+                ->first();
+            $textType2->loadCount(
+                [
+                    'texts' => function ($q) use ($language) {
+                        $q->where('language_id', $language->id)
+                            ->where('value', '<>', '');
+                    }
+                ]
+            );
+            return ($textType->texts_count > 0) && (0 == $textType2->texts_count);
+        }
+        return true;
     }
 
     private function showSupportCategoriesAndQuestions($language)

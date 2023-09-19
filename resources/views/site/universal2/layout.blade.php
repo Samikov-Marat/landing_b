@@ -100,24 +100,30 @@
                         <li class="main-menu__item">
                             <a class="main-menu__link" href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'e-commerce']) !!}">@d('menu_e_commerce')</a>
                         </li>
+
+                        @if (!empty($dictionary['menu_documents']))
                         {{-- Документы --}}
                         <li class="main-menu__item">
                             <a class="main-menu__link" href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'documents']) !!}">@d('menu_documents')</a>
                         </li>
+                        @endif
+
+                        @if (!empty($dictionary['menu_business']))
                         {{-- Бизнесу --}}
                         <li class="main-menu__item">
                             <a class="main-menu__link" href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'business']) !!}">@d('menu_business')</a>
                         </li>
+                        @endif
                         @if (isset($dictionary['menu_to_kazakhstan']))
                             {{-- Доставка в Казахстан (из Германии) --}}
                             @include('site.universal2.to_kazakhstan')
                         @endif
-                        <li class="main-menu__item">
-                            @if (isset($dictionary['menu_franchise']))
-                                {{-- Страница франшизы --}}
-                                @include('site.universal2.menu_item_franchise')
-                            @endif
-                        </li>
+                        @if (!empty($dictionary['menu_franchise']))
+                            {{-- Страница франшизы --}}
+                            <li class="main-menu__item">
+                                    @include('site.universal2.menu_item_franchise')
+                            </li>
+                        @endif
                         {{-- Контакты --}}
                         <li class="main-menu__item">
                             <a class="main-menu__link" href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'contacts']) !!}">@d('menu_contects')</a>
@@ -169,18 +175,23 @@
                         <li class="main-menu__item">
                             <a class="main-menu__link" href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'e-commerce']) !!}">@d('menu_e_commerce')</a>
                         </li>
-                        <li class="main-menu__item">
-                            <a class="main-menu__link" href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'documents']) !!}">@d('menu_documents')</a>
-                        </li>
-                        <li class="main-menu__item">
-                            <a class="main-menu__link" href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'business']) !!}">@d('menu_business')</a>
-                        </li>
+                        @if (!empty($dictionary['menu_documents']))
+                            <li class="main-menu__item">
+                                <a class="main-menu__link" href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'documents']) !!}">@d('menu_documents')</a>
+                            </li>
+                        @endif
+                        @if (!empty($dictionary['menu_business']))
+                            {{-- Бизнесу --}}
+                            <li class="main-menu__item">
+                                <a class="main-menu__link" href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'business']) !!}">@d('menu_business')</a>
+                            </li>
+                        @endif
                         @if (isset($dictionary['menu_to_kazakhstan']))
                             <li class="main-menu__item">
                                 <a class="main-menu__link" href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'to-kazakhstan']) !!}">@d('menu_to_kazakhstan')</a>
                             </li>
                         @endif
-                        @if (isset($dictionary['menu_franchise']))
+                        @if (!empty($dictionary['menu_franchise']))
                             <li class="main-menu__item">
                                 @include('site.universal2.menu_item_franchise')
                             </li>
