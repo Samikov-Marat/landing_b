@@ -76,7 +76,7 @@
                     <div class="checkbox-widget">
                         <input type="checkbox" name="agree" value="да" id="modal-agree"/><label for="modal-agree"><span>@d('footer_feedback_agree_1') <a
                                     class="checkbox-widget__link"
-                                    href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'privacy-policy']) !!}"
+                                    href="{!! privacy_policy($dictionary, $language) !!}"
                                     target="_blank"
                                 >@d('footer_feedback_agree_2')</a></span></label>
                     </div>

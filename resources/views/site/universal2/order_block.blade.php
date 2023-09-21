@@ -112,7 +112,7 @@
                     </div>
                     <div class="form__row form__row_no-input">
                         <div class="checkbox-widget">
-                            <input type="checkbox" name="agree" id="order-agree" /><label for="order-agree"><span>@d('order_form_field_agree_1') <a class="checkbox-widget__link" href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'privacy-policy']) !!}" target="_blank">@d('order_form_field_agree_2')</a></span></label>
+                            <input type="checkbox" name="agree" id="order-agree" /><label for="order-agree"><span>@d('order_form_field_agree_1') <a class="checkbox-widget__link" href="{!! privacy_policy($dictionary, $language) !!}" target="_blank">@d('order_form_field_agree_2')</a></span></label>
                             <div class="form-field__error-message">@d('order_form_required')</div>
                         </div>
                     </div>

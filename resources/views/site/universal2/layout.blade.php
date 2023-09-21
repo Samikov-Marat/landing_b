@@ -254,11 +254,7 @@
 
                 <div class="footer__link-policy-item">
                     <a class="footer__link footer__link-mr-policy" href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'contacts']) !!}">@d('menu_contects')</a>
-                    @if($dictionary['footer_has_privacy_policy_page'] != '-')
-                        <a class="footer__link footer__link-mr-policy" href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'privacy-policy']) !!}">@d('footer_policy')</a>
-                    @else
-                        <a class="footer__link footer__link-mr-policy" target="_blank" href="{{ $dictionary['footer_policy_href'] }}">@d('footer_policy')</a>
-                    @endif
+                    <a class="footer__link footer__link-mr-policy" target="_blank" href="{!! privacy_policy($dictionary, $language) !!}">@d('footer_policy')</a>
                     @if($dictionary['footer_has_legal_page'] != '-')
                         <a class="footer__link footer__link-mr-policy" href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'legal']) !!}">@d('footer_legal_info')</a>
                     @endif
