@@ -75,7 +75,7 @@ class SitemapXml
                 [
                     'texts' => function ($q) use ($language) {
                         $q->where('language_id', $language->id)
-                            ->where('value', '<>', '');
+                            ->where('value', '<>', '-');
                     }
                 ]
             );
