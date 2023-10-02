@@ -40,9 +40,9 @@ class JsonToDot extends Command
      */
     public function handle()
     {
-        $langTree = json_decode(Storage::disk('local')->get('tmp/rus.json'), JSON_OBJECT_AS_ARRAY);
+        $langTree = json_decode(Storage::disk('local')->get('tmp/zho.json'), JSON_OBJECT_AS_ARRAY);
         $this->recursive($langTree);
-        $output = fopen(Storage::disk('local')->path('tmp/rus.csv'), 'w');
+        $output = fopen(Storage::disk('local')->path('tmp/zho.csv'), 'w');
         foreach ($this->flat as $line) {
             fputcsv($output, $line);
         }
@@ -54,7 +54,7 @@ class JsonToDot extends Command
     {
         foreach ($langTree as $k => $item) {
             if (is_array($item)) {
-                $this->recursive($item, $k . '.');
+                $this->recursive($item, $prefix . $k . '.');
             } else {
                 $this->flat[] = [0 => $prefix . $k, 1 => $item];
             }
