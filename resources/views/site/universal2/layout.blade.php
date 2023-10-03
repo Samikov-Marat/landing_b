@@ -6,7 +6,19 @@
 <head>
     <meta charset="UTF-8">
     <title>{{ !empty($dictionary['seo_title']) ? $dictionary['seo_title'] : 'CDEK' }}</title>
-    <meta name="description" content="{{ !empty($dictionary['seo_description']) ? $dictionary['seo_description'] : 'CDEK express delivery company' }}">
+
+    @php
+    if(isset($dictionary['seo_description']) && !empty($dictionary['seo_description'])){
+        $description =$dictionary['seo_description'];
+    }
+    elseif(isset($dictionary['seo_description_default']) && !empty($dictionary['seo_description_default'])){
+        $description =$dictionary['seo_description_default'];
+    }
+    else{
+        $description = 'CDEK express delivery company';
+    }
+    @endphp
+    <meta name="description" content="{{ $description }}">
     <script>
         dataLayer = [];
     </script>
