@@ -136,6 +136,12 @@
                                     @include('site.universal2.menu_item_franchise')
                             </li>
                         @endif
+                        @if (!empty($dictionary['menu_forward']))
+                            {{-- Страница выкупа --}}
+                            <li class="main-menu__item">
+                                <a class="main-menu__link" href="{!! $dictionary['menu_forward_link'] !!}" target="_blank">@d('menu_forward')</a>
+                            </li>
+                        @endif
                         {{-- Контакты --}}
                         <li class="main-menu__item">
                             <a class="main-menu__link" href="{!! route('site.show_page', ['languageUrl' => $language->uri, 'pageUrl' => 'contacts']) !!}">@d('menu_contects')</a>
