@@ -10,6 +10,7 @@ use App\Classes\MapJsonCallback;
 use App\Classes\OfficeRepository;
 use App\Classes\Site\AllowCookie;
 use App\Classes\Site\Amo\AmoCRMApiClientBuilder;
+use App\Classes\Site\Amo\AmoFormFranchise;
 use App\Classes\Site\Amo\AmoSender;
 use App\Classes\Site\ApiMarketing\ApiMarketing;
 use App\Classes\Site\Calculator;
@@ -106,13 +107,7 @@ class RequestController extends Controller
             $client = AmoCRMApiClientBuilder::getInstance()->getClient();
             $siteId = $request->input('site_id');
             AmoSender::getInstance($client, $siteId)
-                ->send($request->input('url'), [
-                    '2114857' => $request->input('name'),
-                    '2114859' => $request->input('phone'),
-                    '2114861' => $request->input('whatsapp'),
-                    '2114863' => $request->input('email'),
-                    '2114865' => $request->input('city'),
-                ]);
+                ->send($request->input('url'), AmoFormFranchise::get($request));
         } catch (Exception $e) {
             Log::error($e);
             abort(HttpFoundationResponse::HTTP_INTERNAL_SERVER_ERROR);
