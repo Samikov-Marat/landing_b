@@ -9,7 +9,9 @@ use AmoCRM\Models\CustomFieldsValues\TextCustomFieldValuesModel;
 use AmoCRM\Models\CustomFieldsValues\ValueCollections\TextCustomFieldValueCollection;
 use AmoCRM\Models\CustomFieldsValues\ValueModels\TextCustomFieldValueModel;
 use AmoCRM\Models\LeadModel;
-use Symfony\Component\HttpFoundation\Request;
+use Exception;
+use Illuminate\Support\Facades\Log;
+
 
 class AmoSender
 {
@@ -59,8 +61,8 @@ class AmoSender
             $this->apiClient->leads()
                 ->addOne($lead);
         } catch (AmoCRMApiException $e) {
-            printError($e);
-            die;
+            Log::error('Не удалось создать сделку в АМО' . $e->getMessage());
+            throw new Exception('Не удалось создать сделку в АМО');
         }
     }
 }
