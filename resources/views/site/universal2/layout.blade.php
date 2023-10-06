@@ -344,6 +344,7 @@
 @include('site.universal2.tawk_block')
 @include('site.universal2.allow_cookies')
 @include('site.universal2.tiktok')
+@include('site.universal2.meta_counter')
 @include('site.universal2.amo_button')
 </body>
 </html>
