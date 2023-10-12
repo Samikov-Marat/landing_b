@@ -137,6 +137,7 @@ class PageController extends Controller
         }
 
         $siteRepository->loadTariffs($language);
+        $siteRepository->loadMetaTags($subdomain);
 
         $headTags = $headTagsBuilder->getTags($site, $page, $language);
         $currency = $site->currency;

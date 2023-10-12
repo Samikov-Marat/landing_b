@@ -11,8 +11,10 @@ use App\Exceptions\PageController\SiteNotFound;
 use App\Language;
 use App\Page;
 use App\Site;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\DB;
 
 
@@ -239,6 +241,33 @@ class SiteRepository
             ]
         );
     }
+
+    public function loadMetaTags(Subdomain $subdomain)
+    {
+        if ($subdomain->hasSubdomain()) {
+            $this->site->load(
+                [
+                    'metaTags' => function (HasMany $q) use ($subdomain) {
+                        $q->whereHas('franchisee', function (Builder $q) use ($subdomain) {
+                            $franchisee = $subdomain->getFranchisee();
+                            $q->where($franchisee->qualifyColumn('id'), $franchisee->id);
+                        });
+                    },
+                    'metaTags.metaTagAttributes'
+                ]
+            );
+        } else {
+            $this->site->load(
+                [
+                    'metaTags' => function (HasMany $q) {
+                        $q->doesntHave('franchisee');
+                    },
+                    'metaTags.metaTagAttributes'
+                ]
+            );
+        }
+    }
+
 
     private function getSameFranchiseeLocalOffices($subdomain): Collection
     {

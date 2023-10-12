@@ -36,7 +36,7 @@ class CanonicalTagBuilderTest extends TestCase
         $language = \Mockery::mock(Language::class);
 
         $canonicalTagBuilder = new CanonicalTagBuilder();
-        $result = $canonicalTagBuilder->create($site, $page, $language);
+        $result = $canonicalTagBuilder->create($site, $page, $language, null);
         $expected = [];
 
         $this->assertEquals($expected, $result);
