@@ -53,6 +53,7 @@
     @include('site.universal2.head_tags', ['tags' => $headTags['canonical'] ?? []])
     @include('site.universal2.head_tags', ['tags' => $headTags['alternate'] ?? []])
     @include('site.universal2.head_tags', ['tags' => $headTags['meta'] ?? []])
+    <link rel="canonical" href="{!! url()->current() !!}"/>
 </head>
 <body class="site-theme">
 @if($allowCookies)
