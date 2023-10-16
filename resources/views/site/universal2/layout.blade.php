@@ -1,7 +1,16 @@
 <!DOCTYPE html>
-<html @if($language->rtl) dir="rtl" @endif>
 
-@include('site.universal2.head_tags', ['tags' => $headTags['lang'] ?? []])
+@php
+    if($language->rtl) {
+        $dir='rtl';
+    }
+    else{
+        $dir='ltr';
+    }
+
+@endphp
+
+<html dir="{{ $dir }}" lang="{{ $language->language_code_iso }}">
 
 <head>
     <meta charset="UTF-8">
@@ -33,6 +42,10 @@
     <meta property="og:image:width" content="640">
     <meta property="og:image:height" content="664">
 
+    @foreach($site->metaTags as $tag)
+        <{{ $tag->name }} @foreach($tag->metaTagAttributes as $attribute) {{$attribute->name}}="{{ $attribute->value }}" @endforeach>
+    @endforeach
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
@@ -56,6 +69,7 @@
     <link rel="canonical" href="{!! url()->current() !!}"/>
 </head>
 <body class="site-theme">
+
 @if($allowCookies)
     @include('site.universal2.gtm_block_noscript')
 @endif

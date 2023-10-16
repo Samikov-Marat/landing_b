@@ -30,4 +30,8 @@ class Franchisee extends Model
         return $this->hasMany(FranchiseeNewsArticle::class, 'franchisee_id', 'id');
     }
 
+    public function metaTags(): BelongsToMany
+    {
+        return $this->belongsToMany(MetaTag::class, MetaTagFranchisee::class);
+    }
 }
