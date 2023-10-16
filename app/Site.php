@@ -81,4 +81,9 @@ class Site extends Model
     {
         return $this->hasOne(Currency::class, 'code', 'currency_code');
     }
+
+    public function metaTags(): HasMany
+    {
+        return $this->hasMany(MetaTag::class, 'site_id', 'id');
+    }
 }
