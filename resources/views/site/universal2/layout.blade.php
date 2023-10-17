@@ -255,7 +255,6 @@
 
 
     <div class="container">
-        @include('site.universal2.alert_personal_information')
         <div class="fixed-buttons_container">
             <div class="fixed-buttons @if($language->rtl) fixed-buttons_rightside @endif">
                 <a href="{!! $calculatorHeaderAnchorHref !!}" class="fixed-button fixed-button_calc fixed-buttons__button">@d('header_fixbutton_calculator')</a>
@@ -266,6 +265,7 @@
             </div>
         </div>
         <div class="page-content">
+            @include('site.universal2.alert_personal_information')
             @yield('content')
         </div>
     </div>

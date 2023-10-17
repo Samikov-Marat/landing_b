@@ -277,7 +277,8 @@ body {
 }
 
 .page-content {
-  overflow: hidden; }
+  overflow: hidden;
+}
 
 .screen-content {
   width: 1200px;
@@ -9332,17 +9333,29 @@ html[dir="rtl"] .it-solutions__dots-right {
   position: relative;
 }
 .alert__container {
-  position: absolute;
-  z-index: 10;
-  top: 10px;
-  left: 62px;
-  max-width: 30rem;
-  display: flex;
-  gap: 1rem;
-  flex-direction: column;
+    background: #f5f5f7;
+    padding: 16px;
+}
+
+.alert__block {
+    max-width: 30rem;
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+    max-width: 1200px;
+    margin: 12px 30px;
+    align-items: flex-start;
+}
+
+@media (min-width: 1199px) {
+    .alert__block {
+        max-width: 1200px;
+        margin: 12px auto;
+    }
 }
 .alert {
-  padding: .3rem .5rem;
+  padding: .5rem;
+    max-width: 350px;
   border-radius: 8px;
   text-align: center;
   display: flex;
