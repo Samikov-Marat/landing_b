@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Classes\Admin\SitePageStarter;
+use App\Classes\Admin\SupportCloner;
 use App\Classes\SiteCloner;
 use App\Http\Controllers\Controller;
 use App\Page;
@@ -87,15 +88,23 @@ class SiteController extends Controller
         $changes = $site->pages()
             ->sync($request->input('page_id') ?? []);
 
-        $pages = Page::select('id')
+        $pages = Page::select(['id', 'url',])
             ->with('textTypes')
             ->with('textTypes.texts')
             ->find($changes['attached']);
         SitePageStarter::getInstance($site->languages)
             ->createTextsForPages($pages);
 
+
+        if (SupportCloner::containsSupport($pages)) {
+            $supportCloner = new SupportCloner($site);
+            $source = Site::findOrFail(SupportCloner::DEFAULT_SOURCE_SITE_ID);
+            $supportCloner->cloneSupport($source);
+        }
+
         return response()->redirectToRoute('admin.sites.index');
     }
+
     public function editTariffList(Request $request)
     {
         $site = Site::select('id', 'name', 'domain')
