@@ -4,6 +4,7 @@
 namespace App\Classes;
 
 
+use App\Classes\Admin\SupportCloner;
 use App\Language;
 use App\Site;
 use Exception;
@@ -68,6 +69,11 @@ class SiteCloner
             $newSite->pages()->attach($oldPage->id);
             $this->cloneText($oldPage, $oldLanguage, $newLanguage);
         }
+        if (SupportCloner::containsSupport($oldPages)) {
+            $supportCloner = new SupportCloner($newSite);
+            $supportCloner->cloneSupport($oldSite);
+        }
+
 
         $oldSite->load(['newsArticles.newsArticleTexts' => function($q) use ($oldLanguage){
             $q->where('language_id', $oldLanguage->id);
