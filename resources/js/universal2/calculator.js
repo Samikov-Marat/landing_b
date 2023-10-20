@@ -136,6 +136,12 @@ $(function () {
             return this;
         }
 
+        this.scrollToCalculator = function () {
+            $([document.documentElement, document.body]).animate({
+                scrollTop: $("#calculator").offset().top
+            }, 500);
+        }
+
         this.sendForm = function(token){
 
             this.calculatorContent = this.form.find('.calculator__content');
@@ -151,18 +157,22 @@ $(function () {
             };
 
             let thisForCallback = this;
+
             $.post(request).done(function () {
                 $('.calculator__content_step3').hide();
                 $('.js-calculator__content_step-result-ok')
                     .css('height', thisForCallback.calculatorContent.css('height'))
                     .removeClass('calculator__content_loading')
                     .show();
+                thisForCallback.scrollToCalculator();
             }).fail(function () {
                 $('.calculator__content_step3').hide();
+
                 $('.js-calculator__content_step-result-error')
                     .css('height', thisForCallback.calculatorContent.css('height'))
                     .removeClass('calculator__content_loading')
                     .show();
+                thisForCallback.scrollToCalculator();
             });
         }
     };
