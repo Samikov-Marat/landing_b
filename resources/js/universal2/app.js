@@ -122,6 +122,11 @@ $(function (){
             closeMenu();
             return false;
         });
+
+        $('.main-menu__item').click(function () {
+            closeMenu();
+        });
+
     }
 
     function closeMenu() {
