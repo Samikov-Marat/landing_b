@@ -55,6 +55,10 @@
 
         @include('site.universal2.banner_cdek_forward')
 
+        @if(isset($dictionary['banner_forward_header']))
+            @include('site.universal2.banner_forward')
+        @endif
+
         @include('site.universal2.calculator_block', ['customer_type' => 'C', 'receiver_type' => 'C'])
 
 
