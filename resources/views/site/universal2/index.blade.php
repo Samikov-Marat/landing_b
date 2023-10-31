@@ -53,8 +53,6 @@
             </div>
         </div>
 
-        @include('site.universal2.banner_cdek_forward')
-
         @if(isset($dictionary['banner_forward_header']))
             @include('site.universal2.banner_forward')
         @endif
