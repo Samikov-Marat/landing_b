@@ -1063,11 +1063,16 @@ body {
 
 .square-card {
   width: 200px;
-  flex-shrink: 0; }
-  .square-card_size_big {
-    width: 270px; }
-    .square-card_size_big .square-card__bg {
-      height: 260px; }
+}
+
+.square-card_size_big {
+width: 270px;
+}
+
+.square-card_size_big .square-card__bg {
+height: 260px;
+}
+
   .square-card_franchise .square-card__bg {
     margin-bottom: 30px; }
   .square-card_franchise .square-card__title {
@@ -1141,7 +1146,7 @@ body {
 
 @media (min-width: 481px) and (max-width: 1199px) {
   .square-cards {
-    justify-content: flex-start; }
+    justify-content: space-around; }
   .square-card {
     margin-right: 25px; }
     .square-card:last-child {
