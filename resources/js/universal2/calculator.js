@@ -317,7 +317,7 @@ $(function () {
                 height: calculator.getHeight()
             });
 
-            window.location.href = `/order?${query_params}`;
+            window.location.href = `https://order-express.cdek.ru?${query_params}`;
             return true;
         }
         return false;

@@ -27,7 +27,6 @@
           data-currency-name="{{ $currency->symbol ?? '$' }}"
           data-show-tariffs-event="{{ $showTariffGtm }}"
           data-show-period="{{ $showPeriod }}">
-        {!! csrf_field() !!}
 
         <input type="hidden" class="form-field__input" name="page" value="{{ $page->url }}">
 
