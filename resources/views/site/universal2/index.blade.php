@@ -12,7 +12,7 @@
                 <h2 class="typo-h2 company-advantages__heading">@d('why_header')</h2>
                 <div class="company-advantages__description">
                     @d('why_description')
-            </div>
+                </div>
             <div class="square-cards js-company-advantages owl-carousel">
                 <div class="square-card square-card_icon_customs">
                     <div class="square-card__bg"></div>
@@ -50,8 +50,8 @@
                     </div>
                 </div>
             </div>
+            </div>
         </div>
-</div>
 
         @if(isset($dictionary['banner_forward_header']))
             @include('site.universal2.banner_forward')
