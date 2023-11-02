@@ -230,6 +230,13 @@
                             </li>
                         @endif
 
+                        @if (!empty($dictionary['menu_forward']))
+                            {{-- Страница выкупа --}}
+                            <li class="main-menu__item">
+                                <a class="main-menu__link" href="{!! $dictionary['menu_forward_link'] !!}" target="_blank">@d('menu_forward')</a>
+                            </li>
+                        @endif
+
                         <li class="main-menu__item">
                             <a class="main-menu__link" href="{!! $calculatorHeaderAnchorHref !!}">@d('header_fixbutton_calculator')</a>
                         </li>
