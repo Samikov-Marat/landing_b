@@ -111,7 +111,7 @@
     <div class="company-advantages__description">
         @d('advantages_text')
     </div>
-    <div class="square-cards js-company-advantages owl-carousel">
+    <div class="square-cards js-company-advantages">
         <div class="square-card square-card_icon_customs">
             <div class="square-card__bg"></div>
             <div class="square-card__title">@d('card_1_header')</div>
