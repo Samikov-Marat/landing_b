@@ -237,7 +237,6 @@
                             <div class="franchise-start-a-business__item-text">
                                 <span class="franchise-start-a-business__item-text_bold">@d('franchise_76')</span>
                                 @d('franchise_77')
-                                @d('franchise_77')
                             </div>
                         </div>
                     </div>
