@@ -58,6 +58,8 @@ class TextRepository
             'faq_shop_answer_10',
             'faq_shop_question_11',
             'faq_shop_answer_11',
+            'faq_shop_question_12',
+            'faq_shop_answer_12',
         ];
     }
 
