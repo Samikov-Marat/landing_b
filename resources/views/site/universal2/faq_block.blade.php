@@ -37,6 +37,46 @@
                     <div class="faq-list__faq-question">@d('faq_shop_question_6')</div>
                     <div class="faq-list__faq-answer">@d('faq_shop_answer_6')</div>
                 </div>
+
+
+                    @php
+                        $extraFAQKeys = [
+                            [
+                                'question' => 'faq_shop_question_7',
+                                'answer' => 'faq_shop_answer_7',
+                            ],
+                            [
+                                'question' => 'faq_shop_question_8',
+                                'answer' => 'faq_shop_answer_8',
+                            ],
+                            [
+                                'question' => 'faq_shop_question_9',
+                                'answer' => 'faq_shop_answer_9',
+                            ],
+                            [
+                                'question' => 'faq_shop_question_10',
+                                'answer' => 'faq_shop_answer_10',
+                            ],
+                            [
+                                'question' => 'faq_shop_question_11',
+                                'answer' => 'faq_shop_answer_11',
+                            ],
+                        ];
+
+                        foreach ($extraFAQKeys as $i => $extraFAQKey) {
+                            $extraFAQKeys[$i]['exist'] = isset($dictionary[$extraFAQKey['question']]) &&
+                                ($dictionary[$extraFAQKey['question']] != '');
+                        }
+                    @endphp
+
+                    @foreach($extraFAQKeys as $key)
+                        @if($key['exist'])
+                            <div class="faq-list__faq">
+                                <div class="faq-list__faq-question">@d($key['question'])</div>
+                                <div class="faq-list__faq-answer">@d($key['answer'])</div>
+                            </div>
+                        @endif
+                    @endforeach
             </div>
 
 
