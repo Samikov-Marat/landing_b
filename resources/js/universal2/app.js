@@ -56,14 +56,13 @@ $(document).ready(function () {
     })
 
 
-
     $('.js-partners-more').click(function () {
         $('.js-parners-other').show(400);
         $(this).closest('.js-partners-more-block').hide();
         return false;
     });
 
-    $('.js-partner-show-more').click(function (e){
+    $('.js-partner-show-more').click(function (e) {
         $('.partner__item_hidden').fadeIn({
             duration: 700,
         });
@@ -71,7 +70,7 @@ $(document).ready(function () {
         return false;
     });
 
-    $('.js-support-select2').each(function (){
+    $('.js-support-select2').each(function () {
         $(this).select2({
             placeholder: $(this).attr('placeholder'),
             allowClear: false,
@@ -83,7 +82,7 @@ $(document).ready(function () {
 
     });
 
-    $('.js-order-select2').each(function (){
+    $('.js-order-select2').each(function () {
         $(this).select2({
             placeholder: $(this).attr('placeholder'),
             allowClear: false,
@@ -97,7 +96,7 @@ $(document).ready(function () {
 
 });
 
-$(function (){
+$(function () {
     if ($('#antifraud').length > 0) {
         modalOpen($('#antifraud'));
     }
@@ -180,13 +179,13 @@ $(function (){
         }, timeout);
     }
 
-    $('.support-page .js-answer-button-yes').click(function (){
+    $('.support-page .js-answer-button-yes').click(function () {
         $('.js-feedback-post-control').hide();
         $('.js-feedback-glad-to-help').show();
         return false;
     });
 
-    $('.support-page .js-answer-button-no').click(function (){
+    $('.support-page .js-answer-button-no').click(function () {
         $('.js-feedback-post-control').hide();
         $('.js-feedback-form-container').show();
         return false;
@@ -272,41 +271,39 @@ $(function (){
 
     window.sliders = function () {
 
-        var companyAdvantagesSlider = $('.js-company-advantages');
-        var companyAdvantagesOptions = {
-            nav: true,
-            dots: true,
-            items: 1,
-            loop: true,
-            autoplay: false,
-            autoplayTimeout: 5000,
-            autoplayHoverPause: true,
-            margin: 0,
-            autoHeight: true,
-        };
-
-        $(window).resize(function () {
-            processOnResize()
+        $('.js-company-advantages').each(function () {
+            let slideCount = $(this).find('.square-card').length;
+            $(this).owlCarousel({
+                loop: true,
+                autoplay: false,
+                autoplayTimeout: 5000,
+                autoplayHoverPause: true,
+                responsiveRefreshRate: 50,
+                responsive: {
+                    0: {
+                        items: 1,
+                        nav: slideCount > 1,
+                        dots: slideCount > 1,
+                        center: slideCount > 1,
+                        autoHeight: false
+                    },
+                    961: {
+                        items: Math.min(4, slideCount),
+                        nav: slideCount > 4,
+                        dots: slideCount > 4,
+                        center: Math.min(4, slideCount) % 2,
+                        autoHeight: false
+                    },
+                    1201: {
+                        items: Math.min(5, slideCount),
+                        nav: slideCount > 5,
+                        dots: slideCount > 5,
+                        center: Math.min(5, slideCount) % 2,
+                        autoHeight: false
+                    }
+                }
+            });
         });
-
-        $(window).trigger('resize');
-
-        function processOnResize() {
-            if (isWider480()) {
-                destroySlider(companyAdvantagesSlider);
-            } else {
-                activateSlider(companyAdvantagesSlider, companyAdvantagesOptions);
-            }
-
-        }
-
-        function isWider480() {
-            if (window.innerWidth >= 481) {
-                return true;
-            } else {
-                return false;
-            }
-        }
 
     };
 
