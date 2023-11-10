@@ -61,6 +61,10 @@
                                 'question' => 'faq_shop_question_11',
                                 'answer' => 'faq_shop_answer_11',
                             ],
+                            [
+                                'question' => 'faq_shop_question_12',
+                                'answer' => 'faq_shop_answer_12',
+                            ],
                         ];
 
                         foreach ($extraFAQKeys as $i => $extraFAQKey) {
