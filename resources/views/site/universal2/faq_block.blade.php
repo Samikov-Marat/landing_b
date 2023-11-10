@@ -40,7 +40,7 @@
             </div>
 
 
-            <div class="faq-list faq__faq-list" id="faq_documents">
+            <div class="faq-list faq__faq-list hidden" id="faq_documents">
                 <div class="faq-list__faq">
                     <div class="faq-list__faq-question">@d('faq_documents_question_2')</div>
                     <div class="faq-list__faq-answer">@d('faq_documents_answer_2')</div>
