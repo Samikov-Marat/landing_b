@@ -6,15 +6,17 @@ use Illuminate\Http\Request;
 
 class NaturalPersonToNaturalPerson implements JsonGeneratorRequestToApi
 {
-    public function getJson(Request $request)
+    protected $request;
+
+    public function getJson()
     {
         return json_encode([
                                'sender' => [
-                                   'cityId' => $request->input('sender_city_uuid'),
+                                   'cityId' => $this->request->input('sender_city_uuid'),
                                    'contragentType' => 'FIZ',
                                ],
                                'receiver' => [
-                                   'cityId' => $request->input('receiver_city_uuid'),
+                                   'cityId' => $this->request->input('receiver_city_uuid'),
                                    'contragentType' => 'FIZ',
                                ],
                                'payer' => [
@@ -25,19 +27,18 @@ class NaturalPersonToNaturalPerson implements JsonGeneratorRequestToApi
                                    'calcMode' => 'RECALC'
                                ],
                                'interfaceCode' => 'ec5_front',
-                               'currencyMark' => static::getCurrencyMark($request->input('idCurrency')),
+                               'currencyMark' => static::getCurrencyMark($this->request->input('idCurrency')),
                                'calcDate' => date('Y-m-d'),
                                'packages' => [
                                    [
-                                       'length' => $request->input('length'),
-                                       'width' => $request->input('width'),
-                                       'height' => $request->input('height'),
-                                       'weight' => $request->input('mass'),
+                                       'length' => $this->request->input('length'),
+                                       'width' => $this->request->input('width'),
+                                       'height' => $this->request->input('height'),
+                                       'weight' => $this->request->input('mass'),
                                    ]
                                ]
                            ]);
     }
-
 
     private static function getCurrencyMark($code): string
     {
