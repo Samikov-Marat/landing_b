@@ -57,9 +57,12 @@
 
     <link rel="stylesheet" href="{{ mix('universal2/app.css') }}">
     <link rel="stylesheet" href="{{ mix('universal2/info.css') }}">
-    <link rel="stylesheet" href="/request/images/theme.css">
-    @if($hasLocalStylesheet)
-        <link rel="stylesheet" href="/request/images/{{ $language->uri }}.css">
+
+    @if($uploadedCssIndexed->has('/theme.css'))
+        <link rel="stylesheet" href="{!! route('request.images', ['imageUrl' => 'themes.css', 'hash' => $uploadedCssIndexed->get('/theme.css')->hash ]) !!}">
+    @endif
+    @if($uploadedCssIndexed->has('/' . $language->uri . '.css'))
+        <link rel="stylesheet" href="{!! route('request.images', ['imageUrl' => $language->uri . '.css', 'hash' => $uploadedCssIndexed->get('/'.$language->uri.'.css')->hash ]) !!}">
     @endif
     <link rel="stylesheet" href="{{ mix('universal2/custom.css') }}">
 

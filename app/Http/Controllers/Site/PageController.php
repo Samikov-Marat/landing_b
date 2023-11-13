@@ -6,9 +6,8 @@ use App\Classes\DictionaryBuilder;
 use App\Classes\Domain;
 use App\Classes\FastAnswer;
 use App\Classes\FragmentRepository;
-use App\Classes\HeadTags;
 use App\Classes\LanguageDetector;
-use App\Classes\LocalStylesheet;
+use App\Classes\UploadedCss;
 use App\Classes\Site\AllowCookie;
 use App\Classes\Site\CountryRepository;
 use App\Classes\Site\CustomRouting;
@@ -30,7 +29,6 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response as HttpFoundationResponse;
 
-
 class PageController extends Controller
 {
     public function selectDefaultLanguage(Request $request)
@@ -46,10 +44,9 @@ class PageController extends Controller
                 $languageShortName = Str::lower($language->shortname);
                 $requestCleaner = new RequestCleaner($request);
                 $params = array_merge(['languageUrl' => $languageShortName],
-                    $requestCleaner->getCleared());
+                                      $requestCleaner->getCleared());
                 return response()->redirectToRoute('site.show_page', $params);
             }
-
 
             $language = LanguageDetector::getInstance($request->server('HTTP_ACCEPT_LANGUAGE', ''))
                 ->chooseFrom(
@@ -60,7 +57,7 @@ class PageController extends Controller
             $languageShortName = Str::lower($language->shortname);
             $requestCleaner = new RequestCleaner($request);
             $params = array_merge(['languageUrl' => $languageShortName],
-                $requestCleaner->getCleared());
+                                  $requestCleaner->getCleared());
             return response()->redirectToRoute('site.show_page', $params);
         } catch (SiteNotFound|LanguageListIsEmpty $e) {
             abort(HttpFoundationResponse::HTTP_NOT_FOUND);
@@ -98,8 +95,10 @@ class PageController extends Controller
         $language = $siteRepository->getLanguage($languageShortname);
         if ($language->disabled) {
             $requestCleaner = new RequestCleaner($request);
-            return response()->redirectToRoute('site.select_default_language',
-                $requestCleaner->getCleared());
+            return response()->redirectToRoute(
+                'site.select_default_language',
+                $requestCleaner->getCleared()
+            );
         }
         try {
             $page = $siteRepository->getCurrentPage($pageUrl);
@@ -157,10 +156,8 @@ class PageController extends Controller
             ->with('countriesTo', $countriesTo)
             ->with('showFastAnswer', FastAnswer::setShowFastAnswer($request, $pageUrl))
             ->with('allowCookies', AllowCookie::getInstance($request)->isAllow())
-            ->with('hasLocalStylesheet', LocalStylesheet::hasLocalStylesheet($site, $languageShortname))
+            ->with('uploadedCssIndexed', UploadedCss::getAll($site, $languageShortname))
             ->with('headTags', $headTags)
-            ->with('currency', $currency)
-            ->with('hasLocalStylesheet',
-                LocalStylesheet::hasLocalStylesheet($site, $languageShortname));
+            ->with('currency', $currency);
     }
 }

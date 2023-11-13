@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Classes\Admin\ImageHelper;
 use App\Http\Controllers\Controller;
 use App\Image;
 use App\Site;
@@ -70,8 +71,11 @@ class ImageController extends Controller
             if ($isEditMode && Storage::disk('public')->exists($image->path)) {
                 Storage::disk('public')->delete($image->path);
             }
-            $image->path = $request->file('file')
+            $path = $request->file('file')
                 ->store('/images/' . $image->page_id, ['disk' => 'public']);
+            $image->path = $path;
+            $imageHelper = new ImageHelper($path);
+            $image->hash = $imageHelper->getHash();
             $image->name = $request->file('file')->getClientOriginalName();
         }
         $image->save();
