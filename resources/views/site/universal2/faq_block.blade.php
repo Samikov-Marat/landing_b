@@ -25,10 +25,12 @@
                     <div class="faq-list__faq-question">@d('faq_shop_question_2')</div>
                     <div class="faq-list__faq-answer">@d('faq_shop_answer_2')</div>
                 </div>
-                <div class="faq-list__faq">
-                    <div class="faq-list__faq-question">@d('faq_shop_question_3')</div>
-                    <div class="faq-list__faq-answer">@d('faq_shop_answer_3')<a href="{!!route('request.images', $language->uri . '/' . 'import_restrictions.pdf')!!}" target="_blank">@d('faq_shop_answer_3_link')</a></div>
-                </div>
+                @if(isset($dictionary['faq_shop_question_3']) && $dictionary['faq_shop_question_3'] != '')
+                    <div class="faq-list__faq">
+                        <div class="faq-list__faq-question">@d('faq_shop_question_3')</div>
+                        <div class="faq-list__faq-answer">@d('faq_shop_answer_3')<a href="{!!route('request.images', $language->uri . '/' . 'import_restrictions.pdf')!!}" target="_blank">@d('faq_shop_answer_3_link')</a></div>
+                    </div>
+                @endif
                 <div class="faq-list__faq">
                     <div class="faq-list__faq-question">@d('faq_shop_question_5')</div>
                     <div class="faq-list__faq-answer">@d('faq_shop_answer_5')</div>
