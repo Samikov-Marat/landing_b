@@ -16,7 +16,7 @@
                         </div>
                         <div class="two-icons__details">
                             <div class="two-icons__icon two-icons__icon_letter"></div>
-                            <div class="two-icons__text"><span class="two-icons__text-big">@d('documents_onpagetext_10')</span> @d('documents_onpagetext_11') <span class="two-icons__text-big">@d('documents_onpagetext_12')</span></div>
+                            <div class="two-icons__text"><span class="two-icons__text-big">@d('documents_onpagetext_10')</span> <span>@d('documents_onpagetext_11')</span> <span class="two-icons__text-big">@d('documents_onpagetext_12')</span></div>
                         </div>
                     </div>
 
@@ -27,7 +27,7 @@
                             </div>
                             <div class="two-icons__details">
                                 <div class="two-icons__icon two-icons__icon_letter"></div>
-                                <div class="two-icons__text"><span class="two-icons__text-big">@d('documents_second_tariff_weight')</span> @d('documents_onpagetext_11') <span class="two-icons__text-big">@d('documents_second_tariff_price')</span></div>
+                                <div class="two-icons__text"><span class="two-icons__text-big">@d('documents_second_tariff_weight')</span> <span>@d('documents_onpagetext_11')</span> <span class="two-icons__text-big">@d('documents_second_tariff_price')</span></div>
                             </div>
                         </div>
                     @endif

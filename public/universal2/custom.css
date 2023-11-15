@@ -1030,3 +1030,19 @@
     .site-theme .form-order-docs__content .form-order-docs__content__vietnam {
         padding: 40px; }
 }
+
+.two-icons__text{
+    text-align: center;
+}
+.two-icons__item span{
+    white-space: nowrap;
+}
+
+.two-icons__icon{
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.support-page__heading{
+    color: black;
+}
