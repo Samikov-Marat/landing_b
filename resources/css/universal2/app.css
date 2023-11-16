@@ -1131,8 +1131,7 @@ body {
 @media (min-width: 481px) and (max-width: 1199px) {
   .square-cards {
     justify-content: space-around; }
-  .square-card {
-    margin-right: 25px; }
+
     .square-card_size_big {
       width: 200px; }
       .square-card_size_big .square-card__bg {
@@ -8749,13 +8748,6 @@ html[dir="rtl"] .primary-button_with_arrow::after {
   margin-left: 0;
   margin-right: 10px;
   transform: rotate(180deg); }
-
-@media (min-width: 481px) and (max-width: 1199px) {
-  html[dir="rtl"] .square-card {
-    margin-right: 0;
-    margin-left: 25px; }
-    html[dir="rtl"] .square-card:last-child {
-      margin-left: 0; } }
 
 html[dir="rtl"] .circle-icon-list__icon {
   margin-right: 0;
