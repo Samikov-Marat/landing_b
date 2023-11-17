@@ -32,7 +32,9 @@ class SiteController extends Controller
     public function edit($id = null)
     {
         if (isset($id)) {
-            $site = Site::select('id', 'name', 'domain')->find($id);
+            $site = Site::select('id', 'name', 'domain')
+                ->with(['site'])
+                ->find($id);
         } else {
             $site = null;
         }
@@ -66,7 +68,6 @@ class SiteController extends Controller
         return response()->redirectToRoute('admin.sites.index');
     }
 
-
     public function editPageList(Request $request)
     {
         $site = Site::select('id', 'name', 'domain')
@@ -94,7 +95,6 @@ class SiteController extends Controller
             ->find($changes['attached']);
         SitePageStarter::getInstance($site->languages)
             ->createTextsForPages($pages);
-
 
         if (SupportCloner::containsSupport($pages)) {
             $supportCloner = new SupportCloner($site);
