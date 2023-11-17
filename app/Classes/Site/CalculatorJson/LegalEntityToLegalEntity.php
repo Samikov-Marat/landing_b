@@ -7,15 +7,18 @@ use Illuminate\Http\Request;
 
 class LegalEntityToLegalEntity implements JsonGeneratorRequestToApi
 {
-    public function getJson(CalculatorRequest $request)
+    protected $request;
+
+
+    public function getJson()
     {
         return json_encode([
                                'sender' => [
-                                   'cityId' => $request->sender_city_uuid,
+                                   'cityId' => $this->request->sender_city_uuid,
                                    'contragentType' => 'UR',
                                ],
                                'receiver' => [
-                                   'cityId' => $request->receiver_city_uuid,
+                                   'cityId' => $this->request->receiver_city_uuid,
                                    'contragentType' => 'UR',
                                ],
                                'payer' => [
@@ -27,14 +30,14 @@ class LegalEntityToLegalEntity implements JsonGeneratorRequestToApi
                                    'calcMode' => 'RECALC'
                                ],
                                'interfaceCode' => 'ec5_front',
-                               'currencyMark' => static::getCurrencyMark($request->idCurrency),
+                               'currencyMark' => static::getCurrencyMark($this->request->idCurrency),
                                'calcDate' => date('Y-m-d'),
                                'packages' => [
                                    [
-                                       'length' => $request->length,
-                                       'width' => $request->width,
-                                       'height' => $request->height,
-                                       'weight' => $request->mass,
+                                       'length' => $this->request->length,
+                                       'width' => $this->request->width,
+                                       'height' => $this->request->height,
+                                       'weight' => $this->request->mass,
                                    ]
                                ]
                            ]);

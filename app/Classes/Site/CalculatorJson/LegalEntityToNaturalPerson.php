@@ -7,16 +7,18 @@ use Illuminate\Http\Request;
 
 class LegalEntityToNaturalPerson implements JsonGeneratorRequestToApi
 {
-    public function getJson(CalculatorRequest $request)
+    protected $request;
+
+    public function getJson()
     {
         return json_encode([
                                'sender' => [
-                                   'cityId' => $request->sender_city_uuid,
-                                   'contragentType' => $request->customer_type ?: 'UR',
+                                   'cityId' => $this->request->sender_city_uuid,
+                                   'contragentType' => $this->request->customer_type ?: 'UR',
                                ],
                                'receiver' => [
-                                   'cityId' => $request->receiver_city_uuid,
-                                   'contragentType' => $request->receiver_type ?: 'FIZ',
+                                   'cityId' => $this->request->receiver_city_uuid,
+                                   'contragentType' => $this->request->receiver_type ?: 'FIZ',
                                ],
                                'payer' => [
                                    //'contractId' => config('calculator.sender_contract_id'),
@@ -27,14 +29,14 @@ class LegalEntityToNaturalPerson implements JsonGeneratorRequestToApi
                                    'calcMode' => 'RECALC'
                                ],
                                'interfaceCode' => 'ec5_front',
-                               'currencyMark' => static::getCurrencyMark($request->idCurrency),
+                               'currencyMark' => static::getCurrencyMark($this->request->idCurrency),
                                'calcDate' => date('Y-m-d'),
                                'packages' => [
                                    [
-                                       'length' => $request->length,
-                                       'width' => $request->width,
-                                       'height' => $request->height,
-                                       'weight' => $request->mass,
+                                       'length' => $this->request->length,
+                                       'width' => $this->request->width,
+                                       'height' => $this->request->height,
+                                       'weight' => $this->request->mass,
                                    ]
                                ],
                            ]);

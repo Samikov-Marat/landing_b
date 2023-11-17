@@ -17,14 +17,14 @@
                     @if ($dictionary['tariff_min_mass_05'])
                         <div class="two-icons__item">
                             <div class="two-icons__icon"></div>
-                            <div class="two-icons__text"><span class="two-icons__text-big">@d('tariff_min_mass_05')</span> @d('tariff_min_from_05') <span class="two-icons__text-big">@d('tariff_min_price_05')</span></div>
+                            <div class="two-icons__text"><span class="two-icons__text-big">@d('tariff_min_mass_05')</span> <span>@d('tariff_min_from_05')</span> <span class="two-icons__text-big">@d('tariff_min_price_05')</span></div>
                         </div>
                     @endif
 
                     @if ($dictionary['tariff_min_mass_1'])
                         <div class="two-icons__item">
                             <div class="two-icons__icon two-icons__icon_icon_second"></div>
-                            <div class="two-icons__text"><span class="two-icons__text-big">@d('tariff_min_mass_1')</span> @d('tariff_min_from_1') <span class="two-icons__text-big">@d('tariff_min_price_1')</span></div>
+                            <div class="two-icons__text"><span class="two-icons__text-big">@d('tariff_min_mass_1')</span> <span>@d('tariff_min_from_1')</span> <span class="two-icons__text-big">@d('tariff_min_price_1')</span></div>
                         </div>
                     @endif
                 </div>

@@ -57,9 +57,12 @@
 
     <link rel="stylesheet" href="{{ mix('universal2/app.css') }}">
     <link rel="stylesheet" href="{{ mix('universal2/info.css') }}">
-    <link rel="stylesheet" href="/request/images/theme.css">
-    @if($hasLocalStylesheet)
-        <link rel="stylesheet" href="/request/images/{{ $language->uri }}.css">
+
+    @if($uploadedCssIndexed->has('/theme.css'))
+        <link rel="stylesheet" href="{!! route('request.images', ['imageUrl' => 'theme.css', 'hash' => $uploadedCssIndexed->get('/theme.css')->hash ]) !!}">
+    @endif
+    @if($uploadedCssIndexed->has('/' . $language->uri . '.css'))
+        <link rel="stylesheet" href="{!! route('request.images', ['imageUrl' => $language->uri . '.css', 'hash' => $uploadedCssIndexed->get('/'.$language->uri.'.css')->hash ]) !!}">
     @endif
     <link rel="stylesheet" href="{{ mix('universal2/custom.css') }}">
 
@@ -173,7 +176,11 @@
                     @endforeach
                     <div class="header-contact">
                         <div class="header-contact__content">
-                            @if(isset($subdomain) && $subdomain->hasSubdomain())
+                            @if($dictionary['tg_bot'])
+                                <a href="{!! $dictionary['tg_bot'] !!}" target="_blank" class="header-contact__phone">
+                                    <img src="/universal2/img/tg.webp" width="45" height="45">
+                                </a>
+                            @elseif(isset($subdomain) && $subdomain->hasSubdomain())
                                 @if(($site->localOffices->count() > 0)&&($site->localOffices->first()->localOfficePhones->count() > 0))
                                 <a class="header-contact__phone"
                                    href="tel:{{ $site->localOffices->first()->localOfficePhones[0]->phone_value }}">{{ $site->localOffices->first()->localOfficePhones[0]->phone_text }}</a>
@@ -183,6 +190,7 @@
                                href="tel:{{ $dictionary['header_phone'] }}">@d('header_phone_formatted')</a>
                             @endif
                         </div>
+
                     </div>
                 </div>
                 <div class="menu-mobile js-menu-open-button"></div>
