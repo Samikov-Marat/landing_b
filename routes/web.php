@@ -507,6 +507,21 @@ Route::prefix('admin')->middleware(
             Route::get('/', 'Admin\CountryTextsController@index')->name('admin.countryTexts.index');
             Route::put('{countryText}', 'Admin\CountryTextsController@update')->name('admin.countryTexts.update');
         });
+
+        Route::get('aliases', 'Admin\AliasController@index')
+            ->name('admin.aliases.index');
+        Route::get('aliases/add', 'Admin\AliasController@edit')
+            ->name('admin.aliases.add');
+        Route::get('aliases/edit/{id}', 'Admin\AliasController@edit')
+            ->name('admin.aliases.edit');
+        Route::post('aliases/save', 'Admin\AliasController@save')
+            ->name('admin.aliases.save');
+        Route::post('aliases/delete', 'Admin\AliasController@delete')
+            ->name('admin.aliases.delete');
+        Route::get('aliases/search-sites', 'Admin\AliasController@searchSites')
+            ->name('admin.aliases.search_sites')
+            ->middleware('debugbar.disable');
+
     }
 
 );

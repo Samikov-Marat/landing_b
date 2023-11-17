@@ -20,6 +20,7 @@ class MenuBuilder
     public function __construct()
     {
         $this->menu = [
+            ['route' => 'admin.aliases.index', 'text' => 'Псевдонимы', 'icon' => 'fa fa-compass',],
             ['route' => 'admin.sites.index', 'text' => 'Сайты', 'icon' => 'far fa-folder',],
             ['route' => 'admin.pages.index', 'text' => 'Страницы', 'icon' => 'far fa-file',],
             ['route' => 'admin.top_offices.index', 'text' => 'Международные офисы', 'icon' => 'fab fa-fort-awesome',],
