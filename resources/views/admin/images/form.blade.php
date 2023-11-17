@@ -52,6 +52,18 @@
             </div>
         </div>
 
+        <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Массовая загрузка (содержимое одной директории)</span>
+                </div>
+                <div class="custom-file">
+                    <input type="file" multiple="multiple" name="multifile[]" class="custom-file-input" id="image_file">
+                    <label class="custom-file-label" for="image_file">Выбрать файл на диске</label>
+                </div>
+            </div>
+        </div>
+
         <div class="form-check mb-5">
             <input class="form-check-input" type="checkbox" value="true" name="download" id="download" {{ (isset($image) && $image->is_download) ? 'checked' : '' }}>
             <label class="form-check-label" for="download">
