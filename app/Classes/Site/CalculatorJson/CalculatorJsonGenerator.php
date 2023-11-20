@@ -91,6 +91,7 @@ class CalculatorJsonGenerator implements JsonGeneratorRequestToApi
             '99' => 'LAK',
             '100' => 'LAK',
             '101' => 'NZD',
+            '165' => 'TMT',
         ];
         return $marks[$code];
     }
