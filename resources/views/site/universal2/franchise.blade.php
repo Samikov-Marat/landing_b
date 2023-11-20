@@ -152,12 +152,14 @@
                                 </div>
                             </div>
                         </div>
-                        <picture class="franchise-format__image-wrapper">
-                            <source media="(max-width: 480px)" srcset="/universal2/img/franchise/format-mobile.png, /universal2/img/franchise/format-mobile-2x.png 2x">
-                            <source media="(min-width: 481px) and (max-width: 1199px)" srcset="/universal2/img/franchise/format-tablet.png, /universal2/img/franchise/format-tablet-2x.png 2x">
-                            <source media="(min-width: 1200px)" srcset="/universal2/img/franchise/format.png, /universal2/img/franchise/format-2x.png 2x">
-                            <img src="/universal2/img/franchise/format.png" alt="" class="franchise-format__image">
-                        </picture>
+                        <div class="franchise-format__image-wrapper">
+                            <picture>
+                                <source media="(max-width: 480px)" srcset="/universal2/img/franchise/format-mobile.png, /universal2/img/franchise/format-mobile-2x.png 2x">
+                                <source media="(min-width: 481px) and (max-width: 1199px)" srcset="/universal2/img/franchise/format-tablet.png, /universal2/img/franchise/format-tablet-2x.png 2x">
+                                <source media="(min-width: 1200px)" srcset="/universal2/img/franchise/format.png, /universal2/img/franchise/format-2x.png 2x">
+                                <img src="/universal2/img/franchise/format.png" alt="" class="franchise-format__image">
+                            </picture>
+                        </div>
                     </div>
                     <div class="franchise-format__item js-franchise-format hidden" data-format="shop">
                         <div class="franchise-format__item-text-content">

@@ -15,7 +15,7 @@
                     <li class="it-solutions__list-item">@d('it_solutions_9')</li>
                     <li class="it-solutions__list-item">@d('it_solutions_10')</li>
                 </ul>
-                <a href="https://cdek.ru/ru/integration" class="primary-button primary-button_with_arrow i18n-h it-solutions__primary-button_desktop">@d('it_solutions_button')</a>
+                <a href="https://cdek.ru/ru/integration" class="primary-button primary-button_with_arrow i18n-h it-solutions__primary-button_desktop" target="_blank">@d('it_solutions_button')</a>
             </div>
             <div class="it-solutions__right-item">
                 <div class="it-solutions__right-item-content">

@@ -5092,15 +5092,10 @@ body {
   .franchise-format__tariff {
     display: flex; }
   .franchise-format__tariff-item {
+      flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center; }
-    .franchise-format__tariff-item:first-child {
-      margin-right: 125px; }
-    .franchise-format__tariff-item:nth-child(2) {
-      margin-right: 96px; }
-    .franchise-format__tariff-item:last-child {
-      margin-right: 0; }
   .franchise-format__tariff-icon {
     width: 72px;
     height: 72px;
@@ -5121,7 +5116,9 @@ body {
     font-weight: 500;
     font-size: 19px;
     line-height: 24px;
-    margin-bottom: 5px; }
+    margin-bottom: 5px;
+    text-align: center;
+    }
   .franchise-format__tariff-text {
     font-size: 15px;
     line-height: 22px;
@@ -5155,16 +5152,14 @@ body {
     font-size: 14px;
     line-height: 21px;
     margin-bottom: 15px; }
-  .franchise-format__tariff-item:first-child {
-    margin-right: 36px; }
-  .franchise-format__tariff-item:nth-child(2) {
-    margin-right: 13px; }
   .franchise-format__tariff {
-    justify-content: space-between; }
+    justify-content: space-around; }
   .franchise-format__tariff-value {
     font-size: 14px;
     line-height: 20px;
-    margin-bottom: 3px; }
+    margin-bottom: 3px;
+    text-align: center;
+  }
   .franchise-format__tariff-text {
     font-size: 12px;
     line-height: 16px; }
@@ -5207,7 +5202,8 @@ body {
   .franchise-format__item {
     padding: 0 32px 0 0; }
   .franchise-format__item-text-content {
-    width: 52.95858%;
+    min-width: 480px;
+    width: 50%;
     padding-top: 2px;
     flex-shrink: 0; }
   .franchise-format__item-title {
@@ -5218,17 +5214,18 @@ body {
     font-size: 14px;
     line-height: 21px;
     margin-bottom: 12px; }
-  .franchise-format__tariff-item:first-child {
-    margin-right: 69px; }
-  .franchise-format__tariff-item:nth-child(2) {
-    margin-right: 35px; }
   .franchise-format__tariff-value {
+      text-align: center;
     font-size: 16px;
     line-height: 20px;
     margin-bottom: 5px; }
   .franchise-format__tariff-text {
     font-size: 14px;
     line-height: 21px; } }
+
+.franchise-format__image-wrapper {
+    flex: 1;
+    text-align: center; }
 
 .franchise-start-a-business {
   position: relative; }

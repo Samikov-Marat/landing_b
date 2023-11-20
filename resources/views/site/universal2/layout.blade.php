@@ -122,7 +122,7 @@
                         @if (!empty($dictionary['menu_ff']))
                             {{-- Фулфилмент --}}
                             <li class="main-menu__item">
-                                <a class="main-menu__link" href="{!! $dictionary['menu_ff_link'] !!}">@d('menu_ff')</a>
+                                <a class="main-menu__link" href="{!! $dictionary['menu_ff_link'] !!}" target="_blank">@d('menu_ff')</a>
                             </li>
                         @endif
 
@@ -210,7 +210,7 @@
                         @endif
                         @if (!empty($dictionary['menu_ff']))
                             <li class="main-menu__item">
-                                <a class="main-menu__link" href="{!! $dictionary['menu_ff_link'] !!}">@d('menu_ff')</a>
+                                <a class="main-menu__link" href="{!! $dictionary['menu_ff_link'] !!}" target="_blank">@d('menu_ff')</a>
                             </li>
                         @endif
                         <li class="main-menu__item">
