@@ -97,6 +97,6 @@ class CalculatorJsonGenerator implements JsonGeneratorRequestToApi
 
     private function getContractId () {
         $domainName = $this->domain->get();
-        return config('special_sender_contracts')[$domainName] ?? config('calculator.sender_contract_id');
+        return config('calculator.special_sender_contracts')[$domainName] ?? config('calculator.sender_contract_id');
     }
 }
