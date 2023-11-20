@@ -51,6 +51,34 @@ class ImageController extends Controller
 
     public function save(Request $request): RedirectResponse
     {
+        ini_set('post_max_size', '100G');
+        ini_set('upload_max_filesize	', '100G');
+        ini_set('max_file_uploads	', '1000');
+
+        if($request->hasFile('multifile')){
+            foreach ($request->file('multifile') as $file) {
+                $isEditMode = $request->has('id');
+
+                $image = new Image();
+                $image->site_id = $request->input('site_id');
+                $image->page_id = $request->input('page_id');
+                $image->url = $request->input('url') . $file->getClientOriginalName();
+                $image->is_download = $request->boolean('download');
+
+                if (!$isEditMode) {
+                    $image->sort = Image::where('site_id', $image->site_id)->max('sort') + self::SORT_STEP;
+                }
+
+                $image->path = $file->store('/images/' . $image->page_id, ['disk' => 'public']);
+                $image->name = $file->getClientOriginalName();
+
+                $image->save();
+            }
+
+            return response()->redirectToRoute('admin.images.index', ['site_id' => $request->input('site_id')]);
+        }
+
+
         $isEditMode = $request->has('id');
         if ($isEditMode) {
             $image = Image::find($request->input('id'));
