@@ -34,7 +34,7 @@ class PageController extends Controller
     public function selectDefaultLanguage(Request $request)
     {
         try {
-            $domain = Domain::getInstance($request);
+            $domain = app(Domain::class);
             $siteRepository = new SiteRepository($domain);
             $site = $siteRepository->getSite();
 
@@ -75,7 +75,7 @@ class PageController extends Controller
         $question = null
     ) {
         Metrics::showPage();
-        $domain = Domain::getInstance($request);
+        $domain = app(Domain::class);
         try {
             $siteRepository = new SiteRepository($domain);
         } catch (ModelNotFoundException $exception) {

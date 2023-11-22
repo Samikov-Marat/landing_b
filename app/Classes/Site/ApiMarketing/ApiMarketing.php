@@ -4,6 +4,8 @@ namespace App\Classes\Site\ApiMarketing;
 
 use App\Classes\CategoryInTurn;
 use App\Classes\Domain;
+use App\Classes\Site\Subdomain;
+use App\Classes\SiteRepository;
 use App\Classes\UtmCookie;
 use App\Classes\UtmSiteRepository;
 use App\Exceptions\LocalOfficeNotFoundByUtm;
@@ -11,6 +13,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Log;
+use Symfony\Component\HttpFoundation\Response as HttpFoundationResponse;
 
 class ApiMarketing
 {
@@ -19,11 +22,10 @@ class ApiMarketing
     private $apiMarketingCategory = '';
     private $timezone = '0';
 
-
     public function __construct(Request $request)
     {
         $this->request = $request;
-        $domain = Domain::getInstance($this->request);
+        $domain = resolve(Domain::class, ['request' => $this->request]);
         $this->domain = $domain->get();
         $this->prepareCategoryAndTimezone($domain);
     }
@@ -77,7 +79,6 @@ class ApiMarketing
         return ApiMarketingSender::send($apiMarketingRequestPresentation->get());
     }
 
-
     public function prepareCategoryAndTimezone(Domain $domain)
     {
         try {
@@ -87,10 +88,23 @@ class ApiMarketing
             return;
         }
 
-        if($domain->hasSubdomain()){
-            $localOffice = $localOfficeRepository->getLocalOfficeWithoutCookies($domain->getSubdomain());
-            $this->apiMarketingCategory = $localOffice->category;
-            $this->timezone = $localOffice->request_timezone;
+        if ($domain->hasSubdomain()) {
+            try {
+                $siteRepository = new SiteRepository($domain);
+            } catch (ModelNotFoundException $exception) {
+                Log::error('Не найден домен');
+                abort(HttpFoundationResponse::HTTP_NOT_FOUND);
+                return response()->noContent(HttpFoundationResponse::HTTP_NOT_FOUND);
+            }
+
+            $site = $siteRepository->getSite();
+            $subdomain = new Subdomain($site, $domain->getSubdomain());
+            $franchisee = $subdomain->getFranchisee();
+
+            $franchisee->load('localOffices');
+            $firstLocalOffice = $franchisee->localOffices->first();
+            $this->apiMarketingCategory =$firstLocalOffice->category;
+            $this->timezone = $firstLocalOffice->request_timezone;
             return;
         }
 

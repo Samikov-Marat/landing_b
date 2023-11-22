@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Classes;
 
 use App\Exceptions\LocalOfficeNotFoundByUtm;
@@ -18,7 +17,7 @@ class UtmSiteRepository
                 [
                     'localOffices' => function ($query) {
                         $query->select(
-                            ['id', 'site_id', 'utm_tag', 'utm_value', 'category', 'request_timezone', 'subdomain',]
+                            ['id', 'site_id', 'utm_tag', 'utm_value', 'category', 'request_timezone',]
                         )
                             ->orderBy('sort');
                     }

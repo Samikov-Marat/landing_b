@@ -152,13 +152,13 @@ class RequestController extends Controller
         if ($request->input('preferred_response', 'html') === 'redirect') {
             return view('site.universal2.gtm_block');
         }
-        return response()->redirectTo($request->input('url'),
-            \Symfony\Component\HttpFoundation\Response::HTTP_FOUND);
+        return response()
+            ->redirectTo($request->input('url'), HttpFoundationResponse::HTTP_FOUND);
     }
 
     public function feedbackReview(Request $request)
     {
-        $domain = Domain::getInstance($request)->get();
+        $domain = app(Domain::class)->get();
         try {
             FormRequestRepository::getInstance('feedbackReview')
                 ->save($request);
@@ -228,7 +228,7 @@ class RequestController extends Controller
 
     public function images(Request $request, $imageUrl)
     {
-        $domain = Domain::getInstance($request)->get();
+        $domain = app(Domain::class)->get();
         try {
             $site = Site::where('domain', $domain)
                 ->firstOrFail();
@@ -278,7 +278,8 @@ class RequestController extends Controller
                 'json' => [
                     'limit' => 5,
                     'query' => $request->input('query'),
-                    'offset' => 0, 'defaultLang' => 'eng'
+                    'offset' => 0,
+                    'defaultLang' => 'eng'
                 ],
             ]
         );
@@ -294,11 +295,18 @@ class RequestController extends Controller
         try {
             // B2B, B2C
             $clientsType = ($request->customer_type ?? 'B') . 2 . ($request->receiver_type ?? 'C');
-            $responseBody = $calculator->getTariffs($request, $calculatorJsonGenerator,
-                config('calculator.url'));
+            $responseBody = $calculator->getTariffs(
+                $request,
+                $calculatorJsonGenerator,
+                config('calculator.url')
+            );
 
-            return $calculatorResponse->transformResponseBody($responseBody, $request->language,
-                $clientsType, $request->page);
+            return $calculatorResponse->transformResponseBody(
+                $responseBody,
+                $request->language,
+                $clientsType,
+                $request->page
+            );
         } catch (Exception $exception) {
             Log::error($exception);
             abort(HttpFoundationResponse::HTTP_INTERNAL_SERVER_ERROR);

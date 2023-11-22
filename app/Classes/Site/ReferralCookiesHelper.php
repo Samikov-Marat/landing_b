@@ -34,7 +34,7 @@ class ReferralCookiesHelper
 
     public function save(Request $request): void
     {
-        $domain = Domain::getInstance($request);
+        $domain = app(Domain::class);
         try {
             $site = new UtmSiteRepository($domain->get());
         } catch (ModelNotFoundException $exception) {
