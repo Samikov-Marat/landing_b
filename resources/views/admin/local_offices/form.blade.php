@@ -54,14 +54,6 @@
         </div>
 
         <div class="form-group">
-            <label for="id_subdomain">Поддомен</label>
-            <input type="text" class="form-control" name="subdomain" id="id_subdomain"
-                   value="{{ isset($localOffice) ? $localOffice->subdomain : '' }}"
-                   placeholder="Поддомен" autocomplete="off">
-            <small id="id_subdomain_help" class="form-text text-muted">Как правило, код офиса в нижнем регистре</small>
-        </div>
-
-        <div class="form-group">
             <label for="id_map_preset">Настройки карты поддомена</label>
             <textarea type="text" class="form-control" name="map_preset" id="id_map_preset"
                       placeholder="Настройки карты поддомена"
