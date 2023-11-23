@@ -31,13 +31,7 @@
                     Обозначение
                 </th>
                 <th>
-                    Поддомен
-                </th>
-                <th>
                     Название
-                </th>
-                <th>
-                    UTM
                 </th>
                 <th>
                     Категория api-marketing
@@ -64,14 +58,6 @@
                         {{ $localOffice->code }}
                     </td>
                     <td>
-                        @if($localOffice->subdomain !== '')
-                            {{ $localOffice->subdomain }}<br>
-                            https://{{ $localOffice->subdomain }}.{{ $site->domain }}
-                        @else
-                            <span class="disabled">нет</span>
-                        @endif
-                    </td>
-                    <td>
                         @foreach($localOffice->localOfficeTexts as $text)
                             <div>
                                 {{ $text->id }}
@@ -79,9 +65,6 @@
                                 {{ $text->name }}
                             </div>
                         @endforeach
-                    </td>
-                    <td>
-                        {{ $localOffice->utm_tag }}={{ $localOffice->utm_value }}
                     </td>
                     <td>
                         {{ $localOffice->category }}
