@@ -107,11 +107,20 @@
 
 
             <div class="faq-list faq__faq-list hidden" id="faq_business">
-                <div class="faq-list__faq faq-list__faq_opened">
-                    <div class="faq-list__faq-question">@d('faq_business_question_1')</div>
-                    <div class="faq-list__faq-answer">@d('faq_business_answer_1')</div>
-                </div>
-                <div class="faq-list__faq">
+                @php
+                    $faqOpened = 'faq-list__faq_opened';
+                @endphp
+                @if(isset($dictionary['faq_business_question_1']) && ($dictionary['faq_business_question_1'] != '' ))
+                    <div class="faq-list__faq {{ $faqOpened }}">
+                        <div class="faq-list__faq-question">@d('faq_business_question_1')</div>
+                        <div class="faq-list__faq-answer">@d('faq_business_answer_1')</div>
+                    </div>
+                    @php
+                        $faqOpened = '';
+                    @endphp
+                @endif
+
+                <div class="faq-list__faq {{ $faqOpened }}">
                     <div class="faq-list__faq-question">@d('faq_business_question_2')</div>
                     <div class="faq-list__faq-answer">@d('faq_business_answer_2')</div>
                 </div>
