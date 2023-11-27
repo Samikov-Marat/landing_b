@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Classes;
 
 use App\Exceptions\LocalOfficeNotFoundByUtm;
@@ -18,7 +17,7 @@ class UtmSiteRepository
                 [
                     'localOffices' => function ($query) {
                         $query->select(
-                            ['id', 'site_id', 'utm_tag', 'utm_value', 'category', 'request_timezone', 'subdomain',]
+                            ['id', 'site_id', 'utm_tag', 'utm_value', 'category', 'request_timezone',]
                         )
                             ->orderBy('sort');
                     }
@@ -39,28 +38,12 @@ class UtmSiteRepository
     public function getLocalOffice(array $utms)
     {
         foreach ($this->site->localOffices as $localOffice) {
-            if (isset($utms['subdomain']) &&
-                ($localOffice->subdomain == $utms['subdomain'])) {
-                return $localOffice;
-            }
-        }
-        foreach ($this->site->localOffices as $localOffice) {
             if (isset($utms[$localOffice->utm_tag]) &&
                 ($localOffice->utm_value == $utms[$localOffice->utm_tag])) {
                 return $localOffice;
             }
         }
         throw new LocalOfficeNotFoundByUtm('Офис по subdomain и utm в cookies не найден');
-    }
-
-    public function getLocalOfficeWithoutCookies($subdomain)
-    {
-        foreach ($this->site->localOffices as $localOffice) {
-            if ($localOffice->subdomain == $subdomain) {
-                return $localOffice;
-            }
-        }
-        throw new LocalOfficeNotFoundByUtm('Офис по subdomain без cookies не найден');
     }
 
     public function getSite()

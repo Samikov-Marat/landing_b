@@ -31,11 +31,6 @@ class Domain
         $this->subdomain = '';
     }
 
-    public static function getInstance(Request $request): self
-    {
-        return new static($request);
-    }
-
     public function get(): string
     {
         try {

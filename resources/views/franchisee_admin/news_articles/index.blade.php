@@ -8,7 +8,6 @@
     @include('admin.breadcrumbs', ['breadcrumbs' => [
         ['href' => route('admin.sites.index'), 'text' => 'Сайты'],
         ['text' => $site->name],
-        ['text' => $localOffice->subdomain],
         ['text' => 'Новости'],
     ]])
 @endsection

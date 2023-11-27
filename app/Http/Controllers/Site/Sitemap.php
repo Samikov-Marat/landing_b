@@ -15,7 +15,7 @@ class Sitemap extends Controller
 {
     public function get(Request $request)
     {
-        $domain = Domain::getInstance($request);
+        $domain = app(Domain::class);
         $siteRepository = new SiteRepository($domain);
 
         $site = $siteRepository->getSite();

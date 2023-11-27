@@ -49,8 +49,11 @@ class Subdomain
         return $this->subdomain != '';
     }
 
-    public function getFranchisee()
+    public function getFranchisee(): Franchisee
     {
+        if (is_null($this->franchisee)) {
+            abort(HttpFoundationResponse::HTTP_NOT_FOUND);
+        }
         return $this->franchisee;
     }
 

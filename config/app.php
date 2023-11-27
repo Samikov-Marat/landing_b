@@ -193,6 +193,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         \App\Providers\MetricsProvider::class,
+        \App\Providers\Classes\DomainProvider::class,
     ],
 
     /*

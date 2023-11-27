@@ -26,7 +26,6 @@ class LocalOfficeController extends Controller
                         'id',
                         'site_id',
                         'code',
-                        'subdomain',
                         'utm_tag',
                         'utm_value',
                         'category',
@@ -129,7 +128,6 @@ class LocalOfficeController extends Controller
 
         $localOffice->site_id = $site->id;
         $localOffice->code = $request->input('code', '');
-        $localOffice->subdomain = trim($request->input('subdomain', ''));
         $localOffice->map_preset = trim($request->input('map_preset', ''));
         $localOffice->utm_tag = $request->input('utm_tag', '');
         $localOffice->utm_value = $request->input('utm_value', '');
