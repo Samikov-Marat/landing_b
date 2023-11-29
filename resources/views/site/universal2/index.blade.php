@@ -57,7 +57,7 @@
             @include('site.universal2.banner_forward')
         @endif
 
-        @include('site.universal2.calculator_block', ['customer_type' => 'C', 'receiver_type' => 'C'])
+        @include('site.universal2.calculator_block', ['customer_type' => $dictionary['index_page_calculator_sender'], 'receiver_type' => $dictionary['index_page_calculator_receiver']])
 
 
         <div class="index-special-conditions screen-content">
