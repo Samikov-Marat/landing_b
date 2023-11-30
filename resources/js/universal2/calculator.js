@@ -219,6 +219,10 @@ $(function () {
             "receiver_type": calculator.getReceiverType(),
             "page": calculator.getPageUri()
         }).done(function(tariffs){
+            if (tariffs.hasOwnProperty('handle')) {
+                redirectToCdekRUOrder(tariffs);
+                return;
+            }
             showTariffs(tariffs);
         });
 
@@ -321,6 +325,22 @@ $(function () {
             return true;
         }
         return false;
+    }
+    const redirectToCdekRUOrder = (httpResponse) => {
+        const query_params = $.param({
+            from: $('.js-calculator-from-id').data("code"),
+            to: $('.js-calculator-to-id').data("code"),
+            weight: calculator.getMass(),
+            length: calculator.getLength(),
+            width: calculator.getWidth(),
+            height: calculator.getHeight()
+        });
+        ResetCalculatorForm();
+        $('.calculator__content_step1')
+          .removeClass('calculator__content_loading')
+
+        window.open(`https://website.preproduction.cdek.ru/ru/cabinet/calculate/?${query_params}`, '_blank');
+        return;
     }
 
 
@@ -459,7 +479,7 @@ $(function () {
             transformResult: function (response) {
                 return {
                     suggestions: $.map(response, function (dataItem) {
-                        return {value: dataItem.name, data: dataItem.uuid};
+                        return {value: dataItem.name, data: dataItem.uuid, code: dataItem.code};
                     })
                 };
             },
@@ -467,6 +487,7 @@ $(function () {
             onSelect: function (suggestion) {
                 $(this).val(suggestion.value);
                 let forId = $(this).data('for');
+                $(forId).data('code', suggestion.code);
                 $(forId).val(suggestion.data);
             },
 
