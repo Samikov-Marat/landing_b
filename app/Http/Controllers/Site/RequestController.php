@@ -10,8 +10,11 @@ use App\Classes\MapJsonCallback;
 use App\Classes\OfficeRepository;
 use App\Classes\Site\AllowCookie;
 use App\Classes\Site\Amo\AmoCRMApiClientBuilder;
+use App\Classes\Site\Amo\AmoCRMApiClientVelocity;
 use App\Classes\Site\Amo\AmoFormFranchise;
+use App\Classes\Site\Amo\AmoFormVelocity;
 use App\Classes\Site\Amo\AmoSender;
+use App\Classes\Site\Amo\AmoSenderVelocity;
 use App\Classes\Site\ApiMarketing\ApiMarketing;
 use App\Classes\Site\Calculator;
 use App\Classes\Site\CalculatorJson\CalculatorJsonGenerator;
@@ -112,6 +115,27 @@ class RequestController extends Controller
             Log::error($e);
             abort(HttpFoundationResponse::HTTP_INTERNAL_SERVER_ERROR);
         }
+        return response()->noContent();
+    }
+
+    public function velocity(Request $request)
+    {
+        if (!$request->has('tranid')) {
+            abort(Response::HTTP_FORBIDDEN);
+        }
+        if ($request->input('tranid') != '000') {
+            abort(Response::HTTP_FORBIDDEN);
+        }
+        try {
+            $client = app(AmoCRMApiClientVelocity::class)->getClient();
+            app(AmoSenderVelocity::class)
+                ->setApiClient($client)
+                ->send($request->input('url'), AmoFormVelocity::get($request));
+        } catch (Exception $e) {
+            Log::error($e);
+            abort(HttpFoundationResponse::HTTP_INTERNAL_SERVER_ERROR);
+        }
+
         return response()->noContent();
     }
 
@@ -287,11 +311,12 @@ class RequestController extends Controller
     }
 
     public function calculate(
-        CalculatorRequest $request,
-        Calculator $calculator,
+        CalculatorRequest       $request,
+        Calculator              $calculator,
         CalculatorJsonGenerator $calculatorJsonGenerator,
-        CalculatorResponse $calculatorResponse
-    ) {
+        CalculatorResponse      $calculatorResponse
+    )
+    {
         try {
             // B2B, B2C
             $clientsType = ($request->customer_type ?? 'B') . 2 . ($request->receiver_type ?? 'C');

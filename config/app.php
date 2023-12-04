@@ -192,8 +192,10 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        \App\Providers\MetricsProvider::class,
-        \App\Providers\Classes\DomainProvider::class,
+        App\Providers\MetricsProvider::class,
+        App\Providers\Classes\DomainProvider::class,
+        App\Providers\Classes\Amo\AmoCRMApiClientVelocityProvider::class,
+        App\Providers\Classes\Amo\AmoSenderVelocityProvider::class,
     ],
 
     /*

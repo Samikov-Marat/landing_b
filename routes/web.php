@@ -564,6 +564,9 @@ Route::middleware('debugbar.disable')->group(function () {
         ->name('request.images');
 });
 
+Route::post('/request/velocity', 'Site\RequestController@velocity')
+    ->name('request.velocity');
+
 Route::get('/{languageUrl}/{pageUrl}/{category?}/{question?}', 'Site\PageController@showPage')
     ->middleware(['clear.get', 'save.utm.to.cookies', 'antifraud', 'save.statistics',])
     ->where('pageUrl', '^support$')
