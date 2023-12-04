@@ -339,7 +339,7 @@ $(function () {
         $('.calculator__content_step1')
           .removeClass('calculator__content_loading')
 
-        window.open(`https://website.preproduction.cdek.ru/ru/cabinet/calculate/?${query_params}`, '_blank');
+        window.open(`https://www.cdek.ru/ru/cabinet/calculate/?${query_params}`, '_blank');
         return;
     }
 
