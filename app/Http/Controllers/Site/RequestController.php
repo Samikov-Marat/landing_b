@@ -16,6 +16,7 @@ use App\Classes\Site\ApiMarketing\ApiMarketing;
 use App\Classes\Site\Calculator;
 use App\Classes\Site\CalculatorJson\CalculatorJsonGenerator;
 use App\Classes\Site\CalculatorResponse;
+use App\Classes\Site\CountryByCityUuid;
 use App\Classes\Site\FormRequestRepository;
 use App\Classes\Site\Jira\JiraSender;
 
@@ -290,8 +291,15 @@ class RequestController extends Controller
         CalculatorRequest $request,
         Calculator $calculator,
         CalculatorJsonGenerator $calculatorJsonGenerator,
-        CalculatorResponse $calculatorResponse
+        CalculatorResponse $calculatorResponse,
+        CountryByCityUuid $countryByCityUuid
     ) {
+        $countryCode = $countryByCityUuid->get($request->input('sender_city_uuid'));
+        if ($countryCode === 'RU') {
+            return response()->json([
+                'handle' => 'redirect'
+            ]);
+        }
         try {
             // B2B, B2C
             $clientsType = ($request->customer_type ?? 'B') . 2 . ($request->receiver_type ?? 'C');
