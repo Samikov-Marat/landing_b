@@ -14,9 +14,9 @@ class AccessTokenMemento
     private $refreshToken;
     private $expires;
 
-    public function __construct()
+    public function __construct($file)
     {
-        $this->file = config('amo.oauth_tmp_file');
+        $this->file = $file;
         $this->clientSecret = null;
         $this->accessToken = null;
         $this->refreshToken = null;

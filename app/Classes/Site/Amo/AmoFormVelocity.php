@@ -9,11 +9,11 @@ class AmoFormVelocity
     public static function get(Request $request)
     {
         return [
-            '2114857' => $request->input('name'),
-            '2114859' => $request->input('phone'),
-            '2114863' => $request->input('email'),
-            '2138787' => $request->input('clientType'),
-            '2139655' => $request->input('message'),
+            '1289927' => $request->input('clientType'),
+            '1289931' => $request->input('name'),
+            '1289933' => $request->input('phone'),
+            '1289935' => $request->input('email'),
+            '1289939' => $request->input('message'),
         ];
     }
 }

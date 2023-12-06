@@ -465,6 +465,11 @@ Route::prefix('admin')->middleware(
         Route::post('amo/auth-save', 'Admin\AmoController@authSave')
             ->name('admin.amo.auth_save');
 
+        Route::get('amo/auth-form-velocity', 'Admin\AmoController@authFormVelocity')
+            ->name('admin.amo.auth_form_velocity');
+        Route::post('amo/auth-save-velocity', 'Admin\AmoController@authSaveVelocity')
+            ->name('admin.amo.auth_save_velocity');
+
         Route::group([
             'prefix' => '{site}/map',
         ], function () {

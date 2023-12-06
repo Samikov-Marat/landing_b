@@ -130,7 +130,7 @@ class RequestController extends Controller
             $client = app(AmoCRMApiClientVelocity::class)->getClient();
             app(AmoSenderVelocity::class)
                 ->setApiClient($client)
-                ->send($request->input('url'), AmoFormVelocity::get($request));
+                ->send(AmoFormVelocity::get($request));
         } catch (Exception $e) {
             Log::error($e);
             abort(HttpFoundationResponse::HTTP_INTERNAL_SERVER_ERROR);

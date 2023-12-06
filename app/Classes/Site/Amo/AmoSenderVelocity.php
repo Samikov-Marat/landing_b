@@ -17,16 +17,16 @@ class AmoSenderVelocity
 {
     private $apiClient;
 
-    const DEFAULT_RESPONSIBLE_USER_ID = 2487868; // Евгений Караковский
+    const DEFAULT_RESPONSIBLE_USER_ID = 9469758; // Рогожников Сергей Витальевич
 
-    const PIPELINE_ID = 5730658;
+    const PIPELINE_ID = 7551790; // Создал для velocity
 
     public function setApiClient(AmoCRMApiClient $apiClient){
         $this->apiClient = $apiClient;
         return $this;
     }
 
-    public function send($url, $form)
+    public function send($form)
     {
         //Создадим сделку с заполненным полем типа текст
         $lead = new LeadModel();
@@ -44,7 +44,7 @@ class AmoSenderVelocity
 
 
         $lead->setCustomFieldsValues($leadCustomFieldsValues);
-        $lead->setName('Заявка из калькулятора ' . $url);
+        $lead->setName('Заявка из калькулятора cdekvelocity.ru');
         $lead->setPipelineId(self::PIPELINE_ID);
         $responsibleUserId = self::DEFAULT_RESPONSIBLE_USER_ID;
         $lead->setResponsibleUserId($responsibleUserId);
@@ -52,6 +52,7 @@ class AmoSenderVelocity
             $this->apiClient->leads()
                 ->addOne($lead);
         } catch (AmoCRMApiException $e) {
+            // dd($e);
             Log::error('Не удалось создать сделку в АМО' . $e->getMessage());
             throw new Exception('Не удалось создать сделку в АМО');
         }

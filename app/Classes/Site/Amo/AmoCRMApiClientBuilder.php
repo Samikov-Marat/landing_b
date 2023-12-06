@@ -15,7 +15,7 @@ class AmoCRMApiClientBuilder
 
     public function getClient(): AmoCRMApiClient
     {
-        $memento = AccessTokenMemento::getInstance();
+        $memento = new AccessTokenMemento(config('amo.oauth_tmp_file'));
         $memento->load();
         $token = new AccessToken([
                                      'access_token' => $memento->getAccessToken(),
