@@ -120,12 +120,6 @@ class RequestController extends Controller
 
     public function velocity(Request $request)
     {
-        if (!$request->has('tranid')) {
-            abort(Response::HTTP_FORBIDDEN);
-        }
-        if ($request->input('tranid') != '000') {
-            abort(Response::HTTP_FORBIDDEN);
-        }
         try {
             $client = app(AmoCRMApiClientVelocity::class)->getClient();
             app(AmoSenderVelocity::class)

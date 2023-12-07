@@ -570,7 +570,8 @@ Route::middleware('debugbar.disable')->group(function () {
 });
 
 Route::post('/request/velocity', 'Site\RequestController@velocity')
-    ->name('request.velocity');
+    ->name('request.velocity')
+    ->middleware('velocity.basic.auth');
 
 Route::get('/{languageUrl}/{pageUrl}/{category?}/{question?}', 'Site\PageController@showPage')
     ->middleware(['clear.get', 'save.utm.to.cookies', 'antifraud', 'save.statistics',])
