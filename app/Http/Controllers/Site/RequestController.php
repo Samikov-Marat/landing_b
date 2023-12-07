@@ -130,7 +130,7 @@ class RequestController extends Controller
             abort(HttpFoundationResponse::HTTP_INTERNAL_SERVER_ERROR);
         }
 
-        return response()->noContent();
+        return response('');
     }
 
     public function order(Request $request): Response
