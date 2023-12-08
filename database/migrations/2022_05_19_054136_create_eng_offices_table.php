@@ -17,7 +17,7 @@ class CreateEngOfficesTable extends Migration
             $table->engine = 'MyISAM';
             $table->id();
             $table->timestamps();
-            $table->string('code');
+            $table->string('code', 32);
             $table->string('name');
             $table->string('country_code_iso');
             $table->string('work_time');

@@ -17,6 +17,7 @@ use App\Http\Middleware\SaveUtmToCookies;
 use App\Http\Middleware\TrimStrings;
 use App\Http\Middleware\TrustProxies;
 use App\Http\Middleware\UserRouteAccess;
+use App\Http\Middleware\VelocityBasicAuth;
 use App\Http\Middleware\VerifyCsrfToken;
 use App\Http\Middleware\VerifyRecaptchaToken;
 use Fruitcake\Cors\HandleCors;
@@ -85,6 +86,7 @@ class Kernel extends HttpKernel
         'auth' => Authenticate::class,
         'auth.basic' => AuthenticateWithBasicAuth::class,
         'metric.basic.auth' => MetricBasicAuth::class,
+        'velocity.basic.auth' => VelocityBasicAuth::class,
         'bindings' => SubstituteBindings::class,
         'cache.headers' => SetCacheHeaders::class,
         'can' => Authorize::class,

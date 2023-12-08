@@ -20,7 +20,7 @@ class AmoController extends Controller
     public function authForm()
     {
         $clientSecret = '';
-        $memento = AccessTokenMemento::getInstance();
+        $memento = new AccessTokenMemento(config('amo.oauth_tmp_file'));
         if ($memento->exists()) {
             $memento->load();
             $clientSecret = $memento->getClientSecret();
@@ -34,17 +34,52 @@ class AmoController extends Controller
     {
         $clientSecret = $request->input('client_secret');
         $amoCrm = new AmoCRM([
-                                 'baseDomain' => config('amo.account_base_domain'),
-                                 'clientId' => config('amo.client_id'),
-                                 'redirectUri' => config('amo.redirect_uri'),
-                                 'clientSecret' => $clientSecret,
-                             ]);
+            'baseDomain' => config('amo.account_base_domain'),
+            'clientId' => config('amo.client_id'),
+            'redirectUri' => config('amo.redirect_uri'),
+            'clientSecret' => $clientSecret,
+        ]);
         $token = $amoCrm->getAccessToken(
             new AuthorizationCode(),
             ['code' => $request->input('authorization_code')]
         );
-        AccessTokenMemento::getInstance()
-            ->setClientSecret($clientSecret)
+        $memento = new AccessTokenMemento(config('amo.oauth_tmp_file'));
+        $memento->setClientSecret($clientSecret)
+            ->setAccessToken($token->getToken())
+            ->setRefreshToken($token->getRefreshToken())
+            ->setExpires($token->getExpires())
+            ->save();
+        return response()->redirectToRoute('admin.amo.index');
+    }
+
+    public function authFormVelocity()
+    {
+        $clientSecret = '';
+        $memento = new AccessTokenMemento(config('amo_velocity.oauth_tmp_file'));
+        if ($memento->exists()) {
+            $memento->load();
+            $clientSecret = $memento->getClientSecret();
+        }
+        return view('admin.amo.auth_form_velocity')
+            ->with('clientSecret', $clientSecret)
+            ->with('clientId', config('amo_velocity.client_id'));
+    }
+
+    public function authSaveVelocity(Request $request): RedirectResponse
+    {
+        $clientSecret = $request->input('client_secret');
+        $amoCrm = new AmoCRM([
+            'baseDomain' => config('amo_velocity.account_base_domain'),
+            'clientId' => config('amo_velocity.client_id'),
+            'redirectUri' => config('amo_velocity.redirect_uri'),
+            'clientSecret' => $clientSecret,
+        ]);
+        $token = $amoCrm->getAccessToken(
+            new AuthorizationCode(),
+            ['code' => $request->input('authorization_code')]
+        );
+        $memento = new AccessTokenMemento(config('amo_velocity.oauth_tmp_file'));
+        $memento->setClientSecret($clientSecret)
             ->setAccessToken($token->getToken())
             ->setRefreshToken($token->getRefreshToken())
             ->setExpires($token->getExpires())

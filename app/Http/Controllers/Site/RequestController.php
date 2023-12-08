@@ -10,8 +10,11 @@ use App\Classes\MapJsonCallback;
 use App\Classes\OfficeRepository;
 use App\Classes\Site\AllowCookie;
 use App\Classes\Site\Amo\AmoCRMApiClientBuilder;
+use App\Classes\Site\Amo\AmoCRMApiClientVelocity;
 use App\Classes\Site\Amo\AmoFormFranchise;
+use App\Classes\Site\Amo\AmoFormVelocity;
 use App\Classes\Site\Amo\AmoSender;
+use App\Classes\Site\Amo\AmoSenderVelocity;
 use App\Classes\Site\ApiMarketing\ApiMarketing;
 use App\Classes\Site\Calculator;
 use App\Classes\Site\CalculatorJson\CalculatorJsonGenerator;
@@ -114,6 +117,21 @@ class RequestController extends Controller
             abort(HttpFoundationResponse::HTTP_INTERNAL_SERVER_ERROR);
         }
         return response()->noContent();
+    }
+
+    public function velocity(Request $request)
+    {
+        try {
+            $client = app(AmoCRMApiClientVelocity::class)->getClient();
+            app(AmoSenderVelocity::class)
+                ->setApiClient($client)
+                ->send(AmoFormVelocity::get($request));
+        } catch (Exception $e) {
+            Log::error($e);
+            abort(HttpFoundationResponse::HTTP_INTERNAL_SERVER_ERROR);
+        }
+
+        return response('');
     }
 
     public function order(Request $request): Response
@@ -288,8 +306,8 @@ class RequestController extends Controller
     }
 
     public function calculate(
-        CalculatorRequest $request,
-        Calculator $calculator,
+        CalculatorRequest       $request,
+        Calculator              $calculator,
         CalculatorJsonGenerator $calculatorJsonGenerator,
         CalculatorResponse $calculatorResponse,
         CountryByCityUuid $countryByCityUuid

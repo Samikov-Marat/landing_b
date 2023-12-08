@@ -465,6 +465,11 @@ Route::prefix('admin')->middleware(
         Route::post('amo/auth-save', 'Admin\AmoController@authSave')
             ->name('admin.amo.auth_save');
 
+        Route::get('amo/auth-form-velocity', 'Admin\AmoController@authFormVelocity')
+            ->name('admin.amo.auth_form_velocity');
+        Route::post('amo/auth-save-velocity', 'Admin\AmoController@authSaveVelocity')
+            ->name('admin.amo.auth_save_velocity');
+
         Route::group([
             'prefix' => '{site}/map',
         ], function () {
@@ -563,6 +568,10 @@ Route::middleware('debugbar.disable')->group(function () {
         ->where('imageUrl', '.*')
         ->name('request.images');
 });
+
+Route::post('/request/velocity', 'Site\RequestController@velocity')
+    ->name('request.velocity')
+    ->middleware('velocity.basic.auth');
 
 Route::get('/{languageUrl}/{pageUrl}/{category?}/{question?}', 'Site\PageController@showPage')
     ->middleware(['clear.get', 'save.utm.to.cookies', 'antifraud', 'save.statistics',])
