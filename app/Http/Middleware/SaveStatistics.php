@@ -2,7 +2,6 @@
 
 namespace App\Http\Middleware;
 
-use App\Classes\Site\StatisticsRedis;
 use App\Statistics;
 use Closure;
 use Illuminate\Http\Request;
@@ -24,8 +23,7 @@ class SaveStatistics
         $statistics->utm_campaign = $request->input('utm_campaign');
         $statistics->utm_term = $request->input('utm_term');
         $statistics->utm_content = $request->input('utm_content');
-
-        StatisticsRedis::save($statistics->toJson());
+        $statistics->save();
 
         return $next($request);
     }
