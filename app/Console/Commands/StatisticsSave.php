@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Classes\Site\StatisticsRedis;
+use App\Exceptions\RedisBufferIsEmpty;
 use App\Statistics;
 use Illuminate\Console\Command;
 
@@ -19,8 +20,12 @@ class StatisticsSave extends Command
     public function handle()
     {
         $list = [];
-        $jsonList = StatisticsRedis::loadList();
-        foreach ($jsonList as $json) {
+        for ($i = 0; $i < StatisticsRedis::COUNT_PER_STEP; $i++) {
+            try {
+                $json = StatisticsRedis::load();
+            } catch (RedisBufferIsEmpty $e) {
+                break;
+            }
             $statistics = new Statistics();
             $statisticsAttributes = $statistics->fromJson($json);
             $statistics->full_url = $statisticsAttributes['full_url'];
