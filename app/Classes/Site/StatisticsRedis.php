@@ -2,6 +2,7 @@
 
 namespace App\Classes\Site;
 
+use App\Exceptions\RedisBufferIsEmpty;
 use Illuminate\Support\Facades\Redis;
 
 class StatisticsRedis
@@ -14,8 +15,19 @@ class StatisticsRedis
         Redis::rawCommand('RPUSH', self::BUFFER_NAME, $json);
     }
 
-    public static function loadList(int $count = self::COUNT_PER_STEP): array
+    public static function load():string
     {
-        return Redis::rawCommand('LPOP', self::BUFFER_NAME, $count);
+        $json = Redis::rawCommand('LPOP',self::BUFFER_NAME);
+        if(false === $json){
+            throw new RedisBufferIsEmpty();
+        }
+        return $json;
     }
+
+//    Redis 6 не поддерживает чтение массива
+
+//    public static function loadList(int $count = self::COUNT_PER_STEP): array
+//    {
+//        return Redis::rawCommand('LPOP', self::BUFFER_NAME, $count);
+//    }
 }
