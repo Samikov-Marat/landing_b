@@ -25,6 +25,9 @@ class SaveStatistics
         $statistics->utm_term = $request->input('utm_term');
         $statistics->utm_content = $request->input('utm_content');
 
+        $time = $statistics->freshTimestamp();
+        $statistics->setUpdatedAt($time);
+        $statistics->setCreatedAt($time);
         StatisticsRedis::save($statistics->toJson());
 
         return $next($request);
