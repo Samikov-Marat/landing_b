@@ -36,6 +36,8 @@ class StatisticsSave extends Command
             $statistics->utm_campaign = $statisticsAttributes['utm_campaign'];
             $statistics->utm_term = $statisticsAttributes['utm_term'];
             $statistics->utm_content = $statisticsAttributes['utm_content'];
+            $statistics->created_at = $statisticsAttributes['created_at'];
+            $statistics->updated_at = $statisticsAttributes['updated_at'];
             $list[] = $statistics->getAttributes();
         }
         Statistics::query()->insert($list);
