@@ -2,26 +2,20 @@ function TrackingShort(result) {
     this.result = result;
 
     this.show = function () {
-        let startPoint = -1;
-        for(let i = 0; i < result.statuses.length; i++){
-            if(result.statuses[i].currentCity){
-                startPoint = result.statuses[i];
-                break;
-            }
-        }
-        $('.js-tracking-from-city').html(startPoint.currentCity.name);
-        $('.js-tracking-from-date').html(this.getDateString(startPoint.timestamp));
+        $('.js-tracking-from-city').html(this.result.order.sender.address.city.name);
+        $('.js-tracking-from-date').html('');
 
-        let endPoint = result.statuses.length;
-        for(let i = result.statuses.length - 1; i >= 0; i--){
-            if(result.statuses[i].currentCity){
-                endPoint = result.statuses[i];
+        for(let i = 0; i < this.result.statuses.length; i++){
+            if('ACCEPTED_FOR_DELIVERY' == this.result.statuses[i].code){
+                $('.js-tracking-from-date').html(this.getDateString(this.result.statuses[i].timestamp));
                 break;
             }
         }
-        $('.js-tracking-to-city').html(endPoint.currentCity.name);
-        $('.js-tracking-to-date').html(this.getDateString(endPoint.timestamp));
-        $('.js-tracking-status').html(endPoint.name);
+
+        $('.js-tracking-to-city').html(this.result.order.receiver.address.city.name);
+        $('.js-tracking-to-date').html(this.getDateString(this.result.warehouse.acceptance.plannedEndDate));
+
+        $('.js-tracking-status').html(this.result.statuses.at(-1).name);
         $('.js-tracking-result').removeClass('hidden');
     }
 
