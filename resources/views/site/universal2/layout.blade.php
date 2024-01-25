@@ -105,6 +105,10 @@
         @include('site.universal2.fast_answer')
     @endif
 
+    @if($dictionary['yellow_alert'])
+        @include('site.universal2.yellow_alert')
+    @endif
+
     <div class="fullscreen-modal-background js-fade_background "></div>
     <header class="header-shadow">
         <div class="header header_menu_size_l">
