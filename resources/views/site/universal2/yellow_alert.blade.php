@@ -1,10 +1,10 @@
-<!-- yellow_alert -->
-<div class="attention-line">
-    <div class="attention-line__content">
-        <div class="attention-line__image"></div>
-        <div class="attention-line__text">
+<div class="yellow-line">
+    <div class="yellow-line__content">
+        <div class="yellow-line__text">
             @d('yellow_alert')
+        </div>
+        <div class="yellow-line__text">
+            @d('yellow_alert_2')
         </div>
     </div>
 </div>
-<!-- /yellow_alert -->
