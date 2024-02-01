@@ -302,6 +302,9 @@
                     @if($dictionary['footer_fulfilment'] != '-')
                         <a class="footer__link footer__link-mr-social" href="{!! $dictionary['footer_fulfilment'] !!}" target="_blank">@d('footer_fulfilment_text')</a>
                     @endif
+                    @if($dictionary['footer_sanctions'] != '-')
+                        <a class="footer__link footer__link-mr-social" href="{!! $dictionary['footer_sanctions'] !!}" target="_blank">@d('footer_sanctions_text')</a>
+                    @endif
                 </div>
 
                 <div class="footer__link-policy-item">
