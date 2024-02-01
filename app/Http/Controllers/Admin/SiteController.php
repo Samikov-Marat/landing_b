@@ -33,7 +33,6 @@ class SiteController extends Controller
     {
         if (isset($id)) {
             $site = Site::select('id', 'name', 'domain')
-                ->with(['site'])
                 ->find($id);
         } else {
             $site = null;
