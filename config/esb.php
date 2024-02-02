@@ -14,6 +14,7 @@ return [
     // все активные обработчики очередей
     'handlers' => [
 //        OrderQueueHandler::class,
+    \App\Classes\OfficeQueueHandler::class,
     ],
 
     // настройки для отдельной очереди

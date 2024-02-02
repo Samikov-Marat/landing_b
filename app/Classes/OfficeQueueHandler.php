@@ -4,6 +4,7 @@ namespace App\Classes;
 
 use Bunny\Message;
 use Cdek\Esb\Contracts\NamedQueueHandlerInterface;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
 class OfficeQueueHandler implements NamedQueueHandlerInterface
@@ -15,6 +16,11 @@ class OfficeQueueHandler implements NamedQueueHandlerInterface
 
     public function handle(Message $message): bool
     {
-        Storage::append('esb_log.txt', var_export($message), true);
+        Log::info($message->content);
+
+        app(OfficeReaderJson::class)
+            ->save($message->content);
+
+        return true;
     }
 }
