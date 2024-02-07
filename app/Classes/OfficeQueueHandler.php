@@ -17,9 +17,12 @@ class OfficeQueueHandler implements NamedQueueHandlerInterface
     public function handle(Message $message): bool
     {
         Log::info($message->content);
+        if('' == $message->content){
+            return true;
+        }
 
-        app(OfficeReaderJson::class)
-            ->save($message->content);
+        app(OfficeEsbRepository::class, ['fromEsb' => true])
+            ->save(json_decode($message->content, true));
 
         return true;
     }
