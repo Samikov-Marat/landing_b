@@ -28,6 +28,12 @@ class OfficeEsbRepository
         if ($attributes['status'] !== 'ACTIVE') {
             return;
         }
+        if(!isset($attributes['address']['longitude'])){
+            return;
+        }
+        if(!isset($attributes['address']['latitude'])){
+            return;
+        }
 
         if($office->exists){
             $this->result = 'updated';
