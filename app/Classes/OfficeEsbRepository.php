@@ -7,7 +7,7 @@ use App\Office;
 class OfficeEsbRepository
 {
     private $fromEsb;
-
+    public $result = 'none';
     public function __construct(bool $fromEsb)
     {
         $this->fromEsb = $fromEsb;
@@ -18,14 +18,24 @@ class OfficeEsbRepository
         $office = Office::where('uuid', $attributes['uuid'])
             ->firstOrNew();
         if ($office->exists && $office->from_esb && !$this->fromEsb) {
+            $this->result = 'overdue';
             return;
         }
         if (($attributes['status'] !== 'ACTIVE') && $office->exists) {
+            $this->result = 'deleted';
             $office->delete();
         }
         if ($attributes['status'] !== 'ACTIVE') {
             return;
         }
+
+        if($office->exists){
+            $this->result = 'updated';
+        }
+        else{
+            $this->result = 'created';
+        }
+
         $office->uuid = $attributes['uuid'];
         $office->code = $attributes['systemName'] ?? '';
         $office->name = $attributes['name']['rus'] ?? '';

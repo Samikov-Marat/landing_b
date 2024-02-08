@@ -17,14 +17,17 @@ class OfficeApi
             'token' => '',
         ]);
         if ($response->serverError()) {
+            dump('Ошибка запроса /api/v3/office/esb/get');
             Log::error('Ошибка запроса /api/v3/office/esb/get');
-            return;
+            return false;
         }
         if ($response->body() == '') {
+            dump('Пустой ответ (uuid не найден)');
             Log::error('Пустой ответ (uuid не найден)');
-            return;
+            return false;
         }
-        app(OfficeEsbRepository::class, ['fromEsb' => false])
-            ->save($response->json());
+        $officeRepository = app(OfficeEsbRepository::class, ['fromEsb' => false]);
+        $officeRepository->save($response->json());
+        dump($officeRepository->result);
     }
 }
