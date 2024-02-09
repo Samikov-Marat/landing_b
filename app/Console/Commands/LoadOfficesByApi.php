@@ -49,7 +49,7 @@ class LoadOfficesByApi extends Command
             usleep($pause);
             Log::info('Получаем из API ' . $uuid->uuid);
             (new OfficeApi)->load($uuid->uuid);
-            $pause = 200;
+            $pause = 15;
             $uuid->delete();
         }
         return 0;
