@@ -65,6 +65,17 @@ services:
       - ${REDIS_PORT}:6379
     networks:
       - landing
+  rabbit:
+    build:
+      context:
+        ./docker/rabbit
+    ports:
+      - 15671:15672
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS}
+    networks:
+      - landing
 networks:
   landing:
     driver: bridge

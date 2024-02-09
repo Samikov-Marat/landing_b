@@ -24,4 +24,12 @@ $(function () {
         $modal.find('.js-delete-confirm-text').html($(this).data('text'));
         $modal.modal('show');
     });
-})
+});
+
+$(function () {
+    $('.js-office-esb-form').on('submit', function () {
+        $(this).addClass('d-none');
+        $('.js-office-esb-old').addClass('d-none');
+        $('.js-office-esb-process').removeClass('d-none');
+    });
+});
