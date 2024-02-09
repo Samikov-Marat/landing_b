@@ -3,6 +3,7 @@
 namespace App\Classes;
 
 use App\Office;
+use Illuminate\Support\Arr;
 
 class OfficeEsbRepository
 {
@@ -43,15 +44,15 @@ class OfficeEsbRepository
         }
 
         $office->uuid = $attributes['uuid'];
-        $office->code = $attributes['systemName'] ?? '';
-        $office->name = $attributes['name']['rus'] ?? '';
+        $office->code = Arr::get($attributes, 'systemName', '');
+        $office->name = Arr::get($attributes, 'name.rus', '');
         $office->country_code_iso = '';
-        $office->work_time = $this->getWorktimeString($attributes['officeWorkPeriods'] ?? []);
-        $office->address = $attributes['address']['street']['rus'] ?? '' . ' ' . $attributes['address']['house']['rus'] ?? '';
-        $office->full_address = $attributes['address']['street']['rus'] ?? '' . ' ' . $attributes['address']['house']['rus'] ?? '';
-        $office->address_comment = $attributes['address']['comment']['rus']??'';
-        $office->email = $attributes['email'] ?? '';
-        $office->phone = $this->getPhoneString($attributes['officePhones']??[]);
+        $office->work_time = $this->getWorktimeString(Arr::get($attributes, 'officeWorkPeriods', []));
+        $office->address = Arr::get($attributes, 'address.street.rus', '') . ' ' . Arr::get($attributes, 'address.house.rus', '');
+        $office->full_address = Arr::get($attributes, 'address.street.rus', '') . ' ' . Arr::get($attributes, 'address.house.rus', '');
+        $office->address_comment = Arr::get($attributes, 'address.comment.rus', '');
+        $office->email = Arr::get($attributes, 'email', '');
+        $office->phone = $this->getPhoneString(Arr::get($attributes, 'officePhones', ''));
         $office->coordinates = new Point($attributes['address']['longitude'], $attributes['address']['latitude']);
         $office->save();
     }

@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Classes\Admin\OfficeApi;
 use App\OfficeUuid;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Log;
 
 class LoadOfficesByApi extends Command
 {
@@ -40,12 +41,13 @@ class LoadOfficesByApi extends Command
     public function handle()
     {
         $uuids = OfficeUuid::select(['uuid'])
-            ->limit(100)
+            ->limit(1000)
         ->get();
 
         $pause = 0;
         foreach ($uuids as $uuid) {
             usleep($pause);
+            Log::info('Получаем из API ' . $uuid->uuid);
             (new OfficeApi)->load($uuid->uuid);
             $pause = 200;
             $uuid->delete();
