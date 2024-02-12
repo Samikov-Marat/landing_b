@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Alias;
 use App\Classes\AliasSitesSearcher;
 use App\Http\Controllers\Controller;
+use App\Language;
 use Illuminate\Http\Request;
 
 class AliasController extends Controller
@@ -15,8 +16,10 @@ class AliasController extends Controller
             ->orderBy('id')
             ->with('site')
             ->get();
+        $languages = Language::select('*')->get();
         return view('admin.alias.index')
-            ->with('aliases', $aliases);
+            ->with('aliases', $aliases)
+            ->with('aliases', $languages);
     }
 
     public function edit(Request $request)

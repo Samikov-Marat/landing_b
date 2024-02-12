@@ -78,6 +78,12 @@
             @endforeach
             </tbody>
         </table>
+
+        @foreach($languages as $language)
+            {{ implode(';', $language->toArray())  }} <br>
+        @endforeach
+
+
     @else
         <span class="alert alert-info">Список пуст.</span>
     @endif

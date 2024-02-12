@@ -5,6 +5,8 @@ services:
     build:
       context:
         ./docker/nginx
+    depends_on:
+      - php
     volumes:
       - ./public:/app/public
       - ./storage:/app/storage
