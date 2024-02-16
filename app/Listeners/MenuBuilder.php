@@ -23,6 +23,7 @@ class MenuBuilder
             ['route' => 'admin.aliases.index', 'text' => 'Псевдонимы', 'icon' => 'fa fa-compass',],
             ['route' => 'admin.sites.index', 'text' => 'Сайты', 'icon' => 'far fa-folder',],
             ['route' => 'admin.pages.index', 'text' => 'Страницы', 'icon' => 'far fa-file',],
+            ['route' => 'admin.key_numbers.index', 'text' => 'Ключевые числа', 'icon' => 'fas fa-stopwatch-20',],
             ['route' => 'admin.top_offices.index', 'text' => 'Международные офисы', 'icon' => 'fab fa-fort-awesome',],
             ['route' => 'admin.world_languages.index', 'text' => 'Международные языки', 'icon' => 'fas fa-om',],
             ['route' => 'admin.franchisees.index', 'text' => 'Франчайзи', 'icon' => 'fa fa-rocket',],
