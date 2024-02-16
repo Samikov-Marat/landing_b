@@ -10,7 +10,7 @@ RUN apt-get install -y libzip-dev
 RUN apt-get install -y zip
 RUN pecl install redis
 RUN docker-php-ext-configure zip --with-libzip
-RUN docker-php-ext-install zip pdo_mysql
+RUN docker-php-ext-install zip pdo_mysql bcmath pcntl
 RUN docker-php-ext-enable redis
 #     && \
 #    docker-php-ext-enable pdo pdo_mysql

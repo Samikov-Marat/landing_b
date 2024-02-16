@@ -42,6 +42,7 @@ class MenuBuilder
             ['route' => 'admin.users.index', 'text' => 'Пользователи', 'icon' => 'fas fa-user',],
             ['route' => 'admin.countries.index', 'text' => 'Страны', 'icon' => 'far fa-folder',],
             ['route' => 'admin.currency.index', 'text' => 'Валюты', 'icon' => 'fas fa-money-bill',],
+            ['route' => 'admin.office_esb.index', 'text' => 'Офисы шины', 'icon' => 'fas fa-exchange-alt',],
         ];
 
         $this->menuFranchisee =[

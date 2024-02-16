@@ -527,6 +527,11 @@ Route::prefix('admin')->middleware(
             ->name('admin.aliases.search_sites')
             ->middleware('debugbar.disable');
 
+        Route::get('office-esb', 'Admin\OfficeEsbController@index')
+            ->name('admin.office_esb.index');
+        Route::post('office-esb/save', 'Admin\OfficeEsbController@save')
+            ->name('admin.office_esb.save');
+
     }
 
 );

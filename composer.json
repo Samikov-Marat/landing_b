@@ -13,6 +13,7 @@
         "ext-openssl": "*",
         "ext-xmlreader": "*",
         "amocrm/amocrm-api-library": "^0.12.3",
+        "cdek/esb": "*",
         "fakerphp/faker": "^1.20",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^1.0",
@@ -22,6 +23,7 @@
         "laravel/framework": "~7.0",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.1",
+        "php-amqplib/php-amqplib": "*",
         "promphp/prometheus_client_php": "^2.6"
     },
     "require-dev": {
@@ -32,6 +34,13 @@
         "nunomaduro/collision": "^4.1",
         "phpunit/phpunit": "*"
     },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://repo.cdek.ru/artifactory/api/composer/php-private"
+        }
+    ],
+
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
