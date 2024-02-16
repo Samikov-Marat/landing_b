@@ -7,7 +7,7 @@
             <h1 class="typo-h1 support-page__heading">@d('support_1')</h1>
             @if($dictionary['turkey_support'])
                 <div class="contact-page__phone" style="padding-top: 10px; padding-bottom: 20px;">
-                    @d('turkey_support') <a class="contact-page__link" href="tel:{{ $dictionary['turkey_support_phone'] }}">@d('turkey_support_phone')</a>
+                    @d('turkey_support') @d('turkey_support_time') <a class="contact-page__link" href="tel:{{ $dictionary['turkey_support_phone'] }}">@d('turkey_support_phone')</a>
                 </div>
             @endif
 

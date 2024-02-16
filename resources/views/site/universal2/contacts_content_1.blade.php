@@ -25,6 +25,8 @@
                 <div class="contact-page__phone">
                     @d('turkey_support')
                     <br>
+                    @d('turkey_support_time')
+                    <br>
                     <a class="contact-page__link" href="tel:{{ $dictionary['turkey_support_phone'] }}">@d('turkey_support_phone')</a>
                 </div>
             @endif
