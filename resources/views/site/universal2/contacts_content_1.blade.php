@@ -23,7 +23,7 @@
 
             @if($dictionary['turkey_support'])
                 <div class="contact-page__phone">
-                    @d('turkey_support') <a class="contact-page__link" href="tel:{{ $dictionary['turkey_support_phone'] }}">@d('turkey_support_phone')</a>
+                    @d('turkey_support')<br><a class="contact-page__link" href="tel:{{ $dictionary['turkey_support_phone'] }}">@d('turkey_support_phone')</a>
                 </div>
             @endif
 
