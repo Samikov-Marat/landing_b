@@ -361,6 +361,7 @@
                     @if($dictionary['turkey_support'])
                         <br>
                         @d('turkey_support')<br>
+                        @d('turkey_support_time')<br>
                         <a class="footer__email footer-email" style="background:none; padding-left:1em;" href="tel:{{ $dictionary['turkey_support_phone'] }}">@d('turkey_support_phone')</a>
                     @endif
 
