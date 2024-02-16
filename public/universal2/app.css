@@ -608,6 +608,7 @@ body {
       .footer__link-mr-policy:last-child {
         margin-bottom: 0; }
     .footer__right-text {
+        width: 240px;
       position: absolute;
       right: 20px;
       top: 37px; }
