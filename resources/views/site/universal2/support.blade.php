@@ -5,6 +5,12 @@
     <div class="support-page screen">
         <div class="content support-page__content  support-page__content_step1">
             <h1 class="typo-h1 support-page__heading">@d('support_1')</h1>
+            @if($dictionary['turkey_support'])
+                <div class="contact-page__phone" style="padding-top: 10px; padding-bottom: 20px;">
+                    @d('turkey_support') <a class="contact-page__link" href="tel:{{ $dictionary['turkey_support_phone'] }}">@d('turkey_support_phone')</a>
+                </div>
+            @endif
+
 
             @include('site.universal2.support_new_form')
 

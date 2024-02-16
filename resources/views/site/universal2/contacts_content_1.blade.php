@@ -20,6 +20,13 @@
                     <a class="contact-page__link" href="tel:{{ $localOfficePhone->phone_value }}">{{ $localOfficePhone->phone_text }}</a>
                 </div>
             @endforeach
+
+            @if($dictionary['turkey_support'])
+                <div class="contact-page__phone">
+                    @d('turkey_support') <a class="contact-page__link" href="tel:{{ $dictionary['turkey_support_phone'] }}">@d('turkey_support_phone')</a>
+                </div>
+            @endif
+
             @foreach($localOffice->localOfficeEmails as $localOfficeEmail)
                 <div class="contact-page__email">E-mail: <a href="mailto:{{ $localOfficeEmail->email }}"
                                                             class="contact-page__link">{{ $localOfficeEmail->email }}</a>

@@ -358,6 +358,12 @@
                         <a class="footer__email footer-email" href="mailto:{{ $dictionary['footer_email'] }}">@d('footer_email')</a>
                     @endif
 
+                    @if($dictionary['turkey_support'])
+                        <br>
+                        @d('turkey_support')
+                        <a class="footer__email footer-email" style="background:none; padding-left:1em;" href="tel:{{ $dictionary['turkey_support_phone'] }}">@d('turkey_support_phone')</a>
+                    @endif
+
                     @if($site->localOffices->count() > 1)
                         @include('site.universal2.layout.contacts_footer_component')
                     @endif
