@@ -31,8 +31,8 @@
             >@d('receive_button')</a>
         </div>
         <div class="package-russia__office">
-            <div class="package-russia__office-num">@d('receive_office_count')</div>
-            <div class="package-russia__office-text">@d('receive_country_count')</div>
+            <div class="package-russia__office-num">@d('receive_office_count_prefix')@knumber('offices')@d('receive_office_count')</div>
+            <div class="package-russia__office-text">@d('receive_country_count_prefix')@knumber('countries')@d('receive_country_count')</div>
         </div>
     </div>
 </div>

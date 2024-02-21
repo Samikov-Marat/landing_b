@@ -23,6 +23,7 @@ use App\Exceptions\PageController\LanguageListIsEmpty;
 use App\Exceptions\PageController\SiteNotFound;
 use App\Facades\Metrics;
 use App\Http\Controllers\Controller;
+use App\KeyNumbers;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -158,6 +159,7 @@ class PageController extends Controller
             ->with('allowCookies', AllowCookie::getInstance($request)->isAllow())
             ->with('uploadedCssIndexed', UploadedCss::getAll($site, $languageShortname))
             ->with('headTags', $headTags)
-            ->with('currency', $currency);
+            ->with('currency', $currency)
+            ->with('keyNumbers', KeyNumbers::select(['shortname', 'value'])->get()->pluck('value', 'shortname'));
     }
 }

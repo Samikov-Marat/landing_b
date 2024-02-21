@@ -33,7 +33,7 @@
                         <div class="square-card__bg"></div>
                         <div class="square-card__title">@d('tariff_slider_header_1')</div>
                         <div class="square-card__description">
-                            @d('tariff_slider_text_1')
+                            @d('tariff_slider_text_1_prefix')@knumber('offices')@d('tariff_slider_text_1')
                         </div>
                     </div>
                     <div class="square-card square-card_size_big square-card_big-icon_contract">
@@ -78,15 +78,15 @@
                     <div class="ecom-solution__promo-title">@d('solution_header_2')</div>
                     <div class="ecom-solution__promo-list">
                         <div class="ecom-solution__promo-list-item ecom-solution__promo-list-item_icon_heart">
-                            <div class="ecom-solution__promo-list-num">@d('solution_number_1')</div>
+                            <div class="ecom-solution__promo-list-num">@d('solution_number_1_prefix')@knumber('subscribers')@d('solution_number_1')</div>
                             <div class="ecom-solution__promo-list-text">@d('solution_text_1')</div>
                         </div>
                         <div class="ecom-solution__promo-list-item ecom-solution__promo-list-item_icon_eye">
-                            <div class="ecom-solution__promo-list-num">@d('solution_number_2')</div>
+                            <div class="ecom-solution__promo-list-num">@d('solution_number_2_prefix')@knumber('visits')@d('solution_number_2')</div>
                             <div class="ecom-solution__promo-list-text">@d('solution_text_2')</div>
                         </div>
                         <div class="ecom-solution__promo-list-item ecom-solution__promo-list-item_icon_mail">
-                            <div class="ecom-solution__promo-list-num">@d('solution_number_3')</div>
+                            <div class="ecom-solution__promo-list-num">@d('solution_number_3_prefix')@knumber('emails')@d('solution_number_3')</div>
                             <div class="ecom-solution__promo-list-text">@d('solution_text_3')</div>
                         </div>
                     </div>
