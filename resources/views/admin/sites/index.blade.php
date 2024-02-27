@@ -10,6 +10,10 @@
     @endpush
 @endcan
 
+@push('buttons2')
+    <a href="{!! route('admin.texts.download_for_key_number') !!}" class="btn btn-primary"><i class="fas fa-plus"></i> Скачать ланги ключевых чисел</a>
+@endpush
+
 @section('content')
 <style>
     thead {

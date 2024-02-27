@@ -2,15 +2,20 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Classes\KeyNumberTextTypes;
 use App\Classes\TextCsv;
 use App\Classes\TextCsvParser;
 use App\Classes\TextRepository;
+use App\Classes\TextRepositoryKeyNumber;
 use App\Http\Controllers\Controller;
 use App\Site;
 use App\Text;
 use App\TextType;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\URL;
+use ZipArchive;
 
 class TextController extends Controller
 {
@@ -109,6 +114,36 @@ class TextController extends Controller
             },
             'lang' . $site->id . '.csv'
         );
+    }
+
+    public function downloadForKeyNumber(Request $request)
+    {
+
+        KeyNumberTextTypes::prepare();
+
+
+
+        $sites = Site::select(['id', 'domain'])
+            ->get();
+        $zip = new ZipArchive();
+        $filename = public_path('storage/keynumbers.zip');
+
+        if ($zip->open($filename, ZipArchive::CREATE) !== TRUE) {
+            exit("Невозможно открыть <$filename>\n");
+        }
+        foreach ($sites as $siteMin) {
+            $site = TextRepositoryKeyNumber::getSite($siteMin->id);
+            $csv = new TextCsv();
+            $csv->filter = [];
+            $csv->onlyPages = true;
+            $name = preg_replace('#[\\W]+#U', '_', $siteMin->domain);
+            @mkdir(storage_path('app/public/keynumbers/'), 0755, true);
+            $csv->streamName = storage_path(('app/public/keynumbers/' . $name . '.csv'));
+            $csv->start($site);
+            $zip->addFile(storage_path(('app/public/keynumbers/' . $name . '.csv')));
+        }
+        echo '<a href="' . \url('storage/keynumbers.zip') . '">' . \url('storage/keynumbers.zip') . '</a>';
+        $zip->close();
     }
 
     public function upload(Request $request)

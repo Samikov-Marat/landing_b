@@ -235,6 +235,8 @@ Route::prefix('admin')->middleware(
             ->withoutMiddleware(TrimStrings::class);
         Route::get('texts/download', 'Admin\TextController@download')
             ->name('admin.texts.download');
+        Route::get('texts/download-for-key-number', 'Admin\TextController@downloadForKeyNumber')
+            ->name('admin.texts.download_for_key_number');
         Route::post('texts/upload', 'Admin\TextController@upload')
             ->name('admin.texts.upload');
 

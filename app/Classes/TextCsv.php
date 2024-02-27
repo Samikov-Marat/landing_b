@@ -6,9 +6,10 @@ namespace App\Classes;
 
 class TextCsv
 {
-    var $streamName = '';
-    var $stream = null;
-    var $streamRead = null;
+    public $streamName = '';
+    public $filter = [];
+    public $onlyPages = false;
+    private $stream = null;
 
     const DELIMITER = ',';
 
@@ -24,6 +25,8 @@ class TextCsv
     public function __construct()
     {
         $this->streamName = 'php://output';
+        $this->filter = [];
+        $this->onlyPages = false;
     }
 
     private function openStream()
@@ -101,6 +104,12 @@ class TextCsv
                 $this->put($line);
             }
         }
+
+        if($this->onlyPages){
+            $this->closeStream();
+            return;
+        }
+
         foreach ($site->localOffices as $office) {
             $officeHeader = [static::getOfficePrefix($office),];
             foreach ($site->languages as $language) {
