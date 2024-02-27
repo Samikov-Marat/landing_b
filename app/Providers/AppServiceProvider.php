@@ -35,6 +35,13 @@ class AppServiceProvider extends ServiceProvider
             }
         );
 
+        Blade::directive(
+            'knumber',
+            function ($expression) {
+                return "<?php echo number_format((int)\$keyNumbers[$expression], 0, ',', '&nbsp;')  ?>";
+            }
+        );
+
         URL::forceScheme('https');
     }
 }

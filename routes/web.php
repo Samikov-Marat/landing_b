@@ -534,6 +534,16 @@ Route::prefix('admin')->middleware(
         Route::post('office-esb/save', 'Admin\OfficeEsbController@save')
             ->name('admin.office_esb.save');
 
+        Route::get('key-numbers', 'Admin\KeyNumberController@index')
+            ->name('admin.key_numbers.index');
+        Route::get('key-numbers/add', 'Admin\KeyNumberController@edit')
+            ->name('admin.key_numbers.add');
+        Route::get('key-numbers/edit/{id}', 'Admin\KeyNumberController@edit')
+            ->name('admin.key_numbers.edit');
+        Route::post('key-numbers/save', 'Admin\KeyNumberController@save')
+            ->name('admin.key_numbers.save');
+        Route::post('key-numbers/delete', 'Admin\KeyNumberController@delete')
+            ->name('admin.key_numbers.delete');
     }
 
 );

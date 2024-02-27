@@ -32,14 +32,14 @@
                     <div class="square-card__bg"></div>
                     <div class="square-card__title">@d('why_trusty_header')</div>
                     <div class="square-card__description">
-                        @d('why_trusty_text1') <span class="typo-bold">@d('why_trusty_text2')</span>
+                        @d('why_trusty_text1') <span class="typo-bold">@d('why_trusty_text2_prefix')@knumber('clients')@d('why_trusty_text2')</span>
                     </div>
                 </div>
                 <div class="square-card square-card_icon_lorry">
                     <div class="square-card__bg"></div>
                     <div class="square-card__title">@d('why_available_header')</div>
                     <div class="square-card__description">
-                        @d('why_available_text1') <span class="typo-bold">@d('why_available_text2')</span>
+                        @d('why_available_text1') <span class="typo-bold">@d('why_available_text2_prefix')@knumber('offices')@d('why_available_text2')</span>
                     </div>
                 </div>
                 <div class="square-card square-card_icon_parcels">

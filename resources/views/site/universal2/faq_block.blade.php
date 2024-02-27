@@ -23,7 +23,7 @@
                 </div>
                 <div class="faq-list__faq">
                     <div class="faq-list__faq-question">@d('faq_shop_question_2')</div>
-                    <div class="faq-list__faq-answer">@d('faq_shop_answer_2')</div>
+                    <div class="faq-list__faq-answer">@d('faq_shop_answer_2_prefix')@knumber('countries')@d('faq_shop_answer_2') @d('faq_shop_answer_2a_prefix')@knumber('offices')@d('faq_shop_answer_2a')</div>
                 </div>
                 @if(isset($dictionary['faq_shop_question_3']) && $dictionary['faq_shop_question_3'] != '')
                     <div class="faq-list__faq">

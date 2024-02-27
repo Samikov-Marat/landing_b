@@ -16,10 +16,9 @@ class AliasController extends Controller
             ->orderBy('id')
             ->with('site')
             ->get();
-        $languages = Language::select('*')->get();
+
         return view('admin.alias.index')
-            ->with('aliases', $aliases)
-            ->with('aliases', $languages);
+            ->with('aliases', $aliases);
     }
 
     public function edit(Request $request)
