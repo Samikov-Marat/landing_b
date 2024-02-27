@@ -140,7 +140,7 @@ class TextController extends Controller
             @mkdir(storage_path('app/public/keynumbers/'), 0755, true);
             $csv->streamName = storage_path(('app/public/keynumbers/' . $name . '.csv'));
             $csv->start($site);
-            $zip->addFile(storage_path(('app/public/keynumbers/' . $name . '.csv')));
+            $zip->addFile(storage_path(('app/public/keynumbers/' . $name . '.csv')), $name . '.csv');
         }
         echo '<a href="' . \url('storage/keynumbers.zip') . '">' . \url('storage/keynumbers.zip') . '</a>';
         $zip->close();
